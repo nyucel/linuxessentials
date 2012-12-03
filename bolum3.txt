@@ -1,0 +1,109 @@
+Linux’la Ýlk Adýmlar
+Ýçindekiler
+3.1. Giriþ ve Çýkýþ
+3.2. Masaüstü Ortamý ve Tarayýcý
+    3.2.1 Görsel Masaüstü Ortamlarý
+    3.2.2 Tarayýcýlar
+   3.2.3 Terminaller ve Kabuklar
+3.3 Metin Dosyalarýný Oluþturma ve Düzenleme
+Hedefler
+. Temel Linux iþlevselliðini denemek
+. Metin editörü kullanarak dosyalarý oluþturmayý ve düzenlemeyi öðrenmek
+Önceden bilinmesi gerekenler
+Diðer iþletim sistemlerini temel düzeyde bilmek
+lxes-basic.tex()
+3.1 Giriþ ve Çýkýþ
+Linux sistemi kullanýcýlar arasýnda ayrým yapar.Bunun sonucu olarak bilgisayar açýldýktan hemen sonra bilgisayarý kullanmaya baþlayamayabilirsiniz. Önce bilgisayara kim olduðunuzu söylemelisiniz – yani giriþ yapmalýsýnýz. Sistem verdiðiniz bilgiye dayanarak ne yapacaðýna yada ne yapmayacaðýna karar verir. Elbette sisteme eriþim hakkýna ihtiyaç duyarsýnýz(bir “hesap”). Sistem yöneticisi size geçerli bir kullanýcý adý ve parola atamýþ olmalýdýr. Parola sizin hesabýnýza sadece sizin kullandýðýnýza emin olmanýzý saðlar. Onu gizli tutmalý ve baþka kimseye bildirmemelisiniz. Sizin kullanýcý adýnýzý ve parolanýzý bilen birisi sistemden tüm dosyalarýnýzý silebilir veya onlarý okumanýzý engelleyebilir, e-mail atmanýzý engelleyebilir yani genel olarak istemeyeceðiniz herþeyi yapabilir. 
+Bazý modern Linux daðýtýmlarý iþiniz kolaylaþtýrýr ve sadece sizin kullandýðýnýz bilgisayarda giriþ sürecini atlamanýza izin verir. Eðer bu gibi bir sistem kullanýyorsanýz giriþ yapmak zorunda deðilsiniz fakat bilgisayarýnýz doðrudan sizin oturumunuzla baþlar. Bunun avantajlarý elbette vardýr ama sadece sizin bilgisayarýnýza üçüncü bir eriþimin olmadýðýný öngörürsek. Kaybolmayý veya çalýnmayý önleyen diðer mobil sistemlerde veya dizüstü bilgisayarlarda bundan kaçýnýlmalýdýr. 
+Görsel ortama giriþ. Bu günlerde Linux bilgisayarlarý görsel ortamý göstermesi yaygýndýr ve giriþ adýmlarý görsel bir ekranda yer almýþtýr. Bilgisayarýnýz sizin kullanýcý adýnýzý ve parolanýzý girmenizi saðlayan bir form gösterir. 
+Parolanýzý girdiðinizde sadece yýldýz görüyorsanýz endiþelenmeyin. Bunun anlamý bilgisayarýnýzýn giriþi yanlýþ anladýðý deðil, sizi izleyen insanlar için parolanýn görünmesini zorlaþtýrmak istemesidir. 
+Giriþ yaptýktan sonra bilgisayarýnýz sizin için görsel bir oturum açar. Görsel oturumun anlamý uygulama programlarýna eriþebileceðiniz menü ve simgelerin olmasýdýr. Linux’un desteklediði çoðu görsel ortamlar, zamanýndan önce kapanan oturumu geri yüklemek için “oturum yönetimi”ni destekler. Bu sizin hangi programý çalýþtýrdýðýnýzý, ekranda hangi pencerede olduðunuzu veya hangi dosyalarý kullanýyor olduðunuzu bilmenizi gerektirmez. 
+Görsel ortamdan çýkýþ. Çalýþmanýzý bitirdiyseniz veya baþka bir kullanýcý için bilgisayarý kullanmaya uygun hale getirmek istiyorsanýz çýkýþ yapmanýz gerekir. Bu çok önemlidir. Çünkü oturum yöneticisi gelecekteki kullanýmýnýz için sizin o andaki oturumunuzu kaydeder. Detaylý olarak çýkýþýn nasýl çalýþacaðý görsel  ortama baðlýdýr. Fakat kural olarak sizin için herþeyi yapan bir yerde menü vardýr. Þüphelendiðinde dökümanlara veya sistem yöneticinize baþvurun.
+Metin konsoluna giriþ. Ýþistasyonlarýnýn aksine, sunucu sistemleri sýklýkla sadece bir metin konsolunu destekler veya gereken zamandan daha fazla kalmak istemeyeceðiniz gürültülü makine odalarý içinde kurulumu destekler. Bu gibi bilgisayarlara að yoluyla giriþ yapmayý tercih edeceksiniz. Her iki durumdada görsel giriþ ekraný göremeyeceksiniz ama bilgisayar size kullanýcý isminizi ve parolanýzý doðrudan soracak. Mesela bunun gibi birþey görebilirsiniz.
+Computer login:
+Eðer bilgisayarýn “computer” ismiyle sormasýný istersek bu böyledir. Burada kullanýcý adýnýzý girmelisiniz ve“enter” tuþuna basmalýsýnýz. Daha sonra bilgisayar size parolanýzý soracaktýr. 
+Password:
+Burada parolanýzý girin. Bu kez parolayý yazarken hiçbirþey görmeyeceksiniz. Eðer hem kullanýcý adýný hemde parolanýzý doðru girdiyseniz sistem giriþinizi kabul edecektir. Daha sonra kabuk -yani komut satýrý yorumlayýcýsý- baþlar ve komutlarý girmek ve programlarý çaðýrmak için klavyeyi kullanmanýza izin verir. Giriþ yaptýktan sonra “ev dizini” sizin dosyalarýnýzýn bulunduðu yer ekrana gelir.
+Eðer güvenli kabuk kullanýrsanýz, mesela baþka bir makineye að yoluyla giriþ yaptýðýnýzda baðlandýðýz bilgisayardaki kullanýcý adýyla sizin kullandýðýnýz bilgisayarýn kullanýcý adýný ayný olarak varsayar ve kullanýcý adýný sormaz. Detaylar bu kýlavuzun kapsamý dýþýndadýr. Güvenli kabuk Linux Administration II kitabýnda detaylý olarak anlatýlmýþtýr.
+Metin konsolundan çýkýþ. Metin konsolunda “logout” komutunu kullanarak çýkýþ yapabilirsin.
+$ logout
+Sistemden çýkýþ yaptýðýnýzda metin konsolu üzerinde sistem baþlama mesajýný ve diðer kullanýcý giriþ iletisini gösterir. Güvenli kabuk oturumuyla yerel bilgisayarýnýzdan baþka bir komut iletisini elde edebilirsiniz. 
+Alýþtýrmalar
+3.1 Sisteme giriþ yapmayý deneyin. Daha sonrada çýkýþ yapýn. Kullanýcý adý ve parolanýzý sistem dökümanlarý içerisinde bulacaksýnýz veya öðretmeniniz size söyleyecek. 
+3.2 eðer varolmayan bir kullanýcý adýyla giriþ yapýlýrsa veya yanlýþ parola girilirse ne olur? Herhangibir sýradýþý birþey farkettiniz mi? Sistemin böyle davranmasýna sebep olan þey nedir?
+3.2 Masaüstü Ortamý ve Tarayýcý
+3.2.1 Görsel Masaüstü Ortamý
+Görsel ortama giriþ yaptýðýnýzda Linux bilgisayarýnýz modern bilgisayarlarda gördüðünüzden daha farklý bir masaüstü göstermeyecektir. 
+Malesef bizim için burada iki Linux’un ayný olduðunu belirlemek mümkün deðil. Resmi görsel ortamlarla gelen Windows veya Macintosh sistemlerinin aksine Linux sistem kurulumunda bir çok görsel ortam arasýndan birini seçmeni öneren daðýtýmlarla gelir. 
+1.	KDE ve GNOME, benzer bir “look and feel” ile birlikte geniþ kapsamlý uygun uygulamalarý saðlamaya çalýþan masaüstü ortamlarýdýr. KDE ve GNOME’un hedefi hazýr sistemlerin daha iyisini ve karþýlaþtýrýlabilir deneyimlerini sunmaktýr. KDE ve GNOME yenilikçi özellikler içerir. KDE’ de arka plandaki dosyalarýn ve dökümanlarýn indekslerini anlamsal arama özellikleri vardýr ve geçen ay ispanyada çekildiðim fotoðraflara diskte nerede saklandýðýna bakmaksýzýn uygun eriþim izni verdiði varsayýlýr(1). Kabaca konuþursak, KDE ileri bilgili(sophisticated) kullanýcýlar için geniþ kapsamlý özelleþtirmeye odaklanýr, GNOME ise basitlik ve kullanýlabilirlikle ilgilenir. Mesela mümkün olmayan veya daha az deðiþtirilebilir þeyleri saðlamaya yönelimlidir. 
+2.	LXDE ve XFCE “lightweight” ortamlardýr. Temel yaklaþýmlarda KDE ve GNOME’a benzer fakat daha çok kaynaklarýn ekonomik kullanýmýna yönelmiþtir, bu yüzden anlamsal arama gibi çeþitli pahalý servisler kullanýlabilir. 
+3.	Tüm masaüstü ortamýný kullanmaktansa pencere yöneticilerinin bir grubunu kullanmayý tercih edebilirsiniz. This implies certain tradeoffs regarding the optical consistency and cooperation of programs, which result from the fact that, historically, there used to be fewguidelines for the look and feel of graphical programs on Unix and Linux. Ýlk olarak KDE’den önce bu bakýþ açýsýnda bir standartlaþma kurulmuþtur. Bu böyle þeyleri yapmak için genel bir yol olmuþtur. Fakat bugün Linux kullanýcýlarýnýn çoðunluðu görsel ortamlarýn  dahada iyileþtirilmesine inanýr. 
+1 Microsof bir kaç kez bunu yapacaðýný vaat etti, ama sonraki Windows versiyonu piyasaya çýkmadan önce yenilik listesinden çýkarýldý.
+
+Ayný görsel ortamý kullanan iki farklý daðýtým bile olsa bu onlarýn ayný görüneceði anlamýna gelmez. Genellikle görsel ortamlar onlarýn temalarýna dayalý görünüm özelleþtirmesine daha fazla yer ayýrýr ve daðýtýmlar bunu kendini diðerlerinden ayýrmak için kullanýr. Arabalarý göz önüne alalým. Tüm arabalar neredeyse 4 tekerleðe bir rüzgarlýða sahip fakat siz hiçbir zaman BMW’yi Citroen veya Ferrari ile karýþtýrmazsýnýz. 
+Kontrol çubuðu- herhangibir olayda kontrol çubuðu(yatay araç çubuk(dock), panel yada neye sahipsen) ekranýn ya en üstünde yada en altýnda senin önemli uygulama programlarýna giriþ yapmana izin veren veya bilgisayarý kapatmana yada çýkýþ yapmaný saðlayan menülerdir. KDE windowstaki baþlangýç butonuna benzeyen bir panele baðlýdýr. Panelde ayný windowstaki baþlangýç butonu gibi programlarýn menüsünü açar. GNOME baþlangýç butonu kullanmaz fakat ekranýn en üstüne menü çubuðunu taþýr. En önemli yada en çok kullandýðýnýz programlar ekranýn solundaki çek-býrak menüye eklenip kolayca eriþilebilir.
+Dosya Yöneticisi- Görsel ortamlar genellikle disk üzerinde dizinlere (dosyalara) eriþmenize izin veren ve onlarýn içeriklerini alt dizinlere ayýrmanýza ve dosyalarý iþletmenize olanak saðlayan bir dosya yöneticisine sahiptir. Buradaki yöntemlerin diðer görsel sistemlerden çokta fazla farký yoktur. Bir pencereyi bir dizinden diðerine sürükleyerek kopyalayabilir veya taþýyabilirsiniz ve isterseniz farenin sað butonuna týklayarak içerik menüsünü açabilir dosyaya farklý iþlemler uygulayabilirsiniz. Deneyin.
+Kontrol çubuðu(dock)- sýklýkla kullanýlan dosyalar ve programlar genellikle ekranýn altýnda saklanýr veya hýzlý eriþim için ekranda sabit bir yere yerleþtirilir. 
+Sanal masaüstü- çoðu Linux tabanlý görsel ortamlarýn genel bir özelliði Windows ve OS X’in sunmadýðý sanal masaüstleridir. Bu sanal masaüstleri ekranda boþ bir alanda çoðaltýlabilir. Arka ve ön planda çalýþtýrýlarak program pencerelerinin kendi seçimleriyle masaüstleri bir çok kez simule edilebilir. Bunlar çalýþtýðýn program veya dökümanlarýn masaüstünde istediðin yerde olabilmesine izin verir, web tarayýcýn ve eposta okuyucun için masaüstünde yer ayýrabilirsiniz ve programlanmýþ masaüstünde pencerelere yeniden düzenleme zorunluluðun olmadan çabucak eposta mesajlarýný  oluþturabilirsin.
+3.2.2 Tarayýcýlar
+Modern bilgisayarlar üstünde en ünlü programlardan biri web tarayýcýlarýdýr. Ýyiki en popüler tarayýcýlar açýk kaynaklý programlardýr ve Firefox veya Google Chrome Windows veya OS X ve Linux için uygundur(daðýtýmýnýz muhtemelen Google Chrome sunmaz fakat açýk kaynak çeþidi olan Chromium’u sunar, aralarýnda çokta bir fark yoktur. ) internet giriþi gibi bir giriþ için uygulama menüne baktýðýnda tarayýcýyý bulabilirsin.
+Ticari durumlara raðmen Debian GNU Linux sistemler ve çeþitli türetimleri üzerinde Firefox tarayýcýsýnýn  “Iceweasel” olarak adlandýrýlmýþtýr. Çünkü Mozilla vakfý, Firefox üreticileri tarayýcýnýn tamamlanmamýþ versiyonunun daðýtýmýna yalnýzca kod resmi versiyona  uyduðunda izin verir. Debian projesi tamir ve güvenlik problemleri haklarýný elinde tuttuðundan beri kopyalama ve ticari daðýtýmlarý çok ciddi bir þekilde ele alýr. Buda ismin deðiþmesi zorunluluðunu getirir.(Diðer daðýtýmlar resmi versiyonda kalýr veya isim hakkýyla ilgilenmez yeni bir isim bulur.) 
+3.2.3 Terminaller ve Kabuklar
+Görsel Linux ortamý içerisinde bile sýklýkla bir kabuk içerisinde metinsel komutlarý girebileceðin eriþime uygun bir terminal penceresi mevcuttur(bu klavuzun geri kalaný çoðunlukla kabuk komutlarýndan bahseder,bu nedenle bunlara ihtiyacýn olabilir.)
+Çoðu Linux masaüstü ortamlarý üstünde bir terminal penceresi bir fare týklamasý uzaklýðýndadýr. Debian GNU/Linux üstündeki KDE içinde konsol isimli bir giriþ sistem altýndaki baþlangýç menüsünde vardýr. Sistem bir kabuðu yürüten uygun programlarý açar ve metinsel komutlarý yürütür. Benzeri yöntemler diðer masaüstü ortamlarý ve daðýtýmlar üstündede vardýr.
+Alýþtýrmalar:
+3.3[!2] Bilgisayarýnýzda hangi görsel ortam kurulu? Bir dosya yöneticisi aç ve dosya veya dizin simgesi üzerinde sað týkladýðýnda ne olduðunu anlamaya çalýþýn. Eðer arka planda simgeler arasýnda boþ bir pencere üstünde sað týklarsanýz ne olur? Bir dosyayý bir dizinden diðerine nasýl taþýrsýn? Yeni bir dosya veya dizin nasýl oluþturursun? Bir dosyaya nasýl yeni bir isim verirsin?
+3.4[2] Bilgisayarýnýzda hangi web tarayýcýsý kurulu? Birden fazla var mý? Tarayýcýyý baþlatmayý deneyin ve onlarýn çalýþtýðýndan emin olun.
+3.5[!2] bir terminal penceresi açýp kapatýn. Terminal pencere programýn ayný pencere içinde birden çok oturumu destekler mi? (tab ile alt pencereleri kulanmak mümkün.)
+3.3. Metin Dosyalarýný Oluþturma ve Düzenleme
+Betik veya program yazmanýz, sistem yöneticisi olarak yapýlandýrma dosyalarýný düzenlemeniz veya basitçe bir alýþveriþ listesini not ediyor olmanýz farketmez. Metin dosyalarýný düzenlemede Linux en iyisidir. Bu yüzden Linux kullanýcýsý olarak ilk adýmlarýnýzdan birisi metin dosyalarýnýn nasýl oluþturulduðunu ve düzenlendiðini öðrenmek olmalýdýr. Bunun için seçtiðiniz araç metin editörüdür. 
+Linux metin editörleri tüm boyutlarda þekillerde ve renklerde gelir. Burada terminal içinde çalýþan acemi iþi metin editörü (beginner-proof) GNU Nano’nun en önemli özelliklerini anlatarak kolay bir çýkýþ yolu sunacaðýz.
+Elbette popüler görsel arayüzler menülerle araç çubuklarýyla kullanýþlý iyi þeylerin tüm çeþitlerini destekler.  Bu kullanýþlý iyi þeyler Windows üzerindeki Notepad veya daha iyisiyle karþýlaþtýrýlabilecek programlardýr.KDE üstündeki Kate veya Gnome üstündeki gedit gibi.iki sebepten dolayý  burada bu editörlere detaylý olarak bakmayacaðýz.
+1.	Bu programlar kendilerini daha detaylý olarak açýklamaya eðilimlidirler ve gereðinden fazla ilginizi buraya çekmek istemiyoruz. 
+2.	Her zaman görsel arayüz kullanacak bir pozisyonda olmayacaksýnýz . belkide güvenli kabuk kullanarak uzakta bir bilgisayarda çalýþýyor olabilirsiniz veya sunucu odasýnda sunucu konsolunun önünde duruyor olabilirsiniz yada þansýnýza sadece bir metin ekranýna sahipsinizdir. 
+Her halukarda hayatýnýn geri kalaný boyunca tek bir editör kullanmak zorunda deðilsiniz. Hiçkimse Nano gibi bir editörden baþka bir seçeneðiniz yokmuþ gibi sizi görsel masaüstü bilgisayarýnýz üstünde görsel bir editör kullanmaktan alýkoyamaz 
+Gelenekçi Linux tutkunlarý Nano gibi birþeyi küçümserler: gerçek Linux profesyoneli için doðru seçim editörü vi (“vee aye” diye okunur), klavye özelliði ok tuþlarýna güvenmeyen ve makine odalarýný doldurmuþ metin terminallerinin yeþil ýþýðýnda zamana direnmiþ yaþayan bir fosile benzetilir. Eðer sistem yöneticisi üzerinde bir kariyere giriþirseniz yakýn veya uzak gelecekte vi ile tanýþmalýsýnýz. En azýndan orta seviyede vi bilmek gerekir. Bu yüzden vi özellikle Linux’ta ve her Unix çeþidi üstünde geniþ olarak kullanýlmaya deðer tek editördü. Fakat þuanda bu böyle deðil. 
+GNU Nano pico ismi verilmiþ basit bir editördür.pico PINE eposta paketinin bir bölümüdür.(PINE kabul edilmiþ tanýmlara göre ücretsiz bir yazýlým deðildir bu yüzden GNU projesi yeni bir editör yazdý. Bu arada PINE’ýn ileri sürümü alpine adý altýnda ücretsiz olarak mevcuttur ve pico’nun ücretsiz bir versiyonunuda taþýr.) Çoðu daðýtým GNU Nano veya pico’yu önerir buda basitlik içindir. Bölümün geri kalanýnda GNU Nanodan bahsedeceðiz. Pratik olarak söylediðimiz herþey picoyada uygulanabilir.
+Orjinal pico ile karþýlaþtýrýrsak GNU Nano özellikleri bazý uzantýlara sahiptir.(bu uzantýlar bir sürpriz göz önüne alarak gelmemiþtir. Zaten isme göre çoktan mevcuttur. En önemli 3 editörden biridir.) fakat bunlarýn çoðu bizimle doðrudan ilgilenmez. Gerçekten çok açýk olan sadece bir uzantý vardýr. GNU Nano uluslar arasý hale getirilmiþtir(internationalized). Böylece bir sistem üstünde diðer taraftan almanca dilini kullanmak için kurarsýnýz.  Almanca olarak metinleri mesajla yazabilirsiniz.
+GNU Nano çoðunlukla terminal penceresi içerisinde hazýr olarak baþlar. (bölüm 3.2.3 aþaðýdaki bir komut kullanýr.)
+$ nano myfile
+($ burada sadece komut satýrýnýn[prompt] biçimlendirilmiþ kýsaltmasýdýr. Burada sisteminizi daha süslü gösterebilir ve $ girmeniz gerekmez. enter tuþuna basarak komutu tamamlamayý unutmayýnýz.) Sonuç olarak figure 3.1’e benzeyen birþey görebilirsiniz. O en üstte iþaretlenmiþ bir satýrla çoðu boþ bir pencere ve en aþaðýda yardým satýrlarýyla, komutlarýn özet açýklamalarý olan önemli bir liste, olarak gösterilmiþtir. Yardým satýrýnýn hemen üstündeki satýr durum satýrýdýr. Durum satýrý diske veri kaydettiðin zaman dosya isimlerini girebileceðin Nanoda gözükecek mesajlardýr. 
+[(Figure3.1)ekran görüntüsüydü eklemedim]
+Ekranda daha fazla kullanýlabilir boþluða ihtiyacýnýz varsa yardým satýrýný gizlemek içni “alt + x ” basabilirsiniz.(space tuþunun solundaki “alt” tuþuna basýlý tutarken x’e basýn) tekrar basarsanýz yardým satýrýný tekrar gösterir. (Eðer dahada boþluk istersen yardým satýrýnýn hemen altýndaki top satýrýný “alt + o” kullanarak gizleyebilirsiniz. )
+Metin giriþi ve deðiþmesi. Yeni bir metin girmek için Nano penceresinin içinde yazmaya baþlanýr. Eðer hata yaparsan “backspace” tuþu imleçin solundaki karakteri silecektir. Metinin içerisinde dolaþmak için ok tuþlarýný kullanabilirsiniz. Mesela baþlangýça yakýn birþeyi deðiþtirmek için. Yeni bir þey yazarsan imleçin iþaret ettiði yerde gözükecektir. “del” tuþu imleçten sonraki karakteri kaldýrýr ve satýrýn geri kalanýnýn bir pozisyon sola hareket etmesine sebep olur. Bazý Nano versiyonlarý fareyi destekler,böylece görsel ekranda Nanoyu kullanýrsanýz veya metinsel ortam fareyi yönetirse, metin içerisinde bir yere imleçi yerleþtirmek için o noktaya týklayabilirsiniz. Fare desteðini açmak için “alt + m” basabilirsiniz. 
+Metni kaydetme. Metin düzenlediðinde veya giriþ yaptýðýnda “ctrl + o” kullanarak kaydedebilirsiniz. Nano size dosya için bir isim sorar. (bölüm 6 sonunda dosya isimleri hakkýnda daha fazlasýný göreceðiz.)Nano daha sonra dosya ismiyle metni kaydeder.
+Nanodan çýkýþ. Nanodan “ctrl + x” kullanarak çýkýþ yapabilirsiniz. Kaydedilmemiþ veriler taþýyorsa Nano metni kaydedip etmeyeceðini sorar. Cevap “y”  ise Nano ismini sorar veya “n” ise Nano hemen çýkar buda kaydedilmemiþ verilerin atýlmasýna sebep olur.
+Dosya ekleme. Farklý bir dosya (önceden varolan) o anki metin dosyanýza “ctrl + r” kullanýlarak eklenebilir.  Eklediðin dosya imleçin pozisyonundan itibaren eklenecektir. Nano doðrudan sorar yada “ctrl + t” kullanarak dosya göz atýcýsýný açýp dosya seçmenizi saðlar.Bu arada bu dosyayý kaydettiðinizde(“ctrl + o” kullanýlarak)de çalýþýr. 
+Kesme ve yapýþtýrma. Bir tampon içerisine satýrý kaydetmek ve satýrýn taþýdýðý imleci kaldýrmak için “ctrl + k” komutunu kullanabiliriz.(dikkat: Nano her zaman imleçin satýrdaki pozisyonuna bakmaksýzýn satýrýn tümünü kaldýrýr) “ctrl + u” tamponun içeriðini tekrardan yapýþtýracaktýr. Dikkatsizlik sonucu “ctrl + k” ‘ya basarsanýz veya basitçe satýrý taþýmak yerine kopyalamayý isterseniz “ctrl + u” kullanabilirsiniz.
+Yapýþtýrmalar her zaman imlecin olduðu yerden itibaren gerçekleþir. Eðer imleç satýrýn ortasýndaysa “ctrl + u” ya bastýðýnýzda tampondan gelen satýr, imlecin sað tarafýna yapýþtýrýlýr. Ýmleçin saðýnda ne olursa olsun yeni satýr orjinal satýr haline gelir. 
+Bir satýrda bir çok kez “ctrl + k ” ya basarak tampona daha fazla satýr taþýyabilirsiniz. Bu satýrlarýn hepsi birden yapýþtýrýlacaktýr.
+Satýrýn sadece bir bölümünü kesmek istiyorsanýz imleçin karþýlýk geldiði pozisyonda “ctrl + ^”(bazý klavyelerde “alt+a” ya basýlarak elde edilebilir) basýn. Ondan sonra imleçi keseceðiniz bölümün sonuna taþýyýn. Nano yardýmseverlikle kesmek için seçmiþ olduðunuz metini iþaretleyecektir. Sonrasýnda o bölgeyi “ctrl + k” kullanarak tampona taþýyýn. Ýmleçin altýndaki karakterin kesilmemiþ olduðunu unutmayýn. Sonra “ctrl + u”ya basarak tamponun içindenki herhangibir yere üsttekileri yapýþtýrabilirsiniz. 
+Metin arama. Eðer “ctrl + w” ya basarsan Nano sana metnin bir parçasýný sormak için durum satýrný kullanýr. Ýmleç ondan sonra senin dökümanýnýn içindeki metnin bir parçasýnda olduðu yere gider ve onun o anki pozisyonundan baþlayarak devam eder.
+Çevrimiçi yardým. “ctrl + g” kullanarak Nanonun ana yardým ekranýný görebilirsiniz. Ana yardým ekranýn editörün temellerini ve çeþitli klavye komutlarýný açýklar. (Burada açýkladýðýmýzdan daha fazla komut var. ) Yardým ekranýný “ctrl + x” kullanarak kapatabilirsiniz.
+Bunlar GNU Nanonun en önemli özellikleridir. Bunlarý denemek en iyisidir. Ýstediðiniz gibi deneyebilirsiiniz.
+vi baþlýðýna geri dönün(Linux gurularýnýn editörü olduðunu hatýrla) Eðer macera istiyorsanýz sisteminizde vim editörünün kurulu olduðundan emin olun. Bu editör vi’nin go-to gerçekleþtirimidir. (Çok nadir olarak az sayýda kiþi Linux üstünde orjinal BSD vi kullanýr. ) vimtutor programýný baþlatýn ve yarým saatinizi vi’ye giriþiniz için harcayýn. (Linux daðýtýmýnýza baðlý olarak vimtutor’u ayrý bi paket olarak indirebilirisiniz. Þüphe içindeyseniz sistem yöneticinize veya bilen herhangibirine sorun.)
+Alýþtýrmalar
+3.6[!2] GNU Nano’yu baþlat ve þu metni girin.
+Roses are red,
+Violets are blue,
+Linux are brilliant,
+I know it is true.
+Bu metni roses.txt olarak kaydedin.
+3.7[2] önceki alýþtýrmadaki metinden alttaki satýrý kesin
+Linux is brilliant,
+Üç kere yapýþtýrýp metnin aþaðýdaki gibi gözükmesini saðlayýn.
+Roses are red,
+Violets are blue,
+Linux are brilliant,
+Linux are brilliant,
+Linux are brilliant,
+I know it is true.
+Bu satýrlarýn ilkinin içindeki “is” in “i” üstündeki imleç pozisyonunu iþaretleyin. 3. Satýrdaki “is”in “i”sine yönlendirin ve iþaretli bölgeyi kaldýrýn.
+Bu bölümdeki komutlar
+logout-----kabuk oturumunu sonlandýrýr.                                      bash(1) 49
+pico--------PINE/Alpine paketinden basit bir metin editörü       pico(1) 52
+Özet
+Linux sistemi kullanmadan önce kullanýcý ismi ve parolaný girmek zorundasýnýz. Sistemi kullandýktan sonra tekrar çýkýþ yapmalýsýnýz.
+Linux çeþitli görsel ortamlar sunar. bu görsel ortamlarýn çoðu birbirine benzerdir ve açýkça birbirnden üretilmiþlerdir.
+Terminal penceresi görsel ortam içerisindeki metinsel kabuk komutlarýný girmene izin verir. 
+GNU Nano basit bir metin editörüdür. 
