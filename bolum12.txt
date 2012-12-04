@@ -1,0 +1,335 @@
+12
+sistem yönetimine giriþ
+
+-içindekiler-
+sistem yönetimi temelleri
+sistem yapýlandýrmasý
+süreçler
+paket yönetimi
+
+-hedefler-
+*sistem yöneticisi rolü hakkýnda fikir sahibi olmak
+*iþletim sistemi çekirdeði ve süreçlerin temllerini anlamak
+*paket yönetimi kavramlarýný bilmek
+
+-önceden bilinmesi gerekenler-
+*temel kabuk kullanýmý(bölüm 4)
+*linux dosya sistemi yapýsý ile ilgili bilgiler(bölüm 10)
+
+12.1 sistem yönetimi temelleri
+birsistem yöneticisi ne yapar?bilgisayarlarý yapýlandýrma,yazýlým kurulumu (ve bazen kaldýrmak)
+çevre birimlerini baðlamak ve kullanýlabilir yapmak,yedekleme yapmak(ve bazen bunlarý geri yüklemek) kullanýcý hesaplarýný eklemek ve kaldýrmak,sorunlarý olan 
+kullanýcýlara yardým,... bu görevlerin etkileyici bir listesidir.
+eski günlerde kiþisel bilgisayarda,bilgisayar kullanýcýsý ayný zamanda yöneticiydi.
+bu fikir windows gibi sistemlerde uzun süre devam etmiþtir.
+(hatta birkez windows farklý kullanýcýlardan fikir edinmiþtir,
+yönetici hesaplarýný kullanmak için ortak olmak zorunludur,çünkü sadece çeþitli programalarýn ilgili ayrýcaklýklarý kullanýlabileceði varsayýlmýþtýr. )
+unix -linux ilham sistemi-bazý kullanýcýlarý desteklemek için tekrar kuruldu ve dolayýsýyla normal kullanýcýlarla yönetici arasýndaki ayrým ev bilgisayarý geleneðiyle 
+iþletim sistemi ve bunun gibi çok daha köklü bir hal aldý
+
+Lpi Linux temelleri sýnavýnda sistem yönetiminden vurgulanmamaktadýr.
+fakat en azýndan genel bir bakýþ olmalýdýr-belki sistem yöneticisi olmamaktadýr,fakat sizin için sistem yöneticisinin ne yaptýðýnýn daha iyi anlamanýzý saðlar,ya da 
+bir noktada sistem yöneticisi olur.
+LPI   LPIC sertifika parça bölümleri sistem yöneticileri için önemli bir noktadýr.özellikle LPIC-2 ve LPIC-3. 
+
+Bu bölümde bir Linux bilgisayarýn  hemen kullanýmý ile ilgili daha az olan birkaç konudan söz edeceðiz. 
+fakat  örneðin bir resim  elde etmek için bilgisayarda ne çalýþtýracaðýný(“neden  bilgisayarým   yavaþ ”)  ve yazýlýmýn bilgisayarda nasýl yönetildiðini içerir.
+Biz burada ki büyük resimden sonra detaylara bakmýyoruz.  
+
+Linux sisteminde, sistem yöneticisi özel bir kullanýcý hesabý eriþimine sahiptir,root. 
+bu hesap eriþim kontrollerinden muaftýr,aksi yapýldýðýnda da.(bölüm 14)
+ve bu nedenle sistemden  bütün dosyalara eriþilebilir.bu gereklidir,örneðin,yeni yazýlým kurmak için-"Normal" kullanýcýlarýn sistem dizinleri program dosyalarýný 
+okuma ve yürütme olabilir.
+fakat, diðer kullanýcýlarýn zararýna manipülasyonlar önlemek amacýyla,bunlar yazýlmamalýdýr.
+Yöneticinin ayrýca yedek kopyalarýný oluþturmak için herhangi bir kullanýcýnýn dosyalarýný okumasý gerekir(ve  bir yedeði geri yüklemesi gerekiyorsa bunlarý geri 
+yazmasý için).
+
+
+** sistemdeki tüm  dosyalarý yazma yeteneði sisteme ciddi zarar fýrsatý  içerdiði açýktýr.Eðer root olarak oturum açýyorsanýz, Linux
+# rm -rf / gibi  tüm sistem dosyalarýný yok eden bir komutu kullanmanýzý engelleyemez.(ve zarar verebilmek için daha incelikli yollarý vardýr).
+dolayýsýyla sadece onlara ihtiyacýmýz olduðunda root yetkilerinden yararlanmak gereklidir.
+root  olarak giriþ yaptýðýnda  RIGHT OUT olduðunda web de sörf  yapýlabilir veya posta okunabilir.
+
+** eðer root olarak sistemdeki tüm dosyalarý okuyabilirseniz,günaha yenik düþebilirsiniz,diyelim ki,patronunuzun(veya eþinizin) e mailini düzenli olarak kontrol 
+edebilirsiniz.yapmayýn.
+bu güvensiz olabilir(en azýndan eþ durumunda)ve/veya yasadýþý(en azýndan patronun durumunda)ve linux ve sistem yönetimi ile eðlenceli yaðma yükümlü olduðundan bu 
+sorunun her türlü içine alýnabilirsiniz.
+evde ve iþyerinde huzur için söylenecek biþey.katýlan kiþi ile iþtiþare içinde izole kýsa bir gözetlemeye almakta yanlýþ birþey yoktur.-fakat bunun alýþkanlýk haline 
+gelmesine izin vermeyin.
+þüpheniz olduðunda,peter parker'ý düþünün,a. k. a. Spider-Man:"büyük güç büyük sorumluluk getirir."
+
+root olarak doðrudan giriþten sakýnmalýsýnýz.(özellikle de grafiksel bir ekran üzerinde).
+Bunun yerine, root olarak çalýþan bir kabuk elde etmek için, normal bir kullanýcý olarak baþlatýlmýþ bir terminal oturumunda, su programýný kullanýn.
+
+$ /bin/su -
+Password: secret Password for root
+# _
+
+root kabuðundan çýkýldýktan(exit veya ctrl+d kullanarak) sonra  baþlangýçta su çaðrýlan kabukta tekrar sonlandýrýlýr.
+bazý daðýtýmlarda baþka bir root hesabý olmadan elde edilmeye çalýþýlýr.
+ubuntu örneðin de olduðu gibi sistem sýrasýnda oluþturulan ilk kullanýcýnýn önüne sudo koyarak kök ayrýcalýklarýyla tek bir komutta yürütmeyi saðlar.
+
+$ sudo less /var/log/syslog Peruse system log
+
+(Gerekirse bu kullanýcý diðer kullanýcýlar için bu ayrýcalýðý geniþletebilir.)
+Büyük görevler için, yönetici ayrýcalýklarýyla çalýþan bir kabuk elde etmek için "sudo-i" kullanmak mümkündür.
+**çoðu linux daðýtýmý sinyali root haklarýyla çalýþan olduðunda kabuk "#" istemiyle biterek çýktýlanýr.
+Baþka bir þey görüntülenirse—genellikle "$" veya ">", kabuk ayrýcalýðý olmadýðýnda.
+Alýþtýrmalar
+12.1 su deneyin.Neden örnek programý çaðýrmak için bir mutlak yol adý kullanýyor?
+12.2  su için root þifresini bilmeniz gerekir. sudo genelde kendi parolanýzý sorar. Hangisi daha iyi?
+
+12.2 SÝSTEM YAPILANDIRMASI
+diðer sistemlerde sadece veritabanýnda özel araçlar yoluyla deðiþtirilmiþ ve "bit-rot " (windows kayýt defteri ) duyarlý  olan  kendi yapýlandýrma bilgilerini gömmer 
+iken , 
+linux genellikle /etc dizini içindeki metin dosyalarýnda sistem genelindeki yapýlandýrma giriþlerini bulundurur.
+(Birkaç örneði Bölüm 10.3 'de görülebilir.)burada sistem yöneticisi bunlarý deðiþtirmek veya geniþletmek için kendi seçtikleri bir metin düzenleyicisi kullanabilir.
+Örneðin, yeni bir kullanýcý, kullanýcý adý,sayýsal kullanýcý kimliði,veya /etc/passwd dosyasýna ev dizini ismi gibi ilgili parametreleri katarak eklenebilir.
+Yeni bir sabit disk aygýt dosyasý adýný ve disk görünmesini gerekenr dizini belirten bir satýrýna / etc / fstab ekleyerek yapýlandýrýlmýþ olabilir.
+
+**bir linux sistemi yaygýn farklý kaynak yazýlým bileþenlerinin karmaþýk bir sistemidir.(bunlarýn bazýlarý linux kendisinden daha yaþlýdýr.)
+tarihsel olarak geliþmiþ kurulumlar  /etc içindeki farklý yapýlandýrma dosyalarý çok düzgün olmayan bir biçimde yapýlandýrmasýný takip eder.—bazýlarý satýrlar 
+tarafýndan organize edilmektedir,diðerleri bölümleri ayraçlar ile ayrýlmýþ olarak içerir,hatta diðerleri XML dosyalarýný ya da yürütülebilir bir kabuk betiðidir.
+kesinlikle tüm bu farklý biçimleri ile uðraþmasý gerekir, yöneticiler  için bir sýkýntýdýr.
+yazýlým paketleri hertürlü deðiþtirilmesi gerekir fakat bu kolay deðildir.
+
+** bununla, birlikte bazý çok yaygýn usuller:Örneðin, çoðu yapýlandýrma dosyalarýnda "#" ile baþlayan satýrlar açýklamalar saðlar.
+farklý metin dosyalarý sistem yapýlandýrmasýný yönetme fikrinde olabilirken ilk baþta antediluvial görünür,bunun bazý somut avantajlarý vardýr:
+
+.Tek bir yazýlým paketi veya hizmet yapýlandýrmasý hatalarý ile bütün olarak genellikle sisteme zarar verilmesi mümkün deðildir.(sistemin iþlevseliði için çok gerekli 
+yapýlandýrma dosyalarý vardýr tabi ki onlarýn hatalarý olabilir,örneðin ,sistemi yeniden önyükleme yapamayan hale getirebilir.Ama bunlar en iyi ihtimalle küçük bir 
+azýnlýktýr.)
+.çoðu yapýlandýrma dosyasý yorumlara izin verir. bu sayede bireysel yapýlandýrma dosyalarýnýn detaylarýnýn nerede meydana geldiðinin doðrudan  belgelemesini saðlar.
+ve böylece ekip iþbirliðini daha kolay yapar ya da kiþinin kendi unutkanlýk nedeniyle olan kazalar engellenir.
+Bu kesinlikle hatýrlamak zorunda kalmanýzdan çok daha iyidir menu y bir x giriþi olduðunda sekme z bir iletiþim açmanýzý saðlar.kesinlikle kontrol edilmesi gereken 
+bir kutusu vardýr.aksi halde hiçbirþey çalýþmaz.(kaðýt parçalarýnýn bu tür bilgeliði vardýr en çok ihtyaç duyulduðunda kaybolma eðilimi vardýr.)
+.Git veya Mercurial gibi sürüm denetim sistemini için metin dosyalarýný "kontrol" edebilir ve  böylece sadece çeþitli dosyalarý kapsayan büyük deðiþiklikler 
+belgelenemez.
+fakat ayný zamanda gerekirse bunlarý düzenli bir þekilde geri alýr.Bu ayný zamanda merkezi bir sunucu üzerinden bir bilgisayarýn tam Yapýlandýrmasýný depolamak için  
+uygunluðu saðlar.böylece bilgisayarrýn herhangi bir nedenle yeniden yüklenmesi gerekirse derhal kullanýlabilir-diyelim ki felaket bir donaným hatasýnda sonra.
+veri merkezlerinde bu  çok avantajlar saðlar,özellikle tüm yapýlandýrma deðiþikliklerinde ayrýntý bir "denetim" istediðinde.
+.Metin dosyalarý yönetilmesi gereken bilgisayarlara merkezi bir sunucudan yapýlandýrma dosyalarý daðýtarak tüm bilgisayar aðlarýnýn uygun þekilde yapýlandýrýlmasýný 
+saðlar."puppet" veya "salt " gibi sistemlerde yapýlandýrma dosyalarý için "þablonlar" yapmak mümkündür. onlar tamamen bireysel bilgisayarlarýn elle yapýlandýrmasýný 
+önlemek için
+daðýtýldýðý zaman hedef bilgisayar için uygun bilgilerin kullanýldýðý  örneklemedir.(“sneaker net”)Bu da, büyük aðlarýn yönetimini kolaylaþtýrýr  ayný zamanda daha 
+küçük yüklemeye de yardýmcýdýr.
+
+-Alýþtýrmalar-
+12.3 /etc etrafýnda gizlice arayýn.pek çok dosyayý oradaki kýlavuz sayfalarýný "man fstab" gibi birþey ile deneyin.
+/etc nin içindeki dosyalar  normal kullanýcý olarak okunamaz mý ,  neden ?
+
+12.3 SÜREÇLER
+Yürütülmekte olan bir programa "süreç" denir.program kodunun kendisinin yanýnda(söz konusu iþlemci için makine dilinde)bir süreç þu anda kullanýmdaki dosyalar gibi 
+verilerin yaný sýra idari bilgi için çalýþan depolama ortamý içerir.(ortam deðiþkenleri için)
+Geçerli bir dizin ve bir iþlem numarasý veya sistemi içinde benzersiz süreci tanýmlayan "PID".Ýþletim sistemi çekirdeði süreçlerin oluþturulmasýndan,iþlemci zamaný ve  
+depolama atamasýndan ve çýktýktan sonra temizlemeden sorumludur. Süreçler dosyalarý, aygýt ya da aða eriþmek için iþletim sistemi çekirdeðinin içine çaðýrabilir.
+
+**yeni süreçler mevcut süreçler sýrasýnda ortaya çýktý.— bakteri veya yaþamýn diðer düþük biçimlerinin aksine -iki neredeyse özdeþ kopyalarýna ayrýldý.("neredeyse 
+özdeþ" ,çünkü bir süreç "ana" ve diðerleride "çocuk" olarak kabul edilir.)Buna ek olarak, süreci farklý bir programý çalýþtýrmak için ayarlayabiliriz:örneðin,kabuktan 
+ls komutu çaðýracaksak,kabuk programý çalýþtýrmadan önce çocuk süreç oluþturulur.
+
+Bu kod (diðer þeyler arasýnda) olasý bir giriþ/çýkýþ yönlendirme düzenlemesi yapar ve sonra /bin/ls program dosyasý ile yenilenir.Ls programýn sonunda çocuk süreç sona 
+erer ve kabuk size sonraki komudu sorar.
+
+* PID ile ilk iþlem, önyükleme sýrasýnda iþletim sistemi çekirdeði tarafýndan oluþturulur. Kurala göre bu, /sbin/ init  programýdýr ve ayný zamanda "init süreci" 
+olarak da adlandýrýlýr. init süreci sistem önyüklemesinden ve, örneðin, arka planda çalýþan sistem servisleri için ek iþlemleri baþlatmadan sorumludur.
+
+ps   Sistem üzerinde çalýþan süreçler hakkýnda bilgi edinmek için "ps" komudunu kullanabilirsin. En basit þekilde, ps komudu, mevcut terminalinizde(ya da, günümüzde,
+grafik ekranýnýz üzerindeki mevcut terminal penceresinde) çalýþan tüm süreçleri gösterir.
+
+$ ps
+PID TTY STAT TIME COMMAND
+997 pts/8 S 0:00 -bash
+1005 pts/8 R 0:00 ps
+$ _
+
+PID ve COMMAND kolonlarý kendilerini belirtir. TTY terminale isim verir("pts/something " genellikle terminal penceresi anlamýna gelir. ),TIME þimdiye kadar süreçler 
+tarafýndan kullanýlan iþlemci zamaný  ve STAT "süreç durumu"dur. 
+
+* Linux ta bir süreç, aþaðýdaki durumlarýn biridir . Yani,
+
+Runnable (R):  Sürece iþlemci zamaný tahsisi edilmiþ olabilir.
+
+Sleeping (S):   Sürec genellikle bir tuþa basma  ya da diskten veri okuma gibi  giriþ ya da çýkýþ olaylarýný bekler.
+
+In deep (uninterruptible) sleep (D):  Süreç bir olay bekliyor ve rahatsýz edilemez. Süreçler çok uzun süre bu durumda kalmamalýdýr çünkü sadece sistem önyükleme
+ tarafýndan silinebilirler.Eðer böyle olursa, bu genellikle bazý hatalardan kaynaklanmaktadýr.
+
+Temporarily stopped (T):  Süreç geçici olarak sahibi veya bir yönetici tarafýndan durdurulabilir, ama daha sonra çalýþmaya devam edebilir.
+
+Zombie (Z):  Süreç gerçekte tamamlanmýþtýr, ancak çýkýþ kodu henüz ana süreç tarafýndan yakalanamamýþtýr.Bu süreç "ölmek" anlamýna gelir ama sistem içinde ölümsüz 
+kalýr.Gerçegin aksine zombiler sorun deðildir çünkü onlarda ,süreç tablosunda bir yuva baþka kaynaklarýn yerini kaplayamaz. Eðer sisteminiz çok fazla zombiyle kaplýysa,
+bu ilk etapta süreçleri oluþturan program ile ilgili bir sorun olduðunu gösterir. Bu program sonlandýrmada zombileri yok etmek gerekir.
+
+ps bilgilerini saðlayan kontrol parametrelerini kullanýn.Örneðin, belirli bir süreç hakkýnda bilgi edinmek için bir iþlem numarasý girebilirsiniz:
+
+$ ps 1
+PID TTY STAT TIME COMMAND
+1 ? Ss 0:00 init [2]
+
+l seçeneði, bir iþlem hakkýnda daha ayrýntýlý bilgi verir:
+
+$ ps l $$
+F UID PID PPID PRI NI VSZ RSS WCHAN STAT TTY TIME COMMAND
+0 1000 3542 3491 20 0 21152 2288 - Ss pts/8 0:00 /bin/bash
+
+("$$" kabukta "mevcut süreci" gösterir)
+
+*UID, sürecin sahibinin sayýsal kimliði (bkz. Bölüm 3), PPID Sürecin "ana" bir süreç kimliði. PRI önceliði- sayý yükseldikçe öncelik düþecektir(!)-VSZ Çalýþma 
+belleðinde boyut (KiB içinde) ve RSS RAM içindeki geçerli büyüklük (üstelik KiB içinde).
+*Sürecinin bir parçasý diske taþýnmýþ olabilir, böyle bir durumda VSZ ve RSS, özdeþ deðildir. Bir disk bölümünde veya dosya üzerinde takas alaný ekleyerek 
+Linux bilgisayarýnda mevcut çalýþan belleði büyütebilirsiniz. 
+    ps komutu dikkate alýnan süreçlerin seçimini ve her süreç için bilginin çýktý boyutunun, tipinin kontrol edilmesinde bir çok seçeneði destekler. ps(1) oku
+*ps ve benzer programlar genellikle /proc üzerine monte edilen ve iþletim sistemi çekirdeði tarafýndan uygun hale getirilen proc dosya sisteminden bilgileri 
+elde eder. Bu dizin içinde "dosyalar" süreçleri ve sistemin diðer özellikleri hakkýnda up-to-date bilgileri içerir. (Ayrýca bkz. Bölüm 10.3.)
+
+free: Free komutu sistem belleði hakkýnda bilgi saðlar:
+
+$ free
+total used free shared buffers cached
+Mem: 3921956 1932696 1989260 0 84964 694640
+-/+ buffers/cache: 1153092 2768864
+Swap: 8388604 0 8388604
+
+"Mem:" satýrý bilgisayarýn yaklaþýk 4 GÝB RAM e sahip olduðunu (altýnda "toplam"; iþletim sistemi çekirdeði burada görünmeyen bazý belleði de doldurur) ve de 
+yaklaþýk yarýsýnýn dolu olduðunu söyler ("used" ve "free" komutlarýna bakýn). Ýþletim sistemi diskte veri depolamak için yaklaþýk 700 MiB kullanýr ve ikinci satýr size 
+bu boþ ve kullanýlan hafýzayý nasýl etkilediðini söyler. Üçüncü satýrda takas alaný (“Swap:”) kullanýmý anlatýlmaktadýr (Bu makinede 8 GiB, üzerinden).
+*Modern Linux makinelerde "Paylaþýlan" sütunu her zaman sýfýrdýr; ve bu nedenle ihmal edilebilir.
+*free komutu da çeþitli seçenekleri destekler. Örneðin; dostça bir çýkýþ biçimi üretmek için:
+
+$ free --human 				‘‘-h’’ de olur
+total used free shared buffers cached
+Mem: 3,7G 1,9G 1,8G 0B 84M 678M
+-/+ buffers/cache: 1,2G 2,5G
+Swap: 8,0G 0B 8,0G
+
+Burada free komutu bilgisayar dostu mebibyte ve gibibyte ý ifade etmek için "M" ve "G" birimleri kullanýr.--si seçeneði on yetkilerine geçiþ yapar(mega- ve gigabyte).
+
+top: Son olarak, "top" komutu sürekli güncellemeleri ile ps ve free komutlarýnýn bir birleþimi gibidir. Sistem ve süreç bilgilerini içeren bir bilgi tam ekran 
+görüntülenir:Þekil 12.1 de bir örnek gösterilmektedir:
+
+
+Þekil 12.1
+
+
+*Çýktýnýn üst kýsmýnda yer alan, birinci sýra þimdiki duvar saati zamanýný ve “uptime”ý gösterir.Örneðin, sistemin yeniden baþlatýlmasýndan sonra geçen zamanýn süresi 
+(burada, dört gün, on dört saat, ve deðiþtir) ve giriþ yapmýþ olan kullanýcýlarýn sayýsý (burada “11” çok ciddiye alýnmamalý; son penceredeki her oturum bir kullanýcý 
+gibi sayýlýr). Sað tarafta üç numara bulunmakta, sözüm ona sistem yüklemelerini tanýmlayan yükleme ortalamalarý.
+	*Yükleme ortalamalarý yürütülebilir iþlemleri (state R) belirtir, son dakikanýn ,son beþ dakikanýn ve son on beþ dakikanýn ayrý ayrý ortalamasýný alýr. 
+	Bu deðerlerin faydasý gözde büyütülmemeli!; size gerçekten o kadarýný söyleyemezler. Eðer son dakikanýn deðeri yüksekse ve son 15 dakikadan biri düþükse, bu 
+	durumda sisteminiz aniden daha fazlasýný yapmak zorunda kalacak; eðer son dakikanýn deðeri düþük fakat son 15 dakikanýn yüksekse, sisteminiz yapýlacak çok þey 
+	için kullanýr fakat bu þu an aþýlmýþ durumdadýr.
+	*Eðer yükleme ortalamalarý sürekli olarak sisteminizdeki iþlemci çekirdekleri sayýsýndan aþaðýdaysa, bunun anlamý siz gereksiz yere pahalý bir iþlemci için 
+	fazla harcama yapmýþsýnýz demektir. Sekiz çekirdekli sistem üzerinde, örneðin, 8 civarýndaki deðerler (bu geleneksel olarak bir sistem yöneticisinin 
+	omrgasýndan soðuk parçalarý düþürecektir tamamiyle normaldir; uzun bir zamna periyodu boyunca deðerler 8’in çok altýndaysa bu çok acýklý bir durumdur.
+*Ýkinci satýr iþlemlerin sayýsýný ve çeþitli iþlem evrelerinde nasýl daðýldýklarýný verir.
+*Üçüncü satýr CPU kullaným tipine göre yüzdeler içerir: “us” çalýþtýrýlan kodun çýktýsý ve “sy iþletim sisteminin çekirdeðindeki koddur.
+*Takip eden iki satýr temelde -free- nin çýktýlarýna tekabül eder.
+*Ekranýn alt tarafý “ps l” e benzer iþlem listesidir. Üst kýsým gibi her birkaç saniyede güncellenir ve aksi istenmediði taktirde, CPU zamaný kullaným yüzdelerine 
+göre iþlemleri sýralamýþtýr (sistemin üzerinde en çok vakit harcadýðý iþlem liste baþý olur) 
+	*Eðer “m” tuþuna basarsanýz, liste hafýza kullanýmýna göre sýralanacaktýr-en çok yer kaplayan iþlem en üstte olur. “P” tuþu ile, CPU zaman listesine geri 
+	dönebilirsiniz.
+“H” tuþunu  top içinde yardým sayfasýný görüntülemek için kullanabilirsiniz. Top ana sayfasý çýktýlarý ve olaðan tuþ kombinasyonlarýný açýklar ve size iþlem listesi 
+içeriklerini gereksinimlerinize göre nasýl adapte edeceðinizi gösterir.
+
+ALIÞTIRMALAR:
+
+12.4 [1] ps seçeneði ile,ax,sistemdeki bütün iþlemleri görüntüleyebilirsiniz. Listeye göz atýn. Hangi iþlemleri farkettiniz?
+
+12.5 [2] shell oturum içinde uzun yürütülen bir iþlem baþlatýn (“sleep 120” e benzer yapýlabilir). Baþka bir oturumda  “ps ax” ý çaðýr ve bu süreci çýktýya 
+yerleþtirmeyi dene. (Hint: grep senin arkadaþýn).
+
+12.6 [!2] top u kullanarak hangi sürecin þu an, en çok CPU zamanýný kullandýðýný bul. Hangi iþlem en çok hafýza kullanýyor?
+
+12.4 Paket yöneticisi
+
+Modern Linux distrübütörleri normalde kalabalýk (tipik olarak binlerce) her biri sistemin iþlevselliðinde(çalýþtýrýlabilir programlar, kütüphaneler, dökümentasyon,…) 
+belirli bir bölüm için gerekli her þeyi barýndýran “paketler” içermekte. Baþlangýçta Linux bilgisayarý yapýlandýrýrken, siz yönetici olarak hangi paketlerin 
+bilgisayara yükleneceðini belirleyebilirsiniz ve tabiki daha sonra yayýmcýnýzdan keyfi olarak paketleri her zaman ekleyebilirsiniz yada kullanýlmayanlarý 
+kaldýrabilirsiniz.
+
+	*Ýþlevselliðin paketler þeklinde nasýl bölündüðünün ayrýntýlarý daðýtýma baðlýdýr.kütüphanelerle genelde bir “run-time paketi” ve bir “ development paketi” 
+	arasýnda ayrým yapýlýr. Run-time paketi diðer proðramlarýn kütüphaneyi kullanabilmesi için yüklenmesi zorunlu olan dosyalarý içerir (bir .so dosyasý içinde 
+	asýl dinamik olarak yüklenilebilir kütüphane gibi). Development paketini kurmaya sadece eðer, kütüphaneyi kullanan yeni yada var olan programlarý derlemeyi 
+	hedeflerseniz, ihtiyaç duyarsýnýz.—C derleyicisi bilgileri içerir bu durum kütüphaneyi kullanmaya ihtiyaç duyar (“include files”), hata ayýklama için 
+	istatiksel olarak iliþkilendirirlebilir bir kütüphane, yada kütüphane içeriði hakkýnda dökümentasyon. Eðer dökümentasyon büyükse baþka bir pakete bölünebilir.
+	
+	*Örneðin, burada Debian GNU/Linux 6.0 (“Squeeze”) e göre rsvg kütüphanesi (SVG- format grafikleri ile ilgilenen) paket bölünmüþ: 
+
+	librsvg2-2 		Gerçek (run-time) kütüphanesi
+	librsvg2-dev 		geliþtirme paketi
+	librsvg2-bin 		Command-line programs
+	librsvg2-dbg 		Komut satýrý programlarý
+	librsvg2-doc 		belgeleme
+	librsvg2-common 	Daha fazla Komut satýrý programlarý
+	python-rsvg 		Python dili baðlama
+	libimage-librsvg-perl 	Perl dili baðlama
+
+     Her linux bilgisayarýnda, bilgisayarýn farkýnda olduðu ve yakýn zamanda yüklenmiþ olan paketler hakkýnda bilgiler içeren bir “paket database”i vardýr. 
+Daðýtýcýnýzýn “repositories”i yada paketler içeren sunucu ile paket database’inizi periyodik olarak senkronize edebilirsiniz ve bu þekilde bilgisayarýnýzdaki 
+paketlerden hangilerinin güncel olmadýðýný bulabilirsiniz çünkü daðýtýmcýlar yeni versiyonlarý önerirler. Paket yönetim sistemimi genelde size söz konusu 
+paketleri seçerek güncelleme fýrsatý verir.
+
+	*Bunun pratikte ne kadar iyi iþleyeceði (bir kez daha) daðýtýmcýnýza baðlý. Özellikle,konu göründüðünden daha karmaþýk olabilir: bir paketin yeni versiyonu 
+	bir kütüphanenin (kendi paketinde kullanýlabilir olan) mutlaka yeni versiyonda yüklenilmesine ihtiyaç duyabilir ve eðer kurulu olan baþka bir program tam 
+	olarak bu kütüphanenin eski versiyonuna ihtiyaç duyarsa bu problemlerin ortaya çýkmasýna sebep olabilir. Bazen bir paketin sistemde baþka bir yerde ciddi 
+	deðiþiklikler yapmadan güncellenebilmesi mümkün olmayabilir. Ýyi paket yönetim sistemleri bu gibi durumlarý saptar ve yönetici olarak sizi uyarýr ve/veya size 
+	müdahale etme þansý sunar.
+
+     Bölüm 2.4.7 de de belirtildiði gibi, büyük Linux daðýtýmlarý farklý paket yönetim sistemlerinden herhangi birini kullanabilirsiniz. Her iki paket yönetimi sistemi 
+de kendi araçlarýyla ve paket dosyalarý için kendi formatýyla gelen Debian GNU/Linux'un paket yönetim sistemi ve türetimleri, Red Hat, SUSE kullanýlarak RPM paket 
+yönetimi gibi sistemlerdir. Prensip olarak, ayný sorunu çözmek, ancak paket yönetimi için kullanýlan komutlar gibi ayrýntýda farklýlaþýr.
+
+Örneðin; RHEL, Fedora veya openSUSE gibi RPM tabanlý sistemlerde, yüklenen tüm paketlerin listesini aþaðýdaki komutu kullanarak görüntüleyebilirsiniz.
+
+$ rpm --query --all 		‘‘-qa’’ yapabilirdin.
+
+Debian tabanlý sistemlerde bu komut yerine aþaðýdaki komut gereklidir.
+
+$ dpkg --list 			‘‘-l’’ yapabilirdin.
+
+*Paket veritabanlarý genellikle /var/lib altýnda bulunur. Debian gibi sistemlerde /var/lib/dpkg (/var/cache/apt yüklenen her paket dosyasý ile birlikte depo 
+sunucularýnýn içerik tablolarýný içerir.) ve RPM tabanlý sistemlerde /var/lib/rpm içindedir.
+  
+   Bugün, dpkg ve rpm gibi programlar bir paket yönetim sistemi "temelini" oluþturur. Yöneticier temel programlar üzerine inþa edilen daha uygun araçlar tercih ederler 
+ve bu programlar örneðin paket depolarýna kolay eriþim ve paketler arasýndaki baðýmlýlýklarýn otomatik çözümlerini içerir. Debian dünyasýnda, "Aptitude" ve "Synaptic" 
+kullanýlýrken, RPM tarafýnda Red Hat Zypper üzerinde YUM ve SUSE diye adlandýrýlan bir program kullanýlýr(paket yönetimi  genel yönetici aracý YaST içine entegre 
+edilmiþ olsa bile).
+
+*Bu araçlardan bazýlarý alttaki paket yönetim sistemi ile baðýmsýzdýr. “PackageKit” de örneðin, Debian veya RPM paket yönetiminin her ikisi de kullanýlmayabilir. 
+Bundan baþka kontrollü þartlar altýnda paket güncelleþtirmesi veya yüklenmesi için yönetici ayrýcalýklarý olmadan izin verebilir.
+
+ALIÞTIRMALAR:
+
+12.7 [2] Sisteminizde kaç paket yüklü? Yukarýda gösterilen rpm ve dpkg çaðrýsýný kullanýn ve çýkýþ satýrlarýný sayýn. (Dikkat: “dpkg --list” de yüklü olmasý gereken 
+paketleri görüntüler fakat daha yeni sürümleri silebilir veya yerine geçirebilir. "ii" ile baþlayan çýktý satýrlarýný sayar.)
+
+Bu bölümdeki komutlar:
+
+dpkg 	Debian GNU/Linux paket yönetim aracý 									dpkg(8) 166
+free 	Serbest ana bellek ve takas alaný kullanýmýný görüntüler 						free(1) 162
+ps 	Çýktýlarýn süreç durum bilgisi 										ps(1) 161
+rpm 	Çeþitli Linux daðýtýmlarý tarafýndan kullanýlan Paket yönetim aracý  					(Red Hat,SUSE, …) rpm(8) 166
+su 	Farklý bir kullanýcýnýn kimliðini kullanarak bir kabuk baþlatýr 					su(1) 158
+sudo 	Normal kullanýcýlarýn , yönetici ayrýcalýklarýna sahip belirli komutlarý çalýþtýrmasýna izin verir 	sudo(8) 159
+top 	Süreç yönetimi ve kontrolü için ekran yönelimli araç 							top(1) 162
+
+ÖZET:
+
+*Linux "normal" kullanýcý ve sistem yöneticisini root ile birbirinden ayýrýr. root ile olaðan ayrýcalýk kontrolleri muaf edilir.
+*Normal bir kullanýcý olarak, su veya sudo ile geçici yönetici ayrýcalýklarý elde edebilirsiniz.
+*Bir Linux bilgisayarýn konfigürasyonu /etc dizini içindeki metin dosyalarý içinde yer alýr.
+*Süreçler yürütülmekte olan programlardýr.
+*ps ve top gibi komutlar mevcut sistem durumunu daha yakýndan görmemizi saðlar.
+*Önemli Linux daðýtýmlarý da GNU/Linux ya da orjinal Red Hat tarafýndan geliþtirilen RPM paket yönetim sistemi kullanýr.
+*Temel araçlara dayanarak çoðu daðýlýmlar, yönetmek, yükleme ve baðýmlýlýklarý dahil yazýlým paketleri silebilmeniz için uygun yazýlýmý sunarlar.
+
+
+
+
+
+
+
+
+
+
