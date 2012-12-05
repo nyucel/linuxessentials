@@ -1,0 +1,496 @@
+﻿Dosya Sistemi
+İçindekiler
+10.1 Kavramlar . . . . . . . . . . . . . . . . . . . . . . . . 134
+10.2 Dosya Türleri. . . . . . . . . . . . . . . . . . . . . . . 134
+10.3 Linux Diziğ aAç . . . . . . . . . . . . . . . . . 135
+10.4 Dizi ağaç ve Dosya sistemleri. . . . . . . . . . . . . . . 143
+Hedefler
+• “dosya” ve “sistem dosya” kavramların anlamak
+• Farklı dosya türlerin tanıma
+• Linux sistemin ağaç dizi yolların öğrenmek
+• Dizi ağaç içerisinde harici dosya nasıl entegre edilmesini öğrenmek
+Önkoşullar
+• Linux temel bilgileri (Önceki Konulardan)
+• Dosyalar ve Dizinleri işlemesi (Konu 6)
+
+Table 10.1: Linux Dosya Türleri
+Türü ls -l ls -F Oluş turma Kullanma …
+düz dosya - name çeşitli uygulamalar
+dizin d name/
+mkdir
+l name@ ln -s
+b or c name mknod
+p name| mkfifo
+simgesel baglantı
+cihaz dosya
+FIFO (ilk giren ilk
+çikar) Unix-alan soket s name= no command
+10.1 Kavramlar
+Genelde dosya, verilerin kendi içerisinde bulunan toplamlarıdır. Dosya içindeki veri türlerine
+bağlı herhangi bir kısıtlama yoktur; bir dosya metin birkac harftan olusabilir
+veya kullanıcın tam iş hayatin birden çok megabyte iceren arşivden oluşur. Dosyalar düz
+metin içermeleri gerekmez. Görüntü, Ses,.. çalişabilir uygulamalar ve diğer
+pek çok dosyalar Bir depo üzerine yerleştirilir. Bir dosya veri türünü tahmin etmek için
+dosyanın içinde bulunan dosya komutun kulanabilir:
+
+dosya /usr/share/file alt dizinindeki kurallara uygun dosya sistemini tahmin eder.
+yönetici
+/usr/share/file/magic alt dizini kuralların bulunduğu bir metin dosyası
+bulundurur.. kendi kurallarınızı /etc/magic alt dizinine koymak şartıyla
+tanımlayabilirsiniz. Detaylar için bkzm.a gic (5)
+Uygun bir şekilde işleyebilmesi için bir Linux sistemi binlerce farklı dosyaya ihtiyaç
+duyar. Bunlar sistemin çeşitli kullanıcıları tarafından oluşturulmuş ve sahip olunan çeşitli
+dosyalardır.
+file system Bir dosya sistemi depolama alanı üzerinde veri düzenleme ve yönetimini belirler. Bir
+sabit disk temelde sistemin tekrar bulabilmesi gereken byte ları içerir, hatta çok
+büyük,esnek ve verimli dosyalar olsalar bile. Dosya işletim sistemi detayları farklılık
+gösterebilir (Linux bunların birçoğunu bilir.ext2 , ext3 , ext4 , ReiserFS, XFS, JFS, btrfs
+vb...) fakat kullanıcıya sunulan şey farklı türdeki ve isimdeki dosya ve dizin adlarıyla
+oluşturulmuş bir ağaç hiyerarşi yapısıyla aynıdır( Ayrıca bkz. Bölüm 6.)
+B Linux topluluğunda, terim "dosya sistemi" birkaç anlamı taşır.
+Burada sunulan anlama ek olarak—“bir ortam üzerinde bayt düzenleme
+yöntemi”—, bir dosya sistemi her zaman bizim “dizin ağacı” olarak
+nitelendirdiğimizi göz önünde bulundurur. Buna ek olarak, bu veriler ile birlikte,
+belirli bir ortamda (bir sabit disk bölümü, USB anahtar, ...) genellikle bir "dosya
+sistemi" adı verilir. -Örneğin bizim söylediğimiz anlamda sabit bağlantılar (Bölüm
+6.4.2) sabit disk veya sabit disk ve USB anahtarı arasındaki iki farklı bölümler
+arasında, yani "dosya sistemi sınırlarının ötesinde" işe yaramaz.
+10.2 Dosya Türleri
+Linux sistemlerinde temel öncül “Herşey bir dosyadır”. Bu ilk bakışta şaşırtıcı
+görünebilir fakat çok kullanışlı bir konseptti.r Altı dosya türü şu şekilde sıralanabili:
+
+10.3 Linux Dizi Ağaçlar 135
+Yalın dosyalar Bu dosya grubu metinleri, grafikleri, ses dosyalarını içerir. Aynı zamanda
+çalıştırılabilir dosyaları da içe rYira.lın dosyalar editors,cat,shell output redirection
+gibi alışılmış araçlar kullanılarak oluşturulabilir.
+Dizinler: Aynı zamanda "dosyalar" olarak bilinen dizinler, bildiğimiz gibi depolamaya
+yardımcı olur. Bir dizin temelde dosya adları ve ilişkili düğüm numaralarını veren
+bir tablodur. Dizinler mkdir komutu kullanılarak oluşturulurlar.
+Sembolik Linkler: Farklı bir dosyaya erişmek için belirtilen yolardır.
+(Windows' taki "kısayollar"a benze)r. Ayrıca bkz Bölüm6. 4.2.
+Sembolik linkler ln -s kullanılarak oluştulurlar.
+Aygıt Dosyaları: Bu dosyalar, disk sürücüleri gibi isteğe bağlı cihazlar için arabirim olarak görev.
+Örneğin, /dev/fd0 dosyası ilk disket sürücüyü temsil eder. Her yazma veya böyle
+bir dosyaya okuma erişimi gelen cihaza yönlendirilir.Aygıt dosyaları mknod
+komutu
+kullanılarak oluşturulur; Bu genellikle sistem yöneticisi önceliğidir ve bu yüzden
+bu kılavuzda daha ayrıntılı olarak açıklanmamıştır.
+FIFOlar: Genellikle "adlandırılmış yöneltm”eolarak bilinirler. Shell(kabuk) yöneltmeleri
+gibi, ara dosyaları kullanmadan süreçler arasındaki doğrudan iletişimi sağlarlar. Bir işlem
+FIFO'yu yazma, diğeri de okuma için açar. Kabuğun program açısından dosya gibi
+hareket eden ardışık düzen için kullandığı yönlendirmelerin aksine isimsizdir -- Dosya
+sistemi içinde bulunmazlar sadece bağlantılı süreçlerin arasında bulunurlar -- , FIFO
+ların dosya isimleri vardır ve gelişigüzel programlar tarafından dosyalar gibi açılabilirler.
+Bunun yanısıra, FIFO ların erişim hakları olabilir( yönlendirmelerin yoktur). FIFO lar
+mkfifo emri kullanarak oluşturulurlar.
+Unix-alan soketleri : FIFOlar gibiU, nix-alan soketlerinde de süreçler arası iletişim
+yöntemi vardır. TCP/IP üzerinden gerçek ağ iletişimleriyle aynı programlama arayüzünü
+kullanıyorlar.Diğer taraftan, Unix-alan soketleri TCP / IP'ye göre çok daha
+verimlidir.FIFOların aksine, Unix alan soketleri iki yönlü haberleşmeyi-katılımcı da veri
+gönderip alabilir- sağlar. Eğer X sunucusu ve istemcileri aynı bilgisayarda ise Unix-alan
+soketleri X11 grafik sistemleri tarafından kullanılırlar. Unix-alan soketlerini oluşturmak
+için herhangi bir program yoktur.
+Alıştırmalar
+C 10.1 [3] Sisteminizi çeşitli dosya türü örnekleri çerçevesinde kontrol ediniz (Tablo 10.1 Size sorulardaki dosyaları nasıl tanıyacağınızı gösterecek.)
+10.3 Linux Dizin Ağacı
+Bir Linux sistemi yüz binlerce dosya çeşidinden oluşu. rizleri tutmak için dizin yapıları ve
+Linux sistemi içeren bir dosya için belli kurallar vardır,F ilesystem Hierarchy Standard (FHS).
+Çoğu Linux dağıtımında bu standart(ufak sapmalarla) FHS'ye uygundurF. HS bütün dizinleri
+açıklar.
+immediately below the file system’s root as well as a second level below /usr .
+Dosya sistemi ağacı kök diziniyle başlar, “/” (root directory /root ile karıştırılmamalı ,root
+kullanıcının ev dizini ). The root directory contains either just subdirectories
+or else additionally, if no / b o o t directory exists, the operating system
+kernel.
+Kök dizinin alt dizinlerini listelemek için “ls -la /” komutunu kullanabilirsiniz. Sonuç
+Şekil 10.1 gibi görünmelidir. Bireysel alt dizinler FHS'ye uyar,bu nedenle yaklaşık olarak
+her dağıtım aynı dosyaları içerir.. Şimdi dizinlerden bazılarına daha yakından bakalım:
+Şekil 10.1: Kök Klasörün İçeriği( SUSE)
+FHS hakkında çok fazla fikir birliği vardır fakat sadece Linux üzerindeki bir şeyi bağlamak kadardır, yani o kadar da fazla değildir. Bir yandan çoğunlukla sadece üretici tarafından dokunulan ve FHS’nin bütün ayrıntılarına uymanın hiçbir şey kazandırmadığı Linux sistemleri vardır(Örneğin geniş bant yönlendirici ve PVR).
+Diğer yandan kendi sisteminizde ne isterseniz yapabilirsiniz, fakat sonuçlarına hazırlıklı olmanız gerekir.Dağıtıcınız Dosya Hiyerarşi Sistemi’ne uymanız halinde bir sıkıntı çıkmayacağını size garanti eder,fakat aynı zamanda kurallara uymadan yaptığınız işlemlerden çıkan hatalardan dolayı şikayet etmemenizi  bekler. Örneğin, eğer /usr/bin dizinine bir program yüklüyorsanız ve söz konusu olan dosya gelecek sistem güncellemesi esnasında üzerine fazla yazılırsa , FHSye göre /usr/local/bin dizinine kendi programlarınızı koymanız beklenmediği için bu sizin kendi hatanızdır.
+İşletim sistemi çekirdeği-/boot :  /boot dizini asıl işletim sistemini içerir: vmlinuz Linux çekirdeğidir. /boot dizininde ayrıca boot yükleyicisi için gereken diğer dosyalar vardır(LILO yada GRUB)
+Genel faydaları-/bin: /bin dizini içinde sistemi başlatmak için gerekli olan en önemli çalıştırılabilir programları(çoğunlukla sistem programları) vardır. Bu örneğin mkdir ve mount komutlarını içerir.
+Bu programların bazıları o kadar önemlidir ki sadece sistem başlaması esnasında değil, sistem çalışırken de gereklidir- ls ve grep gibi. /bin dizini aynı zamanda zarar görmüş sistemi tekrar çalıştırmak için gerekli olan programları içerir eğer sadece kök dizinini içeren dosya sistemine ulaşılabilirse. Sistem sistem tamiri ya da başlaması esnasında gerekli olmayan ek programlar /usr/bin dizini içinde bulunabilirler.
+Özel sistem programları-/sbin: /bin dizini gibi /sbin dizini de sistemi onaracak ya da başlatacak prgramları içerir. Ancak çoğu parça için bunlar sadece kök dizini(root) tarafından kullanılabilen sistem konfigrasyonu araçlarıdır. Normal kullanıcılar sistemi sorgulayacak programların bazılarını kullanabilirler, fakat hiçbir şeyi değiştiremezler. /bin dizininde olduğu gibi bu dizinle birlikte daha fazla sistem programlarını içeren /usr/sbin denilen bir dizin vardır.
+Sistem kütüphaneleri-/lib:  Burası dosyalar ve bağlantılar gibi /bin ve /sbin içinde bulunan programlar tarafından kullanılan “paylaşılmış kütüphaneler”dir.  Paylaşılmış kütüphaneler çeşitli programlar tarafından kullanılan kodun parçalarıdır. Bazı süreçler aynı temel parçaları kullandığı için böyle kütüphaneler birçok kaynağı kurtarır ve bu temel parçalar belleğe sadece bir kere yüklenmeli: ek olarak bir kere sistemde bulunduklarında ve tüm programlar merkezi bir dosyadan söz konusu olan kodu yakaladığında böyle kütüphanelerde arızları onarmak daha kolaydır. Tesadüfen /lib/modules dizini altında çekirdek modülleri vardır(aygıt sürücüleri, dosya sistemleri ya da ağ protokolleri kullanımında gerekli olmayan çekirdek kodu gibi). Bu modüller gerek duyulduğunda çekirdek tarafından yüklenebilirler ve bazı durumlarda kullanım sonrası kaldırılabilirler.
+Aygıt dosyaları-/dev:  bu rehber ve alt dizinleri aygıt dosyaları için çoklu kayıtları içerir. Aygıt dosyaları kabuk(genellikle komut satırı kullanıcıları yada programcılar için ulaşılabilir olan sistemin bir parçası) ve çekirdek içerisindeki aygıt sürücüleri arasında arayüz oluştururlar. Diğer dosyalar gibi içerikleri yoktur fakat aygıt numaraları aracılığıyla çekirdek içerisindeki bir sürücüye referans olurlar.
+Daha önceki zamanlarda Linux dağıtıcıları için her kişiye göre araç için /dev dizini içinde bir aygıt içermesi alışılmıştı. Böylece bir laptop Linux sistemi bile her biri 63 bölümlü, 8 ISDN adaptörü, 16 seri halinde ve 4 paralel arayüzü ve bu tür özellikleri taşıyan 10 sabit disk için gerekli olan araç dosyalarını içerirdi. Bugün bu eğilim her hayali aygıt  için bir aygıtı olan fazla dolu /dev dizinlerinden ve gerçekte bulunan araçlar için girişleri içeren çalışmakta olan çekirdeğe yakın olarak bağlanan sistemler için uzaktadırlar.  Bu alanda sihirli kelime udev’dir ve Linux Administration kısmında daha detaylı anlatılacaktır.
+Linux karakter araçları ve blok araçları arasında ayrım yapar. Örneğin bir karakter aracı ağdır,faredir ya da bir modemdir-tek karakterleri işleyen ya da sağlayan bir araç. Bir blok aracı ise bloklarda bilgileri işler-bu  byte’ların tek başına okunamadığı, 512’li gruplar halinde okunduğu disket ya da sabit diskleri içerir. Aygıt dosyaları “ls-l” dizini içinde “c veya b” çıkışlarıyla etiketlenir.
+Dosya uzunluğu yerine bu liste 2 tane numarayı içerir. İlki aygıtın türünü belirten ve çekirdek sürücüsü bu aygıtın sorumluluğunda olduğu zaman yöneten  “asıl aygıt numarası”dır. Örneğin tüm SCSI sabit diskleri 8 numaralı başlıca aygıta sahiptir. İkincisi ise “ikincil aygıt numarası”dır. Bu benzer ya da ilgili aygıtlar arasında ayrım yapan ya da bir diskin çeşitli bölünmelerini belirten sürücü tarafından kullanılır.
+Birkaç tane göze çarpan uydurulmuş aygtlar vardır. null device, /dev/null, aslında gerekli olmayan program çıkışı için bir çöp kutusu gibidir, fakat aşağıdaki şekildeki gibi bir yerde yönetilmelidir.
+Aksi halde ağda gösterilen programın standart çıkışı göz ardı edilir. Eğer /dev/null okunursa boş bir dosya gibi davranır ve hemen dosya sonuna döner. /dev/null yazan ve okuyan tüm kullanıcılar için ulaşılabilir olmalıdır.
+/dev/random ve /dev/urandom  dizinlerindeki “aygıtlar” sistemde gürültüden oluşturulan şifrelemeyle ilgili kalitenin rastgele byte’larına döner-anahtar basımı gibi tahmin edilemeyen olaylar arasındaki aralıklar gibi. /dev/random dizininden gelen bilgiler yaygın şifrelemeyle ilgili algoritmaları için anahtarlar oluşturmak için uygundur. /dev/zero dosyası boş byte’ların sınırsız bir isteğine döner;  bunları örneğin dd komutlu dosyaların üzerine yazmak için veya oluşturmak için kullanabilirsiniz.
+Yapılandırma dosyaları-/etc:  /etc dizini çok önemlidir; çoğu program için yapılandırma dosyalarını içerir. Örneğin /etcinittab ve /etc/init.d/* dosyaları sistem dosyalarını başlatmak için gerek duyulan çoğu belirli bilgileri içerir. Aşağıda en önemli dosyaların daha detaylı tanımları bulunmaktadır-onların birkaçı dışında, sadece kök dizini kullanıcısının yazma izni vardır fakat herkes onu okuyabilir.
+/etc/fstab: bu tüm yerleştirilebilir dosya sistemini ve onların özelliklerini tanımlar(tür,ulaşım şekli vs.).
+/etc/hosts: bu dosya TCP/IP ağının yapılandırma dosyalarından biridir. IP adreslerine gelen ağ misafilerinin isimlerini haritalandırır.küçük ağlarda ve bağımsız misafirlerde bu yeni bir sunucu yerleştirir.
+/etc/inittab:  bu dosya init programı için ve sistem başlangıcı için yapılandırma dosyasıdır.
+/etc/init.d/* :  bu dizin çeşitli sistem servisleri için “init kodlarını” içerir. Bunlar başlatmak için ya da sistem kapandığında sistem dosyalarını durdurmak için kullanılırlar.
+Red Hat dağıtımlarında bu dizine /etc/rc.d/init.d  denilmektedir.
+/etc/issue :  bu dosya giriş yapmak için kullanıcıya sorulmadan önce karşılamayı içerir. Yeni bir sistemin yüklenmesinden sonra çoğunlukla satıcının ismini içerir.
+/etc/motd:  bu dosya kullanıcı başarılı bir şekilde giriş yaptıktan sonra ortaya çıkan “günün mesajını” içerir. Sistem yöneticisi bu dosyayı önemli bilgileri ve olayların kullanıcılarını bildirmek için kullanır.
+/etc/mtab:  bu yerleştirme noktalarını içeren tüm yerleştirilmiş dosya sistemlerini içeren bir listedir. Bu dosya an itibariyle yerleştirilmiş tüm dosya sistemlerini içermesinden dolayı /etc/fstab dosyasından ayrılmaktadır, /etc/fstab dosyası sadece yerleştirilmesi mümkün olan dosya sistemleri için ayarları ve seçenekleri içerir. Hatta bu liste komut satırı aracılığıyla dosya sistemlerini yerleştirebildiği için ayrıntılı değildir.
+Dosyaların durgun olması gereken /etc içindeki bir dosyaya bu tür bilgileri yerleştirmemeliyiz.
+/etc/passwd:  burada sistemce bilinen tüm kullanıcıların bir listesi vardır, kullanıcının belirli bilgilerinin çeşitli araçlarını toplamak için. Dosyanın ismine rağmen modern sistemlerde şifreler bu dosya içinde depolanmaz fakat /etc/shadow denilen başka bir dosya içinde depolanır. /etc/paswd’un aksine bu dosya normal kullanıcılar tarafından okunamaz.
+Aksesuarlar-/opt : bu dizin gerçekten 3. Şahıs yazılımına yöneliktir-bölgesel olarak yüklenen dosyalar ya da dağıtım dosyalarıyla çelişmeden yüklenebilmesi gereken tüm paketler. Böyle yazılım paketleri /opt(packages)  gibi bir alt dizin meydana getirirler. Haklı olarak /opt dizini boş bir disk üzerine dağıtım yüklendikten sonra tamamen boş olmalı.
+“değişmeyen dosyalar”-/usr :  burada programları ve sistemin onarımı ya da başlatılması için önemli olmayan bilgi dosyalarını içeren çeşitli alt dizinler vardır. en önemli dizinler şunları içerir:
+/usr/bin :  başlatma için önemli ya da önemsiz olan sistem programları
+/usr/sbin:  kök dizini için daha fazla sistem programları
+/usr/lib:  /bin ya da /sbin için kullanılmayan daha fazla kütüphane
+/usr/local:  bölgesel sistem yöneticisi tarafından yüklenmiş dosyalar için dizin. /opt diziniyle benzerlik gösterir-dağıtım buraya hiçbir şey koymaz
+/usr/share:  mimari olarak bağımsız veri. Esas olarak Intel, Sparc ve PowerPC ana makinelerinden oluşan bir Linux ağı merkezi bir sunucu üzerinden bu dosyanın tek bir kopyasını paylaşabilir.
+/usr/share/doc:  belgeleme, örneğin HOWTO.
+/usr/share/info:  bilgi sayfaları.
+/usr/share/man:  alt dizinlerde elle yapılan sayfalar.
+/usr/sc:  çekirdek ve diğer programlar için kaynak kodu(eğer mümkünse).
+/usr ismi çoğunlukla yanlış olarak Unix sistem kaynaklarının kısaltması olarak düşünülür. Esasen bu dizin bilgisayarların büyük ve yavaş bir sabit diskleri olduğu zamandan  daha küçük ve daha hızlı sabit diskleri olduğu zamana kadarki süreçte türemiştir.Büyük disk daha az sıklıkla kullanılan ya da çok büyük olan dosyalar ve programlar için bir bellek olarak görev yaparken  bütün sık kullanılan programlar ve dosyalar küçük diske gider. Bugün bu ayrım bir şekilde değişebilir:  Dikkatle /usr dizinini kendi bölmesinin üzerine yerleştirebilirsin vebu bölmeyi “salt okunur” olarak değiştirebilirsin. Disk belleğinin düşen fiyatları bunu artık gerekli kılmamasına rağmen uzak bir sunucudan /usr’ yi içe aktarmak mümkündür(yaygın Linux dağıtımları bunu hiçbir şekilde desteklemez).
+
+Çekirdek içine bir pencere-/proc:  bu en ilginç ve önemli dizinlerden biridir  /proc uydurulmuş dosya sistemidir: diskte boşluk meydana getirmez fakat onun alt dizinleri ve dosyaları birisi içerikleriyle ilgilendiğinde ya da ilgilenirse çekirdek tarafından oluşturulur. bilgisayarın donanımı hakkında çekirdeğin sahip olduğu diğer bilgilerin yanı sıra işleyen süreçler hakkında da bir çok bilgi bulacaksınız. Örneğin bazı dosyalarda bütün bir donanım analizi bulacaksınız. En önemli dosyalar şunları içerir:
+/proc/cpuinfo:  bu işlemcinin tipi ve saat frekansı hakkında bilgiler içerir.
+/proc/devices:  bu başlıca aygıt numaralarını içeren, çekirdek tarafından desteklenen aygıtların tüm listesini içerir.
+/proc/dma:  kullanımdaki DMA kanallarının bir listesidir. Bugünün PCI temelli sistemlerinde ne ilgi çekici ne de önemlidir.
+/proc/interrupts:  kullanımdaki bütün donanım kesintileridir. Bu kesinti numaralarını, tetiklenen kesintilerin numaralarını ve belirli kesintilerle uğraşan sürücüleri içerir(Bir kesinti sadece çekirdekte bir kesinti olduğunda bu listede yer alır).
+/proc/ioports:  /proc/interrupts gibi fakat I/O bağlantı yerleri içindir.
+/proc/kcore:  bu dosya bilgisayarın bütün RAM’lerini uygun hale getirir ve çekirdeğin hatalarını ayıklamak için gereklidir. Okumak için kök dizini(root) ayrıcalıklarını gerektirir.  Bundan uzak durursanız iyi edersiniz.
+/proc/loadavg:  son 1,5 ve 15 dakika içindeki işlemci yüklemesini ölçen 3 numarayı içerir. Bu değerler genellikle uptime programı sayesinde verilir.
+/proc/meminfo:  bellek ve takas kullanımını gösterir. Bu dosya free program tarafından kullanılır.
+/proc/mounts:  tüm yerleştirilmiş dosya sistemlerinin başka bir listesidir. Çoğunlukla /etc/mtab’la özdeştir.
+/proc/scsi:  bu dizinde  uygun SCSI aygıtlarını listeleyen scsi isminde bir dosya vardır. SCSI hakkında bilgi veren bir 0(1,2,…,aynı türün çoklu adaptörleri için) dosyası içeren sistemde SCSI ana makine adaptörünün her  türü için başka bir alt dizin vardır.
+/proc/version:  model numarasını ve şu anki çekirdeğin derleme tarihini içerir.
+/bu paragrafı çeviremedim L
+Back when /proc had not been invented, programs like the process status
+display tool, ps, which had to access kernel information, needed to include
+considerable knowledge about internal kernel data structures as well as the
+appropriate access rights to read the data in question from the running kernel.
+Since these data structures used to change fairly rapidly, it was often
+necessary to install a new version of these programs along with a new version
+of the kernel. The /proc file system serves as an abstraction layer between
+these internal data structures and the utilities: Today you just need
+to ensure that after an internal change the data formats in /proc remain the
+same—and ps and friends continue working as usual.
+Donanım kontrolü-/sys:  Linux çekirdeği  versiyon 2.6’dan bu yana bu dizini belirtmiştir. /proc gibi çekirdeğin talebi üzerine uygun hale getirilir ve geniş bir alt dizinleri sıralaması içinde uygun donanım üzerinde istikrarlı bir görüşe izin verir. Aynı zamanda çeşitli özel dosyalar aracılığıyla donanım üzerinde yönetim işlemlerine destek sağlar.
+Teorik olarak bireysel girişlerle hiçbir alakası olmayan /proc dizinindeki tüm girişler /sys dizinine yavaşça geçirilmeli. Bu stratejik amaç gerçekleştirildiğinde bu,  birisinin tahmini olduğundandır.
+Dinamik olarak değişen dosyalar-/var:  bu dizin farklı dizinler boyunca dağıtılan dinamik olarak değişen dosyaları içerir. Çeşitli programları yerine getirdiğinde kullanıcı çoğu zaman bilgileri oluşturur(çoğunlukla gerçeğin farkında olmadan). Örneğin biçimlendirilmiş man sayfaları sonradan lazım olurlar diye bir süreliğine etrafta tutulurken man komutu sıkıştırılmış kılavuz sayfası kaynaklarını sıkıştırılmamış hale getirmeye sebep olur. Benzer olarak bir belge basıldığında yazıcıya gönderilmeden önce baskı bilgisi depolanmalı,örneğin /var/spool/cups içerisinde. /var/log içindeki dosyalar giriş ve çıkış zamanlarını ve diğer sistem olaylarını kaydeder, /var/spool/cron düzenli otomatik komut yürütmeleri hakkında bilgi içerir ve kullanıcının okunmamış mailini /var/mail’de tutar.
+Linux’te sistem log dosyaları genellikle “syslog” servisi tarafından işlenir.sys logd denilen bir program diğer programlardan gelen  mesajları kabul eder ve bunları başlangıç ve önceliklerine göre sonraları bulabileceğiniz /var/log dizini altında dosyalar halinde sınıflandırır. Dosyalar dışında syslog servisi aynı zamanda mesajlarını başka yerde yazabilir. Örneğin konsola ya da ağ aracılığıyla bilgi merkezinizden tüm log mesajlarını birleştiren merkezi bir “yönetim  istasyonu” olarak hizmet eden başka bir bilgisayara.
+/sys/logd dizininin yanısıra bazı Linux dağıtımları klogd servisi içerir. Görevi işletim sistemi çekirdeğinden gelen mesajları kabul etmek ve onları sys logd dizinine doğru geçirmektir.diğer dağıtımlar kendi sys logd dizinleri bu işi kendileri yapabildikleri için ayrı bir klogd dizinine ihtiyaçları yoktur.
+
+Linux çekirdeği  sistem başlatılmadan önce onları kabul edecek sys logd dizinini çalıştırmak için yeterince uzakta mesajların tüm sınıflandırmasını yok eder. Mesajlar hala önemli olduğu için Linux çekirdeği onları içten depolar ve dmesg komutunu kullanarak onlara ulaşabilirsiniz.
+Geçici dosyalar-/tmp:   bazı faydalar geçici dosya alanına ihtiyaç duyar, örneğin bazı editörler ya da türler. Tmp dizininde tüm programlar geçici bilgileri yerleştirirler. Bazı dağıtımlar sistem başlatıldığında tmp dizinini temizlemek için kurulabilirler: Bu yüzden kalıcı önemi olan hiçbir şeyi bu klasöre koymamalısınız.
+Alışılmışa göre, /tmp dizini sistem başlangıcında boşaltılır fakat öyle değildir. Dağıtımınızın ne yaptığını kontrol etmelisiniz.
+Sunucu dosyaları-/srv:   aşağıda çeşitli sunucu programları tarafından sunulan dosyaları bulacaksınız.
+such as
+drwxr-xr-x 2 root root 4096 Sep 13 01:14 ftp
+drwxr-xr-x 5 root root 4096 Sep 9 23:00 www
+
+bu dizin nispeten yeni bir buluştur ve oldukça mümkündür ki sisteminizde henüz bulunmamaktadır. Ne yazık ki web sayfaları FTP sunucusunun dökümanları için başka bir yer yoktur ki FHS yazarları bunun üzerinde uzlaşabilirler, bu sayede bu dosyalar olmadan bir sistem üzerinde tamamen farklı bir yerde sonlandırabilirler,örneğin /usr/local ya da /var alt dizinlerinde.
+
+CD-ROM ya da Disketlere ulaşım--/media:  bu dizin çoğunlukla otomatik olarak meydana getirilir; CD-ROM’lar ve disketler için yerleşim noktaları olarak görev yapan /media/cdrom ve /media/floppy gibi ilave edilen bpş dizinleri içerir. Donanım başlangıcınıza dayanarak /media/dvd gibi daha fazla dizinleri eklemekte kendinizi özgür hissedebilirsiniz, eğer bunlar yerleşim noktaları olarak bir anlam ifade ediyorlarsa ve dağıtım satıcınız tarafından önceden yüklenmemişse.
+
+Diğer depolama ortamlarına ulaşım---/mnt:  bu dizin ilave edilen depolama ortamlarının geçici yerleştirilmesi için yerleşim noktası olarak görev yapar. Red Hat tarafından yapılan bazı dağıtımlarla CD-ROM ve disket için medya yerleşim noktaları /media’nın altında olmak yerine burada ortaya çıkabilir.
+
+Kullanıcı ev dizinleri--/home:  bu dizin kök dizini dışında tüm kullanıcıların ev dizinlerini içerir.
+
+Eğer birkaç 100’den fazla kullanıcınız varsa tüm ev dizinlerini home dizinlerinin hemen alttakiler olarak tutunması özel koruma ve etkinlik açısından mantıklıdır. Örneğin daha uzak alt bölünme için ayırıcı bir özellik olarak kullanıcıların başlıca grubunu kullanabilirsiniz.
+
+Yöneticinin ev dizini--/root:  Yöneticinin ev dizini kök dizininde kuruludur.Bu,dogrudan kök alt dizinin dışında yönetici evinde konumlandırılmayan gözlenen bir farklılıkla diğer kullanıcılara benzer tamamen doğal bir ev yöneticisidir.
+Kaybedilen özellik_kaybedilen+bulunan (fhs tarafından yönetilen sadece iç hat dosya sistemleri) bu yönetici herhangi bir yöneticiye ait olmayan ama uygun görünen dosyalar için kullanılır.Dosya sistemini uygunluğunu kontrol edici,aynı dosya sistemi üzerinde kaybedilmiş+bulunan yöneticide öyle dosyalara bağlantılar yaratır.bu yüzden sistem yöneticisi dosya gerçekten nereye ait bulabilir; kaybedilmiş+bulunan,dosya sistem uygunluğunu kontrol edicinin sabit bir yerin içinde bulabilme ümidiyle yaratılmıştır.(kural gereği ,iç hat dosya sistemleri üzerinde bu herzaman dosya endeksi numarasını kullanır.
+
+Dizin düzenlemesi için başka bir yöntem de şöyledir: FHS dosyaları ve dizinleri 2 kritere göre böler-bölgesel olarak ulaşılabilir olmaya ihtiyacı var mı , başka bir bilgisayarda durabilirler mi ve ağ aracılığıyla ulaşılabilirler mi, bağlamları durgun mu ya da sistem çalışırken değişirler mi?
+----
+Bu bölünmenin arkasındaki düşünce sistem yönetimini yalınlaştırmaktır: dizinler dosya sunucularına taşınabilirler ve merkezi olarak sürdürülebilirler. Dinamik bilgiler içermeyen dizinler salt okunura yerleştirilirler ve kazalara daha fazla elverişlidir.
+
+
+C10.2 = Sisteminiz "olağan" yerlerde kaç tane program içeriyor?
+C10.3=  Eğer grep komut satırında birden fazla dosya ismiyle çağrılmışsa, her eşleşen hattın önüne söz konusu dosyanın adını verir. bir kabuk joker kalıbı(.txt gibi) ile grep'i çalıştırmak büyük olasılıkla bir problemdir, grep çıkışının kesi formatı öngörülemediğinden hangi programların ne şekilde çalışacağını bilemez. Arama kalıbı tek dosya ismini genişletse bile nasıl doya adı çıkışını zorlayabilirsiniz. (ipucu: /dev içerisinde çok faydalı bir dosya bulunmaktadır.)
+C10.4 =“cp foo.txt /dev/null” komutu temelde hiçbir şey, ama “mv foo.txt /dev/null” uygun erişim izinleri varsayarak /dev/null by foo.txt ile yer değiştirir. Neden?
+C10.5 =Sisteminizde,(Varsa) hangi yazılım paketleri /opt altına yüklüdür? Hangileri üretici taraından sağlanmıştır ve hangileri üçüncü parti ürünlerdir? Sizce üretici üçüncü parti ürünün teaser versiyonunu /opt içine veya farklı bir yere  yüklemeli mi? Ne düşünüyorsunuz?
+C10.6 =Neden /proc'ta köklü dizin ağacının yedek kopyalarını önerilmez?
+10.4=Dizin ağacı ve Dosya sistemleri
+	Bir Linux sistemi dizin ağacı diskler,CD-ROM diskler,USB anahtarları ve taşınabilir MP3ler gibi depolama birimleri üzerinde birden fazla bölüm boyunca uzanır.Microsoft Windows'taki yolunuzu biliyorsanız, muhtemelen bu sorunu Linux üzerinde harfler sayesinde farklı "sürücüler" tanımlaması ile çözebileceğinizin farkındasınız,mevcut tüm disk bölümleri ve medya "/" ile başlayan dizin ağacına entegre edilmiştir.Genel olarak hiçbir şey sizi tam bir Linux sistemini tek bir sabit disk bölümüne yüklemenizi engelleyemez.Ancak, /home bölümleme dizinini kendi bölümüne koymak yaygındır. Bu yaklaşımın avantajı, Linux dağıtıcınız, tamamen kendi veri güvenliği (basitçe doğru zamanda dikkatli olmanız gerekmektedir,yani dağıtımcı yükleyicisinden yükleme için hedef bölüm(leri) aldığınız zaman.) hakkında endişelenmenize gerek kalmadan sıfırdan fiili işletim sistemini tekrar yükleyebilmenizdir. Bu aynı zamanda yedek kopya oluşturma işlemini kolaylaştırır. Büyük sunucu sistemleri üzerinde, diğer dizinleri, tipik olan sunucu sistemleri Cally / tmp, / var / tmp'a veya / var / spool'a kendi bölümlerini atamanız da oldukça olağandır.Amaç önemli bölümleri tamamen doldurmayla kullanıcıları rahatsız edici sistem işlemlerini engellemektir.Örneğin /var doluysa, diske herhangi protokol mesajları yazılamasın, bu yüzden kullanıcıları /var/tmp dosyasındaki okunmamış büyük boyutlu maillerden, yazılmamış yazma işlemlerinden veya büyük dosyalardan korumak istiyoruz. Öte yandan, tüm bu bölümler sistemi kaplamak eğilimindedir.
+	BMore information and strategies for partitioning are presented in the Linup
+Front training manual, Linux Administration I.
+	
+	/etc/fstab dosyası sistemin nasıl çeşitli disk bölümlerinden oluştuğunu açıklar. Başlangıç boyunca, sistem normal bir kullanıcı olarak endişelenmemeniz gereken çeşitli sistem dosyalarını doğru yerlere yerleştiriyor(Linux buna "monte" diyor).Aslında neye ilgi duyduğunuzu,yani nasıl CD-ROM diskler ve USB tuşlarına erişilebileceğinizi ve bunların da monte edilmesi gerekir. Dolayısıyla biz bu başlığı kısaca örterek en iyisini yapmış oluruz her ne kadar gerçekten de kullanıcının ülkesi olsa da.Bir orta monte etmek için, orta için her iki aygıt dosyası ismine(genellikle / dev/sda1 gibi bir blok aygıt)  ve ortanın içeriğinin görünmesi gereken dizin ağacındaki bir dizine ihtiyacınız vardır. Bu herhangi bir dizin olabilr.
+	Başka bir ortayı üzerine monte ettiğiniz orjinal içeriğe erişemeseniz bile dizin boş olmak zorunda değildir.(Siz ortayı geri monte ettikten sonra tekrar görünecektir.)
+	Aln prensibi, birileri /etc gibi nemli sistem dizinine çıkarılabilir ortam monte etmeli(ideal olarak parolasız kök dizini girişi içeren passwd diye adlandırılan). Dizin ağacı içinde rasgele yerlerde dosya sistemlerinin montajı zaten kökü gibi, bu gibi maskaralık gerek olacaktır sistem yöneticisi, sınırlı olmasının nedeni budur.Bu yüzden dosyaları keyfi yerlere dizin ağaçlarıyla birlikte monte etme sistem kullanıcısına kısıtlanmıştır. 
+	Daha önce, biz / dev/sda1 dosyasına "orta aygıt dosyası" denir dedik. Bu gerçekten
+sistemdeki ilk SCSI diskinin ilk bölümüdür-gerçek isim tamamen kullandığınız ortanın türüne göre değişir.USB anahtarları için hala bariz bir isimdir.Bu bilgiyle-aygıt adı ve monte noktası- bir sistem kullanıcısı ortayı aşağıdakileri takiben notme edebilir: 
+# mount /dev/sda1 /media/usb
+Bu ortamda dosyası olarak adlandırılan bir dosya olarak / media / usb / dosya görünür olacağı anlamına gelir dizin ağacında. Aşağıdaki gibi bir komutla:
+# umount /media/usb Note: no ‘‘n’’
+Kullanıcı aynı zamanda ortayı tekrar monte edebilir.
+Bu bölümdeki komutlar :
+dmesg çekirdeğin arabellek mesajının içeriğini çıkarır dmesg(8) 141
+file Kurallar dosyası(1)'e göre dosyanın içeriğinin türünü tahmin eder. 134
+serbest ana bellek ve takas alanı kullanımını görüntüler(1) 140
+klogd Çekirdeik log mesajlarını kabul eder klogd(8) 141
+mkfifo FIFO'ları oluşturur(named pipes) mkfifo(1) 135
+mknod Aygıt dosyalarını oluşturur mknod(1) 135
+syslogd sistem log mesajlarını işler syslogd(8) 141
+Özet
+• Dosyaların bir ad altında depolanan verilerinin, kendine yeten koleksiyonları vardır. Linux aynı zamanda diğer nesneler ve aygıtlar için  dosya soyutlamayı kullanır
+• Bir disk üzerindeki veri ve idari bilgilerin düzenlenmesi yöntemine ''dosya sistemi'' denir.
+Aynı zamanda dizinlerin ve dosyaların üzerindeki veriler ile birlikte sistemin tam hiyerarşi yapısını veya belirli bir depolama ortamını kapsar.
+
+• Linux dosya sistemleri (iki çeşittir FIFO'lar ve UNİX alan soketleri ): düz dosyaları, dizinleri, sembolik bağları ve aygıt dosyalarını içerir
+
+• Dosya sistemi Hiyerarşisi Linux sistemi tarafından birçoğunun anlamını önemli bir  dizinlerini ve dağılımlarını açıklar.
+
+
+
+11
+Dosyaları Arşivleme ve Sıkıştırma
+11.1 Arşivleme ve Sıkıştırma
+11.2 tar kullanarak dosyaları arşivleme
+11.3 gzip ile dosya sıkıştırma
+11.4 bzip2 ile dosya sıkıştırma
+11.5 zip ve unzip kullanarak dosyaları arşivleme ve sıkıştırma
+
+Hedefler
+• “Arşivleme” ve “Sıkıştırma” koşulların oğrenme
+• tar i kullanabiliyor olma
+• "gzip "ve "bzip2 " kullanarak dosyaları sıkıştırrma ve açabiliyor olmak
+• Dosyaları zip ve unzip ile işleyebilmek
+Önkoşullar
+• Kabuk yöntemini kullanmak (Bolum 4)
+• Dosyalar ve dizinleri kullanmak (Bolum 6)
+• Filtreleri kullanmak (Bolum 8)
+
+11.1 Arşivleme ve Sıkıştırma
+“Arşivleme” birden fazla dosyayı toplayıp tek bir parça haline getirir. Tipik uygulamalar
+Manyetik kasete üzerinde bir dizin ağacı depolar. tape—the magnetic tape drive appears
+within Linux as a device file onto which the output of the archival program can be written.
+Diğer taraftan, arşivlenen verileri kasetin sürücü cihaz dosyalarından okuyup arşivden
+Çıkartarak dizi ağaçlarını yeniden yapılandırabilir. İlgili programların çoğu, arşivleri
+Çözüp oluşturabildiğinden beri her iki işlemi de arşivleme başlığı altında inceliyoruz.
+burada bizi ilgilendiren kısmı sadece kayıpsız sıkıştırmadır, sıkıştırılmış verilerimizi
+yeniden inşa ederek orijinal formuna sokabilmemizi sağlar.
+Başka bir deyişle, yüksek dereceli bir sıkıştırmada gereksinimleri terk ederek orijinal haline getirmeyi başarabilmesi bir alternatiftir. Buna "Lossy"(kayipli) sıkıştırma yöntemi denir  ve aynen JPEG resimleri ve "MPEG-1" ses katmanlarındaki gibi sıkıştırılırlar. Işin ilginç yanı olan gereksiz verilerden kurtulmanın yolu; Örnek bir mp3 verisini alalım, Bu parcalarin bir kisim sinyallerini atalim, “psycho-acoustic model” e dayanarak sadece insanların duyabileceği derecede ve bunu dinleyenlerin anlayamayacağı kadar kayıp vererek kodlamak mümkündür. JPEG bir birlerine benzeyen Çizgilerle Çalışır. Çalışma süresinin kodlanması aşağıdaki karakter dizinin temsil eden basit bir ornek alirsak;
+ABBBBAACCCCCAAAABAAAAAC
+daha yoğun şekilde
+A*4BAA*5C*4AB*5AC
+Burda, “*4B ” sıralı dört tane “B” karakter. Bu basit yaklaşım “run-length encoding”(uzun kodlama çalıştırma) olarak adlandırılır ve bugün bile örneğin faks makinelerinde(düzeltmeleriyle birlikte) bulunur. “Real” (gerçek) gzip veya bzip2 givi sıkıştırma yazılımları gelişmiş yeni metotlar kullanırlar.
+
+Bu tur birleşmiş arşivleme ve sıkıştırma yazılımlar Windows dünyasında yenii ölçüde kullanırlar. (PKZIP, WinZIP vs),ayni adim genellikle Linux ve Unix dünyasında ayrı olarak ele alınır. Arşivi ilk kez kullanırken tar çıkış sıkıştırma işleminden önce tar ile dosyaların bir dizi olduğunu söylemek popüler bir yöntemdir, gzip-PKZIP ve benzerleri kendi üzerindeki her bir dosyayı sıkıştırır ve sonra bir tek büyük bir dosya içine sıkıştırılmış dosyaları toplar.
+
+Bu yöntemin PKZIP ve bağlantılı yöntemlere göre avantajı bu yöntemin yüksek sıkıştırma oranı veren birkaç orijinal dosya arasında yer alabilmesidir. Ancak bu da şu durumda bir dezavantaj sayılabilir; eğer dosya hasar görmüşse tüm arşiv bu noktadan başlayarak işe yaramaz hale gelebilir.
+
+Doğal olarak Linux’ta bile kimse sizi ilk sıkıştırmanızdan ve onları arşivlemenizden alıkoymaz. Maalesef bu yöntem diğerindeki kadar kullanışlı değildir
+
+Elbette Linux’ta de Windows dünyasındaki rar ve zip gibi kullanışlı sıkıştırma programları vardır.
+Uygulama
+C 11.1 [1] Neden run-length kodlama örneğinde AA yerine *2A i kullanılır?
+C 11.2 [2] run-length kodlama metodun kullanarak "A*2B****A" dizinini
+Nasıl gösterebilirsiniz?
+
+11.2 tar Kullanarak Dosya Arşivleme
+tar ismi “kaset arşivin ’den türemiştir. Uygulama bireysel dosyaları arşiv dosya sına koyar ve birinden diğerine ek bilgileri not alır (tarih, erişme izni, sahibi, …). Her ne kadar tar’ın başlangıçta manyetik teyp sürücüleri ile birlikte kullanılabilir olması gerekse de , tar arşivleri çeşitli medyalar üzerine doğrudan yazılmış da olabilir. Diğer kullanımlar arasında tar dosyaları Linux ve diğer özgür yazılım paketleri için kaynak kodu yaymak için standart biçimidir.
+
+Linux üzerinde yaygın olarak kullanılan katran GNU uygulaması diğer Unix türevleri olan tar uygulamalarında bulunan çeşitli uzantıları içerir. Örneğin, GNU tar birçok medyayı kapsayan çok hacimli arşiv oluşturarak bunu destekler. Bu, çoklu cilt arşivler bile küçük arşivler yalnızca çok kirli Tabii ki, diskete yedek kopyalarını sağlar. Elbette ki sadece küçük arşivler için önemli olan bu çoklu cilt arşivleri bile diskete yedekleme yapılmasına izin verir.
+
+Küçük bir açıklama: Bölme(split) komutu arşiv dosyaları gibi büyük dosyaları kesebilmeyi sağlar ve böylece dosya uygun parçalar haline getirilerek disketlere kopyalanabilir ya da e-maille yollanabilir ve cat(kedi) kullanılarak geldikleri şeklinde yeniden birleştirilebilirler.
+
+tar’n avantajları: Bunun kullanımı basittir, güvenli ve iyi çalışır, evrensel olarak tüm Unix ve Linux sistemlerinde çalışır. Bunun dezavantajları basit arizalardan dolayı problemlere yol açabilir, ve  tar’ in tüm sürümleri aygıt dosyalarını depolayamayabilir. (Sisteminizin tümüne geri yüklemek istediğinizde).
+
+tar arşivleri, dosyalar ve tüm dizin hiyerarşileri içerir. Eğer Windows medyası ağ
+Üzerinden dizin ağaçları içinde takılı ise, içerikleri tar kullanarak arşivlenir. tar
+Kullanılarak oluşturulan arşivler normalde sıkıştırılmamıştır, Ama başka sıkıştırma
+Yazılımlar kullanarak sıkıştırılabilir(bugüne kadar her zaman gzip veya bzip2
+Kullanılmıştır). Bunlar yedek kopyalamalar ile ilgili iyi bir fikir değildir, sıkıştırılmış arşiv
+Verilerin bit hatalar her zaman geri kalan verilerin kayıplarına yol acar.
+Typical suffixes for tar archives include .tar , .tar.bz2 , or .tar.gz , depending on
+whether they have been compressed not at all, using bzip2 , or using gzi . ".tgz" eki
+zipped (sikistirilmis) tar veri formati genel olarak DOS dosya sistemi üzerinde
+depolanması gerekiyor.. tar ’in söz dizimi;
+tar ⟨options⟩ ⟨file⟩||⟨directory⟩ …
+ve en önemli içerikler: tar seçenekler
+-c (“create”) yeni arşiv oluşturur
+-f file ⟨file⟩ üzerinden yeni arşiv oluşturur (veya mevcut arşivden okur),
+⟨file⟩ düz dosyalarda veya bir aygıt dosyalarda bulunması (diğerlerinden yanı sira)
+-M multi-volume arşivleri kullanmak
+-r arşive dosyalar ekler (manyetik kaseteler için degil)
+-t arşiv içindekileri görüntüler
+-u arşiv içindeki kendi sürümünden daha yeni olan dosyalari değiştirir. Eğer dosyaların
+Hepsi oluşmamışsa, Bunlar daha önceden eklenmiştir (manyetik kaseteler için değil)
+-v Verbose modulu—tam o sırada tar' ın ne yapıyor olduğunu görüntüler
+-x Dosyalar ve Dizinleri arşivden çıkarır
+-z gzip kullanarak arşivi sıkıştırır veya sıkıştırmadan çıkarmasını
+-Z sıkıştırma kullanarak arşivi sıkıştırır veya açmasını (Normalde linux üzerinde
+mevcut değil)
+-j bzip2 kullanarak arşivi sıkıştırır veya sıkıştırmadan çıkarmamasının
+option syntax tar in söz dizim seçenekleri oldukça sıra dışıdır,
+
+Bunda -f gibi parametre olanlar (olağanüstü) dâhil olmak üzere tekbir tire sonra birkaç seçenekleri "paketlemek" (başka bir yerde olduğu gibi) mümkündür.
+
+İlk "seçenek paketi" önünde gösterişi çizgi dışarı bırakabilirsiniz. Sık sık aşağıdaki gibi
+Komutları göreceksiniz:
+
+Yine de,  bunu önemsiyoruz.
+aşağıdaki örnekte arşivler tüm dosyaları ile birlikte asil dizinde data isim ile devam
+eden data. tar dosyası kullanıcının ana sayfasında bulunmaktadır
+-c seçeneği yeniden arşiv oluşturup düzenler, "-f ~/data.tar" isimli arşivin ismini verir.
+-v seçeneği sonucu hakkında hiçbir değişiklik yapamaz; sadece dosyaların isimleri hakkında arşivlenmiş halini ekranda görüntüler.(eğer dosyalardan birisi arşivlenmişe buda gerçekten bir dizin ise, Dizinin tüm bilgilerine arşivin içine dizinler eklenecektir.
+
+Tar da tüm dizinlerin arşivlenmesini sağlar. Bunu çevreleyen dizinden yapmak daha
+İyidir. Arşivin içine bir altdizin oluşursa buda arşivi paketten çıkarırken yeniden
+Oluşacaktır. Aşağıdaki örnekte daha detaylı olarak gösterecektir.
+Sistem yöneticisi root home.tar isimli /home dizininde bir arşiv depolarsa (tüm kullanıcı
+Bilgileri). Buda /tmp dizin içerisine saklanır.
+Eğer dosyalar ve dizinlerin mutlak path isimlerin kullanarak verilirse, tar path
+İsmine bağlı otomatik olarak depolar (başka bir sözle "/" ile başlayan her bir
+İsimleri kaldırılmıştır ). Başka bir bilgisayarda arşivden paket çıkarırken bu tur
+Problemleri önler (Uygulama 11.6 ya bakin).
+
+Arşivin "tablo içeriklerini" -t seçeneğin kullanarak görüntüleyebiliriz:
+-v seçeneği tar i daha detaylı verir:
+-x komutu ile verilerinizi ararsınız:
+bu durumda tar terminal üzerinde hiç çıkış üretmez.— -v komutunu vermeniz lazim:
+Eğer arşiv hiyerarşi bir dizin içerirse, bu ana
+Dizini yeniden oluşturur. (Eğer hatırlarsanız tar tüm mutlak isimlerinden bir tane
+path islimine bağlı üretir.) Herhangi dizine arşivleri çıkartabilirsiniz, her zaman bu
+Yapıyı tutar.
+Paketi çıkarma sırasında dosya veya dizin isimlerini değiştirebilirsiniz. Bu durumda
+Söz konusu olan sadece dosyalar ve dizinler paketten açılacaktır. Ancak, arşivin içindeki
+İsimlerin tam olarak eşleşmesine dikkat edin:
+Uygulamalar
+11.3 [!2] Ana dizinizdeki dosyaların liste bilgilerin bir dosya içinde depolayın.
+O dosyanın tar arşivini oluşturun. Orijinal dosya ve onun arşivini bir
+Biriyle karşılaştır. Ne önerilirsiniz?
+11.4 [2] üç veya dört bos dosya oluşturup onu yeni oluşturduğunuz arşive ekleyiniz
+11.5 [2] asil dosyanızı silin ve tar in içeriklerini arşivden çıkaran.
+11.6 eğer bir dosya veya muhafaza edilmesi için dizinin adı mutlak bir yol adı olarak verilirse neden GNU tar profilaktik olarak yol adı başlangıcında silmez?
+ve etc-backup.tar (a) mutlak yol isimleri varsa ne olacağını hayal edin,(b) başka bir
+bilgisayara aktarılır ve orada çözülür).
+11.3 gzip ile Dosya Sıkıştırma
+Linux in en yaygın kullanılan sıkıştırma uygulaması Jean-Loup Gailly ve Mark Adler
+Tarafından geliştirilmiştir. Bu tek bir dosya sıkıştırması için kullan ilmiştir. (yakınlarda adi
+Geçmiştir, çokça dosyaları tek arşivde içermesi mümkündür).
+gzip uygulaması ("GNU zip" in kısaltılmışı) 1992 de sıkıştırma problemleri önlemek
+İçin ortaya cikmistir, standart Unix sürümlerin özel sıkıştırma aracısıdır. Sıkıştırma
+Lempel-Ziv-Wlch algoritmasına dayanmistirl (LZW), patent hakları US tarafından
+Sakilidir 4,558,302. Bu patenti Sperry (later Unisys) şirketine ait olup buda 20
+Haziran 2003 de suresi sona ermişti. Diğer taraftan, gzip DEFLATE metodu Phil
+Katz[RFC 1951] tarafindan  kullanılmıstır,Artik LZW patentine sahip olmamasına
+Dayalı bunun yani sira LZ77 isimin alan Huffmen scema kodlaması ozgur patent
+Olmuştur. ayrıca, LZW den daha iyi çalışmaktadır.
+gzip compress i kullanarak sıkıştırılmış dosyaları sıkıştırmadan çıkarır, çünkü
+Sadece Unisys tarafından patenti korunmuştur. Bu tur dosyaları ".Z" komutu
+İsimleri ile ayırt edebilirsiniz.
+gzip i PKZIP ve benzer Windows uygulamaları "ZIP" ismiyle karıştırılmamalıdır
+Bu tur uygulamalar derhal dosyaları sıkıştırıp ardından arşivleyebilir; gzip sadece
+Sıkıştırma isiyle uğraşır ve arşivleme isini tar veya cpio uygulamalarına birikir. .—gzip, ZIP
+Paketleri tam olarak hangi bir dosya DEFLATE yöntemle arşivlenmiş bunları
+Arşivden çıkarabilir.
+gzip bir tek dosyaları isler ve değiştirir, Dosyaların uzantı isimlerine. gz ismini ekler.
+Bu degisikler dosyanın orijinal halinden daha az hafıza tutar. Birkaç dosyalar bir tek arşiv
+içine sıkıştırılmalıdır, tar ve gzip bileşik olmalıdır.
+gzip in en önemli tercihleri şunlardır:
+-c sıkıştırılmış dosyasını standart sıktıysa gönderir, asil dosyanın yerine konur;
+asilin kalanı değişmemektir.
+-d sıkıştırılmış dosyanı çıkarmak (obur turlu: gunzip gzip -d gibi calisir)
+-l ("list") sıkıştırılmış dosyanın adi, paket boyutu givi önemli bilgilerini görüntüler
+-r (“recursive”) alt dizindeki dosyaları sıkıştırır
+-S ⟨suffix⟩ uses the specified suffix in place of .gz
+-v her bir dosyanın isimi ve sıkıştırma oranının çitileri
+-1 … -9 B ir bir sıkıştırma oranı belirtir -1 (or --fast ) Çok hızlı çalışır ama
+-1 … -9 B ir bir sıkıştırma oranı belirtir -1 (or --fast ) Çok hızlı çalışır ama
+İyi sıkıştırmaz, -9 (or --best ) çok iyi sıkıştırır ama yavaş; varsayılan ayarları ise
+-6 .
+Aşağıdaki komutu letter.tex dosyanı sıkıştırır, letter.tex.gz isimli sıkıştırılmış dosya
+Depolar ve asil dosyası silinir:
+$ gzip letter.tex
+Dosyayı paketten çıkarırken
+$ gzip -d letter.tex
+Veya
+$ gunzip letter.tex
+iste letter.tex.gz (-S .t) yerine letter.tex.t olarak sıkıştırılmış dosya, ve dosyanın sıkıştırma
+oranin ciktisi (-v):
+$ gzip -vS .t letter.tex
+-s komutu sıkıştırmadan sikama üzerine belirtir, "gzip -d" olana kadar a .gz :
+$ gzip -dS .t letter.tex
+Eğer. Tex uzantılı tum dosyaları all.tar.gz seklinde sıkıştırmak istersek, bu komutu kullanılır
+$ tar -cvzf tex-all.tar.gz *.tex
+Unutma tar asil dosyayı silmez! Bu sadece paketten çıkarmak için kullanılır
+$ tar -xvzf tex-all.tar.gz
+Uygulamalar
+ 11.7 [2] alıştırma 11.3 deki en iyi sıkıştırması ile tar arşivin silkiştir
+ 11.8 [!3] sıkıştırılmış arşivin içeriklerini denetlemek. tar arşivden asil yerine geri getir
+ 11.9 [!2] nasıl bir şekilde ana dizininizdeki tüm içerikleri paketleyip gzip dosyasını sıkıştırır?
+11.4 bzip2 ile Dosya Sikistirma
+bzip2 Julian Seward tarafından geliştirilen büyük ölçüde gzip e uyumlu bir uygulamadır. Ancak, bu
+Başka yöntemler içinde kullanılır yüksek derece fazladan zaman ve hafıza kullanılarak
+Sıkıştırır. (sıkıştırmadan acarken de bir farkı yoktur).
+bzip2 "Burrows-Wheeler donuşumunum"
+Kullanır kodlamada sik sik ortaya çıkan dizinleri tek karakteristik dizilere çevirir.
+Bu sonuçlar "local frequency" e tek karakteristik olarak sıralanır, çalışma uzunluğu
+Hesaplandıktan sonra, Huffman semasina göre kodlanır. Huffmen kodu yoğun bir
+Şekilde dosyaya yazılır.
+Bzip ne olacak? bzip aritmetiksel kodlama kullanan bzip2 ye göre daha öncel çıkmış
+Olup donuşumu Huffman kodlamasından sonra blokla mistir. Ancak, Geliştiricisi
+Aritmetiksel kodlamaya karar verdi bu nedenle onu çevreleyen uygulamalar çeşitli
+Patent sorunlar yasadı.
+gzip,bzip2 ler sıkıştırmak için bir veya birden fazla dosya isimlerin parametre olarak
+Kabul eden. .bz2 uzantı isimle biten dosyalar, sıkıştırılmış sürümlerin yerine geçer.
+-c ve -d seçenekleri eponymous seçeneklerine karsı gelip. Ancak, “seçeneklerin kalitesi” -1
+den -9 a farklı çalışır: onlar o anki sıkıştırmanın kullanarak blok boyutun belirler.
+Varsayılan değeri 9 dur, -1 olunca önemli bir hız kazancı sunmaz
+-9 900kib boyutta bloklar. Bunun karşılığı hafıza kullanımı yaklaşık 3.7 MiB
+Sıkıştırır (7.6 MiB sıkıştırır), çağdaş bir donamın sorun çıkarmamalıdır. Blok
+Boyutlarının artırılmasından bir avantaj elde edilebilir gibi görünmüyor. Sıkıştırma
+Üzerinde blok boyutu seçimini vurgulamakta yararı sıkıştırmadan çıkarmada
+Gerekli olan hafıza miktar boyutunu belirler, aklınızda tutmanız gerekeni eğer çok
+Az hafızali bilgisayarda çok Gibi byte bilgisayarla. bz2 dosya hazırlamada bzip2 (1)
+Daha ayrıntılı olarak açıklar.
+Karşılaştırdığınızda da gzip ve gunzip,bunzip2 dosyaları açmak için, bzip2 de dosyaları sıkıştırmak için
+Kullanılır. (Bunlar gzip2 nin başka bir ismidir: Hem “bzip2 -d ” kullanarak ta Dosyaları
+Açabilirsiniz.)
+Zıp ve unzip kullanarak Dosya Arşivleme ve Sıkıştırma
+Windows da veya internette veri alış verişte genellikle widespread ZIP dosya bicimi
+kullanılmalı (bugünlerde Windows üzerinde birçok dosya arşiv programları da .tar.gz ile
+Anlaşmalı). Linux te iki ayrı uygulama vardır zip(arşivleri oluşturma) ve unzip (arşivleri
+açma) .
+Dağıtıma baglı olarak bu uygulamaları ayrı ayrı kurmanız lazım
+Debian GNU/Linux te, ornegin, orda zip ve unzip iki ayrı paket bulunur.
+zip Zip programının arşivleme tarzı size PKZIP gibi programların sıkıştırma tarzını
+Hatırlatabilir. En basit söylemle, komut satırına geçirilen dosyaları toplar:
+$ zip test.zip file1 file2
+adding: file1 (deflated 66%)
+adding: file2 (deflated 62%)
+$ _
+(Burada test.zip çıkan arşiv adıdır.)
+-r seçeneğini kullanarak zip'e alt dizinlerin içine inmesi komutunu verebilirsiniz.:
+$ zip -r test.zip ziptest
+adding: ziptest/ (stored 0%)
+adding: ziptest/testfile (deflated 62%)
+adding: ziptest/file2 (deflated 62%)
+adding: ziptest/file1 (deflated 66%)
+-@ seçeneğiyle zip kendi standartları çerçevesinde arşivlenecek dosyaların adlarını okur:
+$ find ziptest | zip -@ test
+adding: ziptest/ (stored 0%)
+adding: ziptest/testfile (deflated 62%)
+adding: ziptest/file2 (deflated 62%)
+adding: ziptest/file1 (deflated 66%)
+(Arşiv dosyasının adında. zip son ekini kullanmayı unutabilirsiniz.)
+zip bir arşive dosya eklemenin 2 yolunu bilir. Dosyayı sıkıştırma olmadan depolanmış kabul eder ve saklanır (sıkıştırılmış dosyanın yüzde kaç sıkıştırıldığını mesela "% 62 düşürülmüş", arşiv içinde kendi orijinal dosyanın boyutu düşürülmüş iken sadece 38% olduğu anlamına gelmektedir ). siz -0 seçeneğini kullanmadıkça zip otomatik olarak daha mantıklı bir yaklaşım seçer.
+
+Eğer var olan bir zıp dosyasını onun ilk parametresiyle çağırır ve başka bir şey belirleyemezseniz, arşivlenecek dosyaların (aynı adları taşıyan mevcut dosyaların üzerine yazılmış olan) mevcut içeriğinin üstüne arşive eklenir. Bu durumda zıp, tar ve çipodan farklı davranır. Temiz bir arşivleme isterseniz ilk olarak dosyayı kaldırmanız gerekir.
+Dosyaları aptalca eklemenin yanı sıra, zıp operasyonun diğer birkaç morlarını da destekler:  -u seçeneği arşivi komut satırında belirtilen dosyayla aynı ismi taşıyan bir dosya daha varsa sadece yeni olanı arşiv dosyalarına ekleyerek günceller(adı geçen dosyalar henüz arşive hiçbir şekilde alınmamışsa).-f seçeneği arşiv dosyalarını komut satırında üzerine yazılmış daha yeni versiyonlarıyla canlandırır(bütünüyle yeni dosyalar arşive eklenmez). -d seçeneği arşiv içindeki dosyaları siler ve kişilerin isimleri komut satırında dosya adlarını değerlendirir.
+zıp'in yeni sürümleri aynı zamanda -FS(dosya senkronizasyon) modunu destekler. Bu mod -u'nun yaptığını yaparak arşivi dosya sistemine senkronize eder, fakat aynı zamanda komut satırı üzerindeki henüz isimlendirilmemiş dosyaları siler(ya da -r durumunda aranan bir dizinin parçasıdır). Bu metodun avantajı yeniden yapılandırılmış bir arşivinkiyle karşılaştırıldığında arşivde önceden var olan değişmemiş dosyaların tekrar sıkıştırılmış olmasını gerektirmez.
+zip her çeşit seçeneği destekler ve "zip -h" yi kullanarak listeye bakabilirsiniz(ya da -h2'yi kullanarak daha ayrıntılı bir listeye bakabilirsiniz). Aynı zamanda zip(1) man sayfası da çok bilgilendiricidir.
+zip her çeşit seçeneği destekler ve "zip -h" yi kullanarak listeye bakabilirsiniz(ya da -h2'yi kullanarak daha ayrıntılı bir listeye bakabilirsiniz). Aynı zamanda zip(1) man sayfası da çok bilgilendiricidir.
+Arşivin için gözetmenin en iyi yolu -v seçeneğin kullanmak, içinde ne olduğunu gormek altdizinler için zorluk çıkarabilir.
+unzip le arşivin ismini çağırması arşivi paketten açmasına denk gelir:
+-d komutunu kullarak asıl dizinden başka bir dizin içine arşivi paketten açmak. Zorunlu kalsa bu dizin yeniden oluşturulur
+Eğer komut satırında belirli dosya isimi varsa, o zaman sadece bu dosyaları paketten çözülecek
+(Bu durumda ziptest dizini ine oluşacaktır)
+Alternatif olarak, -x komutun kullanırsanız seçilmiş olan dosyalar haricindekiler paketten çözülmüş olacaklar.
+Ayrıca kabuk arama desenleri kullanarak paketi çözebilirsiniz(Veya paketten çözmektende önleyebilirsiniz) 
+//Bu kısmın çevremedim
+(Note the quotes, which are used to hide the search patterns from the actual shell
+so unzip gets to see them.) Unlike in the shell, the search patterns refer to the
+complete file names (including any “/”).
+As is to be expected, unzip also supports various other options. Look at the
+program’s help information using “unzip -h” or “unzip -hh”, or read unzip(1).
+Uygulamalar
+11.10 Ana dizinize birkaç dosya oluşturun ve onları zip le arşivleyin. "unzip -v" kullanarak arşivin içeriğine bak. /tm dizinine arşivi paketten çıkarın
+11.11 unzip kulanarak paketten çözüyor olduğunuz dosya eger dosya sistem içerisinde daha önceden oluşmuşsa ne olurdu?
+11.12 ZİP arşivi file.zip iki altdizinleri barındırıyor olsun bunların icinde (örnegin .c,.txt,.dat). Oyle bir unzip komutun verinizki içerikler icinden .txt dosyaların ayrı bir yerde açsın
