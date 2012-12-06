@@ -1,0 +1,546 @@
+﻿Içindekiler
+4.1 Niçin?
+	4.1.1 Kabuk nedir?
+4.2 Komutlar
+	4.2.1 Neden Komutlar?
+	4.2.2 Komut Yapısı
+	4.2.3 Komut Tipleri
+	4.2.4 Daha Fazla Kurallar
+
+
+Hedef:
+  1.Komut-satır kullanıcı arayüzünün önemini anlamak 
+  2.Bourne-Again Shell(Bash) komutları ile çalışmak
+  3.Linux komutlarının yapısını anlamak
+
+Önceden bilinmesi gerekenler:
+  1.Bilgisayarı temel seviyede kullanabilmek
+
+
+	4.1 Niçin?
+
+	Linux, diğer modern işletim sistemlerine göre klavye ile metinsel komutlar girme
+fikrine dayanır. Windows tarzı sistemler kullananlar için çok eski bir teknik gibi 
+gelebilir, hatta Linux'e Windows'tan gelen çoğu kişiler için komut satır arayüzü
+"kültür şoku" gibidir.  
+	Ama herşey o kadar göründügü gibi kötü değil. Günümüzde Linux için de Windows'ta,
+Mac OS X'te olduğu gibi onlara eşit veya bazı noktalarda daha iyi kullanım sunan
+görsel arayüzler var. Öte yandan, görsel arayüzler ve metin odaklı komut satırı
+birbirini dışlayan değil, aslında tamamlayıcıdırlar. ("Her iş için doğru araç" felsefesine göre)
+	Günün sonunda gelişmekte olan Linux kullanıcısı olmak dışında aynı zamanda 
+"kabuk" olarak bilinen metin odaklı kullanıcı arayüzüne alışmış olacaksınız.
+Kimse sizin görsel masaüstü kullanmanızı engellemez. Ancak, kabuk ile yapabileceğimiz
+son derece güçlü, karmaşık operasyonları görsel olarak yapmak oldukça güçtür. Kabuğu ihmal
+etmek arabanın birinci vitesi dışında tüm viteslerini gereksiz saymak gibidir. Tabi ki birinci 
+vitesle de ulaşmak istediğiniz yere ulaşırsınız fakat bu zaman kaybına ve gereksiz gürültüye sebep olur.
+Pekala, bu işlemin Linux'ta nasıl yapıldığını niçin ögrenmeyelim? Şimdi iyice dikkat ederseniz size bu konuyla 
+ilgili birkaç püf noktası aktaralım.
+
+4.1.1 	Kabuk nedir?
+
+	Kullanıcılar doğrudan doğruya işletim sisteminin çekirdeğiyle iletişim kuramazlar.
+Bu sadece "sistem çağrıları"nı kullanan programlarla mümkündür.Ancak, bir şekilde bu tür programları 
+başlatabiliyor olmanız gerekir.Kabuk, klavyeden girilen komutları (genellikle) okuyup onları çalıştırılabilir hale
+getiren, özel bir kullanıcı programı olarak bu görevi üstlenir. Kabuk, bilgisayara "arayüz" hizmeti vererek asıl işletim
+sisteminin kabuğunu örter.Tabi ki kabuk, işletim sistemine erişen programlar arasından sadece bir tanesidir.
+
+
+*	Bugünün görsel "masaüstü" de "kabuk" olarak kabul edilebilir, örneğin KDE gibi. Klavyeden girilen komutlar
+kabuk tarafından belli bir dil bilgisi kuralına göre işleme konur; aynı şeyi görsel masaüstü, komutları fareden alarak
+gerçekleştirir. Örneğin, fare yardımıyla nesneleri tıklayarak seçersiniz ve ne yapacağınıza karar verirsiniz: açmak,
+kopyalamak, silmek vs. 
+
+	Hatta 1960 Unix modelinde bile kabuk vardı. En eski kabuk 1970'lerin ortalarında "Unix'in 7. sürümü" için Stephen
+L.Bourne tarafından geliştirildi."Bourne kabuğu" olarak isimlendirilen bu kabuk temel işlevleri yerine getirip
+yaygın olarak kullanılıyordu, ama bugün bu kabuk orijinal haliyle nadiren görülür.(C kabugu) Diğer klasik Unix kabukları
+C kabuğunu içerir, bu kabuk Berkeley'de bulunan California Üniversitesi'nde C programlama dili ile oluşturuldu ve
+büyük ölçüde Bourne kabuğu ile uyumlu olmasına rağmen daha işlevsellik açısından daha gelişmiş.(David Korn tarafından geliştirildi, AT&T'de de geliştirildi)
+	Linux sistemlerinde standart Bourne-again shell kabuğudur, kısacası bash. Bu kabuk, Brian Fox ve Chet Ramey
+tarafından Özgür Yazılım Vakfı'nın GNU projesi altında geliştirilmiş olup, Korn ve C kabularının birçok işlevlerini
+birleştirir.
+    (1)bu metafor manuel vites kullanan Aprupalılar ve diğer insanlar içindir; bizim Amerikan okuyucularımız tabi ki otomatik vites kullanırlar.
+Hepsinin Windows kullanıyor olması gibi.
+
+*
+	Bahsettiğimiz kabukların haricinde başka kabuklar da mevcuttur. Unix'te, kabuk diğer programlar gibi sıradan bir uygulama programıdır,
+üzerine yazmak için ek olarak ayrıcalığa gerel yoktur - sadece kabuğun diğer programlarla nasıl iletişim kurması gerektiği yönetmeliğinin 
+kurallarına bağlı kalmanız yeterlidir.
+
+	Kabuklar kullanıcı komutlarını okumak için etkilesimli olarak çağrılabilirler (genellikle "terminal" üzerinde). 
+Pek çok kabuk bir de dosyadan komut dizilerini okuyabilir. Bu tür dosyalara "kabuk betikleri" denir.		
+     
+Kabuk aşağıdaki adımları takip eder:
+
+1. Terminalden (veya dosyadan) komut okumak
+2. Komutları onaylamak
+3. Komutu doğrudan doğruya çalıştırmak veya karşılık gelen programı çalıştırmak
+4. Sonucu ekrana (veya başka yere) vermek
+5. 1. adımdan devam etmek
+
+		Standart komut döngüsü dışında, kabuk genellikle programlama dili gibi ilave özellikler de içerir.		
+	bu da karmaşık komut yapıları, koşulları ve değiskenleri içerir. Son zamanlarda kullanılan komutlar yeniden kullanabilme
+	kullanıcının hayatını kolaylaştırmaktadır.
+		Kabuk oturumları genellikle "exit" komutu ile sonlandırılabilir. Bu işlem oturum açtıktan hemen sonra elde
+	ettiğimiz kabuk için de geçerlidir. 
+	Daha önce de bahsettiğimiz gibi birçok kabuk vardır. Ama biz çoğu Linux dağıtımında gelen 
+	standart kabuk olan "bash" üzerinde odaklanalım. LPI sınavları da özellikle bash'e işaret eder.
+
+	Alıştırmalar:
+	    4.1 [2] Oturumu kapatın ve tekrar açın, sonra "echo $0" komutun çıktısını giriş kabuğunda kontrol edin.
+	    "bash" komutu ile yeni bir kabuk başlatın ve "echo $0"i tekrar girin. Iki komutun çıktısını karşılaştırın.
+	    Alışılmadık herhangi birşey farkettiniz mi?	
+
+	4.2 Komutlar
+	4.2.1 Neden komutlar?
+	Bir birgisayarın eylemleri, işletim sistemi ne olursa olsun üç adımla tanımlanabilir :
+
+          1) Bilgisayar kullanıcının veri girmesi için bekler
+	  2) Kullanıcı komut seçer ve klavye ya da fare aracılığıyla komutu girer
+	  3) Bilgisayar komutu gerçekleştirir
+
+	Linux sisteminde kabuk bir "istemi" görüntüler, bu da komutların girilebileceğini gösterir. Bu istem genellikle geçerli
+	bir kullanıcı ve host (bilgisayar) adını, bulunduğumuz geçerli dizini ve son karakteri içerir:
+	
+	joe@red:/home > _
+	
+	Bu örnek,"joe" kullanıcısının "red" adındaki bilgisayarın "/home" dizininde bulunduğunu ifade etmektedir.
+
+
+	4.2.2 Komut Yapısı
+
+	  Bir komut aslında karakterler dizisinden oluşur ve enter tuşuna basılmasıyla komut, kabuk tarafından değerlendirilir. 
+	 Çogu komut Inglizce'den esinlenilerek "komut diline" verilmiş bir şekildir. Bu dilde komutlar belli kurallara, "sözdizimine" 
+	  uymalıdır ki kabuk bunları yorumlayabilsin.
+
+     	     Kabuk komut satırını yorumlayabilmek için ilk önce satırı sözcüklere ayırır. Gerçek hayatta olduğu gibi sözcükler
+	 bosluklarla ayırılır. Satırdaki ilk sözcük genellikle asıl komuttur. Satırdaki geri kalan sözcükler detaylı olarak 
+		  ne yapılmak istendiğini belirten parametrelerdir.
+
+
+	
+	! Kabuğun büyük ve küçük karakterleri birbirinden ayırabiliyor olması DOS ve Windows kullanıcılarını şaşırtabilir. Linux komutları 
+	  genellikle sadece küçük harflerle (istisnaları kanıtlama kuralı) yazılır. Ayrıca 4.2.4'e bakın.
+
+
+	* Komutları sözcüklere ayırırken, kabuk için sözcüklerin arasında bir veya daha fazla boşluk karakterinin olması aynı şeydir.
+	  Aslında, kabuk için sözcükler arasında boşluk karakterinin olup olmamasının önemi yoktur; tabulator karakterine de izin verilmiştir.
+	  Bu karakterin önemi de komutları dosyalardan okurkendir, çünkü kabuk doğrudan doğruya tab karakterini girmeye izin vermez (en azından 
+	  çemberleri atlamadan).
+
+	* Bilgisayara girdiğiniz komut tek satıra sığmayacaksa bunu birkaç satırda ifade etmek de mümkün. Ama bunun bir komut girdisi olarak  anlaşılmaması 
+	  için satır sonlandırıcıdan önce (enter) "Token \" karakteri yazılmalıdır. 
+  
+	Komutların parametreleri kabaca ikiye ayırmak mümkün:
+
+	  * Tire("-") ile başlayan parametreler seçenekler diye isimlendirilir. Bunlar genelde, isteğe bağlıdır, detaylar söz konusu komuta göre değisir.
+	       Bunlara mecazi olarak "anahtarlar" demek mümkündür. Bunlar komutun bazı özelliklerinin açılıp kapanmasını sağlarlar. Eğer komuta birkaç tane 
+	       seçenek eklenmek istenirse bunları ayrı ayrı tire karakteri ("-a -l -F") ile yazabileceğimiz gibi tek tire karakteri ile de yapılabilir ("-alF").
+	       Konsol komutları birden fazla seçenek alabilir. Bunların bazısı tek karakterle yazılabilen seçenekler olurken kimisi okunabilirliği arttırmak 
+	       için uzun şekilde yazılan seçeneklerdir. Uzun seçenekler çoğu zaman iki tire karakteri ile başlarlar ve birleştirilemezler: "foo --bar --baz".
+	
+	  * Tire ile başlamayan parametreler "delil" olarak adlandırılır. Bu da çogu zaman komutun işlemesi gerektiği dosyanın adına karşılık gelir
+
+	 Genel komut yapısı aşağıdaki gibi gösterilebilr:
+	   * Komut - "Ne yapılacak?"
+	   * Seçenekler - "Nasıl yapılacak?"
+	   * Deliller - "Ne ile yapılacak?"
+	Genellikle seçenekler komutlardan sonra, delillerden önce gelir. Ancak, komutların tümü bu şekilde kuralın işlemesini şart koşmazlar. Bazıları delil
+	ve seçenekleri keyfi olarak karıştırabilirler ve onlar, bütün seçenekler komuttan sonra gelmiş gibi davranırlar.Komut satırı sırayla işlenirken
+	-*-*diğerleriyle karşılaşıldığında seçenekler de dikkate alınır.
+
+*Geçerli Unix sistemlerinin (Linux dahil) komut yapısı 40 yıllık bir süreç içinde büyük bir gelişme sağladı ve bu nedenle bazen çeşitli tutarsızlıkların ve 
+ küçük sürprizlerin görülmesi doğaldır. Biz de daha tutarlı olması gerektiğine inanıyoruz ama 30 yıllık geçmişe sahip kabuk betiklerini tamamen göz ardı 
+ etmek zordur...Bu nedenle sık sık görülen küçük garipliklere hazırlıklı olun.
+
+	4.2.3 Komut Tipleri
+
+Kabuklarda temel olarak komutların iki çeşidi bulunur:
+
+Dahili komutlar
+	Bu komutlar kabuğun kendisi tarafından sunulmaktadır. Bourne-again hızlı gerçekleştirilebilen 30 kadar dahili komut içerir. Kabuğun durumunu 
+degiştiren bazı komutlar (exit veya cd gibi) dışarıdan temin edilemez.
+
+Harici komutlar 
+	Kabuk bu tür komutları kendi kendine çalıştırmaz ama çalıştırılabilir dosyaları başlatır. Ki bu tür dosyalar genelde /bin veya /usr/bin 
+dizinleri altında bulunurlar.Bir kullanıcı olarak kendi programlarınızı temin edip kabuğun diğer tüm harici komutları çalıştırdığı gibi kendi 
+programlarınızın çalıştırılmasını sağlayabilirsiniz. Komutunuzun türünü öğrenmek için "type" komutunu kullanabilirsiniz. Bu komuta delil olarak
+komut adı verirseniz çıktı olarak size komutun türünü ya da karşılık gelen dosya ismini verir, örneğin
+
+$ type echo
+echo is a shell builtin
+$ type date
+date is /bin/date
+
+("echo" komutu ilginç bir komut olup kendisine verilen parametreleri çıktı olarak verir:
+ 
+ $ echo Thou hast it now, king, Cawdor, Glamis, all
+ Thou hast it now, king, Cawdor, Glamis, all
+
+"date" komutu da geçerli tarih ve saat olarak ayarlanmış olan saat dilimi ve dile göre gösterir:
+
+$ date
+Mon May 7 15:32:03 CEST 2012
+
+echo ve date komutları hakkında daha fazlası için 9. Bölüme bakınız.)
+"help" komutuyla dahili Bash komutları ile ilgili bilgiyi alabilirsiniz:  
+
+$ help type
+type: type [-afptP] name [name ...]
+For each NAME, indicate how it would be interpreted if used as a
+command name.
+
+
+If the -t option is used, `type' outputs a single word which is one of
+`alias', `keyword', `function', `builtin', `file' or `', if NAME is an
+
+
+
+Alıştırmalar
+
+4.2[2] Aşağıdaki programlardan hangileri bash ile harici ve hangileri dahili olarak temin edilir:
+       alias, echo, rm, test?
+
+
+4.2.4  Daha da fazla kurallar
+
+	Yukarıda belirtildigi gibi, kabuk, komut girildiğinde büyük-küçük harflere duyarlıdır. Bu durum sadece komutlar
+için geçerli olmayıp seçenekleri ve parametreleri (çoğunlukla dosya isimlerini) de kapsar. 
+	Şunu da göz önünde bulundurmalısınız ki kabuk bazı karakterleri özel giriş karakterleri olarak algılar. En önemlisi de daha önce belirtilmiş olan
+boşluk karakteri komut satırındaki sözcükleri ayırmak için kullanılmaktadır. Özel anlamı olan diğer karakterler şunlardır:
+
+$&;(){}[]*?!<>"'
+
+Tabi bunları kullanmak isteyebiliriz. Bu durumda onlar kabuk tarafından özel karakterler gibi yorumlanmasın diye karakterlerin önüne "\" işareti eklenir.
+"\" işareti ile sadece tek bir özel karakteri kabuktan kaçırabilirsiniz. Birden fazla özel karakterin kaçırılması içinse tek tırnak yada çift tırnak ('...',"...")
+kullanılır. Örneğin:
+
+$ touch 'New File'
+
+Tirnak işareti olduğu için komut tek bir dosya olan "New File" için geçerlidir. Tırnak işareti olmasaydı "New" ve "File" diye iki ayrı dosya olarak algılanırdı.
+
+* Burada özel karakterlerin hepsini açıklayamayız. Çoğu bu kilavuzun farklı yerlerinde karşımıza çıkacaktır ya da Bash belgelerini kontrol edin.
+
+	Bu bölümdeki Komutlar
+
+	bash 	"Bourne-Again-Shell" - etkileşimli komut yorumlayıcısı  	 bash(1) 58
+			
+	
+	date 	Tarihi ve zamanı görüntüler					 date(1) 61					
+	echo 	Boşlukla ayrılan tüm parametrelerini standart çıktıya yazar
+										 bash(1) 61, echo(1) 61
+	help	bash komutları için yardımı görüntüler				 bash(1) 61
+	type 	Komutun türünü gösterir (dahili, harici, takma ad)               bash(1) 61	
+
+
+	Özet
+
+	* Kabuk kullanıcı komutlarını okur ve onları çalıştırır.
+	* Çoğu kabukta programlama dilinin özellikleri vardır. Ayrıca komut dizileri içeren kabuk betiklerini destekler.
+	* Komutlar delil ve seçeneklere sahip olabilir. Seçenekler komutun nasil çalistigini belirlerken deliller ne üzerine çalıştığını belirler.
+	* Kabuklar dahili komutları ve harici komutları ayirt edebilir.  
+
+
+
+
+5. Bölüm
+
+
+Içindekiler
+
+5.1 Kendi kendine yardım
+5.2 "help" Komutu ve "--help" Seçeneği
+5.3 Satır Kılavuz
+   5.3.1 Genel bakış
+   5.3.2 Yapısı
+   5.3.3 Bölümler
+   5.3.4 Kılavuz Sayfalarını Görüntülemek
+5.4 Bilgi Sayfaları
+5.5 Nasıl Yapılır
+5.6 Daha fazla bigi kaynakları
+
+Hedefler
+* Kılavuz ve Bilgi sayfalarıyla çalışabilmek
+* Nasıl Yapılır kısmını anlamak ve onları bulabilmek
+* Diğer en önemli bilgi kaynaklarına aşina olmak
+
+Önceden bilinmesi gerekenler
+
+* Linux'e genel bakış
+* Temel Linux komut satırı kullanımı (örneğin daha önceki bölümlerde bahsedilenler)
+
+
+
+5.1 Kendi kendine yardim
+
+Linux güçlü ve dalliı budaklı sistemdir. Kural olarak güçlü ve dallı budaklı sistemler karışıktır. Belgeler, bu karmaşıklığı yönetebilmek
+için önemli bir araçtır. Birçok (ne yazık ki hepsi değil) Linux dağıtımı geniş olarak belgelenmiş olarak gelir. Bu bölümde bu belgelere nasıl
+ulaşılacağının bazı yötemlerini açıklar.
+
+*Linux'te "Help" birçok durumda "self-help" anlamına gelir. Özgür Yazılımın kültüründe toplulukta boş zamanlarını geçiren diğer insanların  
+zamanını ve iyi niyetini kılavuzun ilk birkaç paragrafında zaten açık olarak anlatılmış olan şeyleri sormamanıza dikkat çeker. Linux kullanıcısı
+olarak sizin de mevcut belgelere en azından kısaca gözden geçirmiş olmak ve gerektiğinde yardım kısmını elde edinebilmelisiniz. Eğer siz size düşeni
+yaparsanız yani ödevinizi yaparsanız göreceksiniz ki genellikle insanlar çıkmaza girdiğinizde yardım edeceklerdir. Ama baskalarının onların yerine
+işlerini yapmasını bekleyen tembel bireyler hoşgörüyle karşılanmazlar.
+
+*Iyice araştırılmamış sorularınıza ve problemlerinize haftanın yedi günü cevap vermesini istiyorsanız çok sayıda bulunan "ticari" destek 
+tekliflerinden faydalanmanız gerekir. Bunlar bütün ortak dağıtımlar için mevcut olup bu destek ya dağıtım satıcısı tarafından ya da yan şirketlerle verilmektedir.
+Farklı servis satıcılarını karşılaştırın, hangisinin fiyati ve servis anlaşması size uyuyorsa seçin.
+
+5.2  "help" Komutu ve "--help" Seçeneği
+
+bash'te dahili komutlar hakkındaki daha detaylı bilgi help komutuna delil olarak komutun adı verilerek öğrenilebilir:
+
+$ help exit
+exit: exit [n]
+	Exit the shell with a status of N.
+	If N is omitted, the exit status
+	is that of the last command executed.
+$ _ 
+
+
+*Daha detaylı açıklama için kabuğun rehber sayfasında ve bilgi belgelerinde mevcuttur.Bu bilgi kaynakları daha sonra bu
+bölümde ele alınacaktır.
+
+   Bunun yerine harici komutların (programların) birçoğu --help seçeneğini destekler. Çoğu komutlar kısaca kendileriyle kullanılan
+parametrelerini ve sözdizmini sıralar.
+
+*Her komut --help seçeneğini desteklemeyebilir; sık sık çağrilan seçenekler -h veya -?, ya da yanlis bir seçenek veya geçersiz komut satırı
+ belirtirseniz yardım ekrana gelecektir. Ne yazık ki genel kuralı yoktur.
+
+
+5.3 Kabuk Satırı Kılavuz
+  
+5.3.1 Genel Bakış
+
+Nerdeyse her komut-satırı programı yardım sayfasıyla "manual page" (yada "man page") gelir, ayrıca ayar dosyaları ve sistem çağrıları vs. Bu metinler 
+genelde yazılımla beraber kurulur. Incelemek için "man <adi>" komutu kullanılır.
+
+Tablo 5.1: Kılavuz sayfasının bölümleri 					
+
+Bölüm 		Içerik
+
+NAME 		Komutun adı ve kısa açıklama
+SYNOPSIS 	Komutun sözdizimi açıklaması
+DESCRIPTION 	Komutun etkisi ile ilgili açıklama
+OPTIONS 	Mevcut seçeenekler
+ARGUMENTS 	Mevcut deliller
+FILES 		Yardımcı dosyalar
+EXAMPLES 	Örnek komut satırları
+SEE ALSO 	Ilgili konulara çapraz referanslar
+DIAGNOSTICS 	Hata ve uyarı mesajları
+COPYRIGHT 	Komutun yazarları
+BUGS		Bilinen komut sınırlamaları
+
+
+Buradaki <adı> açıklanmasını istediğiniz komutun yada dosyanın adıdır. Örneğin "man bash", anılan iç kabuk komutlarının listesini üretir. 
+Ancak, kilavuz sayfalarinin bazi dezavantajlari vardir: Bu kılavuzların çoğu sadece Inglizcedir; farklı dillere çevirilenleri vardır ama tam 
+degil. Üstelik açiklamalar çogunlukla karışıktır. Yeni başlayanlar belgeleri anlamayabilir o yüzden her kelime çok önemlidir. Buna ilaveten,
+özellikle uzun belgelerin yapısı anlaşılmaz olabiliyor. Öyle olsa bile, bu belgelerin değeri göz ardı edilemez. Kağıtlarla kullanıcıyı 
+canından bezdirmek yerine sistemle beraber kılavuz mevcuttur.
+
+
+* Birçok Linux dağıtımlari komut satırından çağrılabilen her komut için bir kılavuz sayfasının olması gerektiği felsefesini takip eder.
+Bu, görsel masaüstü ortamı ait programları KDE ve GNOME için aynı ölçüde geçerli değildir. Bunların hiç bir kılavuz sayfasının bulunmaması haricinde
+görsel masaüstü çevresinde bile berbat bir şekilde belgelendirilmiştir. Bu programların çoğu gönüllüler tarafından katkıda bulunması gerçegi sadece 
+zayıf bir bahane. 
+
+
+5.3.2 Yapısı
+
+man'in yapısı kabaca yukarda belirttiğimiz Tablo 5.1 taslağını takip eder. Yine de her kılavuz sayfası orada belirtilen her bölümü içermeyebilir.
+Özellikle de, EXAMPLES sık sık kısa kesilmiştir.
+
+* BUGS başlığı genellikle yanlış anlaşılır: burda belgelendirilen genellikle komutun aldığı yaklaşımındaki kısıtlamalardir ve siz bu kısıtlamaların
+makul bir çabayla kaldırılamadığını siz bir kullanıcı olarak bilmelisiniz. Örneğin, grep komutunun belgeleri normal ifadelerin çeşitli yapılarının bulunması   
+grep sürecinin çok bellek kullanmasına yol açabildiğini belirtir. Bu grep komutunun uyguladığı arama yönteminin sonucudur ve önemsiz, kolayca giderilebilen 
+hata değildir.    
+
+  Man sayfaları groff adında bir program tarafından metni görüntülemek veya yazdırmak için özel bir girdi biçimi olarak yazılır. Kılavuz sayfaları /usr/share/man
+dizininin mann alt dizini içinde saklanır. n Tablo 5.2'de verilen bölüm numaraları içindir.
+
+* Diğer dizinlerdeki man sayfalarını MANPATH çevresel degişkenini ayarlayarak birleştirebilirsiniz. "manpath" komutu MANPATH'in nasıl ayarlanabileceği 
+hakkında ipuçları barındırır.
+
+
+
+	Tablo 5.2: Kılavuz sayfası konuları
+No. Konu
+
+1   Kullanıcı komutları
+2   Sistem çağrıları
+3   C dili kütüphane işlevleri
+4   Aygıt dosyaları ve sürücüleri
+5   Ayar dosyaları ve dosya formatları
+6   Oyunlar
+7   Çeşitli (örneğin groff makroları, ASCII tabloları, …)
+8   Yönetici komutları
+9   Çekirdek işlevleri
+n   ”‘New”’ komutlari
+
+
+5.3.3 Bölümler
+
+Her kılavuz sayfası "kılavuzu" kapsayan "bölüme" aittir (Tablo 5.2). 1, 5 ve 8 bölümler en önemlileridir. Aramayı daraltmak için man komutu 
+satırına bölüm numarası verebilirsiniz.Örneğin, "man 1 crontab"-crontab komutu için man sayfasını görüntülerken, "man 5 crontab"-crontab crontab
+dosyalarının formatlarını açıklar. man sayfalarını işaret ederken, bölüm numarasını parantez içinde belirtmek gelenekseldir; biz, crontab(1)-crontab
+komut kılavuzu, ve crontab(5)-dosya formatı açıklaması aradaki farkı ayırt ederiz.
+     -a seçeneğiyle man verilen isme göre bulunan kilavuzu gösterir; seçenek vermezsek ilk bulunan sayfayı (genellikle bölüm 1) gösterir.
+
+5.3.4 Kılavuz Sayfalarını Görüntülemek 
+
+man sayfalarını metin terminalde görüntülemek için asıl program daha üzerinde duracağımız less ile gerçekleştirilir. Bu aşamada man sayfasında
+yukarı ok işareti ? ve aşağı ok işareti ? ile gezinebilirsiniz. Metnin içinde anahtar kelime karakterine basarak / ardından kelimeyi
+girip geri dönüş tuşuna basarak arayabilirsiniz. Her geri dönüş tuşuna bastığınızda bir sonraki bulunan kayda sıçrar (eger varsa). Kabuğa q tusuna 
+basarak geri dönebilirsiniz.
+
+* KDE web tarayıcısı, Konqueror kullanarak güzel biçimlendirilmiş uygun man sayfaları elde etmek mümkün. Basitçe "man:/<adi>" (hatta "#<adi>") URL'yi
+  
+
+
+	resim 1							resim 2
+
+
+
+	Sekil 5.1: man sayfası metin terminalde (solda) ve Konqueror'da (sağda)
+
+tarayıcının adres satırına girin. Bu metot aynı zamanda KDE komut satırı için de geçerlidir.
+
+
+    Amaçsızca sayısız man sayfalarını aramadan önce, konu hakkında apropos yardımıyla genel bir bilgi edinmek daha mantıklıdır. Bu komut
+basitçe şöyle çalıştırılır "man -k"; hem de komut satırında verilen bir anahtar kelimenin "NAME" bölümlerine ilişkin tüm man sayfalarını arayabilirsiniz.
+Bunun sonucunun çıktısı tüm man sayfalarını, adı veya açıklama kısmında anahtar kelimeyi de içerecek şekilde bir liste görüntüler. 
+    Bu konuyla alakalı olan bir başka komut whatis'dir.Bu komut da tüm man sayfalarını arar ama yukarida belirttiğimiz komuttan farkı whatis 
+aramayı anahtar kelimeye göre değilde komutun (dosya,...) adına göre yapar. Bu istenilen komut, sistem çağrıları vs. hakkında kısaca bir açıklama görüntüler.
+Özellikle söz konusu man sayfasının(lar) "NAME" bölümünün ikinci  kısmını verir. "whatis" ile "man -f" eşdeğerdir.
+
+Alıştırmalar
+
+    5.1 [!1] ls komutu için kılavuz sayfasını görüntüleyin. Metin tabanlı man komutunu kullanın ve eğer mümkünse - Konqueror tarayıcısını.
+
+    5.2 [2] Sisteminizde hangi kılavuz sayfaları (en azından "NAME" bölümlerine göre) süreçlerle iş yapar.
+
+    5.3 [5] (Ileri düzey) Kuramsal bir komutun kılavuz sayfasını yazmak için metin editörü kullanın. Önceden man(7) man sayfasını okuyun.
+        man sayfasının görünürlüğünü kontrol edin ("groff -Tascii -man <dosya> | less" komutunu kullanarak) yazılı çıktı olarak 
+        ("groff -Tps -man <dosya> | gv -" gibi birşey kullanın).   
+      
+5.4 Bilgi Sayfaları
+
+Bazı komutlar için - genellikle karmaşık olanlar için sıradan man sayfaları yerine (yada ilave olarak) "bilgi sayfaları" mevcuttur.
+Bunlar genellikle daha genis olup hiper metin prensibine göre kurulmuştur. World Wide Web'e benzer şekilde.
+
+* Bilgi sayfaları fikri GNU projesi ile birlikte ortaya çıkmıştırtir; o yüzden onlar en sik FSF (özgür yazilim vakfi)'le yayimlanan yazilimlarla
+ gelir. Aslında "GNU sistem"de sadece bilgi belgeleri olmasi gerekiyordu; ancak GNU, FSF himayesinde geliştirilmeyen bir sürü yazılımları da
+kendi içine alır, ve GNU araçları çizgileri daha kesin olan sistemlerde kullanılmaktadır, FSF ise bazı durumlarda taviz vermeye başladı.
+
+man sayfalarının dengi olan bilgi sayfaları "bilgi <komut>" komutu (bilgi programını içeren paket açıkça kurulmuş olması gerekebilir) kullanılarak görüntülenir.
+Ayrıca, bilgi sayfaları emacs editöründe veya KDE web tarayıcısı Konqueror'da URL'ler yardımıyla "info:/<command>" görüntülenebilir.
+
+
+* Bilgi sayfalarının bir avantajı, man sayfaları gibi kaynak formatında yazılmış olmalarıdır. Bilgi sayfaları PDF ve PostScript formatında
+yazdırılabilir veya ekranda islenebilir. groff yerine, TEX dizgi programını kullanarak çıktı işlemi için hazırlanabilir.
+
+ 
+Alıştırmalar
+
+	5.4 [!1] ls programı için bilgi sayfasına bakın. Metin tabanlı bilgi tarayıcısı ve, varsa, Konqueror tarayıcısını deneyin.   
+
+	5.5 [2] Bilgi sayfaları hiper metnin ilkel formunu kullanır. Günümüzde HTML dosyalarının World Wide Web'de olduğu gibi.
+	    Bilgi sayfaları neden HTML ile yazılmamıştır?
+	      
+
+5.5 Nasıl Yapılır 
+
+Kılavuz ile bilgi sayfaları arasındaki ortak problem şudur: Kullanıcılar kullanacakları programın adını bilmek zorundadırlar. Hatta apropos'la 
+arama yapmak şans oyunu gibi birşeydir. Ayrıca, her problem tek bir komut kullanılarak çözülemez. Bu nedenle bunlar "komut odaklı" belgeler yerine
+genellikle "problem odaklı" olarak adlandırılır. Nasıl Yapılır kısmı bunlara çözüm üretmek için tasarlandı.
+    Nasıl Yapılır'lar kendilerini tek bir komutla  kısıtlamayan geniş kapsamlı belgelerdir, ama sorunların çözümü için tam yaklaşımları açıklamaya çalışırlar.
+Örneğin, DSL yoluyla Linux sisteminin internete nasıl bağlanacağını detaylı olarak açıklayan "DSL HOWTO" kısmı vardır, ya da Linux için astronomi yazılımını tartışan
+"Astronomy HOWTO" vardır. Nasıl Yapılır kısımlarının birçoğu Inglizce aslını genellikle geriden takip etse de bunlar başka dillerde de mevcuttur.
+    Nasıl Yapılır'lar çoğu Linux dağıtımında yerel olarak kurulu olmasını sağlar. Bunlar dagıtıma özel dizinlerin altında bulunurlar. /usr/share/doc/howto 
+SUSE dagıtımları için, /usr/share/HOWTO Debian GNU/Linux içindir. Tipik olarak düz metin veya HTML dosyaları içerir. Nasıl Yapılır'ların geçerli tüm sürümleri
+ve diğer PostScript veya PDF biçimindekilerinin hepsi internet üzerinde "Linux Documentation Project" (http://www.tldp.org) bulunabilir. Ayrıca diğer
+Linux belgeleri de sunar.
+
+5.6 Daha fazla Bilgi Kaynakları
+
+Neredeyse her kurulu olan yazılım için ilave belgeleri veya örnek dosyaları /usr/share/doc ya da /usr/share/doc/packages (kullandığınız dağıtıma bağlı olarak değişir)
+altında bulunur. Çoğu GUI uygulamaları (KDE veya GNOME paketlerindeki gibi) "help" yardım menüsü sunar. Üstelik birçok dağıtımlar uzmanlaştırılmış "help centers" yardım merkezleri
+sunar. Sistem üzerindeki çoğu belgelere uygun erişimi sağlar. 
+   WWW'de ve USENET'de yerel sistemlerin bağımsız 
+
+
+Linux için daha ilgi çekici sitelerden bazıları:
+
+http://www.tldp.org/ “Linux Documentation Project”, man sayfaları ve Nasıl Yapılır'dan sorumlu (diğer şeylerin yanı sıra).
+
+http://www.linux.org/ Linux meraklıları için genel portal.
+
+http://www.linuxwiki.de/ Linux ile ilgili her şey için serbest biçimli metin bilgi veritabanı (Almanca)
+
+http://lwn.net/ Haftalik Linux Haberleri - her türlü Linux haberleri için belki de en iyi web sitesi. Yeni gelişmeler, ürünler, güvenlik açıkları, basındaki Linux savunuculuğu vs. ayrıca
+her persembe günü geçmiş haftaların araştırmalarının yer aldığı çevrimiçi dergi de bulunur. Günlük haberlere ücretsiz olarak ulaşılabilir iken haftalık
+yayınlamalara belli bir ücret ödenmesi gerekiyor (aylık 5$'dan başlayan fiyatlarla). Ilk çıktığı haftadan sonra o yayınları ücretsiz olarak erişilebilir hale getiriyorlar.
+  
+http://freecode.com/ Bu site yeni (genel olarak serbest) çıkan yazılım paketlerini tanıtır. Buna ek olarak ilginç projeler veya yazilim paketleri için sorguları sağlayan bir veritabanı var.
+
+http://www.linux- knowledge- portal.de/ LWN ve Freshment dahil diğer Linux sitelerinden haber başlıklarını toplarlar.
+
+Eğer Internette veya Usenet arşivlerinde bulmadıysanız aradığınızı sorunuza cevabı  posta listelerinde soru sorarak yada Usenet gruplarında bulabilirsiniz. Bu forumlardaki çoğu kullanıcılar 
+daha önce cevaplanmış yada dokumantasyonda olan birşeyi sormanıza kötü tepki verebilirler. Probleminizin detaylı açıklamasını hazırlayın, log dosyalarından ilgili ayrıntıları verin çünkü karmaşık
+problemleri sizde olduğu gibi uzak mesafeden çözmek zordur (karmaşık olmayan problemleri kendinizin çözebiliyor olmaniz lazım).
+
+*Haber arşivlerini http://groups.google.com/ (eskiden DejaNews) adresinde bulabilirsiniz.
+
+*Linux için ilgi çekici haberler, gruplar inglizce için comp.os.linux.* veya almanca için de.comp.os.linux.* hiyerarsilerinde bulunabilir.
+Birçok Unix grupları Linux konuları için uygundur; kabukla ilgili soruları kabuk programlama için ayrılan grupta sorulması gerekiyor Linux grubunda değil çünkü kabuklar genellikle 
+Linux'e özgü birşey değildir.
+
+*Linux tabanlı posta listelerini örneğin, majordomo@vger.kernel.org adresinde bulabilirsiniz. LIST denilen listeye katılmak için önce "subscribe LIST" adresine e-posta atmanız gerekiyor.
+ Sistemde mevcut yorumlanmış tüm posta listeleri http://vger.kernel.org/vger-lists.html'de bulabilirsiniz.
+
+*Görünüşte anlaşılmayan problemleri çözmenin yolu hata mesajının Google'da aratmaktır(ya da güvendiğiniz baska bir arama motoru).
+ Eğer faydalı bir sonuç alamazsanız, arama yaptığınız sorguda sadece size özel duruma bağlı kısımları kaldırın (mesela alan adları gibi).
+ Google'da aramanın avantajı sadece ortak web sayfalarını indekslemek değil bunun yanında posta liste arsivlerini de indeksler. O yüzden sizin gibi 
+sorunu yaşayan bir başka birilerinin bulunması da olası bir durum.
+
+    Açık kaynak kodlu yazılımların önemli avantajlarından biri büyük miktarda dokumantasyonun olması değildir ayrıca çoğu dokumantasyonun da
+en az yazılımının kendisi gibi kısıtlı olmasıdır. Bu yazılım geliştiricileri ve belge yazarlar arasındaki işbirliğini kolaylaştırır ve belgelerin diğer 
+dillere çevrilmesi daha kolaydır. Aslında, programcı olmayanlar için özgür yazılım projelerine destek verebilmeleri için bol fırsat var. Mesela güzel belgelemeler yazarak.
+Özgür yazılım faaliyet alanında programcılara verilen saygıyı belge yazarlarına da vermeye çalışılmalı.
+
+
+	Bölümdeki Komutlar
+
+	apropos 	NAME bölümünde verilen anahtar kelimeyi içeren tüm kılavuz sayfalarını görüntüler      apropos(1)  67
+	groff		Gelişmiş dizgi programı								       groff(1) 65, 67
+	help 		bash komutları için yardımı görüntüler	  					       bash(1) 64
+	info 		Karakter tabanlı terminalde GNU Bilgi sayfalarını görüntüler			       info(1) 67
+	less		sayfa sayfa metinleri (kılavuz sayfaları gibi) görüntüler			       less(1) 66
+	man		Sistem kılavuz sayfalarını görüntüler						       man(1) 64
+	manpath		Sistem kılavuz sayfalarının aranacağı yolu belirler				       manpath(1) 65
+	whatis		Açıklamasında verilen belirli bir anahtar kelime ile kılavuz sayfaları bulur	       whatis(1) 67
+
+
+	Özet
+
+	* "help <komut>" dahili bash komutlarını açıklar. Birçok harici komut --help seçeneğini destekler.
+	* Çoğu program kılavuz sayfalarıyla gelirler. Bunlar man komutuyla incelenebilir. apropos verilen 
+	  anahtar kelimelere göre tüm kılavuz sayfalarını arar, whatis kılavuz sayfa isimlerine bakar.		 
+	
+	* Bazı programlar için bilgi sayfaları kılavuz sayfalarına bir alternatiftir.
+	* Nasıl Yapılır'lar problem tabanlı bir belgeleme olustururlar.
+	* World Wide Web ve USENET'te Linux ile ilgili çok sayıda ilginç kaynaklar var.
+	
+
+
+
+
+
+
+
+ 	
+   
+
+
+
+
