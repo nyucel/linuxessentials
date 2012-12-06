@@ -1,0 +1,613 @@
+
+
+
+
+Standart G/Ç ve Filtre Komutlarý
+
+
+Ýçindekiler
+
+8.1 G/Ç Yönlendirmeleri ve Komut Boru Hatlarý
+8.1.1 Standart Yollar
+8.1.2 Standart Kanallarý Yönlendirmek 
+8.1.3 Komut Boru Hatlarý
+8.2 Filtre Komutlarý
+8.3 Dosyalarý Okuma ve Yazma
+8.3.1 Metin Dosyalarýnýn Çýktýlarý ve Birleþtirme—cat 
+8.3.2 Baþlangýç ve Bitiþ—head ve tail
+8.4 Veri Yönetimi 
+8.4.1 Sýralý Dosyalar—sort ve uniq 
+8.4.2 Sütunlar ve Alanlar—cut , paste vb. 
+
+Amaçlar 
+• Kabuk G/Ç yönlendirmelerinde uzmanlaþmak
+• En önemli filtre komutlarýný öðrenmek
+Önceden bilinmesi gerekenler
+• Kabuk iþlemleri 
+• Metin düzenleyicisi kullanýmý (bölüm 3' e bakýnýz) 
+• Dosya ve dizin kullanma (bölüm 6' ya bakýnýz)
+
+Þekil 8.1 Linux'ta ki standart yollar
+
+8.1 G/Ç Yönlendirmeleri ve Komut Boru Hatlarý
+8.1.1 Standart Yollar
+
+Çoðu Linux komutu -grep ve Bölüm 7' deki arkadaþlarý gibi- girdi verilerini okumak, bir þekilde düzenlemek ve bu düzenlemenin sonucunu çýktý olarak vermek üzerine tasarlanmýþtýr. Örnek olarak, eðer aþaðýdaki gibi bir komut girerseniz;
+
+$ grep xyz 
+
+klavyeden metin girdisi yapabilirsiniz ve grep sadece “xyz” harf grubunu içeren kýsýmlarý vurgulayacaktýr.
+
+$ grep xyz 
+abc def 
+xyz 123 
+xyz 123 
+aaa bbb 
+YYYxyzZZZ 
+YYYxyzZZZ 
+Ctrl + d 
+
+(Sondaki klavye tuþ kombinasyonu grep' e girdi giriþinin bittiðini haber verir.)
+
+grep “standart girdiden” verileri okur –bu koþulda klavyeden – ve bunu “standart çýktýya” yazar – bu koþulda konsol ekranýna ya da daha çok görsel bir arayüzdeki bir terminel programýna – . Bu standart yollarýn üçüncüsü “standart hata çýktýsý”dýr; grep' in ürettiði veriler standart çýktýya verilirken, standar hata çýktýsý hata mesajlarýný alýr. (Örneðin, bulunmayan bir girdi dosyasý ya da düzenli ifadelerdeki bir yazým hatasý gibi)
+
+Bu bölümde bir programýn standart çýktýsýný nasýl bir dosyaya yönledirebileceðini ya da baþka bir programýn standart girdisini nasýl bir dosyadan alabileceðini öðreneceðiz. Daha da önemlisi, bir programýn çýktýsýný direk olarak nasýl baþka bir dosyanýn girdisi olarak kullanabileceðinizi öðreneceksiniz.  Bu hepsi oldukça basit olan Linux komutlarýnýn birleþerek daha karmaþýk yapýlar oluþturmaya giden bir yoldur. (Bunu bir Lego seti gibi düþünün.)
+
+*Bu bölümde bu konuyu derinlemesine incelemeyeceðiz. Çok karmaþýk kabuk betikleri oluþturmak için sýradaki rehberi , Ýleri Düzey Linux, okuyun, o rehberde Unix araçlarý kullanýlarak kabuk için betikler oluþturmak anlatýlmaktadýr. Bu bölümde komut satýrýnda temel Linux komutlarýnýn zekice birleþtirilmesini öðreneceksiniz. 
+
+Yol           Yolun ismi         	Kýsaltma               Aygýt        Kullaným Alaný
+0	standart girdi 		stdin		klavye	   Programlarýn girdisi
+1	standart çýktý      	stdout		ekran	   Programýn çýktýsý
+2 	standart hata cýktýsý         stderr		ekran	   Programýn hata mesajlarý
+
+
+Tablo 8.1: Linux'taki Standart Yollar
+
+Bu standart yollar Tablo 8.1 de gösterilmiþtir. Tabloda belirtilen stdin, stdout ve stderr standart girdi, standart çýktý ve standart hata çýktýsý için olan teknik terimlerdir. Bu yollar daha sonra kullanacaðýmýz gibi sýrasýyla 0,1 ve 2 numaralarýna atanmýþlardýr.
+
+Kabuk bahsedilen program hiçbir þeyi fark etmeden ayrý komutlar için bu standart yollarý yönlendirebilir. Çýktý ekranda ya da terminal penceresi dýþýnda belirtilen bir dosyada yazýyor olabilir, buna raðmen her zaman standart yollar kullanýlýr. Bu dosya baþka bir cihazda olabilir, yazýcý gibi, çýktýyý alacak metin dosyasýný belirlemek mümkündür. Dosyanýn o anda varolmasý bile gerekmez, isteðe göre oluþturulabilir. Standart girdi yolu da ayný þekilde yönlendirilebilir. Bir program girdisini klavyeden deðil belirtilen bir dosyadan (bu baþka bir aygýt ya da dosya olabilir) alýr.
+
+Klavye ve çalýþtýðýnýz terminal ekraný (ister Linux konsolu olsun, ister seri porttaki bir terminal, ister görsel arayüzde çalýþan bir terminal penceresi, isterse de güvenli kabuk olarak bilinen aðdan baðlanýlan bir oturum olsun) /dev/tty dosyasý ile eriþilebilir –  (diðer türlüsü çok aptalca olurdu..
+
+$ grep xyz /dev/tty 
+
+Bu bölümde önceden verdiðimiz bu komuta denktir. Bu konuyla ilgili daha fazla bilgiyi Bölüm 10' da “özel dosyalarda” bulabilirsiniz.
+
+
+8.1.2 Standart Yollarý Yönlendirmek
+
+Standart çýktý yolu “>” (büyüktür iþareti) operatörü kullanýlarak yönlendirilebilir.
+Verilen örnekte, “ls -laF” komutunun çýktýsý filelist adý verilen bir  dosyay yönlendirilmektedir.
+
+$ ls -laF >filelist 
+$ __ 
+
+Eðer filelist dosyasý mevcut deðilse oluþturulur. Eðer bu isimde bir dosya varsa dosyanýn üzerine yazýlýr. Kabuk bunu bahsedilen program uyandýrýlmadan önce ayarlar – çýktý dosyasý gerçek komutta yazým hatalarý varsa ya da program çýktý oluþturmasa bile oluþturulur. (bu durumda filelist dosyasý boþ kalacaktýr)
+
+*Eðer kabuk çýktý yönlendirmelerinde varolan dosyalarýn üzerine yazýlmasýný engellemek istiyorsanýz, “set -o noclobber” komutu verilerek varolan dosyalar korunabilir. Bu durumda, eðer çýktý varolan bir dosyaya yönlendirilirse bir hata oluþacaktýr.
+
+Filelist dosyasýna her zamanki yollarla bakabilirsiniz, mesela less kullanarak:
+
+
+$ less inhalt 
+total 7 
+drwxr-xr-x 12 joe users 1024 Aug 26 18:55 ./
+drwxr-xr-x 5 root root 1024 Aug 13 12:52 ../
+drwxr-xr-x 3 joe users 1024 Aug 20 12:30 photos/
+-rw-r--r-- 1 joe users 0 Sep 6 13:50 filelist
+-rw-r--r-- 1 joe users 15811 Aug 13 12:33 pingu.gif
+-rw-r--r-- 1 joe users 14373 Aug 13 12:33 hobby.txt
+-rw-r--r-- 2 joe users 3316 Aug 20 15:14 chemistry.txt
+
+
+
+Eðer filelist in içeriðine dikkatlice bakarsanýz, filelist için boyutu 0 olan bir dizin girdisi görebilirsiniz. Bu kabuðun iþleme þekliyle alakalýdýr: Komut satýrýný alýrken önce çýktý yönlendirmesini fark eder ve yeni bir filelist dosyasý oluþturur (ya da varolan dosyanýn içeriðini siler). Bunun arkasýndan kabuk komutu çalýþtýrýr, bu koþulda ls, ls' nin standart çýktýsýný terminal yerine filelist dosyasýna baðlar. 
+
+ls çýktýsýndaki dosyanýn uzunluðu 0 görünür çünkü ls filelist için olan bilgiye dosyaya hiçbir þey yazýlmadan önce bakar, filelistten önce üç girdi olmasýna raðmen. Bu ls' nin önce bütün girdileri okuyup sonra onlarý dosya adýna göre sýralamasýndan dolayý olur. Bu iþlemden sonra dosyaya yazma iþlemi baþlar. Bu sebeple ls sadece yeni oluþturulmuþ (ya da içi boþaltýlmýþ) filelist dosyasýný görür.
+
+Eðer bir komutun çýktýsýný varolan bir dosyaya yeniden yazmak deðil eklemek istiyorsanýz >> operatörünü kullanabilirsiniz. Eðer dosya yoksa, bu durumda da tekrar oluþturulacaktýr.
+
+$ date >> filelist
+$ less filelist
+total 7
+drwxr-xr-x 12 joe users 1024 Aug 26 18:55 ./
+drwxr-xr-x 5 root root 1024 Aug 13 12:52 ../
+drwxr-xr-x 3 joe users 1024 Aug 20 12:30 photos/
+-rw-r--r-- 1 joe users 0 Sep 6 13:50 filelist
+-rw-r--r-- 1 joe users 15811 Aug 13 12:33 pingu.gif
+-rw-r--r-- 1 joe users 14373 Aug 13 12:33 hobby.txt
+-rw-r--r-- 2 joe users 3316 Aug 20 15:14 chemistry.txt
+Wed Oct 22 12:31:29 CEST 2003
+
+Bu örnekte, bulunulan tarih ve zaman filelist dosyasýna ekleniyor. Bir komutun standart çýktýsýný yönlendirmenin bir baþka yolu geri imlerdir (`...`) Bu ayrýca komut deðiþtirme olarak adlandýrýlýr. Geri imlerin içindeki bir komutun standart çýktýsý komut yerine komut satýrýna eklenir, deðiþtirilen sonuç çalýþtýrýlýr.
+
+Örneðin:
+
+$ cat dates 		
+22/12 Get presents
+23/12 Get Christmas tree
+24/12 Christmas Eve
+$ date +%d/%m 			
+23/12
+$ grep 			
+23/12 Get Christmas tree
+
+*” `date` “ için daha iyi bir yazým $date þeklinde yazmaktýr. Bu çaðrýlar için daha kolaydýr. Bununla birlikte bu söz dizimi sadece bash gibi modern kabuklar tarafýndan desteklenir.
+
+Standart girdi yolu için yönlendirme yapmak için < iþaretini (küçüktür) kullanabilirsiniz. Bu klavye girdisinde belirtilen dosyanýn içeriðini okuyacaktýr. 
+
+$ wc -w <frog.txt 
+1397 
+
+Bu örnekte, wc filtresi frog.txt dosyasýndaki kelimeleri sayar.
+
+*Birden fazla girdi dosyasýný birleþtirmek için << gibi bir yönlendirme bulunmaz, bunu yapmak için cat komutunu kullanmanýz gerekir.
+
+$ cat file1 file2 file3 | wc -w 
+
+(“|” operatörü ile ilgili daha geniþ bilgiyi gelecek bölümde anlatacaðýz.) Çoðu program bir ya da birden fazla komut satýrý girdisini kabul eder.
+
+Elbette, standart girdi ve standart çýktý ayný yönlendirme zamanýndan eþ zamanlý olarak yönlendirilebilir.  Aþaðýdaki örnekte kelime-sayacýnýn çýktýsý wordcount olarak adlandýrýlan bir dosyaya yazýlýr.
+
+$ wc -w <frog.txt >wordcount 
+$ cat wordcount 
+1397 
+
+Standart girdi ve standart çýktý yollarý dýþýnda ayrýca standart hata çýktýsý yolu bulunur. Eðer bir programýn çalýþmasýnda hatalar meydana gelirse, buna karþýlýk gelen mesaj bu yol için yazýlýr. Bu nedenle sadece standart çýktýnýn dosyaya yazýldýðýný görürsünüz. Eðer standart hata çýktýsýný da bir dosyaya yazýlmasýný istiyorsanýz yol numarasýný yönlendirme operatörü ile birlikte kullanmalýsýnýz. stdin (0< ) ve stdout (1> ) için bu isteðe baðlý bir seçenektir fakat stderr için (2>) yazýmýný kullanmak zorunludur. >& operatörünü her iki çýktýyý da yazdýrmak için kullanabilirsiniz.
+
+make >make.log 2>&1 
+
+Bu komut make komutunun standart çýktýsýný ve standart hata çýktýsýný make.log dosyasýna yönlendirir.
+
+*Dikkat: Burada sýralama çok önemlidir. Aþaðýdaki iki komut tümüyle farklý sonuçlar oluþturur. Ýkinci durumda standart hata çýktýsý standart çýktý nereye giderse oraya yönlendirilecektir (/dev/tty, standart çýktýnýn gittiði yer), sonra standart çýktý make.log a gönderilir ama bu standart hata çýktýsýnýn gideceði yönü deðiþtirmez.
+
+make >make.log 2>&1 
+make 2>&1 >make.log 
+
+Alýþtýrmalar
+
+8.1 [2] -U seçeneðini ls komutunun çýktýsýný sýralamadan vermesi için kullanabilirsiniz. “ls -laU >filelist ” yazmanýzdan sonra bile filelist için dosyanýn boyutu 0 olur. Bunun nedeni ne olabilir?
+
+8.2 [!2] “ls /tmp ” and “ls /tmp >ls- tmp.txt ” komutlarýnýn çýktýlarýný karþýlaþtýrýnýz. Bir þeyi fark ettiniz mi? Eðer fark ettiyseniz bunu nasýl açýklarsýnýz? 
+
+Þekil 8.2: tee komutu
+
+8.3 [!2] Neden bir dosyayý bir adýmda yeni haliyle deðiþtirmek mümkün deðildir? Mesela “grep xyz file > file” neden mümkün deðildir?
+
+8.4 [!1] Ve “cat foo >>foo ” komutunda foo nun boþ bir dosya olmadýðýný varsayarsak bu komuttaki sorun nedir?
+
+8.5 [2] Kabukta, bir hata mesajýný nasýl standart hata çýktýsý olarak alýrsýnýz? 
+
+
+Komut Boru Hatlarý
+
+Çýktý yönlendirmesi bir programýn sonucunu kaydederek baþka bir komutta iþlemek için sýkça kullanýlýr. Bununla birlikte bu çeþit ara kayýtlar çok sýkýcý sayýlmazlar ama daha fazla kullanýlmadýklarý zamanlarda silinmelidir. Bu sebeple, Linux komutlarý borularla baðlama yöntemi sunar: Bir programýn çýktýsý otomatik olarak baþka bir programýn girdisi olur.
+
+Birkaç komutun arasýndaki yönlendirmeler | operatörü kullanýlarak yapýlýr.  “ls -laF” nin çýktýsýný bir dosyaya yönlendirip sonra bu dosyaya less kullanarak bakmak yerine, ayný iþlemi tek adýmda ara dosya kullanmadan yapabilirsiniz:
+
+$ ls -laF | less
+total 7
+drwxr-xr-x 12 joe users 1024 Aug 26 18:55 ./
+drwxr-xr-x 5 root root 1024 Aug 13 12:52 ../
+drwxr-xr-x 3 joe users 1024 Aug 20 12:30 photos/
+-rw-r--r-- 1 joe users 449 Sep 6 13:50 filelist
+-rw-r--r-- 1 joe users 15811 Aug 13 12:33 pingu.gif
+-rw-r--r-- 1 joe users 14373 Aug 13 12:33 hobby.txt
+-rw-r--r-- 2 joe users 3316 Aug 20 15:14 chemistry.txt
+
+Bu komut yönlendirmeleri neredeyse istenilen herhangi bir uzunlukta olabilir. Buna raðmen en sonda oluþacak olan sonuç bir dosyaya yönlendirilebilir:
+
+$ cut -d: -f1 /etc/passwd | sort | pr -2 >userlst 
+
+Bu komut yönlendirmesi bütün kullanýcý isimlerini /etc/passwd dosyasýnýn : ile ayrýlan ilk sütunundan alýp bunlarý alfabetik þekilde sýralayýp sonucu iki sütun halinde userlst dosyasýna yazýyor. Burada kullanýlan komutlar bölümün hatýrlatmasýnda tanýmlanacaktýr.
+
+Bazen veri akýþýný bir komut yönlendirmesi içindeki kesin bir noktada depolamak yardýmcý olabilir, örneðin bu devredeki ara sonuç baþka görevler için kullanýþlý olabilir. Tee komutu veri akýþýný kýpyalar ve bir kopyayý standart çýktýya gönderirken bir diðerini bir dosyaya kopyalar. (Þekil 8.2' ye bakýnýz.)
+
+Hiç seçenek belirtilmeye tee komutu belirtilen dosyayý oluþturur ya da böyle bir dosya varsa üzerine yazar; -a (ingilizcede birleþtirme anlamýna gelen “append”) aracýlýðý ile varolan dosyaya ekleme yapýlabilir.
+
+$ ls -laF | tee list | less
+total 7
+drwxr-xr-x 12 joe users 1024 Aug 26 18:55 ./
+drwxr-xr-x 5 root root 1024 Aug 13 12:52 ../
+drwxr-xr-x 3 joe users 1024 Aug 20 12:30 photos/
+-rw-r--r-- 1 joe users 449 Sep 6 13:50 content
+-rw-r--r-- 1 joe users 15811 Aug 13 12:33 pingu.gif
+-rw-r--r-- 1 joe users 14373 Aug 13 12:33 hobby.txt
+-rw-r--r-- 2 joe users 3316 Aug 20 15:14 chemistry.txt
+
+Bu örnekte bulunulan dizinin içeriði hem list dosyasýna hem de ekrana yazýlýr. (list dosyasý ls komutunun çýktýsýnda görünmez çünkü tee komutunun arkasýndan oluþturulmuþtur.)
+
+Alýþtýrmalar 
+
+8.6 [!2] Ayný ara sonucu birden fazla dosyaya ayný anda nasýl yazardýnýz?
+
+8.2 Filtre Komutlarý 
+
+Unix' in temel fikirlerinden biri – ve Linux' un ayný zamanda- araç takýmý ilkesidir. Sistem çok sayýda sistem programý ile birlikte gelir, bunlarýn her biri basit (tasarým olarak) bir görevi yapar. Bu programlar baþka programlarý oluþturmak için “inþa bloklarý” olarak kullanýlabilir ve bu programlarýn yazarlarýný kendi fonksiyonlarýný geliþtirme derdinden kurtarýr. Örnek olarak, her program kendi sýralama yöntemini içermez ama çoðu program Linux' un onlara saðladýðý sort komutunu kullanýr. Bu modüler yapý birkaç avantaja sahiptir:
+
+• Bütün zamanlarýný yeni sýralama fonksiyonlarý üretmekle harcamaya ihtiyacý olmayan programcýlarýn hayatýný kolaylaþtýrýr.
+• Eðer sort bir hata düzeltme ya da geliþtirme alýrsa, sort u kullanan bütün programlar bunun yararýný görür –  ve çoðu durumda deðiþtirilmeleri gerekmez.
+
+
+Girdilerini standart girdiden alýp çýktýlarýný standart çýktýya veren araçlara “filtre komutlarý” ya da kýsaca “filtreler” denir. Girdi yönlendirmesi olmadan bir filtre girdisini klavyeden okuyabilir. Klavye giriþinin bittiðini belirtmek için terminal tarafýndan “dosya sonu” olarak algýlanýlan Ctrl + d tuþ kombinasyonunu kullanmalýsýnýz.
+
+*Bunun sadece klavye girdisi için uygulanabildiðini unutmayýn. Diskteki dosya doðal olarak Ctrl + d karakterini (ASCII 4) içerebilir ve sistem bunun dosyanýn sonu olduðunu düþünmez.
+
+“Normal” komutlarýn çoðu, önceden belirtilmiþ olan grep gibi, filtreler gibi çalýþýr eðer üzerinde çalýþýlacak bir dosya ismi belirtilmezse.
+
+Bu bölümün sonunda komutlar gibi en önemli konulara aþina hale geleceksiniz. Bazý komutlar tam olarak filtre komutlarý sayýlmasa da, boru hatlarý için önemli bloklar oluþturmak için önemlidirler.
+ 
+
+Tablo 8.2: cat seçenekleri
+
+8.3 Dosyalarý Okuma ve Yazma
+8.3.1 Metin Dosyalarýnýn Çýktýlarý ve Birleþtirme—cat 
+
+
+cat komutu gerçekte verilen birden fazla dosya isminin komut satýrýnda birleþtirmek için kullanýlýr. Eðer sadece bir dosya ismini gönderirseniz, bu dosyanýn içeriði standart çýktýya yazýlacaktýr. Eðer hiç dosya ismi belirtmezseniz cat standart girdiyi okumaya baþlar – bu kullanýþsýz görünebilir ama cat satýrlarý numaralandýrma, satýrlarý sonlandýrma ve özel karakterleri görünür yapma ya da boþ satýrlarý sýkýþtýrmak gibi seçenekler sunar. (Tablo 8.2)
+
+*Söylemeye gerek olmasa bile belirtmekte yarar var, cat sadece metin dosyalarýnda anlaþýlýr sonuçlar ortaya çýkarýr. Eðer bu komutu diðer çeþit dosyalar için kullanýrsanýz (/bin/cat gibi bir binary dosyasý için mesela) en azýndan bir metin terminalinde kabuk okunamayan karakterlerden oluþacaktýr çok büyük ihtimalle. Bu durumda normal karakter grubunu sýfýrlayarak geri getirebilirsiniz. Eðer cat çýktýsýný bir dosyaya yönlendirirseniz bir sorun kalmayacaktýr.
+
+*”En Kullanýþsýz cat Kullanýmý Ödülü” cat' I fazlalýk olarak kullanan insanlara gidiyor. Çoðu durumda komutlar dosya isimlerini kabul eder bu sebeple cat tek bir dosyayý standart girdiye göndermek için gerekmez. “cat data.txt | grep foo ” gibi bir komut gereksizdir bunun yerine basitçe “grep foo data.txt ” yazabilirsiniz. Hatta grep sadece standart girdiden bir þeyler okuyabiliyor olsaydý bile “grep foo <data.txt ” daha kýsa olurdu ve ek bir sürece ihtiyacý olmazdý.
+
+Alýþtýrmalar
+
+8.7 [2] Bir dizinin “garip” isimlere sahip dosyalara sahip olduðunu nasýl kontrol edebilirsiniz (örneðin bitiminde bir boþluk karakteri bulunduranlar ya da ortasýnda görünmez kontrol karakteri bulunduranlar gibi)?
+
+8.3.2 Baþlangýç ve Bitiþ —head ve tail 
+
+Bazen dosyanýn sadece bir parçasýyla ilgilenirsiniz: Doðru dosya olup olmadýðýný görmek için ilk birkaç satýr ya da özellikle kayýt dosyalarýnda son birkaç girdi. Head ve tail komutlarý tam olarak bunu yaparlar, varsayýlan olarak verilen dosyanýn ilk on ve son on satýrý gösterirler. -n seçeneði gösterilecek satýr sayýsýný deðiþtirmenize yardýmcý olur: “head -n 20” ilk yirmi satýrý deðer olarak döndürürken “tail -n 5” data.txt dosyasýnýn son beþ satýrýný döndürür.
+
+*”-n” belirtilerek istenilen satýrlarý belirtebiliyorduk önceden. Resmi olarak bu artýk mümkün deðil ama head ve tail' in Linux versiyonlarý hala bu özelliði destekliyorlar.
+
+-c seçeneðini sayma iþleminin satýr olarak deðil byte olarak yapýlmasý için kullanabilirsiniz: 
+“head -c 20 ” standart girdinin ne kadar satýra sahip olursa olsun ilk 20 bytelýk kýsmýný gösterir. Eðer “b”, “k”, ya da “m” harflerini eklerseniz sayým 512, 1024 ya da 1048576 ile çarpýlarak yapýlýr. (sýrasýyla bloklar, kibibytelar ve mebibytelar)
+
+*head ayrýca eksi iþaretini kullanmanýza izin verir: “head -c -20 ” standart girdinin son 20 bytelýk kýsmýný gösterir.
+
+*head' in bu münasebetsizliðine karþýlýk, tail de head' in desteklemediði bir þey yapar: eðer satýr numaralarý “+” ile baþlýyorsa, verilen satýrdan itibaren bütün verileri görüntüler.
+
+$ tail -n +3 file                               satýr 3' ve sonrasýndakiler
+
+tail komutu ayrýca önemli olan -f seçeneðini destekler. Bu tail komutunu baþka bir þeyler eklenmesi ihtimaline karþý bekletir. Bu bazý kayýt dosyalarýný gözetlemek istediðiniz zaman çok iþe yarar olacaktýr. Eðer tail -f komutuna birden fazla dosyayý gönderirseniz, her çýktý satýrý bloðu için hangi dosyaya yeni veri eklendiðini gösteren bir baþlýk satýrý koyar. 
+
+Alýþtýrmalar 
+
+8.8 [!2] Standart girdinin 13. satýrýný nasýl çýktý olarak alabilirsiniz?
+
+8.9 [3] “tail -f ” komutunu kontol edin: Bir dosya oluþturun ve bu dosya üzerinde “tail -f ” komutunu deneyin. Sonra baþka bir pencereden ya da sanal bir konsoldan dosyaya bir þeyler ekleyin (örneðin echo ya da >> kullanarak) ve tail komutunun sonucunu gözlemleyin. Tail ayný dosyayý eþzamanlý olarak nasýl izliyor? 
+
+8.10 [3] Gözlenen dosya küçülürse “tail -f ” komutunun sonucu ne olur? 
+8.11 [3] Aþaðýdaki komutun çýktýsýný açýklayýn:
+$ echo Hello >/tmp/hello 
+$ echo "Hiya World" >/tmp/hello 
+
+bu komutu çalýþtýrdýðýnýzda 
+
+$ tail -f /tmp/hello 
+
+ilk echo nun ardýndan baþka bir pencerede çalýþtýrdýðýnýzde ne olduðuna bakýn.
+
+8.4 Veri Yönetimi
+8.4.1 Dosyalarý Sýralama – sort ve uniq
+
+sort komutu satýrlarý önceden belirtilmiþ bir kritere göre sýralamaya izin verir. Varsayýlan ayar her satýrýn ilk birkaç karakterinin ASCII setine göre olan artan (A-Z) sýralamasýdýr. Bu yüzden özel Alman karakterleri gibi karakterler genelde yanlýþ sýralanýr. Örneðin, “A” nýn karakter kodu 143'tür, bu yüzden bu karakter karakter kodu 91 olan “Z” karakterinden çok daha sonra biter. Küçük “a” karakteri bile büyük “Z” karakterinden daha büyük olarak düþünülür.
+
+*Elbette sort kendisini deðiþik dillere ve kültürlere uyarlayabilir. Alman kurallarýna göre sýralamak için LANG, LC_ALL ya da LC_COLLATE  çevre deðiþkenlerinden birini “de”, “de_DE” ya da “de_DE@UTF-8” olarak deðiþtirebilirsiniz. (gerçek deðer kullandýðýnýz daðýtýma göre deðiþir) Eðer bunu sadece tek bir sýralama iþlemi için deðiþtirmek istiyorsanýz þunu yapýn
+
+$ ... | LC_COLLATE=de_DE.UTF-8 sort 
+
+LC_ALL deðeri LC_COLLATE üzerinde üstündür ayný þekilde LANG deðerinden de üstündür. Bir yan etki olarak Alman sýralama düzeni sýralama yaparken harflerin boyutunu göz önüne almaz.
+
+
+Diðer türlü olarak belirtmezseniz, sýralama bütün girdi satýrý göz önüne alýnarak “sözlük” düzenine göre yapýlýr. Bu sebeple iki satýrýn ilk karakterleri eþit olursa satýrdaki ilk deðiþiklik gösteren karakter sýralamayý etkiler. Elbette sort sadece bütün satýra göre deðil, özelleþtirilmiþ bir þekilde belirli sütunlara ya da bir tablonun alanýna göre sýralama yapabilir. Alanlar “-k 2” seçeneði ile 1' den baþlayarak numaralandýrýlýr, ilk alan görmezden gelinerek her satýrýn ikinci alaný sýralama için dikkate alýnýr. Eðer iki satýrýn ikinci alanlarý eþitse satýrýn kalanýna bakýlýr, “-k 2,3” þeklinde daha özelleþtirilmiþ bir seçenek belirlenmediyse. Ayrýca ayný sort komutunda birden fazla -k seçeneði belirtilebilir. 
+
+*Bunlara ek olarak, sort eski bir yerleþtirme düzenini destekler: Burada alanlar sýfýrdan baþlayarak numaralandýrýlýr, ilk alan “+m” ve bitiþ alaný “-n” olarak belirtilir. Modern haline getirmek için farklýlýklarý tamamlamak için, son alan özel olarak belirtilmelidir – sýralama için ilk alan dikkate alýnmamalýdýr.Üsttekine örnek “+1 ”, “+1 -3 ” ve “+1 -2 ” olabilir. 
+
+Boþluk karakteri alanlar arasýnda ayýrýcý olarak görev görür. Eðer birkaç boþluk bulunursa, ilki ayýrýcý olarak görülür; diðerleri takip eden alana ait deðerler olarak kabul edilir. Örnek olarak Lameborough Track & Field Club  koþusunun katýlýmcýlarýnýn isimlerinden oluþan bir listeyi ele alalým. Baþlangýç için  sistemin standart dil ortamýnýn (“POSIX”) karþýlýk gelen çevre deðiþkenlerinin sýfýrlandýðýna emin oluruz. (Ek olarak dördüncü sütun koþucunun koþu numarasýný verir.)  
+
+$ unset LANG LC_ALL LC_COLLATE
+$ cat participants.dat
+Smith Herbert Pantington AC 123 Men
+Prowler Desmond Lameborough TFC 13 Men
+Fleetman Fred Rundale Sportsters 217 Men
+Jumpabout Mike Fairing Track Society 154 Men
+de Leaping Gwen Fairing Track Society 26 Ladies
+Runnington Vivian Lameborough TFC 117 Ladies
+Sweat Susan Rundale Sportsters 93 Ladies
+Runnington Kathleen Lameborough TFC 119 Ladies
+Longshanks Loretta Pantington AC 55 Ladies
+O'Finnan Jack Fairing Track Society 45 Men
+Oblomovsky Katie Rundale Sportsters 57 Ladies
+
+Önce soyadýna göre sýralamayý deneyelim. Bu temelde kolay bir durum çünkü soyadý kýsmý her satýrýn en önünde:
+
+$ sort participants.dat
+Fleetman Fred Rundale Sportsters 217 Men
+Jumpabout Mike Fairing Track Society 154 Men
+Longshanks Loretta Pantington AC 55 Ladies
+O'Finnan Jack Fairing Track Society 45 Men
+Oblomovsky Katie Rundale Sportsters 57 Ladies
+Prowler Desmond Lameborough TFC 13 Men
+Runnington Kathleen Lameborough TFC 119 Ladies
+Runnington Vivian Lameborough TFC 117 Ladies
+Smith Herbert Pantington AC 123 Men
+Sweat Susan Rundale Sportsters 93 Ladies
+de Leaping Gwen Fairing Track Society 26 Ladies
+
+
+Listedeki iki küçük sorunu fark ettiniz deðil mi? : “Oblomovsky” “O’Finnan” dan önde olmalýydý ve “de Leaping” listenin sonundan bir önde olmalýydý en sonunda deðil.  Eðer sýralama kurallarý olarak “Ýngilizce” yi belirtirsek bu sorunlar kaybolur:
+
+$ LC_COLLATE=en_GB sort participants.dat
+de Leaping Gwen Fairing Track Society 26 Ladies
+Fleetman Fred Rundale Sportsters 217 Men
+Jumpabout Mike Fairing Track Society 154 Men
+Longshanks Loretta Pantington AC 55 Ladies
+Oblomovsky Katie Rundale Sportsters 57 Ladies
+O'Finnan Jack Fairing Track Society 45 Men
+Prowler Desmond Lameborough TFC 13 Men
+Runnington Kathleen Lameborough TFC 119 Ladies
+Runnington Vivian Lameborough TFC 117 Ladies
+Smith Herbert Pantington AC 123 Men
+Sweat Susan Rundale Sportsters 93 Ladies
+
+
+(en_GB “Ýngiliz Ýngilizcesi” için bir kýsaltmadýr; en_US “Amerikan Ýngilizcesi” için kullanýlýr ve burada ayný iþi görür) Þimdi ilk isme göre sýralama yapalým: 
+
+$ sort -k 2,2 participants.dat
+Smith Herbert Pantington AC 123 Men
+Sweat Susan Rundale Sportsters 93 Ladies
+Prowler Desmond Lameborough TFC 13 Men
+Fleetman Fred Rundale Sportsters 217 Men
+O'Finnan Jack Fairing Track Society 45 Men
+Jumpabout Mike Fairing Track Society 154 Men
+Runnington Kathleen Lameborough TFC 119 Ladies
+Oblomovsky Katie Rundale Sportsters 57 Ladies
+de Leaping Gwen Fairing Track Society 26 Ladies
+Longshanks Loretta Pantington AC 55 Ladies
+Runnington Vivian Lameborough TFC 117 Ladies
+
+Bu yukarýda anlatýlan sýralamanýn bir tanýmlanmasýdýr: Ýlk tanýmlanan boþluk ayýrýcý olarak kabul edilir, diðerleri takip eden alanýn deðerlerini oluþturur. Gördüðünüz gibi ilk isimler alfabetik olarak listelendi ama sadece soyisimleri ayný uzunlukta oalnlar listelenenler. Bu -b seçeneði kullanýlarak düzeltilebilir, bu seçenek boþluk karakterini tek bir boþluk olarak algýlar.
+
+$ sort -b -k 2,2 participants.dat
+Prowler Desmond Lameborough TFC 13 Men
+Fleetman Fred Rundale Sportsters 217 Men
+Smith Herbert Pantington AC 123 Men
+O'Finnan Jack Fairing Track Society 45 Men
+Runnington Kathleen Lameborough TFC 119 Ladies
+Oblomovsky Katie Rundale Sportsters 57 Ladies
+de Leaping Gwen Fairing Track Society 26 Ladies
+Longshanks Loretta Pantington AC 55 Ladies
+Jumpabout Mike Fairing Track Society 154 Men
+Sweat Susan Rundale Sportsters 93 Ladies
+Runnington Vivian Lameborough TFC 117 Ladies
+
+
+
+Tablo 8.3: sort seçenekleri
+
+Bu sýralý liste hala biraz hatalý; bunun için 8.14 numaralý alýþtýrmaya bakýn. 
+Aþaðýdaki örnekte de görüldüðü gibi sýralama alaný daha detaylý bir þekilde belirlenebilir:
+
+$ sort -br -k 2.2 participants.dat
+Sweat Susan Rundale Sportsters 93 Ladies
+Fleetman Fred Rundale Sportsters 217 Men
+Longshanks Loretta Pantington AC 55 Ladies
+Runnington Vivian Lameborough TFC 117 Ladies
+Jumpabout Mike Fairing Track Society 154 Men
+Prowler Desmond Lameborough TFC 13 Men
+Smith Herbert Pantington AC 123 Men
+de Leaping Gwen Fairing Track Society 26 Ladies
+Oblomovsky Katie Rundale Sportsters 57 Ladies
+Runnington Kathleen Lameborough TFC 119 Ladies
+O'Finnan Jack Fairing Track Society 45 Men
+
+
+Burada katýlanlar.dat dosyasý ikinci alan tablosunun ikinci karakterine göre ters sýralamaya göre (-r) sýralanmýþtýr. Örnek olarak ilk ismin ikinci karakteri (çok anlaþýlýr oldu gerçekten). Bu durumda ilk karakter boþluðu -b seçeneði ile atlanmalýdýr. (Örnek 8.14 te bulunan hata burada da kendini tekrar ediyor.) 
+
+-t seçeneði ile (terminate, Türkçesi “durdur”) alan ayýrýcýsýnýn olduðu yerdeki istenen bir karakteri seçebilirsiniz. Bu alanlar boþluklar içerebileceði için iyi bir fikirdir. Burada örneðimiz için daha kullanýlabilir bir hali bulunuyor:
+
+Smith:Herbert:Pantington AC:123:Men
+Prowler:Desmond:Lameborough TFC:13:Men
+Fleetman:Fred:Rundale Sportsters:217:Men
+Jumpabout:Mike:Fairing Track Society:154:Men
+de Leaping:Gwen:Fairing Track Society:26:Ladies
+Runnington:Vivian:Lameborough TFC:117:Ladies
+Sweat:Susan:Rundale Sportsters:93:Ladies
+Runnington:Kathleen:Lameborough TFC:119:Ladies
+Longshanks:Loretta: Pantington AC:55:Ladies
+O'Finnan:Jack:Fairing Track Society:45:Men
+Oblomovsky:Katie:Rundale Sportsters:57:Ladies
+
+“LC_COLLATE=en_GB sort -t: -k2,2 ” kullanýlarak ilk isme göre sýralamak artýk doðru sonucu veriyor. Ayrýca katýlýmcýnýn numarasýna göre sýralamak (4 numaralý alan, kulüp isminde kaç tane boþluk olursa olsun) daha kolaydýr:
+
+$ sort -t: -k4 participants0.dat
+Runnington:Vivian:Lameborough TFC:117:Ladies
+Runnington:Kathleen:Lameborough TFC:119:Ladies
+Smith:Herbert:Pantington AC:123:Men
+Prowler:Desmond:Lameborough TFC:13:Men
+Jumpabout:Mike:Fairing Track Society:154:Men
+Fleetman:Fred:Rundale Sportsters:217:Men
+de Leaping:Gwen:Fairing Track Society:26:Ladies
+O'Finnan:Jack:Fairing Track Society:45:Men
+Longshanks:Loretta: Pantington AC:55:Ladies
+Oblomovsky:Katie:Rundale Sportsters:57:Ladies
+Sweat:Susan:Rundale Sportsters:93:Ladies
+
+Elbette “sayý” sýralamasý aksi belirtilmedikçe alfabetik olarak yapýlýr – “117” ve “123” “13” ten önce gelir. Bu sayýsal sýralama yapmak için -n seçeneði ile düzeltilebilir.
+
+$ sort -t: -k4 -n participants0.dat
+Prowler:Desmond:Lameborough TFC:13:Men
+de Leaping:Gwen:Fairing Track Society:26:Ladies
+O'Finnan:Jack:Fairing Track Society:45:Men
+Longshanks:Loretta: Pantington AC:55:Ladies
+Oblomovsky:Katie:Rundale Sportsters:57:Ladies
+Sweat:Susan:Rundale Sportsters:93:Ladies
+Runnington:Vivian:Lameborough TFC:117:Ladies
+Runnington:Kathleen:Lameborough TFC:119:Ladies
+Smith:Herbert:Pantington AC:123:Men
+Jumpabout:Mike:Fairing Track Society:154:Men
+Fleetman:Fred:Rundale Sportsters:217:Men
+
+sort için olan bu ve bazý önemli seçenekler Tablo 8.3' te gösterilmiþtir, buna çalýþmak iyi olur. Sort çok yönlü ve size çok zaman kazandýrabilecek güçlü bir komuttur.
+
+Uniq komutu
+
+uniq komutu girdide verilen ayný satýrlarýn vurgulanmasýnda önemli bir görev yapar.  “Ayný” olarak kabul edilen ,her zamanki gibi, özel seçenekler kullanýlarak deðiþtirilebilir. Uniq gördüðümüz komutlarýn çoðundan farklýdýr, bir tane dýþýnda isteðe baðlý girdi dosyasý kabul etmez; eðer ikinci bir dosya ismi verilirse bunu çýktýnýn konulmasý istenen dosya olarak düþünür. (eðer ikinci dosya ismi verilmezse çýktý standart çýktýya yazýlýr) uniq çaðrýsýnda hiç dosya ismi verilmemiþse, beklendiði gibi standart girdiden okumaya baþlar. Uniq en iyi girdi dosyasýndaki satýrlar sýralanmýþ ise çalýþýr, sýralanmaktan kasýt ayný satýrlarýn birbiri arkasýna gelmesidir. Eðer durum bu deðilse çýktýda bütün tekrarlanan satýrlarýn görüneceði garantisi verilmez.
+
+$ cat uniq-test
+Hipp
+Hopp
+Hopp
+Hipp
+Hipp
+Hopp
+$ uniq uniq-test
+Hipp
+Hopp
+Hipp
+Hopp
+
+Bunu “sort -u ” komutunun çýktýsýyla karþýlaþtýrýn: 
+
+$ sort -u uniq-test
+Hipp
+Hopp
+
+Alýþtýrmalar
+8.12 [!2] katýlýmcýlar0.dat dosyasýndaki katýlýmcý listesini koþucularýn isimlerinin sýralý olduðu liste ele alýnarak kulüp isimlerine göre sýralayýn.
+
+8.13 [3] Katýlýmcý listesini artan bir þekilde (a-z) “numaralarýn ters yönde sýralanmýþ halini” ele alarak kulüplerin ismine göre sýralayabilirsiniz? (Ýpucu: Belgeyi okuyun!)
+
+8.14 [!2] Bu örnekteki hata nedir ve neden meydana gelir?
+
+8.15 [2] Takip eden dosya isimlerine sahip bir dizin: 
+
+01-2002.txt 01-2003.txt 02-2002.txt 02-2003.txt
+03-2002.txt 03-2003.txt 04-2002.txt 04-2003.txt
+¡¡¡
+11-2002.txt 11-2003.txt 12-2002.txt 12-2003.txt
+sort komutunu ls komutunun sonucunu tarihsel sýraya göre doðru dizmek için kullanýnýz:
+
+01-2002.txt
+02-2002.txt
+¡¡¡
+12-2002.txt
+01-2003.txt
+¡¡¡
+12-2003.txt
+
+8.4.2 Sütun ve Alanlar—cut , paste vb. 
+ Grep ile satýrlarý bulup kesebilirken cut komutu bir metin dosyasýnda sütun yönelikli çalýþýr. Bu iki yöntemden biri ile çalýþýr:
+
+Bir ihtimal sütunlarýn kesin bir þekilde ayrýlmýþ olmasýdýr. Bu sütunlar bir satýrda tek bir karaktere karþýlýk gelirler. Bu gibi sütunlarý kesmek için -c seçeneði ile sütun numarasý verilmelidir. Birden fazla sütunu tek seferde kesmek için sütun numaralarý virgül ile ayrýlýr. Sütun aralýklarý bile belirlenebilir.
+
+$ cut -c 12,1-5 katýlýmcýlar.dat 
+SmithH 
+ProwlD 
+FleetF 
+JumpaM 
+de LeG 
+¡¡¡ 
+
+Bu örnekte ilk ismin ilk karakteri ve son ismin beþ karakteri alýnýr. Ayrýca çýktýnýn her zaman için girdide ki düzene göre gerçekleþtiði görünmekte. Eðer seçilmiþ satýrlar birbirleri üstüne gelirse bile, her girdi karakteri çoðu zaman çýktýda bulunur:: 
+
+$ cut -c 1-5,2-6,3-7 katýlýmcýlar.dat 
+Smith 
+Prowler 
+Fleetma 
+Jumpabo 
+de Leap 
+¡¡¡ 
+
+Ýkinci yöntem baðlantýlý alan ayýrýcýsý ile ayrýlmýþ baðlantýlý alanlarý kesmek için kullanýlýr. Eðer bu belirlenen alanlarý kesmek istiyorsanýz cut -f seçeneðine ve istenen alan numarasýna ihtiyaç duyar. Sütunlar için geçerli olanlarýn hepsi alanlar içinde geçerlidir. -c ve -f  seçenekleri birbirlerinin aynýsýdýr.
+Varsayýlan ayýrýcý tab karakteridir, diðer ayýrýcýlar -d (delimiter) seçeneði ile belirlenebilir.:
+
+$ cut -d: -f 1,4 katýlýmcýlar0.dat 
+Smith:123 
+Prowler:13 
+Fleetman:217 
+Jumpabout:154 
+de Leaping:26 
+¡¡¡ 
+
+Bu yolla katýlýmcýlarýn soyadlarý (birinci sütun) ve numaralarý (dördüncü sütun) listeden alýnýr. Okunabilirlik için sadece ilk birkaç satýr gösterilmektedir.
+
+* Sözü açýlmýþken, --output-delimeter seçeneðini kullanarak farklý bir ayýrýcý belirleyebilirsiniz:
+
+$ cut -d: --output-delimiter=': ' -f 1,4 participants0.dat
+Smith: 123
+Prowler: 13
+Fleetman: 217
+Jumpabout: 154
+de Leaping: 26
+
+* Eðer gerçektende sütun ya da alanlarýn düzenini deðiþtirmek istiyorsanýz, awk ve perl gibi büyük silahlarý ortaya koymak zorundasýnýz. Bunu þimdi anlatacaðýmýz paste komutu ile yapabilirsiniz ama that is rather tedious. 
+Dosyalar alanlar olarak kabul edilirse (sütun olarak kabul edilmek yerine) -s (seperator, ayýrýcý) seçeneði kullanýþlý olur.  Eðer “cut -f” ayýrýcý içermeyen karakterlerin olduðu satýrlarý buluyorsa, çýktýya bunlarý bütün halinde verir; -s bu satýrlarý baskýlar. Paste komutu belirtilen dosyalardaki satýrlarý birleþtirir. Bu sýk sýk cut komutu ile birlikte kullanýlýr. Hemen fark edeceðiniz gibi paste bir filtre komutu deðildir. Yinede paste komutunun standart girdiden okumasý için “-” iþaretini kullanabilirsiniz. Çýktý her zaman standart çýktýya gider. 
+Söylediðimiz gibi, paste satýrlarla iþe yarar. Eðer iki dosya adý belirtildiyse ilk dosyanýn ilk satýrý ve ikincinin ilk satýrý birleþtirilir (bir tab karakterini ayýrýcý olarak kullanarak) ve bu þekilde çýktýnýn ilk satýrý oluþturulur. Aynýsý dosyadaki bütün satýrlar için geçerlidir. Baþka bir ayýrýcý kullanmak için -d seçeneðini kullanabilirsiniz.
+Örnek olarak; maraton koþucularýný katýlým numaralarýyla birleþtirip yeni bir dosya oluþturabiliriz:
+
+$ cut -d: -f4 participants0.dat >number.dat 
+$ cut -d: -f1-3,5 participants0.dat \ 
+> 
+| paste -d: number.dat - >p-number.dat 
+$ cat p-number.dat 
+123:Smith:Herbert:Pantington AC:Men 
+13:Prowler:Desmond:Lameborough TFC:Men 
+217:Fleetman:Fred:Rundale Sportsters:Men 
+154:Jumpabout:Mike:Fairing Track Society:Men 
+26:de Leaping:Gwen:Fairing Track Society:Ladies 
+117:Runnington:Vivian:Lameborough TFC:Ladies 
+93:Sweat:Susan:Rundale Sportsters:Ladies 
+119:Runnington:Kathleen:Lameborough TFC:Ladies 
+55:Longshanks:Loretta: Pantington AC:Ladies 
+45:O'Finnan:Jack:Fairing Track Society:Men 
+57:Oblomovsky:Katie:Rundale Sportsters:Ladies 
+
+Bu dosya “sort -n p-number.dat” kullanýlarak sayýlara göre düzgn bir þekilde sýralanabilir. -s ile (seri) verilen dosyalar belirli bir sequence ile iþlenir. Ýlk olarak, ilk dosyanýn bütün satýrlarý tek bir satýr haline getirilir (aralarýnda bir ayýrýcý karakter bulunacak þekilde) sonra ikinci dosyadaki bütün satýrlar çýktýnýn ikinci satýrýný oluþtururlar.
+
+$ cat list1
+Wood
+Bell
+Potter
+$ cat list2
+Keeper
+Chaser
+Seeker
+$ paste -s list*
+Wood Bell Potter
+Keeper Chaser Seeker
+
+list* arama karakteriyle eþleþen bütün dosyalar (bu durumda list1 ve list2) paste kullanýlarak birleþtirildi. -s seçeneði bu dosyalarýnýn bütün satýlarýnýn çýktýnýn bir sütununu oluþturmasýný saðlar. 
+
+Alýþtýrmalar 
+
+8.16 [!2] katýlýmcýlar.dat dosyasýnýn (eþit aralýklý sütunlar halinde olanýnýn) katýlýmcý numarasý ve kulüp baðlantýsýnýn olmadýðý bir halini oluþturunuz.
+
+8.17 [!2] katýlýmcýlar0.dat dosyasýnýn (: iþaretinin ayýrýcý olarak kullanýldýðý halinin) katýlýmcý numarasý ve kulüp baðlantýsýnýn olmadýðý bir halini oluþturunuz.
+
+8.18 [3] katýlýmcýlar0.dat dosyasýnýn alanlarýnýn “:” ile deðil “,? ” ile ayrýldýðý (virgül ve boþluk iþareti)bir halini oluþturunuz.
+
+8.19 [3] Sisteminizde kaç tane grup kullanýcýlar tarafýndan birincil grup olarak kullanýlýyor? (birinci grup kullanýcýlarý /etc/passwd nin altýndaki dördüncü alandadýr.)
+
+Bu Bölümdeki Komutlar
+
+cat Dosyalarý birleþtirir
+cut Girdisindeki sütun ya da alanlarý ayýrýr
+head Bir dosyanýn baþlangýcýný gösterir
+paste Farklý girdi dosyalarýndaki satýrlarý birleþtirir
+reset Bir terminal karakterini mantýklý bir deðere sýfýrlar
+sort Girdisini satýrlara göre sýralar
+tail Bir dosyanýn sonunu gösterir
+uniq Bir dosyadaki tekrarlayan satýrlarý vurgular.
+
+
+Özet 
+• Her Linux programý standart G/Ç yollarýný, stdin, stdout ve stderr I destekler. 
+• Standart çýktý ve standart hata çýktýsý > ve >> operatörleri ile, standart girdi < operatörü ile yönlendirilebilir.
+• Boru hatlarý komutlarýn standart çýktý ve girdilerini direkt olarak baðlamak için kullanýlabilir. (ara dosyalar olmadan)
+• tee komutunu kullanarak yönlendirmelerdeki ara sonuçlarý dosyalarda saklayabiliriz. 
+• Filtre komutlarý (ya da filtreler) kendi standart girdilerini okuyup deðiþtirip bunu standart çýktýya yazarlar. 
+• sort sýralama için kullanýlan çok yönlü bir programdýr. 
+• cut komutu her satýrdan belirtilen aralýktaki sütun ya da alanlarý ayýrýr.
+• paste ile dosyalarýn satýrlarý birleþtirilebilir. 
