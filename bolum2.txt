@@ -114,8 +114,7 @@ yeni bir amatör sözleşme veya fikri mülkiyet hukuku hazırlarken daha sonra 
 
 Linux çekirdeği ve diğer bütün "Linux" paketleri Genel Kamu Lisansı (GPL) altında dağıtılmaktadır. GPL, RMS tarafından GNU projesi için geliştirilmiştir başlamakta olduğu yazılım için GPL lisansı ile dağıtılan yazılımın GPL altında kalması gerekiyordu(bu lisans tip copyleft lisans olarak adlandırılır).Bu yaklaşık olarak aşağıdaki gibi çalışır:
 
-•	GPL Yazılımın kaynak biçiminde mevcut olması gerekir ve isteğe bağlı bir şekilde kullanılabilir olmasını
-amaçlar.
+•	GPL Yazılımın kaynak biçiminde mevcut olması gerekir ve isteğe bağlı bir şekilde kullanılabilir olmasını amaçlar.
 •	kaynağını değiştirmek için açıkça izin verilir kaynağı degiştirerek yada değiştirmeden dağıtabilirsiniz ve GPL bir sonraki alıcıyada aynı hakları verir .
 •	Ayrıca  GPL yazılımları çalıştıralabilir  formlarda bile dağıtmak münkün(hatta satabilirsiniz). Bu durumda, kaynak kodu (GPL hakları ile birlikte) yazılımın çalıştırılabilir formu ile birlikte sunulmalıdır yada istendiği takdirde belirli bir süreliğine paylaşılabilir.
 
@@ -225,11 +224,11 @@ Thunderbird Mozilla Vakfı' nın dağıttığı bir e-posta programı. Altyapıs
 
 2.3.3 Görseller ve Çoklu Ortam Araçları
 
-Görseller ve çoklu ortam Macintosh' un baskınlığı altında. (Windows tarafında da iyi yazılımlar sunulsa bile) Kabul etmek gerekirse, Linux hala Adobe Photoshop' a eşdeğer bir programın eksikliğini hissediyor fakat bu konudaki yazılımlarda o kadar da kötü değil.
+Görseller ve çoklu ortam Macintosh' un baskınlığı altında. (Windows tarafında da iyi yazılımlar sunulsa bile) Kabul etmek gerekirse, Linux hala Adobe Photoshop'a eşdeğer bir programın eksikliğini hissediyor fakat bu konudaki yazılımlarda o kadar da kötü değil.
 
 Gimp resimleri düzenlemek için bir programdır. Photoshop' un eşdeğeri sayılmaz (örneğin bazı baskı öncesi özellikleri eksik) ama kesinlikle çoğu amaç için kullanılabilir hatta Photoshop' un iyi bir şekilde yapmadığı web için gereken grafikleri hazırlamak için birkaç araç sunuyor.
 
-Inkscape Gimp Linux' un Photoshop' u konumundayken Inkscape resimler için kullanılır, vektör tabanlı grafiklerin oluşturulması açısından güçlü bir araçtır.
+Inkscape Gimp Linux'un Photoshop'u konumundayken Inkscape resimler için kullanılır, vektör tabanlı grafiklerin oluşturulması açısından güçlü bir araçtır.
 
 ImageMagick neredeyse bütün görsel formattaki dosyaları birbirine çevirmeye yarayan bir yazılım paketidir. Ayrıca resimleri betik kontrollü bir şekilde düzenleme yolları sunar. Web sunucuları ve grafiklerin bir fare ve monitörle işlenmesi gereken diğer çevreler için harikadır.
 
@@ -239,7 +238,7 @@ Cinelerra ve KDEnlive ya da OpenShot gibi programlar “düzgün-olmayan video d
 
 Blender sadece güçlü bir video düzenleyici değil ama ayrıca üç boyutlu görsel tasarımına izin veren bir programdır, profesyonel kalitede canlandırma filmler için kullanılabilecek bir yazılımdır.
 
-* Bahsetmemiz gereken bir konu var, o da Linux olmadan bugünün patlamalı Holywood filmlerinden hiçbiri üretilemezdir. Büyük stüdyoların özel efekt “üretim çiftlikleri” nin hepsi Linux tabanlıdır.
+* Bahsetmemiz gereken bir konu var, o da Linux olmadan bugünün patlamalı Holywood filmlerinden hiçbiri üretilemezdi. Büyük stüdyoların özel efekt “üretim çiftlikleri” nin hepsi Linux tabanlıdır.
 
 2.3.4 İnternet Servisleri
 
@@ -261,10 +260,7 @@ Samba bir Linux makinesini Windows istemcileri için bir sunucuya dönüştüreb
 
 NFS Samba için bir Unix ortamıdır ve ağdaki diğer Linux ve Unix makinelere Linux sunucu diskine erişimi sağlar. Linux geliştirilmiş performans ve güvenliği ile modern NFSv4' ü destekler.
 
-OpenLDAP orta ve büyük ağlar için bir dizin servisi görevi görür ve (serves as a directory service for medium and large networks and
-offers a large degree of redundancy and performance for queries and up-
-dates through its powerful features for the distribution and replication of
-data. )
+OpenLDAP orta ve büyük ağlar için bir dizin servisi görevi görür ve (serves as a directory service for medium and large networks and offers a large degree of redundancy and performance for queries and up-dates through its powerful features for the distribution and replication of data.)
 
 DNS ve DHCP temel ağ altyapısıdır. BIND ile birlikte Linux DNS sunucularını destekler ve ISC DHCP sunucusu çok büyük ağlarda bile istemcilere IP adresi gibi ağ parametrelerini sağlayabilir. Dnsmasq küçük ağlar için kullanması kolay bir DNS ve DHCP sunucusudur.
 

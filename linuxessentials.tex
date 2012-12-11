@@ -6,7 +6,7 @@
 \usepackage[left=3cm,right=2cm,top=2cm,bottom=2cm]{geometry}
 \begin{document}
 \title{Linux'a Giriş}
-\author{Tuğçe Şirin\\
+\author{Selim Işık\\
 Çanakkale Onsekiz Mart Üniversitesi}
 \renewcommand{\today}{December 5, 2012}
 \maketitle
@@ -145,9 +145,281 @@ olabilir, örneğin oturma odasında bulunan bir video kaydedici olarak kullanı
 \end{section}
 
 
-\chapter{Linux and Free Software}
+\chapter{Linux ve özgür Yazılım}
+\paragraph{Amaçlar}
+\begin{itemize}
+ \item Knowing the basic principles of Linux and free software
+ \item Being able to place the basic FOSS licenses
+ \item Having heard of the most important free applications
+ \item Having heard of the most important Linux distributions
+ \end{itemize}
+ 
+\paragraph{Önceden Bilinmesi Gerekenler}
+\begin{itemize}
+ \item Basic knowledge about computers and operating systems
+ \end{itemize}
+\begin{section}{Linux: Bir Başarı Öyküsü}
+\paragraph{}{1991 in yazında Linux Torvalds 21 yaşındayken Finlandiya’ da Helsinki Teknik Üniversitesinde bilgisayar bilimleri bölümünde okuyordu. Bu zamanlarda yeni bir 386 sı vardı ve işletim sistemi olmadan direk donanım üzerinde çalışan bir terminal emülatörü yazarak(bu ona üniversitesindeki Unix sistemine erişimini sağlamıştı) kendisini eğlendiriyordu.  Bu program zamanla ilk Linux işletim sistemi çekirdeğine dönüştü.}
+\paragraph{}{Bu zamanlarda Unix zaten 20 yaşındaydı ve üniversiteler ile araştırma kurumlarının seçtiği işletim sistemleri Unix'in birer çeşidiydiler.}
+\paragraph{}{Unix in kendisi de –aynen linux gibi- Kend Thompson ile Dennis Ritchie nin Bell Laboratuvarlarındaki (AT\&T nin araştırma kurumu) hobi amaçlı projelerinden biri sonucunda oluşmaya başladı. Çok kısa zamanda çok kullanışlı bir sisteme dönüştü ve büyük bir parçası yüksek seviye bir dille yazıldığı için (C) oldukça kısa bir zamanda üzerinde yazıldığı PDP-11 den başka bilgisayarlara da taşınabiliyordu. Ek olarak 1970lerde .... ve sistem çok küçük olduğundan dolayı ve bir derece basit olduğundan üniversitelerin çoğunda ders olarak işlenmeye başladı.}
+\paragraph{}{1970lerin sonlarına doğru Berkeley deki California Üniversitesi Unix i VAX a port etti, PDP-11 in halefi, değişikliklerin yapıldığı bu sistem BSD olarak duyuruldu. BSD türevleri hala bulunmaktadır.}
+\paragraph{}{Linux’ un ilk versiyonunu geliştirmek için Linus Minix’ ten yararlandı. Minix Amsterdam Özgür Üniversitesindeki Andrew S. Tanenbaum tarafından öğretim amaçlı yazılmış bir sistemdir. Minix küçük tutulmuştu ve özgürce ulaşılabilir değil bu yüzden ciddi bir işletim sistemi olarak tanınmamıştır.}
+\paragraph{}{25 Ağustus 1991’ de Linux projesini herkese duyurdu ve dünyanın kalanını katılması için davet etti.Bu noktada sistem Minix için alternetif bir işletim sistemi çekirdeği olarak görev yaptı.}
+\paragraph{}{O zamanlarda sistem bir isme sahip değildi. Linux “Freax” diyordu (Freak ve Unix in karışımı olan bir kelime), ayrıca ilk başta Linux olarak tanıtmıştı ama sonra bunun çok egoistçe olduğunu düşündü. Linus’un sistemi üniversitenin ftp sistemine yüklendiğinde, Freax ismini beğenmeyen Linus’ un okuldan arkadaşı Ari Lemmke ismi Linux’ a değiştirdi. Linus sonradan bu değişikliği onayladı.}
+\paragraph{}{Linux dikkate değer bir ilgi ve yardım edecek çok fazla gönüllü buldu. Linux 0.99 Aralık 1992 de GPL in ilk versiyon lisansı altında lisanslandı ve Unix işlevselliğine sahip kullanılabilir bir işletim sistemi olmuş oldu.}
+\paragraph{}{Linux 2.0 1996 nın başlarında ortaya çıktı ve çoklu işlemci desteği ve çalışırken çekirdek modüllerini yükleme gibi bir çok önemli yenilikle birlikte geldi. Bir diğer önemli değişiklik penguen “Tux” oldu, Linux’ un maskotu.  Linus Torvalds Avustralya’ da bir penguenle karşılaşmış ve bundan çok etkilenmişti. Sarı ayakları ve gagasıyla oturan simgesel penguen Larry Ewing tarafından çizilmiş ve camiaya sunulmuştur.}
+\paragraph{}{Linux 2.6 gelişim sürecinde yeni bir yapılaşma sürecine girdi. Önceki sürümlerde son kullanıcıya uygun sürümlerle geliştirici sürümleri ayrı olarak sunuluyordu. Linux 2.6 dan itibaren geliştirici çekirdekleriyle normal olanlar arasındaki çizgi kalktı ama gelecek sürümdeki geliştirmeler önceden sunulup resmi bir sürüm sunulmadan ayrıntılı bir şekilde test edildi.}
+\paragraph{}{Bu ortalama olarak şu şekilde oluyor: Linux 2.6.37 yayınlandıktan sonra, Linus sonraki çekirdek için önerilen değişiklik ve gelişmeleri topladı ve kendi resmi sürümü olan Linux 2.6.38-rc1 sürümünü çıkardı. Bu sürüm çeşitli insanlar tarafından test edildi ve bütün değişimler ve geliştirmeler 2.6.38-rc2 sürümünde toplandı. Sonunda kod resmi olarak yayınlanacak şekilde stabil bir hale geldi ve Linux 2.6.38 olarak yayınlandı ve bu işlem 2.6.39 ile devam etti.}
+\paragraph{}{Linus’ un resmi sürümlerine ek olarak başka geliştiriciler tarafından geliştirilen Linux sürümleri bulunmaktadır. Örnek olarak there is the “staging tree” where new device drivers can “mature” until (after several rounds of improvements) they are considered good enough to be submitted to Linus for inclusion into his version. Once released, many Linux kernels receive fixes for a
+certain period of time, so there can be versions like 2.6.38.1, 2.6.38.2, ….
+Temmuz 2011’ de Linus 2.6.40 olarak hazırlanan sürümü Linux 3.0 olarak duyurdu. Bu çok büyük değişiklikler olmamasına rağmen numaralama işlemini basitleştirmek için yapılmış bir değişimdi.}
+\paragraph{}{Bugünlerde kullanıcı için yapılan çekirdek sürümleri 3.2-rc1 olarak adlandırılmaktadır bu yüzden düzenlemelerle gelen sürümler 3.1.1, 3.1.2,… olarak adladırılırlar. "Linux" projesi bugün hiçbir şekilde bitmiş değildir. Linux dünya çapında programcılar tarafından sürekli geliştirilmekte ve bu  durumdan memnun olan milyonlarca özel ve ticari kullanıcıya hizmet vermektedir. Bilgisayar endüstrisi içersinde  Linux çekirdeği üzerinde  önemli pozisyonlarda çalışan birçok kişi var ve bazıları çevresindeki en saygın profesyonel geliştiricilerdir.}
+\paragraph{}{linux işletim sistemi doğası gereği çok yönlü donanım desteğine sahiptir, kesin bir kanıya varmamakla birlikte bütün platformlarda çalıştığı iddia edilebilir(akıllı telefonlar ve büyük sistemler de dahil olmak üzere) ve aynı zamanda Intel PC platformlarının örnek oluşturduğu donanım sürücüleriylede uyumludur. Linux sanayi ve akademi alanında  yeni bir işletim sistemi geliştirmek için araştırmalara konu olan  mevcut işletim sistemleri içersinde şüphesiz en yenilikçi olanıdır.}
+\paragraph{}{Çok yönlü olması Linux'u sanallaştırma ve "Bulut bilişim" gibi uygulamalar için tercih edilen işletim sistemi yapar. Sanallaştırma kendi işletim sisteminiz üzerinde çalıştırdığınız programlar yardımıyla tek bir gerçek ("fiziksel") bilgisayarda  pek çok "sanal" makina kurup  gerçek bilgisayarlar gibi kullanmayı mümkün kılar. Bu işlem kaynakları daha verimli kullanmamızı sağlar ve daha fazla esneklik imkanı vardır: Ortak sanallaştırma altyapıları ile sanal makineleri bir fiziksel makineden diğerine hızlıca taşımak mümkündür ve bu yapılar yükleme hataları ve arıza gibi durumları yönetmek için çok elverişlidir.}
+\paragraph{}{Bulut bilişim fikri büyük bilgisayar firmalarının sadece ihtiyaç anında ve kısa süreli lazım olan verileri depolamak için alternatif aramalarıyla oluştu çünkü bu çok maliyetli bir işti. Bulut bilişim kullanıcılarına sağlayıcılar üzerindeki sanal makinalara erişim izni verilir, alanlara kullanıma bağlı olarak yükleme yapılabilir ve bu sistem,işlemi gerçek bir sistemde sürdürmekten çok daha tasarrufludur böylece 7/24 calışacak bir bilgi işlem merkezinin kurulması için gerekli olan inşaat giderleri,personel giderleri,malzeme ve enerji giderleri gibi masraflardan kaçınılmış olunur.}
+\paragraph{Alıştırmalar}{}
+\begin{itemize}
+ \item internetten Andrew S., Tanenbaum, Linus Torvalds ile ilgili olan meşhur tartışmayı bulun Tanenbaum Linus Torvalds'ın Linux'u üretirken başarısız oldugunu düşünüyordu. Sen ne düşünüyorsun ?
+ \item Linux çekirdeğinin kaynağı olan en eski kurulum kodunun sürüm numarası nedir bulabilir misiniz?
+\end{itemize}
+\end{section}
+\begin{section}{Bedava yazılım mı açık kaynak kodu mu?}
+\begin{subsection}{Telif Hakkı Ve Özgür Yazılım}
+\paragraph{}{Ortaçağ boyunca kitap ve   diğer yazılı ürünlerin çoğaltılması çok pahalı bir  
+işti. Gerekli sürede elde yazabilen birini bulmak gerekiyordu -- manastırlar incil kopyalamak için zamanın en iyi projelerinden birini yapmıştı(yazı yazmayı bilen rahipler vardı ve çok fazla boş zamanları vardı.) 16.yüzyılda matbaanın bulunması ile birlikte kopyalama işlemi daha basit ve ucuz oldu ve yayımcılık sektörü satmaya değer görülen her şeyi kopyalayıp dağıtmaya başladı. O zamanlarda yazarların neredeyse hiç hakkı yoktu, eğer yayımcılar onlara kendi çalışmalarını basmak için para öderse şanslıydılar. Gittikçe yayılan kopyalama orijinal yazıcıları kızdırdı, kendilerini aldatılmış hissettiler. Bu belirli çalışmalar için hükümetten özel haklar istemelerine neden oldu. Hükümet basılan yayınları denetlemek için bunu reddetmedi. Zamanla bu “özel haklar” yazarlara da geçti ve modern haliyle “telif hakkı” (ya da yazar hakları) olarak bilinen duruma dönüştü.}
+\paragraph{}{Telif hakkı bir işi yapan kişinin (bir kitabın yazarı, bir resmin ressamı, ...) o esere ne yapılacağı ile ilgili bütün haklara sahip olması demektir. Yazarlar kitaplarının basım haklarını yayıncılara verebilir ve kitaplarının piyasaya sürülmesini sağlayabilir; yazar basma, yayımlama, pazarlama ve buna benzer hiçbir şey ile uğraşmayarak yine de parasını kazanabilir, yayımcı ise kitap yazma derdinde olmadan para kazanabilir. Bu iki tarafında yararına olan bir durumdur.}
+\paragraph{}{Buna ek olarak “telif hakkı” “manevi hak” olarak belirlenebilir. Genelde bu hakları devretmek imkansızdır.}
+\paragraph{}{20.yüzyılda telif hakkı tasarımı uluslar arası olarak kabul gördü ve kayıt ve film endüstrisine de yansıdı. Bilgisayarın icadı ve internet durumu bir kere daha ciddi şekilde değiştirdi: Patentlerin amacı yayımcıyı diğer yayımcılara karşı korumaktı, aniden bilgisayara sahip olan herkes dijital içerikleri kopyalamaya başladı (yazılım, kitaplar, müzikler ve filmler gibi), bu yayımcılar, müzik, filme ve yazılım firmaları için bir felaketti, çünkü bu kurumların iş modeli olan bu ürünleri satmak tehlikeye girmişti. O zamandan beri “içerik endüstrisi” daha sıkı patent yasalarına ve korsan kopyacılar için daha yüksek cezaların konulması yönünde sıkı çalışmalara başladı ve aynı zamanda telif haklarını ihlal edenler hakkında soruşturma açmaya çalışıyor. (ve bir açıdan başarılı oluyorlar)}
+\paragraph{}{Günümüzde "fikri mülkiyet" sadece telif haklarını değil aynı zamanda marka ve patent haklarınıda içerir. Teknik süreçlerin belgelenmesi  ve yayınlanmasından sonra patentler mucitlere buluşlarını kullanma ve yararlanma hakkı verir.(ör. buluşlarından yararlanma hakkını para karşılılığında başkalarına verebilirler). Ticari markaların popülerleğinin başkaları tarafından kullanılarak istismar edilmesi engellenir. Örneğin kimse  kahverengimsi ve şekerli bir içeceği “Coca-Cola” ismi ile satma hakkına sahip değildir. fikirler için üç ceşit "fikri mülkiyet"  vardır ve birbirini tamamlayıcı niteliktedir, telif hakkı somut ifadesi ile fikirlerin gerçek çalışmalar ile ilgili kısmını şekillendirir ve ticari markalara  kalitesiz iş uygulamalarını durdurma hakkı verir.}
+\paragraph{}{Seri üretim yapmak için telif hakkına sahip olunmalıdır ve bunun içinde çalışma küçük değişiklirler dışında son halini almış olmalıdır. Patentler patent ofisi tarafından yenilik açısından incelenerek verilir. Ticari markalar kesinlikle tescillenmiş olmalıdır fakat ürün veya hizmet sağlayıcısı kamu tarafından tanınana kadar  belirli bir süre için logo kullanabilir.}
+\paragraph{}{Bilgisayar yazılımlarıda(yazılı bir çalışma şeklinde de olabilir, belirli bir seviyeye gelmiş yaratıcı bir düşüncede olabilir) telif hakları ile koruma altındadır. Bu telif hakkı sahibinin(programcı veya işveren) açık izni olmadan bir yazılımın bir bölümünü veya tamamını kopyalamanın yasadışı olduğu anlamına gelir.}
+\paragraph{}{Gecmişte bilgisayar yazılımı satışı çok yaygın değildi. Ya almış olduğunuz bilgisayar ile birlikte gelirdi(bu durumda fiyat epey yüksek olur,milyon dolarlar seviyesinde) yada kendiniz yazmak zorundaydınız . 1960'larda ve 1970'lerde universiteler programları ya değiş tokuş ederdi yada kopya programlar kullanırdı, 1976 yılında Bill Gates'in   MITS Altair 8800 için dehşetle yapmaya çalıştığı BASIC yorumlayıcı gerçekten çok popüler oldu ve bununla çok övgü aldı ama kimse fiyatını sormayı akıl etmedi ! Yazılım için para ödenmesi fikri kullanıcılar için tabiki mantıklı degildi hatta bazıları alay etti.}
+\paragraph{}{1970'li ve 1980'li yıllarda ofislerde bilgisayar kullanımı yaygınlaştı ve yazılım ihtiyacının artmasıyla birlikte yazılım satışı fikride yaygınlaştı. Bununla kalmayarak yazılım firmaları nasıl çalıştığı anlaşılmayan, düzenlemenin yada incelemenin münkün olmadığı kapalı kaynak kodlu yazılımlar sattılar. Bir gün MIT'de araştırma görevlisi olan Richard M. Stallman 1960 ve 1970'lerin şartlarındaki bu durumun tam tersine paylaşım kültürünün öne çıkacağı bir sistem üzerinde çalışmaya karar verdi . “GNU” projesi tamamlanamadı ama bazı bileşenleri günümüzde bile linux sistemlerinde kullanılmaktadır.}
+\paragraph{}{Richard M. Stallman(kısaca "RMS" olarak da bilinir) Özgür yazılım" fikrinin babasıdır. Bu bağlamda "Özgür" kelimesi "Sınırsız özgür" anlamına gelmez istenilen herşeyi yapmak mümkün olmayabilir yada özel yazılımlar için izin verilirmiştir. RMS yazılım paketini "Özgür" olarak adlandırmak için 4 şart arar  "Dört Özgürlük" ile tanışın:}
+\begin{itemize}
+ \item Herhangi bir amaç için programı çalıştırmak  özgürlüğü (özgürlük 0).
+ \item Programın nasıl çalıştığını inceleme ve istediğinizi yapacak şekilde değiştirme özgürlüğü(Özgürlük 1)
+ \item Kopyaları dağıtma özgürlüğü böylece etrafınızdakilerde faydalanabilir (Özgürlük 2)
+ \item Programı geliştirme ve geliştirilmiş versiyonu(modifiye edilmiş genel versiyon) açık olarak olarak yayınlama özgürlüğü, böylece bütün topluluk
+faydalanır (Özgürlük 3).
+ \end{itemize}
+\paragraph{}{Programın kaynak koduna erişmek 1. ve 3. özgürlükler için bir ön koşuldur. Özgür yazılım fikri genel olarak olumlu karşılanır, öyle olmasına rağmen RMS ve Özgür Yazılım Vakfı (FSF) hedefleri genellikle yanlış anlaşılır. 1990'ların sonunda, Eric S. Raymond, Bruce Perens ve Tim O'Reilly Open Source Initiative(OSI)(açık kaynak girişimini) hazırlandı,bazılarına göre bu durum özgür yazılım için daha iyi ve daha az ideojik bir pazarlama yöntemidir. FSF bu fikirleri "sulandırılması" konusunda hevesli değildi,FSF ve OSI çok benzer hedeflere sahip olmasına rağmen aradaki anlaşmazlıklar bügün bile sona ermemiştir (Bazı anlaşmalar önemli insanların karmaşık egolarına bağlı olabiliyor).}
+\paragraph{}{“Özgür yazılım” tanımının içindeki “özgür” “masrafsız” olarak yanlış anlaşılmaya musaitken “açık kaynak kodlu yazılım ” tanımının içindeki “açık kaynak kodu” bu tür kaynak kodlarının değiştirilip değiştirilmediğinin denetlendiği yönünde yorumlanabilir-- Her ikisi de OSI temel ilkelerindendir. Bu anlamda, her iki terimde \% 100 kesindir. Topluluktan sıklıkla “FOSS” (for free and open-source software) olarak bahsedilir yada alternatif olarak “FLOSS” (free, libre, and open-source software, FLOSS where the libre is supposed to support the sense of “liberty”) kullanılır.}
+\paragraph{}{Herkes kopyalama ve değiştirme gibi haklara sahipse özgür yazılımdan nasıl para kazanılır ? bu çok doğal bir sorudur. Burada bir kaç örnek("açık kaynak için iş modelleri ") var:}
+\begin{itemize}
+ \item Destek servisleri veya döküman sağlayabilirsiniz yada özgür yazılım eğitimi vererek para kazanabilirsiniz (Bu yaratıcı firmalar için çok iyi bir iştir, Linup Front GmbH ve LPI gibi şirketler Linux sertifikaları satarak geçimini sağlıyor).
+ \item Belirli müşterileri için özel iyileştirmeler veya eklentiler oluşturup harcadıgınız zaman karşılığında para kazanabilirsiniz(yapmış oldugunuz geliştirmeler genel versiyonun bir parçası olur). Bunu eğer kendiniz için yapmıyorsanız bu çalışma özgür yazılım için başka bir alternatif olur.
+ \paragraph{}{Özel yazılım geliştirmenin "geleneksel" modeli çerçevesinde, yazılımın orijinal üreticisi değişiklik yapma ve geliştirme hakkını elinde bulundurur. Böyle bir şirketin müşterisi olarak, üretici ürünü üretimden kaldırırsa yada düpedüz kaybolursa diye kaygılanabilirsiniz(iflas edebilir yada rakipleri tarafından satın alınabilir), çünkü bu büyük bir sorununuz var demektir ve geleceği olmayan bir yazılıma masraf yapmış olursunuz. Özgür yazılımda her zaman orjinal üreticilerden destek alacak birini bulursunuz--gerekirse diğer kullanıcılarla birlikte destek talep edebilirsiniz kimse yalnız kalmanızı istemez. Eğer bir paket yazılım satmak istiyorsanız önce FOSS seklinde bir temel sürüm hazırlayıp  insanları  daha gelişmiş özelliklere sahip “full versiyon” satın almaya ikna edebilirseniz , bu işi başarırsınız(jargonda ifadesi "Açık çekirdek").}
+ \item Bu iki ucu keskin kılıç gidir : bir yandan bakıldığında aradıgız iş için çok sayıda bedava yazılım olması şüphesiz çok iyi bir şey olurdu fakat diğer taraftan bakıldığında genellikle ücretsiz versiyonlardaki önemli fonksiyonların kısıtlandığını görürsünüz ve işlevselleştirmek için çok fazla çalışmak gereklidir. Bu durumda ücretsiz(özgür) kelimesi bir çok sunucuda arama motorlarındaki popülerliği artırmak içim kullanılır ve bu durum yayıncıların "özgür yazılım dostu" olarak görünmek istemesiylede ilgilidir --yürümeden ilerleme kaydetmeye çalışmaktır.
+ \end{itemize}
+\end{subsection}
+\begin{subsection}{Lisanslar}
+\paragraph{}{Bir yazılım nasıl  "ücretsiz" veya "açık kaynak kodlu" hale gelir?  Bahsettiğimiz bazı haklar--örneğin kopyalama ve değiştirme hakkı-- kesinlikle çalışmanın sahibine aittir fakat bu kişi hakklarını başkalarına devredebilir. Bu yapmanın  yollarından biri lisanslamaktır, yasal bir belge ile yazılımın bazı haklarının satın alan kişide veya indiren kullanıcıda olduğu belirtilebilir. Telif hakları bir yazılımı satın alan kullanıcı(yada yasal olarak indirme hakkına sahip başka biri) için sadece kurma ve çalıştırma izni verir. Buradan yazılımın kullanılmasının yapımcının iznine bağlı olduğu gerçeği çıkarılabilir--Buradan satın almayan kullanıcıların kullanmasına izin verilmediği açıkça bellidir .(tam tersine.yapımcıya para verirse parasıyla yazılımın haklarını takas etmiş olur) . yazılımı kontrolsüz bir şekilde  kopyalama,dağıtma,bir kısmını veya tamamını değiştirmenin yasak olduğu telif haklarında açıkça belirtilmiştir hak sahibi izin vermek istiyorsa bunu lisans içersinde belirtmelidir.}
+\paragraph{}{Fikri mülkiyet hakkına tabi programlar genellikle "son kullanıcı lisans sözleşmesi (EULA)" ile birlikte gelir alıcı yazılımı kullanmak için  sözleşmeyi kabul etmek zorundadır. Yazılım satıcılarının EULA ile  alıcıları yasaklaması aslında telif hakları ile izin verilen bir şeydir ---
+yazılımı başkasına  satarak kullanmasına izin vermek gibi, veya açık bir bir şekilde yazılımla ilgili kötü(aslında herhangi birşey) şeyler söylemek gibi.
+EULA  sözleşmesinde oldukça fazla sayıdaki yasal engellemenin her iki tarafça da kabul edilmesi gerekiyor (en azından Almanya'da öyle). Örneğin, alıcı yazılımı almadan önce sözleşme şartlarını incelemek zorundadır ama sözleşme şartlarını kabul etmezse en azından parasının bir kısmı geri ödenmelidir.}
+\paragraph{}{Diğer taraftan, açık kaynak lisansı olan FLOSS için yazılımda yapılacak değişikleri telif hakkıyla yasaklamaktan başka yollar vardır. Genellikle yazılım kullanımını kısıtlamayı kimse istemez ama dağıtma ve değiştirme sürecini yönetirler. Bu şekilde alıcıyı en kötü durumda bile yanlız bırakmayarak onlardan daha iyi bir yazılım satın almalarını beklemezler. Bu nedenle, EULA'ların aksine, özgür yazılım lisansları genellikle sözleşme değildir alıcısı zorunluluk olduğunu açıkça kabul eder, yazılım yapımcıları adına tek taraflı beyanları ve onlar tarafından tanınan hakların dışında ekstra faydalardan oluşmaktadır, yasa aslında basit bir kullanım hakkıdır.}
+\paragraph{}{Artık temel kuralların yerine getirilmesi gereken hayvanat bahçelerinin yerinine ücretsiz yazılımlar ve  açık kaynak kodlu yazılımlar bulunmaktadır. En iyi bilinen özgür yazılım lisansı Genel Kamu Lisansı(GPL)  Richard M. Stallman ve diğerler tarafından yürürlüğe kondu. OSI kendi görüşüne göre açık kaynak ruhunu somutlaştıran bu lisansları "onaylar", FSF  lisansları onaylar ve "dört özgürlük" ile korur. Onaylı lisanslar listesi bu kuruluşların internet sayfalarında mevcuttur.}
+\paragraph{}{Eğer bir ücretsiz veya açık kaynak yazılım projesine başlamayı düşünüyorsanız, kesinlikle sizin için  gereklerini yerine getiren ücretsiz bir FSF yada OSI lisansı vardır. Bu lisansınız için FSF veya OSI'den onay almak gerekmediği anlamına gelirve bununla birlikte, zaten onaylanmış mevcut bir lisans kullanmak genellikle daha iyidir, mevcut lisanslar genellikle yasa uzmanları tarafından incelenmiş makul ve kabul edilebilir olduğu su geçirmezdir--
+yeni bir amatör sözleşme veya fikri mülkiyet hukuku hazırlarken daha sonra başınızı derde sokabilecek önemli ayrıntılar göz ardı olabilir.}
+\paragraph{}{Önemli bir gözlem olarakta ücretsiz veya açık kaynak yazılım savunucuları hiçbir şekilde  yazılım için telif hakkını tamamen ortadan kaldırmak niyetinde değildir. Aslında, özgür yazılımcılar olarak biz telif hakklarının yazılımın değiştirme ve dağıtma gibi haklarını yasal olarak yapımcısına verdiğini biliyoruz ve bazı koşullar sağlanarak kullanıcılarında bu tür haklara sahip olması gerektiğini düşünüyoruz. Telif hakkı olmasaydı, herhangi bir yazılım için herkez birbirine yardım edebilirdi ve "dört özgürlük" gibi merkez ilkeler olmadan bu tehlikeli olabilirdi çünkü insanlar hiç bir paylaşımda bulunmadan birikimlerini saklayabilirdi.}
+\end{subsection}
+\begin{subsection}{GPL}
+\paragraph{}{Linux çekirdeği ve diğer bütün "Linux" paketleri Genel Kamu Lisansı (GPL) altında dağıtılmaktadır. GPL, RMS tarafından GNU projesi için geliştirilmiştir başlamakta olduğu yazılım için GPL lisansı ile dağıtılan yazılımın GPL altında kalması gerekiyordu(bu lisans tip copyleft lisans olarak adlandırılır). Bu yaklaşık olarak aşağıdaki gibi çalışır:}
+\begin{itemize}
+ \item GPL Yazılımın kaynak biçiminde mevcut olması gerekir ve isteğe bağlı bir şekilde kullanılabilir olmasını amaçlar.
+ \item Kaynağını değiştirmek için açıkça izin verilir kaynağı degiştirerek yada değiştirmeden dağıtabilirsiniz ve GPL bir sonraki alıcıyada aynı hakları verir.
+ \item Ayrıca  GPL yazılımları çalıştıralabilir  formlarda bile dağıtmak münkün(hatta satabilirsiniz). Bu durumda, kaynak kodu (GPL hakları ile birlikte) yazılımın çalıştırılabilir formu ile birlikte sunulmalıdır yada istendiği takdirde belirli bir süreliğine paylaşılabilir.
+ \paragraph{}{Bu bağlamda "Kaynak kodu" almak demek yazılımı bilgisayarda çalıştırmak için gereken her şeyi almak demektir. Özel durumlar ne demektir-- örneğin kapalı bir bilgisayardaki değiştirilmiş Linux çekirdeğini uygun bir şekilde başlatmak için şifreleme anahtarları gerekebilir--bu hararetli bir tartışma konusudur.}
+ \paragraph{}{Eğer biri para ile GPL yazılım satın alırsa, doğal olarak sadece bütün bilgisayarlarında çalıştırma hakkına sahiptir, kopyalayamaz ve yeniden satamaz.(GPL lisansı altında).Bunun bir sonucu olarak da "koltuk başına" GPL yazılım satmak  mantıklı bir iş değildir, bu durumun önemli bir sonucu olarakta fiyatlar açısından rahatlık sağlamasıdır bu sebeple Linux dağıtımları kullanmak mantıklıdır.}
+ \item Eğer bir GPL programına ait parçaları bir araya getirerek yeni program (bir "türetilmiş çalışma") yazarsanız, bu program GPL ile lisanslanmalıdır.
+\end{itemize}
+\paragraph{}{Burada da, hararetli tartışmalara sebep olan şey "türetilmiş program" yazmak için ne kadar GPL programı kullandığınızdır. FSF'ye göre,Bir program dahilinde dinamik olarak kullanarak GPL kütüphanesi kullanılıyorsa o program GPL altındadır, herhangi bir GPL kod  bu nedenle GPL altında olmalıdır hukuki anlamda bir "türetilmiş çalışma" olarak kabul edilemez. Bu durumlardan ne kadarının uydurma ne kadarının hukuken savunulabilir olduğu, prensip olarak, bir hukuk mahkemesinde tespit edilmelidir.}
+\paragraph{}{GPL, yazılımı kullanım için değil değiştirmek ve dağıtmak için kurallar belirlemektedir.}
+\paragraph{}{Şu anda  yaygın olarak kullanılan  iki GPL sürümü vardır.Yeni sürüm 3 (ayrıca "GPLv3" denir)  2007 Haziran ayında yayımlanmıştır ve eski sürümden (sürüm 2 (ayrıca "GPLv2") ) farkları yazılım patentleri gibi alanlarda açıklamalar, diğer ücretsiz lisansları ile uyumluluk, "özgür" yazılımların teorik olarak değişiklik yapmanın imkansız olduğu Özel donanımlarda çalıştırılması ile ilgili tanımlarıdır("Tivoisation",olan çekirdek, Linux tabanlı bir dijital PVR değiştirilemez ve yenilenemez). GPLv3 kullanıcılarınına başka şartlar eklemek için izin verir.--GPLv3 toplum içinde evrensel onayı almadı,dolayısıyla birçok proje (en belirgin, Linux çekirdeği) daha basit  olan GPLv2'de kalmıştır.Buna ek olarak, birçok proje "GPLv2 veya sonraki bir sürümünü" altında kodunu dağıtmaktadır, dolayısıyla bu tür yazılımları dağıtırken veya değiştirirken hangi sürümünün kullanılacağına GPL'i takip ederek kendiniz karar verebilirsiniz.}
+\paragraph{}{Projeye katılmak için  lisans kapsamında projenizle aynı bir projenin lisansını kullanmak özgür yazılım geliştiricileri arasında en iyi tarzı olarak kabul edilir, anonim kod  kullanmakta ısrar eden  bir çok proje için bu  "resmi" bir yoldur. Bazı projelerde projeye kod veren yapımcılar ısrarla telif hakkı atamaları(yada benzeri bir organizasyon) isterler. Bu adımın avantajı ise kodun telif hakkının ve telif hakkı ihlalinin projeye ait olmasıdır—telif hakkı sahipleri yasal dayanaklarına başvurabilir—muhattabını bulmak daha kolaydır. Beklenmeyen bişey olduğunda ya da olmasını istemediğiniz bişey olduğunda projenin lisansını degiştirmek kolaylaşır,böyle bişey olduğunda bunu yapma yetkisi sadece telif hakkı sahibindedir.}
+\paragraph{}{Linux çekirdeği proje durumunda olduğundan, açıkça telif ataması gerektirmez, kodlar binden fazla yazarın katkılarıyla oluşan bir toplu çalışma  olduğundan lisans değişikliği çok zor ya da imkansızdır. Bu sorun GPLv3 tanıtımı sırasında tartışıldı.Geliştiriciler yasal kaynakların sıralanması için dev bir proje yapılmasını kabul etti ve yazarlardan Linux çekirdek kaynak kodunun her satırı için lisans değişikliği onayı alındı.Inatla karşı çıkan Bazı Linux geliştiricileri oldu, orada bulunayaman yada vefat etmiş olan geliştiricilerde vardı onların kodlarının telif haklarını temizlemek için kodların yenilenmesi veya benzeri ile değiştirilmesi gerekiyordu. Bununla birlikte, en azından Linus Torvalds GPLv2  destekçisi olarak kaldı, bu nedenle uygulamada bir problem olmadı.}
+\paragraph{}{GPL ürünün olası fiyatı konusunda bir şart bulundurmaz. GPL yazılım kopyalarını vermek veya para karşılığında satmak kaynak kodlarını beraberinde vermek yada istendiğinde vermek şartıyla tamamen yasaldır ve alıcıda GPL haklarını alır.Bu GPL yazılımın ücretsiz olması gerekmediği anlamına gelir. GPL [GPL91] inceleyerek daha fazla bilgi bulabilirsiniz,dağıtılmış olan bazı  GPL-ed ürünleri(Linux içeriğinde var) inceleyebilirsiniz. GPL  bu anlamda ücretsiz lisansların en tutarlı olanı olarak kabul edilir-dediğimiz gibi-GPL tarafından sağlanan,altında yayımlanan, kod  özgür kalmalıdır. Şirketler çeşitli vesilelerle kendi projelerine GPL kod dahil etmeye çalışıyorlar,bu GPL den kurtulmak için bir bahana degildir. telif hakkı sahibi olarak (en sık) FSF'nin sert eleştirilerinden sonra bu şirketler GPL ile uyumlu hale gelmiştir.En azından, Almanya'da GPL mahkeme kararıyla doğrulanmıştır--Linux kernel programcısı D-Link(ağ bileşenleri üreticisi, bu durumda bir Linux tabanlı NAS cihazı)'e karşı Frankfurt bölge mahkemesinde elde edebilir karar çıkarmıştır,cihazı dağıtırken GPL uyulamıdığını iddia ederek dava açmıştı.}
+\paragraph{}{Neden GPL çalışır? Bazı şirketler GPL'e ağır kısıtlamalar getirmeye yada geçirsiz kılmaya çalıştı. Örneğin,Amerika Birleşik Devletleri'nde, "Amerikan karşıtı" ya da "anayasaya aykırı" olarak adlandırıldı ve Almanya'da bir şirket geçersiz kılmak için rekabet hukuku kullanmaya çalıştı GPL sözde yasadışı fiyat belirleme yapıyormuş. Eğer bir şeyler yanlış ise hiç kimsenin bunu yapmayacağı fikti GPL ile kanıtlanabilir gibi görünüyor. Aslında bu saldırılın önemli bir kısmı göz ardı edilebilir: GPL olmasaydı, yazılımda yapımcısı dışından herhangi birinin değişiklik yapması doğru olmazdı, böyle dağıtımlar yapılamazdı ve yazılım satışlarıda telif hakları yasası ile sınırlandırılırdı. Yani eğer GPL yok olursa, kodlarla ilgili eğlendiğiniz ne varsa öncekinden daha kötü bir hal alır.}
+\paragraph{}{Bu noktada davalı "hayır" da diyebilir ama eğer "evet" dersede karar değişmez kodun herhangi bir telif hakkının olmaması onları gene haklı çıkarır.Bu rahatsız edici bir ikilemdir çünkü gerçekten bazı şirketler bu durumu kendi çıkarları için kullanmıştır-GPL anlaşmazlıkları çoğunlukla mahkeme dışında yaşanır.}
+\paragraph{}{Eğer bir yazılım üreticisi GPL ihlali yaparsa (örn. kendi projesine yüzlerce satır GPL kodu eklerse ),bu o projenin bütün kodlarının artık GPL'den bağımsız olduğu anlamına gelmez . Yanlızca GPL kodunun lisanssız dağıtıldığı anlamına gelir, üreticiler  bu sorunu çeşitli şekillerde çözerler:}
+\begin{itemize}
+ \item GPL kodunu kaldırarak kendi kodlarını koyarlar. Bu şekilde yazılımları GPL'den bağımsız olur.
+ \item GPL kodunun  telif hakkı sahibi ile pazarlık yapabilirsiniz (eğer varsa ve pazarlık yapmak isterse) örneğin, bir lisans ücreti ödemeyi kabul edersiniz.
+Ayrıca aşağıda birden çok lisans bölümüne bakınız.
+ \item Onlar programın tümünü gönüllü olarak GPL altında  yayınlayabilir ve böylece GPL koşullarına(en olası yöntem) bağlı kalınmış olur.
+ \end{itemize}
+\paragraph{}{Bunlardandan bağımsız olarak, önceki ihlalleri için ödenecek zarar söz konusu olabilir. Sahipli yazılımın yazılım telif hakkı durumu  herhangi bir şekilde bundan etkilenmez.}
+\end{subsection}
+\begin{subsection}{Diğer Lisanslar}
+\paragraph{}{GPL'e ek olarak, FOSS gibi popüler diğer lisanslarda vardır. Işte kısa bir bakış:}
+\paragraph{BSD Lisansı}{BSD lisansı Berkeley'deki Kaliforniya Üniversitesinde başlatılmıştır Unix dağıtımları kasıtlı olarak çok basit tutulur: Yazılım alıcı universite(veya uzantısı, orijinal yazılım yazarı)  tarafından yapıldığı izlenimi oluşturmadan istediğini yapmakta özgürdür. Program için mümkün olduğunca herhangi bir yükümlülük bulundurulmaz. lisans metni programın kaynak kodu ve içinde--Değiştirilmiş versiyonlarda veya dağıtılan diğer çalıştırılabilir formlarda-- veya dökümanlarında korunmuş olmalıdır.}
+\paragraph{}{Bir yazılım paketi BSD lisanslı kod içeriyorsa, bu kodun herhangi bir promosyon materyalinde yada bir sistemde kullanılması sorunu  telif hakkı sahibini ilgilendirir. Bu "reklam cümlesi" bir köşede dursun.}
+\paragraph{}{GPL'in aksine BSD lisansı yazılımın kaynağını açık tutmaya çalışmaz, isteyen  BSD lisanslı yazılımı aslında kendi yazılımının içine entegre edip binary olarak dağıtabilir(bu GPL yazılım olsaydı ilgili yazılımın kaynak kodunuda GPL altında dağıtmak gerekirdi).}
+\paragraph{}{Microsoft veya Apple gibi Ticari yazılım şirketleri, GPL yazılım konusunda daha az heveslidir fakat BSD lisanslı yazılımlar  ile hiçbir sorunları yoktur. Örneğin Windows NT tarafından kullanılan TCP/IP   network kodu(adapte şeklinde)  BSD'dir ve Macintosh'un OS X işletim sistemi BSD çekirdeğinin biraz daha geniş parçalarını kullanır.}
+\paragraph{}{FOSS toplulukları içinde,GPL veya BSD lisanslarından hangisinin "daha özgür" olduğu konusunda uzun süreler farklı görüşler belirtilmiştir. Bir taraftan bakıldığında mantıklı bir alıcı olarak , BSD lisanslı yazılımlarla daha özgürsünüzdür ve bu nedenle BSD lisansı mutlak olarak daha fazla özgürlük aktarıyordur. Öte yandan GPL savunucularına göre kodların ücretsiz kalması herkesin kullanması için önemlidir ve başka türlü olursa özel sistemler içinde kaybolunur , GPL kodunu almak isteyenlerin GPL yazılım havuzuna birşeyler vermek zorunda olması bu büyük özgürlüğün göstergesidir.}
+\paragraph{Apache Lisansı}{Apache lisansı BSD lisansı gibidir, yazılımların değiştirilmiş sürümlerinin aynı lisansı kullanarak ya da özgür-açık kaynak kodlu yazılım olacak şekilde dağıtılması koşulunu barındırmamaktadır. BSD' den daha karmaşıktır ama ayrıca patentleri, ticari marka haklarını ve diğer detaylar ile ilgili kullanım koşulları içerir.}
+\paragraph{Mozilla Kamu Lisansı}{Mozilla lisansı (Firefox ve diğer yazılım paketlerine uygulanır) BSD lisansı ile GPL' in bir karışımıdır. Copyleft yanı zayıf kalan bir lisanstır, MPL lisansı altında alınan kodun MPL altında yayınlanması şart koşulurken (GPL gibi) eklenen kodlar MPL altında yayınlanmak zorunda değildir.}
+\paragraph{Creative Commons}{Özgür Yazılım camiasının başarısı hukuk profesörü Lawrence (Larry) Lessig'i cesaretlendirdi ve Lawrence yazılıma ek olarak diğer çalışmalar içinde aynı durum için başvuruda bulundu. Amaç kitaplar, resimler, müzikler ve filmler gibi kültürel havuzu oluşan eserlerin herkesin kullanımına, değiştirmesine ve dağıtmasına özgürce açık olmasıydı. Yaygın özgür yazılım lisansları sadece yazılım üzerine oldukları için yaratıcı-üretimler lisansı eserlerini halkın kullanımına bağışlayan kişiler için geliştirildi. Bunlarda da bazı kısıtlamalar bulunabilir; sadece çalışmanın gösterilmesine izin verilebilir, GPL gibi değiştirilmiş ürünün ilerde yapılabilecek değişikliklere açık olarak sunulması istenebilir ya da yayının ticari amaçla kullanılması engellenebilir.}
+\paragraph{Kamu Malı}{“Kamu malı” artık telif hakları altında olmayan kültürel eserler için uygulanır. Anglo-Saxon yasal kurallarına göre bir eserin yaratıcısı eserini (örneğin bir yazılım parçası) kendi bütün haklarından vazgeçerek kamu malı haline getirebilir ama bu her zaman bütün yasal çevrelerde geçerli olmaz. Örneğin Almanya' da eserler bu eser üzerinde en son çalışan kişinin ölümünden 70 yol sonra kamu malı haline geçer. İlk bilgisayar programının bu şekilde herkese açık duruma geçmesi için biraz daha beklememiz gerekiyor.}
+\paragraph{}{1930' dan sonra üretilen telif haksız ürünlerin kamu malı durumuna geçmesi için bir ihtimal söz konusudur. Birleşik Devletlerde, Parlemento telif hakkı terimini süresi geçmiş bir çizgi film üzerinde genişletti ve dünyanın geri kalanı bunu izlemekten genel olarak memnun. Neden Walt-Disney' in torunlarının torununun gerçek bir artistin yaratıcılığından para kazanabileceği pek açık değil ama bu genelde en iyi lobiyi yapanlar tarafından belirlenen bir durum elbette.}
+\paragraph{Çoklu Lisanslama}{Temel olarak bir yazılım paketinin telif hakkı sahibi bu paketi aynı anda başka lisanslar altında da sunabilir – örneğin özgür yazılım lisansı GPL geliştiriciler için, sahipli telif hakkı kaynak kodlarını açıkça sunmak istemeyen şirketler için. Elbette bu en çok diğer programcıların kendi programları ile kullanabilecekleri kütüphaneler için anlam ifade eder. Kim sahipli bir yazılım geliştirmek isterse GPL kısıtlamalarından paralı lisans alarak kurtulabilir.}
+\paragraph{Alıştırmalar}{}
+\begin{itemize}
+ \item GPL ile ilgili olan yargılardan hangileri doğru ya da yanlıştır?
+ \begin{enumerate}
+ \item GPL yazılımı satılamaz.
+ \item GPL yazılımı şirketler tarafından değiştirilerek kendi ürünlerinde kullanılamaz.
+ \item GPL yazılım paketinin sahibi bu programı başka bir lisans altında da dağıtabilir.
+ \item GPL geçerli bir lisans değildir çünkü lisans ancak kişi sözü edilen yazılım paketini aldığında lisansı görür. Bir lisansın geçerli olabilmesi için kişinin bu lisansı görüp yazılımı kullanmadan önce kabul etmesi gerekir.
+ \end{enumerate}
+ \item FSF'nin “dört özgürlüğünü” Debian Özgür Yazılım Kılavuzu ile karşılaştırın. (Bölüm 2.4.4 e bakınız.) Hangi özgür yazılım tanımını daha çok beğendiniz ve neden onu daha çok beğendiniz?
+\end{itemize}
+\end{subsection}
+\end{section}
+\begin{section}{Önemli Özgür Yazılımlar}
+\begin{subsection}{Genel Bakış}
+\paragraph{}{Linux güçlü ve şık bir işletim sistemidir ama en iyi işletim sistemi bile üzerinde çalışacak programlar olmadan bir işe yaramaz. Bu bölümde normal Linux bilgisayarlarda bulunabilecek en önemli özgür yazılımlardan bir kısmını tanıtacağız.}
+\paragraph{}{Eğer belirli bir program söylediği şeyleri yapmıyorsa onları dikkate değer bulmuyoruz. Alanımız sınırlı ve LPI' nin ve sınavında geçen yazılım paketlerini anlatmaya çalıştık. (ne olur ne olmaz)}
+\end{subsection}
+\begin{subsection}{Ofis ve Geliştirici Araçları}
+\paragraph{}{Çoğu bilgisayar muhtemelen ofis uygulamaları için kullanılıyordur, çünkü bu uygulamalar mektup ve anılarınızı, seminer kağıtlarınızı ya da yüksek lisans tezinizi yazmanızı sağlar, tablolar kullanarak verinin gelişimini gösterir ve buna benzer görevlere sahiptir. Kullanıcılar ayrıca bilgisayardaki zamanlarının çoğunu internette ya da mail okur ya da yazarken harcarlar. Bununla ilgili birçok özgür yazılım olmasına şaşmamalı.}
+\paragraph{}{Bu bölümdeki programların çoğu sadece Linux için değil ve Windows, OS X ve Unix türevleri içinde bulunmaktadır. Bu kullanıcıların işletim sistemlerini Linux ile değiştirmeden Microsoft Office, Internet Explorer ve Outlook yerine Libre Office, Firefox ya da Thurderbird kullanarak işlerini halletmelerini sağlar. Eğer kartlarınızı doğru oynarsanız kullanıcılar farkı görmeyebilir bile.}
+\paragraph{OpenOffice.org}{Uzun yıllar boyunca özgür yazılım camiasının büyük ofis tarzı uygulamalar konusunda amiral gemisi konumundaydı. Yıllar önce “Star Office” olarak başlamıştı ve Sun tarafından satın alındıktan sonra özgür yazılım olarak dağıtılmaya başlanmıştı. (hafif inceltilmiş bir hali) OpenOffice.org bir insanın bir ofis programından bekleyeceği her şeye sahip; kelime işlemci, tablolar, sunum hazırlama, veritabanı,... - ve büyük rakibi Microsoft' un dosya formatlarıyla iş yapabilecek düzeyde.}
+\paragraph{LibreOffice}{Sun Oracle tarafından alındıktan sonra OpenOffice.org un geleceği belirsizdi ve OpenOffice.org un ana geliştiricilerinden bazıları birleştiler ve kendi OpenOffice.org sürümlerini yayınladılar. İki pakette şu an geliştirilmeye devam ediliyor (Oracle OpenOffice.org u Apache Yazılım Vakfına bağışladı), fakat ne zaman ve ne şekilde bir “birleşme” olacağı belli değil.}
+\paragraph{}{Şu an çoğu büyük Linux dağıtımı LibreOffice ile birlikte geliyor, çünkü LibreOffice daha hızlı bir şekilde geliştiriliyor ve daha önemlisi daha temiz bir sürüm.}
+\paragraph{Firefox}{Şu anda en popüler internet tarayıcısı ve Mozilla Vakfı tarafından dağıtılmaktadır. Firefox bir zamanların en tepede olan tarayıcısı Microsoft' un Internet Explorer' ından daha güvenli ve daha hızlı çalışmaktadır, daha çok iş yapar ve daha rahat bir kullanım sunar. Bunlara ek olarak kendi isteklerinize göre Firefox' u özelleştirmek için varolan eklentileri kullanabilirsiniz.}
+\paragraph{Chromium}{Google tarayıcısı Chrome' un özgür yazılım türevi. Chrome son zamanlarda Firefox ile yarışmaya başladı – Chrome' da eklentileriyle birlikte oldukça güçlü ve güvenli bir tarayıcı. Özellikle Google' ın desteği ile son zamanlarda hız kazanmaya başladı.}
+\paragraph{Thunderbird}{Mozilla Vakfı' nın dağıttığı bir e-posta programı. Altyapısının büyük bir kısmını Firefox tarayıcısıyla ortak kullanıyor ve Firefox gibi değişik amaçlar için kullanılabilecek çok sayıda eklenti sunuyor.}
+\end{subsection}
+\begin{subsection}{Görseller ve Çoklu Ortam Araçları}
+\paragraph{}{Görseller ve çoklu ortam Macintosh' un baskınlığı altında. (Windows tarafında da iyi yazılımlar sunulsa bile) Kabul etmek gerekirse, Linux hala Adobe Photoshop'a eşdeğer bir programın eksikliğini hissediyor fakat bu konudaki yazılımlarda o kadar da kötü değil.}
+\paragraph{Gimp}{resimleri düzenlemek için bir programdır. Photoshop'un eşdeğeri sayılmaz (örneğin bazı baskı öncesi özellikleri eksik) ama kesinlikle çoğu amaç için kullanılabilir hatta Photoshop' un iyi bir şekilde yapmadığı web için gereken grafikleri hazırlamak için birkaç araç sunuyor.}
+\paragraph{Inkscape}{Gimp Linux'un Photoshop'u konumundayken Inkscape resimler için kullanılır, vektör tabanlı grafiklerin oluşturulması açısından güçlü bir araçtır.}
+\paragraph{ImageMagick}{neredeyse bütün görsel formattaki dosyaları birbirine çevirmeye yarayan bir yazılım paketidir. Ayrıca resimleri betik kontrollü bir şekilde düzenleme yolları sunar. Web sunucuları ve grafiklerin bir fare ve monitörle işlenmesi gereken diğer çevreler için harikadır.}
+\paragraph{Audacity}{ses dosyalarını düzenlemek için kullanılır, Windows ve Mac bilgisayarlarda da popülerdir.}
+\paragraph{Cinelerra}{ve KDEnlive ya da OpenShot gibi programlar “düzgün-olmayan video düzenleyiciler” olarak bilinir ve dijital görüntü kaydedicilerden, TV alıcılarından, web kameralarından video alabilir bunları düzenleyip değişik efektler koyabilir ve çıktıyı istenen formata dönüştürebilirler.}
+\paragraph{Blender}{sadece güçlü bir video düzenleyici değil ama ayrıca üç boyutlu görsel tasarımına izin veren bir programdır, profesyonel kalitede canlandırma filmler için kullanılabilecek bir yazılımdır.}
+\paragraph{}{Bahsetmemiz gereken bir konu var, o da Linux olmadan bugünün patlamalı Holywood filmlerinden hiçbiri üretilemezdi. Büyük stüdyoların özel efekt “üretim çiftlikleri” nin hepsi Linux tabanlıdır.}
+\end{subsection}
+\begin{subsection}{İnternet Servisleri}
+\paragraph{}{Linux olmadan internet çok tanınır olmayabilirdi: Google' ın yüzbinlerce sunucusu dünyanın bütün dünyanın en büyük hisse senedi değişim ticaret sistemini çalıştırmak gibi görevlerde, istenen performans sadece Linux ile sağlanabildiği için Linux kullanır. Gerçek şu ki, çoğu internet yazılımı önce Linux' ta geliştirilir ve çoğu üniversite araştırmaları açık kaynaklı Linux platformu üzerinde olur.}
+\paragraph{Apache}{açık ara internetteki en popüler web sunucusudur, bütün web sitelerinin yarısından falzası bir Apache sunucusu üzerinde çalışır.}
+\paragraph{MySQL ve PostgreSQL}{özgürce dağıtılan ilişkisel veritabanı sunucularıdır. MySQL web siteleri için en iyisiyken PostgreSQL bütün amaçlar için kullanılabilecek yenilikçi ve yüksek performanslı bir veritabanı sunucusudur.}
+\paragraph{Postfix}{güvenli ve çok güçlü bir mail sunucusudur. Ev ofislerinden büyük ISP'lere ya da Fortune 500 listesindeki şirketlere kadar kullanılabilecek bir sistemdir.}
+\end{subsection}
+\begin{subsection}{Altyapı Yazılımları}
+\paragraph{}{Bir Linux sunucusu yerel ağda çok kullanışlı olabilir: Güvenilirdir, hızlıdır ve düşük-bakım gerektiren yükleyip unutabileceğiniz bir yazılımdır. (düzenli yedeklemeler dışında tabi ki!)}
+\paragraph{Samba}{bir Linux makinesini Windows istemcileri için bir sunucuya dönüştürebilir. (Linux istemciler içinde bunu yapabilir elbette) Yeni Samba 4 ile bir Linux sunucusu Aktif Dizin alan kontrolcüsü olarak kullanılabilir. Güvenilirlik, performans ve cepte kalan lisans paraları oldukça ikna edicidir.}
+\paragraph{NFS}{Samba için bir Unix ortamıdır ve ağdaki diğer Linux ve Unix makinelere Linux sunucu diskine erişimi sağlar. Linux geliştirilmiş performans ve güvenliği ile modern NFSv4' ü destekler.}
+\paragraph{OpenLDAP}{orta ve büyük ağlar için bir dizin servisi görevi görür ve (serves as a directory service for medium and large networks and offers a large degree of redundancy and performance for queries and up-dates through its powerful features for the distribution and replication of data.)}
+\paragraph{DNS ve DHCP}{temel ağ altyapısıdır. BIND ile birlikte Linux DNS sunucularını destekler ve ISC DHCP sunucusu çok büyük ağlarda bile istemcilere IP adresi gibi ağ parametrelerini sağlayabilir. Dnsmasq küçük ağlar için kullanması kolay bir DNS ve DHCP sunucusudur.}
+\end{subsection}
+\begin{subsection}{Programlama Dilleri ve Geliştirme}
+\paragraph{}{Başlangıcından beri Linux hep geliştirme ortamları için geliştirilmiştir. Bütün önemli diller için derleyiciler ve yorumluyucular bulunur – GNU derleyici ailesi, örnek olara, C, C++, Objektif C, Java, Fortran ve Ada' yı destekler. Elbette Perl, Python, Tcl/Tk, Ruby, Lua ya da PHP gibi popüler betik dilleride desteklenir ve Lisp, Scheme, Haskell, Prolog ya da Ocaml gibi daha az yaygın kullanılan dillerde çoğu Linux dağıtımı tarafından desteklenir.}
+\paragraph{}{Çok zengin bir setten oluşan editörler ve yardımcı araçlar yazılım geliştirmeyi bir keyfe dönüştürür. Standart düzenleyici vi ve GNU Emacs ya da Eclipse gibi profesyonel geliştirme ortamlarıda Linux' ta hazırdır.}
+\paragraph{}{Linux ayrıca “gömülü sistemler” için olan geliştirme ortamları içinde uygundur, yani bilgisayarlar kullanıcının uygulamaları içinde çalışır bunlar Linux' un kendi temeline ya da özelleştirirmiş bir işletim sistemine dayanır. Bir Linux bilgisayarda, ARM işlemcilerde çalışacak makine kodunu üretecek bir derleyici ortamını yüklemek kolaydır. Linux ayrıca Android akıllı telefonları için yazılım üretilmesi için kullanılır ve bu amaç için kullanılaran araçlar Google tarafından özgürce dağıtılır.}
+\end{subsection}
+\paragraph{Amaçlar}
+\begin{itemize}
+ \item Hangi Özgür Yazılım projelerini duydunuz? Hangilerini kendiniz kullandınız? Telif hakkıyla satılan alternatiflerinden daha iyi mi yoksa daha kötü mü olduklarını düşünüyorsunuz? Eğer öyleyse, neder? Öyle değilse, neden?
+\end{itemize}
+\end{section}
 \chapter{First Steps with Linux}
+
+
 \chapter{Who's Affraid of the Big Bad Shell}
+\paragraph{Amaçlar}
+\begin{itemize}
+ \item Komut-satır kullanıcı arayüzünün önemini anlamak
+ \item Bourne-Again Shell(Bash) komutları ile çalışmak
+ \item Linux komutlarının yapısını anlamak
+ \end{itemize}
+ 
+\paragraph{Önceden Bilinmesi Gerekenler}
+\begin{itemize}
+ \item Temel bilgisayar bilgisi işe yarar olacaktır.
+ \end{itemize}
+
+\begin{section}{Neden?}
+\paragraph{}{Linux, diğer modern işletim sistemlerine göre klavye ile metinsel komutlar girme fikrine dayanır. Windows tarzı sistemler kullananlar için çok eski bir teknik gibi gelebilir, hatta Linux'e Windows'tan gelen çoğu kişiler için komut satır arayüzü "kültür şoku" gibidir.}
+\paragraph{}{Ama herşey o kadar göründügü gibi kötü değil. Günümüzde Linux için de Windows'ta, Mac OS X'te olduğu gibi onlara eşit veya bazı noktalarda daha iyi kullanım sunan görsel arayüzler var. Öte yandan, görsel arayüzler ve metin odaklı komut satırı birbirini dışlayan değil, aslında tamamlayıcıdırlar ("Her iş için doğru araç" felsefesine göre)}.
+\paragraph{}{Günün sonunda gelişmekte olan Linux kullanıcısı olmak dışında aynı zamanda "kabuk" olarak bilinen metin odaklı kullanıcı arayüzüne alışmış olacaksınız. Kimse sizin görsel masaüstü kullanmanızı engellemez. Ancak, kabuk ile yapabileceğimiz son derece güçlü, karmaşık operasyonları görsel olarak yapmak oldukça güçtür. Kabuğu ihmal etmek arabanın birinci vitesi dışında tüm viteslerini gereksiz saymak gibidir
+\footnote{Bu metafor manuel vites kullanan Aprupalılar ve diğer insanlar içindir; bizim Amerikan okuyucularımız tabi ki otomatik vites kullanırlar.
+Hepsinin Windows kullanıyor olması gibi}. Tabi ki birinci vitesle de ulaşmak istediğiniz yere ulaşırsınız fakat bu zaman kaybına ve gereksiz gürültüye sebep olur. Pekala, bu işlemin Linux'ta nasıl yapıldığını niçin ögrenmeyelim? Şimdi iyice dikkat ederseniz size bu konuyla ilgili birkaç püf noktası aktaralım.}
+\begin{subsection}{Kabuk nedir?}
+\paragraph{}{Kullanıcılar doğrudan doğruya işletim sisteminin çekirdeğiyle iletişim kuramazlar. Bu sadece "sistem çağrıları"nı kullanan programlarla mümkündür.Ancak, bir şekilde bu tür programları başlatabiliyor olmanız gerekir.Kabuk, klavyeden girilen komutları (genellikle) okuyup onları çalıştırılabilir hale getiren, özel bir kullanıcı programı olarak bu görevi üstlenir. Kabuk, bilgisayara "arayüz" hizmeti vererek asıl işletim sisteminin kabuğunu örter.Tabi ki kabuk, işletim sistemine erişen programlar arasından sadece bir tanesidir.}
+\paragraph{}{Bugünün görsel "masaüstü" de "kabuk" olarak kabul edilebilir, örneğin KDE gibi. Klavyeden girilen komutlar kabuk tarafından belli bir dil bilgisi kuralına göre işleme konur; aynı şeyi görsel masaüstü, komutları fareden alarak gerçekleştirir. Örneğin, fare yardımıyla nesneleri tıklayarak seçersiniz ve ne yapacağınıza karar verirsiniz: açmak, kopyalamak, silmek vs.}
+\paragraph{}{Hatta 1960 Unix modelinde bile kabuk vardı. En eski kabuk 1970'lerin ortalarında "Unix'in 7. sürümü" için Stephen L.Bourne tarafından geliştirildi."Bourne kabuğu" olarak isimlendirilen bu kabuk temel işlevleri yerine getirip yaygın olarak kullanılıyordu, ama bugün bu kabuk orijinal haliyle nadiren görülür.(C kabugu) Diğer klasik Unix kabukları C kabuğunu içerir, bu kabuk Berkeley'de bulunan California Üniversitesi'nde C programlama dili ile oluşturuldu ve büyük ölçüde Bourne kabuğu ile uyumlu olmasına rağmen daha işlevsellik açısından daha gelişmiş (David Korn tarafından geliştirildi, AT\&T'de de geliştirildi).}
+\paragraph{}{Linux sistemlerinde standart Bourne-again shell kabuğudur, kısacası bash. Bu kabuk, Brian Fox ve Chet Ramey tarafından Özgür Yazılım Vakfı'nın GNU projesi altında geliştirilmiş olup, Korn ve C kabularının birçok işlevlerini
+birleştirir.}
+\paragraph{}{Bahsettiğimiz kabukların haricinde başka kabuklar da mevcuttur. Unix'te, kabuk diğer programlar gibi sıradan bir uygulama programıdır,
+üzerine yazmak için ek olarak ayrıcalığa gerel yoktur - sadece kabuğun diğer programlarla nasıl iletişim kurması gerektiği yönetmeliğinin 
+kurallarına bağlı kalmanız yeterlidir.}
+\paragraph{}{Kabuklar kullanıcı komutlarını okumak için etkilesimli olarak çağrılabilirler (genellikle "terminal" üzerinde). Pek çok kabuk bir de dosyadan komut dizilerini okuyabilir. Bu tür dosyalara "kabuk betikleri" denir.}
+\paragraph{}{Kabuk aşağıdaki adımları takip eder:
+\begin{itemize}
+\item Terminalden (veya dosyadan) komut okumak
+\item Komutları onaylamak
+\item Komutu doğrudan doğruya çalıştırmak veya karşılık gelen programı çalıştırmak
+\item Sonucu ekrana (veya başka yere) vermek
+\item 1. adımdan devam etmek
+\end{itemize}}
+\paragraph{}{Standart komut döngüsü dışında, kabuk genellikle programlama dili gibi ilave özellikler de içerir. Bu da karmaşık komut yapıları, koşulları ve değiskenleri içerir. Son zamanlarda kullanılan komutlar yeniden kullanabilme kullanıcının hayatını kolaylaştırmaktadır.}
+\paragraph{}{Kabuk oturumları genellikle "exit" komutu ile sonlandırılabilir. Bu işlem oturum açtıktan hemen sonra elde ettiğimiz kabuk için de geçerlidir.}
+\paragraph{}{Daha önce de bahsettiğimiz gibi birçok kabuk vardır. Ama biz çoğu Linux dağıtımında gelen standart kabuk olan "bash" üzerinde odaklanalım. LPI sınavları da özellikle bash'e işaret eder.}
+\paragraph{Alıştırmalar}{}
+\begin{itemize}
+ \item 2 Oturumunu kapatın ve tekrar açın, sonra "echo \$0" komutun çıktısını giriş kabuğunda kontrol edin. "bash" komutu ile yeni bir kabuk başlatın ve "echo \$0"i tekrar girin. Iki komutun çıktısını karşılaştırın. Alışılmadık herhangi birşey farkettiniz mi?
+\end{itemize}
+\end{subsection}
+\end{section}
+\begin{section}{Komutlar}
+\begin{subsection}{Neden komutlar?}
+\paragraph{}{Bir birgisayarın eylemleri, işletim sistemi ne olursa olsun üç adımla tanımlanabilir:
+\begin{itemize}
+ \item Bilgisayar kullanıcının veri girmesi için bekler
+ \item Kullanıcı komut seçer ve klavye ya da fare aracılığıyla komutu girer
+ \item Bilgisayar komutu gerçekleştirir
+\end{itemize}}
+\paragraph{}{Linux sisteminde kabuk bir "istemi" görüntüler, bu da komutların girilebileceğini gösterir. Bu istem genellikle geçerli bir kullanıcı ve host (bilgisayar) adını, bulunduğumuz geçerli dizini ve son karakteri içerir:}
+\begin{quotation}{joe@red:/home $>$ \_}
+\end{quotation}
+\paragraph{}{Bu örnek,"joe" kullanıcısının "red" adındaki bilgisayarın "/home" dizininde bulunduğunu ifade etmektedir.}
+\end{subsection}
+\begin{subsection}{Komut Yapısı}
+\paragraph{}{Bir komut aslında karakterler dizisinden oluşur ve enter tuşuna basılmasıyla komut, kabuk tarafından değerlendirilir. Çogu komut Inglizce'den esinlenilerek "komut diline" verilmiş bir şekildir. Bu dilde komutlar belli kurallara, "sözdizimine" uymalıdır ki kabuk bunları yorumlayabilsin.}
+\paragraph{}{Kabuk komut satırını yorumlayabilmek için ilk önce satırı sözcüklere ayırır. Gerçek hayatta olduğu gibi sözcükler bosluklarla ayırılır. Satırdaki ilk sözcük genellikle asıl komuttur. Satırdaki geri kalan sözcükler detaylı olarak ne yapılmak istendiğini belirten parametrelerdir.}
+\paragraph{}{Kabuğun büyük ve küçük karakterleri birbirinden ayırabiliyor olması DOS ve Windows kullanıcılarını şaşırtabilir. Linux komutları genellikle sadece küçük harflerle (istisnaları kanıtlama kuralı) yazılır. Ayrıca 4.2.4'e bakın.}
+\paragraph{}{Komutları sözcüklere ayırırken, kabuk için sözcüklerin arasında bir veya daha fazla boşluk karakterinin olması aynı şeydir. Aslında, kabuk için sözcükler arasında boşluk karakterinin olup olmamasının önemi yoktur; tabulator karakterine de izin verilmiştir. Bu karakterin önemi de komutları dosyalardan okurkendir, çünkü kabuk doğrudan doğruya tab karakterini girmeye izin vermez (en azından çemberleri atlamadan).}
+\paragraph{}{Bilgisayara girdiğiniz komut tek satıra sığmayacaksa bunu birkaç satırda ifade etmek de mümkün. Ama bunun bir komut girdisi olarak  anlaşılmaması için satır sonlandırıcıdan önce (enter) "Token \" karakteri yazılmalıdır. Komutların parametreleri kabaca ikiye ayırmak mümkündür:
+\begin{itemize}
+ \item Tire("-") ile başlayan parametreler seçenekler diye isimlendirilir. Bunlar genelde, isteğe bağlıdır, detaylar söz konusu komuta göre değisir. Bunlara mecazi olarak "anahtarlar" demek mümkündür. Bunlar komutun bazı özelliklerinin açılıp kapanmasını sağlarlar. Eğer komuta birkaç tane seçenek eklenmek istenirse bunları ayrı ayrı tire karakteri ("-a -l -F") ile yazabileceğimiz gibi tek tire karakteri ile de yapılabilir ("-alF"). Konsol komutları birden fazla seçenek alabilir. Bunların bazısı tek karakterle yazılabilen seçenekler olurken kimisi okunabilirliği arttırmak için uzun şekilde yazılan seçeneklerdir. Uzun seçenekler çoğu zaman iki tire karakteri ile başlarlar ve birleştirilemezler: "foo --bar --baz".
+ \item Tire ile başlamayan parametreler "delil" olarak adlandırılır. Bu da çogu zaman komutun işlemesi gerektiği dosyanın adına karşılık gelir
+\end{itemize}
+}
+\paragraph{}{Genel komut yapısı aşağıdaki gibi gösterilebilir:
+\begin{itemize}
+\item Komut - "Ne yapılacak?"
+\item Seçenekler - "Nasıl yapılacak?"
+\item Deliller - "Ne ile yapılacak?"
+\end{itemize}
+}
+\end{subsection}
+\paragraph{}{Genellikle seçenekler komutlardan sonra, delillerden önce gelir. Ancak, komutların tümü bu şekilde kuralın işlemesini şart koşmazlar. Bazıları delil ve seçenekleri keyfi olarak karıştırabilirler ve onlar, bütün seçenekler komuttan sonra gelmiş gibi davranırlar.Komut satırı sırayla işlenirken -*-*diğerleriyle karşılaşıldığında seçenekler de dikkate alınır.}
+\paragraph{}{Geçerli Unix sistemlerinin (Linux dahil) komut yapısı 40 yıllık bir süreç içinde büyük bir gelişme sağladı ve bu nedenle bazen çeşitli tutarsızlıkların ve küçük sürprizlerin görülmesi doğaldır. Biz de daha tutarlı olması gerektiğine inanıyoruz ama 30 yıllık geçmişe sahip kabuk betiklerini tamamen göz ardı etmek zordur. Bu nedenle sık sık görülen küçük garipliklere hazırlıklı olun.}
+
+\begin{subsection}{Komut Tipleri}
+\paragraph{Dahili komutlar}{Bu komutlar kabuğun kendisi tarafından sunulmaktadır. Bourne-again hızlı gerçekleştirilebilen 30 kadar dahili komut içerir. Kabuğun durumunu degiştiren bazı komutlar (exit veya cd gibi) dışarıdan temin edilemez.}
+\paragraph{Harici komutlar}{Kabuk bu tür komutları kendi kendine çalıştırmaz ama çalıştırılabilir dosyaları başlatır. Ki bu tür dosyalar genelde /bin veya /usr/bin 
+dizinleri altında bulunurlar.Bir kullanıcı olarak kendi programlarınızı temin edip kabuğun diğer tüm harici komutları çalıştırdığı gibi kendi programlarınızın çalıştırılmasını sağlayabilirsiniz. Komutunuzun türünü öğrenmek için "type" komutunu kullanabilirsiniz. Bu komuta delil olarak komut adı verirseniz çıktı olarak size komutun türünü ya da karşılık gelen dosya ismini verir, örneğin}
+\begin{tabular}{cccc|c|}
+  $\lambda$& (5)& \\
+\hline 
+  $d_{_\lambda}$& 1\\ 
+\end{tabular}
+\end{subsection}
+\end{section}
 \chapter{Getting Help}
 \chapter{Care nad Feeding}
 \chapter{Regular Expressions}

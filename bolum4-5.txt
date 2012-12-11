@@ -140,7 +140,7 @@ Kabuk aşağıdaki adımları takip eder:
 	
 	  * Tire ile başlamayan parametreler "delil" olarak adlandırılır. Bu da çogu zaman komutun işlemesi gerektiği dosyanın adına karşılık gelir
 
-	 Genel komut yapısı aşağıdaki gibi gösterilebilr:
+	 Genel komut yapısı aşağıdaki gibi gösterilebilir:
 	   * Komut - "Ne yapılacak?"
 	   * Seçenekler - "Nasıl yapılacak?"
 	   * Deliller - "Ne ile yapılacak?"
