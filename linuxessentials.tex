@@ -3,7 +3,7 @@
 \usepackage{amsmath}
 \usepackage{amsfonts}
 \usepackage{amssymb}
-\usepackage[left=3cm,right=2cm,top=2cm,bottom=2cm]{geometry}
+\usepackage[left=2cm,right=2cm,top=2cm,bottom=2cm]{geometry}
 \begin{document}
 \title{Linux'a Giriş}
 \author{Selim Işık\\
@@ -147,7 +147,7 @@ olabilir, örneğin oturma odasında bulunan bir video kaydedici olarak kullanı
 \end{section}
 
 
-\chapter{Linux ve özgür Yazılım}
+\chapter{Linux ve Özgür Yazılım}
 \paragraph{Amaçlar}
 \begin{itemize}
  \item Knowing the basic principles of Linux and free software
@@ -322,12 +322,78 @@ Ayrıca aşağıda birden çok lisans bölümüne bakınız.
 \paragraph{}{Çok zengin bir setten oluşan editörler ve yardımcı araçlar yazılım geliştirmeyi bir keyfe dönüştürür. Standart düzenleyici vi ve GNU Emacs ya da Eclipse gibi profesyonel geliştirme ortamlarıda Linux' ta hazırdır.}
 \paragraph{}{Linux ayrıca “gömülü sistemler” için olan geliştirme ortamları içinde uygundur, yani bilgisayarlar kullanıcının uygulamaları içinde çalışır bunlar Linux' un kendi temeline ya da özelleştirirmiş bir işletim sistemine dayanır. Bir Linux bilgisayarda, ARM işlemcilerde çalışacak makine kodunu üretecek bir derleyici ortamını yüklemek kolaydır. Linux ayrıca Android akıllı telefonları için yazılım üretilmesi için kullanılır ve bu amaç için kullanılaran araçlar Google tarafından özgürce dağıtılır.}
 \end{subsection}
-\paragraph{Amaçlar}
+\paragraph{Alıştırmalar}
 \begin{itemize}
  \item Hangi Özgür Yazılım projelerini duydunuz? Hangilerini kendiniz kullandınız? Telif hakkıyla satılan alternatiflerinden daha iyi mi yoksa daha kötü mü olduklarını düşünüyorsunuz? Eğer öyleyse, neder? Öyle değilse, neden?
 \end{itemize}
 \end{section}
-\chapter{First Steps with Linux}
+\begin{section}{Önemli Linux Dağıtımları}
+\begin{subsection}{Genel Bakış}
+\paragraph{}{Eğer birisi “Bilgisayarımda Linux çalışıyor” derse genelde sadece Linux'u değil, Linux temelinde çalışan tamamlanmış bir yazılım ortamından bahsediyordur. Bu genelde kabuğu (bash) ve komut-satırı araçlarını, X.org görsel sunucuyu, KDE ya da Gnome görsel bir kullanıcı arayüzünü, LibreOffice, Firefox ya da Gimp gibi araçları ve diğer bir sürü kullanışlı programı içerir. Elbette bu araçların hepsinin Orijinal kaynakları internette bulunarak derlenebilir faka çoğu Linux kullanıcısı önceden yapılmış bir yazılım setini ya da bir “Linux dağıtımını” tercih eder.}
+\paragraph{} {Linux dağıtımı 1992' nin başlarında ortaya çıktı -- buunla birlikte bunlardan hiçbiri günümüzde geliştirilmiyor ve genellikle unutulmuş haldedirler. Hala çalışan en eski dağıtım olan Slackware ilk defa Temmuz 1993' te ortaya çıkmıştır.}
+\paragraph{}{Değişik amaç ve yaklaşımlara sahip birçok Linux dağıtımı bulunur. Bazı dağıtımlar şirketler tarafından dağıtılır ve muhtemelen sadece para için satılır, gönüllülük esasıyla geliştirilen dağıtımlarda bulunmaktadır. Bu bölümde en önemli genel amaçlı dağıtımları inceleyeceğiz.}
+\paragraph{}{Eğer en sevdiğiniz Linux dağıtımından bahsetmezsek bu onu beğenmediğimiz anlamına gelmez, sadece yerimiz ve zamanımızın kısıtlı olduğunu ifade eder. Eğer bir dağıtım listemizde yoksa bu onun kötü ya kullanışsız olduğu anlamına gelmez bu sadece o dağıtımın listemizde olmadığı anlamına gelir.}
+\paragraph{}{“DistroWatch” web sitesi (http://distrowatch.com/ ) en önemli Linux dağıtımlarını listeler ve dağıtım-yönelimli haberleri sağlar. Şu anda 317 tane dağıtımı içeriyor (evet tam üçyüzonyedi tane!) ama bunu okuduğunuz süre içerisinde muhtemelen bu rakam doğru olmayacak.}
+\end{subsection}
+\begin{subsection}{Red Hat}
+\paragraph{}{Red Hat (http://www.redhat.com/ ) 1993 yılında Linux ve Unix araçları sağlayan bir dağıtım şirketi olan “ACC Corporation” tarafından ortaya çıkarıldı. 1995' te şirket kurucusu, Bob Young, 1994' te Red Hat Linux diye adlandırılan bir Linux dağıtımını ortaya çıkaran Marc Ewing' in şirketini satın aldı ve onun şirketinin adını “Red Hat Yazılım” olarak değiştirdi. 1999' da Red Hat halka sunuldu ve şu an muhtemelen sadece Linux ve özgür yazılım tabanlı olan en büyük şirket.}
+\paragraph{}{Red Hat orijinal bireysel müşteri marketinden çekildi (son Red Hat Linux 2004' te yayınlandı) ve şimdi “Red Hat Enterprise Linux” (RHEL) adı altında şirketler için profesyonel bir dağıtım ile pazara girdi. RHEL sunucu başına lisanslanmıştır ama yazılıma para ödemezsiniz – GPL ve benzer özgür yazılım lisansları ile gelmektedir bunlar-- ama zamanlanmış güncellemeleri ve problem desteği için para ödersiniz. RHEL veri merkezleri için çokça tercih edilir ve diğerleri dışında hata dayanıklılığı için destek verir. (uygun ek araçlarla)}
+\paragraph{}{“Fedora” (http://www.fedoraproject.org/ ) büyük kısmı Red Hat tarafından kontrol edilen bir dağıtımdır ve RHEL için bir “deneme yatağı” olarak hizmet eder. Yeni yazılım ve fikirler önce Fedora' da denenir ve kullanışlı olduğu ortaya çıkanlar er ya da geç RHEL' de yerini alır. RHEL' in aksine Fedore satılmak yerine internette bedava olarak indirilebilir haldedir, proje bir kısmı Red Hat bir kısmı camia geliştiricileri olan bir komite tarafından sürdürülür. Çoğu Fedore kullanıcısı için var olan yazılımlara odaklanmak ve yeni fikirler dağıtımın cazibeli kısmıdır, hatta bu sık sık gelen güncellemeler anlamına gelse bile. Fedora başlangıç seviyesi kullanıcıları ve güvenilir olması gereken sunucular için çok uygun değildir.}
+\paragraph{}{Red Hat yazılımlarını GPL gibi özgür yazılım lisansları altında dağıttığı için Red Hat' a lisans bedelini ödemeden aynı işlevleri gören bir sistem edinmek mümkündür. CentOS (http://www.centos.org/ ) ya da Scientific Linux (https://www.scientificlinux.org/ ) gibi dağıtımlar genelde RHEL tabanlıdır ama bütün Red Hat markası silinmiştir. Bu temelde aynı yazılımı Red Hat desteği olmadan elde etmeniz anlamına gelir.}
+\paragraph{}{CentOS özel olarak RHEL' e çok yakındır ve Red Hat size CentOS makineleriniz için destek satmaktan mutlu olacaktır. Bunun için RHEL yüklemenize bile gerek kalmaz.}
+\end{subsection}
+\begin{subsection}{SUSE}
+\paragraph{}{Alman şirketi SUSE “Gesellschaft für Software- und System-Entwicklung” ismi altında Unix desteği veren bir firma olarak 1992 yılında kuruldu. Ürünlerinden biri Patrick Volkerding’in Linux dağıtımı idi, ilk tamamlanmış Linux dağıtımı olan Slackware' den türetilmişti. Yavaş yavaş Red Hat' ten RPM paket yönetimi ya da /etc/sysconfig dosyası gibi bazı özellikler alarak Slackware' den ayrılmaya başladı. Slackware gibi görünmeyen ilk S.u.S.E sürümü 1996' nin sürüm 4.6'sı idi. SuSE(isimdeki noktalar bir zaman sonra kayboldu) kısa sürede Alman dilindeki bir Linux dağıtımı olarak öne çıktı ve “Kişisel” ve “Profesyonel” olmak üzere iki tane toplu set halinde dağıtılmaya başlandı}
+\paragraph{}{Kasım 2003' te Amerikan yazılım şirketi Novell SuSE' yi 210 milyon dolara aldığını ilan etti; anlaşma sonuçlandırıldı. (Bu noktadan sonra SuSE SUSE olarak değişti) Nisan 2011' de Novell SuSE ile birlikte Attachmate adlı bir firma tarafından alındı, bu firma terminal emülatörleri, sistem monitörleme ve uygulama taşıma ve Linux ve açık kaynak camiaları tarafından önceden keşfedilmemiş işler yapıyordu. O zamandan beri Novell birisi SUSE olmak üzere iki ayrı iş kolunda çalışmaya devam etti. araçları konusunda çalışıyordu.}
+\paragraph{}{Red Hat gibi SUSE' de bir şirket Linux' u önerir, SUSE Linux Enterprise Server (SLES, http://www.suse.com/products/server/ ). Ayrıca SUSE Linux Enterprise Desktop (SLED) dağıtımıda bulunur, bu dağıtım masaüstü iş istasyonlarında kullanılmak üzere tasarlanmıştır. SLES ve SLED içerdikleri paketler açısından değişiklik gösterirler; SLES daha çok sunucu yazılımına yönelikken SLED daha interaktif yazılımları kullanır.}
+\paragraph{}{ Şekil 2.2: Debian Projesinin örgütsel yapısı}
+\paragraph{}{SUSE' de, bireysel kullanıcılar için bir dağıtım çıkarıyor ve bu serbestçe kullanılabilir bir durumdadır, “openSUSE” (http://www.opensuse.org/), eski zamanlarda dağıtım optik medyalarda dağıtıldıktan birkça ay sonra indirmek için internete konulurdu. Red Hat' in aksine SUSE hala lisanslı ürünler içeren paket ürünler satar. Fedora' nın aksine openSUSE hala kısa yaşam süreleri içeren ciddi bir platformdur.}
+\paragraph{}{SUSE dağıtımının fark edilir ürünlerinden biri kapsamlı bir grafiksel sistem yönetim aracı olan “YaST” dır.}
+\end{subsection}
+\begin{subsection}{Debian}
+\paragraph{}{İki büyük Linux dağıtımı firması olan Red Hat ve Novell/SUSE' nin aksine Debian projesi (www.debian.org) amaçları yüksek kalite bir Linux dağıtımı olan ve Debian GNU/Linux olarak adlandırılan bir dağıtımı herkes için kullanılabilir yapmak olan gönüllülerin çalışmasının bir sonucudur. Debian projesi Ian Murdock tarafından 16 Ağustos 1993 yılında duyuruldu, isim kendi ismi ile o zamanlar kız arkadaşı (şimdi eski karısı) olan Debra' nın isimlerinin bir birleşimi olarak ortaya çıktı. (Bu sebeple debb-ian olarak telaffuz ediliyor) Şu anda proje 1000' den fazla gönüllü yardımına sahiptir.}
+\paragraph{}{Debian üç belgeye dayanmaktadır:}
+\begin{itemize}
+ \item Debian Özgür Yazılım Kılavuzları (DFSG – Debian Free Software Guidelines) hangi yazılım projesinin özgür olarak kabul edilebileceğini tanımlar. Bu önemlidir, çünkü sadece DFSG-özgür yazılımları Debian GNU/Linux dağıtımına kesin olarak katılabilir. Proje ayrıca özgür olmayan yazılımlarıda içerir, bunlar dağıtımın sunucusunda DFSG özgür yazılımlarından kesin bir şekilde ayrı tutulur. İkincisi main diye adlandırılan alt dizinin non-free bölümündedir. (contrib olarak adlandırılan bir orta alan bulunur, bu bölüm kendi içinde DFSG yazılımı olup özgür olmayan yazılımlar olmadan çalışamayan yazılımları içerir.
+ \item Toplumsal Sözleşme projenin amaçlarını tanımlar.
+ \item Debian Tüzüğü projenin organizasyon kısmını tanımlar. (Şekil 2.2' ye bakınız)
+\end{itemize}
+\paragraph{}{Herhangi bir zamanda Debian GNU/Linux' un en az üç sürümü bulunur. Yeni ya da düzeltilmiş sürüm paketleri unstable bölümüne konulur. Eğer belirli bir zaman aralığında pakette önemli hatalar olmadığı anlaşılırsa bu testing bölümüne kopyalanır. Genelde testing bölümünün içeriği “dondurulmuş” olarak geçer ve çok ayrıntılı bir şekilde test edilir. En sonunda stable olarak yayınlanır. Debian GNU/Linux' un en sık eleştirilen özelliklerinden birisi stable sürümler arasındaki zaman uzunluğudur, ama genelde bu bir avantaj olarak kabul edilir. Debian projesi sadece Debian GNU/Linux' u indirmeye sunar; medyalar üçüncü parti üreticilerden sağlanır.}
+\paragraph{}{Organizasyonunun bir fazileti olarak, özgür olması ve özgür ve özgür olmayan yazılımlar arasında temiz bir ayrım yapması nedeniyle Debian GNU/Linux türetilmiş projeler için bir temeldir. Bu türetilmiş projelerden en popülerleri Knoppix (Linux' u yüklemeden deneyebileceğiniz bir Live CD), SkoleLinux (özellikle okullar için ayarlanmış bir Linux sürümü) ya da ticari bir sürüm olan Xandros' tur. Limux' da, Münih şehir yönetimince kullanılan masaüstü Linux türevi, bir Debian GNU/Linux türevidir.}
+\end{subsection}
+\begin{subsection}{Ubuntu}
+\paragraph{}{En popüler Debian türevlerinden biri olan Ubuntu Güney Afrikalı bir girişimci olan Mark Shuttleworth tarafından bir İngiliz firması Canoncial Ltd. aracılığı ile sunulmuştur. (“Ubuntu” kelimesi Zulu dilinden gelmektedir ve kabaca “insanlık” demektir.) Ubuntu' nun amacı Debian GNU/Linux tabanlı düzenli aralıklarla güncellenen güncel, yetenekli, anlaması-kolay bir Linux sürümü sunmaktır. Örnek olarak Debian on ya da daha fazla mimariye yönelik çalışabilmesine rağmen Ubuntu sadece üç mimariye hizmet sunar.}
+\paragraph{}{Ubuntu, Debian GNU/Linux' un kararsız sürümüne dayanır ve büyük bir parçası yazılımlar için aynı araçları kullanır ama Debian ve Ubuntu yazılım paketleri her zaman için karşılıklı olarak uyumlu olmak zorunda değildir. Ubuntu her altı ayda bir döngüde yeni sürüm yayınlar ve her iki yılda beş yıl boyunca güncelleme alan bir uzun-süreli-destek (LTS – long-term support) sürüm sunar.}
+\paragraph{}{Bazı Ubuntu geliştiricileri ayrıca Debian projesinde de aktif olarak katılımcıdır ve bu belli derecede yazılım alışverişini destekler. Ama bütün Debian geliştiricileri yaratıcılık adına yaptığı kısaltmalar konusunda çok hevesli değildir, çünkü Debian çok çaba gerektirsede kapsamlı çözümleri arar. Ek olarak Ubuntu Debian kadar kendisini özgür yazılıma borçlu hissetmez; Debian' ın tüm altyapu yazılımları özgürce bulunabilecekken bu Ubuntu için her zaman geçerli değildir.}
+\paragraph{}{Ubuntu çekici bir masaüstü sistemi olmak dışında RHEL ya da SLES gibi sunucu alanında daha yerleşik bir sistem olmanın peşinde ve bunu uzun süreli sürümler ve iyi bir destek sunarak yapmayı planlıyor. Canoncial şirketinin bundan nasıl para kazanacağı pek belli değil, proje başladığından beri genelde Mark Shuttleworth'un kendi internet sertifika kanıtlamasını, Thawte, Verisign'a sattığındandan beri iyice dolmuş olan özel kasasından destekleniyor.}
+\end{subsection}
+\begin{subsection}{Diğerleri}
+\paragraph{}{Burada bahsettiğimiz dağıtımların dışında birçok dağıtım bulunmaktadır. Red Hat ve SUSE' nin küçük rakipleri Mandriva Linux ya da Turbolinux bunlardan bazılarıdır. Gentoo gibi kaynak koduna odaklanan sürümlerde bulunmaktadır. Güvenlik duvarlarından oyunlara ya da çoklu ortam platformlara ya da çok karışık sistemler için kullanılabilecek birçok değişik amaç için birçok değişik “çalışan sistemler” bulunmaktadır.}
+\paragraph{}{Ayrıca Linux dağıtımı olarak kabul edilebilecek Android'den de bahsetmek gerekir. Android Google tarafından sağlanan ve Google' ın Java sürümüne (Dalvik) dayanan bir kullanıcı uzayı ortamı (GNU, X, KDE gibi normal dağıtımlarda bulunan kullanıcı arayüzleri yerine) barındıran bir Linux işletim sistemi çekirdeği taşır. Bir Android telefonu ya da tableti kendisini kullanıcıya Debian ya da openSUSE' nin çok aksi bir yönde tanıtır ama yinede tartışılabilir bir şekilde bir Linux sistemidir.}
+\paragraph{}{Çoğu Android kullanıcısı sistemlerini telefon ya da tabletlerine yüklenmiş olarak alıp hiç değiştirmiyorlar bu sistemi ama çoğu Android tabanlı cihazlar (bazen hackleme ile) varolan alternatif bir Android sürümünün yüklenmesine izin verir. Çoğu cihaz için en güncel Android sürümünü elde etmenin yolu cihaz üreticisinin ya da telefon servis sağlayacısının resmi bir güncel sürüm yayınlaması ile olur.}
+\end{subsection}
+\begin{subsection}{Farklılıklar ve Benzerlikler}
+\paragraph{}{Çok fazla Linux dağıtımı olmasına rağmen en azından büyük dağıtımların günlük hayatta kullanımları oldukça benzer hale geldi. Bu bir parça neredeyse aynı temel programları kullanıyor olmalarından dolayıdır – örneğin komut satırı yorumlayıcısı neredeyse her zaman bash olarak bulunur. Diğer açıdan bakıldığında standartlar büyüme hızını kısıtlamaya çalışır. Bu Dosya Sistemi Hiyerarşi Standardı ya da Linux Standart Tabanını kapsar, LST üçüncü parti yazılımların oldukça fazla Linux sürümünde kullanılabilmesi için Linux' un temel bir sürümünün bulunması gerektiğini söyler.}
+\paragraph{}{Ne yazık ki, LST beklenildiği ve olması gerektiği gibi bir başarı olmadı – sık sık Linux' un gelişimini yavaşlatmak ya da durdurmak amaçlı olduğuna dair yanlış anlaşıldı ve çeşitliliği azaltmak (çoğu dağıtımlar LST ortamını kendi ortamlarıyla aynı anda paralel olarak sunsa bile) hedeflenen üçüncü parti yazılımları kendisine çekmek için tasarlanmıştı ancak bu yazılımlar kendi yazılım paketlerini genelde RHEL ve SLES gibi ana şirket dağıtımları için kullanılabilir hale getirdi ve sadece bu ortamları desteklemeye başladı. SAP ya da Oracle' ı diyelim ki Debian GNU/Linux üzerinde çalıştırmak mümkün olsa da, RHEL ve SLES için yapılan lisans harcaması ile bu büyük yazılım paketleri için yapılacak lisanslama bedeli temel olarak çok fark edilebilir bir fark yaratmaz.}
+\paragraph{}{Dağıtımların farklı olduğunun fark edildiği bir alan yazılım paketlerinin yönetilmesi (yükleme ve kaldırma) ve dağıtımla gelen paketlerin dosya biçimidir. Bu konuda iki genel yaklaşım bulunur. Birisi Debian GNU/Linux (“deb”) ve diğeri de Red Hat (“rpm”) tarafından geliştirilen dosya biçimidir. Genel olarak ikiside birbirine açıkça bir üstünlük sağlamaz ama yine de güçlü yönleri değişimlerini engellemektedir. Deb yaklaşımı Debian, Ubuntu ve diğer Debian türevlerinde kullanılırken Rad Hat, SUSE ve bunlardan geliştirilen dağıtımlar rpm üzerinde çalışır.}
+\paragraph{Tablo 2.1: En önemli Linux dağıtımlarının karşılaştırması (Şubat 2012 itibariyle)}{ --}
+\paragraph{}{İki yaklaşımda yazılım paketleri arasındaki bağımlılıklarda sistemi kararlı tutmaya yardımcı ve sistemde bir paketin silinmesinde diğerlerinin bağlılıklarının silinmemesini sağlayan oldukça kapsamlı bir bağımlılık yönetimi sunar. (ya da bir yazılımın bağımlılıkları önceden kurulmuşsa bunların tekrar kurulmamasını sağlar.)}
+\paragraph{}{Windows ve OS X kullanıcıları yazılımlarını bazı kaynaklardan elde ederler. En azından Debian, openSUSE ya da Ubuntu gibi büyük dağıtımlar kullanıcılarına çok kapsamlı bir listeden direkt olarak paket yönetim araçlarıyla program kurabilmelerine olanak sağlarlar. Bu dağıtımların depolarına erişime izin verir ve bir ağ üzerinden bağlılıkları ile birlikte bir programın kurulabilmesi için arama seçeneği sunar.}
+\paragraph{}{Aynı temel paket biçimlerini kullansalarda (deb ya da rpm) her zaman dağıtımlar arasında paketleri kullanmak mümkün değildir – paketler paket biçimlerinden daha çok dağıtımların nasıl çalıştığı ile ilgili bilgiler içerir. Bu tümüyle yapılamaz bir durum değildir elbette (örneğin Debian GNU/Linux ve Ubuntu doğru koşullarda birbirlerinin paketlerini kullanabilir) ama bir kural olarak, bir sistem ne kadar sistemde derine etki ediyorsa bir sorun oluşması o kadar büyüktür – sadece birkaç çalıştırma satırı içeren programlar ve onların belgeleri daha az sorun yaratırken makinanın başlangıç servisine gönderilen bir sistem servisi çok daha fazla sorun yaratabilir.}
+\paragraph{}{Tablo 2.1 en önemli Linux dağıtımlarının genel özelliklerini gösterir. Daha fazla bilgi için DistroWatch' a ya da dağıtımların kendi internet sitelerine göz atmanızı tavsiye ederiz.}
+\paragraph{}{Özet}
+\begin{itemize}
+ \item İlk Linux sürümü Linus Torvalds tarafından geliştirilip özgür yazılım olarak internette yayınlandı. Bugün dünya genelindeki yüzlerce geliştirici sistemi güncellemek ve geliştirmek için birlik oluyorlar.
+ \item Özgür yazılım, yazılımları istediğiniz amaçlar için kullanmanıza olanak sağlar, kodu değiştirebilirsiniz ve başka insanlara değiştirilmiş ya da değiştirilmemiş kopyaları dağıtabilirsiniz.
+ \item Özgür yazılım lisansları alıcıya başka türlü sahip olamayacakları hakları verir çünkü genelde lisans anlaşmaları alıcının haklarını kısıtlamaya yöneliktir.
+ \item GPL çok popüler bir özgür yazılım lisansıdır.
+ \item Özgür yazılım için olan diğer yaygın lisanslar bulunmaktadır. BSD lisansı, Apache lisansı ya da Mozilla Genel lisansı bunlara dahildir. Yaratıcı-yaygınlık lisansı yazılım dışında kültürel işler için kullanılır.
+ \item Her amaç için kullanılabilinecek çok geniş bir ölçekte özgür ve açık kaynak kodlu yazılım bulunmaktadır.
+ \item Birçok farklı Linux dağıtımı bulunmaktadır. Bunlardan en popüler olanları Red Hat ve Fedora, SUSE ve openSUSE, Debian ve Ubuntu'dur.
+\end{itemize}
+\end{subsection}
+\end{section}
+\chapter{Linux ile İlk Adımlar}
 
 
 \chapter{Who's Affraid of the Big Bad Shell}
