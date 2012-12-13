@@ -955,8 +955,264 @@ Açık kaynak kodlu yazılımların önemli avantajlarından biri büyük miktar
 \item World Wide Web ve USENET'te Linux ile ilgili çok sayıda ilginç kaynaklar var.
 \end{itemize}}
 
+\chapter{Dosyalar: Bakım ve Besleme}
+\paragraph{Amaçlar}
+\begin{itemize}
+ \item Linux kurallarıyla birlikte dosya ve dizin isimleriyle uğraşmaya alışmak
+ \item Dosya ve dizinlerle çalışmada önemli komutları bilmek
+ \item Kabuk dosya adı arama şablonlarını kullanabilmek
+ \end{itemize}
+ 
+\paragraph{Önceden Bilinmesi Gerekenler}
+\begin{itemize}
+ \item Kabuk kullanımı
+ \item Metin editörü kullanımı
+ \end{itemize}
 
-\chapter{Dosyalar: Care and Feeding}
+\begin{section}{Dosya ve Yol İsimleri}
+\begin{subsection}{Dosya İsimleri}
+
+Linux gibi işletim sisteminin en önemli hizmetlerinden birisi de, veriyi sabit disk veya USB sürücüler gibi kalıcı hafızaya depolamak ve sonrasında onları kullanmaktır. Bunu insanların yapması kolaydır, benzer veriler genellikle üstünde adının yazıldığı "dosyalar" altında toplanır.
+
+Eğer bu bile sizin için önemsiz gözüküyorsa, bu anlatılanların size hiçbir getirisi yoktur. Eskiden bazı işletim sistemleri, bir verinin bilgisini almak için disk üzerindeki track sayıları gibi ayrıntıları belirtmeyi zorunlu kılıyordu. Bu yüzden, size dosyalarla nasıl uğraşılacağını anlatmaktan önce, Linux'un dosyaları nasıl isimlendirdiğini açıklamalıyız.
+
+Linux dosya isimlerinde, aslında bilgisayarınızın gösterebileceği her karakteri (hatta daha fazlasını) kullanmanıza olanak tanır. Ancak, karakterlerden bazılarının özel anlam içerdiğinden beri, dosya isimlerinde bu karakterleri kullanmanızı tavsiye ederiz. Yalnızca iki karakterin kullanılamaz: bölü ("/") işareti ve 0 byte (ASCII değeri 0 olan karakter). Boşluk, inceltme işareti ya da dolar işaretleri gibi karakterler serbestçe kullanılabilir, fakat komut satırında "$\backslash$" veya tırnak işaretlerinin sırası kabuk tarafından yanlış yorumlanacağından, genellikle bu kullanımdan kaçınmak gerekir.
+
+Acemilerin kolayca tuzağa düşeceği olay ise, Linux'un dosya isimlerinde büyük/küçük harfleri ayırt edebilmesidir. Aksine Windows, dosya isimlerinde büyük/küçük harfleri gösterir, fakat aynı dosya gibi davranır, Linux ise x-dosyaları ve X-Dosyalarının iki farklı dosya adı olduğunun farkındadır.
+
+	Limitlerin "dosya sistemine" bağlı olduğundan beri, Linux altında byte'lar halinde düzenlenen dosya adları "çok uzun" olabilir(Linux'ta  bu düzenlemeyle ilgili birçok yöntem vardır). Normal sınır 255 karakterdir— fakat 3 satırdan daha fazla uzunlukta dosya isimleri standart metin terminalinde size karmaşıklık yaratabilir.
+	
+	DOS ve Windows bilgisayarlardan başka bir fark da Linux, dosyanın tipini belirlemek için sonekleri kullanmaz. Bu yüzden, dosya ismindeki nokta tamamen sıradan bir karakterdir. Bir metin dosyasını mumble.txt olarak kaydetmede serbestsiniz, fakat prensip olarak sadece mumble kelimesi de  kabul edilebilir. Bu kullanım tabi ki sizin tamamen uzantı ile adlandırmanızı engellememelidir—Bununla birlikte bu kullanım dosya içeriğini tanımlamanızda kolaylık sağlar.
+	
+	Bazı programlar girdi dosyalarında özel uzantı kullanmayı zorunlu kılar. Örneğin C derleyicisi olan gcc, ".c" ile biten C kaynak kodu, ".s" ile biten makine dili kaynak kodu, ve ".o" ile biten ön derlenmiş nesne dosyaları isimlerini dikkate alır.
+	
+	Dosya isimlendirmede özgürce inceltme işareti ve diğer özel karakterleri kullanabilirsiniz. Yine de, eğer dosyalar diğer sistemlerde kullanılacaksa özel karakterleri kullanımından kaçmak en iyisidir, çünkü diğerlerinde dosyaların aynı isimle gösterileceğinin bir garantisi yoktur.
+	
+	Özel karakterler ayrıca sizin yerel ayarlarınıza bağlıdır, karakterlerin temsili için genel bir standartın olmayışı ASCII karakter setini(Çoğunlukla içinde İngilizce dili, rakamlar ve yaygın özel karakterlerin bulunduğu 128 karakteri) aşar. Çokça kullanılan kodlamalara örnek olarak ISO 8859-1 ve ISO 8859-15(sırasıyla ISO-Latin-1 ve ISO-Latin-9 olarak bilinir) bununla birlikte ISO 10646, gelişigüzel ve çok doğru olmayarak adına "Unicode" denilen genellikle "UTF-8" karakter seti ile kodlanır. Y kodlaması sistemde yürürlükte iken dizine baktığınız zaman X kodlamasıyla oluşturduğunuz dosyalar tamamen farklı gözükebilir. Bu konuların üzerinde çok durursanız, size tüm konu hiçbir şey gibi gelir.
+	
+	Bazen kendinizi yanlış karakter setiyle kodlanmış bir yığın dosya ile uğraşıyor olarak bulabilirsiniz. Çeşitli karakter setleri arasında dönüşüm yapabilen convmv programı bu konuda size yardım edebilir. (Çoğu dağıtımlarının standart kurulumunun bir parçasıdır olmadığından dolayı, muhtemelen kendiniz yüklemeniz gerekecektir.) Ancak, bunu tüm bölümü bitirdiğimiz zaman yapmanız daha uygun olur, çünkü daha normal mv'den bahsetmedik bile ...
+	
+Aşağıdaki tüm karakterleri dosya isimlendirmelerinde özgürce kullanabilirsiniz:
+\begin{verbatim}
+ ABCDEFGHIJKLMNOPQRSTUVWXYZ
+ abcdefghijklmnopqrstuvwxyz
+ 0123456789+-._
+\end{verbatim}
+
+Ancak aşağıdaki ipuçlarına dikkat etmelisiniz:
+\begin{itemize}
+\item Linux ve daha eski Unix sistemlerde taşınan dosyaların isimlendirilmesinde izin verilen dosya uzunluğu en fazla 14 karakterdir. (Bu kurala uymak gerçekten önemlidir.)
+\item Dosya isimleri her zaman harf veya rakamlardan biriyle başlamalıdır; diğer 4 karakterleri sadece dosya içerisinde sorunsuzca kullanabilirsiniz.
+\end{itemize}
+
+Bu kuralları anlamanın en kolayı birkaç örneği incelemektir. Uygun dosya isimlerine örnek olarak
+\begin{verbatim}
+X-files
+foo.txt.bak
+50.something
+7_of_9
+\end{verbatim}
+verilebilir. Buna karşılık aşağıdaki kullanımlar problem oluşturabilir (muhtemelen):
+\begin{verbatim}
+-10F 		‘‘- ’’ ile başlıyor, özel karakter var
+.profile 					Gizli dosya olacaktır
+3/4-metre 				Kural dışı karakter içerir
+Smörrebröd 					İnceltme işareti içerir
+\end{verbatim}
+
+Diğer bir tuhaf özellik de, dosya isimlerinin nokta(".") ile başlaması bazı yerlerde dosyanın gözden kaçmasına neden olacak, örneğin dizin içerisindeki dosyaların listelendiği zaman—bu tür dosya isimleri "gizli" gibi düşünülür. Bu özellik genellikle programların içerik ayarlarında ve dizin listelemelerde çok daha önemli dosyaların kullanıcının kafasını karıştırmamak amacıyla kullanılır.
+
+DOS ve Windows uzmanları için: Bu sistemler dosyanın isminin bağımsızca ayarlanabildiği dosya özelliklerinin "gizli" olması ile izin verir. Linux ve Unix'te bu tarz bir destek yoktur.
+\end{subsection}
+\begin{subsection}{Dizinler}
+
+Birçok kullanıcı aynı Linux sisteminde potansiyel olarak çalıştığından beri, tüm dosya isimlerinin sadece bir tane olması problem teşkil edebiliyordu. Sue kullanıcısının halihazırda aynı isimde dosya oluşturduğu için Joe kullanıcısının letter.txt isimli bir dosya oluşturamaması belirsizliğe yol açıyordu. Ayrıca Joe'nun, Sue'nun tüm dosyalarını okuyamamasını garanti eden uygun bir yol bulunması gerekiyordu.
+
+	Bu nedenle, Linux dosyaları gruplayan "dizinler" hiyerarşik fikrine destek verir. Aynı dizinde olmaması koşuluyla, dosya isimlerinin  tüm sistemde eşsiz olması gerekmez. Özellikle bu, sistemin Joe ve Sue için farklı dizinler atayabilmesini, ve her birinin kendi dosyaları hakkında endişelenmesinin giderilmesi anlamına gelir.
+	
+	Ek olarak, Joe'ya Sue'nun dizinine (veya tam tersi) erişmesini yasaklayabiliriz ve dizin içerisinde kişisel dosyalar içermesi hakkında endişelenmemize gerek kalmaz.
+	
+	Linux'ta dizinler basit dosyalar olsa da, "sade" dosyalara erişmek için kullandığınız yöntemler ile onlara erişemeyebilirsiniz. Ancak, bu davranışı uygularken daha önce bahsettiğimiz dosya adları ve dizin isimleri kurallarını(önceki bölüme bakınız) göz önünde bulundurmanız gerekir. Sadece taksim("/") karakterinin, dizin isimlerinden,dosya isimlerini ve/veya diğer dizinleri ayrıması gerektiğini bilmeniz yeterlidir. Örnek olarak: joe/letter.txt, joe dizinindeki letter.txt dosyasıdır.
+	
+	Dizinler ağaç-tarzı(yaratıcı bir şekilde "dizin ağacı"  denen) yapı ile tasvir edilen diğer dizinleri içerebilir(bu "hiyerarşi" teriminden daha önce de bahsetmiştik). Bir Linux sistemi, ağacın kökleri gibi bir yapıda olan "kök dizini" denilen özel bir dizin içerir.  "/"(taksim) ile ifade edilir.
+	
+	İsminin aksine, kök dizininin, sistem yöneticisi anlamına gelen kök (root) ile alakası yoktur. Sadece isimleri benzerdir.
+	
+	Burada taksimin çift görevi vardır—hem kök dizininin adıdır, hem de dizin isimleri arasında ayraç görevi üstlenir. Bu konuya birazdan geri döneceğiz.
+	
+	Yaygın Linux dağıtımlarında temel yükleme, genellikle tek bir dosya hiyerarşisinde bulunan ve bunun çokça belirli düzene göre yapılandırılmış olduğu onbinlerce dosyayı içerir. Bu dosya hiyerarşisine Bölüm 10'da daha çok yer vereceğiz.
+\end{subsection}
+\begin{subsection}{Mutlak ve Göreceli Yol İsimleri}
+
+Linux sistemindeki her dosya, kök dizini tarafından başlayan, ve bir dosyaya(dosyanın kendisine) ulaşıncaya kadar devam eden tüm dizinlerin adının geçtiği, ve sonunda dosyanın kendisinin bulunduğu dosya isimleriyle tasvir edilir. Örneğin, /home/joe/letter.txt ismi, joe dizini altında bulunan, sonra home dizini içerisinde konumlanan, daha sonra da evebeyn olan kök dizininin yer aldığı letter.txt dosyasına karşılık gelir. kök dizini ile başlayan isimlere "mutlak yol ismi" adı verilir—isimler dizin ve dosya isimleri barındırabilen "yol" vasıtasıyla dizin ağacı olarak tanımlandığından beri "yol isimleri" lafını kullanırız.
+
+	Linux sisteminde her sürecin bir "mevcut dizini" (genellikle "çalışma dizini" diye adlandırılır) vardır. Dosya isimleri bu dizinin içerisinde aranır; letter.txt "letter.txt denilen mevcut dizin" için, sue/letter.txt "sue dizini içerisindeki, mevcut dizinde bulunan letter.txt" için bir kısaltmadır. Mevcut dizinden başlayan bu tarz isimlere "göreceli yol isimleri" adı verilir.
+	
+	Göreceli yol isimlerinin mutlak olduğunu söylemek önemsizdir: Mutlak dosya yolu bir "/" ile başlar; diğer hepsi görecelidir.
+	
+	Mevcut dizin evebeyn ve çocuk süreçler arasındaki "miras"'tır. Yani kabuktan yeni bir kabuk başlattığınızda(veya başka bir program), bu yeni kabuk, sizin başlatmak için kullandığınız kabuk dizini ile aynı mevcut yolu kullanır. Yeni kabuğunuzda diğer dizine cd komutunu kullanarak geçebilirsiniz, fakat eski kabuğun mevcut dizini değişmez—Eğer yeni kabuktan ayrılırsanız, eski kabuğun mevcut dizinine(değişmemiş dizine) geri dönersiniz. 
+	
+	Göreli yol isimlerinde(hatta mutlak olanlarda bile) 2 kullanışlı kestirme vardır: ".." isminde her zaman dizin ağacında bir bilinmeyen olan mevcut dizinin üst dizinini işaret eder—Örneğin, /home/joe, /home durumudur. Bu sıklıkla mutlak yol ismine başvurmak zorunda kalmadan, mevcut dizinden, dizin ağacı gibi gösterilen "yan dal"'a ayrılmak için kullanışlı bir yoldur. Farzedelim ki /home/joe dizininin letters ve novels isminde altdizinleri olsun. letters sizin mevcut dizininiz gibi olsun, novels dizininin içerisinde ivanhoe.txt dosyasına kaba bir şekilde mutlak yol ismi olan /home/joe/novels/ivanhoe.txt'yi kullanmaksızın ../novels/ivanhoe.txt şeklinde göreceli yol ismi belirterek referans belirtebilirsiniz.
+	
+	İkinci kestirme ise size açıkça bir anlam ifade etmiyor gibi gelebilir: "." ismi dizin içerisinde bulunur ve her zaman dizinin kendisini ifade eder. Neden zaten içinde bulunduğumuz dizine işaret eden böyle bir metoda ihtiyacımızın olduğunun direkt olarak bir cevabı yoktur, fakat  tabi ki bu durumların bize kattığı kullanışlı becerileri vardır. Örneğin, belki biliyorsunuzdur (ya da Bölüm 9'a bakınız) kabuğun harici komutlar için program dosyalarını ararken kullandığı çevresel dizin değişkeni olan PATH vardır. Diyelim ki bir yazılım geliştiricisisiniz, bir program çalıştırmak istiyorsunuz, haydi (a) isimli mevcut dizininiz içerisindeki dosya, ve PATH içerisinde yer almayan(Güvenlik nedenleri için her zaman iyi bir fikirdir) (b) dizniniz içerisindeki prog'u çalıştıralım, halâ kabuğunuzdayken
+\begin{verbatim}
+ $ ./prog
+\end{verbatim} 
+diyerek dosyanızı, mutlak yol ismini vermek zorunda kalmadan program olarak başlatabilirsiniz.
+
+Linux kullanıcısı olarak sisteme girdiğinizden hemen sonra "ev dizinine" ulaşırsınız. Sistem yöneticisi sizin hesabınızı oluşturduğunda bu dizinin ismine karar verir, fakat genellikle kullanıcı isminizle aynı olur ve /home dizini altında yer alır— joe kullanıcısı için atanan /home/joe gibi.
+
+\end{subsection}
+\end{section}
+\begin{section}{Dizin Komutları}
+\begin{subsection}{Mevcut Dizin: cd \& Co.}
+
+Mevcut dizini değiştirmek için cd kabuk komutunu kullanabilirsiniz: Basitçe parametre olarak arzu edilen dizin ismi verilir:
+\begin{verbatim}
+$ cd letters 	       letters dizinine değiştirir
+$ cd .. 			   Bir üstteki dizine değiştirir
+\end{verbatim}
+
+Eğer parametresiz kullanacak olursanız ev dizininize erişirsiniz:
+
+\begin{verbatim}
+$ cd
+$ pwd
+/home/joe
+\end{verbatim}
+
+Mevcut dizinin mutlak yolunun çıktısını almak için pwd ("print working directory") komutunu kullanabilirsiniz.
+
+Ayrıca mevcut dizininizi büyük olasılıkla kendi istemcinizin bir kısmı olarak görebilirsiniz. Sistem ayarlarınıza bağlı olarak
+
+\begin{verbatim}
+joe@red:~/letters> _
+\end{verbatim}
+
+gibi bir satırla karşılaşabilirsiniz. ~/letters /home/joe/letters'a kısaltmadır; tilde ("~") ise mevcut kullanıcı ev dizininizi gösterir.
+"cd -" komutu cd komutu ile son kullanılmış dizine tekrar geri dönmeyi sağlar. Bu kullanışlı komut iki dizin arasında peş peşe geçiş yapmayı sağlar.
+
+\paragraph{Alıştırmalar}{
+\begin{itemize}
+ \item Kabukta cd dahili mi, harici mi komuttur? Neden?
+ \item Kabuk kılavuz dosyasında pushd, popd, dirs komutlarını okuyunuz. Bu komutların tasvir edildiği gibi çalıştığına kendinizi ikna ediniz.
+\end{itemize}}
+
+\paragraph{}{
+\begin {table}[H]
+\caption {ls'deki bazı dosya gösterimleri} \label{tab:title} 
+\begin{tabular}{l c c c}
+\hline
+Dosya Tipi & Renk & Sonek (ls -F) & Harf türü (ls -l) \\
+\hline
+düz metin 	&	siyah & none & - \\
+çalıştırılabilir dosya 	&	yeşil & * & - \\
+dizin 	&	mavi & / & d \\
+link 	&	cyan & @ & l \\
+\hline
+\end{tabular}
+\end {table}
+}
+
+\paragraph{}{
+\begin {table}[H]
+\caption {Bazı ls parametreleri} \label{tab:title} 
+\begin{tabular}{l l}
+\hline
+Parametre & Sonuç \\
+\hline
+-a veya --all 	&	Aynı zamanda gizli dosyaları da görüntüler \\
+-i veya --inode 	&	Eşsiz dosya numarasını görüntüler (inode number) \\
+-l veya --format=long 	&	Ekstra bilgi görüntüler \\
+-o veya --no-color 	&	Çıktı renk-kodlamasını atlar \\
+-p veya -F 	&	Eklenen özel karakterle dosya türünü işaretler \\
+-r veya --reverse 	&	Sıralamayı ters yapar \\
+-R veya --recursive 	&	Alt dizinlerle birlikte rekürsif olarak listeler (DOS: DIR/S) \\
+-S veya --sort=size 	&	Boyuta göre sıralar (büyükten küçüğe doğru) \\
+-t veya --sort=time 	&	Değiştirilme tarihine göre sıralar (yeniden eskiye doğru) \\
+-X veya --sort=extension 	&	Dosya uzantısına göre sıralar (“dosya türüne” göre) \\
+\hline
+\end{tabular}
+\end {table}
+}
+\end{subsection}
+\begin{subsection}{Dosya ve Dizinleri listeleme ---ls}
+
+Dizin ağacı etrafında yolunuzu bulmak için hangi dosya ve dizinlerin mevcut dizin içerisinde olduğunu bilmeniz gerekir. ls("list") komutu tam da bu iş için vardır.
+
+	Parametresiz kullanımda çıktı olarak dosyaların isme göre sıralandığı bir çeşit tablo görünümlü bir yapı elde edilir. Renkli ekranların günümüzde standart haline gelmesiyle, dosya isimleri ve türlerinin farklı renklerde görüntülenmesi genelek haline geldi (Daha dosya tipleri hakkında konuşmadık; bu konuya Bölüm 10'da değineceğiz).
+	
+Neyse ki, günümüzde birçok dağıtım renkli kullanımı bünyesinde barındırıyor. Tablo 6.1'de en yaygın gösterimler vardır.
+
+	Siyah-Beyaz ekranlarda—ki hala günümüzde var—, -F veya -p parametreleri önerilir. Bunlar dosya türleri ile ilişkili dosya isimlerine özel karakter eklerler. Bu karakterlerin bazılarına Tablo 6.1'de değinmiştik.
+	
+	Gizli dosyaları (nokta ile başlayan isimlileri) -a ("all") parametresiyle görüntüleyebilirsiniz. Bir başka kullanışlı seçenek ise -l'dir(büyük harf olarak "L", "long"(uzun) anlamı taşır, "1" rakamı değildir). Bu sadece dosya isimlerini sıralamakla kalmaz ayrıca her dosya için ek bilgi de içerir.
+	
+	Bazı Linux dağıtımlarında önceden ayarlanmış bazı yardımcı parametrelerin kombinasyonu olan kısaltmalar vardır; SUSE dağıtımlarında, örneğin sadece basit bir l kullanımı "ls -alF"'nin kısaltmasıdır. "ll" ve "la" ls'nin farklılaşmış bazı kısaltmalarıdır.
+	
+Aşağıdaki örnekte ls'nin -l'li ve -l'siz kullanımı vardır:
+\begin{verbatim}
+$ ls
+file.txt
+file2.dat
+$ ls -l
+-rw-r--r-- 1 joe users 4711 Oct 4 11:11 file.txt
+-rw-r--r-- 1 joe users 333 Oct 2 13:21 file2.dat
+\end{verbatim}
+
+İlk durumda, bütün gizli olmayan dosyalar listelendi; ikinci durumda ise ekstra bilgi eklendi.
+
+	Uzun formatın farklı parçalarının anlamları vardır: İlk karakter dosya türünü verir(Bölüm 10'a bakınız); sade dosyalar "-", dizinler "d" şeklinde vb.(Tablo 6.1'deki "karakter türleri").
+	
+	Sonraki 9 karakter erişim izinlerini gösterir. Sonraki dosyanın adedini, dosyanın sahibini(joe), ve dosyanın grubunu(users) gösterir. Byte olarak dosyanın boyutundan sonra, dosyanın içerdiği son değiştirilme bilgisini tarih ve saat olarak görebilirsiniz. Ve tabi ki dosyanın adı da görüntülenir.
+	
+	Kullandığınız dile bağlı olarak özellikle tarih ve saat sütunları örmeklerimizden(asgari dil ortamı "C" kullanarak oluşturduğumuz) tamamen farklı görünebilir. Bu genellikle interaktif kullanımda sorun çıkarmaz, fakat eğer kabuk betiğinizin bir bölümünde "ls -l"'nin çıktısını almaya çalışıyorsanız büyük bir sıkıntı ortaya çıkabilir. (Gelişmiş Linux kılavuzunu çalışmaktan önce, kabuk betiklerinde ön tanımlanmış dil çevreselini kullanmanızı öneririz.)
+	
+	Eğer dizin için ekstra bilgi görmek isterseniz(/tmp dizini gibi), "ls -l /tmp"'nin size gerçekten bir yardımı dokunmaz, çünkü ls /tmp içerisindeki tüm dosyaların verisini listeleyecektir. -d parametresi kullanarak /tmp'nin kendisinin bilgisini elde edebilirsiniz.
+	
+ls burada bahsedilenlerden çok daha fazlasına destek verir; önemli olanlarından bikaçı Tablo 6.2 'de gösterilmişti.
+
+Linux Essentials ve LPI-101 gibi LPI sınavlarında, kimse sizden ls'nin tüm 57 tane parametresini bilmenizi beklemez. Ancak en önemli yarım düzine kadarını—yaklaşık Tablo 6.2. içeriğindeki kadarını— ezberlemek isteyebilirsiniz.
+\paragraph{Alıştırmalar}{
+\begin{itemize}
+ \item /boot dizinini hangi dosyaları içerir? Alt dizinleri var mıdır? Varsa hangileridir?
+ \item Dosya ismini parametre olarak alan ls ile dizin ismini parametre olarak alan ls arasındaki fark nedir?
+ \item Eğer dizin adı programda geçiyorsa, dizindeki dosyaların bilgisini görüntülemektense ls'ye sadece dizinleri göstermesi için hangi parametre ile çalıştırırız? (İpucu:Belgeye bakınız.)
+\end{itemize}}
+\end{subsection}
+\begin{subsection}{Dizin Oluşturma ve Silme: mkdir ve rmdir}
+
+Dosyalarınızı düzenli bir şekilde tutmak istediğinizde yeni bir dizinler oluşturmak iyi bir fikirdir. Dosyalarınızı ilişkili konuya göre (Örnek olarak) bu "klasörler" altında toplayabilirsiniz. Tabi ki ileri bir yapılandırma için, ek dizinlerle çalışarak dosyalarınızı bu dizinler altında tutabilirsiniz - hevesinizi, keyfi engeller tarafında sınırlamayınız.
+
+mkdir komutu yeni dizinler oluşturmak için yegane komuttur. Argüman olarak bir veya daha çok dizin ismi alır, aksi halde yeni dizin oluşturmak yerine sadece bir hata mesajı alırsınız. İç içe dizinleri tek adımda oluşturabilmek için -p parametresini kullanabilirsiniz, aksi halde komut, oluşturduğunuz yoldaki dizinlerin hepsini varmış gibi farzedecektir. Örneğin:
+\begin{verbatim}
+$ mkdir pictures/holiday
+mkdir: cannot create directory `pictures/holiday': \\
+No such file or directory
+$ mkdir -p pictures/holiday
+$ cd pictures
+$ ls -F
+holiday/
+\end{verbatim}
+
+\end{subsection}
+\end{section}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 \chapter{Düzenli İfadeler}
 \chapter{Standart I/O and Filter Commands}
 \chapter{More About the Shell}
