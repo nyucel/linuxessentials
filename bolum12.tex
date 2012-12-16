@@ -1,0 +1,257 @@
+\chapter{Sistem Yönetimine Giriş}
+\paragraph{Amaçlar}{
+\begin{itemize}
+\item Sistem yöneticisi rolü hakkında fikir sahibi olmak
+\item İşletim sistemi çekirdeği ve süreçlerin temllerini anlamak
+\item Paket yönetimi kavramlarını bilmek
+\end{itemize}
+}
+\paragraph{Önceden Bilinmesi Gerekenler}{
+\begin{itemize}
+ \item Temel kabuk kullanımı (bölüm 4)
+ \item Linux dosya sistemi yapısı ile ilgili bilgiler (bölüm 10)
+ \end{itemize}
+} 
+ 
+\begin{section}{Sistem Yönetimi Temelleri}
+
+birsistem yöneticisi ne yapar? bilgisayarları yapılandırma,yazılım kurulumu (ve bazen kaldırmak) çevre birimlerini bağlamak ve kullanılabilir yapmak, yedekleme yapmak(ve bazen bunları geri yüklemek) kullanıcı hesaplarını eklemek ve kaldırmak, sorunları olan kullanıcılara yardım,... bu görevlerin etkileyici bir listesidir. Eski günlerde kişisel bilgisayarda,bilgisayar kullanıcısı aynı zamanda yöneticiydi. bu fikir windows gibi sistemlerde uzun süre devam etmiştir. (hatta birkez windows farklı kullanıcılardan fikir edinmiştir,
+yönetici hesaplarını kullanmak için ortak olmak zorunludur,çünkü sadece çeşitli programaların ilgili ayrıcaklıkları kullanılabileceği varsayılmıştır. )
+unix -linux ilham sistemi-bazı kullanıcıları desteklemek için tekrar kuruldu ve dolayısıyla normal kullanıcılarla yönetici arasındaki ayrım ev bilgisayarı geleneğiyle işletim sistemi ve bunun gibi çok daha köklü bir hal aldı
+
+Lpi Linux temelleri sınavında sistem yönetiminden vurgulanmamaktadır.
+fakat en azından genel bir bakış olmalıdır-belki sistem yöneticisi olmamaktadır,fakat sizin için sistem yöneticisinin ne yaptığının daha iyi anlamanızı sağlar ya da bir noktada sistem yöneticisi olur. LPI   LPIC sertifika parça bölümleri sistem yöneticileri için önemli bir noktadır. Özellikle LPIC-2 ve LPIC-3. 
+
+Bu bölümde bir Linux bilgisayarın  hemen kullanımı ile ilgili daha az olan birkaç konudan söz edeceğiz. Fakat  örneğin bir resim  elde etmek için bilgisayarda ne çalıştıracağını (“neden  bilgisayarım   yavaş ”)  ve yazılımın bilgisayarda nasıl yönetildiğini içerir. Biz burada ki büyük resimden sonra detaylara bakmıyoruz.  
+
+Linux sisteminde, sistem yöneticisi özel bir kullanıcı hesabı erişimine sahiptir, root. bu hesap erişim kontrollerinden muaftır,aksi yapıldığında da.(bölüm 14)
+ve bu nedenle sistemden  bütün dosyalara erişilebilir. bu gereklidir, örneğin, yeni yazılım kurmak için-"Normal" kullanıcıların sistem dizinleri program dosyalarını okuma ve yürütme olabilir. fakat, diğer kullanıcıların zararına manipülasyonlar önlemek amacıyla,bunlar yazılmamalıdır. Yöneticinin ayrıca yedek kopyalarını oluşturmak için herhangi bir kullanıcının dosyalarını okuması gerekir(ve  bir yedeği geri yüklemesi gerekiyorsa bunları geri 
+yazması için).
+
+Sistemdeki tüm  dosyaları yazma yeteneği sisteme ciddi zarar fırsatı  içerdiği açıktır.Eğer root olarak oturum açıyorsanız, Linux
+\begin{verbatim}
+# rm -rf /
+\end{verbatim}
+gibi  tüm sistem dosyalarını yok eden bir komutu kullanmanızı engelleyemez.(ve zarar verebilmek için daha incelikli yolları vardır). Dolayısıyla sadece onlara ihtiyacımız olduğunda root yetkilerinden yararlanmak gereklidir. root  olarak giriş yaptığında  RIGHT OUT olduğunda web de sörf  yapılabilir veya posta okunabilir.
+
+** eğer root olarak sistemdeki tüm dosyaları okuyabilirseniz,günaha yenik düşebilirsiniz, diyelim ki, patronunuzun (veya eşinizin) e mailini düzenli olarak kontrol edebilirsiniz. Yapmayın. Bu güvensiz olabilir( en azından eş durumunda) ve/veya yasadışı (en azından patronun durumunda) ve linux ve sistem yönetimi ile eğlenceli yağma yükümlü olduğundan bu sorunun her türlü içine alınabilirsiniz. evde ve işyerinde huzur için söylenecek bişey.katılan kişi ile iştişare içinde izole kısa bir gözetlemeye almakta yanlış birşey yoktur.-fakat bunun alışkanlık haline gelmesine izin vermeyin. şüpheniz olduğunda, Peter Parker'ı düşünün, a. k. a. Spider-Man: "büyük güç büyük sorumluluk getirir."
+
+root olarak doğrudan girişten sakınmalısınız.( özellikle de grafiksel bir ekran üzerinde). Bunun yerine, root olarak çalışan bir kabuk elde etmek için, normal bir kullanıcı olarak başlatılmış bir terminal oturumunda, su programını kullanın.
+\begin{verbatim}
+$ /bin/su -
+Password: secret Password for root
+# _
+\end{verbatim}
+
+root kabuğundan çıkıldıktan (exit veya ctrl+d kullanarak) sonra  başlangıçta su çağrılan kabukta tekrar sonlandırılır. bazı dağıtımlarda başka bir root hesabı olmadan elde edilmeye çalışılır. Ubuntu örneğin de olduğu gibi sistem sırasında oluşturulan ilk kullanıcının önüne sudo koyarak kök ayrıcalıklarıyla tek bir komutta yürütmeyi sağlar.
+\begin{verbatim}
+$ sudo less /var/log/syslog Peruse system log
+\end{verbatim}
+
+(Gerekirse bu kullanıcı diğer kullanıcılar için bu ayrıcalığı genişletebilir.)
+Büyük görevler için, yönetici ayrıcalıklarıyla çalışan bir kabuk elde etmek için "sudo -i" kullanmak mümkündür. 
+
+Çoğu linux dağıtımı sinyali root haklarıyla çalışan olduğunda kabuk "\#" istemiyle biterek çıktılanır. Başka bir şey görüntülenirse—genellikle "\$" veya "$>$", kabuk ayrıcalığı olmadığında.
+
+\paragraph{Alıştırmalar}{
+\begin{itemize}
+ \item su komutunu deneyin.Neden örnek programı çağırmak için bir mutlak yol adı kullanıyor?
+ \item su için root parolasını bilmeniz gerekir. sudo genelde kendi parolanızı sorar. Hangisi daha iyi?
+\end{itemize}}
+\end{section}
+\begin{section}{Sistem Yapılandırması}
+
+Diğer sistemlerde sadece veritabanında özel araçlar yoluyla değiştirilmiş ve "bit-rot " (windows kayıt defteri) duyarlı  olan  kendi yapılandırma bilgilerini gömerken,  linux genellikle /etc dizini içindeki metin dosyalarında sistem genelindeki yapılandırma girişlerini bulundurur. (Birkaç örneği Bölüm 10.3 'de görülebilir.)burada sistem yöneticisi bunları değiştirmek veya genişletmek için kendi seçtikleri bir metin düzenleyicisi kullanabilir. Örneğin, yeni bir kullanıcı, kullanıcı adı,sayısal kullanıcı kimliği veya /etc/passwd dosyasına ev dizini ismi gibi ilgili parametreleri katarak eklenebilir. Yeni bir sabit disk aygıt dosyası adını ve disk görünmesini gerekenr dizini belirten bir satırına /etc/fstab ekleyerek yapılandırılmış olabilir.
+
+Bir linux sistemi yaygın farklı kaynak yazılım bileşenlerinin karmaşık bir sistemidir. (bunların bazıları linux kendisinden daha yaşlıdır.) Tarihsel olarak gelişmiş kurulumlar  /etc içindeki farklı yapılandırma dosyaları çok düzgün olmayan bir biçimde yapılandırmasını takip eder.—bazıları satırlar 
+tarafından organize edilmektedir,diğerleri bölümleri ayraçlar ile ayrılmış olarak içerir,hatta diğerleri XML dosyalarını ya da yürütülebilir bir kabuk betiğidir.
+kesinlikle tüm bu farklı biçimleri ile uğraşması gerekir, yöneticiler  için bir sıkıntıdır. Yazılım paketleri hertürlü değiştirilmesi gerekir fakat bu kolay değildir.
+
+Bununla, birlikte bazı çok yaygın usuller:Örneğin, çoğu yapılandırma dosyalarında "\#" ile başlayan satırlar açıklamalar sağlar.
+
+Farklı metin dosyaları sistem yapılandırmasını yönetme fikrinde olabilirken ilk başta antediluvial görünür,bunun bazı somut avantajları vardır:
+
+\begin{itemize}
+\item Tek bir yazılım paketi veya hizmet yapılandırması hataları ile bütün olarak genellikle sisteme zarar verilmesi mümkün değildir.(sistemin işlevseliği için çok gerekli yapılandırma dosyaları vardır tabi ki onların hataları olabilir, örneğin, sistemi yeniden önyükleme yapamayan hale getirebilir.Ama bunlar en iyi ihtimalle küçük bir azınlıktır.)
+\item Çoğu yapılandırma dosyası yorumlara izin verir. bu sayede bireysel yapılandırma dosyalarının detaylarının nerede meydana geldiğinin doğrudan  belgelemesini sağlar. ve böylece ekip işbirliğini daha kolay yapar ya da kişinin kendi unutkanlık nedeniyle olan kazalar engellenir. Bu kesinlikle hatırlamak zorunda kalmanızdan çok daha iyidir menu y bir x girişi olduğunda sekme z bir iletişim açmanızı sağlar.kesinlikle kontrol edilmesi gereken bir kutusu vardır.aksi halde hiçbirşey çalışmaz. (kağıt parçalarının bu tür bilgeliği vardır en çok ihtyaç duyulduğunda kaybolma eğilimi vardır.)
+\item Git veya Mercurial gibi sürüm denetim sistemini için metin dosyalarını "kontrol" edebilir ve  böylece sadece çeşitli dosyaları kapsayan büyük değişiklikler belgelenemez. fakat aynı zamanda gerekirse bunları düzenli bir şekilde geri alır.Bu aynı zamanda merkezi bir sunucu üzerinden bir bilgisayarın tam Yapılandırmasını depolamak için  uygunluğu sağlar.böylece bilgisayarrın herhangi bir nedenle yeniden yüklenmesi gerekirse derhal kullanılabilir-diyelim ki felaket bir donanım hatasında sonra. veri merkezlerinde bu  çok avantajlar sağlar, özellikle tüm yapılandırma değişikliklerinde ayrıntı bir "denetim" istediğinde.
+\item Metin dosyaları yönetilmesi gereken bilgisayarlara merkezi bir sunucudan yapılandırma dosyaları dağıtarak tüm bilgisayar ağlarının uygun şekilde yapılandırılmasını sağlar."puppet" veya "salt " gibi sistemlerde yapılandırma dosyaları için "şablonlar" yapmak mümkündür. onlar tamamen bireysel bilgisayarların elle yapılandırmasını önlemek için dağıtıldığı zaman hedef bilgisayar için uygun bilgilerin kullanıldığı  örneklemedir. (“sneaker net”)Bu da, büyük ağların yönetimini kolaylaştırır  aynı zamanda daha küçük yüklemeye de yardımcıdır.
+\end{itemize}
+\paragraph{Alıştırmalar}{
+\begin{itemize}
+ \item /etc dizinini araştırın. Pek çok dosyayı oradaki kılavuz sayfalarını "man fstab" gibi birşey ile deneyin. /etc nin içindeki dosyalar normal kullanıcı olarak okunamaz mı,  neden ?
+\end{itemize}}
+\end{section}
+\begin{section}{Süreçler}
+
+Yürütülmekte olan bir programa "süreç" denir.program kodunun kendisinin yanında (söz konusu işlemci için makine dilinde) bir süreç şu anda kullanımdaki dosyalar gibi verilerin yanı sıra idari bilgi için çalışan depolama ortamı içerir. (ortam değişkenleri için) Geçerli bir dizin ve bir işlem numarası veya sistemi içinde benzersiz süreci tanımlayan "PID". İşletim sistemi çekirdeği süreçlerin oluşturulmasından,işlemci zamanı ve  depolama atamasından ve çıktıktan sonra temizlemeden sorumludur. Süreçler dosyaları, aygıt ya da ağa erişmek için işletim sistemi çekirdeğinin içine çağırabilir.
+
+Yeni süreçler mevcut süreçler sırasında ortaya çıktı.— bakteri veya yaşamın diğer düşük biçimlerinin aksine -iki neredeyse özdeş kopyalarına ayrıldı.("neredeyse özdeş", çünkü bir süreç "ana" ve diğerleride "çocuk" olarak kabul edilir.)Buna ek olarak, süreci farklı bir programı çalıştırmak için ayarlayabiliriz: örneğin, kabuktan ls komutu çağıracaksak, kabuk programı çalıştırmadan önce çocuk süreç oluşturulur. Bu kod (diğer şeyler arasında) olası bir giriş/çıkış yönlendirme düzenlemesi yapar ve sonra /bin/ls program dosyası ile yenilenir. Ls programın sonunda çocuk süreç sona erer ve kabuk size sonraki komudu sorar.
+
+PID ile ilk işlem, önyükleme sırasında işletim sistemi çekirdeği tarafından oluşturulur. Kurala göre bu, /sbin/ init  programıdır ve aynı zamanda "init süreci" olarak da adlandırılır. init süreci sistem önyüklemesinden ve örneğin, arka planda çalışan sistem servisleri için ek işlemleri başlatmadan sorumludur.
+
+\paragraph{ps}{Sistem üzerinde çalışan süreçler hakkında bilgi edinmek için "ps" komudunu kullanabilirsiniz. En basit şekilde, ps komudu, mevcut terminalinizde (ya da günümüzde, grafik ekranınız üzerindeki mevcut terminal penceresinde) çalışan tüm süreçleri gösterir.}
+
+\begin{verbatim}
+$ ps
+PID TTY STAT TIME COMMAND 997 pts/8 S 0:00 -bash
+1005 pts/8 R 0:00 ps 
+$_
+\end{verbatim}
+
+PID ve COMMAND kolonları kendilerini belirtir. TTY terminale isim verir ("pts/something" genellikle terminal penceresi anlamına gelir), TIME şimdiye kadar süreçler tarafından kullanılan işlemci zamanı  ve STAT "süreç durumu"dur. 
+
+Linux'ta bir süreç, aşağıdaki durumların biridir. Yani:
+\paragraph{Çalıştırılabilir (R)}{Sürece işlemci zamanı tahsisi edilmiş olabilir.}
+\paragraph{Uykuda (S)}{Sürec genellikle bir tuşa basma  ya da diskten veri okuma gibi  giriş/çıkış olaylarını bekler.}
+\paragraph{Derin (bölünemez) uykuda (D)}{Süreç bir olay bekliyor ve rahatsız edilemez. Süreçler çok uzun süre bu durumda kalmamalıdır çünkü sadece sistem önyükleme tarafından silinebilirler.Eğer böyle olursa, bu genellikle bazı hatalardan kaynaklanmaktadır.}
+\paragraph{Geçici olarak durdurulmuş (T)}{Süreç geçici olarak sahibi veya bir yönetici tarafından durdurulabilir, ama daha sonra çalışmaya devam edebilir.}
+\paragraph{Zombi (Z)}{Süreç gerçekte tamamlanmıştır, ancak çıkış kodu henüz ana süreç tarafından yakalanamamıştır. Bu süreç "ölmek" anlamına gelir ama sistem içinde ölümsüz kalır.Gerçegin aksine zombiler sorun değildir çünkü onlarda, süreç tablosunda bir yuva başka kaynakların yerini kaplayamaz. Eğer sisteminiz çok fazla zombiyle kaplıysa, bu ilk etapta süreçleri oluşturan program ile ilgili bir sorun olduğunu gösterir. Bu program sonlandırmada zombileri yok etmek gerekir.
+}
+
+ps bilgilerini sağlayan kontrol parametrelerini kullanın. Örneğin, belirli bir süreç hakkında bilgi edinmek için bir işlem numarası girebilirsiniz:
+\begin{verbatim}
+$ ps 1
+PID TTY STAT TIME COMMAND
+1 ? Ss 0:00 init [2]
+\end{verbatim}
+
+l seçeneği, bir işlem hakkında daha ayrıntılı bilgi verir:
+\begin{verbatim}
+$ ps l $$
+F UID PID PPID PRI NI VSZ RSS WCHAN STAT TTY TIME COMMAND
+0 1000 3542 3491 20 0 21152 2288 - Ss pts/8 0:00 /bin/bash
+\end{verbatim}
+
+("\$\$" kabukta "mevcut süreci" gösterir)
+
+*UID, sürecin sahibinin sayısal kimliği (bkz. Bölüm 3), PPID Sürecin "ana" bir süreç kimliği. PRI önceliği- sayı yükseldikçe öncelik düşecektir(!)-VSZ Çalışma 
+belleğinde boyut (KiB içinde) ve RSS RAM içindeki geçerli büyüklük (üstelik KiB içinde).
+
+*Sürecinin bir parçası diske taşınmış olabilir, böyle bir durumda VSZ ve RSS, özdeş değildir. Bir disk bölümünde veya dosya üzerinde takas alanı ekleyerek 
+Linux bilgisayarında mevcut çalışan belleği büyütebilirsiniz. 
+
+ps komutu dikkate alınan süreçlerin seçimini ve her süreç için bilginin çıktı boyutunun, tipinin kontrol edilmesinde bir çok seçeneği destekler. ps(1) okuyun.
+
+ps ve benzer programlar genellikle /proc üzerine monte edilen ve işletim sistemi çekirdeği tarafından uygun hale getirilen proc dosya sisteminden bilgileri elde eder. Bu dizin içinde "dosyalar" süreçleri ve sistemin diğer özellikleri hakkında güncel bilgileri içerir. (Ayrıca bkz. Bölüm 10.3.)
+\paragraph{free}{Free komutu sistem belleği hakkında bilgi sağlar:
+\begin{verbatim}
+$ free
+          total     used    free     shared buffers  cached
+Mem: 3921956 1932696 1989260        0     84964  694640 
+-/+ buffers/cache: 1153092 2768864
+Swap:    8388604      0 8388604
+\end{verbatim}
+}
+
+"Mem:" satırı bilgisayarın yaklaşık 4 GİB RAM e sahip olduğunu (altında "toplam"; işletim sistemi çekirdeği burada görünmeyen bazı belleği de doldurur) ve de yaklaşık yarısının dolu olduğunu söyler ("used" ve "free" komutlarına bakın). İşletim sistemi diskte veri depolamak için yaklaşık 700 MiB kullanır ve ikinci satır size bu boş ve kullanılan hafızayı nasıl etkilediğini söyler. Üçüncü satırda takas alanı (“Swap:”) kullanımı anlatılmaktadır (Bu makinede 8 GiB, üzerinden).
+
+Modern Linux makinelerde "Paylaşılan" sütunu her zaman sıfırdır; ve bu nedenle ihmal edilebilir.
+
+free komutu da çeşitli seçenekleri destekler. Örneğin; dostça bir çıkış biçimi üretmek için:
+\begin{verbatim}
+$ free --human 				‘‘-h’’ de olur
+total used free shared buffers cached
+Mem: 3,7G 1,9G 1,8G 0B 84M 678M
+-/+ buffers/cache: 1,2G 2,5G
+Swap: 8,0G 0B 8,0G
+\end{verbatim}
+
+Burada free komutu bilgisayar dostu mebibyte ve gibibyte'ı ifade etmek için "M" ve "G" birimleri kullanır.--si seçeneği on yetkilerine geçiş yapar (mega ve gigabyte).
+
+\paragraph{top}{Son olarak, "top" komutu sürekli güncellemeleri ile ps ve free komutlarının bir birleşimi gibidir. Sistem ve süreç bilgilerini içeren bir bilgi tam ekran görüntülenir: Şekil 12.1 de bir örnek gösterilmektedir:}
+\paragraph{şekil 12.1 eklenecek}{}
+
+\begin{itemize}
+\item Çıktının üst kısmında yer alan, birinci sıra şimdiki duvar saati zamanını ve “uptime”ı gösterir.Örneğin, sistemin yeniden başlatılmasından sonra geçen zamanın süresi (burada, dört gün, on dört saat, ve değiştir) ve giriş yapmış olan kullanıcıların sayısı (burada “11” çok ciddiye alınmamalı; son penceredeki her oturum bir kullanıcı gibi sayılır). Sağ tarafta üç numara bulunmakta, sözüm ona sistem yüklemelerini tanımlayan yükleme ortalamaları.
+
+Yükleme ortalamaları yürütülebilir işlemleri (state R) belirtir, son dakikanın, son beş dakikanın ve son on beş dakikanın ayrı ayrı ortalamasını alır. Bu değerlerin faydası gözde büyütülmemeli!; size gerçekten o kadarını söyleyemezler. Eğer son dakikanın değeri yüksekse ve son 15 dakikadan biri düşükse, bu durumda sisteminiz aniden daha fazlasını yapmak zorunda kalacak; eğer son dakikanın değeri düşük fakat son 15 dakikanın yüksekse, sisteminiz yapılacak çok şey için kullanır fakat bu şu an aşılmış durumdadır.
+
+Eğer yükleme ortalamaları sürekli olarak sisteminizdeki işlemci çekirdekleri sayısından aşağıdaysa, bunun anlamı siz gereksiz yere pahalı bir işlemci için 
+fazla harcama yapmışsınız demektir. Sekiz çekirdekli sistem üzerinde, örneğin, 8 civarındaki değerler (bu geleneksel olarak bir sistem yöneticisinin 	omurgasından soğuk parçaları düşürecektir tamamiyle normaldir; uzun bir zamna periyodu boyunca değerler 8’in çok altındaysa bu çok acıklı bir durumdur.
+
+\item İkinci satır işlemlerin sayısını ve çeşitli işlem evrelerinde nasıl dağıldıklarını verir.
+\item Üçüncü satır CPU kullanım tipine göre yüzdeler içerir: “us” çalıştırılan kodun çıktısı ve “sy işletim sisteminin çekirdeğindeki koddur.
+\item Takip eden iki satır temelde -free- nin çıktılarına tekabül eder.
+\item Ekranın alt tarafı “ps l” e benzer işlem listesidir. Üst kısım gibi her birkaç saniyede güncellenir ve aksi istenmediği taktirde, CPU zamanı kullanım yüzdelerine göre işlemleri sıralamıştır (sistemin üzerinde en çok vakit harcadığı işlem liste başı olur) 
+
+Eğer “m” tuşuna basarsanız, liste hafıza kullanımına göre sıralanacaktır-en çok yer kaplayan işlem en üstte olur. “P” tuşu ile, CPU zaman listesine geri dönebilirsiniz.
+
+“H” tuşunu  top içinde yardım sayfasını görüntülemek için kullanabilirsiniz. Top ana sayfası çıktıları ve olağan tuş kombinasyonlarını açıklar ve size işlem listesi içeriklerini gereksinimlerinize göre nasıl adapte edeceğinizi gösterir.
+\end{itemize}
+\paragraph{Alıştırmalar}{
+\begin{itemize}
+ \item ps komutunun ax seçeneği ile sistemdeki bütün işlemleri görüntüleyebilirsiniz. Listeye göz atın. Hangi işlemleri farkettiniz?
+ \item shell oturum içinde uzun yürütülen bir işlem başlatın (“sleep 120” e benzer yapılabilir). Başka bir oturumda  “ps ax” ı çağır ve bu süreci çıktıya 
+yerleştirmeyi dene. (Hint: grep arkadaşınızdır).
+\item top'ı kullanarak hangi sürecin şu an, en çok CPU zamanını kullandığını bul. Hangi işlem en çok hafıza kullanıyor?
+\end{itemize}}
+\end{section}
+\begin{section}{Paket Yönetimi}
+
+Modern Linux distrübütörleri normalde kalabalık (tipik olarak binlerce) her biri sistemin işlevselliğinde (çalıştırılabilir programlar, kütüphaneler, dökümentasyon,…) belirli bir bölüm için gerekli her şeyi barındıran “paketler” içermekte. Başlangıçta Linux bilgisayarı yapılandırırken, siz yönetici olarak hangi paketlerin bilgisayara yükleneceğini belirleyebilirsiniz ve tabiki daha sonra yayımcınızdan keyfi olarak paketleri her zaman ekleyebilirsiniz yada kullanılmayanları kaldırabilirsiniz.
+
+İşlevselliğin paketler şeklinde nasıl bölündüğünün ayrıntıları dağıtıma bağlıdır.kütüphanelerle genelde bir “run-time paketi” ve bir “geliştirme paketi” arasında ayrım yapılır. Run-time paketi diğer proğramların kütüphaneyi kullanabilmesi için yüklenmesi zorunlu olan dosyaları içerir (bir .so dosyası içinde asıl dinamik olarak yüklenilebilir kütüphane gibi). Development paketini kurmaya sadece eğer, kütüphaneyi kullanan yeni yada var olan programları derlemeyi hedeflerseniz, ihtiyaç duyarsınız.—C derleyicisi bilgileri içerir bu durum kütüphaneyi kullanmaya ihtiyaç duyar (“include files”), hata ayıklama için istatiksel olarak ilişkilendirirlebilir bir kütüphane, yada kütüphane içeriği hakkında dökümentasyon. Eğer dökümentasyon büyükse başka bir pakete bölünebilir.
+
+Örneğin, burada Debian GNU/Linux 6.0 (“Squeeze”) e göre rsvg kütüphanesi (SVG- format grafikleri ile ilgilenen) paket bölünmüş: 
+\begin{verbatim}
+	librsvg2-2 		Gerçek (run-time) kütüphanesi
+	librsvg2-dev 		geliştirme paketi
+	librsvg2-bin 		Command-line programs
+	librsvg2-dbg 		Komut satırı programları
+	librsvg2-doc 		belgeleme
+	librsvg2-common 	Daha fazla Komut satırı programları
+	python-rsvg 		Python dili bağlama
+	libimage-librsvg-perl 	Perl dili bağlama
+\end{verbatim}
+
+Her linux bilgisayarında, bilgisayarın farkında olduğu ve yakın zamanda yüklenmiş olan paketler hakkında bilgiler içeren bir “paket database”i vardır. 
+Dağıtıcınızın “repositories”i yada paketler içeren sunucu ile paket database’inizi periyodik olarak senkronize edebilirsiniz ve bu şekilde bilgisayarınızdaki paketlerden hangilerinin güncel olmadığını bulabilirsiniz çünkü dağıtımcılar yeni versiyonları önerirler. Paket yönetim sistemimi genelde size söz konusu paketleri seçerek güncelleme fırsatı verir.
+
+Bunun pratikte ne kadar iyi işleyeceği (bir kez daha) dağıtımcınıza bağlı. Özellikle, konu göründüğünden daha karmaşık olabilir: bir paketin yeni versiyonu bir kütüphanenin (kendi paketinde kullanılabilir olan) mutlaka yeni versiyonda yüklenilmesine ihtiyaç duyabilir ve eğer kurulu olan başka bir program tam olarak bu kütüphanenin eski versiyonuna ihtiyaç duyarsa bu problemlerin ortaya çıkmasına sebep olabilir. Bazen bir paketin sistemde başka bir yerde ciddi değişiklikler yapmadan güncellenebilmesi mümkün olmayabilir. İyi paket yönetim sistemleri bu gibi durumları saptar ve yönetici olarak sizi uyarır ve/veya size 	müdahale etme şansı sunar.
+
+Bölüm 2.4.7 de de belirtildiği gibi, büyük Linux dağıtımları farklı paket yönetim sistemlerinden herhangi birini kullanabilirsiniz. Her iki paket yönetimi sistemi de kendi araçlarıyla ve paket dosyaları için kendi formatıyla gelen Debian GNU/Linux'un paket yönetim sistemi ve türetimleri, Red Hat, SUSE kullanılarak RPM paket yönetimi gibi sistemlerdir. Prensip olarak, aynı sorunu çözmek, ancak paket yönetimi için kullanılan komutlar gibi ayrıntıda farklılaşır.
+
+Örneğin; RHEL, Fedora veya openSUSE gibi RPM tabanlı sistemlerde, yüklenen tüm paketlerin listesini aşağıdaki komutu kullanarak görüntüleyebilirsiniz.
+\begin{verbatim}
+$ rpm --query --all 		‘‘-qa’’
+\end{verbatim}
+
+Debian tabanlı sistemlerde bu komut yerine aşağıdaki komut gereklidir.
+\begin{verbatim}
+$ dpkg --list 			‘‘-l’’
+\end{verbatim}
+
+Paket veritabanları genellikle /var/lib altında bulunur. Debian gibi sistemlerde /var/lib/dpkg (/var/cache/apt yüklenen her paket dosyası ile birlikte depo 
+sunucularının içerik tablolarını içerir.) ve RPM tabanlı sistemlerde /var/lib/rpm içindedir.
+  
+Bugün, dpkg ve rpm gibi programlar bir paket yönetim sistemi "temelini" oluşturur. Yöneticier temel programlar üzerine inşa edilen daha uygun araçlar tercih ederler ve bu programlar örneğin paket depolarına kolay erişim ve paketler arasındaki bağımlılıkların otomatik çözümlerini içerir. Debian dünyasında, "Aptitude" ve "Synaptic" kullanılırken, RPM tarafında Red Hat Zypper üzerinde YUM ve SUSE diye adlandırılan bir program kullanılır(paket yönetimi  genel yönetici aracı YaST içine entegre edilmiş olsa bile).
+
+Bu araçlardan bazıları alttaki paket yönetim sistemi ile bağımsızdır. “PackageKit” de örneğin, Debian veya RPM paket yönetiminin her ikisi de kullanılmayabilir. Bundan başka kontrollü şartlar altında paket güncelleştirmesi veya yüklenmesi için yönetici ayrıcalıkları olmadan izin verebilir.
+
+\paragraph{Alıştırmalar}{
+\begin{itemize}
+\item Sisteminizde kaç paket yüklü? Yukarıda gösterilen rpm ve dpkg çağrısını kullanın ve çıkış satırlarını sayın. (Dikkat: “dpkg --list” de yüklü olması gereken paketleri görüntüler fakat daha yeni sürümleri silebilir veya yerine geçirebilir. "ii" ile başlayan çıktı satırlarını sayar.)
+\end{itemize}}
+
+\paragraph{Bu Bölümdeki Komutlar}{
+\paragraph{dpkg}{Debian GNU/Linux paket yönetim aracı}
+\paragraph{free}{Serbest ana bellek ve takas alanı kullanımını görüntüler}
+\paragraph{ps}{Çıktıların süreç durum bilgisi}
+\paragraph{rpm}{Çeşitli Linux dağıtımları tarafından kullanılan paket yönetim aracı}
+\paragraph{su}{Farklı bir kullanıcının kimliğini kullanarak bir kabuk başlatır}
+\paragraph{sudo}{Normal kullanıcıların, yönetici ayrıcalıklarına sahip belirli komutları çalıştırmasına izin verir}
+\paragraph{top}{Süreç yönetimi ve kontrolü için ekran yönelimli araç}
+}
+
+\paragraph{Özet}{
+\begin{itemize}
+\item Linux "normal" kullanıcı ve sistem yöneticisini root ile birbirinden ayırır. root ile olağan ayrıcalık kontrolleri muaf edilir.
+\item Normal bir kullanıcı olarak, su veya sudo ile geçici yönetici ayrıcalıkları elde edebilirsiniz.
+\item Bir Linux bilgisayarın konfigürasyonu /etc dizini içindeki metin dosyaları içinde yer alır.
+\item Süreçler yürütülmekte olan programlardır.
+\item ps ve top gibi komutlar mevcut sistem durumunu daha yakından görmemizi sağlar.
+\item Önemli Linux dağıtımları da GNU/Linux ya da orjinal Red Hat tarafından geliştirilen RPM paket yönetim sistemi kullanır.
+\item Temel araçlara dayanarak çoğu dağılımlar, yönetmek, yükleme ve bağımlılıkları dahil yazılım paketleri silebilmeniz için uygun yazılımı sunarlar.
+\end{itemize}}
+\end{section}
