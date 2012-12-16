@@ -1,0 +1,773 @@
+\chapter{Dosyalar: Bakım ve Besleme}
+\paragraph{Amaçlar}
+\begin{itemize}
+ \item Linux kurallarıyla birlikte dosya ve dizin isimleriyle uğraşmaya alışmak
+ \item Dosya ve dizinlerle çalışmada önemli komutları bilmek
+ \item Kabuk dosya adı arama şablonlarını kullanabilmek
+ \end{itemize}
+ 
+\paragraph{Önceden Bilinmesi Gerekenler}
+\begin{itemize}
+ \item Kabuk kullanımı
+ \item Metin editörü kullanımı
+ \end{itemize}
+
+\begin{section}{Dosya ve Yol İsimleri}
+\begin{subsection}{Dosya İsimleri}
+
+Linux gibi işletim sisteminin en önemli hizmetlerinden birisi de, veriyi sabit disk veya USB sürücüler gibi kalıcı hafızaya depolamak ve sonrasında onları kullanmaktır. Bunu insanların yapması kolaydır, benzer veriler genellikle üstünde adının yazıldığı "dosyalar" altında toplanır.
+
+Eğer bu bile sizin için önemsiz gözüküyorsa, bu anlatılanların size hiçbir getirisi yoktur. Eskiden bazı işletim sistemleri, bir verinin bilgisini almak için disk üzerindeki track sayıları gibi ayrıntıları belirtmeyi zorunlu kılıyordu. Bu yüzden, size dosyalarla nasıl uğraşılacağını anlatmaktan önce, Linux'un dosyaları nasıl isimlendirdiğini açıklamalıyız.
+
+Linux dosya isimlerinde, aslında bilgisayarınızın gösterebileceği her karakteri (hatta daha fazlasını) kullanmanıza olanak tanır. Ancak, karakterlerden bazılarının özel anlam içerdiğinden beri, dosya isimlerinde bu karakterleri kullanmanızı tavsiye ederiz. Yalnızca iki karakterin kullanılamaz: bölü ("/") işareti ve 0 byte (ASCII değeri 0 olan karakter). Boşluk, inceltme işareti ya da dolar işaretleri gibi karakterler serbestçe kullanılabilir, fakat komut satırında "$\backslash$" veya tırnak işaretlerinin sırası kabuk tarafından yanlış yorumlanacağından, genellikle bu kullanımdan kaçınmak gerekir.
+
+Acemilerin kolayca tuzağa düşeceği olay ise, Linux'un dosya isimlerinde büyük/küçük harfleri ayırt edebilmesidir. Aksine Windows, dosya isimlerinde büyük/küçük harfleri gösterir, fakat aynı dosya gibi davranır, Linux ise x-dosyaları ve X-Dosyalarının iki farklı dosya adı olduğunun farkındadır.
+
+	Limitlerin "dosya sistemine" bağlı olduğundan beri, Linux altında byte'lar halinde düzenlenen dosya adları "çok uzun" olabilir(Linux'ta  bu düzenlemeyle ilgili birçok yöntem vardır). Normal sınır 255 karakterdir— fakat 3 satırdan daha fazla uzunlukta dosya isimleri standart metin terminalinde size karmaşıklık yaratabilir.
+	
+	DOS ve Windows bilgisayarlardan başka bir fark da Linux, dosyanın tipini belirlemek için sonekleri kullanmaz. Bu yüzden, dosya ismindeki nokta tamamen sıradan bir karakterdir. Bir metin dosyasını mumble.txt olarak kaydetmede serbestsiniz, fakat prensip olarak sadece mumble kelimesi de  kabul edilebilir. Bu kullanım tabi ki sizin tamamen uzantı ile adlandırmanızı engellememelidir—Bununla birlikte bu kullanım dosya içeriğini tanımlamanızda kolaylık sağlar.
+	
+	Bazı programlar girdi dosyalarında özel uzantı kullanmayı zorunlu kılar. Örneğin C derleyicisi olan gcc, ".c" ile biten C kaynak kodu, ".s" ile biten makine dili kaynak kodu, ve ".o" ile biten ön derlenmiş nesne dosyaları isimlerini dikkate alır.
+	
+	Dosya isimlendirmede özgürce inceltme işareti ve diğer özel karakterleri kullanabilirsiniz. Yine de, eğer dosyalar diğer sistemlerde kullanılacaksa özel karakterleri kullanımından kaçmak en iyisidir, çünkü diğerlerinde dosyaların aynı isimle gösterileceğinin bir garantisi yoktur.
+	
+	Özel karakterler ayrıca sizin yerel ayarlarınıza bağlıdır, karakterlerin temsili için genel bir standartın olmayışı ASCII karakter setini(Çoğunlukla içinde İngilizce dili, rakamlar ve yaygın özel karakterlerin bulunduğu 128 karakteri) aşar. Çokça kullanılan kodlamalara örnek olarak ISO 8859-1 ve ISO 8859-15(sırasıyla ISO-Latin-1 ve ISO-Latin-9 olarak bilinir) bununla birlikte ISO 10646, gelişigüzel ve çok doğru olmayarak adına "Unicode" denilen genellikle "UTF-8" karakter seti ile kodlanır. Y kodlaması sistemde yürürlükte iken dizine baktığınız zaman X kodlamasıyla oluşturduğunuz dosyalar tamamen farklı gözükebilir. Bu konuların üzerinde çok durursanız, size tüm konu hiçbir şey gibi gelir.
+	
+	Bazen kendinizi yanlış karakter setiyle kodlanmış bir yığın dosya ile uğraşıyor olarak bulabilirsiniz. Çeşitli karakter setleri arasında dönüşüm yapabilen convmv programı bu konuda size yardım edebilir. (Çoğu dağıtımlarının standart kurulumunun bir parçasıdır olmadığından dolayı, muhtemelen kendiniz yüklemeniz gerekecektir.) Ancak, bunu tüm bölümü bitirdiğimiz zaman yapmanız daha uygun olur, çünkü daha normal mv'den bahsetmedik bile ...
+	
+Aşağıdaki tüm karakterleri dosya isimlendirmelerinde özgürce kullanabilirsiniz:
+\begin{verbatim}
+ ABCDEFGHIJKLMNOPQRSTUVWXYZ
+ abcdefghijklmnopqrstuvwxyz
+ 0123456789+-._
+\end{verbatim}
+
+Ancak aşağıdaki ipuçlarına dikkat etmelisiniz:
+\begin{itemize}
+\item Linux ve daha eski Unix sistemlerde taşınan dosyaların isimlendirilmesinde izin verilen dosya uzunluğu en fazla 14 karakterdir. (Bu kurala uymak gerçekten önemlidir.)
+\item Dosya isimleri her zaman harf veya rakamlardan biriyle başlamalıdır; diğer 4 karakterleri sadece dosya içerisinde sorunsuzca kullanabilirsiniz.
+\end{itemize}
+
+Bu kuralları anlamanın en kolayı birkaç örneği incelemektir. Uygun dosya isimlerine örnek olarak
+\begin{verbatim}
+X-files
+foo.txt.bak
+50.something
+7_of_9
+\end{verbatim}
+verilebilir. Buna karşılık aşağıdaki kullanımlar problem oluşturabilir (muhtemelen):
+\begin{verbatim}
+-10F 		‘‘- ’’ ile başlıyor, özel karakter var
+.profile 					Gizli dosya olacaktır
+3/4-metre 				Kural dışı karakter içerir
+Smörrebröd 					İnceltme işareti içerir
+\end{verbatim}
+
+Diğer bir tuhaf özellik de, dosya isimlerinin nokta(".") ile başlaması bazı yerlerde dosyanın gözden kaçmasına neden olacak, örneğin dizin içerisindeki dosyaların listelendiği zaman—bu tür dosya isimleri "gizli" gibi düşünülür. Bu özellik genellikle programların içerik ayarlarında ve dizin listelemelerde çok daha önemli dosyaların kullanıcının kafasını karıştırmamak amacıyla kullanılır.
+
+DOS ve Windows uzmanları için: Bu sistemler dosyanın isminin bağımsızca ayarlanabildiği dosya özelliklerinin "gizli" olması ile izin verir. Linux ve Unix'te bu tarz bir destek yoktur.
+\end{subsection}
+\begin{subsection}{Dizinler}
+
+Birçok kullanıcı aynı Linux sisteminde potansiyel olarak çalıştığından beri, tüm dosya isimlerinin sadece bir tane olması problem teşkil edebiliyordu. Sue kullanıcısının halihazırda aynı isimde dosya oluşturduğu için Joe kullanıcısının letter.txt isimli bir dosya oluşturamaması belirsizliğe yol açıyordu. Ayrıca Joe'nun, Sue'nun tüm dosyalarını okuyamamasını garanti eden uygun bir yol bulunması gerekiyordu.
+
+	Bu nedenle, Linux dosyaları gruplayan "dizinler" hiyerarşik fikrine destek verir. Aynı dizinde olmaması koşuluyla, dosya isimlerinin  tüm sistemde eşsiz olması gerekmez. Özellikle bu, sistemin Joe ve Sue için farklı dizinler atayabilmesini, ve her birinin kendi dosyaları hakkında endişelenmesinin giderilmesi anlamına gelir.
+	
+	Ek olarak, Joe'ya Sue'nun dizinine (veya tam tersi) erişmesini yasaklayabiliriz ve dizin içerisinde kişisel dosyalar içermesi hakkında endişelenmemize gerek kalmaz.
+	
+	Linux'ta dizinler basit dosyalar olsa da, "sade" dosyalara erişmek için kullandığınız yöntemler ile onlara erişemeyebilirsiniz. Ancak, bu davranışı uygularken daha önce bahsettiğimiz dosya adları ve dizin isimleri kurallarını(önceki bölüme bakınız) göz önünde bulundurmanız gerekir. Sadece taksim("/") karakterinin, dizin isimlerinden,dosya isimlerini ve/veya diğer dizinleri ayrıması gerektiğini bilmeniz yeterlidir. Örnek olarak: joe/letter.txt, joe dizinindeki letter.txt dosyasıdır.
+	
+	Dizinler ağaç-tarzı(yaratıcı bir şekilde "dizin ağacı"  denen) yapı ile tasvir edilen diğer dizinleri içerebilir(bu "hiyerarşi" teriminden daha önce de bahsetmiştik). Bir Linux sistemi, ağacın kökleri gibi bir yapıda olan "kök dizini" denilen özel bir dizin içerir.  "/"(taksim) ile ifade edilir.
+	
+	İsminin aksine, kök dizininin, sistem yöneticisi anlamına gelen kök (root) ile alakası yoktur. Sadece isimleri benzerdir.
+	
+	Burada taksimin çift görevi vardır—hem kök dizininin adıdır, hem de dizin isimleri arasında ayraç görevi üstlenir. Bu konuya birazdan geri döneceğiz.
+	
+	Yaygın Linux dağıtımlarında temel yükleme, genellikle tek bir dosya hiyerarşisinde bulunan ve bunun çokça belirli düzene göre yapılandırılmış olduğu onbinlerce dosyayı içerir. Bu dosya hiyerarşisine Bölüm 10'da daha çok yer vereceğiz.
+\end{subsection}
+\begin{subsection}{Mutlak ve Göreceli Yol İsimleri}
+
+Linux sistemindeki her dosya, kök dizini tarafından başlayan, ve bir dosyaya(dosyanın kendisine) ulaşıncaya kadar devam eden tüm dizinlerin adının geçtiği, ve sonunda dosyanın kendisinin bulunduğu dosya isimleriyle tasvir edilir. Örneğin, /home/joe/letter.txt ismi, joe dizini altında bulunan, sonra home dizini içerisinde konumlanan, daha sonra da evebeyn olan kök dizininin yer aldığı letter.txt dosyasına karşılık gelir. kök dizini ile başlayan isimlere "mutlak yol ismi" adı verilir—isimler dizin ve dosya isimleri barındırabilen "yol" vasıtasıyla dizin ağacı olarak tanımlandığından beri "yol isimleri" lafını kullanırız.
+
+	Linux sisteminde her sürecin bir "mevcut dizini" (genellikle "çalışma dizini" diye adlandırılır) vardır. Dosya isimleri bu dizinin içerisinde aranır; letter.txt "letter.txt denilen mevcut dizin" için, sue/letter.txt "sue dizini içerisindeki, mevcut dizinde bulunan letter.txt" için bir kısaltmadır. Mevcut dizinden başlayan bu tarz isimlere "göreceli yol isimleri" adı verilir.
+	
+	Göreceli yol isimlerinin mutlak olduğunu söylemek önemsizdir: Mutlak dosya yolu bir "/" ile başlar; diğer hepsi görecelidir.
+	
+	Mevcut dizin evebeyn ve çocuk süreçler arasındaki "miras"'tır. Yani kabuktan yeni bir kabuk başlattığınızda(veya başka bir program), bu yeni kabuk, sizin başlatmak için kullandığınız kabuk dizini ile aynı mevcut yolu kullanır. Yeni kabuğunuzda diğer dizine cd komutunu kullanarak geçebilirsiniz, fakat eski kabuğun mevcut dizini değişmez—Eğer yeni kabuktan ayrılırsanız, eski kabuğun mevcut dizinine(değişmemiş dizine) geri dönersiniz. 
+	
+	Göreli yol isimlerinde(hatta mutlak olanlarda bile) 2 kullanışlı kestirme vardır: ".." isminde her zaman dizin ağacında bir bilinmeyen olan mevcut dizinin üst dizinini işaret eder—Örneğin, /home/joe, /home durumudur. Bu sıklıkla mutlak yol ismine başvurmak zorunda kalmadan, mevcut dizinden, dizin ağacı gibi gösterilen "yan dal"'a ayrılmak için kullanışlı bir yoldur. Farzedelim ki /home/joe dizininin letters ve novels isminde altdizinleri olsun. letters sizin mevcut dizininiz gibi olsun, novels dizininin içerisinde ivanhoe.txt dosyasına kaba bir şekilde mutlak yol ismi olan /home/joe/novels/ivanhoe.txt'yi kullanmaksızın ../novels/ivanhoe.txt şeklinde göreceli yol ismi belirterek referans belirtebilirsiniz.
+	
+	İkinci kestirme ise size açıkça bir anlam ifade etmiyor gibi gelebilir: "." ismi dizin içerisinde bulunur ve her zaman dizinin kendisini ifade eder. Neden zaten içinde bulunduğumuz dizine işaret eden böyle bir metoda ihtiyacımızın olduğunun direkt olarak bir cevabı yoktur, fakat  tabi ki bu durumların bize kattığı kullanışlı becerileri vardır. Örneğin, belki biliyorsunuzdur (ya da Bölüm 9'a bakınız) kabuğun harici komutlar için program dosyalarını ararken kullandığı çevresel dizin değişkeni olan PATH vardır. Diyelim ki bir yazılım geliştiricisisiniz, bir program çalıştırmak istiyorsunuz, haydi (a) isimli mevcut dizininiz içerisindeki dosya, ve PATH içerisinde yer almayan(Güvenlik nedenleri için her zaman iyi bir fikirdir) (b) dizniniz içerisindeki prog'u çalıştıralım, halâ kabuğunuzdayken
+\begin{verbatim}
+ $ ./prog
+\end{verbatim} 
+diyerek dosyanızı, mutlak yol ismini vermek zorunda kalmadan program olarak başlatabilirsiniz.
+
+Linux kullanıcısı olarak sisteme girdiğinizden hemen sonra "ev dizinine" ulaşırsınız. Sistem yöneticisi sizin hesabınızı oluşturduğunda bu dizinin ismine karar verir, fakat genellikle kullanıcı isminizle aynı olur ve /home dizini altında yer alır— joe kullanıcısı için atanan /home/joe gibi.
+
+\end{subsection}
+\end{section}
+
+\begin{section}{Dizin Komutları}
+\begin{subsection}{Mevcut Dizin: cd \& Co.}
+
+Mevcut dizini değiştirmek için cd kabuk komutunu kullanabilirsiniz: Basitçe parametre olarak arzu edilen dizin ismi verilir:
+\begin{verbatim}
+$ cd letters 	       letters dizinine değiştirir
+$ cd .. 			   Bir üstteki dizine değiştirir
+\end{verbatim}
+
+Eğer parametresiz kullanacak olursanız ev dizininize erişirsiniz:
+
+\begin{verbatim}
+$ cd
+$ pwd
+/home/joe
+\end{verbatim}
+
+Mevcut dizinin mutlak yolunun çıktısını almak için pwd ("print working directory") komutunu kullanabilirsiniz.
+
+Ayrıca mevcut dizininizi büyük olasılıkla kendi istemcinizin bir kısmı olarak görebilirsiniz. Sistem ayarlarınıza bağlı olarak
+
+\begin{verbatim}
+joe@red:~/letters> _
+\end{verbatim}
+
+gibi bir satırla karşılaşabilirsiniz. $\sim$/letters /home/joe/letters'a kısaltmadır; tilda ("$\sim$") ise mevcut kullanıcı ev dizininizi gösterir.
+"cd -" komutu cd komutu ile son kullanılmış dizine tekrar geri dönmeyi sağlar. Bu kullanışlı komut iki dizin arasında peş peşe geçiş yapmayı sağlar.
+
+\paragraph{Alıştırmalar}{
+\begin{itemize}
+ \item Kabukta cd dahili mi, harici mi komuttur? Neden?
+ \item Kabuk kılavuz dosyasında pushd, popd, dirs komutlarını okuyunuz. Bu komutların tasvir edildiği gibi çalıştığına kendinizi ikna ediniz.
+\end{itemize}}
+
+\paragraph{}{
+\begin {table}[H]
+\caption {ls'deki bazı dosya gösterimleri} \label{tab:title} 
+\begin{tabular}{l c c c}
+\hline
+Dosya Tipi & Renk & Sonek (ls -F) & Harf türü (ls -l) \\
+\hline
+düz metin 	&	siyah & none & - \\
+çalıştırılabilir dosya 	&	yeşil & * & - \\
+dizin 	&	mavi & / & d \\
+link 	&	cyan & @ & l \\
+\hline
+\end{tabular}
+\end {table}
+}
+
+\paragraph{}{
+\begin {table}[H]
+\caption {Bazı ls parametreleri} \label{tab:title} 
+\begin{tabular}{l l}
+\hline
+Parametre & Sonuç \\
+\hline
+-a veya --all 	&	Aynı zamanda gizli dosyaları da görüntüler \\
+-i veya --inode 	&	Eşsiz dosya numarasını görüntüler (inode number) \\
+-l veya --format=long 	&	Ekstra bilgi görüntüler \\
+-o veya --no-color 	&	Çıktı renk-kodlamasını atlar \\
+-p veya -F 	&	Eklenen özel karakterle dosya türünü işaretler \\
+-r veya --reverse 	&	Sıralamayı ters yapar \\
+-R veya --recursive 	&	Alt dizinlerle birlikte rekürsif olarak listeler (DOS: DIR/S) \\
+-S veya --sort=size 	&	Boyuta göre sıralar (büyükten küçüğe doğru) \\
+-t veya --sort=time 	&	Değiştirilme tarihine göre sıralar (yeniden eskiye doğru) \\
+-X veya --sort=extension 	&	Dosya uzantısına göre sıralar (“dosya türüne” göre) \\
+\hline
+\end{tabular}
+\end {table}
+}
+\end{subsection}
+\begin{subsection}{Dosya ve Dizinleri listeleme --ls}
+
+Dizin ağacı etrafında yolunuzu bulmak için hangi dosya ve dizinlerin mevcut dizin içerisinde olduğunu bilmeniz gerekir. ls("list") komutu tam da bu iş için vardır.
+
+	Parametresiz kullanımda çıktı olarak dosyaların isme göre sıralandığı bir çeşit tablo görünümlü bir yapı elde edilir. Renkli ekranların günümüzde standart haline gelmesiyle, dosya isimleri ve türlerinin farklı renklerde görüntülenmesi genelek haline geldi (Daha dosya tipleri hakkında konuşmadık; bu konuya Bölüm 10'da değineceğiz).
+	
+Neyse ki, günümüzde birçok dağıtım renkli kullanımı bünyesinde barındırıyor. Tablo 6.1'de en yaygın gösterimler vardır.
+
+	Siyah-Beyaz ekranlarda—ki hala günümüzde var—, -F veya -p parametreleri önerilir. Bunlar dosya türleri ile ilişkili dosya isimlerine özel karakter eklerler. Bu karakterlerin bazılarına Tablo 6.1'de değinmiştik.
+	
+	Gizli dosyaları (nokta ile başlayan isimlileri) -a ("all") parametresiyle görüntüleyebilirsiniz. Bir başka kullanışlı seçenek ise -l'dir(büyük harf olarak "L", "long"(uzun) anlamı taşır, "1" rakamı değildir). Bu sadece dosya isimlerini sıralamakla kalmaz ayrıca her dosya için ek bilgi de içerir.
+	
+	Bazı Linux dağıtımlarında önceden ayarlanmış bazı yardımcı parametrelerin kombinasyonu olan kısaltmalar vardır; SUSE dağıtımlarında, örneğin sadece basit bir l kullanımı "ls -alF"'nin kısaltmasıdır. "ll" ve "la" ls'nin farklılaşmış bazı kısaltmalarıdır.
+	
+Aşağıdaki örnekte ls'nin -l'li ve -l'siz kullanımı vardır:
+\begin{verbatim}
+$ ls
+file.txt
+file2.dat
+$ ls -l
+-rw-r--r-- 1 joe users 4711 Oct 4 11:11 file.txt
+-rw-r--r-- 1 joe users 333 Oct 2 13:21 file2.dat
+\end{verbatim}
+
+İlk durumda, bütün gizli olmayan dosyalar listelendi; ikinci durumda ise ekstra bilgi eklendi.
+
+	Uzun formatın farklı parçalarının anlamları vardır: İlk karakter dosya türünü verir (Bölüm 10'a bakınız); sade dosyalar "-", dizinler "d" şeklinde vb.(Tablo 6.1'deki "karakter türleri").
+	
+	Sonraki 9 karakter erişim izinlerini gösterir. Sonraki dosyanın adedini, dosyanın sahibini(joe), ve dosyanın grubunu(users) gösterir. Byte olarak dosyanın boyutundan sonra, dosyanın içerdiği son değiştirilme bilgisini tarih ve saat olarak görebilirsiniz. Ve tabi ki dosyanın adı da görüntülenir.
+	
+	Kullandığınız dile bağlı olarak özellikle tarih ve saat sütunları örmeklerimizden(asgari dil ortamı "C" kullanarak oluşturduğumuz) tamamen farklı görünebilir. Bu genellikle interaktif kullanımda sorun çıkarmaz, fakat eğer kabuk betiğinizin bir bölümünde "ls -l"'nin çıktısını almaya çalışıyorsanız büyük bir sıkıntı ortaya çıkabilir. (Gelişmiş Linux kılavuzunu çalışmaktan önce, kabuk betiklerinde ön tanımlanmış dil çevreselini kullanmanızı öneririz.)
+	
+	Eğer dizin için ekstra bilgi görmek isterseniz(/tmp dizini gibi), "ls -l /tmp"'nin size gerçekten bir yardımı dokunmaz, çünkü ls /tmp içerisindeki tüm dosyaların verisini listeleyecektir. -d parametresi kullanarak /tmp'nin kendisinin bilgisini elde edebilirsiniz.
+	
+ls burada bahsedilenlerden çok daha fazlasına destek verir; önemli olanlarından bir kaçı Tablo 6.2'de gösterilmişti.
+
+Linux Essentials ve LPI-101 gibi LPI sınavlarında, kimse sizden ls'nin tüm 57 tane parametresini bilmenizi beklemez. Ancak en önemli yarım düzine kadarını—yaklaşık Tablo 6.2. içeriğindeki kadarını— ezberlemek isteyebilirsiniz.
+\paragraph{Alıştırmalar}{
+\begin{itemize}
+ \item /boot dizinini hangi dosyaları içerir? Alt dizinleri var mıdır? Varsa hangileridir?
+ \item Dosya ismini parametre olarak alan ls ile dizin ismini parametre olarak alan ls arasındaki fark nedir?
+ \item Eğer dizin adı programda geçiyorsa, dizindeki dosyaların bilgisini görüntülemektense ls'ye sadece dizinleri göstermesi için hangi parametre ile çalıştırırız? (İpucu:Belgeye bakınız.)
+\end{itemize}}
+\end{subsection}
+\begin{subsection}{Dizin Oluşturma ve Silme: mkdir ve rmdir}
+
+Dosyalarınızı düzenli bir şekilde tutmak istediğinizde yeni bir dizinler oluşturmak iyi bir fikirdir. Dosyalarınızı ilişkili konuya göre (Örnek olarak) bu "klasörler" altında toplayabilirsiniz. Tabi ki ileri bir yapılandırma için, ek dizinlerle çalışarak dosyalarınızı bu dizinler altında tutabilirsiniz - hevesinizi, keyfi engeller tarafında sınırlamayınız.
+
+mkdir komutu yeni dizinler oluşturmak için yegane komuttur. Argüman olarak bir veya daha çok dizin ismi alır, aksi halde yeni dizin oluşturmak yerine sadece bir hata mesajı alırsınız. İç içe dizinleri tek adımda oluşturabilmek için -p parametresini kullanabilirsiniz, aksi halde komut, oluşturduğunuz yoldaki dizinlerin hepsini varmış gibi farzedecektir. Örneğin:
+\begin{verbatim}
+$ mkdir pictures/holiday
+mkdir: cannot create directory `pictures/holiday': \\
+No such file or directory
+$ mkdir -p pictures/holiday
+$ cd pictures
+$ ls -F
+holiday/
+\end{verbatim}
+\end{subsection}
+\end{section}
+
+\begin{section}{Dosya Arama Şablonları}
+\begin{subsection}{Basit Arama Şablonları}
+
+Sık sık aynı süre içerisinde birçok dosya için bir komut uygulamak isteyebilirsiniz. Örneğin, eğer "p" ile başlayıp ".c" ile biten tüm dosyaları prog1 dizininden prog2 dizinine kopyalamak istediğinizde, her dosyanın ismini açık bir şekilde yazmak oldukça sıkıcı olabilir— eğer en azından birçok dosya ile uğraşıyorsanız! Kabuk arama şablonları kullanarak bu iş çok rahat bir şekilde yapılır.
+
+Kabuk komut satırında belirlediğiniz bir kelimeyi yıldız ile kullanarak bunu sağlayabilirsiniz. Örneğin
+\begin{verbatim}
+prog1/p*.c
+\end{verbatim}
+Kabuk bu parametreyi, dosya isimlerinin "eşleşme" parametresine göre sıralandığı liste ile mevcut olan asıl programda başlatır. "Eşleşme", asıl dosya adında, yıldızlı keyfi karakterlerin istenen uzunlukta sıralanmasına denir. Örneğin
+\begin{verbatim}
+prog1/p1.c
+prog1/polly.c
+prog1/pop-rock.c
+prog1/p.c
+\end{verbatim}
+yukarıdaki isimler uygundur (örnekteki son ismin özelliği için kısa not — "istenen uzunluk", "sıfır uzunluğu" içerebilir!). Yıldız ile eşleştirilemeyecek bir karakter sizce ne olabilir?—taksim işareti; genellikle arama şablonundaki yıldız karakterini bulunduğunuz dizin ile sınırlamak daha iyidir.
+
+echo ile kolay bir şekilde bu arama şablonlarını test edebilirsiniz.
+\begin{verbatim}
+$ echo prog1/p*.c
+\end{verbatim}
+komutu herhangi bir zorunluluk, kural vb. olmaksızın eşleşen dosya isimlerini çıktı olarak verir.
+
+Eğer gerçekten tüm dosyaları belirli bir dizin ile başlayan dizin ağacında girdi olarak vermek isterseniz, bunun için yapılacak bir çok yöntem vardır. Bu konuya 6.4.4'te değineceğiz.
+
+"*" arama şablonu "mevcut dizindeki tüm dosyaları" tanımlar—nokta ile başlayan gizli dosyalar hariç. Olası zahmetli sürprizleri engellemek için, şayet açıkça ".*" gibi anlam içeren dosyaları aramıyorsanız, arama şablonlarını dikkatlice, gizli dosyaları göz ardı ederek kullanmalısınız.
+
+	DOS veya Windows gibi işletim sistemlerinin komut satırında yıldız kullanımı ile rastgelmiş ve "*.*" kullanarak dizindeki tüm dosyalara işaret etmiş olabilirsiniz. Linux'ta bu doğru değildir—"*.*" şablonu "nokta içeren tüm dosyalar" ile eşleşir, fakat nokta zorunlu değildir. Linux'taki karşılığı dediğimiz gibi "*"'dır.
+Soru işareti arama şablonu sadece tek bir keyfi karakter ile eşleştirmek için kullanılır(yine taksim işareti hariç). Şablon
+\begin{verbatim}
+p?.c
+\end{verbatim}
+gibidir ve böylece
+\begin{verbatim}
+p1.c
+pa.c
+p-.c
+p..c
+\end{verbatim}
+isimli dosyalarla(diğerleri arasından) eşleştirir. Unutmayın mutlaka bir karakter bulunmalıdır — yıldızda olduğu gibi "hiçbir şey" seçeneği burada geçerli değildir.
+
+Özellikle çok önemli bir olaya dikkat etmelisiniz: Arama şablonunun genişlemesi kabuğun sorumluluğu altındadır! Çalıştırdığınız komutlar genellikle arama şablonları hakkında birşey bilmez ve ilgilenmezler de. Onlar yol isimlerini listeleyerek bakmaya başlar, fakat nereden geldikleri ile ilgilenmezler—Örneğin, onlar direkt olarak kaynağın yazılabilir olup olmadığını veya arama şablonlarının genişlemesinin sonuçlarına bakmazlar.
+
+Bu arada, kimse arama şablonlarının sonuçlarının yol isimleri kadar yorumlanabilir olduğunu söylemez. Örneğin, eğer bir dizin içerisinde "-l" isminde dosya içeriyorsa,  "ls *"'nin o dizinde kullanılması size ilginç ve belki de sürpriz bir sonuç verecektir.(bkz: Alıştırma 6.9)
+
+Eğer kabuk, arama şablonlarıyla eşleşen isimlerde dosyaları bulamazsa ne olur? Bu durumda söz konusu komut, arama şablonunu pas geçer; Kendi konusu ne ise onu yapar. Genellikle bu tarz arama şablonları dosya isimleri kadar yorumlanmışlardır, fakat söz konusu "dosya" ise bulunamaz ve hata mesajı bildirilir. Ancak, arama şablonları ile kullanışlı işler yapabileceğiniz birçok komut vardır—bütün bunlarla, gerçekten meydan okuyabileceksiniz, kabuğun çalıştırdığı komut, kendi genişlemesini kesmeye yeltenmez.(İpucu:tırnak işaretleri)
+\end{subsection}
+\begin{subsection}{Karakter Sınıfları}
+Kısmen arama şablonlarında eşleştirilen karakterlerin daha hassas tanımlanması için "karakter sınıfları" önerilir: Formun bir arama şablonunda
+\begin{verbatim}
+prog[123].c
+\end{verbatim}
+köşeli parantez içindeki karakterler, içerisinde tam olarak o karakter geçen isimlerle eşleşir. Bu sebeple örnekteki şablon
+\begin{verbatim}
+prog1.c
+prog2.c
+prog3.c
+\end{verbatim}
+ile eşleşir, fakat bunlar ile değil
+
+\begin{verbatim}
+prog.c 		Tam olarak bir karakter gerekli
+prog4.c 		4 sıralandırmada yok
+proga.c 		a harfi de olmaz
+prog12.c		 Tam olarak bir karakter, lütfen
+\end{verbatim}
+Daha kullanışlı bir gösterim de, özel aralıkları belirleyebilirsiniz.
+\begin{verbatim}
+prog[1-9].c
+[A-Z]bracadabra.txt
+\end{verbatim}
+İlk satırdaki köşeli parantezdekiler tüm rakamlarla, 2. satırdaki de büyük harfle başlayanlarla eşleşir.
+
+Yaygın karakter kodlamalı kelimelerin birleşmeyeceğini dikkate alın
+\begin{verbatim}
+prog[A-z].c
+\end{verbatim}
+gibi şablon sadece progQ.c ve progx.c, fakat ayrıca prog\_.c ile de eşleşmez.(ASCII tablosunu kontrol ediniz, örnek "man ascii" kullanarak.) Eğer "sadece büyük ve küçük harf" eşleştirmek istiyorsanız, bunu
+
+\begin{verbatim}
+prog[A-Za-z].c
+\end{verbatim}
+kullanabilirsiniz.
+\begin{verbatim}
+prog[A-Za-z].c
+\end{verbatim}
+şeklindeki bir yapı çift noktalı karakterleri yakalamaz, harfler gibi kuşkulu gözükse bile.
+
+Daha fazla kolaylık sağlamak için, "bunların dışındaki tüm karakterler" gibi yorumlanan olumsuz karakter sınıfları belirleyebilirsiniz: 
+\begin{verbatim}
+prog[!A-Za-z].c
+\end{verbatim}
+gibi bir şey "g" ve "." arasında harf olmayan karakterli isimlerle eşleşir. Her zamanki gibi, bölü işareti hariç.
+
+\end{subsection}
+\begin{subsection}{Küme Parantezleri}
+İfadelerdelerdeki küme parantezlerinin genişlemesi
+\begin{verbatim}
+{red,yellow,blue}.txt
+\end{verbatim}
+gibi sıklıkla kabuk arama şablonlarıyla birleşmesinde bahsedilir, öyle olsa bile bu gerçekten uzak bir ilişkidir. Kabuk bunu
+\begin{verbatim}
+red.txt yellow.txt blue.txt
+\end{verbatim}
+tarafından değiştirir.
+
+Genellikle, komut satırındaki kelime, birçok virgülle ayrılmış küme parantezi içinde yazının parçaları, bu kelimelerin her biri, tüm küme parantezi ifadesi parçalardan biri tarafından değiştirilen yerde, küme parantezi arasındaki yazının parçaları kadar kelime ile yer değiştirir. Bu değiştirilme tamamen komut satırındaki yazı tabanlıdır ve herhangi dosyaların veya dizinlerin tamamen varoluşundan veya varolmayışından bağımsızdır— aksine arama şablonları daima yalnızca gerçekte sistemde yol isimlerinde varolan isimleri üretir.
+Bir kelime için kartezyen çarpım olarak sonuçlanacak birden fazla küme parantezi ifadeniz olabilir, diğer kelimeler bütün olası kombinasyonlardır:
+\begin{verbatim}
+{a,b,c}{1,2,3}.dat
+\end{verbatim}
+ifadesi
+\begin{verbatim}
+a1.dat a2.dat a3.dat b1.dat b2.dat b3.dat c1.dat c2.dat c3.dat
+\end{verbatim}
+sonucunu üretir.
+
+Bu kullanışlıdır, örneğin, sistematik olarak yeni dizinler oluşturmak için; işe yarar arama şablonları burada yardımcı olamaz, onlar sadece zaten varolan şeyleri bulabilir:
+\begin{verbatim}
+$ mkdir -p revenue/200{8,9}/q{1,2,3,4}
+\end{verbatim}
+\paragraph{Alıştırmalar}{
+\begin{itemize}
+ \item Aşağıda mevcut dizindeki dosyalar listelenmiştir\begin{verbatim}
+ prog.c prog1.c prog2.c progabc.c prog
+p.txt p1.txt p21.txt p22.txt p22.dat
+ \end{verbatim}Bu isimler hangi arama şablonuyla eşleşir? (a) prog*.c, (b) prog?.c, (c) p?*.txt, (d) p[12]*, (e) p*, (f) *.*
+ \item "ls" ile "ls *" arasındaki fark nedir? (İpucu: İkisini de alt dizinler içeren bir dizinde deneyin)
+ \item Aşağıdaki komut neden gösterilen çıktıyı üretir:\begin{verbatim}
+$ ls
+-l file1 file2 file3
+$ ls *
+-rw-r--r-- 1 joe users 0 Dec 19 11:24 file1
+-rw-r--r-- 1 joe users 0 Dec 19 11:24 file2
+-rw-r--r-- 1 joe users 0 Dec 19 11:24 file3
+ \end{verbatim}
+\end{itemize}}
+\paragraph{}{
+\begin {table}[H]
+\caption {cp parametreleri} \label{tab:title} 
+\begin{tabular}{c c l}
+\hline
+{} & Seçenek & Sonuç \\
+\hline
+-b & (yedek) &	Varolan hedef dosyalarının yedek kopyalarını isimleri ile tildayı ilişkilendirerek alır. \\
+-f & (zorla) &	Varolan hedef dosyaları sorgu mesajı vermeden üzerine yazar. \\
+-i & (etkileşimli) & Varolan hedef dosyalarının üzerine yazılıp yazılmayacağını sorar(dosya başına bir kez). \\
+-p & (korumak) & Kaynak dosyanın bütün özelliklerini korumak için kopyalamaya çalışır \\
+-R & (özyinelemeli) & Dizinleri tüm içerikleriyle birlikte kopyalar \\
+-u & (güncelleme) & Yalnızca kaynak dosya hedef dosyadan yeni ise kopyalar(veya hedef dosya bulunmuyorsa) \\
+-v & (ayrıntılı) & Ekrandaki tüm faaliyeti görüntüler \\
+\hline
+\end{tabular}
+\end {table}
+}
+\end{subsection}
+\end{section}
+
+\begin{section}{Dosyalar ile ilgili işlemler}
+\begin{subsection}{Kopyalama, Taşıma ve Silme — cp ve Arkadaşları}
+
+İstediğiniz dosyaları cp("copy")("kopyala") komutu kullanarak kopyalayabilirsiniz. iki temel yaklaşım vardır:
+
+Eğer cp'ye kaynak ve hedef dosya isimlerini(iki argüman) söylerseniz  kaynak dosyanın içeriğinin 1:1 kopyasını hedef dosyada oluşturabilirsiniz. Eğer hedef dosya zaten varsa genelde cp üzerine yazılması gerekip gerekmediğini sormaz, fakat sadece yapar—Uyarı(veya -i parametresi) bunun için vardır.
+
+Ayrıca hedef dosya ismi yerine hedef dizin ismi verebilirsiniz. Kaynak dosya eski ismini koruyarak o dizine kopyalanmış olacaktır.
+
+\begin{verbatim}
+$ cp list list2
+$ cp /etc/passwd .
+$ ls -l
+-rw-r--r-- 1 joe users 2500 Oct 4 11:11 list
+-rw-r--r-- 1 joe users 2500 Oct 4 11:25 list2
+-rw-r--r-- 1 joe users 8765 Oct 4 11:26 passwd
+\end{verbatim}
+
+Bu örnekte, ilk list dosyasının tam kopyasını list2 isminin altına oluşturduk. Sonra /etc/passwd dosyasını bulunduğumuz dizine(hedef dizin ismi olan nokta ile temsil edildi) kopyaladık. En önemli cp parametreleri Tablo 6.3'te listelenmiştir. 
+Tek kaynak dosyası yerine, kaynak dosyalarının daha uzun listesine(veya kabuk genel arama şablonuna) izin veriliyor. Ancak, bu yöntemde farklı isimli dosyaları kopyalamak olanaksızdır, fakat sadece farklı dizine kopyalanabilir. DOS'ta her TXT dosyasının aynı isimde ve BAK uzantısıyla  “COPY *.TXT *.BAK” kullanarak yedek kopyalarını almak mümkün iken, Linux "cp *.txt *.bak" komutu genellikle bir hata mesajıyla sonuçlanacaktır.
+
+Bunu anlamak için, kabuğun bu komutu nasıl çalıştırdığını kafanızda canlandırmak zorundasınız. Önce tüm genel arama şablonları için uygun dosya isimleriyle birlikte değiştirmeye çalışır, örneğin *.txt ile letter.txt ve letter.txt'yi. *.bak'ın *.txt uzantısında bağımlılığı ve mevcut dizinde*.bak için eşleşmeyen dosya isimleri sonucunda ne olur?—ama sonuç neredeyse hiç DOS kullanıcısının beklentisi olmayacak! Genellikle kabuk cp komutunda varolan bu dizin isminden(olası muhtemel) beri cp'nin görüş açısından başarısız olduğu genişletilmemiş *.bak genel arama şablonunu son argüman olarak alıp geçecektir.
+
+cp komutu dosyanın tam kopyasını yaparken, fiziksel olarak saklama ortamı üzerinde dosya çoğaltılıyor ya da yeni, özdeş bir tanesi farklı depolama ortamında oluşturuluyor, mv("move")("taşıma") komutu dosyayı farklı bir yere taşır veya adını değiştirmeyi sağlar. Bu kesinlikle dizin içeriğine bağlı bir işlemdir, tabi dosya farklı bir dosya sistemine taşınmadıkça—örneğin sabit disk bölümünden USB diske kopyalamak gibi. Bu olayda dosyanın fiziksel olarak taşınması, dosyanın yeni yere kopyalanması ve eski olanın silinmesi gereklidir.
+
+mv'nin söz dizimi ve kuralları cp'ninkiler ile özdeştir—yine yalnızca bir tane yerine kaynak dosyalarının listesini belirtebilirsiniz, ve bu durumda komut sizden son argüman olarak dizin adını bekler. Temel fark mv dosyalar kadar iyi bir şekilde dizinleri de yeniden isimlendirebilirsiniz.
+mv'nin -b, -f, -i, -u ve -v parametreleri cp ile tanımlanmış özelliklere karşılık gelir.
+\begin{verbatim}
+$ mv passwd list2
+$ ls -l
+-rw-r--r-- 1 joe users 2500 Oct 4 11:11 list
+-rw-r--r-- 1 joe users 8765 Oct 4 11:26 list2
+\end{verbatim}
+Bu örnekte asıl dosya olan list2 passwd dosyasının yeniden isimlendirilmesiyle değiştirilmiştir. cp gibi mv de eğer hedef dosya adı varsa onaylamak için sormaz, fakat acımasızca üstüne yazar.
+
+Dosyaları silmek için olan komuta rm ("remove")("kaldırma") denir. dosyayı silmek için bulunduğunuz dizinde yazma yetkinizin olması gerekir. Bu nedenle hatta size ait olmayan dosyaları bile düzgün bir şekilde kaldırabildiğiniz ev dizininizde "malikane efendisi" sayılırsınız.
+
+Dosya üzerinde yazma yetkisi, diğer deyişle, tamamen alakasız silme işleminde ilgili dosyadaki gibi, dosyanın hangi kullanıcı veya grupta olduğuna bağlıdır.
+rm işini cp veya mv gibi acımasızca ele alır—onaylama olmaksızın dosya sisteminden tamamen silinen söz konusu dosyalar gibi. Özellikle dikkatli olmalısınız,  bilhassa kabuk genel arama şablonları kullandığınızda. Linux'ta dosya ismindeki nokta karakterinin DOS'ta özel bir anlamı yoktur. Bu nedenle, "rm *" komutu bulunan dizinde tüm gizli olmayan dosyaları siler. Alt dizinler zarar görmeden kalacaktır; ayrıca "rm -r *" ile onlar da silinebilir.
+
+Sistem yöneticisi olarak, "rm -rf /" gibi bir komut ile tüm sistemi çöp yapabilirsiniz; son derece önem gereklidir!  “rm -rf foo*” yerine “rm -rf foo *” yazmak kolaydır.
+
+rm'nin sildiği bütün dosyalarda bazı isimlilerin silinmemesi gerekiyorsa,"rm -i" biraz daha dikkatli bir şekilde işler:
+\begin{verbatim}
+$ rm -i lis*
+rm: remove 'list'? n
+rm: remove 'list2'? y
+$ ls -l
+-rw-r--r-- 1 joe users 2500 Oct 4 11:11 list
+\end{verbatim}
+Bu örnek, her dosya için, rm silinmesi gerekip gerekmediğini ("evet" için "e") ve ("hayır" için "h") olarak sorduğunu anlatır.
+
+KDE gibi masaüstü ortamları genellikle dosya yöneticisinden geri dönüşümü olası olan dikkatsizce silinen dosyaları görüntüleyen "çöp kutusu" gösterimine destek verir. Komut satırı için benzer yazılım paketleri vardır.
+
+Ek olarak -i ve -r parametrerin, rm cp'nin -v ve -f parametrelerinin kullanımına izin verir ve benzer sonuçlar üretir.
+
+\paragraph{Alıştırmalar}{
+\begin{itemize}
+ \item Kendi ev dizininizde myservices denilen /etc/services dosyasının kopyasını oluşturun. Bu dosyayı srv.dat olarak tekrar isimlendirin ve /tmp dizinine kopyalayın(yeni adını koruyarak). Dosyanın iki kopyasını da silin.
+ \item mv neden -R parametresine sahip değildir(cp'nin sahip olduğu gibi)?
+ \item Farzedelim ki dizinlerinizden biri "-file" isminde bir dosya içersin(isminin başında tire karakteri bulunsun). Bu dosyayı silmek için nasıl bir yol izlersiniz?
+ \item Eğer "rm *"'ye kazara kurban gitmesini istemediğiniz yerde bir dizininiz olsa \begin{verbatim}
+ $ > -i
+ \end{verbatim}gibi içerisinde "-i" denilen bir dosya oluşturabilirsiniz(Bölüm 8'de daha fazla detay açıklanacaktır). Eğer "rm *" komutunu çalıştırsanız ne olur? Neden?
+\end{itemize}}
+\end{subsection}
+\begin{subsection}{Dosyaların bağlanması — ln ve ln -s}
+
+Linux dosyalara "bağlantılar" adı verilen referanslar oluşturmaya izin verir, ve böylece aynı dosyaya birkaç isim atanabilir. Fakat bu neyi amaçlar? Dosya ve dizin isimleri için olan kısayollar, uygulamaların erişmesinde oluşturulması istenmeyen dosya silme işlemleri için güven, programcılar için kolaylık, geniş dizin ağaçları için alan tasarrufu sağlar ve birkaç sürümlerinde sadece küçük farklılıklarla mevcut olmalıdır.
+
+ln("link")("bağlantı") komutu varolan dosyaya(ilk argüman) ek olarak, yeni bir isim(ikinci argüman) ataması yapar.
+\begin{verbatim}
+$ ln list list2
+$ ls -l
+-rw-r--r-- 2 joe users 2500 Oct 4 11:11 list
+-rw-r--r-- 2 joe users 2500 Oct 4 11:11 list2
+\end{verbatim}
+Dizinin şimdi list2 isminde yeni bir dosya içerdiği görülür. Aslında aynı dosyaya sadece iki tane referans vardır. Bu bilgi referans sayıcısı tarafından "ls -l" çıktısının ikinci sütununda ipucu olarak verilir. Değeri 2'dir, dosyanın gerçekten 2 tane isme sahip olduğunu belirtir. İki dosya isimlerinin gerçekten aynı dosyaya referans olup olmadığını, sadece "ls -i" komutu kullanarak tespit edebilirsiniz. Bu durumda, ilk sütundaki dosya numarası, iki dosya için de özdeş olmalıdır. Dosya numaraları, ayrıca inode(indeks düğümü) numaraları da denir, dosya sisteminde dosyaları eşsiz olarak tanımlar:
+\begin{verbatim}
+$ ls -i
+876543 list 876543 list2
+\end{verbatim}
+"Inode", "indirection node"'un kısaltmasıdır. Dosya numaraları, dosyaların hakkında ismi haricinde tüm bilgiyi tutar. Her dosya için kesinlikle bir tane dosya numarası vardır.
+
+Eğer dosyalardan birinin içeriğini değiştirmek isterseniz, diğerinin içeriği de değişir, fakat aslında sadece bir tane dosya vardır(eşsiz dosya numarası 876543 olan). Biz sadece dosyaya başka bir isim verdik.
+
+Dizinler dosya numaraları için dosya isimlerini eşlemede basit bir tablo görünümü üstlenirler. Açıkçası tabloda farklı isim içeren fakat aynı dosya numarası olan birçok girdi olabilir. İsim ve dosya numarasıyla birlikte olan dizin girdisine "bağlantı" adı verilir. İki bağlantısı bulunan dosya için, "orijinal" isme sahip olanı bulmanın imkansız olduğunu farketmelisiniz, ln komutu içerisindeki ilk parametre örnek olarak verilebilir. Sistemin bakış açısından iki isim tamamen farksızdır ve birbirine eşittir.
+
+Bu arada, dizinlere bağlantı atamak Linux'ta geçerli değildir. Yalnızca, sistemin baktığı her dizin için  sadece "." ve ".." birer istisnadır. Dizinlerin ayrıca dosya olduğu ve kendi dosya numaralarına sahip olduklarından beri, dosya sisteminin nasıl içten bir şekilde uyguğunun izini sürebilirsiniz.(Ayrıca bkz. Alıştırma 6.19).
+
+İki dosyadan birinin silinmesi, dosya numarası 876543 için olan isimlerin azalmasına yol açar. Referans sayıcısını 0 değerine ulaşmadan önce dosyanın içeriği aslında silinmiş olur.
+\begin{verbatim}
+$ rm list
+$ ls -li
+876543 -rw-r--r-- 1 joe users 2500 Oct 4 11:11 list2
+\end{verbatim}
+Dosya numaralarının sadece aynı fiziksel dosya sistemi(disk bölümü, USB sürücü, ...) içerisinde eşsiz olduğundan beri, bu tür bağlantılar sadece dosyanın bulunduğu aynı dosya sistemi üzerinde geçerlidirler.
+Dosyanın içeriğinin silinmesi hakkındaki açıklama tam olarak doğru değildir: Eğer son dosya adı silinmişse, dosya artık açılamayabilir, fakat eğer bir süreç hala dosyayı kullanıyorsa, dosyanın açık bir şekilde kapanana veya sonlanmasına kadar devam edebilir. Unix sisteminde program sonlandırıldığında dosyanın yok olması geçici dosyaların işlemesi için yaygın bir deyimdir: Yazma, okuma için oluşturduğunuz dosyayı sonra hemen silebilirsiniz. Daha sonra dosyaya veriyi yazabilir ve devamında geri atlayıp başa dönerek tekrar okuyabilirsiniz.
+
+ln'yi sadece iki dosya ismi argümanları değil ayrıca bir veya daha fazlası ile çalıştırabilirsiniz. İlk durumda, orijinal olarak aynı isimli bağlantı mevcut dizinde oluşturulacaktır(dosyanın konumlandığı yerde bi gerçekten farklı olmalı), ikinci durumda tüm isimlendirilen dosyalar son argüman olarak verilen dizinde orijinal adları "bağlanmış" olacaktır(mv gibi).
+
+Hepsi bu kadar değil ancak: Linux sistemlerinde iki farklı tip bağlantı türü vardır. "sıkı bağ" denilen tür, ln komutu için ön tanımlı durum altında açıklanmıştır. Dosyayı teşhis etmek için daima dosya numarasını kullanır. Ek olarak, sembolik bağlantılar da vardır(ayrıca "sıkı bağlara" zıt olarak "dayanıksız bağ" adı verilir). Sembolik bağlantılar gerçekten  bağlantı ismindeki "hedef dosya"'yı içerirler, bayrak ile birlikte dosyanın sembolik link olduğunu belirtir ve erişim de hedef dosyaya yeniden yönlendirilerek yapılmalıdır.
+
+Hard bağlantıların aksine, hedef dosya sembolik bağlantı hakkından hiçbir "şey" bilmez. Sembolik bağlantının oluşturulması veya silinmesi hiçbir şekilde hedef dosyayı etkilemez; ancak hedef dosya silindiğinde sembolik bağlantı "asılı" kalır, yani hiçbir yere referans olmaz(erişim sonucunda bir hata mesajı görüntülenir).
+
+Sıkı bağların aksine, sembolik bağlantılar farklı fiziksel dosya sistemlerinde dosyalardaki gibi dizinlere bağlantı oluşturmaya izin verirler. Uygulamada, yol isimlerinin anlamı yoluyla bağın izinin tutulmasından beri, sembolik bağlantılar kolay olmasından dolayı sıklıkla tercih edilir.
+
+Dosya veya dizin isimleri değiştiğinde fakat isteğe bağlı olarak geriye uyumluluk istenmesi açısından sembolik bağlantılar popülerdir. Örneğin kullanıcının posta kutuları(okunmamış elektronik posta içerir) /var/mail dizini altında depolanmalıdır. Geleneksel olarak, bu dizine /var/spool/mail denmiştir, ve birçok programın içinde bu değer doğrudan koda gömülüdür. /var/mail'e geçişi hafifletmek için, dağıtım /var/mail'e işaret eden /var/spool/mail adı altında sembolik bağlantı içermiş bir biçimde ayarlanabilir.(Sıkı bağlantıların dizinlere uygulanmasının geçerli olmadığı zamanlarda, sıkı bağlantılar kullanarak bunu yapmak imkansız olacaktır).
+
+Sembolik bağlantı oluşturmak için, ln'ye -s parametresini vermelisiniz:
+\begin{verbatim}
+$ ln -s /var/log short
+$ ls -l
+-rw-r--r-- 1 joe users 2500 Oct 4 11:11 liste2
+lrwxrwxrwx 1 joe users 14 Oct 4 11:40 short -> /var/log
+$ cd short
+$ pwd -P
+/var/log
+\end{verbatim}
+"-s" parametresi ile oluşturulan "dayanıksız bağlantılar"'ın aksine, ln komutu -b önceden bahsettiğimiz -b, -f, -i, ve -v parametrelerine destek verir.
+Artık ihtiyaç kalmayan sembolik bağlantıları kaldırmak için, düz dosyaları siler gibi kullanılan rm ile silinebilir. Bu işlem bağlantının hedefinden ziyade bağlantıya etki eder.
+\begin{verbatim}
+$ cd
+$ rm short
+$ ls
+liste2
+\end{verbatim}
+
+\paragraph{Alıştırmalar}{
+\begin{itemize}
+ \item Kendi ev dizininizde, keyfi içerikli bir dosya oluşturun(örneğin “echo Hello >~/hello” veya bir metin editörü kullanarak). link denilen dosyaya bir sıkı bağlantı oluşturun. Dosyanın iki tane isme sahip olduğundan emin olun. Dosyayı metin editörüyle değiştirmeye çalışın. Ne oluşur?
+ \item Geçenki alıştırmadaki dosyaya ~/symlink denilen bir bağlantı oluşturun. Sembolik bağlantının çalıştırılması yardımıyla dosyaya erişimin yapılıp yapılmadığını kontrol edin. Eğer sembolik bağlantının işaret ettiği dosyayı silerseniz ne olur?
+ \item Hangi dizinin .. bağlantısı "/" dizinine işaret eder?
+ \item Aşağıdaki komutu ve çıktısına göz atınız:\begin{verbatim}
+$ ls -ai /
+2 . 330211 etc 1 proc 4303 var
+2 .. 2 home 65153 root
+4833 bin 244322 lib 313777 sbin
+228033 boot 460935 mnt 244321 tmp
+330625 dev 460940 opt 390938 usr 
+ \end{verbatim} Açıkça / ve /home dizinleri aynı dosya numarasına sahip olduğu görülüyor. Hani iki dizin açıkça aynı dizinde bulunamazdı?—bu olguyu açıklayabilir misiniz?
+ \item Dizinlere sıkı bağlantı yapılmasının geçerli olmadığına önceden değinmiştik. Bunun nedeni nedir?
+ \item “ls -l ~”'nin çıktısında, ~'nin altdizininin alt dizinler içermediğini nasıl söyleyebilirsiniz?
+ \item (Zeka oyunu/araştırma alıştırması:) Diskte sembolik bağlantı veya sıkı bağlantı için ne gereklidir? Neden?
+\end{itemize}}
+\end{subsection}
+\begin{subsection}{Dosya İçeriğinin Görüntülenmesi—more ve less}
+
+Metin dosyalarının ekranda kullanışlı ve olanaklı olarak görüntülenmesinde, uzun dökümanları sayfa sayfa görmenizi sağlayan more komutu çok yardımcı bir araçtır. Çıktı, bir ekrandan sonra ve "--More--"'un son satırda(zaten görünen dosyanın yüzdesi tarafından tespit edilir) görüntülenmesinden sonra durur. Çıktı bir tuşa bastıktan sonra devam eder. Çeşitli tuşların anlamları Tablo 6.4'te gösterilmiştir.
+
+more ayrıca bazı parametreleri alır. -s("squeeze")("sıkıştırma") ile, boş satırların bulunduğu alanlar sadece bir tanesi kalacak şekilde sıkıştırılır, -l parametresi sayfa çıktısını yoksayar(genellikle "\^L" olarak tanımlanır) aksi halde çıktıyı durdurur. -n$<$number$>$ $<$sayı$>$ parametresi ekrandaki gösterilen satır sayılarını ayarlar, aksi halde more terminal tanımlamasına referans oluşturan TERM'den sayıyı alır.
+
+more'un çıktısında hala çıktının başlangıcına doğru geri gitmenin genel olarak imkansız olması gibi can sıkan sınırlamalar vardır. Bu sebeple, gelişmiş sürümü olan less(hafif bir kelime oyunu var—"less is more"("less daha fazla") olarak düşünün) daha fazla [böyle!] günümüzde çoklukla görülür. less her zamanki gibi yön tuşlarıyla metin çevresinde dolaşmanıza imkan tanır, arama alışkanlıkları geliştirilmiştir ve metininin başına/sonuna gitmeye izin verir. En yaygın kullanılan klavye komutları Tablo 6.5'te özetlenmiştir.
+
+Bölüm 5'te bahsettiğimiz gibi, less genellikle man aracılığıyla kılavuz sayfalarını görüntüleyen bir program gibi hizmet eder. Böylece kılavuz sayfalarını incelerken tüm komutlar mevcuttur.
+\end{subsection}
+\begin{subsection}{Dosya arama - find}
+
+"Burada foobar dosyası olmalı ... fakat nereye koymuştum?" şeklinde kim böyle bir hisse kapılmadı ki? Tabi ki sıkıcı bir şekilde tüm dizinlerinizi elinizle gezebilirsiniz. Fakat eğer bir şeyi kullanışlı kılmak için yardım etmezse Linux, Linux olmaz.
+
+find komutu dizin ağacında özyinelemeli bir şekilde verilen kriterlere göre eşleşen dosyaları arar. "Özyinelemeli" alt dizinlerin, alt dizinleri şeklinde göz önünde bulundurarak devam eden anlamı içerir. find'ın çıktısı eşleşen dosyaların sonrasında diğer programlara aktarılabilecek olan yol isimlerini içerir. Sonraki örnek komut yapısını tanımlar:
+
+\paragraph{tablo eklenecek}{}
+
+\begin{verbatim}
+$ find . -user joe -print
+./list
+\end{verbatim}
+Bu komut mevcut dizinde tüm alt dizinlerin dahilinde joe kullanıcısına ait olan dosyaları arar. -print komutu terminalde sonucu görüntüler(bizim örneğimizde tek dosya). Kolaylık için, eğer eşleşen dosyalarla ne yapacağınızı belirlemediyseniz, -print varsayılan olacaktır.
+
+find kendi işini yaparken birkaç argümana ihtiyacı olduğunu göz önünde bulundurun.
+
+Başlangıç Dizini	Başlangıç dizini özenle seçilmelidir. Eğer kök dizinini seçerseniz, gerekli dosya(lar)—eğer varsa—kesinlikle bulunacaktır, fakat arama uzun zaman alır. Tabi ki sadece bu dosyaları uygun ayrıcalıklı yerlerde ararsınız.
+Başlangıç dizini için tam yol adı vermek çıktıdaki dosya isimlerinin mutlak olmasına neden olur, başlangıç dizini için göreceli yol adları doğrultusunda göreli yol adları üretir. Tek başlangıç dizini yerine, dönüşte aranacak dizinlerin listesini belirleyebilirsiniz.
+
+Bu parametreler dosyalar üzerinde detaylı bir şekilde gereksinimleri tanımlar. Tablo 6.6'da en önemli denemeler gösterilmiştir. find belgeleri çok daha fazlasını açıklar.
+
+\paragraph{}{
+\begin {table}[H]
+\caption {find için deneme durumları} \label{tab:title} 
+\begin{tabular}{c l}
+\hline
+Deneme & Açıklama \\
+\hline
+-name & Dosya adı örneğini belirler. Tüm kabuk arama şablonu karakterleri geçerlidir. -iname parametresi büyük/küçük harf farklılıklarını yoksayar. \\
+-type & Dosya türünü belirler (bkz. Bölüm 10.2). İçerdikleri:\\
+ & b blok aygıt dosyası\\
+ & c karakter aygıt dosyası\\
+ & d dizin\\
+ & f düz dosya\\
+ & l sembolik bağlantı\\
+ & p FIFO (adlandırılmış yöneltme)\\
+ & s Unix alan soketi\\
+-user & Kullanıcıya ait olan dosyayı belirler. Kullanıcı adları, sayısal kullanıcı kimlikleri gibi verilebilir.\\
+-group & Gruba ait olan dosyayı belirler. -user gibi grup adları, sayısal grup kimlikleri gibi verilebilir.\\
+-size & Ayrıntılı dosya boyutunu belirler. Sade sayılar 512-byte'lık bloklar halinde ifade edilir; byte'lar veya kibibayt'lar sırasıyla c veya k ekleyerek verilebilir. Önce gelen artı veya eksi işareti alt veya üst sınırı gösterir; Örneğin, -size +10k, 10Kib'den büyük olan dosyalarla eşleşir.\\
+-atime & (ing. access) son erişim(okuma/yazma) tarihi bazında dosyaları aramaya imkan tanır.  Bu ve sonraki iki deneme gün olarak argüman alır; …time yerine …min 1 dakika hassasiyetle işler.\\
+-mtime & (ing. modification) değiştirme zamanına göre seçer.\\
+-ctime & (ing. change) son dosya numarası zamanının değiştirilmesine göre seçer(including içeriğe erişim, dosya yetki değişimi, yeniden isimlendirme, vb.)\\
+-perm & Dosyanın eşleşmesi gerektiği yetkiler kümesini belirler. Yetkiler sekizlik sayı sisteminde verilir. (bkz. chmod komutu)
+Özellikle bir izin aramak için, sekizlik sayı eksi işaretiyle birlikte önce gelmek zorundadır, örneğin, -perm -20 komutu diğer izinlere bakılmaksızın, grup yazma izni olan tüm dosyalarla eşleşir.\\
+-links & Uygun dosyaların eşleştiği referans sayı değerini belirler.\\
+-inum & Verilen dosya numarasıyla eşleşen bağlantıları bulur.\\
+\hline
+\end{tabular}
+\end {table}
+}
+\paragraph{}{
+\begin {table}[H]
+\caption {find için mantıksal operatörler} \label{tab:title} 
+\begin{tabular}{l c l}
+\hline
+Parametre & Operatör & Anlam\\
+\hline
+! & Değil & Sonraki deneme eşleşmemelidir\\
+-a & Ve & -a'nın sağ ve sol yanındaki iki deneme de eşleşmelidir\\
+-o & Veya & -o'nun sağ veya sol yanındaki iki denemeden en azından biri eşleşmelidir\\
+\hline
+\end{tabular}
+\end {table}
+}
+
+Eğer çoklu denemeler aynı zamanda verilirse, eşleşecek dosyaların hepsi dolaylı olarak birlikte mantıksal VE işlemine uğrarlar. find ek mantıksal operatörlere destek verir(Tablo 6.7'ye bakınız).
+
+Mantıksal operatörleri denerken hatalardan kaçmanın yolu, denemelerin parantezlerle kapatılmasıdır. Parantezler tabi ki kabuktan kaçırılmış olmalıdır:
+
+\begin{verbatim}
+$ find . \( -type d -o -name "A*" \) -print
+./.
+./..
+./bilder
+./Attic
+$ _
+\end{verbatim}
+
+Bu örnek dizine işaretçi olan veya "A" ile başlayan, ya da her ikisi koşulundaki dosyaların isimlerini listeler.
+
+\paragraph{Eylemler} Önceden bahsettiğimiz gibi, arama sonuçları ekranda -print parametresiyle görüntülenebilir. Buna ek olarak, -exec ve -ok adında dosya isimleri içeren komutları çalıştıran 2 parametre vardır. -ok ve -exec arasındaki tek fark, -ok gerçekten komutu çalıştırmadan önce bilgi için kullanıcıya sorar; -exec ile üstü kapalı bir şekilde bu işlemin yapıldığı varsayılır. Biz -exec'i ele alırken kendimizi kısıtlayacağız.
+
+-exec parametresini yöneten bazı genel kurallar şunlardır:
+\begin{itemize}
+\item -exec'in devamındaki komut noktalı virgül(";") ile sonlandırılmak zorundadır. Birçok kabuklarda noktalı virgülün özel karakter olduğundan beri, find'ı görünebilir yapmak için noktalı virgül kaçırılmış olmak zorundadır (örneğin "\\" veya yorumların kullanımı gibi).
+\item Komutun içerisindeki iki süslü parantez ("\{\}") bulunan isimle, dosya ismini yer değiştirir. Bu dosya adlarında boşluk sorunlarını önlemek için tırnak içinde parantez içine almak en iyisidir.
+\end{itemize}
+
+Örneğin;
+\begin{verbatim}
+$find . -user joe -exec ls -l '{}' \;
+-rw-r--r-- 1 joe users 4711 Oct 4 11:11 file.txt
+$ _
+\end{verbatim}
+
+Bu örnek mevcut dizin(ve altında) içerisindeki tüm dosyaların her biri için için test kullanıcısına ait olanları arar ve "ls -l" komutunu çalıştırır. Aşağıdaki daha mantıklı olacaktır:
+
+\begin{verbatim}
+$ find . -atime +13 -exec rm -i '{}' \; 
+\end{verbatim}
+
+Bu etkileşimli olarak mevcut dizin(ve altındaki) son 2 haftadır erişilmeyen dosyaları siler.
+
+Bazen - yukarıdaki son örnekteki gibi— bulunan her bir dosya adı için -exec kullanarak yeni bir süreç başlatmak çok verimsiz olur. Bu durumda komutu çalıştırmadan önce olası bütün dosya isimlerini toplayan xargs komutu kullanışlı olacaktır.
+\begin{verbatim}
+$ find . -atime +13 | xargs -r rm -i
+\end{verbatim}
+xargs standart girdiyi,  maksimum(yapılandırılabilir) karakter veya satıra kadar okur ve bu materyali belirlenen komut için argüman olarak kullanır(bu örnekte rm). Girdide, argümanlar boşluk karakterleri(tırnaklar veya "\" kullanarak kaçırılabilir) veya yeni satırlar tarafından ayrılmıştır. Komut girişi bitirmeye gerektiği kadar çağrılır.— -r parametresi sadece eğer find gerçekten dosya ismi gönderdiyse çağrılmasını sağlar; aksi halinde en azından bir kez çalıştırılmış olacakatır.
+
+Garip dosya isimleri find/xargs kompinasyonunun kullanımında sorun oluşturabilir, örneğin ayrıcılar olarak sorun olabilen boşluklar veya, gerçekten de, yeni satırlar içerenler. Sihirli çözüm find'da "-print"'in yaptığı gibi dosya isimlerini çıktıya veren, fakat yeni satırlar yerine null byte'lar kullanarak ayıran "-print0" parametresinin kullanımıyla sağlanır. Null byte'ın yol isimlerinde geçerli karakter olmadığından beri, karışıklık artık mümkün değildir. xargs bu tarz girdideki gibi "-0" parametresi kullanarak çağırılmak zorundadır:
+\begin{verbatim}
+$ find . -atime +13 -print0 | xargs -0r rm -i
+\end{verbatim}
+
+\paragraph{Alıştırmalar}{
+\begin{itemize}
+ \item Sisteminizdeki 1MB'dan daha büyük olan tüm dosyaları bulun ve isimlerini çıktıya verin.
+ \item Bir olağandışı isime sahip dosyayı find kullanarak nasıl silebilirsiniz(örneğin eski kabukların başa çıkamadığı görünmez kontrol karakterleri veya umlautlar)?
+ \item (Kitap aracılığıyla ikinci kez.) Nasıl kendinize ait bir kez çıktığınızda silinen dosyaları koruma altına alırsınız?
+\end{itemize}}
+\end{subsection}
+\begin{subsection}{Çabukça Dosyaları Bulma - locate ve slocate}
+
+find komutu birçok farklı kritere bağlı olarak dosyaları arar fakat başlangıç dizini altındaki dizin ağacını tamamen gezmek zorundadır. Ağaç boyutuna göre, bu dikkate değer bir zaman alır. Tipik bir uygulamada—belirli isimlerle aranan dosyalar—hızlandırılmış bir yöntem vardır.
+
+locate komutu kabuk genel arama şablonunda eşleşen isimlere ait düm dosyaları listeler. En sıradan durumda, bu basit karakterlerin dizisidir:
+\begin{verbatim}
+$ locate letter.txt
+/home/joe/Letters/letter.txt
+/home/joe/Letters/grannyletter.txt
+/home/joe/Letters/grannyletter.txt~
+\end{verbatim}
+
+Bununla birlikte oldukça önemli bir faydası olan locate(LPIC1 müfredatının parçasında bu olgu vurgulanmıştır), tüm Linux dağıtımlarında varsayılan yüklemenin bir parçası değildir. Örneğin, eğer bir SUSE dağıtımı kullanıyorsanız, locate kullanabilmek için önce açıkça findutils-locate paketini kurmanız gerekir.
+
+"*", "?", ve "[...]" karakterleri kabukta yaptıkları gibi locate'te de aynı görevi üstlenirler. Fakat genel arama karakterleri olmayan sorgu herhangi bir yerdeki şablonun içerdiği tüm dosya isimleri ile yerleşirken, genel arama karakterleriyle yapılan sorgu sadece tamamen—baştan sona— şablonun tasvir ettiği isimleri geri döndürür. Bu nedenle locate için olan şablon sorguları genellikle "*" ile başlar:
+\begin{verbatim}
+$ locate "*/letter.t*"
+/home/joe/Letters/letter.txt
+/home/joe/Letters/letter.tab
+\end{verbatim}
+
+Kabuk genel arama karakterleri içeren locate sorgularının açılmaya çalışılmasından kabuğu korumak için etrafına tırnaklar koyduğunuzdan emin olun.
+Bölü ("/") özel olarak işlenmez:
+\begin{verbatim}
+$ locate Letters/granny
+/home/joe/Letters/grannyletter.txt
+/home/joe/Letters/grannyletter.txt~
+\end{verbatim}
+
+locate çok hızlıdır çünkü dosya sistem ağacında gezinmez, fakat önceden ubdatedb programı kullanılarak oluşturulması gereken dosya isimleri "veritabanı"'nı kontrol eder. Bu son veritabanı güncellemesinden beri sisteme eklenen dosyaların locate tarafından yakalanamayacağı anlamına gelir, ve aksi bir şekilde bu zamanda silinmiş olan dosyaların isimlerini de çıktıya verebilir.
+
+locate'in varolan dosyalarını sadece "-e" parametresi kullanarak alabillirsiniz, fakat bu yöntem locate'in hız avantajını reddeder.
+
+updatedb program locate için veritabanı oluşturur. Bunun önemli büyüklükte zaman aldığından beri, sistem yöneticiniz genellikle bunu sistem çok iş yapmayacağı zaman(tahminen gece geç saatte) çalıştırılacak şekilde ayarlar.
+Bunun için gerekli olan cron hizmeti Advanced Linux'ta detaylarıyla anlatılacaktır. Şimdi birçok Linux dağıtımları ubdatedb'nin aralıklarla sık sık sık çalıştırılmasına neden olurlar.
+
+Sistem yöneticisi olarak, veritabanı kurarken dikkate alınması gereken dosyaları updatedb 'ye söyleyebilirsiniz. Dağıtımınıza bağlı olarak neler olur detaylıca açıklayalım: updatedb kendi kendine konfigürasyon dosyasını okuyamaz, fakat ayarları komut satırından ve (kısmen) çevresel değişkenlerden alır. Buna rağmen, birçok dağıtım genellikle ilgili olan ortam değişkenlerinin bulunduğu /etc/updatedb.conf veya /etc/sysconfig/locate gibi dosyaları okuyan kabuk betiğinden updatedb'yi çağırır.
+
+	Örneğin /etc/cron.daily gibi bir dosya bulabilirsiniz(detaylar, dağıtımınıza bağlı olarak değişiklik gösterebilir).
+	
+	Örnek olarak updatedb'nin belirli dizinlerdeki aramalarına ve bu arama işleminde diğer dosyaları atmalasona sebep olabilirsiniz; program ayrıca sadece bir bilgisayarın veritabanı oluşturnası gerektiği gibi, birçok bilgisayar  tarafından kullanılan ve onların kendi kök dizinlerindeki veritabanlarında bulunan "ağ dosya sistemi"'ni belirlemenize imkan tanıyor.
+	
+	Önemli bir yapılandırma ayarı da kullanıcı kimliğiyle updatedb'nin çalıştırılmasıdır. Temelde iki olasılık vardır:
+	\begin{itemize}
+	\item updatedb root gibi çalışır ve böylece veritabanındaki her dosyaya giriş yapabilir. Bu ayrıca kullanıcıların birbirlerininkine erişemediği dizinlerdeki dosya isimlerinin de görüntülenmesini sağlar, örneğin, diğer kullanıcıların ev dizinleri.
+	\item updatedb "hiçkimse" kullanıcıları gibi sınırlı ayrıcalıklarla çalışır. Bu durumda, sadece "hiçkimse" kullanıcısı tarafından okunabilen dizinlerdeki isimler görüntülenir. 
+	\end{itemize}
+	
+slocate programı —alışılmış locate'e alternatif olarak— bu problemi dosyanın sahibi, grubu ve  izinlerinin ve buna ek olarak dosyanın isminin de veritabanında bulunması sayesinde atlatır. Sadece slocate'i hangi kullanıcı çalıştırıyorsa o dosya ismini çıktıya verir, adeta söz konusu dosyaya erişmek gibi. slocate updatedb programıyla birlikte gelir, fakat bu sadece slocate için tahsis edilen bir isimdir.
+
+Birçok durumda, slocate de ayrıca locate komutu gibi çalıştırılabilir.
+
+\paragraph{Alıştırmalar}{
+\begin{itemize}
+ \item README çok yaygın bir dosya ismidir. Sisteminizde README denilen tüm dosyaların mutlak yol isimlerini bulunuz.
+ \item Kendi ev dizininizde yeni bir dosya oluşturun ve locate çağırıldığında bu dosyanın listelenmeyeceği konusunda kendinizi ikna edin(uygun egzotik bir dosya adı kullandığınızdan emin olun. updatedb'i çalıştırın(büyük olasılıkla yönetici yetkileri kullanarak). locate sonradan sizin dosyanızı bulabildi mi? Dosyayı silin ve bu adımları tekrarlayın.
+ \item Kendinizi slocate'in /etc/shadow gibi dosyaları normal kullanıcı olarak çalıştırılıp arama yaptığına ikna edin.
+\end{itemize}}
+
+\paragraph{Bu Bölümdeki Komutlar}{}
+\paragraph{cd}{Kabuğun mevcut çalışma dizinini değiştirir}
+\paragraph{convmv}{	Karakter kodlamaları arasında dosya isimlerini dönüştürür}
+\paragraph{cp}{	Dosyaları kopyalar}
+\paragraph{find}{	Verilen belirli kriterler ile eşleşen dosyaları arar}
+\paragraph{less}{	Metinleri(kılavız sayfaları gibi) sayfalar halinde görüntüler}
+\paragraph{ln}{	"sıkı" veya sembolik bağlantıları oluşturur.}
+\paragraph{locate}{	Dosya ismi veritabanında verilen isme göre dosyaları bulur}
+\paragraph{ls}{	Dosya bilgisi veya dizin içeriklerini görüntüler}
+\paragraph{mkdir}{	Yeni dizinler oluşturur}
+\paragraph{more}{	Metin verilerini sayfalar halinde görüntüler}
+\paragraph{mv}{	Dosyaların ismini değiştirir veya istenilen dizinlere taşır}
+\paragraph{pwd}{	Mevcut çalışma dizininin adını görüntüler}
+\paragraph{rmv	Dosyaları veya dizinleri siler}
+\paragraph{rmdir}{	Boş dizinleri siler}
+\paragraph{slocate}{	Dosya ismi veritabanında verilen isme göre hesaptaki dosya izinlerini alarak dosya arar}
+\paragraph{updatedb}{	locate için dosya ismi veritabanı oluşturur}
+\paragraph{xargs}{	Standart girdiden komut satırlarını oluşturur.}
+
+\paragraph{Özet}{
+\begin{itemize}
+ \item Dosya isimleri neredeyse tüm olası karakterleri içerebilir. Ancak taşınabilirlik için,  harfler, rakamlar ve bazı özel karakterler kullanmaya kendinizi alıştırmalısınız.
+ \item Linux dosya isimlerinde büyük/küçük harfleri ayırt eder.
+ \item Mutlak yol isimleri her zaman bölü işareti ile başlamalı ve söz konusu olan dosya veya dizin, kökten başlayarak dizin ağacıyla birlikte verilmelidir. Göreceli yol isimleri "mevcut dizin"'den başlar.
+ \item cd komutu kullanarak kabuğun mevcut dizinini değiştirebilirsiniz. Ve ismini pwd kullanarak görüntüleyebilirsiniz.
+ \item ls dosya ve dizinler hakkında bilgileri görüntüler.
+ \item mkdir ve rmdir kullanarak dizin oluşturabilir veya silebilirsiniz.
+ \item cp, mv ve rm komutları dosya ve dizinleri kopyalar, taşır ve siler.
+ \item ln komutu "sıkı" ve "sembolik" bağlantılar oluşturmanıza olanak tanır.
+ \item more ve less terminal çıktısında dosyaları(ve komut çıktısını) sayfalar halinde görüntülemeye yarar.
+ \item find belirli kriterlere göre eşleşen dosya ve dizinleri arar.
+\end{itemize}}
+\end{subsection}
+\end{section}

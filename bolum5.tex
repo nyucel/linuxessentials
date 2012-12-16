@@ -1,0 +1,215 @@
+\chapter{Yardım Almak}
+\paragraph{Amaçlar}
+\begin{itemize}
+ \item Kılavuz ve Bilgi sayfalarıyla çalışabilmek
+ \item Nasıl Yapılır kısmını anlamak ve onları bulabilmek
+ \item Diğer en önemli bilgi kaynaklarına aşina olmak
+ \end{itemize}
+\paragraph{Önceden Bilinmesi Gerekenler}
+\begin{itemize}
+ \item Linux'a genel bakış
+ \item Temel Linux komut satırı kullanımı (örneğin daha önceki bölümlerde bahsedilenler)
+\end{itemize}
+\begin{section}{Kendi kendine yardım}
+
+Linux güçlü ve dallı budaklı sistemdir. Kural olarak güçlü ve dallı budaklı sistemler karışıktır. Belgeler, bu karmaşıklığı yönetebilmek için önemli bir araçtır. Birçok (ne yazık ki hepsi değil) Linux dağıtımı geniş olarak belgelenmiş olarak gelir. Bu bölümde bu belgelere nasıl ulaşılacağının bazı yötemlerini açıklar.
+
+Linux'da "help" birçok durumda "self-help" anlamına gelir. Özgür Yazılımın kültüründe toplulukta boş zamanlarını geçiren diğer insanların  
+zamanını ve iyi niyetini kılavuzun ilk birkaç paragrafında zaten açık olarak anlatılmış olan şeyleri sormamanıza dikkat çeker. Linux kullanıcısı
+olarak sizin de mevcut belgelere en azından kısaca gözden geçirmiş olmak ve gerektiğinde yardım kısmını elde edinebilmelisiniz. Eğer siz size düşeni
+yaparsanız yani ödevinizi yaparsanız göreceksiniz ki genellikle insanlar çıkmaza girdiğinizde yardım edeceklerdir. Ama baskalarının onların yerine
+işlerini yapmasını bekleyen tembel bireyler hoşgörüyle karşılanmazlar.
+
+İyice araştırılmamış sorularınıza ve problemlerinize haftanın yedi günü cevap vermesini istiyorsanız çok sayıda bulunan "ticari" destek tekliflerinden faydalanmanız gerekir. Bunlar bütün ortak dağıtımlar için mevcut olup bu destek ya dağıtım satıcısı tarafından ya da yan şirketlerle verilmektedir. Farklı servis satıcılarını karşılaştırın, hangisinin fiyati ve servis anlaşması size uyuyorsa seçin.
+\end{section}
+\begin{section}{"help" Komutu ve "--help" Seçeneği}
+
+\begin{em}bash\end{em}'te dahili komutlar hakkındaki daha detaylı bilgi help komutuna delil olarak komutun adı verilerek öğrenilebilir:
+\begin{verbatim}
+$ help exit
+exit: exit [n]
+    Exit the shell with a status of N.
+    If N is omitted, the exit status
+    is that of the last command executed.
+$ _
+\end{verbatim}
+
+Daha detaylı açıklama için kabuğun rehber sayfasında ve bilgi belgelerinde mevcuttur.Bu bilgi kaynakları daha sonra bu bölümde ele alınacaktır.
+
+Bunun yerine harici komutların (programların) birçoğu --help seçeneğini destekler. Çoğu komutlar kısaca kendileriyle kullanılan parametrelerini ve sözdizmini sıralar.
+
+Her komut --help seçeneğini desteklemeyebilir; sık sık çağrilan seçenekler -h veya -?, ya da yanlis bir seçenek veya geçersiz komut satırı belirtirseniz yardım ekrana gelecektir. Ne yazık ki genel kuralı yoktur.
+\end{section}
+\begin{section}{Kabuk Satırı Kılavuz}
+\begin{subsection}{Genel Bakış}
+
+Nerdeyse her komut-satırı programı yardım sayfasıyla "manual page" (ya da "man page") gelir, ayrıca ayar dosyaları ve sistem çağrıları vs. Bu metinler 
+genelde yazılımla beraber kurulur. İncelemek için "man $<$isim$>$" komutu kullanılır.
+
+\paragraph{}{
+\begin {table}[H]
+\caption {Kılavuz sayfasının bölümleri} \label{tab:title} 
+\begin{tabular}{c l @{} l}
+\hline
+Bölüm &
+\multicolumn{2}{c}{İçerik} \\
+\hline
+NAME 	&	Komutun adı ve kısa açıklama \\
+SYNOPSIS &	Komutun sözdizimi açıklaması \\
+DESCRIPTION &	Komutun etkisi ile ilgili açıklama \\
+OPTIONS &	Mevcut seçeenekler \\
+ARGUMENTS &	Mevcut deliller \\
+FILES 	&	Yardımcı dosyalar \\
+EXAMPLES &	Örnek komut satırları \\
+SEE ALSO &	Ilgili konulara çapraz referanslar \\
+DIAGNOSTICS &	Hata ve uyarı mesajları \\
+COPYRIGHT & 	Komutun yazarları \\
+BUGS	&	Bilinen komut sınırlamaları \\
+\hline
+\end{tabular}
+\end {table}
+}
+
+Buradaki $<$isim$>$ açıklanmasını istediğiniz komutun yada dosyanın adıdır. Örneğin "man bash", anılan iç kabuk komutlarının listesini üretir.
+
+Ancak, kılavuz sayfalarinin bazi dezavantajlari vardir: Bu kılavuzların çoğu sadece Inglizcedir; farklı dillere çevirilenleri vardır ama tam değil. Üstelik açiklamalar çogunlukla karışıktır. Yeni başlayanlar belgeleri anlamayabilir o yüzden her kelime çok önemlidir. Buna ilaveten, özellikle uzun belgelerin yapısı anlaşılmaz olabiliyor. Öyle olsa bile, bu belgelerin değeri göz ardı edilemez. Kağıtlarla kullanıcıyı canından bezdirmek yerine sistemle beraber kılavuz mevcuttur.
+
+Birçok Linux dağıtımlari komut satırından çağrılabilen her komut için bir kılavuz sayfasının olması gerektiği felsefesini takip eder. Bu, görsel masaüstü ortamı ait programları KDE ve GNOME için aynı ölçüde geçerli değildir. Bunların hiç bir kılavuz sayfasının bulunmaması haricinde görsel masaüstü çevresinde bile berbat bir şekilde belgelendirilmiştir. Bu programların çoğu gönüllüler tarafından katkıda bulunması gerçegi sadece zayıf bir bahane.
+\end{subsection}
+\begin{subsection}{Yapı}
+
+man'in yapısı kabaca yukarda belirttiğimiz Tablo 5.1 taslağını takip eder. Yine de her kılavuz sayfası orada belirtilen her bölümü içermeyebilir.
+Özellikle de, EXAMPLES sık sık kısa kesilmiştir.
+
+BUGS başlığı genellikle yanlış anlaşılır: burda belgelendirilen genellikle komutun aldığı yaklaşımındaki kısıtlamalardir ve siz bu kısıtlamaların
+makul bir çabayla kaldırılamadığını siz bir kullanıcı olarak bilmelisiniz. Örneğin, grep komutunun belgeleri normal ifadelerin çeşitli yapılarının bulunması   
+grep sürecinin çok bellek kullanmasına yol açabildiğini belirtir. Bu grep komutunun uyguladığı arama yönteminin sonucudur ve önemsiz, kolayca giderilebilen 
+hata değildir.    
+
+Man sayfaları groff adında bir program tarafından metni görüntülemek veya yazdırmak için özel bir girdi biçimi olarak yazılır. Kılavuz sayfaları /usr/share/man dizininin mann alt dizini içinde saklanır. n Tablo 5.2'de verilen bölüm numaraları içindir.
+
+Diğer dizinlerdeki man sayfalarını MANPATH çevresel degişkenini ayarlayarak birleştirebilirsiniz. "manpath" komutu MANPATH'in nasıl ayarlanabileceği 
+hakkında ipuçları barındırır.
+\paragraph{}{
+\begin {table}[H]
+\caption {Kılavuz sayfası konuları} \label{tab:title} 
+\begin{tabular}{c l @{} l}
+\hline
+Bölüm &
+\multicolumn{2}{c}{İçerik} \\
+\hline
+1 	&	Kullanıcı komutları \\
+2 &	Sistem çağrıları \\
+3 &	C dili kütüphane işlevleri \\
+4 &	Aygıt dosyaları ve sürücüleri \\
+5 &	Ayar dosyaları ve dosya formatları \\
+6 & Oyunlar \\
+7 &	Çeşitli (örneğin groff makroları, ASCII tabloları, …) \\
+8 &	Yönetici komutları \\
+9 &	Çekirdek işlevleri \\
+n & "Yeni" komutlar \\
+\hline
+\end{tabular}
+\end {table}
+}
+\end{subsection}
+\begin{subsection}{Bölümler}
+
+Her kılavuz sayfası "kılavuzu" kapsayan "bölüme" aittir (Tablo 5.2). 1, 5 ve 8 bölümler en önemlileridir. Aramayı daraltmak için man komutu satırına bölüm numarası verebilirsiniz.Örneğin, "man 1 crontab"-crontab komutu için man sayfasını görüntülerken, "man 5 crontab"-crontab crontab dosyalarının formatlarını açıklar. man sayfalarını işaret ederken, bölüm numarasını parantez içinde belirtmek gelenekseldir; biz, crontab(1)-crontab komut kılavuzu, ve crontab(5)-dosya formatı açıklaması aradaki farkı ayırt ederiz.
+
+-a seçeneğiyle man verilen isme göre bulunan kilavuzu gösterir; seçenek vermezsek ilk bulunan sayfayı (genellikle bölüm 1) gösterir.
+\end{subsection}
+\begin{subsection}{Kılavuz Sayfalarını Görüntülemek }
+
+man sayfalarını metin terminalde görüntülemek için asıl program daha üzerinde duracağımız less ile gerçekleştirilir. Bu aşamada man sayfasında yukarı ok işareti ? ve aşağı ok işareti ? ile gezinebilirsiniz. Metnin içinde anahtar kelime karakterine basarak / ardından kelimeyi girip geri dönüş tuşuna basarak arayabilirsiniz. Her geri dönüş tuşuna bastığınızda bir sonraki bulunan kayda sıçrar (eğer varsa). Kabuğa q tusuna basarak geri dönebilirsiniz.
+
+KDE web tarayıcısı, Konqueror kullanarak güzel biçimlendirilmiş uygun man sayfaları elde etmek mümkün. Basitçe "man:/$<$isim$>$" (hatta "\#$<$isim$>$") URL'yi tarayıcının adres satırına girin. Bu metot aynı zamanda KDE komut satırı için de geçerlidir.
+
+\paragraph{buraya iki şekil eklenecek}{şekiller}
+
+Amaçsızca sayısız man sayfalarını aramadan önce, konu hakkında apropos yardımıyla genel bir bilgi edinmek daha mantıklıdır. Bu komut basitçe şöyle çalıştırılır "man -k"; hem de komut satırında verilen bir anahtar kelimenin "NAME" bölümlerine ilişkin tüm man sayfalarını arayabilirsiniz. Bunun sonucunun çıktısı tüm man sayfalarını, adı veya açıklama kısmında anahtar kelimeyi de içerecek şekilde bir liste görüntüler.
+
+Bu konuyla alakalı olan bir başka komut whatis'dir.Bu komut da tüm man sayfalarını arar ama yukarida belirttiğimiz komuttan farkı whatis aramayı anahtar kelimeye göre değilde komutun (dosya,...) adına göre yapar. Bu istenilen komut, sistem çağrıları vs. hakkında kısaca bir açıklama görüntüler. Özellikle söz konusu man sayfasının(lar) "NAME" bölümünün ikinci  kısmını verir. "whatis" ile "man -f" eşdeğerdir.
+\paragraph{Alıştırmalar}{
+\begin{itemize}
+ \item ls komutu için kılavuz sayfasını görüntüleyin. Metin tabanlı man komutunu kullanın ve eğer mümkünse - Konqueror tarayıcısını.
+ \item Sisteminizde hangi kılavuz sayfaları (en azından "NAME" bölümlerine göre) süreçlerle iş yapar.
+ \item (Ileri düzey) Kuramsal bir komutun kılavuz sayfasını yazmak için metin editörü kullanın. Önceden man(7) man sayfasını okuyun. man sayfasının görünürlüğünü kontrol edin ("groff -Tascii -man $<$dosya$>$ | less" komutunu kullanarak) yazılı çıktı olarak ("groff -Tps -man $<$dosya$>$ | gv -" gibi birşey kullanın).
+\end{itemize}}
+\end{subsection}
+\end{section}
+\begin{section}{Bilgi Sayfaları}
+
+Bazı komutlar için - genellikle karmaşık olanlar için sıradan man sayfaları yerine (yada ilave olarak) "bilgi sayfaları" mevcuttur.
+Bunlar genellikle daha genis olup hiper metin prensibine göre kurulmuştur. World Wide Web'e benzer şekilde.
+
+Bilgi sayfaları fikri GNU projesi ile birlikte ortaya çıkmıştırtir; o yüzden onlar en sik FSF (özgür yazilim vakfi)'le yayimlanan yazilimlarla gelir. Aslında "GNU sistem"de sadece bilgi belgeleri olmasi gerekiyordu; ancak GNU, FSF himayesinde geliştirilmeyen bir sürü yazılımları da kendi içine alır, ve GNU araçları çizgileri daha kesin olan sistemlerde kullanılmaktadır, FSF ise bazı durumlarda taviz vermeye başladı.
+
+man sayfalarının dengi olan bilgi sayfaları "bilgi $<$komut$>$" komutu (bilgi programını içeren paket açıkça kurulmuş olması gerekebilir) kullanılarak görüntülenir. Ayrıca, bilgi sayfaları emacs editöründe veya KDE web tarayıcısı Konqueror'da URL'ler yardımıyla "info:/$<$command$>$" görüntülenebilir.
+
+Bilgi sayfalarının bir avantajı, man sayfaları gibi kaynak formatında yazılmış olmalarıdır. Bilgi sayfaları PDF ve PostScript formatında yazdırılabilir veya ekranda islenebilir. groff yerine, \TeX{} dizgi programını kullanarak çıktı işlemi için hazırlanabilir.
+
+\paragraph{Alıştırmalar}{
+\begin{itemize}
+ \item ls programı için bilgi sayfasına bakın. Metin tabanlı bilgi tarayıcısı ve, varsa, Konqueror tarayıcısını deneyin.
+ \item Bilgi sayfaları hiper metnin ilkel formunu kullanır. Günümüzde HTML dosyalarının World Wide Web'de olduğu gibi. Bilgi sayfaları neden HTML ile yazılmamıştır?
+\end{itemize}}
+\end{section}
+\begin{section}{NASIL Belgeleri}
+
+Kılavuz ile bilgi sayfaları arasındaki ortak problem şudur: Kullanıcılar kullanacakları programın adını bilmek zorundadırlar. Hatta apropos'la 
+arama yapmak şans oyunu gibi birşeydir. Ayrıca, her problem tek bir komut kullanılarak çözülemez. Bu nedenle bunlar "komut odaklı" belgeler yerine
+genellikle "problem odaklı" olarak adlandırılır. Nasıl Yapılır kısmı bunlara çözüm üretmek için tasarlandı.
+
+Nasıl Belgeleri kendilerini tek bir komutla  kısıtlamayan geniş kapsamlı belgelerdir, ama sorunların çözümü için tam yaklaşımları açıklamaya çalışırlar.
+Örneğin, DSL yoluyla Linux sisteminin internete nasıl bağlanacağını detaylı olarak açıklayan "DSL HOWTO" kısmı vardır, ya da Linux için astronomi yazılımını tartışan "Astronomi NASIL" vardır. Nasıl Yapılır kısımlarının birçoğu İnglizce aslını genellikle geriden takip etse de bunlar başka dillerde de mevcuttur.
+
+Nasıl Belgeleri çoğu Linux dağıtımında yerel olarak kurulu olmasını sağlar. Bunlar dagıtıma özel dizinlerin altında bulunurlar. /usr/share/doc/howto 
+SUSE dagıtımları için, /usr/share/HOWTO Debian GNU/Linux içindir. Tipik olarak düz metin veya HTML dosyaları içerir. Nasıl Yapılır'ların geçerli tüm sürümleri
+ve diğer PostScript veya PDF biçimindekilerinin hepsi internet üzerinde "Linux Documentation Project" (http://www.tldp.org) bulunabilir. Ayrıca diğer
+Linux belgeleri de sunar.
+\end{section}
+\begin{section}{Daha fazla Bilgi Kaynakları}
+
+Neredeyse her kurulu olan yazılım için ilave belgeleri veya örnek dosyaları /usr/share/doc ya da /usr/share/doc/packages (kullandığınız dağıtıma bağlı olarak değişir) altında bulunur. Çoğu GUI uygulamaları (KDE veya GNOME paketlerindeki gibi) "help" yardım menüsü sunar. Üstelik birçok dağıtımlar uzmanlaştırılmış "help centers" yardım merkezleri sunar. Sistem üzerindeki çoğu belgelere uygun erişimi sağlar.
+
+Linux için daha ilgi çekici sitelerden bazıları:
+\paragraph{http://www.tldp.org/}{“Linux Documentation Project”, man sayfaları ve Nasıl Yapılır'dan sorumlu (diğer şeylerin yanı sıra).}
+\paragraph{http://www.linux.org/}{Linux meraklıları için genel portal.}
+\paragraph{http://www.linuxwiki.de/}{Linux ile ilgili her şey için serbest biçimli metin bilgi veritabanı (Almanca)}
+\paragraph{http://lwn.net/}{Haftalik Linux Haberleri - her türlü Linux haberleri için belki de en iyi web sitesi. Yeni gelişmeler, ürünler, güvenlik açıkları, basındaki Linux savunuculuğu vs. ayrıca her persembe günü geçmiş haftaların araştırmalarının yer aldığı çevrimiçi dergi de bulunur. Günlük haberlere ücretsiz olarak ulaşılabilir iken haftalık yayınlamalara belli bir ücret ödenmesi gerekiyor (aylık 5\$'dan başlayan fiyatlarla). İlk çıktığı haftadan sonra o yayınları ücretsiz olarak erişilebilir hale getiriyorlar.}
+\paragraph{http://freecode.com/}{Bu site yeni (genel olarak serbest) çıkan yazılım paketlerini tanıtır. Buna ek olarak ilginç projeler veya yazilim paketleri için sorguları sağlayan bir veritabanı var}
+\paragraph{http://www.linux-knowledge-portal.de/}{LWN ve Freshment dahil diğer Linux sitelerinden haber başlıklarını toplarlar.}
+
+Eğer Internette veya Usenet arşivlerinde bulmadıysanız aradığınızı sorunuza cevabı  posta listelerinde soru sorarak yada Usenet gruplarında bulabilirsiniz. Bu forumlardaki çoğu kullanıcılar daha önce cevaplanmış yada dokumantasyonda olan birşeyi sormanıza kötü tepki verebilirler. Probleminizin detaylı açıklamasını hazırlayın, log dosyalarından ilgili ayrıntıları verin çünkü karmaşık
+problemleri sizde olduğu gibi uzak mesafeden çözmek zordur (karmaşık olmayan problemleri kendinizin çözebiliyor olmaniz lazım).
+
+Haber arşivlerini http://groups.google.com/ (eskiden DejaNews) adresinde bulabilirsiniz.
+
+Linux için ilgi çekici haberler, gruplar inglizce için comp.os.linux.* veya almanca için de.comp.os.linux.* hiyerarsilerinde bulunabilir. Birçok Unix grupları Linux konuları için uygundur; kabukla ilgili soruları kabuk programlama için ayrılan grupta sorulması gerekiyor Linux grubunda değil çünkü kabuklar genellikle Linux'a özgü birşey değildir.
+
+Linux tabanlı posta listelerini örneğin, majordomo@vger.kernel.org adresinde bulabilirsiniz. LIST denilen listeye katılmak için önce "subscribe LIST" adresine e-posta atmanız gerekiyor. Sistemde mevcut yorumlanmış tüm posta listeleri http://vger.kernel.org/vger-lists.html'de bulabilirsiniz.
+
+Görünüşte anlaşılmayan problemleri çözmenin yolu hata mesajının Google'da aratmaktır(ya da güvendiğiniz baska bir arama motoru).  Eğer faydalı bir sonuç alamazsanız, arama yaptığınız sorguda sadece size özel duruma bağlı kısımları kaldırın (mesela alan adları gibi).  Google'da aramanın avantajı sadece ortak web sayfalarını indekslemek değil bunun yanında posta liste arsivlerini de indeksler. O yüzden sizin gibi sorunu yaşayan bir başka birilerinin bulunması da olası bir durum.
+
+Açık kaynak kodlu yazılımların önemli avantajlarından biri büyük miktarda dokumantasyonun olması değildir ayrıca çoğu dokumantasyonun da en az yazılımının kendisi gibi kısıtlı olmasıdır. Bu yazılım geliştiricileri ve belge yazarlar arasındaki işbirliğini kolaylaştırır ve belgelerin diğer dillere çevrilmesi daha kolaydır. Aslında, programcı olmayanlar için özgür yazılım projelerine destek verebilmeleri için bol fırsat var. Mesela güzel belgelemeler yazarak. Özgür yazılım faaliyet alanında programcılara verilen saygıyı belge yazarlarına da vermeye çalışılmalı.
+\end{section}
+\paragraph{Bu bölümdeki Komutlar}{
+\begin{itemize}
+\item apropos 	NAME bölümünde verilen anahtar kelimeyi içeren tüm kılavuz sayfalarını görüntüler
+\item groff		Gelişmiş dizgi programı
+\item help 		bash komutları için yardımı görüntüler
+\item info 		Karakter tabanlı terminalde GNU Bilgi sayfalarını görüntüler
+\item less		sayfa sayfa metinleri (kılavuz sayfaları gibi) görüntüler
+\item man		Sistem kılavuz sayfalarını görüntüler
+\item manpath		Sistem kılavuz sayfalarının aranacağı yolu belirler
+\item whatis		Açıklamasında verilen belirli bir anahtar kelime ile kılavuz sayfaları bulur
+\end{itemize}}
+\paragraph{Özet}{
+\begin{itemize}
+\item "help $<$komut$>$" dahili bash komutlarını açıklar. Birçok harici komut --help seçeneğini destekler.
+\item Çoğu program kılavuz sayfalarıyla gelirler. Bunlar man komutuyla incelenebilir. apropos verilen anahtar kelimelere göre tüm kılavuz sayfalarını arar, whatis kılavuz sayfa isimlerine bakar.
+\item Bazı programlar için bilgi sayfaları kılavuz sayfalarına bir alternatiftir.
+\item Nasıl Yapılır'lar problem tabanlı bir belgeleme olustururlar.
+\item World Wide Web ve USENET'te Linux ile ilgili çok sayıda ilginç kaynaklar var.
+\end{itemize}}
