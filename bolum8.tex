@@ -1,0 +1,648 @@
+\chapter{Standart G/Ç ve Filtre Komutları}
+\paragraph{Amaçlar}{
+\begin{itemize}
+\item Kabuk G/Ç yönlendirmelerinde uzmanlaşmak
+\item En önemli filtre komutlarını öğrenmek
+\end{itemize}
+}
+\paragraph{Önceden Bilinmesi Gerekenler}{
+\begin{itemize}
+ \item Kabuk işlemleri
+ \item Metin düzenleyicisi kullanımı (Bölüm 3)
+ \item Dosya ve dizin kullanma (Bölüm 6)
+ \end{itemize}
+}
+
+\begin{section}{G/Ç Yönlendirmeleri ve Komut Boru Hatları}
+\begin{subsection}{Standart Yollar}
+
+Çoğu Linux komutu -grep ve Bölüm 7' deki arkadaşları gibi- girdi verilerini okumak, bir şekilde düzenlemek ve bu düzenlemenin sonucunu çıktı olarak vermek üzerine tasarlanmıştır. Örnek olarak, eğer aşağıdaki gibi bir komut girerseniz;
+
+\begin{verbatim}
+$ grep xyz
+\end{verbatim}
+
+Klavyeden metin girdisi yapabilirsiniz ve grep sadece “xyz” harf grubunu içeren kısımları vurgulayacaktır.
+
+\begin{verbatim}
+$ grep xyz 
+abc def 
+xyz 123 
+xyz 123 
+aaa bbb 
+YYYxyzZZZ 
+YYYxyzZZZ 
+Ctrl + d
+\end{verbatim}
+
+(Sondaki klavye tuş kombinasyonu grep' e girdi girişinin bittiğini haber verir.)
+
+grep “standart girdiden” verileri okur –bu koşulda klavyeden – ve bunu “standart çıktıya” yazar – bu koşulda konsol ekranına ya da daha çok görsel bir arayüzdeki bir terminel programına – . Bu standart yolların üçüncüsü “standart hata çıktısı”dır; grep' in ürettiği veriler standart çıktıya verilirken, standar hata çıktısı hata mesajlarını alır. (Örneğin, bulunmayan bir girdi dosyası ya da düzenli ifadelerdeki bir yazım hatası gibi)
+
+Bu bölümde bir programın standart çıktısını nasıl bir dosyaya yönledirebileceğini ya da başka bir programın standart girdisini nasıl bir dosyadan alabileceğini öğreneceğiz. Daha da önemlisi, bir programın çıktısını direk olarak nasıl başka bir dosyanın girdisi olarak kullanabileceğinizi öğreneceksiniz.  Bu hepsi oldukça basit olan Linux komutlarının birleşerek daha karmaşık yapılar oluşturmaya giden bir yoldur. (Bunu bir Lego seti gibi düşünün.)
+
+Bu bölümde bu konuyu derinlemesine incelemeyeceğiz. Çok karmaşık kabuk betikleri oluşturmak için sıradaki rehberi , İleri Düzey Linux, okuyun, o rehberde Unix araçları kullanılarak kabuk için betikler oluşturmak anlatılmaktadır. Bu bölümde komut satırında temel Linux komutlarının zekice birleştirilmesini öğreneceksiniz. 
+
+\paragraph{}{
+\begin {table}[H]
+\caption {Linux'ta Standart Kanallar} \label{tab:title} 
+\begin{tabular}{c l l l l}
+\hline
+Kanal & İsim & Kısaltma & Aygıt & Kullanım Alanı\\
+\hline
+0	& standart girdi &		stdin	&	klavye	&   Programların girdisi\\
+1	&standart çıktı&      	stdout&		ekran&	   Programın çıktısı\\
+2 	&standart hata cıktısı  &       stderr	&	ekran	&   Programın hata mesajları \\
+\hline
+\end{tabular}
+\end {table}
+}
+
+Bu standart yollar Tablo 8.1 de gösterilmiştir. Tabloda belirtilen stdin, stdout ve stderr standart girdi, standart çıktı ve standart hata çıktısı için olan teknik terimlerdir. Bu yollar daha sonra kullanacağımız gibi sırasıyla 0,1 ve 2 numaralarına atanmışlardır.
+
+Kabuk bahsedilen program hiçbir şeyi fark etmeden ayrı komutlar için bu standart yolları yönlendirebilir. Çıktı ekranda ya da terminal penceresi dışında belirtilen bir dosyada yazıyor olabilir, buna rağmen her zaman standart yollar kullanılır. Bu dosya başka bir cihazda olabilir, yazıcı gibi, çıktıyı alacak metin dosyasını belirlemek mümkündür. Dosyanın o anda varolması bile gerekmez, isteğe göre oluşturulabilir. Standart girdi yolu da aynı şekilde yönlendirilebilir. Bir program girdisini klavyeden değil belirtilen bir dosyadan (bu başka bir aygıt ya da dosya olabilir) alır.
+
+Klavye ve çalıştığınız terminal ekranı (ister Linux konsolu olsun, ister seri porttaki bir terminal, ister görsel arayüzde çalışan bir terminal penceresi, isterse de güvenli kabuk olarak bilinen ağdan bağlanılan bir oturum olsun) /dev/tty dosyası ile erişilebilir –  (diğer türlüsü çok aptalca olurdu.
+\begin{verbatim}
+$ grep xyz /dev/tty 
+\end{verbatim}
+
+Bu bölümde önceden verdiğimiz bu komuta denktir. Bu konuyla ilgili daha fazla bilgiyi Bölüm 10' da “özel dosyalarda” bulabilirsiniz.
+\end{subsection}
+\begin{subsection}{Standart Kanalları Yönlendirmek}
+
+Standart çıktı yolu “$>$” (büyüktür işareti) operatörü kullanılarak yönlendirilebilir.
+
+Verilen örnekte, “ls -laF” komutunun çıktısı filelist adı verilen bir  dosyaya yönlendirilmektedir.
+\begin{verbatim}
+$ ls -laF >filelist 
+$ __
+\end{verbatim}
+
+Eğer filelist dosyası mevcut değilse oluşturulur. Eğer bu isimde bir dosya varsa dosyanın üzerine yazılır. Kabuk bunu bahsedilen program uyandırılmadan önce ayarlar – çıktı dosyası gerçek komutta yazım hataları varsa ya da program çıktı oluşturmasa bile oluşturulur. (bu durumda filelist dosyası boş kalacaktır)
+
+Eğer kabuk çıktı yönlendirmelerinde varolan dosyaların üzerine yazılmasını engellemek istiyorsanız, “set -o noclobber” komutu verilerek varolan dosyalar korunabilir. Bu durumda, eğer çıktı varolan bir dosyaya yönlendirilirse bir hata oluşacaktır.
+
+Filelist dosyasına her zamanki yollarla bakabilirsiniz, mesela less kullanarak:
+\begin{verbatim}
+$ less inhalt 
+total 7 
+drwxr-xr-x 12 joe users 1024 Aug 26 18:55 ./
+drwxr-xr-x 5 root root 1024 Aug 13 12:52 ../
+drwxr-xr-x 3 joe users 1024 Aug 20 12:30 photos/
+-rw-r--r-- 1 joe users 0 Sep 6 13:50 filelist
+-rw-r--r-- 1 joe users 15811 Aug 13 12:33 pingu.gif
+-rw-r--r-- 1 joe users 14373 Aug 13 12:33 hobby.txt
+-rw-r--r-- 2 joe users 3316 Aug 20 15:14 chemistry.txt
+\end{verbatim}
+
+Eğer filelist in içeriğine dikkatlice bakarsanız, filelist için boyutu 0 olan bir dizin girdisi görebilirsiniz. Bu kabuğun işleme şekliyle alakalıdır: Komut satırını alırken önce çıktı yönlendirmesini fark eder ve yeni bir filelist dosyası oluşturur (ya da varolan dosyanın içeriğini siler). Bunun arkasından kabuk komutu çalıştırır, bu koşulda ls, ls' nin standart çıktısını terminal yerine filelist dosyasına bağlar. 
+
+ls çıktısındaki dosyanın uzunluğu 0 görünür çünkü ls filelist için olan bilgiye dosyaya hiçbir şey yazılmadan önce bakar, filelistten önce üç girdi olmasına rağmen. Bu ls' nin önce bütün girdileri okuyup sonra onları dosya adına göre sıralamasından dolayı olur. Bu işlemden sonra dosyaya yazma işlemi başlar. Bu sebeple ls sadece yeni oluşturulmuş (ya da içi boşaltılmış) filelist dosyasını görür.
+
+Eğer bir komutun çıktısını varolan bir dosyaya yeniden yazmak değil eklemek istiyorsanız $>>$ operatörünü kullanabilirsiniz. Eğer dosya yoksa, bu durumda oluşturulacaktır.
+\begin{verbatim}
+$ date >> filelist
+$ less filelist
+total 7
+drwxr-xr-x 12 joe users 1024 Aug 26 18:55 ./
+drwxr-xr-x 5 root root 1024 Aug 13 12:52 ../
+drwxr-xr-x 3 joe users 1024 Aug 20 12:30 photos/
+-rw-r--r-- 1 joe users 0 Sep 6 13:50 filelist
+-rw-r--r-- 1 joe users 15811 Aug 13 12:33 pingu.gif
+-rw-r--r-- 1 joe users 14373 Aug 13 12:33 hobby.txt
+-rw-r--r-- 2 joe users 3316 Aug 20 15:14 chemistry.txt
+Wed Oct 22 12:31:29 CEST 2003
+\end{verbatim}
+
+Bu örnekte, bulunulan tarih ve zaman filelist dosyasına ekleniyor. Bir komutun standart çıktısını yönlendirmenin bir başka yolu geri imlerdir (`...`) Bu ayrıca komut değiştirme olarak adlandırılır. Geri imlerin içindeki bir komutun standart çıktısı komut yerine komut satırına eklenir, değiştirilen sonuç çalıştırılır.
+
+Örneğin:
+\begin{verbatim}
+$ cat dates 		
+22/12 Get presents
+23/12 Get Christmas tree
+24/12 Christmas Eve
+$ date +%d/%m 			
+23/12
+$ grep 			
+23/12 Get Christmas tree
+\end{verbatim}
+
+*” `date` “ için daha iyi bir yazım \$date şeklinde yazmaktır. Bu çağrılar için daha kolaydır. Bununla birlikte bu söz dizimi sadece bash gibi modern kabuklar tarafından desteklenir.
+
+Standart girdi yolu için yönlendirme yapmak için $<$ işaretini (küçüktür) kullanabilirsiniz. Bu klavye girdisinde belirtilen dosyanın içeriğini okuyacaktır. 
+\begin{verbatim}
+$ wc -w <frog.txt 
+1397 
+\end{verbatim}
+
+Bu örnekte, wc filtresi frog.txt dosyasındaki kelimeleri sayar.
+
+Birden fazla girdi dosyasını birleştirmek için $<<$ gibi bir yönlendirme bulunmaz, bunu yapmak için cat komutunu kullanmanız gerekir.
+
+\begin{verbatim}
+$ cat file1 file2 file3 | wc -w
+\end{verbatim}
+
+(“\textbar” operatörü ile ilgili daha geniş bilgiyi gelecek bölümde anlatacağız.) Çoğu program bir ya da birden fazla komut satırı girdisini kabul eder.
+
+Elbette, standart girdi ve standart çıktı aynı yönlendirme zamanından eş zamanlı olarak yönlendirilebilir.  Aşağıdaki örnekte kelime sayacının çıktısı wordcount olarak adlandırılan bir dosyaya yazılır.
+\begin{verbatim}
+$ wc -w <frog.txt >wordcount 
+$ cat wordcount 
+1397
+\end{verbatim}
+
+Standart girdi ve standart çıktı yolları dışında ayrıca standart hata çıktısı yolu bulunur. Eğer bir programın çalışmasında hatalar meydana gelirse, buna karşılık gelen mesaj bu yol için yazılır. Bu nedenle sadece standart çıktının dosyaya yazıldığını görürsünüz. Eğer standart hata çıktısını da bir dosyaya yazılmasını istiyorsanız yol numarasını yönlendirme operatörü ile birlikte kullanmalısınız. stdin (0$<$ ) ve stdout (1$>$) için bu isteğe bağlı bir seçenektir fakat stderr için (2$>$) yazımını kullanmak zorunludur. $>$\& operatörünü her iki çıktıyı da yazdırmak için kullanabilirsiniz.
+\begin{verbatim}
+make >make.log 2>&1
+\end{verbatim}
+
+Bu komut make komutunun standart çıktısını ve standart hata çıktısını make.log dosyasına yönlendirir.
+
+\paragraph{Dikkat}{ Burada sıralama çok önemlidir. Aşağıdaki iki komut tümüyle farklı sonuçlar oluşturur. İkinci durumda standart hata çıktısı standart çıktı nereye giderse oraya yönlendirilecektir (/dev/tty, standart çıktının gittiği yer), sonra standart çıktı make.log a gönderilir ama bu standart hata çıktısının gideceği yönü değiştirmez.}
+\begin{verbatim}
+make >make.log 2>&1 
+make 2>&1 >make.log 
+\end{verbatim}
+
+\paragraph{Alıştırmalar}{
+\begin{itemize}
+ \item -U seçeneğini ls komutunun çıktısını sıralamadan vermesi için kullanabilirsiniz. “ls -laU $>$filelist ” yazmanızdan sonra bile filelist için dosyanın boyutu 0 olur. Bunun nedeni ne olabilir?
+ \item “ls /tmp ” and “ls /tmp $>$ls- tmp.txt ” komutlarının çıktılarını karşılaştırınız. Bir şeyi fark ettiniz mi? Eğer fark ettiyseniz bunu nasıl açıklarsınız? 
+ \item Neden bir dosyayı bir adımda yeni haliyle değiştirmek mümkün değildir? Mesela “grep xyz file $>$ file” neden mümkün değildir?
+\item Ve “cat foo $>>$foo ” komutunda foo'nun boş bir dosya olmadığını varsayarsak bu komuttaki sorun nedir?
+\item Kabukta, bir hata mesajını nasıl standart hata çıktısı olarak alırsınız?
+\end{itemize}}
+\end{subsection}
+\begin{subsection}{Komut Boru Hatları}
+
+Çıktı yönlendirmesi bir programın sonucunu kaydederek başka bir komutta işlemek için sıkça kullanılır. Bununla birlikte bu çeşit ara kayıtlar çok sıkıcı sayılmazlar ama daha fazla kullanılmadıkları zamanlarda silinmelidir. Bu sebeple, Linux komutları borularla bağlama yöntemi sunar: Bir programın çıktısı otomatik olarak başka bir programın girdisi olur.
+
+Birkaç komutun arasındaki yönlendirmeler \textbar  operatörü kullanılarak yapılır.  “ls -laF” nin çıktısını bir dosyaya yönlendirip sonra bu dosyaya less kullanarak bakmak yerine, aynı işlemi tek adımda ara dosya kullanmadan yapabilirsiniz:
+\begin{verbatim}
+$ ls -laF | less
+total 7
+drwxr-xr-x 12 joe users 1024 Aug 26 18:55 ./
+drwxr-xr-x 5 root root 1024 Aug 13 12:52 ../
+drwxr-xr-x 3 joe users 1024 Aug 20 12:30 photos/
+-rw-r--r-- 1 joe users 449 Sep 6 13:50 filelist
+-rw-r--r-- 1 joe users 15811 Aug 13 12:33 pingu.gif
+-rw-r--r-- 1 joe users 14373 Aug 13 12:33 hobby.txt
+-rw-r--r-- 2 joe users 3316 Aug 20 15:14 chemistry.txt
+\end{verbatim}
+
+Bu komut yönlendirmeleri neredeyse istenilen herhangi bir uzunlukta olabilir. Buna rağmen en sonda oluşacak olan sonuç bir dosyaya yönlendirilebilir:
+\begin{verbatim}
+$ cut -d: -f1 /etc/passwd | sort | pr -2 >userlst
+\end{verbatim}
+
+Bu komut yönlendirmesi bütün kullanıcı isimlerini /etc/passwd dosyasının : ile ayrılan ilk sütunundan alıp bunları alfabetik şekilde sıralayıp sonucu iki sütun halinde userlst dosyasına yazıyor. Burada kullanılan komutlar bölümün hatırlatmasında tanımlanacaktır.
+
+Bazen veri akışını bir komut yönlendirmesi içindeki kesin bir noktada depolamak yardımcı olabilir, örneğin bu devredeki ara sonuç başka görevler için kullanışlı olabilir. tee komutu veri akışını kıpyalar ve bir kopyayı standart çıktıya gönderirken bir diğerini bir dosyaya kopyalar. (Şekil 8.2' ye bakınız.)
+
+Hiç seçenek belirtilmeye tee komutu belirtilen dosyayı oluşturur ya da böyle bir dosya varsa üzerine yazar; -a (ingilizcede birleştirme anlamına gelen “append”) aracılığı ile varolan dosyaya ekleme yapılabilir.
+\begin{verbatim}
+$ ls -laF | tee list | less
+total 7
+drwxr-xr-x 12 joe users 1024 Aug 26 18:55 ./
+drwxr-xr-x 5 root root 1024 Aug 13 12:52 ../
+drwxr-xr-x 3 joe users 1024 Aug 20 12:30 photos/
+-rw-r--r-- 1 joe users 449 Sep 6 13:50 content
+-rw-r--r-- 1 joe users 15811 Aug 13 12:33 pingu.gif
+-rw-r--r-- 1 joe users 14373 Aug 13 12:33 hobby.txt
+-rw-r--r-- 2 joe users 3316 Aug 20 15:14 chemistry.txt
+\end{verbatim}
+
+Bu örnekte bulunulan dizinin içeriği hem list dosyasına hem de ekrana yazılır. (list dosyası ls komutunun çıktısında görünmez çünkü tee komutunun arkasından oluşturulmuştur.)
+
+\paragraph{Alıştırmalar}{
+\begin{itemize}
+ \item Aynı ara sonucu birden fazla dosyaya aynı anda nasıl yazardınız?
+\end{itemize}}
+\end{subsection}
+\end{section}
+\begin{section}{Filtre Komutları}
+
+Unix' in temel fikirlerinden biri – ve Linux' un aynı zamanda- araç takımı ilkesidir. Sistem çok sayıda sistem programı ile birlikte gelir, bunların her biri basit (tasarım olarak) bir görevi yapar. Bu programlar başka programları oluşturmak için “inşa blokları” olarak kullanılabilir ve bu programların yazarlarını kendi fonksiyonlarını geliştirme derdinden kurtarır. Örnek olarak, her program kendi sıralama yöntemini içermez ama çoğu program Linux' un onlara sağladığı sort komutunu kullanır. Bu modüler yapı birkaç avantaja sahiptir:
+
+\begin{itemize}
+\item Bütün zamanlarını yeni sıralama fonksiyonları üretmekle harcamaya ihtiyacı olmayan programcıların hayatını kolaylaştırır.
+\item Eğer sort bir hata düzeltme ya da geliştirme alırsa, sort u kullanan bütün programlar bunun yararını görür –  ve çoğu durumda değiştirilmeleri gerekmez.
+\end{itemize}
+
+Girdilerini standart girdiden alıp çıktılarını standart çıktıya veren araçlara “filtre komutları” ya da kısaca “filtreler” denir. Girdi yönlendirmesi olmadan bir filtre girdisini klavyeden okuyabilir. Klavye girişinin bittiğini belirtmek için terminal tarafından “dosya sonu” olarak algılanılan Ctrl + d tuş kombinasyonunu kullanmalısınız.
+
+Bunun sadece klavye girdisi için uygulanabildiğini unutmayın. Diskteki dosya doğal olarak Ctrl + d karakterini (ASCII 4) içerebilir ve sistem bunun dosyanın sonu olduğunu düşünmez.
+
+“Normal” komutların çoğu, önceden belirtilmiş olan grep gibi, filtreler gibi çalışır eğer üzerinde çalışılacak bir dosya ismi belirtilmezse.
+
+Bu bölümün sonunda komutlar gibi en önemli konulara aşina hale geleceksiniz. Bazı komutlar tam olarak filtre komutları sayılmasa da, boru hatları için önemli bloklar oluşturmak için önemlidirler.
+
+\paragraph{}{
+\begin {table}[H]
+\caption {cat seçenekleri} \label{tab:title} 
+\begin{tabular}{c l}
+\hline
+Seçenek & Sonuç\\
+\hline
+-b & (engl. number non-blank lines) Numbers all non-blank lines in the output, starting at 1. \\
+-E & (engl. end-of-line) Displays a \$ at the end of each line (useful to detect otherwise invisible space characters).\\
+-n & (engl. number) Numbers all lines in the output, starting at 1.\\
+-s & (engl. squeeze) Replaces sequences of empty lines by a single
+empty line.\\
+-T & (engl. tabs) Displays tab characters as “\textbar”.\\
+-v & (engl. visible) Makes control characters c visible as, characters a with character codes greater than 127 as “M-a”.\\
+-A & (engl. show all) Same as -vET.\\
+\hline
+\end{tabular}
+\end {table}
+}
+\end{section}
+\begin{section}{Dosyaları Okuma ve Yazma}
+\begin{subsection}{Metin Dosyalarının Çıktıları ve Birleştirme—cat}
+
+cat komutu gerçekte verilen birden fazla dosya isminin komut satırında birleştirmek için kullanılır. Eğer sadece bir dosya ismini gönderirseniz, bu dosyanın içeriği standart çıktıya yazılacaktır. Eğer hiç dosya ismi belirtmezseniz cat standart girdiyi okumaya başlar – bu kullanışsız görünebilir ama cat satırları numaralandırma, satırları sonlandırma ve özel karakterleri görünür yapma ya da boş satırları sıkıştırmak gibi seçenekler sunar. (Tablo 8.2)
+
+Söylemeye gerek olmasa bile belirtmekte yarar var, cat sadece metin dosyalarında anlaşılır sonuçlar ortaya çıkarır. Eğer bu komutu diğer çeşit dosyalar için kullanırsanız (/bin/cat gibi bir binary dosyası için mesela) en azından bir metin terminalinde kabuk okunamayan karakterlerden oluşacaktır çok büyük ihtimalle. Bu durumda normal karakter grubunu sıfırlayarak geri getirebilirsiniz. Eğer cat çıktısını bir dosyaya yönlendirirseniz bir sorun kalmayacaktır.
+
+En Kullanışsız cat Kullanımı Ödülü” cat'i fazlalık olarak kullanan insanlara gidiyor. Çoğu durumda komutlar dosya isimlerini kabul eder bu sebeple cat tek bir dosyayı standart girdiye göndermek için gerekmez. “cat data.txt \textbar grep foo ” gibi bir komut gereksizdir bunun yerine basitçe “grep foo data.txt ” yazabilirsiniz. Hatta grep sadece standart girdiden bir şeyler okuyabiliyor olsaydı bile “grep foo $<$data.txt ” daha kısa olurdu ve ek bir sürece ihtiyacı olmazdı.
+
+\paragraph{Alıştırmalar}{
+\begin{itemize}
+ \item Bir dizinin “garip” isimlere sahip dosyalara sahip olduğunu nasıl kontrol edebilirsiniz (örneğin bitiminde bir boşluk karakteri bulunduranlar ya da ortasında görünmez kontrol karakteri bulunduranlar gibi)?
+\end{itemize}}
+\end{subsection}
+\begin{subsection}{Başlangıç ve Bitiş—head ve tail}
+
+Bazen dosyanın sadece bir parçasıyla ilgilenirsiniz: Doğru dosya olup olmadığını görmek için ilk birkaç satır ya da özellikle kayıt dosyalarında son birkaç girdi. Head ve tail komutları tam olarak bunu yaparlar, varsayılan olarak verilen dosyanın ilk on ve son on satırı gösterirler. -n seçeneği gösterilecek satır sayısını değiştirmenize yardımcı olur: “head -n 20” ilk yirmi satırı değer olarak döndürürken “tail -n 5” data.txt dosyasının son beş satırını döndürür.
+
+”-n” belirtilerek istenilen satırları belirtebiliyorduk önceden. Resmi olarak bu artık mümkün değil ama head ve tail' in Linux versiyonları hala bu özelliği destekliyorlar.
+
+-c seçeneğini sayma işleminin satır olarak değil byte olarak yapılması için kullanabilirsiniz: 
+“head -c 20 ” standart girdinin ne kadar satıra sahip olursa olsun ilk 20 bytelık kısmını gösterir. Eğer “b”, “k”, ya da “m” harflerini eklerseniz sayım 512, 1024 ya da 1048576 ile çarpılarak yapılır. (sırasıyla bloklar, kibibytelar ve mebibytelar)
+
+head ayrıca eksi işaretini kullanmanıza izin verir: “head -c -20 ” standart girdinin son 20 bytelık kısmını gösterir.
+
+head' in bu münasebetsizliğine karşılık, tail de head' in desteklemediği bir şey yapar: eğer satır numaraları “+” ile başlıyorsa, verilen satırdan itibaren bütün verileri görüntüler.
+\begin{verbatim}
+$ tail -n +3 file           satır 3 ve sonrasındakiler
+\end{verbatim}
+
+tail komutu ayrıca önemli olan -f seçeneğini destekler. Bu tail komutunu başka bir şeyler eklenmesi ihtimaline karşı bekletir. Bu bazı kayıt dosyalarını gözetlemek istediğiniz zaman çok işe yarar olacaktır. Eğer tail -f komutuna birden fazla dosyayı gönderirseniz, her çıktı satırı bloğu için hangi dosyaya yeni veri eklendiğini gösteren bir başlık satırı koyar.
+
+\paragraph{Alıştırmalar}{
+\begin{itemize}
+ \item Standart girdinin 13. satırını nasıl çıktı olarak alabilirsiniz?
+ \item “tail -f ” komutunu kontol edin: Bir dosya oluşturun ve bu dosya üzerinde “tail -f ” komutunu deneyin. Sonra başka bir pencereden ya da sanal bir konsoldan dosyaya bir şeyler ekleyin (örneğin echo ya da $>>$ kullanarak) ve tail komutunun sonucunu gözlemleyin. Tail aynı dosyayı eşzamanlı olarak nasıl izliyor? 
+\item Gözlenen dosya küçülürse “tail -f ” komutunun sonucu ne olur? 
+\item Aşağıdaki komutun çıktısını açıklayın:
+\begin{verbatim}
+$ echo Hello >/tmp/hello 
+$ echo "Hiya World" >/tmp/hello
+\end{verbatim}
+bu komutu çalıştırdığınızda
+\begin{verbatim}
+$ tail -f /tmp/hello
+\end{verbatim}
+ilk echo nun ardından başka bir pencerede çalıştırdığınızde ne olduğuna bakın.
+\end{itemize}}
+\end{subsection}
+\end{section}
+\begin{section}{Veri Yönetimi}
+\begin{subsection}{Sıralı Dosyalar—sort ve uniq}
+
+sort komutu satırları önceden belirtilmiş bir kritere göre sıralamaya izin verir. Varsayılan ayar her satırın ilk birkaç karakterinin ASCII setine göre olan artan (A-Z) sıralamasıdır. Bu yüzden özel Alman karakterleri gibi karakterler genelde yanlış sıralanır. Örneğin, “A” nın karakter kodu 143'tür, bu yüzden bu karakter karakter kodu 91 olan “Z” karakterinden çok daha sonra biter. Küçük “a” karakteri bile büyük “Z” karakterinden daha büyük olarak düşünülür.
+
+Elbette sort kendisini değişik dillere ve kültürlere uyarlayabilir. Alman kurallarına göre sıralamak için LANG, LC\_ALL ya da LC\_COLLATE  çevre değişkenlerinden birini “de”, “de\_DE” ya da “de\_DE@UTF-8” olarak değiştirebilirsiniz. (gerçek değer kullandığınız dağıtıma göre değişir) Eğer bunu sadece tek bir sıralama işlemi için değiştirmek istiyorsanız şunu yapın
+\begin{verbatim}
+$ ... | LC_COLLATE=de_DE.UTF-8 sort
+\end{verbatim}
+
+LC\_ALL değeri LC\_COLLATE üzerinde üstündür aynı şekilde LANG değerinden de üstündür. Bir yan etki olarak Alman sıralama düzeni sıralama yaparken harflerin boyutunu göz önüne almaz.
+
+
+Diğer türlü olarak belirtmezseniz, sıralama bütün girdi satırı göz önüne alınarak “sözlük” düzenine göre yapılır. Bu sebeple iki satırın ilk karakterleri eşit olursa satırdaki ilk değişiklik gösteren karakter sıralamayı etkiler. Elbette sort sadece bütün satıra göre değil, özelleştirilmiş bir şekilde belirli sütunlara ya da bir tablonun alanına göre sıralama yapabilir. Alanlar “-k 2” seçeneği ile 1' den başlayarak numaralandırılır, ilk alan görmezden gelinerek her satırın ikinci alanı sıralama için dikkate alınır. Eğer iki satırın ikinci alanları eşitse satırın kalanına bakılır, “-k 2,3” şeklinde daha özelleştirilmiş bir seçenek belirlenmediyse. Ayrıca aynı sort komutunda birden fazla -k seçeneği belirtilebilir. 
+
+Bunlara ek olarak, sort eski bir yerleştirme düzenini destekler: Burada alanlar sıfırdan başlayarak numaralandırılır, ilk alan “+m” ve bitiş alanı “-n” olarak belirtilir. Modern haline getirmek için farklılıkları tamamlamak için, son alan özel olarak belirtilmelidir – sıralama için ilk alan dikkate alınmamalıdır. Üsttekine örnek “+1 ”, “+1 -3 ” ve “+1 -2 ” olabilir. 
+
+Boşluk karakteri alanlar arasında ayırıcı olarak görev görür. Eğer birkaç boşluk bulunursa, ilki ayırıcı olarak görülür; diğerleri takip eden alana ait değerler olarak kabul edilir. Örnek olarak Lameborough Track and Field Club  koşusunun katılımcılarının isimlerinden oluşan bir listeyi ele alalım. Başlangıç için  sistemin standart dil ortamının (“POSIX”) karşılık gelen çevre değişkenlerinin sıfırlandığına emin oluruz. (Ek olarak dördüncü sütun koşucunun koşu numarasını verir.)  
+\begin{verbatim}
+$ unset LANG LC_ALL LC_COLLATE
+$ cat participants.dat
+Smith Herbert Pantington AC 123 Men
+Prowler Desmond Lameborough TFC 13 Men
+Fleetman Fred Rundale Sportsters 217 Men
+Jumpabout Mike Fairing Track Society 154 Men
+de Leaping Gwen Fairing Track Society 26 Ladies
+Runnington Vivian Lameborough TFC 117 Ladies
+Sweat Susan Rundale Sportsters 93 Ladies
+Runnington Kathleen Lameborough TFC 119 Ladies
+Longshanks Loretta Pantington AC 55 Ladies
+O'Finnan Jack Fairing Track Society 45 Men
+Oblomovsky Katie Rundale Sportsters 57 Ladies
+\end{verbatim}
+
+Önce soyadına göre sıralamayı deneyelim. Bu temelde kolay bir durum çünkü soyadı kısmı her satırın en önünde:
+\begin{verbatim}
+$ sort participants.dat
+Fleetman Fred Rundale Sportsters 217 Men
+Jumpabout Mike Fairing Track Society 154 Men
+Longshanks Loretta Pantington AC 55 Ladies
+O'Finnan Jack Fairing Track Society 45 Men
+Oblomovsky Katie Rundale Sportsters 57 Ladies
+Prowler Desmond Lameborough TFC 13 Men
+Runnington Kathleen Lameborough TFC 119 Ladies
+Runnington Vivian Lameborough TFC 117 Ladies
+Smith Herbert Pantington AC 123 Men
+Sweat Susan Rundale Sportsters 93 Ladies
+de Leaping Gwen Fairing Track Society 26 Ladies
+\end{verbatim}
+
+Listedeki iki küçük sorunu fark ettiniz değil mi? : “Oblomovsky” “O’Finnan” dan önde olmalıydı ve “de Leaping” listenin sonundan bir önde olmalıydı en sonunda değil.  Eğer sıralama kuralları olarak “İngilizce” yi belirtirsek bu sorunlar kaybolur:
+\begin{verbatim}
+$ LC_COLLATE=en_GB sort participants.dat
+de Leaping Gwen Fairing Track Society 26 Ladies
+Fleetman Fred Rundale Sportsters 217 Men
+Jumpabout Mike Fairing Track Society 154 Men
+Longshanks Loretta Pantington AC 55 Ladies
+Oblomovsky Katie Rundale Sportsters 57 Ladies
+O'Finnan Jack Fairing Track Society 45 Men
+Prowler Desmond Lameborough TFC 13 Men
+Runnington Kathleen Lameborough TFC 119 Ladies
+Runnington Vivian Lameborough TFC 117 Ladies
+Smith Herbert Pantington AC 123 Men
+Sweat Susan Rundale Sportsters 93 Ladies
+\end{verbatim}
+
+(en\_GB “İngiliz İngilizcesi” için bir kısaltmadır; en\_US “Amerikan İngilizcesi” için kullanılır ve burada aynı işi görür) Şimdi ilk isme göre sıralama yapalım: 
+\begin{verbatim}
+$ sort -k 2,2 participants.dat
+Smith Herbert Pantington AC 123 Men
+Sweat Susan Rundale Sportsters 93 Ladies
+Prowler Desmond Lameborough TFC 13 Men
+Fleetman Fred Rundale Sportsters 217 Men
+O'Finnan Jack Fairing Track Society 45 Men
+Jumpabout Mike Fairing Track Society 154 Men
+Runnington Kathleen Lameborough TFC 119 Ladies
+Oblomovsky Katie Rundale Sportsters 57 Ladies
+de Leaping Gwen Fairing Track Society 26 Ladies
+Longshanks Loretta Pantington AC 55 Ladies
+Runnington Vivian Lameborough TFC 117 Ladies
+\end{verbatim}
+
+Bu yukarıda anlatılan sıralamanın bir tanımlanmasıdır: İlk tanımlanan boşluk ayırıcı olarak kabul edilir, diğerleri takip eden alanın değerlerini oluşturur. Gördüğünüz gibi ilk isimler alfabetik olarak listelendi ama sadece soyisimleri aynı uzunlukta oalnlar listelenenler. Bu -b seçeneği kullanılarak düzeltilebilir, bu seçenek boşluk karakterini tek bir boşluk olarak algılar.
+\begin{verbatim}
+$ sort -b -k 2,2 participants.dat
+Prowler Desmond Lameborough TFC 13 Men
+Fleetman Fred Rundale Sportsters 217 Men
+Smith Herbert Pantington AC 123 Men
+O'Finnan Jack Fairing Track Society 45 Men
+Runnington Kathleen Lameborough TFC 119 Ladies
+Oblomovsky Katie Rundale Sportsters 57 Ladies
+de Leaping Gwen Fairing Track Society 26 Ladies
+Longshanks Loretta Pantington AC 55 Ladies
+Jumpabout Mike Fairing Track Society 154 Men
+Sweat Susan Rundale Sportsters 93 Ladies
+Runnington Vivian Lameborough TFC 117 Ladies
+\end{verbatim}
+
+TABLO
+
+Bu sıralı liste hala biraz hatalı; bunun için 8.14 numaralı alıştırmaya bakın. 
+Aşağıdaki örnekte de görüldüğü gibi sıralama alanı daha detaylı bir şekilde belirlenebilir:
+\begin{verbatim}
+$ sort -br -k 2.2 participants.dat
+Sweat Susan Rundale Sportsters 93 Ladies
+Fleetman Fred Rundale Sportsters 217 Men
+Longshanks Loretta Pantington AC 55 Ladies
+Runnington Vivian Lameborough TFC 117 Ladies
+Jumpabout Mike Fairing Track Society 154 Men
+Prowler Desmond Lameborough TFC 13 Men
+Smith Herbert Pantington AC 123 Men
+de Leaping Gwen Fairing Track Society 26 Ladies
+Oblomovsky Katie Rundale Sportsters 57 Ladies
+Runnington Kathleen Lameborough TFC 119 Ladies
+O'Finnan Jack Fairing Track Society 45 Men
+\end{verbatim}
+
+Burada katılanlar.dat dosyası ikinci alan tablosunun ikinci karakterine göre ters sıralamaya göre (-r) sıralanmıştır. Örnek olarak ilk ismin ikinci karakteri (çok anlaşılır oldu gerçekten). Bu durumda ilk karakter boşluğu -b seçeneği ile atlanmalıdır. (Örnek 8.14 te bulunan hata burada da kendini tekrar ediyor.) 
+
+-t seçeneği ile (terminate, Türkçesi “durdur”) alan ayırıcısının olduğu yerdeki istenen bir karakteri seçebilirsiniz. Bu alanlar boşluklar içerebileceği için iyi bir fikirdir. Burada örneğimiz için daha kullanılabilir bir hali bulunuyor:
+\begin{verbatim}
+Smith:Herbert:Pantington AC:123:Men
+Prowler:Desmond:Lameborough TFC:13:Men
+Fleetman:Fred:Rundale Sportsters:217:Men
+Jumpabout:Mike:Fairing Track Society:154:Men
+de Leaping:Gwen:Fairing Track Society:26:Ladies
+Runnington:Vivian:Lameborough TFC:117:Ladies
+Sweat:Susan:Rundale Sportsters:93:Ladies
+Runnington:Kathleen:Lameborough TFC:119:Ladies
+Longshanks:Loretta: Pantington AC:55:Ladies
+O'Finnan:Jack:Fairing Track Society:45:Men
+Oblomovsky:Katie:Rundale Sportsters:57:Ladies
+\end{verbatim}
+
+“LC\_COLLATE=en\_GB sort -t: -k2,2 ” kullanılarak ilk isme göre sıralamak artık doğru sonucu veriyor. Ayrıca katılımcının numarasına göre sıralamak (4 numaralı alan, kulüp isminde kaç tane boşluk olursa olsun) daha kolaydır:
+\begin{verbatim}
+$ sort -t: -k4 participants0.dat
+Runnington:Vivian:Lameborough TFC:117:Ladies
+Runnington:Kathleen:Lameborough TFC:119:Ladies
+Smith:Herbert:Pantington AC:123:Men
+Prowler:Desmond:Lameborough TFC:13:Men
+Jumpabout:Mike:Fairing Track Society:154:Men
+Fleetman:Fred:Rundale Sportsters:217:Men
+de Leaping:Gwen:Fairing Track Society:26:Ladies
+O'Finnan:Jack:Fairing Track Society:45:Men
+Longshanks:Loretta: Pantington AC:55:Ladies
+Oblomovsky:Katie:Rundale Sportsters:57:Ladies
+Sweat:Susan:Rundale Sportsters:93:Ladies
+\end{verbatim}
+
+Elbette “sayı” sıralaması aksi belirtilmedikçe alfabetik olarak yapılır – “117” ve “123” “13” ten önce gelir. Bu sayısal sıralama yapmak için -n seçeneği ile düzeltilebilir.
+\begin{verbatim}
+$ sort -t: -k4 -n participants0.dat
+Prowler:Desmond:Lameborough TFC:13:Men
+de Leaping:Gwen:Fairing Track Society:26:Ladies
+O'Finnan:Jack:Fairing Track Society:45:Men
+Longshanks:Loretta: Pantington AC:55:Ladies
+Oblomovsky:Katie:Rundale Sportsters:57:Ladies
+Sweat:Susan:Rundale Sportsters:93:Ladies
+Runnington:Vivian:Lameborough TFC:117:Ladies
+Runnington:Kathleen:Lameborough TFC:119:Ladies
+Smith:Herbert:Pantington AC:123:Men
+Jumpabout:Mike:Fairing Track Society:154:Men
+Fleetman:Fred:Rundale Sportsters:217:Men
+\end{verbatim}
+
+sort için olan bu ve bazı önemli seçenekler Tablo 8.3' te gösterilmiştir, buna çalışmak iyi olur. Sort çok yönlü ve size çok zaman kazandırabilecek güçlü bir komuttur.
+\paragraph{uniq komutu}{uniq komutu girdide verilen aynı satırların vurgulanmasında önemli bir görev yapar.  “Aynı” olarak kabul edilen ,her zamanki gibi, özel seçenekler kullanılarak değiştirilebilir. Uniq gördüğümüz komutların çoğundan farklıdır, bir tane dışında isteğe bağlı girdi dosyası kabul etmez; eğer ikinci bir dosya ismi verilirse bunu çıktının konulması istenen dosya olarak düşünür. (eğer ikinci dosya ismi verilmezse çıktı standart çıktıya yazılır) uniq çağrısında hiç dosya ismi verilmemişse, beklendiği gibi standart girdiden okumaya başlar. Uniq en iyi girdi dosyasındaki satırlar sıralanmış ise çalışır, sıralanmaktan kasıt aynı satırların birbiri arkasına gelmesidir. Eğer durum bu değilse çıktıda bütün tekrarlanan satırların görüneceği garantisi verilmez.}
+\begin{verbatim}
+$ cat uniq-test
+Hipp
+Hopp
+Hopp
+Hipp
+Hipp
+Hopp
+$ uniq uniq-test
+Hipp
+Hopp
+Hipp
+Hopp
+\end{verbatim}
+
+Bunu “sort -u ” komutunun çıktısıyla karşılaştırın:
+\begin{verbatim}
+$ sort -u uniq-test
+Hipp
+Hopp
+\end{verbatim}
+
+\paragraph{Alıştırmalar}{
+\begin{itemize}
+ \item Katılımcılar0.dat dosyasındaki katılımcı listesini koşucuların isimlerinin sıralı olduğu liste ele alınarak kulüp isimlerine göre sıralayın.
+ \item Katılımcı listesini artan bir şekilde (a-z) “numaraların ters yönde sıralanmış halini” ele alarak kulüplerin ismine göre sıralayabilirsiniz? (İpucu: Belgeyi okuyun!)
+ \item Bu örnekteki hata nedir ve neden meydana gelir?
+ \item Takip eden dosya isimlerine sahip bir dizin: 
+ \begin{verbatim}
+01-2002.txt 01-2003.txt 02-2002.txt 02-2003.txt
+03-2002.txt 03-2003.txt 04-2002.txt 04-2003.txt
+<<<
+11-2002.txt 11-2003.txt 12-2002.txt 12-2003.txt
+ \end{verbatim}
+ sort komutunu ls komutunun sonucunu tarihsel sıraya göre doğru dizmek için kullanınız:
+ \begin{verbatim}
+01-2002.txt
+02-2002.txt
+<<<
+12-2002.txt
+01-2003.txt
+<<<
+12-2003.txt
+ \end{verbatim}
+\end{itemize}}
+\end{subsection}
+\begin{subsection}{Sütunlar ve Alanlar—cut , paste vb.}
+
+Grep ile satırları bulup kesebilirken cut komutu bir metin dosyasında sütun yönelikli çalışır. Bu iki yöntemden biri ile çalışır:
+
+Bir ihtimal sütunların kesin bir şekilde ayrılmış olmasıdır. Bu sütunlar bir satırda tek bir karaktere karşılık gelirler. Bu gibi sütunları kesmek için -c seçeneği ile sütun numarası verilmelidir. Birden fazla sütunu tek seferde kesmek için sütun numaraları virgül ile ayrılır. Sütun aralıkları bile belirlenebilir.
+\begin{verbatim}
+$ cut -c 12,1-5 katılımcılar.dat 
+SmithH 
+ProwlD 
+FleetF 
+JumpaM 
+de LeG 
+\end{verbatim}
+
+Bu örnekte ilk ismin ilk karakteri ve son ismin beş karakteri alınır. Ayrıca çıktının her zaman için girdide ki düzene göre gerçekleştiği görünmekte. Eğer seçilmiş satırlar birbirleri üstüne gelirse bile, her girdi karakteri çoğu zaman çıktıda bulunur:: 
+\begin{verbatim}
+$ cut -c 1-5,2-6,3-7 katılımcılar.dat 
+Smith 
+Prowler 
+Fleetma 
+Jumpabo 
+de Leap
+\end{verbatim}
+
+İkinci yöntem bağlantılı alan ayırıcısı ile ayrılmış bağlantılı alanları kesmek için kullanılır. Eğer bu belirlenen alanları kesmek istiyorsanız cut -f seçeneğine ve istenen alan numarasına ihtiyaç duyar. Sütunlar için geçerli olanların hepsi alanlar içinde geçerlidir. -c ve -f  seçenekleri birbirlerinin aynısıdır.
+Varsayılan ayırıcı tab karakteridir, diğer ayırıcılar -d (delimiter) seçeneği ile belirlenebilir:
+\begin{verbatim}
+$ cut -d: -f 1,4 katılımcılar0.dat 
+Smith:123 
+Prowler:13 
+Fleetman:217 
+Jumpabout:154 
+de Leaping:26
+\end{verbatim}
+
+Bu yolla katılımcıların soyadları (birinci sütun) ve numaraları (dördüncü sütun) listeden alınır. Okunabilirlik için sadece ilk birkaç satır gösterilmektedir.
+
+Sözü açılmışken, --output-delimeter seçeneğini kullanarak farklı bir ayırıcı belirleyebilirsiniz:
+\begin{verbatim}
+$ cut -d: --output-delimiter=': ' -f 1,4 participants0.dat
+Smith: 123
+Prowler: 13
+Fleetman: 217
+Jumpabout: 154
+de Leaping: 26
+\end{verbatim}
+
+Eğer gerçektende sütun ya da alanların düzenini değiştirmek istiyorsanız, awk ve perl gibi büyük silahları ortaya koymak zorundasınız. Bunu şimdi anlatacağımız paste komutu ile yapabilirsiniz ama that is rather tedious. 
+
+Dosyalar alanlar olarak kabul edilirse (sütun olarak kabul edilmek yerine) -s (seperator, ayırıcı) seçeneği kullanışlı olur.  Eğer “cut -f” ayırıcı içermeyen karakterlerin olduğu satırları buluyorsa, çıktıya bunları bütün halinde verir; -s bu satırları baskılar. Paste komutu belirtilen dosyalardaki satırları birleştirir. Bu sık sık cut komutu ile birlikte kullanılır. Hemen fark edeceğiniz gibi paste bir filtre komutu değildir. Yinede paste komutunun standart girdiden okuması için “-” işaretini kullanabilirsiniz. Çıktı her zaman standart çıktıya gider. 
+
+Söylediğimiz gibi, paste satırlarla işe yarar. Eğer iki dosya adı belirtildiyse ilk dosyanın ilk satırı ve ikincinin ilk satırı birleştirilir (bir tab karakterini ayırıcı olarak kullanarak) ve bu şekilde çıktının ilk satırı oluşturulur. Aynısı dosyadaki bütün satırlar için geçerlidir. Başka bir ayırıcı kullanmak için -d seçeneğini kullanabilirsiniz.
+
+Örnek olarak; maraton koşucularını katılım numaralarıyla birleştirip yeni bir dosya oluşturabiliriz:
+\begin{verbatim}
+$ cut -d: -f4 participants0.dat >number.dat 
+$ cut -d: -f1-3,5 participants0.dat \ 
+> 
+| paste -d: number.dat - >p-number.dat 
+$ cat p-number.dat 
+123:Smith:Herbert:Pantington AC:Men 
+13:Prowler:Desmond:Lameborough TFC:Men 
+217:Fleetman:Fred:Rundale Sportsters:Men 
+154:Jumpabout:Mike:Fairing Track Society:Men 
+26:de Leaping:Gwen:Fairing Track Society:Ladies 
+117:Runnington:Vivian:Lameborough TFC:Ladies 
+93:Sweat:Susan:Rundale Sportsters:Ladies 
+119:Runnington:Kathleen:Lameborough TFC:Ladies 
+55:Longshanks:Loretta: Pantington AC:Ladies 
+45:O'Finnan:Jack:Fairing Track Society:Men 
+57:Oblomovsky:Katie:Rundale Sportsters:Ladies
+\end{verbatim}
+
+Bu dosya “sort -n p-number.dat” kullanılarak sayılara göre düzgn bir şekilde sıralanabilir. -s ile (seri) verilen dosyalar belirli bir sequence ile işlenir. İlk olarak, ilk dosyanın bütün satırları tek bir satır haline getirilir (aralarında bir ayırıcı karakter bulunacak şekilde) sonra ikinci dosyadaki bütün satırlar çıktının ikinci satırını oluştururlar.
+\begin{verbatim}
+$ cat list1
+Wood
+Bell
+Potter
+$ cat list2
+Keeper
+Chaser
+Seeker
+$ paste -s list*
+Wood Bell Potter
+Keeper Chaser Seeker
+\end{verbatim}
+
+list* arama karakteriyle eşleşen bütün dosyalar (bu durumda list1 ve list2) paste kullanılarak birleştirildi. -s seçeneği bu dosyalarının bütün satılarının çıktının bir sütununu oluşturmasını sağlar. 
+
+\paragraph{Alıştırmalar}{
+\begin{itemize}
+ \item Katılımcılar.dat dosyasının (eşit aralıklı sütunlar halinde olanının) katılımcı numarası ve kulüp bağlantısının olmadığı bir halini oluşturunuz.
+ \item Katılımcılar0.dat dosyasının (: işaretinin ayırıcı olarak kullanıldığı halinin) katılımcı numarası ve kulüp bağlantısının olmadığı bir halini oluşturunuz.
+ \item Katılımcılar0.dat dosyasının alanlarının “:” ile değil “,? ” ile ayrıldığı (virgül ve boşluk işareti)bir halini oluşturunuz.
+ \item Sisteminizde kaç tane grup kullanıcılar tarafından birincil grup olarak kullanılıyor? (birinci grup kullanıcıları /etc/passwd nin altındaki dördüncü alandadır.)
+\end{itemize}}
+
+\paragraph{Bu Bölümdeki Komutlar}{
+\paragraph{cat}{Dosyaları birleştirir (diğer şeylerin yanında)}
+\paragraph{cut}{Girdisindeki sütun ya da alanları ayırır}
+\paragraph{head}{Bir dosyanın başlangıcını gösterir}
+\paragraph{paste}{Farklı girdi dosyalarındaki satırları birleştirir}
+\paragraph{reset}{Bir terminal karakterini mantıklı bir değere sıfırlar}
+\paragraph{sort}{Girdisini satırlara göre sıralar}
+\paragraph{tail}{Bir dosyanın sonunu gösterir}
+\paragraph{uniq}{Bir dosyadaki tekrarlayan satırları vurgular.}
+}
+
+\paragraph{Özet}{
+\begin{itemize}
+\item Her Linux programı standart G/Ç yollarını, stdin, stdout ve stderr'i destekler. 
+\item Standart çıktı ve standart hata çıktısı $>$ ve $>>$ operatörleri ile, standart girdi $<$ operatörü ile yönlendirilebilir.
+\item Boru hatları komutların standart çıktı ve girdilerini direkt olarak bağlamak için kullanılabilir. (ara dosyalar olmadan)
+\item tee komutunu kullanarak yönlendirmelerdeki ara sonuçları dosyalarda saklayabiliriz. 
+\item Filtre komutları (ya da filtreler) kendi standart girdilerini okuyup değiştirip bunu standart çıktıya yazarlar. 
+\item sort sıralama için kullanılan çok yönlü bir programdır. 
+\item cut komutu her satırdan belirtilen aralıktaki sütun ya da alanları ayırır.
+\item paste ile dosyaların satırları birleştirilebilir. 
+\end{itemize}}
+\end{subsection}
+\end{section}
