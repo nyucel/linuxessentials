@@ -1,0 +1,56 @@
+\chapter{Dosya Sistemi}
+\paragraph{Amaçlar}{
+\begin{itemize}
+ \item “dosya” ve “sistem dosya” kavramların anlamak
+ \item Farklı dosya türlerin tanıma
+ \item Linux sistemin ağaç dizi yolların öğrenmek
+ \item Dizi ağaç içerisinde harici dosya nasıl entegre edilmesini öğrenmek
+ \end{itemize}}
+\paragraph{Önceden Bilinmesi Gerekenler}
+\begin{itemize}
+ \item Linux temel bilgileri (Önceki Konulardan)
+ \item Dosyalar ve Dizinleri işlemesi (Bölüm 6)
+ \end{itemize}
+
+\paragraph{}{
+\begin {table}[H]
+\caption {Linux Dosya Türleri} \label{tab:title} 
+\begin{tabular}{l c l l}
+\hline
+Tür & ls -l& ls -F& Nasıl oluşturulur\\
+\hline
+düz metin & -&  isim& çeşitli programlar\\
+dizin & d & isim/ & mkdir \\
+sembolik link & l & isim@ & ln -s \\
+aygıt dosyası & b veya c & isim & mknod \\
+FIFO (pipe) & p & name \textbar & mkfifo \\
+UNIX domain socket & s & isim= & komut yok\\
+\hline
+\end{tabular}
+\end {table}
+}
+
+\begin{section}{Terimler}
+
+\begin{verbatim}
+$ file /bin/ls /usr/bin/groups /etc/passwd
+/bin/ls: ELF 32-bit LSB executable, Intel 80386,
+  version 1 (SYSV), for GNU/Linux 2.4.1,
+dynamically linked (uses shared libs), for GNU/Linux 2.4.1, stripped
+/usr/bin/groups: Bourne shell script text executable
+/etc/passwd: ASCII text
+\end{verbatim}
+
+\end{section}
+\begin{section}{Dosya Türleri}
+
+
+\end{section}
+\begin{section}{Linux Dizin Ağacı}
+
+
+\end{section}
+\begin{section}{Dizi Ağacı ve Dosya Sistemleri}
+
+
+\end{section}
