@@ -75,31 +75,510 @@ gerçekleştirmek için özel bir komut gerekli olabilir. Birçok dağıtım sis
 \item 12h34m56s
 \end{enumerate}
 \item Şu anda Los Angeles’da saat kaç?
-\end{itemize}
-}
-
-
-
-
-
-
-
-
-
-
+\end{itemize}}
 \end{section}
 \begin{section}{Kabuk Değişkenleri ve Ortamı}
 
+Çoğu yaygın kabuklar gibi bash diğer programlama dillerinde bulunan özelliklere sahiptir. Örneğin; değişkenlerde sayıları veya matinlerin bir parçasını depolamak mümkündür ve geri alınabilir. Değişkenler kabuk işlemlerini çeşitli şekilde denetlerler.
+
+Ayarlama değişkenleri:Kabuk içinde bir değişken “foo=bar” gibi bir komut ile ayarlanır(Bu komut foo değişkenini metin değeri bar değişkenine ayarlar). Önünde veya
+eşittir işareti arkasında boşluk eklememeye dikkat edin! Önünde dolar işareti ile değişken adını kullanarak değişkenin değerini alabilirsiniz:
+\begin{verbatim}
+$ foo=bar
+$ echo foo
+foo
+$ echo $foo
+bar
+\end{verbatim} 
+ 
+(farka dikkat)
+
+Kabuk değişkeninden ortam değişkenini ayırt edebilirsiniz. Kabuk değişkenleri tanımlandığı kabukta görülür. Harici bir komut başlatılır ve oradan kullanılabilirken diğer taraftan ortam değişkenlerine çocuk süreçler aktarılır (Çocuk süreçler bir kabuk olmak zorunda değildir. Her Linux süreci ortam değişkenlerine sahiptir). Tüm kabuğun ortam değiikenleri aynı zamanda kabuk değişkenidir; fakat aksi geçerli değildir.
+
+Export komutunu kullanarak varolan kabuk değişkenini bir ortam değişkeniyle ifade edebilirsiniz.
+\begin{verbatim}
+$ foo=bar              foo şu anda kabuk değişkeni
+$ export foo           foo şu anda ortam değişkeni
+\end{verbatim}
+
+Veya aynı zamanda kabuk ve ortam değişkeni gibi yeni bir değişken tanımlayabilirsiniz.
+
+\paragraph{}{
+\begin {table}[H]
+\caption {Önemli Kabuk Değişkenleri} \label{tab:title} 
+\begin{tabular}{c l}
+\hline
+Değişken & Anlamı\\
+\hline
+PWD		&  Geçerli dizinin ismi\\
+EDITOR		&  Kullanıcının tercih ettiği editörün ismi\\
+PSI	&	  Kabuk komutu yönetme şablonu\\
+UID		&  Geçerli kullanıcının kullanıcı ismi\\
+HOME		&  Geçerli kullanıcının ev dizini\\
+PATH		&  Dış komutlar gibi uygun çalıştırılabilir programlar içeren dizinlerin listesi\\
+LOGNAME	  & Geçerli kullanıcının kullanıcı ismi (tekrar)\\
+\hline
+\end{tabular}
+\end {table}}
+\begin{verbatim}
+$ export foo=bar
+\end{verbatim}
+
+Aynı anda birden fazla değişkenler için aynı çalışır:
+\begin{verbatim}
+$ export foo baz
+$ export foo=bar baz=quux
+\end{verbatim}
+
+Export komutuyla tüm ortam değişkenlerini görüntüleyebilirsiniz (hiçbir parametre almadan). Ayrıca env komutu da (hiçbir parametre almadan) mevcut ortamı görüntüler. Tüm kabuk değişkenleri (ortam değişkenlerini de içererek) set komutu kullanılarak görüntülenebilir. En yaygın değişkenler ve onların anlamları tablo 9.1 de gösterilmiştir.
+
+Aynı zamanda set komutu farklı ve harika birçok şey yapar. Kabuk programlamayı kapsayan Advanced Linux Linup Ön Eğitim klavuzunda tekrar karşılaşacaksınız.
+
+Env aslında sadace ortam süreçlerini göstermek yerine işlemek için tasarlanmıştır. Aşağıdaki örneği inceleyin:
+\begin{verbatim}
+$ env foo=bar bash          Foo ile çocuk kabuğu başlat
+$ echo $foo
+bar
+$ exit                      Ana kabuğa geri dön
+$ echo $foo
+                             Tanımlı değil
+$ _
+\end{verbatim}
+
+En azından bash ile (ve ilişkiler) gerçekte genişletilmiş bir ortamla komutları çalıştırmak için env komutuna ihtiyaç duymazsınız.-Temelde aynı şeyi yapar.
+\begin{verbatim}
+$ foo=bar bash
+\end{verbatim}
+
+Ancak env komutu da geçici ortam değişkenleri kaldırmak için izin verir (nasıl?). Bir değişken silme: Eğer yeterli kabuk değişkeni varsa unset komutunu kullanarak silebilirsiniz. Ayrıca bu çevreden onu siler. Eğer ortamdan bir değişkeni silip kabuk değişkeni olarak tutmak isterseniz "export -n" kullanın:
+\begin{verbatim}
+$ export foo=bar 	foo ortam değişkeni
+$ export -n foo 	foo kabuk değişkeni (sadece)
+$ unset foo 		foo sonsuza dek gider ve kaybolur
+\end{verbatim}
 \end{section}
 \begin{section}{Komut Tipleri - Yeniden Yüklemeler}
 
-\end{section}
-\begin{section}{Uygun Bir Araç Olan Kabuk}
+Kabuk kontrol:Kabuk değişkenlerinin bir uygulaması kabuğun kendisinin kontrolündedir. İşte başka bir örnek: 4. bölümde de tartıştığımız üzere kabuk iç ve dış komutları ayırır. Kabuk dış komutları PATH ortam değişkeninin değerini oluşturan dizinlerde hangi çalıştırılabilir programa karşılık geldiğini arar. İşte PATH için genel bir değer:
+\begin{verbatim}
+$ echo $PATH
+/home/joe/bin:/usr/local/bin:/usr/bin:/bin:/usr/games
+\end{verbatim}
 
+Bireysel dizinler listedeki kolona göre ayrılmış, bu nedenle listenin örneği olarak beş dizin oluşur. Eğer bir komut girişi yaparsanız
+\begin{verbatim}
+$ ls
+\end{verbatim}
+
+kabuk bunun iç komut olmadığını bilir (kendi iç komutlarını bilir) ve bu nedenle PATH'i dizini en solundan araştırmaya başlar. Özellikle, aşağıdaki dosyaların mevcut olup olmadığını kontrol eder:
+\begin{verbatim}
+/home/joe/bin/ls 		yok …
+/usr/local/bin/ls 		hala şans yok …
+/usr/bin/ls 			tekrar şans yok …
+/bin/ls 			anlaşıldı!
+     /usr/games dizini kontrol edilmez.
+\end{verbatim}
+
+Bu /bin/ls dosyası adı üstünde ls komutu çalıştırmak için kullanılır. 
+
+Tabiki bu arama oldukça karışık süreçlerdir. Bunun sebebi kabuğun gelecek için hazırlık yapmasıdır: Eğer daha önce ls komutunun uygulası olarak /bin/ls
+dosyası tespit edilmiş ise, şu an için bu yazışmalar hatırlanır. "hashing" süreci çağrılır ve bunun ls komut tipini uygulayarak meydana geldiğini görebilirsiniz.
+\begin{verbatim}
+$ type ls
+ls is hashed (/bin/ls)
+\end{verbatim} 
+
+Hash komutu hangi bash'de "hashing" olan emrediyor size söyler ve ne sıklıkla na zaman çağrıldığını söyler. "hashing-r" ile kabuğun karma belleğini 	silebilirsiniz. Diğer bir kaç seçeneğe bash klavuzundan bakabilir ya da "help hash" kullanarak öğrenebilirsiniz.
+
+Açıkça söylemek gerekirse PATH değişkenin bir ortam değişkeni olmasına gerek yoktur- kabuk değişkeni mevcut kabuk için iyi durumda (bkz. alıştırma 9.5).
+
+Her halükarda bir ortam değişkeni olarak tanımlamak için uygundur (genellikle de kabukları). Böylece kabuğun çocuk süreçlerinin istenilen değeri kullanılır.
+
+Eğer kabuk kullanan belirli bir dış komut için programın hangisi olduğunu tam olarak bilmek istiyorsanız which komutunu kullanabilirsiniz:
+\begin{verbatim}
+$ which grep
+/bin/grep
+\end{verbatim}
+
+which, kabuğu aynı yöntemde kullanır - ilk olarak PATH dizininde başlar ve söz konusu dizinin istenilen komutu ile aynı ada sahip bir yürütülebilir dosya içerip içermediğini denetler.
+
+which kabuğun iç komutları hakkında hiçbir şey bilmiyor olmasına rağmen “which test" komutu "/usr/bin/test" döndürür. Bu aslında iç komutların önceliğe sahip 	olduğundan çalıştırılabileceği anlamına gelmez. Eğer emin olmak istiyorsanız "type" kabuk komutunu kullanmanız gerekir.
+
+whereis komutu çalıştırılabilir programların adlarını döndürür; ama aynı zamanda belge (man pages), kaynak kodu ve söz konusu komut(lar) ile ilgili farklı dosyaları da döndürür. Örneğin:
+\begin{verbatim}
+$ whereis passwd
+passwd: /usr/bin/passwd /etc/passwd /etc/passwd.org /usr/share/passwd >
+</usr/share/man/man1/passwd.1.gz /usr/share/man/man1/passwd.1ssl.gz>
+</usr/share/man/man5/passwd.5.gz
+\end{verbatim} 
+
+Bu örnekte whereis(1) komutunu açıklayan (kabaca) doğrudan kodlanmış bir yöntem kullanılmıştır.
+\paragraph{Alıştırmalar}{
+\begin{itemize}
+\item Çocuk süreçlerin çalışması için Ortam ve kabuk değişkenlerine geçirerek aşağıdaki komutların sırasıyla çalıştığına dair kendinizi ikna edebilirsiniz.
+\begin{verbatim}
+$ foo=bar 		foo kabuk değişkeni
+$ bash 		yeni kabuk (çocuk süreç)
+$ echo $foo
+			foo tanımlı değil
+$ exit 		ana kabuğa geri dön
+$ export foo 		foo ortam değişkeni
+$ bash 		yeni kabuk (çocuk süreç)
+$ echo $foo
+bar 			ortam değişkeni ile birlikte geçti
+$ exit 		ana kabuğa geri dön
+\end{verbatim}
+\item Çocuk süreçte bir ortam değişkeni değişirse ne olur? Aşağıdaki komutları sırasıyla inceleyin:
+\begin{verbatim}
+$ foo=bar 		foo kabuk değişkeni
+$ bash 		yeni kabuk (çocuk süreç)
+$ echo $foo
+bar 			ortam değişkeni ile birlikte geçti
+$ foo=baz 		yeni değer
+$ exit 		ana kabuğa geri dön
+$ echo $foo 		ne alacağız?
+\end{verbatim}
+\item PATH bir ortam değişkeni yerine "sadece" basit bir kabuk değişkeni ise kabuğun komut satırında aramayı çalıştırdığına da emin olun. Eğer PATH tamamen silinise ne olur?
+\item Aşağıdaki komutları ele almak için hangi çalıştırılabilir programlar kullanılır: fgrep, sort, mount, xter
+\item Sistemdeki hangi dosyalar “crontab” komutu için belgeleri içerir?
+\end{itemize}}
+\end{section}
+\begin{section}{Uygun Bir Araç Olarak Kabuk}
+
+Kabuk birçok Linux kullanıcıları için en sık kullanılan araç olduğundan beri, geliştiricileri tarafından kullanımını rahat hale getirmek için birçok sorunu çözmelmek üzere tartışıldı. Daha kullanışlı bazı önemsiz şeyler buradadır:
+
+\paragraph{Komut Editörü} {Basit bir metin editöründeki gibi komut satırlarını düzenleyebilirsiniz. Bu sayede, enter tuşu kullanarak giriş bitmeden önce keyfi karekterler ekleyebilir veya silebilir ve giriş satırının etrafında imleci hareket ettirebilirsiniz. Bu editörün davranışları Linux üzerinde en popüler editörlerin "set-o vi" ve "set-o emacs" komutlarını kullanarak uyarlanabilir.}
+\paragraph{Durdurulan Komutlar}{Linux komutları çevresinde çokça isim karıştırmak veya yanlış bir parametreye geçmek kolaydır. Haliyle çalıştırılma anında iptal komutu olmalıdır. Bu işlem için sadece eş zamanlı olarak Ctrl+c tuşuna basılmalıdır.}
+\paragraph{Tarihçe}{Kabuk "tarih" in bir parçası olarak şimdiye kadarki komutları hatırlar. \^ ve v imleç tuşlarını kullanarak bu komutların listesinde hareket edebilirsiniz. Yukarıda açıklandığı gibi önceki komutu bulursanız $<$-(enter) kullanarak tekrar çalıştırabilir veya düzenleyip kullanabilirsiniz. Ctrl + r komutunu kullanarak "adım adım" listeyi arayabilirsiniz - sadece karakter dizisi yazdığınızda ve kabuk bu diziyi içeren en son çalıştırılan komutu gösterir. Uzun dizilerde arama daha hassastır.}
+
+Sistem oturumunuzu kapattığınızda, kabuk gizli dosya $\sim$/.bash\_history içinde geçmişini depolar ve daha sonra giriş yaptıktan sonra tekrar kullanılabilir hale getirir. (Söz konusu isim HISTFILE değişkenini ayarlayarak farklı bir dosya adı kullanabilir.)
+
+“plain” dosyasında depolanan geçmişin saklanır olduğunun bir sonucu olarak bu dosya metin editörü kullanılarak düzenlenebilir (bölüm 3 ne söyler). Öyleki
+komut satırına yanlışlıkla şifrenizi girdiniz, el ile tarihi kaldırabilirsiniz - özellikle, sistem başıboşsa ev dizinlerinden herhangi birini herkes görebilir.
+\paragraph{Otamatik Tamamlama}{Otomatik olarak komut ve dosya adlarını tamamlamak Bash kabuğunun muazzam bir yeteneğidir. Eğer tab tuşuna bastığınızda kabuk benzersiz bir tespit ile eksik bir girdi var ise devamını tamamlar. Bir komutun ilk sözcüğü için, bash geçerli veya belirtilen dizindeki tüm dosyaların komut satırı geri kalanı içinde tüm çalıştırılabilir programları düşünmektedir. Çeşitli komutlar veya dosyaların adları aynı başlıyorsa, kabuk adını mümkün olduğu kadar tamamlar sonrasında komut veya dosya adı hala eksik olabilir. İkinci bir tab tuşuna basıldığında kalan olasılıkları listeler.}
+
+Belirli programlara kabuğun tamamlama mekanizmasını uygulamak mümkündür. Örneğin; bir FTP istemcisi, komut satırında dosya adları yerine yakın zamanda ziyaret ettiği FTP sunucularının adlarını sunabilir. Ayrıntılar için bash belgelerine bakın.
+
+Tablo 9.2 de bash içindeki en önemli tuşlar hakkında bir göz gezdirilmiştir.
+\paragraph{Bir satır üzerinde çoklu komutlar}{Aynı giriş hattı üzerinde çeşitli komutlar girmek için mükemmel ücretsizdir. Sadece bir noktalı virgül kullanarak onları ayırmak gerekir:
+\begin{verbatim}
+$ echo Today is; date
+Today is
+Fri 5 Dec 12:12:47 CET 2008
+\end{verbatim}}
+
+Bu örnekte birinci komut çalıştırılmış olduğunda, ikinci komut yürütülür.
+\paragraph{}{
+\begin {table}[H]
+\caption {bash içindeki tuşlar} \label{tab:title} 
+\begin{tabular}{l l}
+\hline
+Tuşlar & İşlevleri\\
+\hline
+\^ veya v	&	En son komutlar arasında gezinir\\
+Ctrl+r		&	Komut geçmişini arar\\
+$<$- -$>$		&	Geçerli komut satırı içindeki İmleci hareket ettirir\\
+home Ctrl+a	&	Komut satırının başına gider\\
+end Ctrl+e	&	Komut satırı sonuna atlar\\
+$<$- Del		&	Sırasıyla, imlecin altındaki/önündeki karakteri siler\\
+Ctrl+t		&	İmlecin Önündeki ve altındaki iki karakterin yerlerini değiştirir\\
+Ctrl+l		&	Ekranı temizler\\
+Ctrl+c		&	Komuta ara verir\\
+Ctrl+d		&	Son giriş (giriş kabukları için:kapalı oturum)\\
+\hline
+\end{tabular}
+\end {table}}
+\paragraph{Koşullu Yürütme}{Bazen ilk komutun doğru çalışıp çalışmadığına bağlı olarak ikinci komutun çalıştırılması kullanışlıdır. Her Unix süreçleri doğru çalışan veya ne tür hataların meydana geldiğini belirten geri dönüş değeri dödürür. Önceki durumda, dönüş değeri 0; ikincisi de, 0 dan farklıdır. \$? değişkeniyle kabuğun çocuk sürecinin geri dönüş değeri bulanabilir.
+\begin{verbatim}
+bash 			çocuk süreç başlatıldı …
+$ exit 33 		… ve hemen tekrar çıkldı
+exit
+$ echo $?
+33 			yukarıdaki çıkış değeri
+$ _
+\end{verbatim}
+
+Ama bunun sonrakiler üzerinde etkisi yoktur.
+
+İki komut arasında, "ayırıcı" olarak \&\& kullanılır (aksi halde noktalı virgül nerde ise), ilk komuttan başarılı bir şekilde çıkıldığı zaman, ikinci komut
+yalnız yürütülür. Bunu görebilmek için kabuğun -c seçeneğini kullanabilirsiniz, bununla birlikte komut satırı üzerinden çocuk kabuğa bir komut iletilir (Etkileyici, değil mi?):
+\begin{verbatim}
+$ bash -c "exit 0" && echo "Successful"
+Successful
+$ bash -c "exit 33" && echo "Successful"
+ 					-33 hiç başarılı değil
+\end{verbatim}
+
+Aksine "ayırıcı" olarak \textbar \textbar kullanımında ilk komut başarılı bitmediği taktirde ikinci komut yalnız yürütülür. 
+\begin{verbatim}
+$ bash -c "exit 0" || echo "Unsuccessful"
+$ bash -c "exit 33" || echo "Unsuccessful"
+Unsuccessful
+\end{verbatim} }
+\paragraph{Alıştırmalar}{
+\begin{itemize}
+\item “echo "Hello!"” komutunda ne yanlış? (İpucu: Form komutları "! -2" Ya da "! ls" ile tecrübe edin.)
+\end{itemize}
+}
 \end{section}
 \begin{section}{Dosyadan Komutlar}
 
+Bir dosya içinde kabuk komutları depolamayabilir ve bunu en bloc ile yürütebilirsiniz. (Elverişli bir dosya oluşturma bölüm 3'de öğrenilecektir.) Parametre olarak verilen dosya adını sadece kabuğun çağırması gerekir.
+\begin{verbatim}
+$ bash my-commands
+\end{verbatim}
+
+Bunun gibi bir dosya kabuk betiği çağırır ve çok kısa özetleyebiliriz ki kabuk burada çok geniş programlama özelliklerne sahiptir. (Advanced Linux Linup Ön Eğitim klavuzunda detaylı olarak kabuk programlama açıklanıyor.)
+
+Büyülü sözler ekleyerek dosyayı "çalıştırılabilir" yaparak
+\begin{verbatim}
+#!/bin/bash
+\end{verbatim}
+		
+bash komutunun başa eklenmek zorunda kalma durumunu engelleyebilirsiniz.
+\begin{verbatim}
+$ chmod +x my-commands
+\end{verbatim}
+		
+(Bölüm 14 de chmod ve erişim haklarıyla ilgili daha fazla bilgi bulabilirsiniz.) Bundan sonra
+\begin{verbatim}
+$ ./my-commands
+\end{verbatim}
+komutu yeterli olacaktır.
+
+Eğer yukarıdaki gibi bir kabuk betiği çağırılırsa bash komutunu başa ekleyerek veya dosyayı çalıştırarak geçerli kabuğun çocuk süreci bir alt kabukta çalıştırılır.
+
+Bu da demektir ki, e. g., kabuk ya da ortam değişkenlerindeki değişikliklerin geçerli kabukta etkisi yoktur. Örneğin; dosyanın atama satırı içerdiğini varsayalım
+\begin{verbatim}
+foo=bar
+\end{verbatim}
+
+Aşağıdaki komut dizisi dikkate alın:
+\begin{verbatim}
+$ foo=quux
+$ bash assignment 		foo=bar içerir
+$ echo $foo
+quux 				Değişiklik yok; atama sadece altkabukda oldu
+\end{verbatim} 
+
+Bu genellikle bir özellik olarak kabul edilir, ama her zaman için (şimdi ve sonrasında) dosya komutlarının mevcut kabuğu etkileyecek olması oldukça gereklidir. Bu da çalışır: Eğer o anki kabukta bunlar doğrudan yazılırsa tam olarak kaynak komut dosyası satırlarını okur -tüm değişkenlerdeki değişiklikleri- dolayısıyla geçerli kabuk da etkili olur:
+\begin{verbatim}
+$ foo=quux
+$ source assignment 		foo=bar içerir
+$ echo $foo
+bar 				Değişken değişti!
+\end{verbatim}
+
+Lafı gelmişken kaynak komutu için farklı bir isim ".". (doğru okunmalı-nokta) Bu sebeple
+\begin{verbatim}
+$ source assignment
+\end{verbatim} 
+eşdeğerdir.
+\begin{verbatim}
+$ . assignment
+\end{verbatim}
+
+Dış komutlar için program dosyaları gibi dosyaların okuması kaynak veya . kullanarak PATH değişkeni tarafından verilen dizinleri aramasıyla olur.
 \end{section}
 \begin{section}{Programlama Dili Olarak Kabuk}
 
+Bir dosyadan kabuk komutları çalıştırmak için mümkün olduğunca iyi bir şey olduğuna emin olmak gerekir. Bununla birlikte her zaman aynı şeyleri yapmak zorunda olmadan kabuk komutlarnı daha iyi yapılandırmak mümkündür. Örneğin; komut satırı parametreleri elde edilebilir. Avantajları açıktır: Sık kullanılan prosedürleri, sürekli yazmak sıkıcı olacağından kaydedebilirsiniz ve nadiren kullanılan süreçleri bu kaydın dışında bırakın çünk bu sayede hataları hataları önemli ölçüde önleyebilirsiniz. Kabuğun als programlama dilini açıklamak için burada yeterli bir alana sahip değiliz; ama bir kaç örnek bunun için yeterli olacaktır.
+
+\paragraph{Komut satırı parametreleri}{Bir kabuk betiğine komut satırı parametrelerini ilettiğinizde, kabuk \$1, \$2 gibi değişkenleri kullanabilir hale gelir. Aşağıdaki örneği inceleyin:
+\begin{verbatim}
+$ cat hello
+#!/bin/bash
+echo Hello $1, are you free $2?
+$ ./hello Joe today
+Hello Joe, are you free today?
+$ ./hello Sue tomorrow
+Hello Sue, are you free tomorrow?
+\end{verbatim}
+}
+
+\$ * bir kerede tüm parametreleri içerir ve \$ \# parametrelerin sayısıdır:
+\begin{verbatim}
+$ cat parameter
+#!/bin/bash
+echo $# parameters: $*
+$ ./parameter
+0 parameters:
+$ ./parameter dog
+1 parameters: dog
+$ ./parameter dog cat mouse tree
+4 parameters: dog cat mouse tree
+\end{verbatim}
+
+\paragraph{Döngüler}{For komutu kelimelerin bir listesi üzerinden yineleme ile döngü oluşturmayı sağlar (boşluklarla ayrılmış).
+\begin{verbatim}
+$ for i in 1 2 3
+> do
+> echo And $i!
+> done
+And 1!
+And 2!
+And 3!
+\end{verbatim}
+}
+
+Burada, i değişkeniyle sıralı listelenmiş varsayılan değerler, komutlar arasından do komutu ile yürütülür.
+
+Eğer kelimeler bir değişken alınırsa bu daha eğlenceli hale gelir:
+\begin{verbatim}
+$ list='4 5 6'
+$ for i in $list
+> do
+> echo And $i!
+> done
+And 4!
+And 5!
+And 6!
+\end{verbatim}
+
+Eğer "in ..." yazmazsanız, döngü komut satırı parametreleri üzerinde dolaşır:
+\begin{verbatim}
+$ cat sort-wc
+#!/bin/bash
+# Sort files according to their line count
+for f
+do
+echo `wc -l <"$f"` lines in $f
+done | sort -n
+$ ./sort-wc /etc/passwd /etc/fstab /etc/motd
+\end{verbatim}
+
+("wc -l" komutunu komut satırına geçirilen standart giriş veya dosya(lar) satırları saymaktadır.) İş hattı kullanarak sıralamak için döngüyü standart çıktıya yönlendirme unutulmamalıdır!
+
+\paragraph{Alternatifler}{ Sadece belirli koşullar altında belirli komutları çalıştırmak için daha önce de anlatılan \textbar \textbar ve \&\& operatörlerini kullanabilirsiniz.
+\begin{verbatim}
+#!/bin/bash
+# grepcp REGEX
+rm -rf backup; mkdir backup
+for f in *.txt
+do
+grep $1 "$f" && cp "$f" backup
+done
+\end{verbatim}
+}
+
+Betik, örneğin; parametre olarak iletilen düzenli ifade ile eşleşen en az bir satır içerirse (for döngüsü sağlar) ve ismi .txt ile sonlanıyorsa sadece backup
+dizine bir dosya kopyalar.
+
+Alternatifler için yararlı bir araç olarak çeşitli şartlarda kontrol sağlayan test komutu vardır. Koşul gerçekleşirse çıkış kodu 0 döndürür (başarılı),
+gerçekleşmemesi durumunda sıfırdan farklı bir çıktı verir (başarısız). Örneği inceleyin:
+\begin{verbatim}
+#!/bin/bash
+# filetest NAME1 NAME2 ...
+for name
+do
+test -d "$name" && echo $name: directory
+test -f "$name" && echo $name: file
+test -L "$name" && echo $name: symbolic link
+done
+\end{verbatim}
+
+Bu betik dizin yerine kullanılan her bir dosya veya sembolik dizin için parametrelerin ve çıkışları olarak iletilen dosya isimlerinin sayısına bakar.
+
+Test komutu hem bin/test teki gibi serbest çalışan bir program olarak hem de bash ve diğer komutlardaki gibi dahili olarak mevcuttur. Çok daha garip testler söz konusu olduğunda bu değişmeler ince farklılıklar gösterebilir. Şüpheniz varsa, belgeleri okuyun.
+
+Eğer bir koşulla, birden fazla komutu bağımlı kılacak bir komut varsa kullanabilirsiniz (uygun ve okunabilir bir şekilde). "[...]" yerine "test ..." yazılabilir:
+\begin{verbatim}
+#!/bin/bash
+# filetest2 NAME1 NAME2 ...
+for name
+do
+if [ -L "$name" ]
+then
+echo $name: symbolic link
+elif [ -d "$name" ]
+echo $name: directory
+elif [ -f "$name" ]
+echo $name: file
+else
+echo $name: no idea
+fi
+done
+\end{verbatim}
+
+Eğer komut sinyali "başarılı" ise (çıkış kodu 0) komutlar yürütülür, sonrasında gelen elif, else veya fi komutları sona erer. Öte yandan sinyal "başarısız" ise sonraki elif komutu değerlendirilmeye alınacak ve çıkış kodu olarak kabul edilecektir. Eşleşen fi komutuna ulaşılana kadar kabuk modele devam eder. If veya elseif komutlarından hiç biri "başarı" ile sonuçlanmadı ise sonrasında else komutu yürütülür. Bunlar gerekli değilse elif ve başka dallanmalar ihmal edilebilir.
+
+\paragraph{Daha fazla döngü}{Başlangıçta döngü için sabit bir dönme sayısı belirlenir (Listedeki sözcük sayısı). Ancak, sık sık bir döngü ne sıklıkta çalıştırılmalıdır; Bu gibi net olmayan durumlar ile en başta ilgilenmek gerekir. Komut çalışırken (If gibi) "başarılı" yada "başarısız" olduğu belirlenebilir. Bunu halledebilmek için kabuk while komutunu sunar. Sonuç başarılı ise "bağlı" komutlar çalıştırılır, başarısız ise döngüden sonraki komutlar çalıştırılacaktır.}
+
+Aşağıdaki betik gibi bir dosyayı okur
+\begin{verbatim}
+Aunt Maggie:maggie@example.net:the delightful tea cosy
+Uncle Bob:bob@example.com:the great football
+\end{verbatim}
+
+(Adını Komut satırına veren) ve her satırda bir teşekkürler e-postası oluşturur (Linux günlük yaşamda çok yararlıdır):
+\begin{verbatim}
+#!/bin/bash
+# birthday FILE
+IFS=:
+while read name email present
+do
+(echo $name
+echo ""
+echo "Thank you very much for $present!"
+echo "I enjoyed it very much."
+echo ""
+echo "Best wishes"
+echo "Tim") | mail -s "Many thanks!" $email
+done <$1
+\end{verbatim}
+
+read komutu giriş dosyasındaki satırları okur ve her satırı üç kolon olarak bölümlendirir. Bu kolonlar isim email ve döngü içinde bulunan mevcut değişkenlerdir. Mantığa aykırı olarak döngüye yeniden yönlendirilen giriş sonda bulunabilir. 
+
+Bu betiği zararsız e-posta adresleri ile test edin, ilişkilerinizi karışık hale getirir!
+
+\paragraph{Alıştırmalar}{
+\begin{itemize}
+\item Arasındaki fark (olduğu kadar döngü çalıştırma söz konusu olduğunda) nedir?
+\begin{verbatim}
+for f; do …; done
+\end{verbatim}
+ve
+\begin{verbatim}
+for f in $*; do …; done
+\end{verbatim}
+(Eğer gerekirse deneyin)
+\item sort-wc betiğinde neden
+\begin{verbatim}
+wc -l <$f
+\end{verbatim}
+yerine
+\begin{verbatim}
+wc -l $f
+\end{verbatim}
+kullanıyoruz?
+\item grepcp değiştirilebilir. Bu şekilde dikkat edilmesi gereken dosyaların listesi de komut satırından alınır. (İpucu: Shift kabuk komutu \$ dan ilk komut satırı parametresini siler ve oluşacak açığı kapatmak için diğerlerini yukarı çeker. Kaydırmadan sonra, önceki \$2 \$1 olur, \$3 de \$ 2 olur ve böyle devam eder.)
+\item Neden filetest komutunun sembolik linkler için (sembolik bağ $<$yerine sadece$>$ foo) çıktısı yoktur?
+\begin{verbatim}
+$ ./filetest foo
+foo: file
+foo: symbolic link
+\end{verbatim}
+\end{itemize}
+}
 \end{section}
+\paragraph{Bu Bölümdeki Komutlar}{}
+\paragraph{.}{Komut satırına giriş yapılırsa kabuk komutlarını içeren dosyaları okur}
+\paragraph{date}{Tarih ve saati görüntüler}
+\paragraph{env}{Süreç ortamı Çıkışlarını veya ayarlanmış ortam programlarını başlatır}
+\paragraph{export}{Tanımlananları ve ortam değişkenlerini yönetir}
+\paragraph{hash}{bash deki "görülen" komutları gösterir ve yönetir}
+\paragraph{set}{Kabuk değişkenlerini ve seçeneklerini yönetir}
+\paragraph{source}{Komut satırına giriş yapılırsa kabuk komutlarını içeren dosyaları okur}
+\paragraph{test}{Komut satırında mantıksal ifadeleri değerlendirir}
+\paragraph{unset}{Kabuk veya ortam değişkenlerini siler}
+\paragraph{whereis}{Çalıştırılabilir programları, el ile oluşturulmuş sayfaları ve kaynak kodu verilen programları arar}
+\paragraph{which}{PATH boyunca programları arar}
+
+\paragraph{Özet}{
+\begin{itemize}
+\item sleep komutu argüman olarak belirtilen saniye sayısı için bekler.
+\item echo komutu argümanları çıktılar.
+\item Tarih ve saat date komutu kullanılarak tespit edilebilir.
+\item bash gibi çeşitli özellikler komutu ve dosya adını tamamlama, komut satırı düzenlemesi, takma adları ve değişkenler gibi interaktif kullanımı destekler.
+\end{itemize}
+}
