@@ -1,0 +1,252 @@
+\chapter{Linux Erişim Kontrol Sistemi}
+\paragraph{Amaçlar}{
+\begin{itemize}
+ \item Linux erişim kontrol/ayrıcalık mekanizmalarının anlaşılması
+ \item Dosya ve dizinlere erişim hakkı atamak için yetkili olmak
+ \item SUID, SGID ve “sticky bit”in öğrenilmesi
+ \end{itemize}}
+\paragraph{Önceden Bilinmesi Gerekenler}
+\begin{itemize}
+ \item Linux kullanıcı ve grup konseptinin bilinmesi (Bölüm 13)
+ \item Linux dosya ve dizinlerinin bilinmesi
+ \end{itemize}
+
+\begin{section}{Linux Erişim Kontrol Sistemi}
+\paragraph{Erişim Kontrol Sistemi}{Birkaç kullanıcı aynı bilgisayar sistemine erişmek istedikleri zaman, A kullanıcısının B kullanıcısının özel dosyalarına erişememesini sağlamak için dizinler, dosyalar ve işlemler için erişim kontrol sistemi olmalıdır. Bunun sonucunda Linux, Unix izinlerinin standart sistemini uygulamaya koyar.}
+\paragraph{İzinleri Ayırmak}{Unix geleneklerinde, her dosya ve her dizin bir kullanıcıya (sahibine) ve bir gruba kesinlikle atanmıştır. Her dosya, sahibi, grup üyeleri (kısaca group olarak atanmıştır) ve tüm diğer kullanıcılar (others) için izinlere ayırmayı destekler. Okuma, yazma ve çalıştırma izinleri ayrı ayrı bu üç kullanıcı takımı için seçilir haldedir. Sahibi bir dosyanın erişim izinlerini belirleyebilir. Eğer ki sahibi uygun izinleri verirse grup ve diğerleri de bir dosyaya erişebilir.}
+\paragraph{Erişim Modu}{Bir dosyanın erişim izinlerinin genel toplamı, erişim modu olarak adlandırılır.}
+\paragraph{Erişim Kontrolü}{Genellikle erişilebilir ortamda özel veya grup-içi veri depolayan birçok kullanıcılı bir sistemde, bir dosyanın sahibi uygun erişim kontrolü ile dosyalarını okurken veya değiştirirken başkalarını da tutabilirsiniz. Bir dosya için haklar, sahibi, grubu ve diğerleri için ayrı ayrı bağımsız olarak tespit edilebilir. Erişim izinleri grubun birlikte çalıştığı dosyalara, bir grup işbirlikçi süreç sorumlulukları eşlemek için kullanıcılara izin verir.}
+\end{section}
+\begin{section}{Dosya ve Dizinler İçin Erişim Kontrolü}
+\begin{subsection}{Temel Bilgiler}
+\paragraph{Dosya İzinleri}{Sistemdeki her dosya ve dizin için, Linux 3 kullanıcı sınıfının her biri için (sahibi, grup ve diğer) erişim haklarını ayırmaya izin verir. Bu haklar okuma, yazma ve çalıştırma izinlerini içerir.}
+
+Dosyalara göre, bu izinler kabaca adlarının ima ettiklerini kontrol ederler. Her kim okuma iznine sahipse bir dosyanın içeriğine bakabilir, her kim yazma iznine sahipse içeriğin değiştirilmesine izin verilmiştir. Çalışma izni bir dosyanın bir işlem gibi çalışması için gereklidir.
+
+Binary yani makine kodlu bir program çalıştırılırken çalışma izni gereklidir. Kabuk betikleri veya "yorumlanabilir" programların diğer türlerini içeren dosyalar için, ayrıca okuma izni gerekir.
+
+\paragraph{Dizin İzinleri}{Dizinler için, bazı şeyler bir bakıma farklı görünmektedir. Okuma izni bir dizinin içeriğine bakarken gereklidir. Örneğin; ls komutu çalıştırılırken. Dizin içerisinde dosyaları oluşturmak, silmek yada adlandırmak için yazma iznine ihtiyaç duyarsınız. Çalıştırma izni "use" diye isimlendirilen "cd" diye komut mantığıyla alınır veya dizin ağacında altta kalan dosyaların isimleri ile ilgili yol ismini kullanır.}
+
+Okuma iznine sahip olduğun dizinlerde, dosyanın adını okuyabilirsin fakat dosyalarla ilgili herhangi bir şey bulamazsın. Eğer ki bir dizin için sadece çalıştırma hakkında sahipseniz, dosya isimlerini bilmeniz şartıyla onlara erişebilirsiniz.
+
+Genelde bir dizine yazma ve çalışma izni atamak için mantıklı olunmalıdır. Buna rağmen, bazı özel durumlarda yararlı olabilir.
+
+Dosya silinmek üzere ise bir dosya üzerinde bu yazma iznini önemini vurgulamak tamamen önemsizdir. Dosyanın olduğu dizine yazma izni gereklidir. Bir dosyayı silmek sadece dizinden gerçek dosya bilgilerinin referansını silmektir, bu tamamen bir dizin işlemidir. Eğer ki bir dosyayı yazma izni olmadan silmek isterseniz rm komutu sizi uyarmaz fakat işlemi onaylarsanız ve dizine yazma izni verirseniz işlem başarılı olurken hiçbir şey olmayacaktır. (Like any other Unix-like system, Linux has no way of “deleting” a file outright; you can only remove all references to a file, in which case the Linux kernel decides on its own that no one will be able to access the file any longer, and gets rid of its content.)
+
+Eğer ki dosyaya yazma izni verir fakat dizinine vermezseniz, o dosyayı tamamen silemezsiniz. Buna rağmen 0 byte’a kesebilirsiniz ve böylece içeriğini silebilirsiniz. Oysaki dosya özünde hala mevcuttur. Her bir kullanıcı için Linux, erişim haklarını en uygun belirler. Örneğin, bir dosyanın grup üyelerine dosya için okuma izni verilmezse fakat diğerlerine verilirse, grup üyeleri dosyayı okuyamaz. Aslına bakılırsa eğer ki diğerleri dosyayı görebiliyorsa, grup üyeleri de diğerlerinin parçası anlamına gelir, ki ona dahi okuma izni verilmelidir. Fakat bu uygulanmaz.
+\end{subsection}
+\begin{subsection}{Erişim İzinlerini Kontrol Etmek ve Değiştirmek}
+
+Haklar, kullanıcılar ve grup atamaları ile ilgili bilgi elde etmek isterseniz ls –l komutunu uygulayabilirsiniz.
+\begin{verbatim}
+$ ls -l
+-rw-r--r-- 1 joe users 4711 Oct 4 11:11 datei.txt
+drwxr-x--- 2 joe group2 4096 Oct 4 11:12 testdir
+\end{verbatim}
+
+Tablonun ilk sütunundaki karakter dizeleri kullanıcının, grubun ve diğerlerinin erişim haklarını ayrıntılı anlatır. (ilk karakter sadece dosya türüdür ve izinleri ile ilgisi var). Üçüncü sütun sahibinin, dördüncü sütun da grubun adını verir.
+
+Erişim dizelerindeki “r”, “w”, “x” , sırasıyla okuma, yazma ve çalıştırma izinlerini ifade eder. Eğer ki listede “-“ varsa, yerini tutan kategorinin ilişkili ayrıcalığa sahip olmadığını gösterir. Bunun sonucu olarak, “rw-r--r--“ dizesi, kullanıcı için okuma ve yazma, grup ve diğerleri için de sadece okuma izninin verildiğini belirtir.
+
+Dosya sahibiyseniz, chmod komutu ile bir dosyanın erişim haklarını ayarlayabilirsiniz. Dosya sahibi için “u”, grup üyeleri için “g”, diğer herkes için “o” kısaltmaları ile 3 kategori belirtebilirsiniz. İzinler kendilerine zaten bahsedilen kısaltmalar “r”, “w”ve “x” tarafından verilmektedir. “+”, “-“ ve “=” kullanarak, herhangi bir izni ekleyebilir, mevcut izinlerden çıkartabilir yada önceden ayarlananların tümünü değiştirebilirsiniz.
+\begin{verbatim}
+$ chmod u+x file   sahibi için çalıştırma izni verir
+$ chmod go+w file  grup ve diğerleri için yazma izni verir
+$ chmod g+rw file  grup için okuma ve yazma izni verir
+$ chmod g=rw,o=r file okuma ve yazma izni verir,
+     Grubun çalışma iznini siler;
+     Diğerleri için sadece okuma izni verir
+$ chmod a+w fileugo+w ile eşdeğerdir.
+\end{verbatim}
+
+slında, belirtilen izinler oldukça karmaşıktır. Chmod ile ilgili bütün detayları bulmak için bilgi dokümantasyonlarına bakabilirsiniz.
+
+Bir dosyanin yada dizinin erişim haklarını değiştirmeye izin veren tek kullanıcı o dosyanın sahibidir. Bu ayrıcalık, gerçek izinlerin bağımsızlığındandır. Sahibi onların tüm izinlerini alır fakat geri verirken onları tutmaz.
+
+Chmod komutunun genel yazımı
+\begin{verbatim}
+chmod [<seçenekler>] <izinler> <isim>...
+\end{verbatim}
+
+Birçok dosyaya yada dizine isteğinize göre verebilirsiniz. En önemli seçenekler şu şekilde:
+\paragraph{-R}{Eğer ki bir dizine verilmişse , dizinlerin altındaki dizin ve dosyaların izinleri de değiştirilmiş olacaktır.}
+\paragraph{--reference=$<$isim$>$}{Dosyanın erişim izinlerini kullanır. Bu durumda hiçbir izin komut ile verilmemelidir.}
+
+Bir dosyanın erişim modunu sembolik yerine sayısal olarak da belirtebilirsiniz (biraz yukarda söylenilmişti). Uygulamada bu, bir dosyanın yada dizinin tüm izinlerini ayarlarken çok yaygındır ve şöyle çalışır. Üç izin, üç basamaklı sekizli sayı olarak temsil edilebilir. İlk basamak sahibinin haklarını, ikinci basamak grup haklarını ve üçüncü basamak da diğerlerinin haklarını tanımlar. Bu basamakların herbiri okuma izni 4, yazma izni 2 ve çalışma izni 1 olan bireysel izinlerin toplamından türetilmiştir. “ls -l” ve sekizli form ile yaygın erişim modlarına birkaç örnek:
+\begin{verbatim}
+rw-r--r-- 644
+r-------- 400
+rwxr-xr-x 755
+\end{verbatim}
+
+Sayısal erişim modlarını kullanarak, sadece bir kerede tüm izinleri ayarlayabilirsiniz—Diğerlerini tek başına bırakırken bireysel hakların ayarlanması veya yok edilmesi için başka bir yol yoktur, bunu sembolik gösterimde "+" veya "-" operatörlerini kullanırken yaptığımız duruma benzetebiliriz. Bundan dolayı, komut
+\begin{verbatim}
+$ chmod 644 file
+\end{verbatim}
+
+Sembolik olarak eşittir
+\begin{verbatim}
+$ chmod u=rw,go=r file
+\end{verbatim}
+\end{subsection}
+\begin{subsection}{Dosya Sahibi ve Grubunu Belirleme—chown ve chgrp}
+
+Chown komutu bir dosya yada dizinin sahibini ve grubunu ayarlamaya izin verir. Değişikliğin uygulanabilmesi için bu komut istenilen kullanıcı ismi ve/veya grup ismi ve dosya veya dizin ismini alır. Şu şekilde çağrılır :
+\begin{verbatim}
+chown <kullanıcı adı>[:][<grup adı>] <ad>…
+chown :<grup adı><ad>…
+\end{verbatim}
+
+Hem kullanıcı hem de grup adı verilirse, ikisi de değiştirilir. Eğer ki sadece kullanıcı adı verilirse, grup olduğu gibi kalır. Eğer ki kullanıcı adından sonra iki nokta geliyorsa , dosya kullanıcının birincil grubuna atanır. Eğer ki grup isminin önünde iki nokta var, sahibi değişmeden kalır. Örneğin:
+\begin{verbatim}
+# chown joe:devel letter.txt
+# chown www-data foo.html      yeni kullanıcı www-data
+# chown :devel /home/devel     yeni grup devel
+\end{verbatim}
+
+Chown ayrıca nokta yerine kullanıcı eski bir sözdizimi olan iki noktayı da destekler.
+
+Diğer kullanıcılara yada isteğe bağlı gruplara dosya vermek için root olmak zorundasınız. Bunun ana sebebi, eğer ki sistem kotayı kullanırsa (her kullanıcı depolama alanının belli bir miktarını kullanabilir), normal kullanıcılar aksi taktirde birbirlerini rahatsız edebilir.
+
+Chgrp komutunu kullanarak, normal bir kullanıcı olarak dosyanın grubunu değiştirebilirsiniz - yeni grubun bir üyesi ve dosya sahibi olma şartıyla.
+\begin{verbatim}
+chgrp <group name><name>…
+\end{verbatim}
+
+Bir dosyanın sahibini ya da grubunu değiştirirken, çeşitli kategoriler için erişim izinlerini değiştirmezsiniz.
+
+Chown ve chgrp aynı zamanda dizin hiyerarşisinin parçası için yinelemeli değişiklikleri uygulamak için -R yi destekler.
+
+Tabi ki bir dosyanın izinlerini, grubunu, sahibini, çok popüler olan dosya tarayıcısını (Konqueror yada Nautilus gibi) kullanarak da değiştirebilirsiniz.
+
+\paragraph{Alıştırmalar}{
+\begin{itemize}
+ \item Bir dosya oluşturun. Bu dosyanın grubu nedir? İkincil gruplarından birine dosya atamak için chgrp kullanın. Gruba üye olmayan bir kullanıcıya dosya atamak isterseniz ne olur?
+ \item Çeşitli tarayıcıların dosyanın izinleri, sahibi, grubu gibi ayarları için sunduğu mekanizmaları karşılaştırın. Belli başlı farklılıklar var mı?
+ \end{itemize}}
+\end{subsection}
+\end{section}
+\begin{section}{Süreç Sahipliği}
+
+Linux depolama ortamı üzerindeki verilerin nesneler gibi sahipliliğini göz ününde bulundurur. İşlemlerin sistem üzerinde de sahipleri vardır.
+
+Birçok komut sistem belleğinde bir süreç oluşturur. Normal kullanım sırasında birbirlerinden korunan birçok süreç bulunmaktadır. Kendi sanal adres alanı içindeki tüm verileri ile birlikte her süreç, kullanıcı ve sahibe sahip olan bir sürece atanmıştır. Bu genellikle süreci başlatan kullanıcıdır fakat süreçler yönetici ayrıcalıkları kullanarak oluşturulur ki onların sahipliği değiştirilebilir ve SUID mekanizması aynı zamanda bunu yapma yetkisine sahiptir.
+ 
+"-u" seçeneği kullanılarak çağrıldığında ise süreçlerin sahipleri ps program tarafından gösterilir.
+\begin{verbatim}
+# ps -u
+USER PID %CPU %MEM SIZE RSS TTY STAT START TIME COMMAND
+Bin 89 0.0 1.0 788 328 ? S 13:27 0:00 rpc.portmap
+test1 190 0.0 2.0 1100 28 3 S 13:27 0:00 bash
+test1 613 0.0 1.3 968 24 3 S 15:05 0:00 vi XF86.tex
+nobody 167 0.01.4 932 44 ? S 13:27 0:00 httpd
+root 1 0.0 1.0 776 16 ? S 13:27 0:03 init [3]
+root 2 0.0 0.0 0 0 ? SW 13:27 0:00 (kflushd)
+\end{verbatim}
+\end{section}
+\begin{section}{Yürütülebilir Dosyalar İçin Özel İzinler}
+
+“ls -l” komutu ile dosyaları listelerken, bazen normal rwx den farklı izin ayarlarıyla karşılaşabilirsiniz. Örneğin;
+\begin{verbatim}
+-rwsr-xr-x 1 root shadow 32916 Dec 11 20:47 /usr/bin/passwd
+\end{verbatim}
+
+Bunun anlamı nedir? Burada biraz konunun dışına çıkmak zorundayız.
+
+Passwd dizininin normal erişim modunu taşıdığını varsayalım:
+\begin{verbatim}
+-rwxr-xr-x 1 root shadow 32916 Dec 11 20:47 /usr/bin/passwd
+\end{verbatim}
+
+Normal bir kullanıcı olan joe, parolasını değiştirmek ister ve passwd programını çağırır. Ardından, reddedildi mesajını alır. Sebebi nedir? Passwd işlemi yazmak için /etc/shadow dosyasını açmaya çalışır ve root bu dosyayı açmaya çalışana dek başarısız olur. Bu başka yoldan mümkün olmaz. Herkes parolaları keyfi değiştirmek ister ve örneğin root parolası değiştirilir.
+
+Bymeans of the set-UIDbit (frequently called “SUIDbit”, for short) a program can be caused to run not with the invoker’s privileges but those of the file owner—here, root. In the case of passwd, the process executing passwd has write permission to /etc/shadow, even though the invoking user, not being a system administrator, generally doesn’t. It is the responsibility of the author of the passwd program to ensure that no monkey business goes on, e. g., by exploiting programming errors to change arbitrary files except /etc/shadow, or entries in /etc/shadow except the password field of the invoking user. On Linux, by the way, the set-UID mechanism works only for binary programs, not shell or other interpreter scripts.
+
+Bell Labs used to hold a patent on the SUID mechanism, which was invented by Dennis Ritchie \[SUID\]. Originally, AT\&T distributed Unix with the caveat that license fees would be levied after the patent had been granted; however, due to the logistical difficulties of charging hundreds of Unix installations small amounts of money retroactively, the patent was released into the public domain.
+
+By analogy to the set-UID bit there is a SGID bit, which causes a process to be executed with the program file’s group and the corresponding privileges (usually to access other files assigned to that group) rather than the invoker’s group setting.
+
+The SUID and SGID modes, like all other access modes, can be changed using the chmod program, by giving symbolic permissions such as u+s (sets the SUID bit) or g-s (deletes the SGID bit). You can also set these bits in octal access modes by adding a fourth digit at the very left: The SUID bit has the value 4, the SGID bit the value 2—thus you can assign the access mode 4755 to a file to make it readable and executable to all users (the owner may also write to it) and to set the SUID bit.
+
+You can recognise set-UID and set-GID programs in the output of “ls -l” by the symbolic abbreviations “s” in place of “x” for executable files.
+\end{section}
+\begin{section}{Dizinler İçin Özel İzinler}
+
+Oluşturucunun kimliğine göre, sahiplik dosya atama prensibinden başka bir istisna var: Dizin sahibi kendi hedef dizini gibi, o dizin aynı gruba sahip olmalı diye dosyalara komut verebilir. Dizinler üstündeki SGID biti ayarlanarak (kurularak) belirlenmiş olabilir. (Dizinler gibi çalıştırılamaz, SGID biti böyle şeyler için kullanılmaya uygundur.)
+
+SGID bitiyle dizin erişim izni değiştirilemez. Ona başvurmak için kategori içindeki izni yazılmış olmalıdır. (sahip, grup, diğerleri) Eğer, örneğin kullanıcı, ne dizinin sahibi ne de dizin grubunun üyesi değilse, dosyaların orada oluşturulabilir olması için dizin grubu ‘diğerleri’ için yazılabilir olmalı. Eğer kullanıcı hiçbir biçimde grubun üyesi olmasa bile, SGID içinde oluşturulan dosya sonra o dosya dizinine sahip olur.
+
+Bir dizindeki SGID bit için tipik bir uygulama bir dizindir. Bu, bir "proje grubu" için dosya deposu olarak kullanılır. (Sadece) proje grubu üyelerinin dizindeki tüm dosyaları yazıp ve okuyabilme ve yeni dosyalar oluşturabilme yeteneğine sahip oldukları varsayılır. Bunun anlamı, projeye katkıda bulunan tüm kullanıcıları bir proje grubuna eklemeye ihtiyacınız olduğudur (ikinci bir grup yeterli olacaktır).
+\begin{verbatim}
+# groupadd project          yeni grup oluştur
+# usermod -a -G project joe joe grubun içinde
+# usermod -a -G project sue sue grubun içinde
+\end{verbatim}
+
+Şimdi dizin oluşturabilir ve grubu onu atayabilirsin. Sahibi ve gruba tüm izinler verilmiş , diğerlerine verilmemiştir. Aynı zamanda SGID biti ayarlayabilirsin.
+\begin{verbatim}
+# cd /home/project
+# chgrp project /home/project
+# chmod u=rwx,g=srwx /home/Project
+\end{verbatim}
+
+Şimdi, eğer ki kullanıcı hugo /home/Project içine bir dosya oluşturursa, dosya grup projesine atanmak zorundadır.
+\begin{verbatim}
+$ id
+uid=1000(joe) gid=1000(joe) groups=101(project),1000(joe)
+$ touch /tmp/joe.txt Test: standard directory
+$ ls -l /tmp/joe.txt
+-rw-r--r-- 1 joe joe 0 Jan 6 17:23 /tmp/joe.txt
+$ touch /home/project/joe.txt project directory
+$ ls -l /home/project/joe.txt
+-rw-r--r-- 1 joe project 0 Jan 6 17:24 /home/project/joe.txt
+\end{verbatim}
+
+There is just a little fly in the ointment, which you will be able to discern by looking closely at the final line in the example: Dosya doğru bir gruba aittir fakat proje grubunun diğer üyeleri bununla beraber sadece onu okuyabilirler. Eğer proje grubunun tüm üyelerinin de yazabilmesini istiyorsanız, ya chmod komutunu uygulamanız veya gruba yazma izni atanmış olması için umask komutu ile ayarlayabilirsiniz. (Alıştırma 14.4'e bakınız).
+
+SGID mod sadece yeni dosyalar oluşturulduğu zaman sistem davranışını değiştirir. Mevcut dosyalar başka yerde olduğu gibi her yerde aynı şekilde çalışır. Bunun anlamı, örneğin, that a file created outside the SGID directory keeps its existing group assignment when moved into it (whereas on copying, the new copy would be put into the directory’s group).
+
+Chgrp programı her zaman SGID dizininde çalışır. Dosyanın sahibi, onu herhangi bir gruba üye olarak atayabilir. Sahibi, dizin grubunun üyesi değilse, chgrp kullanarak gruba dosyayı koyamaz. Dosya dizinin içinde baştan oluşturulmalıdır.
+
+Bu, dizinde SUID bit ayarıyla mümkündür. Bu izin bir anlam ifade etmez.
+
+Linux dizinler için, sahibinin silebildiği ya da dizin içindeki dosyaların kaldırılabildiği özel modu destekler.
+\begin{verbatim}
+drwxrwxrwt 7 root root 1024 Apr 7 10:07 /tmp
+\end{verbatim}
+
+Bu t modu, “sticky bit”, genel dizinler ortak kullanımda olduğunda, bir sorunu çözmek için kullanılır. Bir dizin için yazma izni, bir kullanıcıya, erişim moduna ve sahibine bakılmaksınız diğer kullanıcıların dosyalarını silme izni verir. Örneğin, /tmp dizinleri temel bir zemindir ve birçok program, geçici dosyalarını burada oluşturur. Bunu yapmak için, tüm kullanıcıların bu dizine yazma izni vardır. Bu, herhangi bir kullanıcının burada dosya silme iznine sahip olduğu anlamına gelir.
+
+Genelde, bir dosyayı silerken yada adını değiştirirken, sistem, dosyanın erişim izinlerini dikkate almaz. Eğer ki “sticky bit” dizin üzerinde ayarlıysa, o dosya sonradan sadece, dosya sahibi, dizin sahibi yada root tarafından silinebilir. “Sticky bit”in ayarlanabilir yada silinebilir olmasını, “+t” yada “-t” sembolleri ile belirtebiliriz. Sekizlik gösterimde SUID ve SGID gibi aynı rakamla 1 değerine sahiptir.
+
+“Sticky bit” adı , daha önceden Unix sistemleri için kullanılan ek bir anlamdan türemektedir. O zamanda, programlar başlatıldığında programın tamamı swap alanına kopyalanırdı ve sonlandırıldıktan sonra tamamen silinirdi. Sticky bitli program dosyaları silinmek yerine takas alanında bırakılabilirdi. Bu, bu programların çağrılmasını hızlandırır çünkü hiçbir kopya yapılmamıştır. En çok Unix, Linux gibi sistemler sayfalamaya ihtiyaç duyar. Programın çalıştırılabilir dosyasındaki kodun sadece gerçekten gerekli olan bu parçalarını alır. Bu takas alanına hiç bir şey kopyalamaz, Linux'taki gibi, sticky bit asla orjinal anlamına sahip değildir.
+
+\paragraph{Alıştırmalar}{
+\begin{itemize}
+ \item Özel “s” ayrıcalığı ne demek? Onu nerede bulabilirsiniz? Kendi oluşturduğunuz dosya üzerinde bu ayrıcalığı ayarlayabilir misiniz?
+ \item Umask ayarlamak için hangi umask çağrısı kullanılır? Örneğin, proje dizinindeki dosyaları okumak ve yazmak için proje grubunun tüm üyelerine izin vermek.
+ \item Özel “t” ayrıcalığı ne demek? Onu nerede bulabilirsiniz?
+ \item (Programcılar için) Uygun bir komut çağırarak C programı yazınız. Bu programı SUID root ayarlayınız ve onu çalıştırdığınız zaman ne olacağını gözlemleyiniz.
+ \end{itemize}}
+
+\paragraph{Bu Bölümdeki Komutlar}{
+\paragraph{chrgp}{Bir dosyanın yada dizinin grubunu ayarlar}
+\paragraph{chmod}{Dizin yada dosya için erişim modu ayarlar}
+\paragraph{chown}{Bir dizinin yada dosyanın grubunu yada sahibini ayarlar}
+}
+
+\paragraph{Özet}{
+\begin{itemize}
+\item Linux, dosya sahibi, dosya grubunun üyeleri ve tüm diğerleri için ayrı ayrı dosya okumayı, yazmayı, çalıştırmayı destekler.
+\item Bir dosyanın izinlerinin toplamı erişim modu olarak adlandırılır.
+\item Her dosya (ve dizin) bir sahibe ve gruba sahiptir. Erişim hakları—okuma,yazma ve çalıştırma izinleri—bu iki gruba ve “others”a ayrı ayrı atanmıştır. Sadece sahibierişim haklarını ayarlamaya izin verebilir.
+\item Erişim hakları sistem yöneticisine (root) uygulanmaz. Root, tüm dosyaları okuyabilir ve çalıştırabilir.
+\item Dosya izinleri chmod komutunu kullanılarak manipüle edilebilir.
+\item Chown kullanarak, sistem yöneticisi kullanıcıları ve keyfi dosyaların grup atamalarını değiştirebilir.
+\item Normal kullanıcılar, farklı gruplara dosyalarını atamak için chgrp kullanabilirler.
+\item SUID ve SGID bitleri dosya sahibi veya dosya grubu ayrıcalıklarına sahip programların yürütülmesine izin verir.
+\item SGID biti dizinin grubuna atanacak olan dizine yeni dosyaların gelmesine yol açar. (oluşturulan kullanıcının birincil grubunun yerine).
+\item Sticky bit bir dizinde sadece sahibine (ve sistem yöneticisine) dosyaları silme izni verir. 
+\end{itemize}
+}
+\end{section}
