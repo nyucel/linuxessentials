@@ -1,0 +1,105 @@
+\chapter{Kabuk Hakkında Daha Fazla Bilgi}
+\paragraph{Amaçlar}{
+\begin{itemize}
+ \item Kabuk ve ortam değişkenleri hakkında bilgi edinmek
+ \end{itemize}}
+\paragraph{Önceden Bilinmesi Gerekenler}
+\begin{itemize}
+ \item Temel kabuk bilgisi (Bölüm 4)
+ \item Dosya yönetimi ve basit komutlar (Bölüm 6, Bölüm 8)
+ \item Metin editörü kullanımı (Bölüm 3)
+ \end{itemize}
+
+\begin{section}{Basit Komutlar: sleep, echo ve date}
+
+Deneyim kazanmak için bazı araçları temel komutlarla açıklayacağız:
+
+\paragraph{sleep}{Bu komut argüman olarak belirlenen saniye süresince hiçbir şey yapmaz. Eğer kullandığınız kabuk biraz ara versin istiyorsanız bu komutu kullanabilirsiniz.}
+\begin{verbatim}
+$ sleep 10
+       Yaklaşık 10 saniye hiçbir şey olmaz
+$ _
+\end{verbatim}
+\paragraph{echo}{Bu komut argümanların çıktılarını verir, argümanlar boşluklarla ayrılmış olmalıdır. Kabuk değişkenlerin referanslarını değiştirebildiğinden
+beri ilginç ve kullanışlıdır (bkz. Bölüm 9.2). Bu konuya benzer bir örnek:}
+\begin{verbatim}
+$ p=Planet
+$ echo Hello $p
+Hello Planet
+$ echo Hello ${p}oid
+Hello Planetoid
+\end{verbatim}
+
+(Doğrudan bir değişkenin değerine bir şey eklenmek istenirse ne yapılacağı ikinci örnekle açıklanmıştır.)
+
+Eğer echo komutu –n seçeneği ile çağırılırsa o satır sonlandırıcıdır, sonraki çıktıyı yazmaz.
+\begin{verbatim}
+$ echo -n Hello
+Hello_
+\end{verbatim}
+
+\paragraph{date}{Date komutu o anki tarih ve saati gösterir. “date –help” komutu çağırarak çıktının biçimini önemli ölçüde belirleyebilir veya “man date” komutunu
+kullanarak çevrimiçi belgeler okuyabilirsiniz.}
+
+(İkinci kez bu kılavuzu okurken:) Özellikle önemli şehir veya zaman dilimi ismini TZ çevre değişkeniyle ayarlarsanız tarih dünya saati olarak hizmet vermektedir (genellikle başkent).
+\begin{verbatim}
+$ date
+Thu Oct 5 14:26:07 CEST 2006
+$ export TZ=Asia/Tokyo
+$ date
+Tue Oct 5 21:26:19 JST 2006
+$ unset TZ
+\end{verbatim}
+
+/usr/share/zoneinfo çevresinde köklenen bilgiyle geçerli şehir isimleri ve zaman dilimlerini öğrenebilirsiniz.
+
+Sistem saatini ayarlama:Her kullanıcı sistem saatini okumak için izinliyken, sadece sistem yöneticisi olan root date komutunu kullanarak sistem saatini değiştirebilir ve MM, DD, hh, mm biçimindeki argümanlardan MM takvim ayı, DD takvim günü, hh saat ve mm de dakikadır. İsteğe bağlı olarak nadiren iki basamaklı yıl (yüzyıl için muhtemelen bir ya da iki) ve saniye (nokta ile ayrılmış) gerektiğinde ekleyebilirsiniz.
+\begin{verbatim}
+$ date
+Thu Oct 5 14:28:13 CEST 2006
+$ date 08181715
+date: cannot set date: Operation not permitted
+Fri Aug 18 17:15:00 CEST 2006
+\end{verbatim}
+
+Date komutu yalnızca Linux sisteminin saatini değiştirir. Bu saat bilgisayarın anakartı üzerinde CMOS saatine aktarılmamış olabilir. Bu nedenle bu işlemi
+gerçekleştirmek için özel bir komut gerekli olabilir. Birçok dağıtım sistem kapatıldığında bunu otomatik olarak yapar.
+
+\paragraph{Alıştırmalar}{
+\begin{itemize}
+\item Varsayalım ki şu an 22 Ekim 2003, saat 12:34 ve 56. saniye olsun. Aşağıdaki çıktıyı elde etmek için durum biçimlendirme komutları ve date dökümanlarını
+çalışır:
+\begin{enumerate}
+\item 22-10-2003
+\item 03-294 (WK43)  (İki haneli yıl, yıl içinde gün sayısı, takvim haftası)
+\item 12h34m56s
+\end{enumerate}
+\item Şu anda Los Angeles’da saat kaç?
+\end{itemize}
+}
+
+
+
+
+
+
+
+
+
+
+\end{section}
+\begin{section}{Kabuk Değişkenleri ve Ortamı}
+
+\end{section}
+\begin{section}{Komut Tipleri - Yeniden Yüklemeler}
+
+\end{section}
+\begin{section}{Uygun Bir Araç Olan Kabuk}
+
+\end{section}
+\begin{section}{Dosyadan Komutlar}
+
+\end{section}
+\begin{section}{Programlama Dili Olarak Kabuk}
+
+\end{section}
