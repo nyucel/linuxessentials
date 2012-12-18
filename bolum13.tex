@@ -1,17 +1,37 @@
 \chapter{Kullanıcı Yönetimi}
 \paragraph{Amaçlar}{
 \begin{itemize}
- \item 
+ \item Linux'un kullanıcı ve grup konseptini kavramak
+ \item Linux'ta grup ve kullanıcı bilgilerinin nasıl depolandığını öğrenmek
+ \item Kullanıcı ve grup yöneticiliğini komutlarını kullanmayı öğrenmek
  \end{itemize}}
 \paragraph{Önceden Bilinmesi Gerekenler}
 \begin{itemize}
- \item 
+ \item Düzenleme dosyalarını kullanma hakkında bilgi
  \end{itemize}
 
 \begin{section}{Temeller}
-
 \begin{subsection}{Neden Kullanıcılar?}
 
+Bilgisayarlar eskiden büyük ve pahalıydı ama bugünlerde bir çalışma ofisini bilgisayarsız düşünmek neredeyse olanaksız ve artık hemen hemen her evin odasında bir bilgisayar mevcut. Bilgisayar sistemi, bir aile için annenin,babanın ve çocukların dosyalarını farklı dizinlere koymaları için yeterli olabildiği gibi farklı kullanıcıları birbirinden ayırmaya ve bu kullanıcılara bazı özel haklar vermeye elverişli olmalıdır.Şirketin maaş bordroları bilgilerine bakan Geliştirme Departmanından Ms. Jones'un işi gibi, gelecek senenin ürünleri hakkında detaylı bilgiye erişen İnsan Kaynaklarından Mr Smith'in de işi var. Ve evde olmalarına rağmen gizli kalması her ikisi için de önem arz ediyor - Örneğin Noel hediye listesi yada genç bir kız çocuğunun günlüğü doğal olarak meraklı gözlerce açılmaması gerektiği gibi.
+
+Genç bir kızın günliğünün Facebook üzerinden bütün dünyaya açık olduğu gerçeğini göz ardı edeceğiz, konu bu olsa dahi, bütün dünya genç kızın günlüğüne kesinlikle hiç birşey yazmayacak. (Ki Facebook bile farklı kullanıcıların fikirlerini destekliyor.)
+
+Farklı kullanıcıları birbirinden ayırma özelliğinin öneminin bir diğer sebesi ise çeşitli haklardan yoksun, daha az değiştirilebilir ve bilgisayar sisteminin,çeşitli açılardan görünür olmaması gerçeğinden gelmektedir.Bu yüzden Linux,sistem yöneticisi için kullanıcı şifreleri ve bilgilerinin ortak kullanıcılardan gizli tutmasını sağlayan ayrı bir kullanıcı kimliği kullanır (root). Eski windows sistemlerinin bir sıkıntısı- e-mail aracılığıyla yada rastgele internette gezinirken elde edilen ve bütün sistem üzerinde hasara yol acan programlar - Linux'ta başınıza gelmeyecektir çünkü ortak kullanıcı olarak bilgisayarda uyguladığınız herhangi birşey bütün sisteme zarar veren bir işlem sıfatında olmayacaktır.
+
+Fakat bu tamamen doğru değildir: Arada bir normal kullanıcılara yöneticilere atanan özel yetkileri yapmasını sağlayan bir hata açığa çıkar. Bu tür hatalar son derece kötü/tehlikelidir ve genellikle bulunduktan sonra çabucak düzeltilebilir, fakat göz ardı edilmemesi gereken bir husus vardır ki bu tür bir hata (bug) uzun bir süre boyunca sistemde saptanmamış olarak kalmış olabilir. Bu yüzden Linux’ta (diğer işletme sistemlerinde olduğu gibi),dağıtıcınızın desteklediği kritik sistem parçalarının, örneğin çekirdek gibi, en son sürümlerini çalıştırmak/yüklemek zorundasınız.
+
+Linux, normal kullanıcılar tarafından gerçekleştirilen yetkisiz girişlerden sistem ayarlarını korusa da sizi sistemin beynini kapatmanız için yanıltmamalı. Size önerimiz (Örneğin : Kullanıcı grafik ara-yüzüne root olarak girmemek gibi) .’X’ Websitesine girmenizi ve kredi kartı numaranızı soran ek olarak kredi kartınızın şifrenizi girmenizi isteyen E-posta mesajları size Linux'tayken bile ulaşabilir ve başka yerde olduğu gibi aynı şekilde bu tür e-posta mesajlarını dikkate almamanız gerekmektedir.
+
+Linux kullanıcı hesapları vasıtasıyla farklı kullanıcıları birbirinden ayırır. Ortak dağıtıcılar yükleme sırasında genelde 2 tane kullanıcı hesabı açar,şöyle ki yönetimsel görevler için root ve normal kullanıcı için ise farklı bir kullanıcı hesabı. Siz (yönetici olarak) daha sonra daha fazla kullanıcı hesabı ekleyebilirsiniz yada daha geniş bir şebekedeki istemci bilgisayarda başka bir yerde depolanan kullanıcı bilgileri otomatik olarak karşınıza çıkabilir.
+
+Linux, kullanıcı hesaplarını ayırır,kullanıcıları değil. Örneğin, kimse sizi web'te dolaşmak yada e-postaları okumak için kullandığınız farklı bir kullanıcı hesabını kullanmaktan alı koymaz.Eğer internetten yüklediğiniz şeylerin önemli bilgilerinize ulaşmayacağından emin olmak istiyorsanız biraz ustalıkla web tarayıcısı ve e-posta programını normal programlar arasında 'Dolaşma hesabı' adı altında çalıştırabilirsiniz.
+
+Linux altında,her kullanıcı hesabına,kullanıcı kimliği adında (UserID yada kısada UID),tek  bir numara atanmıştır.Üstelik her kullanıcı hesabı metinsel kullanıcı ismi (root veya joe) gibi insanların akıllarında daha kalıcı olmasını kolaylaştıran özellikler taşır. Çoğu yerde sayım yaptığı zaman (Örneğin; giriş yapıldığında, yada dosyaların yada sahiplerinin listelerinde) Linux, münkün mertebede ilk olarak metinsel ismi kullanacaktır.
+
+Linux çekirdeği metinsel kullanıcı isimleri hakkında herhangi birşeyden haberdar değildir; dosya-sistemindeki işlem-verisi ve sahiplik-verisi sadece Kullanıcı kimliği'ni kullanır (UID). Bu, eğer kullanıcı hala sistemde dosyaları mevcutken UID’yi silmişse ve UID başka bir kullanıcıya atanmışsa bazı sorunlara yol açabilir.Sonuç olarak, bu kullanıcı bilgisayara giren bir önceki kullanıcıdan geriye kalan dosyalara sahip olur yani bir nevi ona kalır.
+
+Başka kullanıcı isimlerine aynı (rakamsal) UID (Kulanıcı kimliği) atamak herhangi bir teknik probleme yol açmaz. Bu kullanıcılar, UID'ye ait bütün dosyalara eşit anlamda erişim iznine sahiptir fakat her kullanıcı özel bireysel şifrelerini diledikleri gibi oluşturabilirler.Fakat bunu yapmanız önerilmez yaparsanızda dikkatli olmanız gerekmektedir.
 \end{subsection}
 \begin{subsection}{Kullanıcı ve Gruplar}
 
