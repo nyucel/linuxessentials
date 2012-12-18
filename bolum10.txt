@@ -14,7 +14,7 @@ Hedefler
 • Dosyalar ve Dizinleri işlemesi (Konu 6)
 
 Table 10.1: Linux Dosya Türleri
-Türü ls -l ls -F Oluş turma Kullanma …
+Türü ls -l ls -F Oluşturma Kullanma …
 düz dosya - name çeşitli uygulamalar
 dizin d name/
 mkdir
@@ -27,8 +27,8 @@ FIFO (ilk giren ilk
 çikar) Unix-alan soket s name= no command
 10.1 Kavramlar
 Genelde dosya, verilerin kendi içerisinde bulunan toplamlarıdır. Dosya içindeki veri türlerine
-bağlı herhangi bir kısıtlama yoktur; bir dosya metin birkac harftan olusabilir
-veya kullanıcın tam iş hayatin birden çok megabyte iceren arşivden oluşur. Dosyalar düz
+bağlı herhangi bir kısıtlama yoktur; bir dosya metin birkaç harftan oluşabilir
+veya kullanıcın tam iş hayatın birden çok megabyte içeren arşivden oluşur. Dosyalar düz
 metin içermeleri gerekmez. Görüntü, Ses,.. çalişabilir uygulamalar ve diğer
 pek çok dosyalar Bir depo üzerine yerleştirilir. Bir dosya veri türünü tahmin etmek için
 dosyanın içinde bulunan dosya komutun kulanabilir:
