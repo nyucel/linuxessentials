@@ -31,7 +31,7 @@ UNIX domain socket & s & isim= & komut yok\\
 }
 
 \begin{section}{Terimler}
-Genelde dosya, verilerin kendi içerisinde bulunan toplamlarıdır. Dosya içindeki veri türlerine bağlı herhangi bir kısıtlama yoktur; bir dosya metin birkaç harftan oluşabilir veya kullanıcın tam iş hayatın birden çok megabyte içeren arşivden oluşur. Dosyalar düz metin içermeleri gerekmez. Görüntü, Ses,.. çalişabilir uygulamalar ve diğer pek çok dosyalar Bir depo üzerine yerleştirilir. Bir dosya veri türünü tahmin etmek için dosyanın içinde bulunan dosya komutun kulanabilir:
+Genelde dosya, verilerin kendi içerisinde bulunan toplamlarıdır. Dosya içindeki veri türlerine bağlı herhangi bir kısıtlama yoktur; bir dosya metin birkaç harftan oluşabilir veya kullanıcın tam iş hayatın birden çok megabyte içeren arşivden oluşur. Dosyalar düz metin içermeleri gerekmez. Görüntü, Ses,.. çalışabilir uygulamalar ve diğer pek çok dosyalar Bir depo üzerine yerleştirilir. Bir dosya veri türünü tahmin etmek için dosyanın içinde bulunan dosya komutun kulanabilir:
 
 \begin{verbatim}
 $ file /bin/ls /usr/bin/groups /etc/passwd
@@ -42,18 +42,144 @@ dynamically linked (uses shared libs), for GNU/Linux 2.4.1, stripped
 /etc/passwd: ASCII text
 \end{verbatim}
 
-dosya /usr/share/file alt dizinindeki kurallara uygun dosya sistemini tahmin eder.
+/usr/share/file alt dizinindeki kurallara uygun dosya sistemini tahmin eder.
 yönetici /usr/share/file/magic alt dizini kuralların bulunduğu bir metin dosyası
-bulundurur.. Kendi kurallarınızı /etc/magic alt dizinine koymak şartıyla
+bulundurur. Kendi kurallarınızı /etc/magic alt dizinine koymak şartıyla
 tanımlayabilirsiniz. Detaylar için magic(5)'e bakınız. Uygun bir şekilde işleyebilmesi için bir Linux sistemi binlerce farklı dosyaya ihtiyaç duyar. Bunlar sistemin çeşitli kullanıcıları tarafından oluşturulmuş ve sahip olunan çeşitli
 dosyalardır.
 
+Uygun bir şekilde işleyebilmesi için bir Linux sistemi binlerce farklı dosyaya ihtiyaç duyar. Bunlar sistemin çeşitli kullanıcıları tarafından oluşturulmuş ve sahip olunan çeşitli dosyalardır.
+
+Bir dosya sistemi depolama alanı üzerinde veri düzenleme ve yönetimini belirler. Bir sabit disk temelde sistemin tekrar bulabilmesi gereken byte ları içerir, hatta çok büyük,esnek ve verimli dosyalar olsalar bile. Dosya işletim sistemi detayları farklılık gösterebilir (Linux bunların birçoğunu bilir. ext2 , ext3 , ext4 , ReiserFS, XFS, JFS, btrfs vb...) fakat kullanıcıya sunulan şey farklı türdeki ve isimdeki dosya ve dizin adlarıyla oluşturulmuş bir ağaç hiyerarşi yapısıyla aynıdır (ayrıca bkz. Bölüm 6).
+
+Linux topluluğunda, terim "dosya sistemi" birkaç anlamı taşır. Burada sunulan anlama ek olarak—“bir ortam üzerinde bayt düzenleme yöntemi”, bir dosya sistemi her zaman bizim “dizin ağacı” olarak nitelendirdiğimizi göz önünde bulundurur. Buna ek olarak, bu veriler ile birlikte, belirli bir ortamda (bir sabit disk bölümü, USB anahtar, ...) genellikle bir "dosya sistemi" adı verilir. Örneğin bizim söylediğimiz anlamda sabit bağlantılar (Bölüm 6.4.2) sabit disk veya sabit disk ve USB anahtarı arasındaki iki farklı bölümler arasında, yani "dosya sistemi sınırlarının ötesinde" işe yaramaz.
 \end{section}
 \begin{section}{Dosya Türleri}
 
+Linux sistemlerinde temel öncül “Herşey bir dosyadır”. Bu ilk bakışta şaşırtıcı
+görünebilir fakat çok kullanışlı bir konsepttir. Altı dosya türü şu şekilde sıralanabilir:
+\paragraph{Yalın dosyalar}{Bu dosya grubu metinleri, grafikleri, ses dosyalarını içerir. Aynı zamanda çalıştırılabilir dosyaları da içerir. Yalın dosyalar editors, cat, shell output redirection gibi alışılmış araçlar kullanılarak oluşturulabilir.}
+\paragraph{Dizinler}{Aynı zamanda "dosyalar" olarak bilinen dizinler, bildiğimiz gibi depolamaya yardımcı olur. Bir dizin temelde dosya adları ve ilişkili düğüm numaralarını veren bir tablodur. Dizinler mkdir komutu kullanılarak oluşturulurlar.}
+\paragraph{Sembolik Linkler}{ Farklı bir dosyaya erişmek için belirtilen yolardır. (Windows' taki "kısayollar"a benzer). Ayrıca bkz Bölüm6. 4.2. Sembolik linkler ln -s kullanılarak oluştulurlar.}
+\paragraph{Aygıt Dosyaları}{Bu dosyalar, disk sürücüleri gibi isteğe bağlı cihazlar için arabirim olarak görev. Örneğin, /dev/fd0 dosyası ilk disket sürücüyü temsil eder. Her yazma veya böyle bir dosyaya okuma erişimi gelen cihaza yönlendirilir.Aygıt dosyaları mknod komutu kullanılarak oluşturulur; Bu genellikle sistem yöneticisi önceliğidir ve bu yüzden bu kılavuzda daha ayrıntılı olarak açıklanmamıştır.}
+\paragraph{FIFOlar}{Genellikle "adlandırılmış yöneltim” olarak bilinirler. Kabuk yöneltmeleri gibi, ara dosyaları kullanmadan süreçler arasındaki doğrudan iletişimi sağlarlar. Bir işlem FIFO'yu yazma, diğeri de okuma için açar. Kabuğun program açısından dosya gibi hareket eden ardışık düzen için kullandığı yönlendirmelerin aksine isimsizdir -- Dosya sistemi içinde bulunmazlar sadece bağlantılı süreçlerin arasında bulunurlar -- FIFO ların dosya isimleri vardır ve gelişigüzel programlar tarafından dosyalar gibi açılabilirler. Bunun yanısıra, FIFO ların erişim hakları olabilir (yönlendirmelerin yoktur). FIFO'lar mkfifo emri kullanarak oluşturulurlar.}
+\paragraph{Unix-alan soketleri}{FIFOlar gibi, Unix-alan soketlerinde de süreçler arası iletişim yöntemi vardır. TCP/IP üzerinden gerçek ağ iletişimleriyle aynı programlama arayüzünü kullanıyorlar.Diğer taraftan, Unix-alan soketleri TCP / IP'ye göre çok daha verimlidir. FIFOların aksine, Unix alan soketleri iki yönlü haberleşmeyi-katılımcı da veri gönderip alabilir- sağlar. Eğer X sunucusu ve istemcileri aynı bilgisayarda ise Unix-alan soketleri X11 grafik sistemleri tarafından kullanılırlar. Unix-alan soketlerini oluşturmak için herhangi bir program yoktur.}
 
+\paragraph{Alıştırmalar}{
+\begin{itemize}
+\item Sisteminizi çeşitli dosya türü örnekleri çerçevesinde kontrol ediniz (Tablo 10.1 Size sorulardaki dosyaları nasıl tanıyacağınızı gösterecek.)
+\end{itemize}}
 \end{section}
 \begin{section}{Linux Dizin Ağacı}
+
+Bir Linux sistemi yüz binlerce dosya çeşidinden oluşu. rizleri tutmak için dizin yapıları ve Linux sistemi içeren bir dosya için belli kurallar vardır,F ilesystem Hierarchy Standard (FHS). Çoğu Linux dağıtımında bu standart(ufak sapmalarla) FHS'ye uygundur. FHS bütün dizinleri açıklar.
+
+immediately below the file system’s root as well as a second level below /usr .
+Dosya sistemi ağacı kök diziniyle başlar, “/” (root directory /root ile karıştırılmamalı ,root kullanıcının ev dizini). The root directory contains either just subdirectories or else additionally, if no /boot directory exists, the operating system kernel. 
+
+Kök dizinin alt dizinlerini listelemek için “ls -la /” komutunu kullanabilirsiniz. Sonuç Şekil 10.1 gibi görünmelidir. Bireysel alt dizinler FHS'ye uyar,bu nedenle yaklaşık olarak her dağıtım aynı dosyaları içerir. Şimdi dizinlerden bazılarına daha yakından bakalım:
+\begin{verbatim}
+$ cd / 
+$ ls -l 
+insgesamt 125 
+drwxr-xr-x   2 root root  4096 Kas 27 11:53 bin
+drwxr-xr-x   3 root root  4096 Kas 30 10:53 boot
+drwxr-xr-x   2 root root  4096 Oca  6  2012 cdrom
+drwxr-xr-x  15 root root  4380 Ara 11 17:29 dev
+drwxr-xr-x 164 root root 12288 Ara 18 09:27 etc
+drwxr-xr-x  89 root root  4096 Eki 18 13:08 home
+drwxr-xr-x  25 root root  4096 Eki 19 15:00 lib
+drwxr-xr-x   2 root root  4096 Eki 19 14:33 lib64
+drwx------   2 root root 16384 Oca  6  2012 lost+found
+drwxr-xr-x   3 root root  4096 Eki 19 15:49 media
+drwxr-xr-x   2 root root  4096 Eki  9  2011 mnt
+drwxr-xr-x   5 root root  4096 Kas 29 10:29 opt
+dr-xr-xr-x 205 root root     0 Ara  6 09:31 proc
+drwx------  12 root root  4096 Ara 14 20:26 root
+drwxr-xr-x  26 root root   880 Ara 18 14:15 run
+drwxr-xr-x   2 root root 12288 Ara 12 09:05 sbin
+drwxr-xr-x   2 root root  4096 Haz 21  2011 selinux
+drwxr-xr-x   2 root root  4096 May 11  2012 srv
+dr-xr-xr-x  13 root root     0 Ara  6 09:31 sys
+drwxrwxrwt  16 root root 12288 Ara 18 15:32 tmp
+drwxr-xr-x  11 root root  4096 Oca  6  2012 usr
+drwxr-xr-x  15 root root  4096 Ara  6 09:30 var
+\end{verbatim}
+
+FHS hakkında çok fazla fikir birliği vardır fakat sadece Linux üzerindeki bir şeyi bağlamak kadardır, yani o kadar da fazla değildir. Bir yandan çoğunlukla sadece üretici tarafından dokunulan ve FHS’nin bütün ayrıntılarına uymanın hiçbir şey kazandırmadığı Linux sistemleri vardır(Örneğin geniş bant yönlendirici ve PVR).
+Diğer yandan kendi sisteminizde ne isterseniz yapabilirsiniz, fakat sonuçlarına hazırlıklı olmanız gerekir.Dağıtıcınız Dosya Hiyerarşi Sistemi’ne uymanız halinde bir sıkıntı çıkmayacağını size garanti eder,fakat aynı zamanda kurallara uymadan yaptığınız işlemlerden çıkan hatalardan dolayı şikayet etmemenizi bekler. Örneğin, eğer /usr/bin dizinine bir program yüklüyorsanız ve söz konusu olan dosya gelecek sistem güncellemesi esnasında üzerine fazla yazılırsa , FHSye göre /usr/local/bin dizinine kendi programlarınızı koymanız beklenmediği için bu sizin kendi hatanızdır.
+
+\paragraph{İşletim sistemi çekirdeği-/boot}{/boot dizini asıl işletim sistemini içerir: vmlinuz Linux çekirdeğidir. /boot dizininde ayrıca boot yükleyicisi için gereken diğer dosyalar vardır (LILO yada GRUB).}
+
+\paragraph{Genel araçlar -/bin}{/bin dizini içinde sistemi başlatmak için gerekli olan en önemli çalıştırılabilir programları(çoğunlukla sistem programları) vardır. Bu örneğin mkdir ve mount komutlarını içerir. Bu programların bazıları o kadar önemlidir ki sadece sistem başlaması esnasında değil, sistem çalışırken de gereklidir- ls ve grep gibi. /bin dizini aynı zamanda zarar görmüş sistemi tekrar çalıştırmak için gerekli olan programları içerir eğer sadece kök dizinini içeren dosya sistemine ulaşılabilirse. Sistem sistem tamiri ya da başlaması esnasında gerekli olmayan ek programlar /usr/bin dizini içinde bulunabilirler.}
+
+\paragraph{Özel sistem programları-/sbin}{ /bin dizini gibi /sbin dizini de sistemi onaracak ya da başlatacak prgramları içerir. Ancak çoğu parça için bunlar sadece kök dizini(root) tarafından kullanılabilen sistem konfigrasyonu araçlarıdır. Normal kullanıcılar sistemi sorgulayacak programların bazılarını kullanabilirler, fakat hiçbir şeyi değiştiremezler. /bin dizininde olduğu gibi bu dizinle birlikte daha fazla sistem programlarını içeren /usr/sbin denilen bir dizin vardır.}
+
+\paragraph{Sistem kütüphaneleri-/lib}{Burası dosyalar ve bağlantılar gibi /bin ve /sbin içinde bulunan programlar tarafından kullanılan “paylaşılmış kütüphaneler”dir. Paylaşılmış kütüphaneler çeşitli programlar tarafından kullanılan kodun parçalarıdır. Bazı süreçler aynı temel parçaları kullandığı için böyle kütüphaneler birçok kaynağı kurtarır ve bu temel parçalar belleğe sadece bir kere yüklenmeli: ek olarak bir kere sistemde bulunduklarında ve tüm programlar merkezi bir dosyadan söz konusu olan kodu yakaladığında böyle kütüphanelerde arızları onarmak daha kolaydır. Tesadüfen /lib/modules dizini altında çekirdek modülleri vardır(aygıt sürücüleri, dosya sistemleri ya da ağ protokolleri kullanımında gerekli olmayan çekirdek kodu gibi). Bu modüller gerek duyulduğunda çekirdek tarafından yüklenebilirler ve bazı durumlarda kullanım sonrası kaldırılabilirler.}
+
+\paragraph{Aygıt dosyaları - /dev}{: bu rehber ve alt dizinleri aygıt dosyaları için çoklu kayıtları içerir. Aygıt dosyaları kabuk(genellikle komut satırı kullanıcıları yada programcılar için ulaşılabilir olan sistemin bir parçası) ve çekirdek içerisindeki aygıt sürücüleri arasında arayüz oluştururlar. Diğer dosyalar gibi içerikleri yoktur fakat aygıt numaraları aracılığıyla çekirdek içerisindeki bir sürücüye referans olurlar.}
+
+Daha önceki zamanlarda Linux dağıtıcıları için her kişiye göre araç için /dev dizini içinde bir aygıt içermesi alışılmıştı. Böylece bir laptop Linux sistemi bile her biri 63 bölümlü, 8 ISDN adaptörü, 16 seri halinde ve 4 paralel arayüzü ve bu tür özellikleri taşıyan 10 sabit disk için gerekli olan araç dosyalarını içerirdi. Bugün bu eğilim her hayali aygıt için bir aygıtı olan fazla dolu /dev dizinlerinden ve gerçekte bulunan araçlar için girişleri içeren çalışmakta olan çekirdeğe yakın olarak bağlanan sistemler için uzaktadırlar. Bu alanda sihirli kelime udev’dir ve Linux Administration kısmında daha detaylı anlatılacaktır.
+
+Linux karakter araçları ve blok araçları arasında ayrım yapar. Örneğin bir karakter aracı ağdır,faredir ya da bir modemdir -tek karakterleri işleyen ya da sağlayan bir araç. Bir blok aracı ise bloklarda bilgileri işler- bu byte’ların tek başına okunamadığı, 512’li gruplar halinde okunduğu disket ya da sabit diskleri içerir. Aygıt dosyaları “ls -l” dizini içinde “c veya b” çıkışlarıyla etiketlenir.
+\begin{verbatim}
+crw-rw-rw-  1 root root 10, 4 Oct 16 11:11 amigamouse
+brw-rw----  1 root disk  8, 1 Oct 16 11:11 sda1
+brw-rw----  1 root disk  8, 2 Oct 16 11:11 sda2
+crw-rw-rw-  1 root root  1, 3 Oct 16 11:11 null
+\end{verbatim}
+
+Dosya uzunluğu yerine bu liste 2 tane numarayı içerir. İlki aygıtın türünü belirten ve çekirdek sürücüsü bu aygıtın sorumluluğunda olduğu zaman yöneten “asıl aygıt numarası”dır. Örneğin tüm SCSI sabit diskleri 8 numaralı başlıca aygıta sahiptir. İkincisi ise “ikincil aygıt numarası”dır. Bu benzer ya da ilgili aygıtlar arasında ayrım yapan ya da bir diskin çeşitli bölünmelerini belirten sürücü tarafından kullanılır.
+
+Birkaç tane göze çarpan uydurulmuş aygtlar vardır. null device, /dev/null, aslında gerekli olmayan program çıkışı için bir çöp kutusu gibidir, fakat aşağıdaki şekildeki gibi bir yerde yönetilmelidir.
+\begin{verbatim}
+$ program >/dev/null
+\end{verbatim}
+
+Aksi halde ağda gösterilen programın standart çıkışı göz ardı edilir. Eğer /dev/null okunursa boş bir dosya gibi davranır ve hemen dosya sonuna döner. /dev/null yazan ve okuyan tüm kullanıcılar için ulaşılabilir olmalıdır.
+
+/dev/random ve /dev/urandom dizinlerindeki “aygıtlar” sistemde gürültüden oluşturulan şifrelemeyle ilgili kalitenin rastgele byte’larına döner-anahtar basımı gibi tahmin edilemeyen olaylar arasındaki aralıklar gibi. /dev/random dizininden gelen bilgiler yaygın şifrelemeyle ilgili algoritmaları için anahtarlar oluşturmak için uygundur. /dev/zero dosyası boş byte’ların sınırsız bir isteğine döner; bunları örneğin dd komutlu dosyaların üzerine yazmak için veya oluşturmak için kullanabilirsiniz.
+
+\paragraph{Yapılandırma dosyaları - /etc}{/etc dizini çok önemlidir; çoğu program için yapılandırma dosyalarını içerir. Örneğin /etcinittab ve /etc/init.d/* dosyaları sistem dosyalarını başlatmak için gerek duyulan çoğu belirli bilgileri içerir. Aşağıda en önemli dosyaların daha detaylı tanımları bulunmaktadır-onların birkaçı dışında, sadece kök dizini kullanıcısının yazma izni vardır fakat herkes onu okuyabilir.}
+\begin{itemize}
+\item[/etc/fstab]bu tüm yerleştirilebilir dosya sistemini ve onların özelliklerini tanımlar(tür,ulaşım şekli vs.).
+\item[/etc/hosts]bu dosya TCP/IP ağının yapılandırma dosyalarından biridir. IP adreslerine gelen ağ misafilerinin isimlerini haritalandırır.küçük ağlarda ve bağımsız misafirlerde bu yeni bir sunucu yerleştirir.
+\item[/etc/inittab]bu dosya init programı için ve sistem başlangıcı için yapılandırma dosyasıdır.
+\item[/etc/init.d/*]bu dizin çeşitli sistem servisleri için “init kodlarını” içerir. Bunlar başlatmak için ya da sistem kapandığında sistem dosyalarını durdurmak için kullanılırlar. Red Hat dağıtımlarında bu dizine /etc/rc.d/init.d denilmektedir.
+\item[/etc/issue]bu dosya giriş yapmak için kullanıcıya sorulmadan önce karşılamayı içerir. Yeni bir sistemin yüklenmesinden sonra çoğunlukla satıcının ismini içerir.
+\item[/etc/motd]bu dosya kullanıcı başarılı bir şekilde giriş yaptıktan sonra ortaya çıkan “günün mesajını” içerir. Sistem yöneticisi bu dosyayı önemli bilgileri ve olayların kullanıcılarını bildirmek için kullanır.
+\item[/etc/mtab]bu yerleştirme noktalarını içeren tüm yerleştirilmiş dosya sistemlerini içeren bir listedir. Bu dosya an itibariyle yerleştirilmiş tüm dosya sistemlerini içermesinden dolayı /etc/fstab dosyasından ayrılmaktadır, /etc/fstab dosyası sadece yerleştirilmesi mümkün olan dosya sistemleri için ayarları ve seçenekleri içerir. Hatta bu liste komut satırı aracılığıyla dosya sistemlerini yerleştirebildiği için ayrıntılı değildir.
+Dosyaların durgun olması gereken /etc içindeki bir dosyaya bu tür bilgileri yerleştirmemeliyiz.
+\item[/etc/passwd]burada sistemce bilinen tüm kullanıcıların bir listesi vardır, kullanıcının belirli bilgilerinin çeşitli araçlarını toplamak için. Dosyanın ismine rağmen modern sistemlerde şifreler bu dosya içinde depolanmaz fakat /etc/shadow denilen başka bir dosya içinde depolanır. /etc/paswd’un aksine bu dosya normal kullanıcılar tarafından okunamaz.
+\end{itemize}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 \end{section}
