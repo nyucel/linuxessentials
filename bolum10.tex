@@ -31,6 +31,7 @@ UNIX domain socket & s & isim= & komut yok\\
 }
 
 \begin{section}{Terimler}
+Genelde dosya, verilerin kendi içerisinde bulunan toplamlarıdır. Dosya içindeki veri türlerine bağlı herhangi bir kısıtlama yoktur; bir dosya metin birkaç harftan oluşabilir veya kullanıcın tam iş hayatın birden çok megabyte içeren arşivden oluşur. Dosyalar düz metin içermeleri gerekmez. Görüntü, Ses,.. çalişabilir uygulamalar ve diğer pek çok dosyalar Bir depo üzerine yerleştirilir. Bir dosya veri türünü tahmin etmek için dosyanın içinde bulunan dosya komutun kulanabilir:
 
 \begin{verbatim}
 $ file /bin/ls /usr/bin/groups /etc/passwd
@@ -40,6 +41,12 @@ dynamically linked (uses shared libs), for GNU/Linux 2.4.1, stripped
 /usr/bin/groups: Bourne shell script text executable
 /etc/passwd: ASCII text
 \end{verbatim}
+
+dosya /usr/share/file alt dizinindeki kurallara uygun dosya sistemini tahmin eder.
+yönetici /usr/share/file/magic alt dizini kuralların bulunduğu bir metin dosyası
+bulundurur.. Kendi kurallarınızı /etc/magic alt dizinine koymak şartıyla
+tanımlayabilirsiniz. Detaylar için magic(5)'e bakınız. Uygun bir şekilde işleyebilmesi için bir Linux sistemi binlerce farklı dosyaya ihtiyaç duyar. Bunlar sistemin çeşitli kullanıcıları tarafından oluşturulmuş ve sahip olunan çeşitli
+dosyalardır.
 
 \end{section}
 \begin{section}{Dosya Türleri}
