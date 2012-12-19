@@ -32,9 +32,7 @@ Hatta 1960 Unix modelinde bile kabuk vardı. En eski kabuk 1970'lerin ortaların
 Linux sistemlerinde standart Bourne-again shell kabuğudur, kısacası bash. Bu kabuk, Brian Fox ve Chet Ramey tarafından Özgür Yazılım Vakfı'nın GNU projesi altında geliştirilmiş olup, Korn ve C kabularının birçok işlevlerini
 birleştirir.
 
-Bahsettiğimiz kabukların haricinde başka kabuklar da mevcuttur. Unix'te, kabuk diğer programlar gibi sıradan bir uygulama programıdır,
-üzerine yazmak için ek olarak ayrıcalığa gerel yoktur - sadece kabuğun diğer programlarla nasıl iletişim kurması gerektiği yönetmeliğinin 
-kurallarına bağlı kalmanız yeterlidir.
+Bahsettiğimiz kabukların haricinde başka kabuklar da mevcuttur. Unix'te, kabuk diğer programlar gibi sıradan bir uygulama programıdır, üzerine yazmak için ek olarak ayrıcalığa gerel yoktur - sadece kabuğun diğer programlarla nasıl iletişim kurması gerektiği yönetmeliğinin kurallarına bağlı kalmanız yeterlidir.
 
 Kabuklar kullanıcı komutlarını okumak için etkilesimli olarak çağrılabilirler (genellikle "terminal" üzerinde). Pek çok kabuk bir de dosyadan komut dizilerini okuyabilir. Bu tür dosyalara "kabuk betikleri" denir.
 \paragraph{}{Kabuk aşağıdaki adımları takip eder:
@@ -53,7 +51,7 @@ Kabuk oturumları genellikle "exit" komutu ile sonlandırılabilir. Bu işlem ot
 Daha önce de bahsettiğimiz gibi birçok kabuk vardır. Ama biz çoğu Linux dağıtımında gelen standart kabuk olan "bash" üzerinde odaklanalım. LPI sınavları da özellikle bash'e işaret eder.
 \paragraph{Alıştırmalar}{
 \begin{itemize}
- \item 2 Oturumunu kapatın ve tekrar açın, sonra "echo \$0" komutun çıktısını giriş kabuğunda kontrol edin. "bash" komutu ile yeni bir kabuk başlatın ve "echo \$0"i tekrar girin. Iki komutun çıktısını karşılaştırın. Alışılmadık herhangi birşey farkettiniz mi?
+ \item 2 Oturumunu kapatın ve tekrar açın, sonra "echo \$0" komutun çıktısını giriş kabuğunda kontrol edin. "bash" komutu ile yeni bir kabuk başlatın ve "echo \$0"i tekrar girin. İki komutun çıktısını karşılaştırın. Alışılmadık herhangi birşey farkettiniz mi?
 \end{itemize}}
 \end{subsection}
 \end{section}
@@ -82,7 +80,7 @@ Kabuğun büyük ve küçük karakterleri birbirinden ayırabiliyor olması DOS 
 
 Komutları sözcüklere ayırırken, kabuk için sözcüklerin arasında bir veya daha fazla boşluk karakterinin olması aynı şeydir. Aslında, kabuk için sözcükler arasında boşluk karakterinin olup olmamasının önemi yoktur; tabulator karakterine de izin verilmiştir. Bu karakterin önemi de komutları dosyalardan okurkendir, çünkü kabuk doğrudan doğruya tab karakterini girmeye izin vermez (en azından çemberleri atlamadan).
 
-Bilgisayara girdiğiniz komut tek satıra sığmayacaksa bunu birkaç satırda ifade etmek de mümkün. Ama bunun bir komut girdisi olarak  anlaşılmaması için satır sonlandırıcıdan önce (enter) "Token \" karakteri yazılmalıdır. Komutların parametreleri kabaca ikiye ayırmak mümkündür:
+Bilgisayara girdiğiniz komut tek satıra sığmayacaksa bunu birkaç satırda ifade etmek de mümkün. Ama bunun bir komut girdisi olarak  anlaşılmaması için satır sonlandırıcıdan önce (enter) "Token \textbackslash" karakteri yazılmalıdır. Komutların parametreleri kabaca ikiye ayırmak mümkündür:
 \begin{itemize}
  \item Tire("-") ile başlayan parametreler seçenekler diye isimlendirilir. Bunlar genelde, isteğe bağlıdır, detaylar söz konusu komuta göre değisir. Bunlara mecazi olarak "anahtarlar" demek mümkündür. Bunlar komutun bazı özelliklerinin açılıp kapanmasını sağlarlar. Eğer komuta birkaç tane seçenek eklenmek istenirse bunları ayrı ayrı tire karakteri ("-a -l -F") ile yazabileceğimiz gibi tek tire karakteri ile de yapılabilir ("-alF"). Konsol komutları birden fazla seçenek alabilir. Bunların bazısı tek karakterle yazılabilen seçenekler olurken kimisi okunabilirliği arttırmak için uzun şekilde yazılan seçeneklerdir. Uzun seçenekler çoğu zaman iki tire karakteri ile başlarlar ve birleştirilemezler: "foo --bar --baz".
  \item Tire ile başlamayan parametreler "delil" olarak adlandırılır. Bu da çogu zaman komutun işlemesi gerektiği dosyanın adına karşılık gelir
@@ -97,7 +95,7 @@ Bilgisayara girdiğiniz komut tek satıra sığmayacaksa bunu birkaç satırda i
 }
 \end{subsection}
 
-Genellikle seçenekler komutlardan sonra, delillerden önce gelir. Ancak, komutların tümü bu şekilde kuralın işlemesini şart koşmazlar. Bazıları delil ve seçenekleri keyfi olarak karıştırabilirler ve onlar, bütün seçenekler komuttan sonra gelmiş gibi davranırlar.Komut satırı sırayla işlenirken -*-*diğerleriyle karşılaşıldığında seçenekler de dikkate alınır.
+Genellikle seçenekler komutlardan sonra, delillerden önce gelir. Ancak, komutların tümü bu şekilde kuralın işlemesini şart koşmazlar. Bazıları delil ve seçenekleri keyfi olarak karıştırabilirler ve onlar, bütün seçenekler komuttan sonra gelmiş gibi davranırlar. Komut satırı sırayla işlenirken -*-*diğerleriyle karşılaşıldığında seçenekler de dikkate alınır.
 
 Geçerli Unix sistemlerinin (Linux dahil) komut yapısı 40 yıllık bir süreç içinde büyük bir gelişme sağladı ve bu nedenle bazen çeşitli tutarsızlıkların ve küçük sürprizlerin görülmesi doğaldır. Biz de daha tutarlı olması gerektiğine inanıyoruz ama 30 yıllık geçmişe sahip kabuk betiklerini tamamen göz ardı etmek zordur. Bu nedenle sık sık görülen küçük garipliklere hazırlıklı olun.
 
@@ -165,11 +163,11 @@ Burada özel karakterlerin hepsini açıklayamayız. Çoğu bu kilavuzun farklı
 
 \paragraph{Bu bölümdeki Komutlar}{
 \begin{itemize}
-\item bash 	"Bourne-Again-Shell" - etkileşimli komut yorumlayıcısı
-\item date 	Tarihi ve zamanı görüntüler
-\item echo 	Boşlukla ayrılan tüm parametrelerini standart çıktıya yazar
-\item help	bash komutları için yardımı görüntüler
-\item type 	Komutun türünü gösterir (dahili, harici, takma ad)
+\item[bash] 	"Bourne-Again-Shell" - etkileşimli komut yorumlayıcısı
+\item[date] 	Tarihi ve zamanı görüntüler
+\item[echo] 	Boşlukla ayrılan tüm parametrelerini standart çıktıya yazar
+\item[help]	bash komutları için yardımı görüntüler
+\item[type] 	Komutun türünü gösterir (dahili, harici, takma ad)
 \end{itemize}}
 \paragraph{Özet}{
 \begin{itemize}
