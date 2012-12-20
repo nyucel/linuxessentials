@@ -13,9 +13,9 @@
 \begin{section}{Düzenli ifadeler: Temeller}
 
 Çoğu linux komutları metin işleme için kullanılır-tekrar tekrar gözüken “buna benzer bütün satırlara xyz yap(do xyz)” biçimindeki şablonlar kullanılır. Çok kullanılan dosya satırları ve metinlerin bitlerini tanımlamak için çok güçlü bir araç,”düzenli ifade” 
-\footnote{1.	Bu bilgisayar bilimlerinden bir terimdir ve harflerin kümesinden seçilen harflerin birleşmesinden sonuçlanana stringlerin küme davranışlarının bir metodunu tanımlar ve onların sınırsız tekrarını gösterir. Rutin olarak düzenli ifadeleri tanımak programlama dili derleyicileri gibi çoğu program bloklarını orta seviyede inşa etmektir.düzenli ifadeler Unix’in önceki versiyonlarında gözükür. Unix’in önceki geliştiricileri bilgisayar bilimleri tabanına sahipti böylece bu fikir onlara dahada tanıdık gelmektedir.}  olarak adlandırılır. İlk bakışta düzenli ifadeler şablonları araştıran kabuğun dosya ismine benzer görünür (bölüm 6.3), fakat onlar farklı çalışır vedaha çok olanak sağlar. 
+\footnote{1.	Bu bilgisayar bilimlerinden bir terimdir ve harflerin kümesinden seçilen harflerin birleşmesinden sonuçlanan stringlerin küme davranışlarının bir metodunu tanımlar ve onların sınırsız tekrarını gösterir. Rutin olarak düzenli ifadeleri tanımak programlama dili derleyicileri gibi çoğu program bloklarını orta seviyede inşa etmektir.düzenli ifadeler Unix’in önceki versiyonlarında gözükür. Unix’in önceki geliştiricileri bilgisayar bilimleri tabanına sahipti böylece bu fikir onlara dahada tanıdık gelmektedir.}  olarak adlandırılır. İlk bakışta düzenli ifadeler şablonları araştıran kabuğun dosya ismine benzer görünür (bölüm 6.3), fakat onlar farklı çalışır vedaha çok olanak sağlar. 
 
-Düzenli ifadeler, kendileri düzenli ifadeler olarak düşünülen ilkel ifadelerden özyinelemeli olarak yapılır. En basit düzenli ifadeler harfler, rakamlar ve genel karakter kümesinden karakterlerdir. Örneğin ”a”, “a” karakteriyle eşleşen düzenli ifadedir. “abc” düzenli ifadesi, “abc” stringiyle  eşleşir. Karakter sınıflar kabuk arama şablonlarına benzer anlamda tanımlanmış olabilir. Bu yüzden “[a-e]” düzenli ifadeleri, a’dan e’ye herhangi bir karakterle eşleşir ve “a[xy]b” düzenli ifadesi “axb” veya “ayb” ile eşleşir. Kabukta olduğu gibi aralıklar birleştirilmiştir. “[A-Za-z]” düzenli ifadesi tüm büyük ve küçük harflerle eşleşir ama bir aralığın tanımlanması değişik şekillerdede yapılabilir:” [\^abc]” düzenli ifadesi  “a”,”b” ve “c” dışındaki tüm karakterlerle eşleşir (kabukta “[!abc]” ile gösterilir). nokta “.” Kabuk arama şablonu içinde soru işaretine karşılık gelir, sadece 1 karakterle eşleşecektir. Tek bir istisna “\textbackslash n” karakteridir. Bu yüzden “a.c”, “abc”, “a/c” gibi ifadelerle eşleşir ama birden çok satır yapısıyla eşleşmez.
+Düzenli ifadeler, kendileri düzenli ifadeler olarak düşünülen ilkel ifadelerden özyinelemeli olarak yapılır. En basit düzenli ifadeler harfler, rakamlar ve genel karakter kümesinden karakterlerdir. Örneğin ”a”, “a” karakteriyle eşleşen düzenli ifadedir. “abc” düzenli ifadesi, “abc” stringiyle  eşleşir. Karakter sınıflar kabuk arama şablonlarına benzer anlamda tanımlanmış olabilir. Bu yüzden “[a-e]” düzenli ifadeleri, a’dan e’ye herhangi bir karakterle eşleşir ve “a[xy]b” düzenli ifadesi “axb” veya “ayb” ile eşleşir. Kabukta olduğu gibi aralıklar birleştirilmiştir. “[A-Za-z]” düzenli ifadesi tüm büyük ve küçük harflerle eşleşir ama bir aralığın tanımlanması değişik şekillerdede yapılabilir:” [$ ^\wedge $abc]” düzenli ifadesi  “a”,”b” ve “c” dışındaki tüm karakterlerle eşleşir (kabukta “[!abc]” ile gösterilir). nokta “.” Kabuk arama şablonu içinde soru işaretine karşılık gelir, sadece 1 karakterle eşleşecektir. Tek bir istisna “\textbackslash n” karakteridir. Bu yüzden “a.c”, “abc”, “a/c” gibi ifadelerle eşleşir ama birden çok satır yapısıyla eşleşmez.
 \begin{verbatim}
 a
 c
@@ -27,11 +27,11 @@ Kabuk arama şablonlarının her zaman bir dosya isminin başından başlayarak 
 
 Daha ciddi konuşursak “$ ^\wedge $” ve “\$” işareti satırın başlangıcındaki görünmez kavramsal karakterlerle eşleşir ve satırın sonunda yeni satır karakterinin hemen solundaki görünmez karakterle eşleşir. 
 
-Son olarak, “*”ratgelel tekrar edilmiş önce gelen tüm düzenli ifadeleri göstermek için kullanabilirsiniz(tamamını içermeyen). Yıldızın kendisi giriş olarak herhangibir karakteri tutmaz ama sadece önceki ifadeyi değiştirir. Sonuç olarak kabuk arama şablonu “a*.txt”, “$ ^\wedge $a.*\textbackslash \textbackslash.txt ” düzenli ifadesine karşılık gelir (burada düzenli ifadenin başlangıcında ve girdi satırının sonunda “anchoring” olduğunu ve bitişik noktanın herhangibir karakterle eşleştiğini hatırlayın.) tekrar birleşmenin üzerinde önceliğe sahiptir;” ab*” bir “a ”nın peşinden gelen bir veya daha fazla “b”yi ifade eder (hiç olmayan yoktur), ”ab”nin birden fazla sayıda tekrarı olmaz.
+Son olarak, “*”ratgelel tekrar edilmiş önce gelen tüm düzenli ifadeleri göstermek için kullanabilirsiniz( tamamını içermeyen). Yıldızın kendisi giriş olarak herhangibir karakteri tutmaz ama sadece önceki ifadeyi değiştirir. Sonuç olarak kabuk arama şablonu “a*.txt”, “$ ^\wedge $a.*\textbackslash \textbackslash.txt ” düzenli ifadesine karşılık gelir (burada düzenli ifadenin başlangıcında ve girdi satırının sonunda “anchoring” olduğunu ve bitişik noktanın herhangibir karakterle eşleştiğini hatırlayın.) tekrar birleşmenin üzerinde önceliğe sahiptir;” ab*” bir “a ”nın peşinden gelen bir veya daha fazla “b”yi ifade eder (hiç olmayan yoktur), ”ab”nin birden fazla sayıda tekrarı olmaz.
 
 \begin{subsection}{Düzenli İfadeler: Ekstralar}
 
-En iyi gerçekleştirimler, şuan Tcl , Perl, veya Python benzeri modern betik dilleri içinde bulunur. Bu dillerin gerçekleştirimleri orjinal bilgisayar bilimleri içinde düzenli ifadelerin gücünü şimdiye kadar aşmıştır. 
+En iyi gerçekleştirimler, şuan Tcl, Perl, veya Python benzeri modern betik dilleri içinde bulunur. Bu dillerin gerçekleştirimleri orjinal bilgisayar bilimleri içinde düzenli ifadelerin gücünü şimdiye kadar aşmıştır. 
 
 Bazı yaygın uzantılar:
 
@@ -39,7 +39,7 @@ Bazı yaygın uzantılar:
 \paragraph{Gruplama:parantezler}{ “((...))” düzenli ifadelerin birleşiminin tekrarına izin verir. “a(bc)*” ifadesi “a”dan sonra “bc”nin bir veya daha fazla tekrarını temsil eder.}
 \paragraph{Alternatif} {Dikey çubukla (“$\vert$”) birden çok düzenli ifade arasından seçim yapılabilir. “hava(alanı$\vert$limanı$\vert$sahası)” ifadesi, “havalimanı”, “havasahası” ve “havaalanı” nı temsil edebilir. Fakat tek başına “hava” olmaz.}
 \paragraph{Seçimli ifadeler} {soru işareti (“?”) düzenli ifadelerin seçimli olmasını sağlar. Ya bir kez gelir ya da hiç olmaz.	“uçak (savar)?” ifadesi ya “uçak” ya da “uçaksavar”ı temsil eder.}
-\paragraph{En az bir tekrar}{  (“+”) işareti (“*”) operatörüne en az bir kez bir düzenli ifade içermesi haricinde tamamen aynıdır. }
+\paragraph{En az bir tekrar}{ (“+”) işareti (“*”) operatörüne en az bir kez bir düzenli ifade içermesi haricinde tamamen aynıdır. }
 \paragraph{Belirli tekrar sayıları}{ parantezler içinde minimum ve maksimum tekrar sayılarını belirtebilirsiniz. “ab{2,4}” ifadesi “abb”,”abbb” ve “abbbb” ifadelerini temsil eder ama “ab” yada “abbbbbb” ifadelerini temsil etmez. Minimum ve maksimum sayıyı es geçebilirsiniz. Eğer minimum sayısı yoksa 0 kabul edilir, maksimum sayı yoksa  “sonsuz” kabul edilir.}
 \paragraph{Geri-referans}{ “\textbackslash \textbackslash n” benzeri bir ifadeyle parantezli ifade olmaksızın girdinin bir bölümünün tekrarını gösterebilirsiniz. Düzenli ifade içindeki n, hayır anlamına gelir. Mesela “(ab)\textbackslash \textbackslash 1” ifadesi “abab” ile eşleşir. “(ab*a)x\textbackslash 1” ifadesi ise parantezler “abba” ile eşleşir ve tüm ifade “abbaxabba” ile eşleşir (başka hiçbirşeyle eşleşmez). Daha fazla ayrıntıyı GNU grep’in dökümanları içinde mevcuttur.}
 \paragraph{Aç gözlü olmayan (eşleşme:}{
@@ -57,11 +57,18 @@ Grep’in iki çeşidi vardır. Geleneksel olarak stripped-down fgrep (“sabit�
 \paragraph{}{
 \begin {table}[H]
 \caption {Düzenli İfade Desteği} \label{tab:title} 
-\begin{tabular}{c c c c c c c c}
+\begin{tabular}{l c c c c c c c c}
 \hline
-Bir & Bir&Bir&Bir&Bir&Bir&Bir\\
+Uzantı & GNU Grep & GNU egrep & trad egrep & wim & emacs & Perl & Tcl \\
 \hline
-Bir & Bir&Bir&Bir&Bir&Bir&Bir\\
+Word brackets & + & + & + &+1&+1&+4&+4\\
+Gruplama & +1 & +&+&+1&+1&+&+\\
+Alternatif & +1 & +&+&+2&+1&+&+\\
+Seçenek & +1 & +&+&+3&+&+&+\\
+En azından bir & +1 & +&+&+1&+&+&+\\
+Sınırlar & +1 & +&-&+1&+1&+&+\\
+Geriye referans & - & +&+&-&+&+&+\\
+Non-Greedy & - & -&-&+4&+&+&+\\
 \hline
 \end{tabular}
 \end {table}
@@ -85,7 +92,7 @@ Bir & Bir&Bir&Bir&Bir&Bir&Bir\\
 \end {table}
 }
 
-Bu gözlemler bazı uzantılar için doğru olabilir. Özel olarak grep ve egrep düzenli ifade gelişimi için tamamiyle farklı algoritmalar kullanılır. Bu gelişim girdinin boyutuna aynı zamanda düzenli ifade yapısının boyutuna bağlı olarak performans sonuçlarını farklı şekilde elde etmeye çalışır. grep’in yaygın Linux dağıtımlarıyla birlikte 3 çeşidide gerçekte aynı programdır. Onlar arama şablonları için izin verdikleri söz dizimiyle ayrılırlar.
+Bu gözlemler bazı uzantılar için doğru olabilir. Özel olarak grep ve egrep düzenli ifade gelişimi için tamamiyle farklı algoritmalar kullanılır. Bu gelişim girdinin boyutuna aynı zamanda düzenli ifade yapısının boyutuna bağlı olarak performans sonuçlarını farklı şekilde elde etmeye çalışır. grep’in yaygın Linux dağıtımlarıyla birlikte 3 çeşidi de gerçekte aynı programdır. Onlar arama şablonları için izin verdikleri söz dizimiyle ayrılırlar.
 
 grep’in sözdizimi en az bir düzenli ifade gerektirir. Bu metin dosyasının veya dosyalarının isimleri tarafından takip edilir. Eğer hiçbir isim belirtilmemişse grep standart bir girdiye işaret eder (bölüm 8’e bakın).
 
@@ -106,14 +113,14 @@ Frog stretching forth its big, ugly head from the water. >>Ah,old
 >>Whatever you will have, dear frog,<<said she,>>My clothes,my pearls
 \end{verbatim}
 
-Açıkça “frog” kelimesini (“bullfrog” veya “frogspawn” benzeri  varyasyonlarını bulmayacak) aramak için kelime ayıracı uzantısına ihtiyaç duyarsın).
+Açıkça “frog” kelimesini (“bullfrog” veya “frogspawn” benzeri  varyasyonlarını bulmayacak) aramak için kelime ayıracı uzantısına ihtiyaç duyarsınız).
 
 \begin{verbatim}
 $ grep \<frog\> frog.txt
 frog stretching forth its big, ugly head from the water. >> Ah, old
 \end{verbatim}
 
-(Bu ingilizce olması farketmez. Dil ne olursa olsun “frog” geçen her satır gösterilir) frogla başlayan satırları göstermek için aşağıdaki komut yazılır.
+(Bunun İngilizce olması farketmez. Dil ne olursa olsun “frog” geçen her satır gösterilir) frogla başlayan satırları göstermek için aşağıdaki komut yazılır.
 \begin{verbatim}
 $ grep ^frog  frog.txt
 frog stretching forth its big, ugly head from the water. >> Ah, old
@@ -133,15 +140,13 @@ $ grep –n ‘a.*a.*a’ /usr/share/dict/words
 234834:zygomaticomaxillary
 \end{verbatim}
 
-(sırasıyla): bir afrika hayvanı (orycteropus afer), iplik yapımında kullanılan muz (musa textilis), avokadonun Brezilyacası (perse sp.))
-Daha karmaşık düzenli ifadelerle birlikte bir satır grep çıktısı çabucak kötü hale gelebilir. Bu –color parametresi kullanılarak bu karmaşıklık kesin olarak azaltılabilir. Bu da belirli renkler içerisinde bir dosyanın bölümlerindeki eşleşmeyi gösterebilir.
+(sırasıyla): bir afrika hayvanı (orycteropus afer), iplik yapımında kullanılan muz (musa textilis), avokadonun Brezilyacası (perse sp.)) Daha karmaşık düzenli ifadelerle birlikte bir satır grep çıktısı çabucak kötü hale gelebilir. Bu –color parametresi kullanılarak bu karmaşıklık kesin olarak azaltılabilir. Bu da belirli renkler içerisinde bir dosyanın bölümlerindeki eşleşmeyi gösterebilir.
 \begin{verbatim}
 $ grep –color root /etc/passwd
 root:x:0:0:root:/root:/bin/bash
 \end{verbatim}
 
-“export GREP\_OPTIONS='--color=auto' benzeri bir komut (örneğin $\sim$/.profile dosyası içinde) kalıcı bir temel üzerinde bu parametreyi kullanılabilir hale getirir; auto argümanı eğer çıktı bir boruya veya dosyaya gönderilirse rengi değiştirerek gösterir.
-2.dağıtıma bağlı olarak sözlüğün boyutu değişebilir.
+“export GREP\_OPTIONS='--color=auto' benzeri bir komut (örneğin $\sim$/.profile dosyası içinde) kalıcı bir temel üzerinde bu parametreyi kullanılabilir hale getirir; auto argümanı eğer çıktı bir boruya veya dosyaya gönderilirse rengi değiştirerek gösterir. 2.dağıtıma bağlı olarak sözlüğün boyutu değişebilir.
 
 \paragraph{Alıştırmalar}{
 \begin{itemize}
@@ -152,13 +157,14 @@ root:x:0:0:root:/root:/bin/bash
 \item içinde 2 kez  enaz 4 harf içeren kelimelerin olduğu (”Frog King” gibi ) satırları bulun.
 \end{itemize}}
 
-\paragraph{Bu bölümdeki komutlar:}{
-\paragraph{egrep}{belirli düzenli ifadelerle eşleşen satırlar için dosyaları arar. Gelişmiş düzenli ifadelere izin verir.}
-\paragraph{fgrep}{belirli içerikle satırlar için dosyaları arar. Düzenli ifadelere izin yoktur.}
-\paragraph{grep}{verilmiş düzenli ifadeyle eşleşen tüm satırlar için dosyaları arar.}
-}
+\paragraph{Bu bölümdeki komutlar}{
+\begin{itemize}
+\item[egrep]belirli düzenli ifadelerle eşleşen satırlar için dosyaları arar. Gelişmiş düzenli ifadelere izin verir.
+\item[fgrep]belirli içerikle satırlar için dosyaları arar. Düzenli ifadelere izin yoktur.
+\item[grep]verilmiş düzenli ifadeyle eşleşen tüm satırlar için dosyaları arar.
+\end{itemize}}
 
-\paragraph{Alıştırmalar}{
+\paragraph{Özet}{
 \begin{itemize}
  \item Düzenli ifadeler karakter stringlerinin kümesini tanımlamak için çok güçlü bir metottur.
  \item grep ve onun ilişkisel araması düzenli ifadelerle eşleşen satırlar için bir dosyanın içerdiği aramadır.
