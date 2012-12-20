@@ -35,13 +35,13 @@ YYYxyzZZZ
 Ctrl + d
 \end{verbatim}
 
-(Sondaki klavye tuş kombinasyonu grep' e girdi girişinin bittiğini haber verir.)
+(Sondaki klavye tuş kombinasyonu grep'e girdi girişinin bittiğini haber verir.)
 
 grep “standart girdiden” verileri okur –bu koşulda klavyeden – ve bunu “standart çıktıya” yazar – bu koşulda konsol ekranına ya da daha çok görsel bir arayüzdeki bir terminel programına – . Bu standart yolların üçüncüsü “standart hata çıktısı”dır; grep' in ürettiği veriler standart çıktıya verilirken, standar hata çıktısı hata mesajlarını alır. (Örneğin, bulunmayan bir girdi dosyası ya da düzenli ifadelerdeki bir yazım hatası gibi)
 
 Bu bölümde bir programın standart çıktısını nasıl bir dosyaya yönledirebileceğini ya da başka bir programın standart girdisini nasıl bir dosyadan alabileceğini öğreneceğiz. Daha da önemlisi, bir programın çıktısını direk olarak nasıl başka bir dosyanın girdisi olarak kullanabileceğinizi öğreneceksiniz.  Bu hepsi oldukça basit olan Linux komutlarının birleşerek daha karmaşık yapılar oluşturmaya giden bir yoldur. (Bunu bir Lego seti gibi düşünün.)
 
-Bu bölümde bu konuyu derinlemesine incelemeyeceğiz. Çok karmaşık kabuk betikleri oluşturmak için sıradaki rehberi , İleri Düzey Linux, okuyun, o rehberde Unix araçları kullanılarak kabuk için betikler oluşturmak anlatılmaktadır. Bu bölümde komut satırında temel Linux komutlarının zekice birleştirilmesini öğreneceksiniz. 
+Bu bölümde bu konuyu derinlemesine incelemeyeceğiz. Çok karmaşık kabuk betikleri oluşturmak için sıradaki rehberi, İleri Düzey Linux, okuyun, o rehberde Unix araçları kullanılarak kabuk için betikler oluşturmak anlatılmaktadır. Bu bölümde komut satırında temel Linux komutlarının zekice birleştirilmesini öğreneceksiniz. 
 
 \paragraph{}{
 \begin {table}[H]
@@ -58,7 +58,7 @@ Kanal & İsim & Kısaltma & Aygıt & Kullanım Alanı\\
 \end {table}
 }
 
-Bu standart yollar Tablo 8.1 de gösterilmiştir. Tabloda belirtilen stdin, stdout ve stderr standart girdi, standart çıktı ve standart hata çıktısı için olan teknik terimlerdir. Bu yollar daha sonra kullanacağımız gibi sırasıyla 0,1 ve 2 numaralarına atanmışlardır.
+Bu standart yollar Tablo 8.1 de gösterilmiştir. Tabloda belirtilen stdin, stdout ve stderr standart girdi, standart çıktı ve standart hata çıktısı için olan teknik terimlerdir. Bu yollar daha sonra kullanacağımız gibi sırasıyla 0, 1 ve 2 numaralarına atanmışlardır.
 
 Kabuk bahsedilen program hiçbir şeyi fark etmeden ayrı komutlar için bu standart yolları yönlendirebilir. Çıktı ekranda ya da terminal penceresi dışında belirtilen bir dosyada yazıyor olabilir, buna rağmen her zaman standart yollar kullanılır. Bu dosya başka bir cihazda olabilir, yazıcı gibi, çıktıyı alacak metin dosyasını belirlemek mümkündür. Dosyanın o anda varolması bile gerekmez, isteğe göre oluşturulabilir. Standart girdi yolu da aynı şekilde yönlendirilebilir. Bir program girdisini klavyeden değil belirtilen bir dosyadan (bu başka bir aygıt ya da dosya olabilir) alır.
 
@@ -96,9 +96,9 @@ drwxr-xr-x 3 joe users 1024 Aug 20 12:30 photos/
 -rw-r--r-- 2 joe users 3316 Aug 20 15:14 chemistry.txt
 \end{verbatim}
 
-Eğer filelist in içeriğine dikkatlice bakarsanız, filelist için boyutu 0 olan bir dizin girdisi görebilirsiniz. Bu kabuğun işleme şekliyle alakalıdır: Komut satırını alırken önce çıktı yönlendirmesini fark eder ve yeni bir filelist dosyası oluşturur (ya da varolan dosyanın içeriğini siler). Bunun arkasından kabuk komutu çalıştırır, bu koşulda ls, ls' nin standart çıktısını terminal yerine filelist dosyasına bağlar. 
+Eğer filelist in içeriğine dikkatlice bakarsanız, filelist için boyutu 0 olan bir dizin girdisi görebilirsiniz. Bu kabuğun işleme şekliyle alakalıdır: Komut satırını alırken önce çıktı yönlendirmesini fark eder ve yeni bir filelist dosyası oluşturur (ya da varolan dosyanın içeriğini siler). Bunun arkasından kabuk komutu çalıştırır, bu koşulda ls, ls'nin standart çıktısını terminal yerine filelist dosyasına bağlar. 
 
-ls çıktısındaki dosyanın uzunluğu 0 görünür çünkü ls filelist için olan bilgiye dosyaya hiçbir şey yazılmadan önce bakar, filelistten önce üç girdi olmasına rağmen. Bu ls' nin önce bütün girdileri okuyup sonra onları dosya adına göre sıralamasından dolayı olur. Bu işlemden sonra dosyaya yazma işlemi başlar. Bu sebeple ls sadece yeni oluşturulmuş (ya da içi boşaltılmış) filelist dosyasını görür.
+ls çıktısındaki dosyanın uzunluğu 0 görünür çünkü ls filelist için olan bilgiye dosyaya hiçbir şey yazılmadan önce bakar, filelistten önce üç girdi olmasına rağmen. Bu ls'nin önce bütün girdileri okuyup sonra onları dosya adına göre sıralamasından dolayı olur. Bu işlemden sonra dosyaya yazma işlemi başlar. Bu sebeple ls sadece yeni oluşturulmuş (ya da içi boşaltılmış) filelist dosyasını görür.
 
 Eğer bir komutun çıktısını varolan bir dosyaya yeniden yazmak değil eklemek istiyorsanız $>>$ operatörünü kullanabilirsiniz. Eğer dosya yoksa, bu durumda oluşturulacaktır.
 \begin{verbatim}
@@ -161,7 +161,7 @@ make >make.log 2>&1
 
 Bu komut make komutunun standart çıktısını ve standart hata çıktısını make.log dosyasına yönlendirir.
 
-\paragraph{Dikkat}{ Burada sıralama çok önemlidir. Aşağıdaki iki komut tümüyle farklı sonuçlar oluşturur. İkinci durumda standart hata çıktısı standart çıktı nereye giderse oraya yönlendirilecektir (/dev/tty, standart çıktının gittiği yer), sonra standart çıktı make.log a gönderilir ama bu standart hata çıktısının gideceği yönü değiştirmez.}
+\paragraph{Dikkat}{ Burada sıralama çok önemlidir. Aşağıdaki iki komut tümüyle farklı sonuçlar oluşturur. İkinci durumda standart hata çıktısı standart çıktı nereye giderse oraya yönlendirilecektir (/dev/tty, standart çıktının gittiği yer), sonra standart çıktı make.log'a gönderilir ama bu standart hata çıktısının gideceği yönü değiştirmez.}
 \begin{verbatim}
 make >make.log 2>&1 
 make 2>&1 >make.log 
@@ -360,7 +360,7 @@ Sweat Susan Rundale Sportsters 93 Ladies
 de Leaping Gwen Fairing Track Society 26 Ladies
 \end{verbatim}
 
-Listedeki iki küçük sorunu fark ettiniz değil mi? : “Oblomovsky” “O’Finnan” dan önde olmalıydı ve “de Leaping” listenin sonundan bir önde olmalıydı en sonunda değil.  Eğer sıralama kuralları olarak “İngilizce” yi belirtirsek bu sorunlar kaybolur:
+Listedeki iki küçük sorunu fark ettiniz değil mi? : “Oblomovsky” “O’Finnan” dan önde olmalıydı ve “de Leaping” listenin sonundan bir önde olmalıydı en sonunda değil.  Eğer sıralama kuralları olarak “İngilizce”yi belirtirsek bu sorunlar kaybolur:
 \begin{verbatim}
 $ LC_COLLATE=en_GB sort participants.dat
 de Leaping Gwen Fairing Track Society 26 Ladies
@@ -573,7 +573,7 @@ de Leaping: 26
 
 Eğer gerçektende sütun ya da alanların düzenini değiştirmek istiyorsanız, awk ve perl gibi büyük silahları ortaya koymak zorundasınız. Bunu şimdi anlatacağımız paste komutu ile yapabilirsiniz ama that is rather tedious. 
 
-Dosyalar alanlar olarak kabul edilirse (sütun olarak kabul edilmek yerine) -s (seperator, ayırıcı) seçeneği kullanışlı olur.  Eğer “cut -f” ayırıcı içermeyen karakterlerin olduğu satırları buluyorsa, çıktıya bunları bütün halinde verir; -s bu satırları baskılar. Paste komutu belirtilen dosyalardaki satırları birleştirir. Bu sık sık cut komutu ile birlikte kullanılır. Hemen fark edeceğiniz gibi paste bir filtre komutu değildir. Yinede paste komutunun standart girdiden okuması için “-” işaretini kullanabilirsiniz. Çıktı her zaman standart çıktıya gider. 
+Dosyalar alanlar olarak kabul edilirse (sütun olarak kabul edilmek yerine) -s (seperator, ayırıcı) seçeneği kullanışlı olur.  Eğer “cut -f” ayırıcı içermeyen karakterlerin olduğu satırları buluyorsa, çıktıya bunları bütün halinde verir; -s bu satırları baskılar. Paste komutu belirtilen dosyalardaki satırları birleştirir. Bu sık sık cut komutu ile birlikte kullanılır. Hemen fark edeceğiniz gibi paste bir filtre komutu değildir. Yinede paste komutunun standart girdiden okuması için “-” işaretini kullanabilirsiniz. Çıktı her zaman standart çıktıya gönderilir. 
 
 Söylediğimiz gibi, paste satırlarla işe yarar. Eğer iki dosya adı belirtildiyse ilk dosyanın ilk satırı ve ikincinin ilk satırı birleştirilir (bir tab karakterini ayırıcı olarak kullanarak) ve bu şekilde çıktının ilk satırı oluşturulur. Aynısı dosyadaki bütün satırlar için geçerlidir. Başka bir ayırıcı kullanmak için -d seçeneğini kullanabilirsiniz.
 
@@ -623,15 +623,16 @@ list* arama karakteriyle eşleşen bütün dosyalar (bu durumda list1 ve list2) 
 \end{itemize}}
 
 \paragraph{Bu Bölümdeki Komutlar}{
-\paragraph{cat}{Dosyaları birleştirir (diğer şeylerin yanında)}
-\paragraph{cut}{Girdisindeki sütun ya da alanları ayırır}
-\paragraph{head}{Bir dosyanın başlangıcını gösterir}
-\paragraph{paste}{Farklı girdi dosyalarındaki satırları birleştirir}
-\paragraph{reset}{Bir terminal karakterini mantıklı bir değere sıfırlar}
-\paragraph{sort}{Girdisini satırlara göre sıralar}
-\paragraph{tail}{Bir dosyanın sonunu gösterir}
-\paragraph{uniq}{Bir dosyadaki tekrarlayan satırları vurgular.}
-}
+\begin{itemize}
+\item[cat]Dosyaları birleştirir (diğer şeylerin yanında)
+\item[cut]Girdisindeki sütun ya da alanları ayırır
+\item[head]Bir dosyanın başlangıcını gösterir
+\item[paste]Farklı girdi dosyalarındaki satırları birleştirir
+\item[reset]Bir terminal karakterini mantıklı bir değere sıfırlar
+\item[sort]Girdisini satırlara göre sıralar
+\item[tail]Bir dosyanın sonunu gösterir
+\item[uniq]Bir dosyadaki tekrarlayan satırları vurgular
+\end{itemize}}
 
 \paragraph{Özet}{
 \begin{itemize}
