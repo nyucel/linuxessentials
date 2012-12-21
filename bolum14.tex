@@ -25,7 +25,7 @@ Dosyalara göre, bu izinler kabaca adlarının ima ettiklerini kontrol ederler. 
 
 Binary yani makine kodlu bir program çalıştırılırken çalışma izni gereklidir. Kabuk betikleri veya "yorumlanabilir" programların diğer türlerini içeren dosyalar için, ayrıca okuma izni gerekir.
 
-\paragraph{Dizin İzinleri}{Dizinler için, bazı şeyler bir bakıma farklı görünmektedir. Okuma izni bir dizinin içeriğine bakarken gereklidir. Örneğin; ls komutu çalıştırılırken. Dizin içerisinde dosyaları oluşturmak, silmek yada adlandırmak için yazma iznine ihtiyaç duyarsınız. Çalıştırma izni "use" diye isimlendirilen "cd" diye komut mantığıyla alınır veya dizin ağacında altta kalan dosyaların isimleri ile ilgili yol ismini kullanır.}
+\paragraph{Dizin İzinleri}{Dizinler için, bazı şeyler bir bakıma farklı görünmektedir. Okuma izni bir dizinin içeriğine bakarken gereklidir. Örneğin; ls komutu çalıştırılırken. Dizin içerisinde dosyaları oluşturmak, silmek ya da adlandırmak için yazma iznine ihtiyaç duyarsınız. Çalıştırma izni "use" diye isimlendirilen "cd" diye komut mantığıyla alınır veya dizin ağacında altta kalan dosyaların isimleri ile ilgili yol ismini kullanır.}
 
 Okuma iznine sahip olduğun dizinlerde, dosyanın adını okuyabilirsin fakat dosyalarla ilgili herhangi bir şey bulamazsın. Eğer ki bir dizin için sadece çalıştırma hakkında sahipseniz, dosya isimlerini bilmeniz şartıyla onlara erişebilirsiniz.
 
@@ -219,7 +219,7 @@ Bu t modu, “sticky bit”, genel dizinler ortak kullanımda olduğunda, bir so
 
 Genelde, bir dosyayı silerken yada adını değiştirirken, sistem, dosyanın erişim izinlerini dikkate almaz. Eğer ki “sticky bit” dizin üzerinde ayarlıysa, o dosya sonradan sadece, dosya sahibi, dizin sahibi yada root tarafından silinebilir. “Sticky bit”in ayarlanabilir yada silinebilir olmasını, “+t” yada “-t” sembolleri ile belirtebiliriz. Sekizlik gösterimde SUID ve SGID gibi aynı rakamla 1 değerine sahiptir.
 
-“Sticky bit” adı , daha önceden Unix sistemleri için kullanılan ek bir anlamdan türemektedir. O zamanda, programlar başlatıldığında programın tamamı swap alanına kopyalanırdı ve sonlandırıldıktan sonra tamamen silinirdi. Sticky bitli program dosyaları silinmek yerine takas alanında bırakılabilirdi. Bu, bu programların çağrılmasını hızlandırır çünkü hiçbir kopya yapılmamıştır. En çok Unix, Linux gibi sistemler sayfalamaya ihtiyaç duyar. Programın çalıştırılabilir dosyasındaki kodun sadece gerçekten gerekli olan bu parçalarını alır. Bu takas alanına hiç bir şey kopyalamaz, Linux'taki gibi, sticky bit asla orjinal anlamına sahip değildir.
+“Sticky bit” adı, daha önceden Unix sistemleri için kullanılan ek bir anlamdan türemektedir. O zamanda, programlar başlatıldığında programın tamamı swap alanına kopyalanırdı ve sonlandırıldıktan sonra tamamen silinirdi. Sticky bitli program dosyaları silinmek yerine takas alanında bırakılabilirdi. Bu, bu programların çağrılmasını hızlandırır çünkü hiçbir kopya yapılmamıştır. En çok Unix, Linux gibi sistemler sayfalamaya ihtiyaç duyar. Programın çalıştırılabilir dosyasındaki kodun sadece gerçekten gerekli olan bu parçalarını alır. Bu takas alanına hiç bir şey kopyalamaz, Linux'taki gibi, sticky bit asla orjinal anlamına sahip değildir.
 
 \paragraph{Alıştırmalar}{
 \begin{itemize}
@@ -230,10 +230,11 @@ Genelde, bir dosyayı silerken yada adını değiştirirken, sistem, dosyanın e
  \end{itemize}}
 
 \paragraph{Bu Bölümdeki Komutlar}{
-\paragraph{chrgp}{Bir dosyanın yada dizinin grubunu ayarlar}
-\paragraph{chmod}{Dizin yada dosya için erişim modu ayarlar}
-\paragraph{chown}{Bir dizinin yada dosyanın grubunu yada sahibini ayarlar}
-}
+\begin{itemize}
+\item[chrgp]Bir dosyanın yada dizinin grubunu ayarlar
+\item[chmod]Dizin yada dosya için erişim modu ayarlar
+\item[chown]Bir dizinin yada dosyanın grubunu ya da sahibini ayarlar
+\end{itemize}}
 
 \paragraph{Özet}{
 \begin{itemize}
