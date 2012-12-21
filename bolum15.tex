@@ -18,21 +18,21 @@
 21. yüzyılda, yerel ağ bölgesi aracılığıyla bilgisayarlarda internete bağlanmak gerçek bir eğlencedir. Bu ağ ev DSL yönlendiricisi ya da kablosuz ağ olabilir.
 İnternete girmenin çeşitli yöntemleri vardır fakat siz hangi yolu kullanıyor olsanızda o yöntemlerin hemen hemen hepsi birbirine benzer çalışır.
 
-    İnternet TCP/IP denilen protokol ailesi tabanlıdır. Bir protokol diğer bir bilgisayarla nasıl konuşacağı konusunda anlaşır ve özellikle elektrikten, optik ya da radyo sinyallerine ve cevaplarına kadar birçok şeyi kapsayabilir. Örneğin bir web sunucusu gibidir ama bunların hepsi aynı anda olmaz. Çok ince ayrıntılarıyla kesmeden bu üç protokolü birbirinden ayırmak mümkündür. Bu üç farklı protokol şöyledir:
+İnternet TCP/IP denilen protokol ailesi tabanlıdır. Bir protokol diğer bir bilgisayarla nasıl konuşacağı konusunda anlaşır ve özellikle elektrikten, optik ya da radyo sinyallerine ve cevaplarına kadar birçok şeyi kapsayabilir. Örneğin bir web sunucusu gibidir ama bunların hepsi aynı anda olmaz. Çok ince ayrıntılarıyla kesmeden bu üç protokolü birbirinden ayırmak mümkündür. Bu üç farklı protokol şöyledir:
 
 \paragraph{Orta Erişim Protokolü}{Ağ kartının bir seviyesinde ve kablolarla veri iletimini yönetir. Bunlara örnek olarak Ethernet (LAN için) ya da I.E.E. 802.11 gibi WLAN protokolleridir.} 
 
 \paragraph{Haberleşme Protokolü}{Farklı ağ durumları arasında haberleşmeyi yönetir. İngiltere'den Avusturalya'daki bir web sitesine erişmek isterseniz haberleşme protokolü olan TCP ve IP protokolleri veri iletimini düzenler. Aslında gönderdikleriniz "indirme altında" ya da bunun tam tersi olarak ulaşır.}
 
-\paragraph{Uygulama Protokolleri}{Verilerinizi alan Avustralya' daki alıcının bu verilerle bir şeyler yapabileceğine emin olur. Örneğin web uygulama protokolü , HTTP, sizin bir koala resmi almanıza imkan tanır, Avusturalya' daki sunucu isteğinizi yorumlar ve size koala resmini yollar (kanguru resmini yollamak yerine), bu arada İngiltere'deki tarayızı sizin gerçektende resim aldığınızı, aldığınız verinin hata mesajı olmadığınızı çözer.}
+\paragraph{Uygulama Protokolleri}{Verilerinizi alan Avustralya' daki alıcının bu verilerle bir şeyler yapabileceğine emin olur. Örneğin web uygulama protokolü, HTTP, sizin bir koala resmi almanıza imkan tanır, Avusturalya' daki sunucu isteğinizi yorumlar ve size koala resmini yollar (kanguru resmini yollamak yerine), bu arada İngiltere'deki tarayızı sizin gerçektende resim aldığınızı, aldığınız verinin hata mesajı olmadığınızı çözer.}
 
 Bu çok katmanlı yapı her katmanın hemen bir altındaki ve bir üstündeki ile haberleşmesi konusunda ciddi avantaja sahiptir. Uygulama protokolü, Http, byteların İngiltere'den Avustralya'ya ne kadar byte göndereceiğini bilmeye gerek duymaz çünkü haberleşme protkolünü temsil eder. Haberleşme protkolü sırayla orta erişim prokolündeki gerçek veri iletimine ayrılır.
 
 Bu noktada en az yedi katmandan oluşan ISO/OSI referans modelinenden yararlanmak başvurmak yaygın bir durumdur. Detayların önem kısalıklarına göre konuları size ayıracağız.
 
-TCP/IP uygulama protokolü beraberinde HTTP de SMTP(mail için olan haberleşme protkolü), SSH(uzaktaki makinede oturum açmak için), DNS(host ismini çözümlemek için) ya da ISP(internet tabanlı telefonculuk) ve diğer pek çoğunu içerirler. Bunlar genelde ya TCP ya da UDP tabanlıdır. UDP bağlantısız güvenilmez iletişim sağlarken(veri iletim sırasında kaybolabilir, ya da farklı sırada varması gereken yere erişebilir), TCP bağlantıya yönelik güvenilir bir servis sunar (bu tüm verilerin diğer uçtaki doğru sırayla varacakları anlamına gelir).
+TCP/IP uygulama protokolü beraberinde HTTP de SMTP (mail için olan haberleşme protkolü), SSH (uzaktaki makinede oturum açmak için), DNS(host ismini çözümlemek için) ya da ISP (internet tabanlı telefonculuk) ve diğer pek çoğunu içerirler. Bunlar genelde ya TCP ya da UDP tabanlıdır. UDP bağlantısız güvenilmez iletişim sağlarken (veri iletim sırasında kaybolabilir, ya da farklı sırada varması gereken yere erişebilir), TCP bağlantıya yönelik güvenilir bir servis sunar (bu tüm verilerin diğer uçtaki doğru sırayla varacakları anlamına gelir).
 
-Uygulamalar hangi haberleşme protokolünün daha kullanışlı olduğunu belirlerler. Webde veri iletimi sırasında hata oluşsun istemezsiniz(yazının bir kısmı, resim ya da indirilen yazılımın bir kısmı kaybolabilir, bu can sıkıcı felaket bir durumdur), bu nedenle TCP doğru seçimdir. Televizyonlar ya da sesli sohbetler için, genellikle servislerde yaşan küçük molalar tercih edilebilirliğine(pikselli resim ya da statik kısa bir patlama) göreyanlış veri iletimi olduğunda sistemi düzenlerken her şeyi durdurur.
+Uygulamalar hangi haberleşme protokolünün daha kullanışlı olduğunu belirlerler. Webde veri iletimi sırasında hata oluşsun istemezsiniz (yazının bir kısmı, resim ya da indirilen yazılımın bir kısmı kaybolabilir, bu can sıkıcı felaket bir durumdur), bu nedenle TCP doğru seçimdir. Televizyonlar ya da sesli sohbetler için, genellikle servislerde yaşan küçük molalar tercih edilebilirliğine (pikselli resim ya da statik kısa bir patlama) göre yanlış veri iletimi olduğunda sistemi düzenlerken her şeyi durdurur.
 
 Bu noktada UDP daha anlamlıdır. UDP aynı zamanda servislerde(örneğin DNS) daha iyidir, küçük isteklerde daha hızlı ve kısa yanıtlar sonuç olmalıdır. 
 
@@ -44,17 +44,17 @@ Usule uygun olarak her bilgisayar tekil bir adres kullanarak internet üzerinden
 
 Her kişi basitçe isteğine göre IP alamaz. Bunun yerine IP'ler bire bir atanır. Şirketlerde bu ağ yöneticileri ya da sistemciler tarafından yapılacaktır. Şirketlerde ise bunu sistemciler ya da ağcılar yapar. ISP ev bağlantnız için dikkat edecektir.
 
-Bir şirket muhtemelen tüm zamanlarda aynı IP adresini alır. Öte yandan ISP'niz kesin olan sınırlı bir süre için size sadece ödünç bir adres verecektir, sonraki zamanlarda ise farklı bir adres alacaksınız. Bir yanda da müşterilerinin sayısından daha az adres kullanarak ISP'nizi etkinleştirir(her müşteri tüm zamanlarda cevirim içi olmuyor), ve öte yandan ise bu servislerin sürekli IP adreslerisinizi değiştrime sıkıntısına engel olduğu varsayılır.
+Bir şirket muhtemelen tüm zamanlarda aynı IP adresini alır. Öte yandan ISP'niz kesin olan sınırlı bir süre için size sadece ödünç bir adres verecektir, sonraki zamanlarda ise farklı bir adres alacaksınız. Bir yanda da müşterilerinin sayısından daha az adres kullanarak ISP'nizi etkinleştirir (her müşteri tüm zamanlarda cevirim içi olmuyor) ve öte yandan ise bu servislerin sürekli IP adreslerisinizi değiştrime sıkıntısına engel olduğu varsayılır.
 
 IP adresleri gökten düşmezler fakat mümkün olduğunca önlem ile atanırlar, farklı ağların arasında verilerin değişimi sırayla korunurlar, ya da "yönlendirme", kolaydır. Daha sonra tekrar daha ayrıntılı bakacağız. 
 
 Bilgisayarlar genelde daha fazla IP adresine sahiptir. Geri dönüş aygıt adresi 127.0.0.1 her bilgisayarda mevcuttur, bilgisayarlar ona başvuru yaparlar ama dışarıdan erişilebilir değildir. Bir servis 127.0.0.1' bağlandığında sadece aynı makinede çalışan istemci olarak erişebilir.
 
-Bu söylenenler kullanışsız ve saçmadır, ama aslında seçkin anlamdadır. Örneğin kullanıcılara mail gönderebilecek bir web sitesi geliştiriyor olabilirsiniz(kullanıcı hesabı için içerikteki aktifleştirme linkine tıklayın gibi). Bu test sizin geliştirme makinenizde yapılır, geri dönüş adresi üzerinde sadece mail kabul edilsin diye yerel mail sunucusunu yükleyebilirsiniz. —which will be perfectly adequate for your project while keeping you safe from being inundated with spam from elsewhere on the Internet.
+Bu söylenenler kullanışsız ve saçmadır ama aslında seçkin anlamdadır. Örneğin kullanıcılara mail gönderebilecek bir web sitesi geliştiriyor olabilirsiniz (kullanıcı hesabı için içerikteki aktifleştirme linkine tıklayın gibi). Bu test sizin geliştirme makinenizde yapılır, geri dönüş adresi üzerinde sadece mail kabul edilsin diye yerel mail sunucusunu yükleyebilirsiniz. —which will be perfectly adequate for your project while keeping you safe from being inundated with spam from elsewhere on the Internet.
 
-Bilgisayarların üzerindeki Ethernet ya da Wifi aynı zamanda IP adresinize karşılık gelen arayüzdür(en azından bilgisayarınız şimdilik arayüze bağlıysa). Ek olarak hiçbirşey  ağ arayüzüne denemek ya da özel yapılandırma için sizden ek olarak adres verilmesini önleyemez.
+Bilgisayarların üzerindeki Ethernet ya da Wifi aynı zamanda IP adresinize karşılık gelen arayüzdür (en azından bilgisayarınız şimdilik arayüze bağlıysa). Ek olarak hiçbirşey  ağ arayüzüne denemek ya da özel yapılandırma için sizden ek olarak adres verilmesini önleyemez.
 
-X bilgisayarının internette diğer Y bilgisayarı ile bağlanabilmesinin hazırlanması için rekabet oluşur, Y'nin IP adresinin bilinmesi şartıyla(Eğer X İngiltere'de ve Y'de Avusturalya'da ise X'in kaç baytının Y'ye ulaşması gerektiği \%100 açık değildir.) Bunu yapmak büyülü kelime olan "routing(yönlendirme)" ile mümkündür. Ve yönlendirme yaklaşık olarak bunun gibi çalışır:
+X bilgisayarının internette diğer Y bilgisayarı ile bağlanabilmesinin hazırlanması için rekabet oluşur, Y'nin IP adresinin bilinmesi şartıyla (Eğer X İngiltere'de ve Y'de Avusturalya'da ise X'in kaç baytının Y'ye ulaşması gerektiği \%100 açık değildir.) Bunu yapmak büyülü kelime olan "routing (yönlendirme)" ile mümkündür. Ve yönlendirme yaklaşık olarak bunun gibi çalışır:
 \begin{itemize}
 \item X bilgisiyarınız Y'nin IP adresini bulabilir (DNS bu işe yarar). 10.11.12.13 olduğunu varsayalım.
 \item X bilgisayarı IP adresi olan 10.11.12.13'ü çözdüğünde yerel ağdaki ile değerler aynı değildir (which is no wonder considering that Y is in
@@ -66,20 +66,19 @@ Australia). Bu X bilgisayarının direkt olarak Y'ye veri gönderemediği anlam�
 \item Y' den X' e doğru alınan herhangi bir yanıt aynı geri dönüş aygıtını kullanır.
 \end{itemize}
 
-Burada önemli bir gözlem, veri geçişi olduğunda gerçek rota X 'den Y'ye verileri aldığını belirtir. X bilgisayarı orta hedeflerin tam listesini belirtmeye gerek duymaz, fakat her ara hedefin doğru şeyi yaptığına güvenir. Aksine, her bilgisayar sadece "yerel" bilgiye ihtiyaç duyar ve tüm internetin nerede olduğunu bilmeye gerek duymaz-bu oldukça imkansız olurdu.
+Burada önemli bir gözlem, veri geçişi olduğunda gerçek rota X 'den Y'ye verileri aldığını belirtir. X bilgisayarı orta hedeflerin tam listesini belirtmeye gerek duymaz, fakat her ara hedefin doğru şeyi yaptığına güvenir. Aksine, her bilgisayar sadece "yerel" bilgiye ihtiyaç duyar ve tüm internetin nerede olduğunu bilmeye gerek duymaz - bu oldukça imkansız olurdu.
 
-Haberleşme protokolü olarak IP özelliğinin birini bir ilke içerisinde yönlendirebildiğinde bir paketten bir sonrakine değiştirirsin( hatta genellikle herhangi bir olay olmaz). Bu internet bağlantı kesintileri,sıkışıklığı ve tepkilerine izin verir.
+Haberleşme protokolü olarak IP özelliğinin birini bir ilke içerisinde yönlendirebildiğinde bir paketten bir sonrakine değiştirirsin (hatta genellikle herhangi bir olay olmaz). Bu internet bağlantı kesintileri, sıkışıklığı ve tepkilerine izin verir.
 
-Bu esasında "yavaş giden e-posta"ya benzer. Sydney'deki gerçek rota doğum günü kartınıza ulaşımı tutar ve bunu bilmeye gerek duymaz; komşunuzun pasta kutusuna basit ve doğru bir şekilde damgalanmış zarfı koyabilirsiniz.
+Bu esasında "yavaş giden e-posta"ya benzer. Sydney'deki gerçek rota doğum günü kartınıza ulaşımı tutar ve bunu bilmeye gerek duymaz; komşunuzun posta kutusuna basit ve doğru bir şekilde damgalanmış zarfı koyabilirsiniz.
 
-Günün sonunda bu şu anlama gelir: Linux bilgiasayar 3 şeyi bilemeye gerek duyar, kendi IP'sine, direkt olarak ulaşabilsin diye ayarlanmış adrese, ve dinlenmek için olan ağ geçidine. The set of addresses that your computer can reach directly is
-subnet mask described by the IP address of your local network together with a which today is most commonly specified as a number.
+Günün sonunda bu şu anlama gelir: Linux bilgiasayar 3 şeyi bilemeye gerek duyar, kendi IP'sine, direkt olarak ulaşabilsin diye ayarlanmış adrese, ve dinlenmek için olan ağ geçidine. The set of addresses that your computer can reach directly is subnet mask described by the IP address of your local network together with a which today is most commonly specified as a number.
 
-Bilgisayarınızın IP adresinin 192.168.178.111 olduğunu düşünün yerel ağda ise 192.168.178.0/24. Burada, 24 alt ağda maskeler. İlk 24 biti adresinizi belirtir (yani ilk üçlü sekizlik, şöyleki 192.168.178). Son sekizlik de ise( ya da sonraki 8'li 32 yapar.) yerel adresiniz mevcuttur. Bu tüm bilgisayarların 192.168.178.0 dan 192.168.178.255 arasında olduğu anlamına gelir- olşuturdularsa- direkt olarak ulaşabilirler; varsayılan ağ geçidi (yerel ağdaki adres sahip olmalı) diğer IP adreslerine ulaşmayı kullanmalıdır. 
+Bilgisayarınızın IP adresinin 192.168.178.111 olduğunu düşünün yerel ağda ise 192.168.178.0/24. Burada, 24 alt ağda maskeler. İlk 24 biti adresinizi belirtir (yani ilk üçlü sekizlik, şöyleki 192.168.178). Son sekizlik de ise( ya da sonraki 8'li 32 yapar) yerel adresiniz mevcuttur. Bu tüm bilgisayarların 192.168.178.0 dan 192.168.178.255 arasında olduğu anlamına gelir- olşuturdularsa- direkt olarak ulaşabilirler; varsayılan ağ geçidi (yerel ağdaki adres sahip olmalı) diğer IP adreslerine ulaşmayı kullanmalıdır. 
 
 Aslında, örneğimizdeki 192.168.178.0 ve 192.168.178.255 adresleri özel anlamlara sahip olduklarında beri bilgisayarlar için mevcut değildir. Fakat sadece bütünlük icin onlardan bahsediyoruz.
 
-Bu ilkede elle bilgisayarınızın ağ yapılandırmasının bir parçası gibi (Detaylar dağıtımınıza bağlıdır) bütün ağ parametrelerini ayarlayabilirsiniz -- IP adres, alt ağ(maskeleme), ve varsayılan ağ geçidi-- Ancak, çok muhtemel olarak "DHCP sunucusu" size bir ağ sağlar, bu mevcut olan bu parametrelerle bilgisayarınıza endişelenmeden ayarlar yapılacaktır.
+Bu ilkede elle bilgisayarınızın ağ yapılandırmasının bir parçası gibi (Detaylar dağıtımınıza bağlıdır) bütün ağ parametrelerini ayarlayabilirsiniz -- IP adres, alt ağ(maskeleme) ve varsayılan ağ geçidi. Ancak, çok muhtemel olarak "DHCP sunucusu" size bir ağ sağlar, bu mevcut olan bu parametrelerle bilgisayarınıza endişelenmeden ayarlar yapılacaktır.
 
 Bundan dolayı, Linux bilgisayarınaz LAN istemcisi eklemeyi isterseniz, Ethernet kablosu uygun sockete takılmalı ya da wifi doğru bir şekilde girilmedilir. Herhangi bir problem varsa, sistemciniz ya da ağ yöneticiniz yüksek sesle ve ısrarla çağırılmalıdır.
 
@@ -95,25 +94,18 @@ DNS ayarını kendi Linux'unuza yapabilirsiniz, tabiki-, aynı zamanda oldukça 
 IP adres bölümünden önce DNS sunucularının adresleri ile birlikte diğer temel ağ parametreleri konusu vardır. Alt ağ, varsayılan ağ geçidi - her Linux makine sahip olmalıdır. gerçekte hiyerarşi şöyle işler:
 
 \begin{itemize}
-\item The “root-level name servers” know about the part of a name on the very
-right—like .de , .com , .tv , whatever—and know which name servers are in
-charge of the content of these zones.
-\item The name servers for .de (by way of an example) know all the names of
-the form something.de and can tell which name servers know about names
-below those names.
-\item The name servers for a name like something.de (which are usually situated
-at the company in question or their ISP) know the IP address for a name like
-www. something.de and can supply it if required.
+\item The “root-level name servers” know about the part of a name on the very right—like .de , .com , .tv , whatever—and know which name servers are in charge of the content of these zones.
+\item The name servers for .de (by way of an example) know all the names of the form something.de and can tell which name servers know about names below those names.
+\item The name servers for a name like something.de (which are usually situated at the company in question or their ISP) know the IP address for a name like www.something.de and can supply it if required.
 \end{itemize}
 
 Bu ismin çözüldüğü anlamına gelir (Örneğin isim:shop.linupfront.de), bilgisayarınızın ilk olarak root düzeyindeki isim sunucularına isim sunucuları için olan görevleri sorar. Sonra linupfront.de için olan görevleri sorar. Son olarak linupfront.de adresi için linupfront.de isim sunucusunu sorar.
 
-Aslında çalışan bilgisayarınız değildir, onun DNS i sizin bilgisayarınızı kullanır. Fakat bilgisayarınızın ilkelerini küçültmez.
+Aslında çalışan bilgisayarınız değildir, onun DNS'i sizin bilgisayarınızı kullanır. Fakat bilgisayarınızın ilkelerini küçültmez.
 
 Tabi ki bu oldukça ilgili bir şemadır, and this is why your system keeps any answers around for a while. shop.linupfront.de'ye uyan IP adresini çözdüyseniz, the assumption is that this will stay the same for a while, so the resolution process is only repeated after that time has expired.
 
-The advantage of this scheme is that we at Linup Front are free to dispose of names “below” linupfront.de and can add them to our DNS server as we
-wish. Diğer insanlar buradan direkt alır.  It would be much more of a hassle to have to petition the “Internet office” for a new name, and to have to wait for it to be added to the official list. (Think of changes to the land register and how long these usually take.)
+The advantage of this scheme is that we at Linup Front are free to dispose of names “below” linupfront.de and can add them to our DNS server as we wish. Diğer insanlar buradan direkt alır.  It would be much more of a hassle to have to petition the “Internet office” for a new name, and to have to wait for it to be added to the official list. (Think of changes to the land register and how long these usually take.)
 
 \end{subsection}
 \begin{subsection}{IPv6}
@@ -122,8 +114,7 @@ IP as a communications protocol has been around for something like 30 years, and
 
 Bu problemi hafifletmenin yolları vardır, mesela, internette tek olmayan her şey-cep telefonları  internetin her yerinden görülebilir olan bir IP adresi alır. Instead, the operators wall off their networks from the actual Internet in order to be able to distribute more addresses (cue “network address translation”, NAT). These methods are fairly disgusting and do imply other problems.
 
-Genişletilmiş adres boşlukları: IPV6 32  bitlik adres yerine 128 bitlik adresi kullanır, görülebilir gelecek için yeterli olması beklenmektedir (şanslar oldukça iyidir) IPV6 adresler,  IPv6 addresses are notated by writing down chunks of two
-bytes in hexadecimal (base 16), iki nokta üst üste kullanımıyla ayrılmıştır:
+Genişletilmiş adres boşlukları: IPV6 32  bitlik adres yerine 128 bitlik adresi kullanır, görülebilir gelecek için yeterli olması beklenmektedir (şanslar oldukça iyidir) IPV6 adresler,  IPv6 addresses are notated by writing down chunks of two bytes in hexadecimal (base 16), iki nokta üst üste kullanımıyla ayrılmıştır:
 \begin{verbatim}
 fe80:0000:0000:0000:025a:b6ff:fe9c:406a
 \end{verbatim}
@@ -290,9 +281,9 @@ benzer bir mesaj alıyorsanız o zaman yerel ağınızda bir problem vardır.
 
 If you can, ask a colleague who is just accessing the Internet, or try another computer: If everything seems to be OK there, then again your computer is likely to be the culprit. Otherwise—and quite likely in that case, too—it is time for the system administrator.
 
-Mesela varsayılan rotanız yanlış olabilir ve yanlış bilgisayara işaret ediyor olabilir.(Ağ yapılandırması elle yapıldığında bu daha çok muhtemel bir durumdur) That would be unlikely to impact the users of other computers, where the configuration is probably correct.
+Mesela varsayılan rotanız yanlış olabilir ve yanlış bilgisayara işaret ediyor olabilir. (Ağ yapılandırması elle yapıldığında bu daha çok muhtemel bir durumdur) That would be unlikely to impact the users of other computers, where the configuration is probably correct.
 
-Aslında doğru bir şekilde varsayılan ağ geçidine ulaşıyorsanız, o zaman problem ya LAN'ınız dışındadır, ya internet üzerinde herhangi bir yerde ya da "protokol yığınınızdan" uzakta bir yerlerdedir. Mesela pingi kullanarak uzaktaki web sunucusuna ulaşmak kolay olabilir, fakat (şirketiniz?) internet erişiminiz web üzerinden direkt erişime izin vermeyebilir çünkü "vekil sunucu"yu kullandığınızı zannedersiniz (ve yapılandırmayı unuttuysanız). Sistem yöneticiniz yardımcı olacaktır. 
+Aslında doğru bir şekilde varsayılan ağ geçidine ulaşıyorsanız, o zaman problem ya LAN'ınız dışındadır, ya internet üzerinde herhangi bir yerde ya da "protokol yığınınızdan" uzakta bir yerlerdedir. Mesela pingi kullanarak uzaktaki web sunucusuna ulaşmak kolay olabilir, fakat (şirketiniz?) internet erişiminiz web üzerinden doğrudan erişime izin vermeyebilir çünkü "vekil sunucu"yu kullandığınızı zannedersiniz (ve yapılandırmayı unuttuysanız). Sistem yöneticiniz yardımcı olacaktır. 
 
 Ağ bağlantınız bazen çalışır bazen de "ping -f" yi kullanarak test edemezsiniz (kablolar dolaşabilir?, kemirgenlerin zarar vermesi?). Klasik olarak saniye başına paket göndermenin yerine, onun yapabildiği kadar hızlı verileri  ping gönderir. Çıktıda bir nokta için her paket gönderilmiştir ve bir ters boşluk karakteri için her paket alınmıştır. Eğer bir paket kaybettiyseniz, noktaların satırı uzatması olacaktır.
 
@@ -342,13 +333,13 @@ Komut satırında bahsedildiği gibi özel sunucu isimlerini sorabilirsiniz.
 $ dig www.linupfront.de @fritz.box                 Frage fritz.box
 \end{verbatim}
 
-Tabiki bu isim çözümü pahalı bir DNS sorgusunu gerektirmez (or else you might have a chicken-egg problem). Şüphelendiğinizde direkt olarak IP adresinizi belirtebilirsiniz. 
+Tabiki bu isim çözümü pahalı bir DNS sorgusunu gerektirmez (veya bir tavuk yumurta probleminiz var demektir). Şüphelendiğinizde direkt olarak IP adresinizi belirtebilirsiniz. 
 
 \begin{verbatim}
 $ dig www.linupfront.de @192.168.178.1
 \end{verbatim}
 
-DNS yolunuzunu biliyorsanız, RR tipindeki diğer A kayıtlarına bakmak için dig'i kullanabilrsiniz. Komut satırında ne istiyorsanız dig sadece onu anlatır.
+DNS yolunuzunu biliyorsanız, RR tipindeki diğer A kayıtlarına bakmak için dig'i kullanabilirsiniz. Komut satırında ne istiyorsanız dig sadece onu anlatır.
 
 \begin{verbatim}
 $ dig linupfront.de mx
@@ -430,26 +421,27 @@ Ve "netstat -r" komutu aslında "route" komutuna benzer (parametre olmadan).
 \end{itemize}}
 
 \paragraph{Bu bölümdeki komutlar}{
-\paragraph{dig}{DNS bilgisi arar(bunun için çok uygundur)}
-\paragraph{ifconfig}{ağ arayüzünü yapılandırır}
-\paragraph{netstat}{ağ bağlantısı hakkında bilgi gösterir, suncular, yönlendirmeler gibi}
-\paragraph{ping}{ICMP'yi kullanarak temel ağ bağlantısını kontrol eder}
-\paragraph{ping6}{temel ağ bağlantısını kontrol eder (IPV6 için)}
-\paragraph{route}{Linux çekirdeğinin yönlendirme tablosunu yönetir.}
-}
+\begin{itemize}
+\item[dig]DNS bilgisi arar (bunun için çok uygundur)
+\item[ifconfig]ağ arayüzünü yapılandırır
+\item[netstat]ağ bağlantısı hakkında bilgi gösterir, suncular, yönlendirmeler gibi
+\item[ping]ICMP'yi kullanarak temel ağ bağlantısını kontrol eder
+\item[ping6]temel ağ bağlantısını kontrol eder (IPV6 için)
+\item[route]Linux çekirdeğinin yönlendirme tablosunu yönetir
+\end{itemize}}
 
 \paragraph{Özet}{
 \begin{itemize}
 \item Ağ protokollerinin üç çeşidi vardır: orta erişimli protokoller, haberleşme protokolleri, ve uygulama protokolleri.
 \item Bir protokol yığınında her protokol hemen bir üstündeki ya da bir altındaki ile haberleşebilir.
-\item TCP/IP haberleşme protokolü olan IP, TCP(güvenilir ve bağlantı yönlendirilebilir), ve UDP(güvenli değil ve bağlantısız), kontrol protoklü ICMP, çok sayıda TCP veya UDP tabanlı uygulama protokolleri içerir.
+\item TCP/IP haberleşme protokolü olan IP, TCP (güvenilir ve bağlantı yönlendirilebilir), ve UDP (güvenli değil ve bağlantısız), kontrol protoklü ICMP, çok sayıda TCP veya UDP tabanlı uygulama protokolleri içerir.
 \item Bilgisyarların internette tekil bir IP adresleri vardır.
 \item Yönlendirmeler bilgisayarların arasında birbirlerine direkt bağlanmadan haberleşmelerini sağlarlar.
 \item Ağa bağlanırken, Linux bilgisayar bir IP adres ister, alt ağdaki adres ile maskelenir, varsayılan bir ağ geçidi, ve adresin üzerinde bulunduğu en az bir adres vardır. 
 \item DNS IP adreslerini ev sahibi isimlerine eşleştiren ya da bunun tam tersidir(diğer şeyler arasında).
-\item IPV6, IPV4 ün varisidir,  IPV6 da çeşitli sınırlamalar kaldırılmıştır ve çeşitli gelişmeler içerir. 
+\item IPV6, IPV4 ün varisidir, IPV6 da çeşitli sınırlamalar kaldırılmıştır ve çeşitli gelişmeler içerir. 
 \item ifconfig ve route ağı elle yapılandırmada kullanılır. Dağıtımlar ağ yapılandırması için çeşitli şemalar kullanırlar. 
-\item ifconfig,ping,dig ve netstat programları iyi ağ sorunu çözümleri için kullanılır.
+\item ifconfig, ping, dig ve netstat programları iyi ağ sorunu çözümleri için kullanılır.
 \end{itemize}
 }
 \end{subsection}
