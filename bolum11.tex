@@ -32,7 +32,7 @@ daha yoğun şekilde
 A*4BAA*5C*4AB*5AC
 \end{verbatim}
 
-Burda, “*4B ” sıralı dört tane “B” karakter. Bu basit yaklaşım “run-length encoding”(uzun kodlama çalıştırma) olarak adlandırılır ve bugün bile örneğin faks makinelerinde(düzeltmeleriyle birlikte) bulunur. “Real” (gerçek) gzip veya bzip2 givi sıkıştırma yazılımları gelişmiş yeni metotlar kullanırlar.
+Burda, “*4B ” sıralı dört tane “B” karakter. Bu basit yaklaşım “run-length encoding”(uzun kodlama çalıştırma) olarak adlandırılır ve bugün bile örneğin faks makinelerinde (düzeltmeleriyle birlikte) bulunur. “Real” (gerçek) gzip veya bzip2 givi sıkıştırma yazılımları gelişmiş yeni metotlar kullanırlar.
 
 Bu tür birleşmiş arşivleme ve sıkıştırma yazılımlar Windows dünyasında sık ölçüde kullanırlar. (PKZIP, WinZIP vs), aynı adım genellikle Linux ve Unix dünyasında ayrı olarak ele alınır. Arşivi ilk kez kullanırken tar çıkış sıkıştırma işleminden önce tar ile dosyaların bir dizi olduğunu söylemek popüler bir yöntemdir, gzip-PKZIP ve benzerleri kendi üzerindeki her bir dosyayı sıkıştırır ve sonra bir tek büyük bir dosya içine sıkıştırılmış dosyaları toplar.
 
@@ -51,11 +51,11 @@ nasıl gösterebilirsiniz?
 
 \begin{section}{tar Kullanarak Dosya Arşivlemek}
 
-tar ismi “kaset arşivin ’den türemiştir. Uygulama bireysel dosyaları arşiv dosyasına koyar ve birinden diğerine ek bilgileri not alır (tarih, erişme izni, sahibi, …). Her ne kadar tar’ın başlangıçta manyetik teyp sürücüleri ile birlikte kullanılabilir olması gereksede , tar arşivleri çeşitli mediyalar üzerine doğrudan yazılmışda olabilir. Diğer kullanımlar arasında tar dosyaları Linux ve diğer özgür yazılım paketleri için kaynak kodu yaymak için standart biçimidir.
+tar ismi “kaset arşivin ’den türemiştir. Uygulama bireysel dosyaları arşiv dosyasına koyar ve birinden diğerine ek bilgileri not alır (tarih, erişme izni, sahibi, …). Her ne kadar tar’ın başlangıçta manyetik teyp sürücüleri ile birlikte kullanılabilir olması gereksede, tar arşivleri çeşitli mediyalar üzerine doğrudan yazılmışda olabilir. Diğer kullanımlar arasında tar dosyaları Linux ve diğer özgür yazılım paketleri için kaynak kodu yaymak için standart biçimidir.
 
 Linux üzerinde yaygın olarak kullanılan katman GNU uygulaması diğer Unix türevleri olan tar uygulamalarında bulunan çeşitli uzantıları içerir. Örneğin, GNU tar birçok medyayı kapsayan çok hacimli arşiv oluşturarak bunu destekler. Bu, çoklu cilt arşivler bile küçük arşivler yalnızca çok kirli Tabii ki, diskete yedek kopyalarını sağlar. Elbette ki sadece küçük arşivler için önemli olan bu çoklu cilt arşivleri bile diskete yedekleme yapılmasına izin verir.
 
-Küçük bir açıklama: Bölme(split) komutu arşiv dosyaları gibi büyük dosyaları kesebilmeyi sağlar ve böylece dosya uygun parçalar haline getirilerek disketlere kopyalanabilir ya da e-maille yollanabilir ve cat kullanılarak geldikleri şeklinde yeniden birleştirilebilirler.
+Küçük bir açıklama: Bölme (split) komutu arşiv dosyaları gibi büyük dosyaları kesebilmeyi sağlar ve böylece dosya uygun parçalar haline getirilerek disketlere kopyalanabilir ya da e-maille yollanabilir ve cat kullanılarak geldikleri şeklinde yeniden birleştirilebilirler.
 
 tar’ın avantajları: Bunun kullanımı basittir, güvenli ve iyi çalışır, evrensel olarak tüm Unix ve Linux sistemlerinde çalışır. Bunun dezavantajları basit arızalardan dolayı problemlere yol açabilir, ve  tar’ın tüm sürümleri aygıt dosyalarını depolayamayabilir. (Sisteminizin tümüne geri yüklemek istediğinizde).
 
@@ -63,34 +63,25 @@ tar arşivleri, dosyalar ve tüm dizin hiyerarşileri içerir. Eğer Windows med
 \begin{verbatim}
 tar <options> <file>||<directory> …
 \end{verbatim}
-önemli tar seçenekleri:
+Önemli tar seçenekleri:
+\begin{itemize}
+\item[-c (“create”)]yeni arşiv oluşturur
+\item[-f file]$<$file$>$ üzerinden yeni arşiv oluşturur (veya mevcut arşivden okur)
+\item[$<$file$>$]düz dosyalarda veya bir aygıt dosyalarda bulunması (diğerlerinden yanı sıra
+\item[-M]multi-volume arşivleri kullanmak
+\item[-r]arşive dosyalar ekler (manyetik kaseteler için değil)
+\item[-t]arşiv içindekileri görüntüler
+\item[-u]arşiv içindeki kendi sürümünden daha yeni olan dosyaları değiştirir. Eğer dosyaların hepsi oluşmamışsa, bunlar daha önceden eklenmiştir (manyetik kaseteler için değil)
+\item[-v]Verbose modulu—tam o sırada tar'ın ne yapıyor olduğunu görüntüler
+\item[-x]Dosyalar ve Dizinleri arşivden çıkarır
+\item[-z]gzip kullanarak arşivi sıkıştırır veya sıkıştırmadan çıkarır
+\item[-Z]sıkıştırma kullanarak arşivi sıkıştırır veya açar (normalde linux üzerinde mevcut değil)
+\item[-j]bzip2 kullanarak arşivi sıkıştırır veya sıkıştırmadan çıkarmamasının option syntax tar'ın söz dizim seçenekleri oldukça sıra dışıdır
+\item[]
+\item[]
+\end{itemize}
 
--c (“create”) yeni arşiv oluşturur
-
--f file $<$file$>$ üzerinden yeni arşiv oluşturur (veya mevcut arşivden okur),
-
-$<$file$>$ düz dosyalarda veya bir aygıt dosyalarda bulunması (diğerlerinden yanı sira)
-
--M multi-volume arşivleri kullanmak
-
--r arşive dosyalar ekler (manyetik kaseteler için değil)
-
--t arşiv içindekileri görüntüler
-
--u arşiv içindeki kendi sürümünden daha yeni olan dosyaları değiştirir. Eğer dosyaların hepsi oluşmamışsa, bunlar daha önceden eklenmiştir (manyetik kaseteler için değil)
-
--v Verbose modulu—tam o sırada tar'ın ne yapıyor olduğunu görüntüler
-
--x Dosyalar ve Dizinleri arşivden çıkarır
-
--z gzip kullanarak arşivi sıkıştırır veya sıkıştırmadan çıkarmasını
-
--Z sıkıştırma kullanarak arşivi sıkıştırır veya açmasını (Normalde linux üzerinde mevcut değil)
-
--j bzip2 kullanarak arşivi sıkıştırır veya sıkıştırmadan çıkarmamasının
-option syntax tar'ın söz dizim seçenekleri oldukça sıra dışıdır,
-
-Bunda -f gibi parametre olanlar (olağanüstü) dahil olmak üzere tekbir tire sonra birkaç seçenekleri "paketlemek" (başka bir yerde olduğu gibi) mümkündür.
+Bunda -f gibi parametre olanlar dahil olmak üzere tekbir tire sonra birkaç seçenekleri "paketlemek" (başka bir yerde olduğu gibi) mümkündür.
 
 İlk "seçenek paketi" önünde gösterişi çizgi dışarı bırakabilirsiniz. Sık sık aşağıdaki gibi komutları göreceksiniz:
 \begin{verbatim}
@@ -113,13 +104,9 @@ Tar tüm bir dizinin arşivlenmesini de sağlar. Bunu çevreleyen dizinden yapma
 # tar -cvf /tmp/home.tar /home
 \end{verbatim}
 
-
 Sistem yöneticisi root home.tar isimli /home dizininde bir arşiv depolarsa (tüm kullanıcı bilgileri). Bu da /tmp dizin içerisine saklanır.
 
-Eğer dosyalar ve dizinlerin mutlak path isimlerin kullanarak verilirse, tar path
-ismine bağlı otomatik olarak depolar (başka bir sözle "/" ile başlayan her bir
-isimleri kaldırılmıştır ). Başka bir bilgisayarda arşivden paket çıkarırken bu tür
-problemleri önler (Uygulama 11.6 ya bakın).
+Eğer dosyalar ve dizinlerin mutlak path isimlerin kullanarak verilirse, tar path ismine bağlı otomatik olarak depolar (başka bir sözle "/" ile başlayan her bir isimleri kaldırılmıştır). Başka bir bilgisayarda arşivden paket çıkarırken bu tür problemleri önler (Uygulama 11.6'ya bakın).
 
 Arşivin "tablo içeriklerini" -t seçeneğin kullanarak görüntüleyebiliriz:
 \begin{verbatim}
@@ -147,7 +134,7 @@ data10
 data2
 \end{verbatim}
 
-Eğer arşiv hiyerarşi bir dizin içerirse, bu ana dizini yeniden oluşturur. (Eğer hatırlarsanız tar tüm mutlak isimlerinden bir tane path ismine bağlı üretir.) Herhangi dizine arşivleri çıkartabilirsiniz, her zaman bu yapıyı tutar.
+Eğer arşiv hiyerarşi bir dizin içerirse, bu ana dizini yeniden oluşturur (Eğer hatırlarsanız tar tüm mutlak isimlerinden bir tane path ismine bağlı üretir). Herhangi dizine arşivleri çıkartabilirsiniz, her zaman bu yapıyı tutar.
 
 Paketi çıkarma sırasında dosya veya dizin isimlerini değiştirebilirsiniz. Bu durumda söz konusu olan sadece dosyalar ve dizinler paketten açılacaktır. Ancak, arşivin içindeki isimlerin tam olarak eşleşmesine dikkat edin:
 \begin{verbatim}
@@ -164,8 +151,7 @@ tar: Error exit delayed from previous errors
 \end{verbatim}
 \paragraph{Alıştırmalar}{
 \begin{itemize}
- \item Ana dizinizdeki dosyaların liste bilgilerin bir dosya içinde depolayın.
-O dosyanın tar arşivini oluşturun. Orijinal dosya ve onun arşivini bir biriyle karşılaştır. Ne önerirsiniz?
+ \item Ana dizinizdeki dosyaların liste bilgilerin bir dosya içinde depolayın. O dosyanın tar arşivini oluşturun. Orijinal dosya ve onun arşivini bir biriyle karşılaştır. Ne önerirsiniz?
  \item Üç veya dört boş dosya oluşturup onu yeni oluşturduğunuz arşive ekleyiniz
  \item Asıl dosyanızı silin ve tar'ın içindekileri arşivden çıkartın.
  \item Eğer bir dosya veya muhafaza edilmesi için dizinin adı mutlak bir yol adı olarak verilirse neden GNU tar profilaktif olarak yol adı başlangıcında silmez? ve etc-backup.tar (a) mutlak yol isimleri varsa ne olacağını hayal edin,(b) başka bir bilgisayara aktarılır ve orada çözülür.
@@ -173,35 +159,28 @@ O dosyanın tar arşivini oluşturun. Orijinal dosya ve onun arşivini bir biriy
 \end{section}
 \begin{section}{gzip ile Dosya Sıkıştırma}
 
-Linux in en yaygın kullanılan sıkıştırma uygulaması Jean-Loup Gailly ve Mark Adler tarafından geliştirilmiştir. Bu tek bir dosya sıkıştırması için kullanılmıştır. (yakınlarda adı geçmiştir, çokça dosyaları tek arşivde içermesi mümkündür).
+Linux in en yaygın kullanılan sıkıştırma uygulaması Jean-Loup Gailly ve Mark Adler tarafından geliştirilmiştir. Bu tek bir dosya sıkıştırması için kullanılmıştır (yakınlarda adı geçmiştir, çokça dosyaları tek arşivde içermesi mümkündür).
 
-gzip uygulaması ("GNU zip" ın kısaltılmışı) 1992 de sıkıştırma problemleri önlemek için ortaya çıkmıştır, standart Unix sürümlerin özel sıkıştırma aracısıdır. Sıkıştırma Lempel-Ziv-Wlch algoritmasına dayanmıştır (LZW), patent hakları US tarafından saklıdır 4,558,302. Bu patenti Sperry (later Unisys) şirketine ait olup bu da 20 Haziran 2003 de süresi sona ermişti. Diğer taraftan, gzip DEFLATE metodu Phil Katz [RFC 1951] tarafından  kullanılmıstır, artık LZW patentine sahip olmamasına dayalı bunun yanı sıra LZ77 isimin alan Huffmen schema kodlaması özgür patent olmuştur. ayrıca, LZW den daha iyi çalışmaktadır.
+gzip uygulaması ("GNU zip"in kısaltılmışı) 1992'de sıkıştırma problemleri önlemek için ortaya çıkmıştır, standart Unix sürümlerin özel sıkıştırma aracısıdır. Sıkıştırma Lempel-Ziv-Wlch algoritmasına dayanmıştır (LZW), patent hakları US tarafından saklıdır 4,558,302. Bu patenti Sperry (later Unisys) şirketine ait olup bu da 20 Haziran 2003 de süresi sona ermişti. Diğer taraftan, gzip DEFLATE metodu Phil Katz [RFC 1951] tarafından kullanılmıstır, artık LZW patentine sahip olmamasına dayalı bunun yanı sıra LZ77 isimin alan Huffmen schema kodlaması özgür patent olmuştur. ayrıca, LZW den daha iyi çalışmaktadır.
 
-gzip compressi kullanarak sıkıştırılmış dosyaları sıkıştırmadan çıkarır, çünkü
-Sadece Unisys tarafından patenti korunmuştur. Bu tür dosyaları ".Z" komutu
-İsimleri ile ayırt edebilirsiniz. 
+gzip compressi kullanarak sıkıştırılmış dosyaları sıkıştırmadan çıkarır, çünkü Sadece Unisys tarafından patenti korunmuştur. Bu tür dosyaları ".Z" uzantıları ile ayırt edebilirsiniz. 
 
 gzip PKZIP ve benzer Windows uygulamaları "ZIP" ismiyle karıştırılmamalıdır. Bu tür uygulamalar derhal dosyaları sıkıştırıp ardından arşivleyebilir; gzip sadece sıkıştırma işiyle uğraşır ve arşivleme işini tar veya cpio uygulamalarına bırakır .—gzip, ZIP paketleri tam olarak hangi bir dosya DEFLATE yöntemle arşivlenmiş bunları arşivden çıkarabilir.
 
 gzip bir tek dosyaları isler ve değiştirir, dosyaların uzantı isimlerine. gz ismini ekler. Bu değişikler dosyanın orijinal halinden daha az hafıza tutar. Birkaç dosya bir tek arşiv içine sıkıştırılmalıdır, tar ve gzip bileşik olmalıdır.
 
 gzip in en önemli tercihleri şunlardır:
-
--c sıkıştırılmış dosyasını standart sıktıysa gönderir, asil dosyanın yerine konur;
+\begin{itemize}
+\item[-c]sıkıştırılmış dosyasını standart sıktıysa gönderir, asil dosyanın yerine konur;
 asilin kalanı değişmemektir.
-
--d sıkıştırılmış dosyanı çıkarmak (öteki türlü: gunzip gzip -d gibi çalışır)
-
--l ("list") sıkıştırılmış dosyanın adı, paket boyutu gibi önemli bilgilerini görüntüler
-
--r (“recursive”) alt dizindeki dosyaları sıkıştırır
-
--S $<$suffix$>$ uses the specified suffix in place of .gz
-
--v her bir dosyanın isimi ve sıkıştırma oranının çıktılarını gösterir
-
--1 … -9 B ir bir sıkıştırma oranı belirtir -1 (or --fast ) Çok hızlı çalışır ama
-iyi sıkıştırmaz, -9 ( ya da --best ) çok iyi sıkıştırır ama yavaş; varsayılan ayarları ise -6'dır.
+\item[-d ]sıkıştırılmış dosyanı çıkarmak (öteki türlü: gunzip gzip -d gibi çalışır)
+\item[-l ("list")]sıkıştırılmış dosyanın adı, paket boyutu gibi önemli bilgilerini görüntüler
+\item[-r](“recursive”) alt dizindeki dosyaları sıkıştırır
+\item[-S]$<$suffix$>$ uses the specified suffix in place of .gz
+\item[-v]her bir dosyanın isimi ve sıkıştırma oranının çıktılarını gösterir
+\item[-1 … -9]Bir bir sıkıştırma oranı belirtir -1 (veya --fast) Çok hızlı çalışır ama
+iyi sıkıştırmaz, -9 (veya --best) çok iyi sıkıştırır ama yavaş; varsayılan ayarları ise -6'dır.
+\end{itemize}
 
 Aşağıdaki komutu letter.tex dosyasını sıkıştırır, letter.tex.gz isimli sıkıştırılmış dosya depolar ve asıl dosyası silinir:
 \begin{verbatim}
@@ -240,13 +219,13 @@ $ tar -xvzf tex-all.tar.gz
 \end{section}
 \begin{section}{bzip2 ile Dosya Sıkıştırmak}
 
-bzip2 Julian Seward tarafından geliştirilen büyük ölçüde gzip'e uyumlu bir uygulamadır. Ancak, bu başka yöntemler içinde kullanılır yüksek derece fazladan zaman ve hafıza kullanılarak sıkıştırır.  (sıkıştırmadan açarken de bir farkı yoktur).
+bzip2 Julian Seward tarafından geliştirilen büyük ölçüde gzip'e uyumlu bir uygulamadır. Ancak, bu başka yöntemler içinde kullanılır yüksek derece fazladan zaman ve hafıza kullanılarak sıkıştırır (sıkıştırmadan açarken de bir farkı yoktur).
 
 bzip2 "Burrows-Wheeler dönüşümünü" kullanır kodlamada sık sık ortaya çıkan dizinleri tek karakteristik dizilere çevirir. Bu sonuçlar "local frequency" e tek karakteristik olarak sıralanır, çalışma uzunluğu hesaplandıktan sonra, Huffman şemasına göre kodlanır. Huffmen kodu yoğun bir şekilde dosyaya yazılır.
 
 Bzip'den ne haber? bzip aritmetiksel kodlama kullanan bzip2 ye göre daha önce çıkmış olup dönüşümü Huffman kodlamasından sonra bloklamıştır. Ancak, geliştiricisi aritmetiksel kodlamaya karar verdi bu nedenle onu çevreleyen uygulamalar çeşitli patent sorunlar yaşadı.
 
-gzip,bzip2 ler sıkıştırmak için bir veya birden fazla dosya isimlerin parametre olarak kabul eden .bz2 uzantı isimile biten dosyalar, sıkıştırılmış sürümlerin yerine geçer.
+gzip, bzip2'ler sıkıştırmak için bir veya birden fazla dosya isimlerin parametre olarak kabul eden .bz2 uzantı isimile biten dosyalar, sıkıştırılmış sürümlerin yerine geçer.
 
 -c ve -d seçenekleri eponymous seçeneklerine karsı gelip. Ancak, “seçeneklerin kalitesi” -1 den -9 a farklı çalışır: onlar o anki sıkıştırmasın kullanarak blok boyutun belirler. Varsayılan değeri 9 dur, -1 olunca önemli bir hız kazancı sunmaz.
 
@@ -260,11 +239,9 @@ Karşılaştırdığımızda da gzip ve gunzip,bunzip2 dosyaları açmak için, 
 
 Windows da veya internette veri alış verişte genellikle widespread ZIP dosya biçimi kullanılmalı (bugünlerde Windows üzerinde birçok dosya arşiv programları da .tar.gz ile uyumludur). Linux'da iki ayrı uygulama vardır zip (arşivleri oluşturma) ve unzip (arşivleri açma).
 
-Dağıtıma baglı olarak bu uygulamaları ayrı ayrı kurmanız gerekir.
-Debian GNU/Linux'de, örneğin, zip ve unzip iki ayrı paket bulunur.
+Dağıtıma baglı olarak bu uygulamaları ayrı ayrı kurmanız gerekir. Debian GNU/Linux'da, örneğin, zip ve unzip iki ayrı paket bulunur.
 
-Zip programının arşivleme tarzı size PKZIP gibi programların sıkıştırma tarzını
-hatırlatabilir. En basit değişle, komut satırına geçirilen dosyaları toplar:
+Zip programının arşivleme tarzı size PKZIP gibi programların sıkıştırma tarzını hatırlatabilir. En basit değişle, komut satırına geçirilen dosyaları toplar:
 \begin{verbatim}
 $ zip test.zip file1 file2
 adding: file1 (deflated 66%)
@@ -297,12 +274,14 @@ zip bir arşive dosya eklemenin 2 yolunu bilir. Dosyayı sıkıştırma olmadan 
 
 Eğer var olan bir zıp dosyasını onun ilk parametresiyle çağırır ve başka bir şey belirleyemezseniz, arşivlenecek dosyaların (aynı adları taşıyan mevcut dosyaların üzerine yazılmış olan) mevcut içeriğinin üstüne arşive eklenir. Bu durumda zıp, tar ve çipodan farklı davranır. Temiz bir arşivleme isterseniz ilk olarak dosyayı kaldırmanız gerekir.
 
-Dosyaları aptalca eklemenin yanı sıra, zıp operasyonun diğer birkaç morlarını da destekler:  -u seçeneği arşivi komut satırında belirtilen dosyayla aynı ismi taşıyan bir dosya daha varsa sadece yeni olanı arşiv dosyalarına ekleyerek günceller(adı geçen dosyalar henüz arşive hiçbir şekilde alınmamışsa).-f seçeneği arşiv dosyalarını komut satırında üzerine yazılmış daha yeni versiyonlarıyla canlandırır(bütünüyle yeni dosyalar arşive eklenmez). -d seçeneği arşiv içindeki dosyaları siler ve kişilerin isimleri komut satırında dosya adlarını değerlendirir.
+Dosyaları aptalca eklemenin yanı sıra, zıp operasyonun diğer birkaç morlarını da destekler:  -u seçeneği arşivi komut satırında belirtilen dosyayla aynı ismi taşıyan bir dosya daha varsa sadece yeni olanı arşiv dosyalarına ekleyerek günceller(adı geçen dosyalar henüz arşive hiçbir şekilde alınmamışsa).-f seçeneği arşiv dosyalarını komut satırında üzerine yazılmış daha yeni versiyonlarıyla canlandırır (bütünüyle yeni dosyalar arşive eklenmez). -d seçeneği arşiv içindeki dosyaları siler ve kişilerin isimleri komut satırında dosya adlarını değerlendirir.
 
 zıp'in yeni sürümleri aynı zamanda -FS (dosya senkronizasyon) modunu destekler. Bu mod -u'nun yaptığını yaparak arşivi dosya sistemine senkronize eder, fakat aynı zamanda komut satırı üzerindeki henüz isimlendirilmemiş dosyaları siler(ya da -r durumunda aranan bir dizinin parçasıdır). Bu metodun avantajı yeniden yapılandırılmış bir arşivinkiyle karşılaştırıldığında arşivde önceden var olan değişmemiş dosyaların tekrar sıkıştırılmış olmasını gerektirmez.
 
 zip her çeşit seçeneği destekler ve "zip -h" yi kullanarak listeye bakabilirsiniz (ya da -h2'yi kullanarak daha ayrıntılı bir listeye bakabilirsiniz). Aynı zamanda zip(1) man sayfası da çok bilgilendiricidir.
+
 zip her çeşit seçeneği destekler ve "zip -h" yi kullanarak listeye bakabilirsiniz (ya da -h2'yi kullanarak daha ayrıntılı bir listeye bakabilirsiniz). Aynı zamanda zip(1) man sayfası da çok bilgilendiricidir.
+
 Arşivin için gözetmenin en iyi yolu -v seçeneğin kullanmak, içinde ne olduğunu gormek altdizinler için zorluk çıkarabilir.
 
 \begin{verbatim}
@@ -377,8 +356,7 @@ Archive: test.zip
 
 (Note the quotes, which are used to hide the search patterns from the actual shell so unzip gets to see them.) Unlike in the shell, the search patterns refer to the complete file names (including any “/”).
 
-As is to be expected, unzip also supports various other options. Look at the
-program’s help information using “unzip -h” or “unzip -hh”, or read unzip(1).
+As is to be expected, unzip also supports various other options. Look at the program’s help information using “unzip -h” or “unzip -hh”, or read unzip(1).
 
 \paragraph{Alıştırmalar}{
 \begin{itemize}

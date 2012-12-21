@@ -2,9 +2,9 @@
 \paragraph{Amaçlar}{
 \begin{itemize}
  \item “dosya” ve “sistem dosya” kavramların anlamak
- \item Farklı dosya türlerin tanıma
- \item Linux sistemin ağaç dizi yolların öğrenmek
- \item Dizi ağaç içerisinde harici dosya nasıl entegre edilmesini öğrenmek
+ \item Farklı dosya türlerin tanımak
+ \item Linux sistemin ağaç dizi yollarını öğrenmek
+ \item Dizi ağacı içerisinde harici dosyanın nasıl entegre edileceğini öğrenmek
  \end{itemize}}
 \paragraph{Önceden Bilinmesi Gerekenler}
 \begin{itemize}
@@ -31,7 +31,7 @@ UNIX domain socket & s & isim= & komut yok\\
 }
 
 \begin{section}{Terimler}
-Genelde dosya, verilerin kendi içerisinde bulunan toplamlarıdır. Dosya içindeki veri türlerine bağlı herhangi bir kısıtlama yoktur; bir dosya metin birkaç harftan oluşabilir veya kullanıcın tam iş hayatın birden çok megabyte içeren arşivden oluşur. Dosyalar düz metin içermeleri gerekmez. Görüntü, Ses,.. çalışabilir uygulamalar ve diğer pek çok dosyalar Bir depo üzerine yerleştirilir. Bir dosya veri türünü tahmin etmek için dosyanın içinde bulunan dosya komutun kulanabilir:
+Genelde dosya, verilerin kendi içerisinde bulunan toplamlarıdır. Dosya içindeki veri türlerine bağlı herhangi bir kısıtlama yoktur; bir dosya metin birkaç harftan oluşabilir veya kullanıcın tam iş hayatın birden çok megabyte içeren arşivden oluşur. Dosyalar düz metin içermeleri gerekmez. Görüntü, Ses,.. çalışabilir uygulamalar ve diğer pek çok dosyalar bir depo üzerine yerleştirilir. Bir dosya veri türünü tahmin etmek için dosyanın içinde bulunan dosya komutun kulanabilir:
 
 \begin{verbatim}
 $ file /bin/ls /usr/bin/groups /etc/passwd
@@ -50,7 +50,7 @@ dosyalardır.
 
 Uygun bir şekilde işleyebilmesi için bir Linux sistemi binlerce farklı dosyaya ihtiyaç duyar. Bunlar sistemin çeşitli kullanıcıları tarafından oluşturulmuş ve sahip olunan çeşitli dosyalardır.
 
-Bir dosya sistemi depolama alanı üzerinde veri düzenleme ve yönetimini belirler. Bir sabit disk temelde sistemin tekrar bulabilmesi gereken byte ları içerir, hatta çok büyük,esnek ve verimli dosyalar olsalar bile. Dosya işletim sistemi detayları farklılık gösterebilir (Linux bunların birçoğunu bilir. ext2 , ext3 , ext4 , ReiserFS, XFS, JFS, btrfs vb...) fakat kullanıcıya sunulan şey farklı türdeki ve isimdeki dosya ve dizin adlarıyla oluşturulmuş bir ağaç hiyerarşi yapısıyla aynıdır (ayrıca bkz. Bölüm 6).
+Bir dosya sistemi depolama alanı üzerinde veri düzenleme ve yönetimini belirler. Bir sabit disk temelde sistemin tekrar bulabilmesi gereken byte ları içerir, hatta çok büyük,esnek ve verimli dosyalar olsalar bile. Dosya işletim sistemi detayları farklılık gösterebilir (Linux bunların birçoğunu bilir. ext2, ext3 , ext4, ReiserFS, XFS, JFS, btrfs vb...) fakat kullanıcıya sunulan şey farklı türdeki ve isimdeki dosya ve dizin adlarıyla oluşturulmuş bir ağaç hiyerarşi yapısıyla aynıdır (ayrıca bkz. Bölüm 6).
 
 Linux topluluğunda, terim "dosya sistemi" birkaç anlamı taşır. Burada sunulan anlama ek olarak—“bir ortam üzerinde bayt düzenleme yöntemi”, bir dosya sistemi her zaman bizim “dizin ağacı” olarak nitelendirdiğimizi göz önünde bulundurur. Buna ek olarak, bu veriler ile birlikte, belirli bir ortamda (bir sabit disk bölümü, USB anahtar, ...) genellikle bir "dosya sistemi" adı verilir. Örneğin bizim söylediğimiz anlamda sabit bağlantılar (Bölüm 6.4.2) sabit disk veya sabit disk ve USB anahtarı arasındaki iki farklı bölümler arasında, yani "dosya sistemi sınırlarının ötesinde" işe yaramaz.
 \end{section}
@@ -75,7 +75,7 @@ görünebilir fakat çok kullanışlı bir konsepttir. Altı dosya türü şu ş
 Bir Linux sistemi yüz binlerce dosya çeşidinden oluşu. rizleri tutmak için dizin yapıları ve Linux sistemi içeren bir dosya için belli kurallar vardır,F ilesystem Hierarchy Standard (FHS). Çoğu Linux dağıtımında bu standart(ufak sapmalarla) FHS'ye uygundur. FHS bütün dizinleri açıklar.
 
 immediately below the file system’s root as well as a second level below /usr .
-Dosya sistemi ağacı kök diziniyle başlar, “/” (root directory /root ile karıştırılmamalı ,root kullanıcının ev dizini). The root directory contains either just subdirectories or else additionally, if no /boot directory exists, the operating system kernel. 
+Dosya sistemi ağacı kök diziniyle başlar, “/” (root dizini /root ile karıştırılmamalı, root kullanıcının ev dizini). The root directory contains either just subdirectories or else additionally, if no /boot directory exists, the operating system kernel. 
 
 Kök dizinin alt dizinlerini listelemek için “ls -la /” komutunu kullanabilirsiniz. Sonuç Şekil 10.1 gibi görünmelidir. Bireysel alt dizinler FHS'ye uyar,bu nedenle yaklaşık olarak her dağıtım aynı dosyaları içerir. Şimdi dizinlerden bazılarına daha yakından bakalım:
 \begin{verbatim}
@@ -106,18 +106,17 @@ drwxr-xr-x  11 root root  4096 Oca  6  2012 usr
 drwxr-xr-x  15 root root  4096 Ara  6 09:30 var
 \end{verbatim}
 
-FHS hakkında çok fazla fikir birliği vardır fakat sadece Linux üzerindeki bir şeyi bağlamak kadardır, yani o kadar da fazla değildir. Bir yandan çoğunlukla sadece üretici tarafından dokunulan ve FHS’nin bütün ayrıntılarına uymanın hiçbir şey kazandırmadığı Linux sistemleri vardır(Örneğin geniş bant yönlendirici ve PVR).
-Diğer yandan kendi sisteminizde ne isterseniz yapabilirsiniz, fakat sonuçlarına hazırlıklı olmanız gerekir.Dağıtıcınız Dosya Hiyerarşi Sistemi’ne uymanız halinde bir sıkıntı çıkmayacağını size garanti eder,fakat aynı zamanda kurallara uymadan yaptığınız işlemlerden çıkan hatalardan dolayı şikayet etmemenizi bekler. Örneğin, eğer /usr/bin dizinine bir program yüklüyorsanız ve söz konusu olan dosya gelecek sistem güncellemesi esnasında üzerine fazla yazılırsa , FHSye göre /usr/local/bin dizinine kendi programlarınızı koymanız beklenmediği için bu sizin kendi hatanızdır.
+FHS hakkında çok fazla fikir birliği vardır fakat sadece Linux üzerindeki bir şeyi bağlamak kadardır, yani o kadar da fazla değildir. Bir yandan çoğunlukla sadece üretici tarafından dokunulan ve FHS’nin bütün ayrıntılarına uymanın hiçbir şey kazandırmadığı Linux sistemleri vardır(Örneğin geniş bant yönlendirici ve PVR). Diğer yandan kendi sisteminizde ne isterseniz yapabilirsiniz, fakat sonuçlarına hazırlıklı olmanız gerekir. Dağıtıcınız Dosya Hiyerarşi Sistemi’ne uymanız halinde bir sıkıntı çıkmayacağını size garanti eder, fakat aynı zamanda kurallara uymadan yaptığınız işlemlerden çıkan hatalardan dolayı şikayet etmemenizi bekler. Örneğin, eğer /usr/bin dizinine bir program yüklüyorsanız ve söz konusu olan dosya gelecek sistem güncellemesi esnasında üzerine fazla yazılırsa, FHSye göre /usr/local/bin dizinine kendi programlarınızı koymanız beklenmediği için bu sizin kendi hatanızdır.
 
 \paragraph{İşletim sistemi çekirdeği-/boot}{/boot dizini asıl işletim sistemini içerir: vmlinuz Linux çekirdeğidir. /boot dizininde ayrıca boot yükleyicisi için gereken diğer dosyalar vardır (LILO yada GRUB).}
 
-\paragraph{Genel araçlar -/bin}{/bin dizini içinde sistemi başlatmak için gerekli olan en önemli çalıştırılabilir programları(çoğunlukla sistem programları) vardır. Bu örneğin mkdir ve mount komutlarını içerir. Bu programların bazıları o kadar önemlidir ki sadece sistem başlaması esnasında değil, sistem çalışırken de gereklidir- ls ve grep gibi. /bin dizini aynı zamanda zarar görmüş sistemi tekrar çalıştırmak için gerekli olan programları içerir eğer sadece kök dizinini içeren dosya sistemine ulaşılabilirse. Sistem sistem tamiri ya da başlaması esnasında gerekli olmayan ek programlar /usr/bin dizini içinde bulunabilirler.}
+\paragraph{Genel araçlar -/bin}{/bin dizini içinde sistemi başlatmak için gerekli olan en önemli çalıştırılabilir programları(çoğunlukla sistem programları) vardır. Bu örneğin mkdir ve mount komutlarını içerir. Bu programların bazıları o kadar önemlidir ki sadece sistem başlaması esnasında değil, sistem çalışırken de gereklidir - ls ve grep gibi. /bin dizini aynı zamanda zarar görmüş sistemi tekrar çalıştırmak için gerekli olan programları içerir eğer sadece kök dizinini içeren dosya sistemine ulaşılabilirse. Sistem sistem tamiri ya da başlaması esnasında gerekli olmayan ek programlar /usr/bin dizini içinde bulunabilirler.}
 
 \paragraph{Özel sistem programları-/sbin}{ /bin dizini gibi /sbin dizini de sistemi onaracak ya da başlatacak prgramları içerir. Ancak çoğu parça için bunlar sadece kök dizini(root) tarafından kullanılabilen sistem konfigrasyonu araçlarıdır. Normal kullanıcılar sistemi sorgulayacak programların bazılarını kullanabilirler, fakat hiçbir şeyi değiştiremezler. /bin dizininde olduğu gibi bu dizinle birlikte daha fazla sistem programlarını içeren /usr/sbin denilen bir dizin vardır.}
 
 \paragraph{Sistem kütüphaneleri-/lib}{Burası dosyalar ve bağlantılar gibi /bin ve /sbin içinde bulunan programlar tarafından kullanılan “paylaşılmış kütüphaneler”dir. Paylaşılmış kütüphaneler çeşitli programlar tarafından kullanılan kodun parçalarıdır. Bazı süreçler aynı temel parçaları kullandığı için böyle kütüphaneler birçok kaynağı kurtarır ve bu temel parçalar belleğe sadece bir kere yüklenmeli: ek olarak bir kere sistemde bulunduklarında ve tüm programlar merkezi bir dosyadan söz konusu olan kodu yakaladığında böyle kütüphanelerde arızları onarmak daha kolaydır. Tesadüfen /lib/modules dizini altında çekirdek modülleri vardır(aygıt sürücüleri, dosya sistemleri ya da ağ protokolleri kullanımında gerekli olmayan çekirdek kodu gibi). Bu modüller gerek duyulduğunda çekirdek tarafından yüklenebilirler ve bazı durumlarda kullanım sonrası kaldırılabilirler.}
 
-\paragraph{Aygıt dosyaları - /dev}{: bu rehber ve alt dizinleri aygıt dosyaları için çoklu kayıtları içerir. Aygıt dosyaları kabuk(genellikle komut satırı kullanıcıları yada programcılar için ulaşılabilir olan sistemin bir parçası) ve çekirdek içerisindeki aygıt sürücüleri arasında arayüz oluştururlar. Diğer dosyalar gibi içerikleri yoktur fakat aygıt numaraları aracılığıyla çekirdek içerisindeki bir sürücüye referans olurlar.}
+\paragraph{Aygıt dosyaları - /dev}{bu rehber ve alt dizinleri aygıt dosyaları için çoklu kayıtları içerir. Aygıt dosyaları kabuk(genellikle komut satırı kullanıcıları yada programcılar için ulaşılabilir olan sistemin bir parçası) ve çekirdek içerisindeki aygıt sürücüleri arasında arayüz oluştururlar. Diğer dosyalar gibi içerikleri yoktur fakat aygıt numaraları aracılığıyla çekirdek içerisindeki bir sürücüye referans olurlar.}
 
 Daha önceki zamanlarda Linux dağıtıcıları için her kişiye göre araç için /dev dizini içinde bir aygıt içermesi alışılmıştı. Böylece bir laptop Linux sistemi bile her biri 63 bölümlü, 8 ISDN adaptörü, 16 seri halinde ve 4 paralel arayüzü ve bu tür özellikleri taşıyan 10 sabit disk için gerekli olan araç dosyalarını içerirdi. Bugün bu eğilim her hayali aygıt için bir aygıtı olan fazla dolu /dev dizinlerinden ve gerçekte bulunan araçlar için girişleri içeren çalışmakta olan çekirdeğe yakın olarak bağlanan sistemler için uzaktadırlar. Bu alanda sihirli kelime udev’dir ve Linux Administration kısmında daha detaylı anlatılacaktır.
 
@@ -192,7 +191,7 @@ Back when /proc had not been invented, programs like the process status display 
 
 Teorik olarak bireysel girişlerle hiçbir alakası olmayan /proc dizinindeki tüm girişler /sys dizinine yavaşça geçirilmeli. Bu stratejik amaç gerçekleştirildiğinde bu,  birisinin tahmini olduğundandır.
 
-\paragraph{Dinamik olarak değişen dosyalar-/var}{bu dizin farklı dizinler boyunca dağıtılan dinamik olarak değişen dosyaları içerir. Çeşitli programları yerine getirdiğinde kullanıcı çoğu zaman bilgileri oluşturur(çoğunlukla gerçeğin farkında olmadan). Örneğin biçimlendirilmiş man sayfaları sonradan lazım olurlar diye bir süreliğine etrafta tutulurken man komutu sıkıştırılmış kılavuz sayfası kaynaklarını sıkıştırılmamış hale getirmeye sebep olur. Benzer olarak bir belge basıldığında yazıcıya gönderilmeden önce baskı bilgisi depolanmalı,örneğin /var/spool/cups içerisinde. /var/log içindeki dosyalar giriş ve çıkış zamanlarını ve diğer sistem olaylarını kaydeder, /var/spool/cron düzenli otomatik komut yürütmeleri hakkında bilgi içerir ve kullanıcının okunmamış mailini /var/mail’de tutar.}
+\paragraph{Dinamik olarak değişen dosyalar-/var}{bu dizin farklı dizinler boyunca dağıtılan dinamik olarak değişen dosyaları içerir. Çeşitli programları yerine getirdiğinde kullanıcı çoğu zaman bilgileri oluşturur(çoğunlukla gerçeğin farkında olmadan). Örneğin biçimlendirilmiş man sayfaları sonradan lazım olurlar diye bir süreliğine etrafta tutulurken man komutu sıkıştırılmış kılavuz sayfası kaynaklarını sıkıştırılmamış hale getirmeye sebep olur. Benzer olarak bir belge basıldığında yazıcıya gönderilmeden önce baskı bilgisi depolanmalı, örneğin /var/spool/cups içerisinde. /var/log içindeki dosyalar giriş ve çıkış zamanlarını ve diğer sistem olaylarını kaydeder, /var/spool/cron düzenli otomatik komut yürütmeleri hakkında bilgi içerir ve kullanıcının okunmamış mailini /var/mail’de tutar.}
 
 Linux’te sistem log dosyaları genellikle “syslog” servisi tarafından işlenir.sys logd denilen bir program diğer programlardan gelen  mesajları kabul eder ve bunları başlangıç ve önceliklerine göre sonraları bulabileceğiniz /var/log dizini altında dosyalar halinde sınıflandırır. Dosyalar dışında syslog servisi aynı zamanda mesajlarını başka yerde yazabilir. Örneğin konsola ya da ağ aracılığıyla bilgi merkezinizden tüm log mesajlarını birleştiren merkezi bir “yönetim  istasyonu” olarak hizmet eden başka bir bilgisayara.
 
@@ -212,9 +211,9 @@ drwxr-xr-x 5 root root 4096 Sep 9 23:00 www
 
 Bu dizin nispeten yeni bir buluştur ve oldukça mümkündür ki sisteminizde henüz bulunmamaktadır. Ne yazık ki web sayfaları FTP sunucusunun dökümanları için başka bir yer yoktur ki FHS yazarları bunun üzerinde uzlaşabilirler, bu sayede bu dosyalar olmadan bir sistem üzerinde tamamen farklı bir yerde sonlandırabilirler, örneğin /usr/local ya da /var alt dizinlerinde.
 
-\paragraph{CD-ROM ya da Disketlere ulaşım--/media}{ bu dizin çoğunlukla otomatik olarak meydana getirilir; CD-ROM’lar ve disketler için yerleşim noktaları olarak görev yapan /media/cdrom ve /media/floppy gibi ilave edilen bpş dizinleri içerir. Donanım başlangıcınıza dayanarak /media/dvd gibi daha fazla dizinleri eklemekte kendinizi özgür hissedebilirsiniz, eğer bunlar yerleşim noktaları olarak bir anlam ifade ediyorlarsa ve dağıtım satıcınız tarafından önceden yüklenmemişse.}
+\paragraph{CD-ROM ya da Disketlere ulaşım--/media}{bu dizin çoğunlukla otomatik olarak meydana getirilir; CD-ROM’lar ve disketler için yerleşim noktaları olarak görev yapan /media/cdrom ve /media/floppy gibi ilave edilen bpş dizinleri içerir. Donanım başlangıcınıza dayanarak /media/dvd gibi daha fazla dizinleri eklemekte kendinizi özgür hissedebilirsiniz, eğer bunlar yerleşim noktaları olarak bir anlam ifade ediyorlarsa ve dağıtım satıcınız tarafından önceden yüklenmemişse.}
 
-\paragraph{Diğer depolama ortamlarına ulaşım--/mnt}{ bu dizin ilave edilen depolama ortamlarının geçici yerleştirilmesi için yerleşim noktası olarak görev yapar. Red Hat tarafından yapılan bazı dağıtımlarla CD-ROM ve disket için medya yerleşim noktaları /media’nın altında olmak yerine burada ortaya çıkabilir.}
+\paragraph{Diğer depolama ortamlarına ulaşım--/mnt}{bu dizin ilave edilen depolama ortamlarının geçici yerleştirilmesi için yerleşim noktası olarak görev yapar. Red Hat tarafından yapılan bazı dağıtımlarla CD-ROM ve disket için medya yerleşim noktaları /media’nın altında olmak yerine burada ortaya çıkabilir.}
 
 \paragraph{Kullanıcı ev dizinleri--/home}{ bu dizin kök dizini dışında tüm kullanıcıların ev dizinlerini içerir.}
 
@@ -236,9 +235,9 @@ uzak & /usr, /opt & /home, /var/mail\\
 \end{tabular}
 \end {table}}
 
-\paragraph{Yöneticinin ev dizini--/root}{  Yöneticinin ev dizini kök dizininde kuruludur.Bu,dogrudan kök alt dizinin dışında yönetici evinde konumlandırılmayan gözlenen bir farklılıkla diğer kullanıcılara benzer tamamen doğal bir ev yöneticisidir.}
+\paragraph{Yöneticinin ev dizini--/root}{Yöneticinin ev dizini kök dizininde kuruludur. Bu, dogrudan kök alt dizinin dışında yönetici evinde konumlandırılmayan gözlenen bir farklılıkla diğer kullanıcılara benzer tamamen doğal bir ev yöneticisidir.}
 
-\paragraph{Kayıp özelliği lost+found}{ (FHS tarafından yönetilen sadece iç hat dosya sistemleri) bu yönetici herhangi bir yöneticiye ait olmayan ama uygun görünen dosyalar için kullanılır. Dosya sistemini uygunluğunu kontrol edici,aynı dosya sistemi üzerinde ost+found yöneticide öyle dosyalara bağlantılar yaratır. Bu yüzden sistem yöneticisi dosya gerçekten nereye ait bulabilir; lost+found, dosya sistem uygunluğunu kontrol edicinin sabit bir yerin içinde bulabilme ümidiyle yaratılmıştır. (kural gereği, iç hat dosya sistemleri üzerinde bu her zaman dosya endeksi numarasını kullanır.}
+\paragraph{Kayıp özelliği lost+found}{ (FHS tarafından yönetilen sadece iç hat dosya sistemleri) bu yönetici herhangi bir yöneticiye ait olmayan ama uygun görünen dosyalar için kullanılır. Dosya sistemini uygunluğunu kontrol edici,aynı dosya sistemi üzerinde ost+found yöneticide öyle dosyalara bağlantılar yaratır. Bu yüzden sistem yöneticisi dosya gerçekten nereye ait bulabilir; lost+found, dosya sistem uygunluğunu kontrol edicinin sabit bir yerin içinde bulabilme ümidiyle yaratılmıştır. Kural gereği, iç hat dosya sistemleri üzerinde bu her zaman dosya endeksi numarasını kullanır.}
 
 Dizin düzenlemesi için başka bir yöntem de şöyledir: FHS dosyaları ve dizinleri 2 kritere göre böler-bölgesel olarak ulaşılabilir olmaya ihtiyacı var mı , başka bir bilgisayarda durabilirler mi ve ağ aracılığıyla ulaşılabilirler mi, bağlamları durgun mu ya da sistem çalışırken değişirler mi?
 
@@ -256,41 +255,43 @@ Bu bölünmenin arkasındaki düşünce sistem yönetimini yalınlaştırmaktır
 \end{section}
 \begin{section}{Dizi Ağacı ve Dosya Sistemleri}
 
-Bir Linux sistemi dizin ağacı diskler, CD-ROM diskler, USB anahtarları ve taşınabilir MP3ler gibi depolama birimleri üzerinde birden fazla bölüm boyunca uzanır. Microsoft Windows'taki yolunuzu biliyorsanız, muhtemelen bu sorunu Linux üzerinde harfler sayesinde farklı "sürücüler" tanımlaması ile çözebileceğinizin farkındasınız,mevcut tüm disk bölümleri ve medya "/" ile başlayan dizin ağacına entegre edilmiştir.
+Bir Linux sistemi dizin ağacı diskler, CD-ROM diskler, USB anahtarları ve taşınabilir MP3ler gibi depolama birimleri üzerinde birden fazla bölüm boyunca uzanır. Microsoft Windows'taki yolunuzu biliyorsanız, muhtemelen bu sorunu Linux üzerinde harfler sayesinde farklı "sürücüler" tanımlaması ile çözebileceğinizin farkındasınız, mevcut tüm disk bölümleri ve medya "/" ile başlayan dizin ağacına entegre edilmiştir.
 
-Genel olarak hiçbir şey sizi tam bir Linux sistemini tek bir sabit disk bölümüne yüklemenizi engelleyemez. Ancak, /home bölümleme dizinini kendi bölümüne koymak yaygındır. Bu yaklaşımın avantajı, Linux dağıtıcınız, tamamen kendi veri güvenliği (basitçe doğru zamanda dikkatli olmanız gerekmektedir,yani dağıtımcı yükleyicisinden yükleme için hedef bölüm(leri) aldığınız zaman.) hakkında endişelenmenize gerek kalmadan sıfırdan fiili işletim sistemini tekrar yükleyebilmenizdir. Bu aynı zamanda yedek kopya oluşturma işlemini kolaylaştırır. 
+Genel olarak hiçbir şey sizi tam bir Linux sistemini tek bir sabit disk bölümüne yüklemenizi engelleyemez. Ancak, /home bölümleme dizinini kendi bölümüne koymak yaygındır. Bu yaklaşımın avantajı, Linux dağıtıcınız, tamamen kendi veri güvenliği (basitçe doğru zamanda dikkatli olmanız gerekmektedir, yani dağıtımcı yükleyicisinden yükleme için hedef bölüm(leri) aldığınız zaman.) hakkında endişelenmenize gerek kalmadan sıfırdan fiili işletim sistemini tekrar yükleyebilmenizdir. Bu aynı zamanda yedek kopya oluşturma işlemini kolaylaştırır. 
 
-Büyük sunucu sistemleri üzerinde, diğer dizinleri, tipik olan sunucu sistemleri Cally / tmp, / var / tmp'a veya / var / spool'a kendi bölümlerini atamanız da oldukça olağandır.Amaç önemli bölümleri tamamen doldurmayla kullanıcıları rahatsız edici sistem işlemlerini engellemektir.Örneğin /var doluysa, diske herhangi protokol mesajları yazılamasın, bu yüzden kullanıcıları /var/tmp dosyasındaki okunmamış büyük boyutlu maillerden, yazılmamış yazma işlemlerinden veya büyük dosyalardan korumak istiyoruz. Öte yandan, tüm bu bölümler sistemi kaplamak eğilimindedir.
+Büyük sunucu sistemleri üzerinde, diğer dizinleri, tipik olan sunucu sistemleri Cally /tmp, /var/tmp'a veya /var/spool'a kendi bölümlerini atamanız da oldukça olağandır. Amaç önemli bölümleri tamamen doldurmayla kullanıcıları rahatsız edici sistem işlemlerini engellemektir. Örneğin /var doluysa, diske herhangi protokol mesajları yazılamasın, bu yüzden kullanıcıları /var/tmp dosyasındaki okunmamış büyük boyutlu maillerden, yazılmamış yazma işlemlerinden veya büyük dosyalardan korumak istiyoruz. Öte yandan, tüm bu bölümler sistemi kaplamak eğilimindedir.
 
 More information and strategies for partitioning are presented in the Linup
 Front training manual, Linux Administration I.
 
-/etc/fstab dosyası sistemin nasıl çeşitli disk bölümlerinden oluştuğunu açıklar. Başlangıç boyunca, sistem normal bir kullanıcı olarak endişelenmemeniz gereken çeşitli sistem dosyalarını doğru yerlere yerleştiriyor(Linux buna "monte" diyor).Aslında neye ilgi duyduğunuzu,yani nasıl CD-ROM diskler ve USB tuşlarına erişilebileceğinizi ve bunların da monte edilmesi gerekir. Dolayısıyla biz bu başlığı kısaca örterek en iyisini yapmış oluruz her ne kadar gerçekten de kullanıcının ülkesi olsa da.Bir orta monte etmek için, orta için her iki aygıt dosyası ismine(genellikle / dev/sda1 gibi bir blok aygıt)  ve ortanın içeriğinin görünmesi gereken dizin ağacındaki bir dizine ihtiyacınız vardır. Bu herhangi bir dizin olabilr.
+/etc/fstab dosyası sistemin nasıl çeşitli disk bölümlerinden oluştuğunu açıklar. Başlangıç boyunca, sistem normal bir kullanıcı olarak endişelenmemeniz gereken çeşitli sistem dosyalarını doğru yerlere yerleştiriyor (Linux buna "bağlamak" diyor). Aslında neye ilgi duyduğunuzu, yani nasıl CD-ROM diskler ve USB tuşlarına erişilebileceğinizi ve bunların da monte edilmesi gerekir. Dolayısıyla biz bu başlığı kısaca örterek en iyisini yapmış oluruz her ne kadar gerçekten de kullanıcının ülkesi olsa da.Bir orta monte etmek için, orta için her iki aygıt dosyası ismine (genellikle /dev/sda1 gibi bir blok aygıt) ve ortanın içeriğinin görünmesi gereken dizin ağacındaki bir dizine ihtiyacınız vardır. Bu herhangi bir dizin olabilr.
 
-Başka bir ortayı üzerine bağladığınız orjinal içeriğe erişemeseniz bile dizin boş olmak zorunda değildir.( Siz ortayı geri bağladıktan sonra tekrar görünecektir.)
+Başka bir ortayı üzerine bağladığınız orjinal içeriğe erişemeseniz bile dizin boş olmak zorunda değildir (siz ortayı yeniden bağladıktan sonra tekrar görünecektir).
 
-Prensip olarak, birileri /etc gibi nemli sistem dizinine çıkarılabilir ortam monte etmeli(ideal olarak parolasız kök dizini girişi içeren passwd diye adlandırılan). Dizin ağacı içinde rasgele yerlerde dosya sistemlerinin montajı zaten kökü gibi, bu gibi maskaralık gerek olacaktır sistem yöneticisi, sınırlı olmasının nedeni budur.Bu yüzden dosyaları keyfi yerlere dizin ağaçlarıyla birlikte monte etme sistem kullanıcısına kısıtlanmıştır. 
+Prensip olarak, birileri /etc gibi nemli sistem dizinine çıkarılabilir ortam monte etmeli (ideal olarak parolasız kök dizini girişi içeren passwd diye adlandırılan). Dizin ağacı içinde rasgele yerlerde dosya sistemlerinin montajı zaten kökü gibi, bu gibi maskaralık gerek olacaktır sistem yöneticisi, sınırlı olmasının nedeni budur. Bu yüzden dosyaları keyfi yerlere dizin ağaçlarıyla birlikte monte etme sistem kullanıcısına kısıtlanmıştır. 
 
-Daha önce, biz / dev/sda1 dosyasına "orta aygıt dosyası" denir dedik. Bu gerçekten sistemdeki ilk SCSI diskinin ilk bölümüdür-gerçek isim tamamen kullandığınız ortanın türüne göre değişir.USB anahtarları için hala bariz bir isimdir. Bu bilgiyle-aygıt adı ve bağlama noktası- bir sistem kullanıcısı ortayı aşağıdakileri takiben notme edebilir: 
+Daha önce, biz /dev/sda1 dosyasına "orta aygıt dosyası" denir dedik. Bu gerçekten sistemdeki ilk SCSI diskinin ilk bölümüdür - gerçek isim tamamen kullandığınız ortanın türüne göre değişir. USB anahtarları için hala bariz bir isimdir. Bu bilgiyle-aygıt adı ve bağlama noktası- bir sistem kullanıcısı ortayı aşağıdakileri takiben notme edebilir: 
 \begin{verbatim}
 # mount /dev/sda1 /media/usb
 \end{verbatim}
 
-Bu ortamda dosyası olarak adlandırılan bir dosya olarak / media / usb / dosya görünür olacağı anlamına gelir dizin ağacında. Aşağıdaki gibi bir komutla:
+Bu ortamda dosyası olarak adlandırılan bir dosya olarak /media/usb/ dosya görünür olacağı anlamına gelir dizin ağacında. Aşağıdaki gibi bir komutla:
 \begin{verbatim}
 # umount /media/usb Note: no ‘‘n’’
 \end{verbatim}
 
 Kullanıcı aynı zamanda ortayı tekrar bağlayabilir.
-\end{section}
-\paragraph{Bu Bölümdeki Komutlar}{}
-\paragraph{dmesg}{çekirdeğin arabellek mesajının içeriğini çıkarır}
-\paragraph{file}{Kurallar dosyası(1)'e göre dosyanın içeriğinin türünü tahmin eder}
-\paragraph{free}{ana bellek ve takas alanı kullanımını görüntüler}
-\paragraph{klogd}{Çekirdeik log mesajlarını kabul ede}
-\paragraph{mkfifo}{FIFO'ları oluşturur (named pipes)}
-\paragraph{mknod}{Aygıt dosyalarını oluşturur}
-\paragraph{syslogd}{sistem log mesajlarını işler}
+
+\paragraph{Bu Bölümdeki Komutlar}{
+\begin{itemize}
+\item[dmesg]çekirdeğin arabellek mesajının içeriğini çıkarır
+\item[file]Kurallar dosyası(1)'e göre dosyanın içeriğinin türünü tahmin eder
+\item[free]ana bellek ve takas alanı kullanımını görüntüler
+\item[klogd]Çekirdeik log mesajlarını kabul ede
+\item[mkfifo]FIFO'ları oluşturur (named pipes)
+\item[mknod]Aygıt dosyalarını oluşturur
+\item[syslogd]sistem log mesajlarını işler
+\end{itemize}}
 
 \paragraph{Özet}{
 \begin{itemize}
@@ -299,5 +300,6 @@ Kullanıcı aynı zamanda ortayı tekrar bağlayabilir.
 \item Aynı zamanda dizinlerin ve dosyaların üzerindeki veriler ile birlikte sistemin tam hiyerarşi yapısını veya belirli bir depolama ortamını kapsar.
 \item Linux dosya sistemleri (iki çeşittir FIFO'lar ve UNİX alan soketleri ): düz dosyaları, dizinleri, sembolik bağları ve aygıt dosyalarını içerir
 \item Dosya sistemi Hiyerarşisi Linux sistemi tarafından birçoğunun anlamını önemli bir  dizinlerini ve dağılımlarını açıklar.
-\end{itemize}
-}
+\end{itemize}}
+
+\end{section}
