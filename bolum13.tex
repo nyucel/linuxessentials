@@ -23,11 +23,11 @@ Fakat bu tamamen doğru değildir: Arada bir normal kullanıcılara yöneticiler
 
 Linux, normal kullanıcılar tarafından gerçekleştirilen yetkisiz girişlerden sistem ayarlarını korusa da sizi sistemin beynini kapatmanız için yanıltmamalı. Size önerimiz (Örneğin: Kullanıcı grafik ara-yüzüne root olarak girmemek gibi). ’X’ Websitesine girmenizi ve kredi kartı numaranızı soran ek olarak kredi kartınızın şifrenizi girmenizi isteyen E-posta mesajları size Linux'tayken bile ulaşabilir ve başka yerde olduğu gibi aynı şekilde bu tür e-posta mesajlarını dikkate almamanız gerekmektedir.
 
-Linux kullanıcı hesapları vasıtasıyla farklı kullanıcıları birbirinden ayırır. Ortak dağıtıcılar yükleme sırasında genelde 2 tane kullanıcı hesabı açar,şöyle ki yönetimsel görevler için root ve normal kullanıcı için ise farklı bir kullanıcı hesabı. Siz (yönetici olarak) daha sonra daha fazla kullanıcı hesabı ekleyebilirsiniz yada daha geniş bir şebekedeki istemci bilgisayarda başka bir yerde depolanan kullanıcı bilgileri otomatik olarak karşınıza çıkabilir.
+Linux kullanıcı hesapları vasıtasıyla farklı kullanıcıları birbirinden ayırır. Ortak dağıtıcılar yükleme sırasında genelde 2 tane kullanıcı hesabı açar, şöyle ki yönetimsel görevler için root ve normal kullanıcı için ise farklı bir kullanıcı hesabı. Siz (yönetici olarak) daha sonra daha fazla kullanıcı hesabı ekleyebilirsiniz yada daha geniş bir şebekedeki istemci bilgisayarda başka bir yerde depolanan kullanıcı bilgileri otomatik olarak karşınıza çıkabilir.
 
 Linux, kullanıcı hesaplarını ayırır, kullanıcıları değil. Örneğin, kimse sizi web'te dolaşmak ya da e-postaları okumak için kullandığınız farklı bir kullanıcı hesabını kullanmaktan alı koymaz. Eğer internetten yüklediğiniz şeylerin önemli bilgilerinize ulaşmayacağından emin olmak istiyorsanız biraz ustalıkla web tarayıcısı ve e-posta programını normal programlar arasında 'Dolaşma hesabı' adı altında çalıştırabilirsiniz.
 
-Linux altında, her kullanıcı hesabına, kullanıcı kimliği adında (UserID ya da kısada UID), tek  bir numara atanmıştır. Üstelik her kullanıcı hesabı metinsel kullanıcı ismi (root veya joe) gibi insanların akıllarında daha kalıcı olmasını kolaylaştıran özellikler taşır. Çoğu yerde sayım yaptığı zaman (Örneğin; giriş yapıldığında, yada dosyaların yada sahiplerinin listelerinde) Linux, münkün mertebede ilk olarak metinsel ismi kullanacaktır.
+Linux altında, her kullanıcı hesabına, kullanıcı kimliği adında (UserID ya da kısada UID), tek  bir numara atanmıştır. Üstelik her kullanıcı hesabı metinsel kullanıcı ismi (root veya joe) gibi insanların akıllarında daha kalıcı olmasını kolaylaştıran özellikler taşır. Çoğu yerde sayım yaptığı zaman (Örneğin; giriş yapıldığında, yada dosyaların ya da sahiplerinin listelerinde) Linux, münkün mertebede ilk olarak metinsel ismi kullanacaktır.
 
 Linux çekirdeği metinsel kullanıcı isimleri hakkında herhangi birşeyden haberdar değildir; dosya-sistemindeki işlem-verisi ve sahiplik-verisi sadece Kullanıcı kimliği'ni kullanır (UID). Bu, eğer kullanıcı hala sistemde dosyaları mevcutken UID’yi silmişse ve UID başka bir kullanıcıya atanmışsa bazı sorunlara yol açabilir. Sonuç olarak, bu kullanıcı bilgisayara giren bir önceki kullanıcıdan geriye kalan dosyalara sahip olur yani bir nevi ona kalır.
 
@@ -35,11 +35,11 @@ Başka kullanıcı isimlerine aynı (rakamsal) UID (Kulanıcı kimliği) atamak 
 \end{subsection}
 \begin{subsection}{Kullanıcı ve Gruplar}
 
-Bilgisayarla çalışmak için öncelikle giriş yapmanız gerekmektedir.Bu sistemin sizi tanımanıza ve kullanıcı hesabı için belirlenmiş yetkilerin size atanmasını sağlayacaktır.Oturumunuz boyunca (Giriş ve çıkış yaptıgınız ana kadar) yaptığınız herşey kullanıcı adınız altında gerçekleşir.Ek olarak, her kullanıcıya dosyalarını depolayabileceği ve yöneteceği ve başka kullanıcıların genellikle okumaya ve yazmaya izinlerinin olmadığı ait 'Ev Dizin'leri vardır. Sadece sistem yöneticisi (root) bütün dosyaları okuyabilir ve yazabilir).
+Bilgisayarla çalışmak için öncelikle giriş yapmanız gerekmektedir. Bu sistemin sizi tanımanıza ve kullanıcı hesabı için belirlenmiş yetkilerin size atanmasını sağlayacaktır. Oturumunuz boyunca (Giriş ve çıkış yaptıgınız ana kadar) yaptığınız herşey kullanıcı adınız altında gerçekleşir. Ek olarak, her kullanıcıya dosyalarını depolayabileceği ve yöneteceği ve başka kullanıcıların genellikle okumaya ve yazmaya izinlerinin olmadığı ait 'Ev Dizin'leri vardır. Sadece sistem yöneticisi (root) bütün dosyaları okuyabilir ve yazabilir).
 
-Hangi Linux dağıtımını kullandığınıza bağlı olarak (Cue: Ubuntu), sisteme açıkça giriş yapmanıza gerek olmayabilir. Çünkü bilgisayar sizi tanıyacaktır ve nedeninin bu olduğunu farzedecektir. Sistem güvenliği yerine kolaylığı tercih ederseniz,bu özel işlem sadece bilgisayarınıza erişebilecek bir başka kişinin olmadığı zaman mantıklı olabilir.
+Hangi Linux dağıtımını kullandığınıza bağlı olarak (Cue: Ubuntu), sisteme açıkça giriş yapmanıza gerek olmayabilir. Çünkü bilgisayar sizi tanıyacaktır ve nedeninin bu olduğunu farzedecektir. Sistem güvenliği yerine kolaylığı tercih ederseniz, bu özel işlem sadece bilgisayarınıza erişebilecek bir başka kişinin olmadığı zaman mantıklı olabilir.
 
-Bazı kulanıcılar belirli sistem kaynaklarına ve dosyalarına giriş izni sağlamak için bir grup oluşturabilirler. Linux, grupları ya belirlenmiş sabit isimleriyle yada kullanıcılar için geçici giriş işlemlerine benzer yöntemlerle belirler. Grupların kullanıcılar gibi 'home directory'leri yoktur ama yönetici olarak isteğe bağlı olarak belirli guruplara göre makul yetkilerle directory'ler oluşturabilirsiniz.
+Bazı kulanıcılar belirli sistem kaynaklarına ve dosyalarına giriş izni sağlamak için bir grup oluşturabilirler. Linux, grupları ya belirlenmiş sabit isimleriyle yada kullanıcılar için geçici giriş işlemlerine benzer yöntemlerle belirler. Grupların kullanıcılar gibi 'ev dizin'leri yoktur ama yönetici olarak isteğe bağlı olarak belirli guruplara göre makul yetkilerle directory'ler oluşturabilirsiniz.
 
 Gruplarda rakamsal isimlerle tanılanmıştır (Group IDs yada GIDs)
 
@@ -60,7 +60,7 @@ $ id root
 uid=0(root) gid=0(root) groups=0(root)
 \end{verbatim}
 
--u, -g, ve –G seçenekleri ile, ID nin kendisi hesapların UID’sini , birincil grubun GID’sini yada ikinci grubun GID’sini vermek için kendini zorlar.(Bu seçenekler kombine edilemez) Ek olarak –n seçeneğiyle numaralar yerine ID lerin isimlerini elde edersiniz.
+-u, -g, ve –G seçenekleri ile, ID nin kendisi hesapların UID’sini , birincil grubun GID’sini yada ikinci grubun GID’sini vermek için kendini zorlar. (Bu seçenekler kombine edilemez) Ek olarak –n seçeneğiyle numaralar yerine ID lerin isimlerini elde edersiniz.
 \begin{verbatim}
 $ id -G
 1000 24 29 44
@@ -90,8 +90,7 @@ joe pts/1 pcjoe.example.c Wed Feb 29 10:51 still logged in
 joe pts/2 pcjoe.example.c Wed Feb 29 01:17 - 08:44 (07:27)
 \end{verbatim}
 
-Bu gizli bilgi rastgele bir biçimde sıradan kişilerin kullanımına sunulabiliyor ve bu da sizin açınızdan bir takım problemlere yol açabilir. Linux dağıtıcınızın kullanıcıların veri gizliliğini korumak için koyduğu standart ayarları değiştirip kullanıcıların bilgilerini daha iyi korumak istiyorsanız aşağıdaki komutu kullanarak sayaç bilgilerine bakan 'last' komutu dosyasının genel okuma yetkisini
-kaldırabilirsiniz.
+Bu gizli bilgi rastgele bir biçimde sıradan kişilerin kullanımına sunulabiliyor ve bu da sizin açınızdan bir takım problemlere yol açabilir. Linux dağıtıcınızın kullanıcıların veri gizliliğini korumak için koyduğu standart ayarları değiştirip kullanıcıların bilgilerini daha iyi korumak istiyorsanız aşağıdaki komutu kullanarak sayaç bilgilerine bakan 'last' komutu dosyasının genel okuma yetkisini kaldırabilirsiniz.
 \begin{verbatim}
 # chmod o-r /var/log/wtmp
 \end{verbatim}
@@ -104,14 +103,13 @@ last: /var/log/wtmp: Permission denied
 \end{subsection}
 \begin{subsection}{İnsan ve Pseudo-kullanıcılar}
 
-Normal kullanıcılardan başka -sistemi kontrol eden insanlar- kullanıcı ve grup kavramı, sistemin çeşitli parçalarına bazı yetkiler vermek içinde kullanılır. Bu şu anlama geliyor,gerçek kullanıcıların kişişel hesaplarının yanısıra, insan kullanıcılara benzemeyen başka hesaplarda vardır ama bunlara yönetici işlev yetkileride verilmiştir. Bu hesaplar kendi grupları ve hesaplarıyla bir nevi
-kendilerine işlevsel görevler belirlerler.
+Normal kullanıcılardan başka -sistemi kontrol eden insanlar- kullanıcı ve grup kavramı, sistemin çeşitli parçalarına bazı yetkiler vermek içinde kullanılır. Bu şu anlama geliyor,gerçek kullanıcıların kişişel hesaplarının yanısıra, insan kullanıcılara benzemeyen başka hesaplarda vardır ama bunlara yönetici işlev yetkileride verilmiştir. Bu hesaplar kendi grupları ve hesaplarıyla bir nevi kendilerine işlevsel görevler belirlerler.
 
 Linux işletim sistemini yükledikten sonra, /etc/passwd ve /etc/group dosyalarında bir kaç tane grup ve sahte kullanıcı hesabıyla karşılaşabilirsiniz.Bildiğiniz üzere en önemli görev root (Yönetici) kullanıcısı ve adını verdiği gruplarındır. Root'un UID (Kullanıcı kimliği) ve GID (Grup kimliği) numaraları sıfırdır.
 
 Root (Yönetici) yetkileri UID 0'a bağlıdır, GID 0'a herhangi bir özel yetki verilmemiştir.
 
-Bazı yazılım sistemlerine, bilgisayar parçalarına ya da cihazlara (örneğin; yazıcılar, kasetler, ya da floppy sürücüler)ait olan sahte kullanıcılar (örneğin; Usenet-News INN adında kullanıcı ismi vardir yada Postfix posta servisi için postfix adı altında ek olarak birer kullanıcı ismi açılmıştır). Eğer gerekliyse, 'su' komutu ile diğer kullanıcı hesaplarında olduğu gibi bu hesaplarada erişebilmeniz mümkün. Bu yan kullanıcılar, yönetici hesabı olmadan dosya sahipliğine bağlı özel gereksinimlere erişim yetkileri sağlamak için dizin ve dosya sahipleri kadar önemli ve gereklidirler. Aynı gruplara Appkies'ler; disk grubunun üyeleri, örneğin, sistem disklerine erişmelerini engellemek için bazı engeller vardır.
+Bazı yazılım sistemlerine, bilgisayar parçalarına ya da cihazlara (örneğin; yazıcılar, kasetler, ya da floppy sürücüler) ait olan sahte kullanıcılar (örneğin; Usenet-News INN adında kullanıcı ismi vardir yada Postfix posta servisi için postfix adı altında ek olarak birer kullanıcı ismi açılmıştır). Eğer gerekliyse, 'su' komutu ile diğer kullanıcı hesaplarında olduğu gibi bu hesaplarada erişebilmeniz mümkün. Bu yan kullanıcılar, yönetici hesabı olmadan dosya sahipliğine bağlı özel gereksinimlere erişim yetkileri sağlamak için dizin ve dosya sahipleri kadar önemli ve gereklidirler. Aynı gruplara Appkies'ler; disk grubunun üyeleri, örneğin, sistem disklerine erişmelerini engellemek için bazı engeller vardır.
 \end{subsection}
 \paragraph{Alıştırmalar}{
 \begin{itemize}
@@ -131,18 +129,15 @@ Bazı yazılım sistemlerine, bilgisayar parçalarına ya da cihazlara (örneği
 <user name>: <password>: <UID>: <GID>: <GECOS>: <home directory>: <shell>
 \end{verbatim}
 
-Bu isim küçük harflerle ve sayılardan oluşturulmalıdır; ilk olarak bir harf kullanılmalıdır. Unix sistemleri genelde ilk 8 harfi dikkate alır,
-Linux'ta böyle bir sınırlandırma yoktur fakat çeşitli ağlarda dikkate alınması gerekmektedir.
+Bu isim küçük harflerle ve sayılardan oluşturulmalıdır; ilk olarak bir harf kullanılmalıdır. Unix sistemleri genelde ilk 8 harfi dikkate alır, Linux'ta böyle bir sınırlandırma yoktur fakat çeşitli ağlarda dikkate alınması gerekmektedir.
 
 Çift noktaları, noktalama işaretlerini ve kullanıcı isimlerinde ki özel harfleri sistem izin verse bile kullanmayınız. Kullanıcı isimleri oluşturan bütün araçların hepsi seçici değildir ve /etc/passwd dosyasını elinizle değiştirebilirsiniz. İlk bakışta sorunsuz çalışıyor görünsede ileri ki zamanlarda farklı yerlerde çeşitli problemlere yol açabilir.
 
-Sadece sayılardan ve büyük harflerden oluşan kullanıcı isimlerini kullanmaktan kaçınınız. İlk olarak sahiplerine giriş yaparken sorun yaratır ve eğer rakamsal kullanıcı ismi hesabın rakamsal UID (Kullanıcı kimliği) siyle eşit değilse karışıklığa sebep olabilir. 'ls -l' gibi komutlar '/etc/passwd' dosyasında UID'ye karşılık eşdeğer bir girdi olup olmadığını gösterir, ve 'ls' çıktısında
-UIDS'in tamamen rakamsal kullanıcı isimlerinden ibaret olduğunu söylemek doğru olmaz.
+Sadece sayılardan ve büyük harflerden oluşan kullanıcı isimlerini kullanmaktan kaçınınız. İlk olarak sahiplerine giriş yaparken sorun yaratır ve eğer rakamsal kullanıcı ismi hesabın rakamsal UID (Kullanıcı kimliği) siyle eşit değilse karışıklığa sebep olabilir. 'ls -l' gibi komutlar '/etc/passwd' dosyasında UID'ye karşılık eşdeğer bir girdi olup olmadığını gösterir, ve 'ls' çıktısında UIDS'in tamamen rakamsal kullanıcı isimlerinden ibaret olduğunu söylemek doğru olmaz.
 
 Genellikle, bu alan kullanıcının şifrelenmiş parolasını barındırır. Bugün, çoğu Linux dağıtıcıları, şifreleri bazı özel yetkili programlar ya da yönetici tarafından erişilebilip, herkes tarafından okunan /etc/shadow dosyasında toplanan,/etc/passwd dosyasında saklamak yerine 'gölge parolalar' kullanırlar'. "/etc/passwd" dosyasında bir 'x' biraz dikkat gerektirebilir? Her kullanıcı 'passwd' programınından faydalanarak şifresini değiştirebilir.
 
-Rakamsal kullanıcı tanımlayıcısı -0 ile 232 arasında bir sayı- 1. Genelde, 0 ila 99 (99 dahil) arasındaki UID numaralar sistem için ayrılmıştır, 100 ile 499 arasındaki sayılar ise yazılım paketlerinin sahte/yan kullanıcılar oluşturması için kullanılır. Yaygın dağıtıcılarda gerçek kullanıcıların UID numaraları 500 ya da 1000'den itibaren başlar. Çünkü, sistem kullanıcıları isimleriyle değil UID (Kullanıcı kimlikleriyle) birbirinden ayırt eder.Çekirdek, farklı isimlere sahip fakat UID leri aynı olan iki hesap varsa (Konu özel yetkilerle alakalı
-olduğu sürece) iki hesabıda tamamen aynı şekilde değerlendirir. Kullanıcı isimlerini gösteren komutlar ("'ls -l'" ya da 'id') giriş yaparken kullanıcının hangi ismi yada UID yi kullandığını gösterir.
+Rakamsal kullanıcı tanımlayıcısı -0 ile 232 arasında bir sayı- 1. Genelde, 0 ila 99 (99 dahil) arasındaki UID numaralar sistem için ayrılmıştır, 100 ile 499 arasındaki sayılar ise yazılım paketlerinin sahte/yan kullanıcılar oluşturması için kullanılır. Yaygın dağıtıcılarda gerçek kullanıcıların UID numaraları 500 ya da 1000'den itibaren başlar. Çünkü, sistem kullanıcıları isimleriyle değil UID (Kullanıcı kimlikleriyle) birbirinden ayırt eder.Çekirdek, farklı isimlere sahip fakat UID leri aynı olan iki hesap varsa (Konu özel yetkilerle alakalı olduğu sürece) iki hesabıda tamamen aynı şekilde değerlendirir. Kullanıcı isimlerini gösteren komutlar ("'ls -l'" ya da 'id') giriş yaparken kullanıcının hangi ismi yada UID yi kullandığını gösterir.
 
 Kullanıcının birinci grubunun giriş yaptıktan sonraki GID'si.
 
@@ -150,8 +145,7 @@ Novell/SUSE dağıtıcıları (diğerleri arasında) bütün kullanıcıların t
 
 Debian GNU/Linux ya da Red Hat gibi diğer birçok dağıtıcı ne zaman sistemde bir hesab oluşturulursa hesabın UID (Kullanıcı kimliği) leriyle aynı olan GID (Grup kimliği) lerle yeni bir hesap oluşturur. Bunun amacı ise bütün kullanıcıları aynı grup kullanıcıları yerine koyan daha gelişmiş yetkiler vermektir.Aşağıdaki duruma bir göz atın: Jim (kullanıcı ismi jim) Yönetici Sue'nun (kullanıcı ismi sue) kişisel yardımcısıdır. Bu durumda Sue'nun başkalarının giriş yetkisinin bulunmadığı ev dizinine erişim yetkisinin bulunması gerekiyor.
 
-Red Hat ve Debian\&Co'nun 'bir grup bir kullanıcı' yöntemine göre Jim gruba girebilir ve Sue'nun dosyalarını diğer grup üyeleri düzenleyip okunmalarını sağlayabilir fakat başkaları için değil. 'Herkes için tek bir grup' yöntemiyle
-de en baştan yeni bir grup oluşturulması ve Jim ve Sue'nun hesaplarını uygun bir şekilde tekrardan ayarlamak gerekecekti.
+Red Hat ve Debian\&Co'nun 'bir grup bir kullanıcı' yöntemine göre Jim gruba girebilir ve Sue'nun dosyalarını diğer grup üyeleri düzenleyip okunmalarını sağlayabilir fakat başkaları için değil. 'Herkes için tek bir grup' yöntemiyle de en baştan yeni bir grup oluşturulması ve Jim ve Sue'nun hesaplarını uygun bir şekilde tekrardan ayarlamak gerekecekti.
 
 
 /etc/passwd dosyasındaki atamalarda, her kullanıcı bir grubun üyesi olmak zorundadır.
@@ -162,25 +156,22 @@ Bu açıklama alanı 'GECOS Alanı' olarakta bilinmektedir.
 
 GECOS - “General Electric Comprehensive Operating System” yani Genel elektrik kapsamlı işletim sisetmi anlamına gelmektedir ve Linux'la hiç bir alakası yoktur fakat Unix eskiden bu alanı Gecos uzaktan iş girdi servisi için uyumluluk verisi saklamak için /etc/passwd dosyasına eklerdi.
 
-Bu alan kullanıcı hakkında çeşitli bilgileri, 'reel' ismi ve telefon numarası ya da ofis numarası isteğe bağlı veriler gibi bilgileri içerir. Bu bilgiler 'Mail' yada 'Finger' gibi programlar tarafından kullanılır. Tam isim, genellikle 'news' yada 'mail' yazılımı sayesinde gönderici adresinde görülebilir.
+Bu alan kullanıcı hakkında çeşitli bilgileri, 'reel' ismi ve telefon numarası ya da ofis numarası isteğe bağlı veriler gibi bilgileri içerir. Bu bilgiler 'Mail' yada 'Finger' gibi programlar tarafından kullanılır. Tam isim, genellikle 'news' ya da 'mail' yazılımı sayesinde gönderici adresinde görülebilir.
 
 Teorik açıdan,GECOS alanınızdaki içeriği (kullanıcı olarak) değiştirmenize yarayan 'chfn' adında bir program vardır. İşe yarayıp yaramadığı tartışmalara yol açsada, ortak bir ortamda kimse insanların isimlerini istedikleri gibi değiştirmelerine izin vermek istemez.
 
-Bu dizin kullanıcıların dosyalarını depolayabilecekleri kişisel alanlarıdır.Yeni oluşturulan dizin kesinlikle boş değildir, çünkü kullanıcı genellikle temel gereçler açısından profil dosyalarının numaralarını alır.
-Kullanıcı giriş yaptığı zaman,kullanıcı kabuğu ana dizinini o anda geçerli olan dizini olarak kullanır örneğin kullanıcı giriş yatığı anda dosyaları burada depolanır.
+Bu dizin kullanıcıların dosyalarını depolayabilecekleri kişisel alanlarıdır.Yeni oluşturulan dizin kesinlikle boş değildir, çünkü kullanıcı genellikle temel gereçler açısından profil dosyalarının numaralarını alır. Kullanıcı giriş yaptığı zaman,kullanıcı kabuğu ana dizinini o anda geçerli olan dizini olarak kullanır örneğin kullanıcı giriş yatığı anda dosyaları burada depolanır.
 
-Programın ismi doğrulamayı geçtikten sonra 'login' komutuyla başlatılır,bu genellikle kabuktur. 7.alan en son satır boyunca genişler/yayılır.
+Programın ismi doğrulamayı geçtikten sonra 'login' komutuyla başlatılır, bu genellikle kabuktur. 7.alan en son satır boyunca genişler/yayılır.
 
-Kullanıcı bu girdiyi 'chsh' programı yardımıyla değiştirebilir.Uygun programlar /etc/shells dosyasında gösterilmiştir. Eğer kullanıcının parametleri olan etkileşimli bir kabuğu (shell'i) yok ise genelde yaygın olan '/bin/true' klasörüne
-girilebilir.Bu alan genelde /bin/sh kabuğunun başlatılması durumunda boş bırakılabilir.
+Kullanıcı bu girdiyi 'chsh' programı yardımıyla değiştirebilir. Uygun programlar /etc/shells dosyasında gösterilmiştir. Eğer kullanıcının parametleri olan etkileşimli bir kabuğu (shell'i) yok ise genelde yaygın olan '/bin/true' klasörüne girilebilir. Bu alan genelde /bin/sh kabuğunun başlatılması durumunda boş bırakılabilir.
 
 Eğer çizgisel bir ortamda oturum açarsanız etkileşimli kabuk (shell) gerekli olmadığı sürece kullanıcı adınız altında çeşitli programlar çalışacaktır. /etc/passwd dosyasındaki kabukl girdisi
 
 
 Burada gösterilen alanlar boş olabilir. Gerekli olanlar sadece kullanıcı ismi,UID,GID ve ana dizindir. Çoğu kullanıcı hesaplarında bütün alanlar doldurulur ama yan/ek kullanıcılar bu alanların sadece bir kısmını kullanabilir.
 
-Ana dizinler genelde /home klasörü altında yer alır ve isimlerini kullanıcılarının isimlerinden alırlar. Genelde bu kullanıcının ismi verilen ana dizini bulmayı kolaylaştıran bir yöntemdir. Teorik olarak,bir ana dizin kullanıcının belirlediği
-herhangi bir isim altında herhangi bir dosyada yada klasörde yer alabilir.
+Ana dizinler genelde /home klasörü altında yer alır ve isimlerini kullanıcılarının isimlerinden alırlar. Genelde bu kullanıcının ismi verilen ana dizini bulmayı kolaylaştıran bir yöntemdir. Teorik olarak,bir ana dizin kullanıcının belirlediği herhangi bir isim altında herhangi bir dosyada ya da klasörde yer alabilir.
 
 Daha büyük sistemlerde /home ve 'kullanıcı ismi' dizini arasına bir yada birden fazla seviye dizin seviyesi koyulur. Aşağıdaki gibi;
 \begin{verbatim}
@@ -189,18 +180,15 @@ Daha büyük sistemlerde /home ve 'kullanıcı ismi' dizini arasına bir yada bi
 /home/exec/bob Bob the CEO
 \end{verbatim}
 
-Bunun birkaç sebebi vardir. Bir yandan bölüm içindeki sunucu üzerinde ana dizini bulunan kullanıcının bölümünü korumayı kolaylaştırırken, bir yandan da diğer istemci bilgisayarlar için bunu mevcut kılar. Bir yandan, Unix (ve bazı Linux) işletim sistemlerinde binlerce dosya içeren dizinlerle işlem yapmak eskiden çok yavaştı ve bu /home dizininde bir kaç bin girdi üzerinde istenmedik bir olaya
-ve dosyaların zarar görmesine sebep olabilirdi. Fakat şuanki Linux sistem dosyalarında (ext3 with dir\_index and similar) bu artık bir yaşanan bir sorun olmaktan çıktı.
+Bunun birkaç sebebi vardir. Bir yandan bölüm içindeki sunucu üzerinde ana dizini bulunan kullanıcının bölümünü korumayı kolaylaştırırken, bir yandan da diğer istemci bilgisayarlar için bunu mevcut kılar. Bir yandan, Unix (ve bazı Linux) işletim sistemlerinde binlerce dosya içeren dizinlerle işlem yapmak eskiden çok yavaştı ve bu /home dizininde bir kaç bin girdi üzerinde istenmedik bir olaya ve dosyaların zarar görmesine sebep olabilirdi. Fakat şuanki Linux sistem dosyalarında (ext3 with dir\_index and similar) bu artık bir yaşanan bir sorun olmaktan çıktı.
 
-Göz önünde bulundurmanız gerekir ki, /etc/passwd dosyalarını elle değiştirip düzenlememelisiniz.Kullanıcı hesaplarını oluşturup düzenlemenize yardımcı olacak bir kaç program zaten var.
+Göz önünde bulundurmanız gerekir ki, /etc/passwd dosyalarını elle değiştirip düzenlememelisiniz. Kullanıcı hesaplarını oluşturup düzenlemenize yardımcı olacak bir kaç program zaten var.
 
-Genelde,kullanıcı verilerini /etc/passwd dosyasından başka bir yerde depolamak münkün. Çoklu (binlerce) kullanıcısı olan sistemlerde kullanıcı verilerini bağlantısal veritabanında depolamak tercih edilebilirken türdeş olmayan çoklu ortam kullanıcı veritabanlı LDAP dizinine bağlı ağlarda, kullanıcı verilerini bağlantısal veritabanında depolamak tercih konusu olmayabilir. Bunun detayları ise
-bu derse dahil değildir.
+Genelde, kullanıcı verilerini /etc/passwd dosyasından başka bir yerde depolamak münkün. Çoklu (binlerce) kullanıcısı olan sistemlerde kullanıcı verilerini bağlantısal veritabanında depolamak tercih edilebilirken türdeş olmayan çoklu ortam kullanıcı veritabanlı LDAP dizinine bağlı ağlarda, kullanıcı verilerini bağlantısal veritabanında depolamak tercih konusu olmayabilir. Bunun detayları ise bu derse dahil değildir.
 \end{subsection}
 \begin{subsection}{/etc/shadow dosyası}
 
-Güvenlik için,hemen hemen bütün Linux dağıtıcıları '/etc/shadow' dosyasında (“shadow passwords”) kodlanmış kullanıcı parolaları depolar. Bu dosya normal kullanıcılar tarafından okunamazken, yöneticilerin yanı sıra'shadow' gruplar tarafından okunabilir fakat sadece root tarafından okunup değiştirilebilir.Eğer dosyayı normal kullanıcı olarak açmayı denerseniz bir hata oluşur ve sonucunda
-dosya açılmaz.
+Güvenlik için,hemen hemen bütün Linux dağıtıcıları '/etc/shadow' dosyasında (“shadow passwords”) kodlanmış kullanıcı parolaları depolar. Bu dosya normal kullanıcılar tarafından okunamazken, yöneticilerin yanı sıra'shadow' gruplar tarafından okunabilir fakat sadece root tarafından okunup değiştirilebilir.Eğer dosyayı normal kullanıcı olarak açmayı denerseniz bir hata oluşur ve sonucunda dosya açılmaz.
 
 /etc/shadow dosyasını kullanmak zorunlu değildir fakat kullanmanız önerilir. Ancak shadow passwords (gölge parolaların) sunduğu ekstra güvenlik devre dışı bırakıldığı yerlerde, örneğin NIS kullanıcı verilerini diğer sunuculara aktarmak için kullanıldığında (Özellikle türdeş olmayan Unix ortamlarında) bir takım sistem ayarları değşikliği yapılması gerekebilir.
 
@@ -234,20 +222,18 @@ parolasını yenilemek zorundadır.
 
 Parola kodlamasıyla ilgili bazı düşünceler var.Kodlanan bir parolanın tekrar deşifre edileceğini düşünebilirsiniz. Böyle birşey /etc/shadow dosyasının bir kopyasını elde etmeye başaran bir hacker'a bütün sistem hesaplarını açması demek olurdu. Ancak, durum gerçekte böyle değil, çünkü dönüşü olmayan birşeydir. Çünkü herhangi bir Linux şifresinin deşifre edilmiş gösterimini şifrelenmiş formatından kurtarmak/elde etmek imkansızdır. Kodları deşifre etmenin tek yolu olası parolaları şifreleyip daha sonra /etc/shadow dosyasındaki parolalarla uyuşup uyuşmadığını kontrol etmektir.
 
-Parolanızın harflerini 95 tane görünür ASCII harflerinden oluşturduğunuzu farz edelim (büyük ve küçük harfler ayrılmıştır). Bu 95 tane tek harfli parolanın olduğu anlamına gelir ve 95x95 = 9025 tanede 2 harfli parolanın olduğu anlamına gelir vesaire...8 harfli bir şifre oluşturduğunuzu düşünürsek buda 6.6 katrilyon adet şifre yapar. Eğer saniyede 250,000 bin tane şifreyi tekrardan kodlayıp ve olası şifreyi bulmak için bu şifreleri tek tek denediğinizi farzedersek hesaplara göre 841 yılınız olması gerekiyor, bu da mümkün değil.
+Parolanızın harflerini 95 tane görünür ASCII harflerinden oluşturduğunuzu farz edelim (büyük ve küçük harfler ayrılmıştır). Bu 95 tane tek harfli parolanın olduğu anlamına gelir ve 95x95 = 9025 tanede 2 harfli parolanın olduğu anlamına gelir vesaire. 8 harfli bir parola oluşturduğunuzu düşünürsek buda 6.6 katrilyon adet şifre yapar. Eğer saniyede 250,000 bin tane parolayı tekrardan kodlayıp ve olası parolayı bulmak için bu parolaları tek tek denediğinizi farzedersek hesaplara göre 841 yılınız olması gerekiyor, bu da mümkün değil.
 
-Ancak bu hala güvende olduğunuz anlamına gelmez.Geleneksel yöntemleri ('crypt' yada 'Des' denilen) artık pek yaygın değil. Bu yöntemler sadece girilen şifrenin ilk 8 harfine bakmak gibi kötü olan yönleri var ve deneyimli olan bir hacker bugünlerde yeterince alana sahip olan bir disk alarak önceden kodlanmış 50 milyon parolanın önbelleğini bu alanda oluşturabilir. Bir parolayı çözmek için sadece önbelleklerindeki kodlanmış şifreyi/ya da şifreleri aramaları yeterli, bu yöntem kolayca ve hızlıca yapılabilir ve uyuşan açık-metin parolayı okuyabilir.
+Ancak bu hala güvende olduğunuz anlamına gelmez. Geleneksel yöntemleri ('crypt' yada 'Des' denilen) artık pek yaygın değil. Bu yöntemler sadece girilen parolanın ilk 8 harfine bakmak gibi kötü olan yönleri var ve deneyimli olan bir hacker bugünlerde yeterince alana sahip olan bir disk alarak önceden kodlanmış 50 milyon parolanın önbelleğini bu alanda oluşturabilir. Bir parolayı çözmek için sadece önbelleklerindeki kodlanmış parolayı/ya da parolaları aramaları yeterli, bu yöntem kolayca ve hızlıca yapılabilir ve uyuşan açık-metin parolayı okuyabilir.
 
 Eğer işleri biraz daha zorlaştırırsak, yeni eklenen kodlanmış bir parola girildiğinde, sistem genelde şifrelenmiş parola için sunulan 4096 ihtimalden birini seçen 'salt' adında bir öğe/unsur ekler. 'Salt' ın temel amacı X kullanıcısının /etc/shadow dosyasının içeriğine bakarak, kendi parolasının Y kullanıcısının parolasıyla aynı olduğunun farkına varmasından dolayı kaynaklanacak darbelerden kaçınmaktır. Güzel bir etki için, önceki paragrafta belirtildiği gibi hacker'in önceden kodlanmış sözlüğü için gerekli olan alan 4096 unsuruyla boşa gitmiştir.
 
-Bugünlerde şifreleme yöntemleri genellikle 12 bit yerine 48 bit salt kullanan ve istenilen uzunlukta parolalar oluşturulmasına izin veren MD5 algoritmasına dayalıdır. Şifreleme 'crypt'den daha yavaş bir şekilde çalışır ve asıl amaçtan biraz bağımsız olsada,hackerlari belli bir
-dereceye kadar engeller.
+Bugünlerde şifreleme yöntemleri genellikle 12 bit yerine 48 bit salt kullanan ve istenilen uzunlukta parolalar oluşturulmasına izin veren MD5 algoritmasına dayalıdır. Şifreleme 'crypt'den daha yavaş bir şekilde çalışır ve asıl amaçtan biraz bağımsız olsada,hackerlari belli bir dereceye kadar engeller.
 
 Çeşitli yönetici parola parametlerinden pek fazla birşey beklemeyin. Bu parametreler metin konsolu oturum açma işlemiyle kullanılır ama sistemin diğer parçalarının buna dikkat edip etmeyeceği sizin belirlediğiniz ayarlara bağlıdır (örneğin şekilsel giriş ekranı gibi). Kısa aralıklardaki kullanıcı şifrelerini aynı şeye zorlamakta pek birşey ifade etmez - bu genellikle 'bob1, bob2, bob3,' sırasıyla sonuçlanır ya da kullanıcılar 2 parola arasında seçim yapar. 'mimal interval' En kısa aralık
 
 
-Sistem yöneticisi olarka başa çıkmanız gereken sorun sisteminize ait parolaları zorla kırmak isteyen insanlar değildir. Genel olarak 'social engineering (toplum mühendisliğini) kullanmak daha faydalıdır. Şifrenizi çözmeye çalışan akıllı biri a,b ve diğer harflerle değilde eşinizin ilk ismi, çocuklarınızın ilk isimlerini, arabanızın plakasını,ya da köpeğinizin doğum gününü vs. tahmin ederek parolanızı tahmin etmeye çalışır. Ya da hala insanların bugün hala tuzağına düştüğü telefon aramaları ; 'Merhaba,sizi IT departmanından arıyorum.Güvenlik sistemiyle ilgili
-bir test yapıyoruz ve acilen kullanıcı adınızı ve şifrenizi öğrenmemiz gerek.'
+Sistem yöneticisi olarka başa çıkmanız gereken sorun sisteminize ait parolaları zorla kırmak isteyen insanlar değildir. Genel olarak 'social engineering (toplum mühendisliğini) kullanmak daha faydalıdır. Şifrenizi çözmeye çalışan akıllı biri a, b ve diğer harflerle değilde eşinizin ilk ismi, çocuklarınızın ilk isimlerini, arabanızın plakasını,ya da köpeğinizin doğum gününü vs. tahmin ederek parolanızı tahmin etmeye çalışır. Ya da hala insanların bugün hala tuzağına düştüğü telefon aramaları ; 'Merhaba,sizi IT departmanından arıyorum. Güvenlik sistemiyle ilgili bir test yapıyoruz ve acilen kullanıcı adınızı ve şifrenizi öğrenmemiz gerek.'
 \end{subsection}
 \begin{subsection}{/etc/group dosyası}
 
@@ -260,9 +246,9 @@ Anlamları aşağıdaki gibidir:
 
 \begin{itemize}
 \item[group name]Grup ismi dizinlerdeki sıralamalar için kullanılır.
-\item[password]Belirlenen grup için isteğe bağlı parola. Bu parola, üyesi olmadıkları gruba /etc/shadow yada /etc/group dosyasıyla 'newgrp' komutunu kullanarak grubun üyesi olduğunu farz eder. Yanlış girilen bir '*' yada geçersiz bir harf normal kullanıcıları söz konusu olan gruba geçişlerini engeller. Bir 'X' ayrı bir parola dosyası olan /etc/gshadow na aittir.
+\item[password]Belirlenen grup için isteğe bağlı parola. Bu parola, üyesi olmadıkları gruba /etc/shadow yada /etc/group dosyasıyla 'newgrp' komutunu kullanarak grubun üyesi olduğunu farz eder. Yanlış girilen bir '*' ya da geçersiz bir harf normal kullanıcıları söz konusu olan gruba geçişlerini engeller. Bir 'X' ayrı bir parola dosyası olan /etc/gshadow'a aittir.
 \item[GID]grubun rakamsal grup tanımlayıcısı
-\item[members]Kullanıcıların comma-seperated listesi. Bu liste bu grubun üyesi olan fakat GID alanında yada etc/passwd girdisinde farklı değerleri olan ve grubu ikinci grup olarak kullanan kullanıcıların listesini içerir (Bu grubu birincil grup olarak kullanan üyeler ve kullanıcılarda bu listede yer alabilir fakat gerekli değildir)
+\item[members]Kullanıcıların comma-seperated listesi. Bu liste bu grubun üyesi olan fakat GID alanında yada etc/passwd girdisinde farklı değerleri olan ve grubu ikinci grup olarak kullanan kullanıcıların listesini içerir (Bu grubu birincil grup olarak kullanan üyeler ve kullanıcılarda bu listede yer alabilir fakat gerekli değildir).
 \end{itemize}
 
 Bir /etc/group dosyası aşağıdaki şekilde olabilir:
@@ -278,7 +264,7 @@ Yönetici girdileri ve idari grupları için 'bin group' girdileri sistemdeki ek
 
 UID'ler gibi,GIDs ler belirli bir değerden başlarlar,genelde 100'dür.Geçerli bir girdi için,en azından birinci yada 3. alan (grup ismi ve GID) kısmı doldurulmalıdır. Böyle bir girdi, GID'ye (/etc/passwd dosyasındaki kulanıcının birincil GID alanında oluşabilecek) metinsel bir isim verir.
 
-Şifre ya da üyelik alanları sadece kullanıcılara ikincil grup olarak verilen gruplar için doldurulmalıdır. Üyelik listesinde belirtilen kulanıcılar 'newgrp' komutunu kullanarak GIDs'lerini değiştirmek istediklerinde sistem onlara şifrelerini sormaz. Eğer şifrelenmiş bir parola verilmişse,üyelik listesideki girdisi olmayan kullanıcılar grubun üyesi olduğunu göstermeleri için bu parolayı kullanarak işlemi doğrulayabilirler.
+Şifre ya da üyelik alanları sadece kullanıcılara ikincil grup olarak verilen gruplar için doldurulmalıdır. Üyelik listesinde belirtilen kulanıcılar 'newgrp' komutunu kullanarak GIDs'lerini değiştirmek istediklerinde sistem onlara şifrelerini sormaz. Eğer şifrelenmiş bir parola verilmişse, üyelik listesideki girdisi olmayan kullanıcılar grubun üyesi olduğunu göstermeleri için bu parolayı kullanarak işlemi doğrulayabilirler.
 
 Uygulamada, grup parolaları hemen hemen hiç kullanılmıyorsa, idareci olarak parolalardan kaynaklanacak herhangi bir faydayı ya da avantajı düzeltmesi çok zordur. Bir yandan söz konusu kullanıcıların gruplarına şifre vermek daha uygunken, diğer yandan bütün grup üyeleri tarafından bilinen tek bir parola güvenlik sistemini kusuruz kılmaz.
 
@@ -290,7 +276,7 @@ Kullanıcı veritabanına gelince, grup veritabanı için gölge parola uzantıs
 \end{subsection}
 \paragraph{Alıştırmalar}{
 \begin{itemize}
-\item /etc/passwd dosyasının 2. sütununda hangi değerle karşılaşırsınız? Neden bu değer buradadır yada neden bu değeri bulursunuz?
+\item /etc/passwd dosyasının 2. sütununda hangi değerle karşılaşırsınız? Neden bu değer buradadır ya da neden bu değeri bulursunuz?
 \item Metin konsoluna geçin (Alt + F1'i kullanarak) ve oturum açmayı deneyin, yalnız kullanıcı isminizi küçük harflerle girin. Uyguladıktan sonra ne olduğunu söyleyin.
 \end{itemize}
 }
@@ -360,20 +346,19 @@ Dikkat edin: Her Linux dağıtımında useradd denilen program olsada diğer ara
 
 SUSE dağıtımlarının useradd programı /etc/passwd dosyası yerine kullanıcıları isteğe bağlı olarak bir LDAP dizinine koyacak şekilde uygun hale getirir (Bu sebeptendir ki -D seçeneği başka yerde olabileceği gibi soru sormaz ya da standart değerleri düzenlemez - LDAP işlemlerini uygulamak hala tartışılır ) Bu konunun detayları bu elkitabında yer almamaktadır.
 
-Debian GNU/Linux ve Ubuntu'da, useradd programı mevcuttur fakat kullanıcı hesabı oluşturmak için adduser programını kullanmak tavsiye edilir. Adduser
-programının avantajı ise Debian GNU Linux un kurallarına uymasıdır ve dahada fazlası asıl hesabı oluşturmanın yanı sıra isteğe bağlı diğer uygulamaları çalıştırması/uygulayabilmesidir. Örneğin, bir kullanıcı bir web sunucusunun döküman ağacında bir dizin oluşturabilir böylelikle yeni kullanıcı burada dosyalarını yayınlayabilir ya da kullanıcı otomatik olarak veritabanı sunucusuna yetkili giriş sağlayabilir.
+Debian GNU/Linux ve Ubuntu'da, useradd programı mevcuttur fakat kullanıcı hesabı oluşturmak için adduser programını kullanmak tavsiye edilir. Adduser programının avantajı ise Debian GNU Linux un kurallarına uymasıdır ve dahada fazlası asıl hesabı oluşturmanın yanı sıra isteğe bağlı diğer uygulamaları çalıştırması/uygulayabilmesidir. Örneğin, bir kullanıcı bir web sunucusunun döküman ağacında bir dizin oluşturabilir böylelikle yeni kullanıcı burada dosyalarını yayınlayabilir ya da kullanıcı otomatik olarak veritabanı sunucusuna yetkili giriş sağlayabilir.
 \end{subsection}
 \begin{subsection}{passwd Komutu}
 
-Passwd komutu kullanıcılar için parola ayarlar,eğer root (yönetici) olarak oturum açtıysanız, o zaman
+Passwd komutu kullanıcılar için parola ayarlar, eğer root (yönetici) olarak oturum açtıysanız, o zaman
 \begin{verbatim}
 #passwd joe
 \end{verbatim}
 
 kullanıcı John için yeni bir parola sorar (ekranda tekrarlanmaması için parolayı/kullanıcıyı iki kere girmeniz gerekmektedir)
 
-Passwd komutu normal kullanıcılar tarafından kendilerine ait parolalarını değiştirmeleri içinde kullanılabilir ( başka kullanıcıların
-şifrelerini değiştirmek sadece root (yöneticinin) yetki alanındadır)
+Passwd komutu normal kullanıcılar tarafından kendilerine ait parolalarını değiştirmeleri içinde kullanılabilir (başka kullanıcıların
+şifrelerini değiştirmek sadece root (yöneticinin) yetki alanındadır.
 \begin{verbatim}
 $ passwd
 Changing password for joe.
@@ -392,7 +377,7 @@ Diğer yandan, passwd komutu /etc/shadow dosyasındaki çeşitli ayarları düze
 bob LK 10/15/99 0 99999 7 0
 \end{verbatim}
 
-Çıktıdaki ilk alan kullanıcı ismidir, ardından parola durumu gelir "PS" yada "P" eğer parola belirlenmişse, kilitlenmiş bir hesap için sonuç "LK" ya da "L" ve parolası olmayan bir kullanıcı için "NP" sonucu. Diğer alanlar,sırasıyla,son parola değişiminin tarihi, parolayı değiştirmek için gereken en az ve en fazla aralık, bitiş uyarı aralığı ve parola süresinin bitiş tarihinden sonra kapanan hesaptan önceki'ekstra zaman süresi'.
+Çıktıdaki ilk alan kullanıcı ismidir, ardından parola durumu gelir "PS" ya da "P" eğer parola belirlenmişse, kilitlenmiş bir hesap için sonuç "LK" ya da "L" ve parolası olmayan bir kullanıcı için "NP" sonucu. Diğer alanlar,sırasıyla, son parola değişiminin tarihi, parolayı değiştirmek için gereken en az ve en fazla aralık, bitiş uyarı aralığı ve parola süresinin bitiş tarihinden sonra kapanan hesaptan önceki'ekstra zaman süresi'.
 
 passwd komutu seçenekleriyle bazı ayarları değiştirebilirsiniz. Aşağıda bir kaç örnek bulabilirsiniz; 
 \begin{verbatim}
@@ -417,7 +402,7 @@ passwd komutu seçenekleriyle bazı ayarları değiştirebilirsiniz. Aşağıda 
 
 (chage, passwd komutunun değiştirebileceği bütün ayarları değiştirebilir)
 
-Eğer seçenek isimlerini hatırlayamıyorsanız, chage komutunu sadece kullanıcı hesabının ismiyle kullanın. Program size değiştirmeniz ya da doğrulamanız için bir dize güncel değer sunar. Eğer yönetici bile düz metin bir parola alamıyor. Hatta tüm sifrelerin saklandığı /etc/shadow dizini bile yardımcı olmuyorsa. Bir kullanıcı parolasını unutursa genellikle passwd komutu kullanarak resetleyebilir.
+Eğer seçenek isimlerini hatırlayamıyorsanız, chage komutunu sadece kullanıcı hesabının ismiyle kullanın. Program size değiştirmeniz ya da doğrulamanız için bir dize güncel değer sunar. Eğer yönetici bile düz metin bir parola alamıyor. Hatta tüm parolaların saklandığı /etc/shadow dizini bile yardımcı olmuyorsa. Bir kullanıcı parolasını unutursa genellikle passwd komutu kullanarak yeniyebilir.
 
 Eğer root parolanızı unuttuysanız. Gerektiği takdirde kök olarak oturum açmak için bir kurtarma kabuğuna veya boot linux önyükleme icin disk veya CD ile /etc/shadow root bölgesini temizlemek için bir editör kullanabilirsiniz.
 \paragraph{Alıştırmalar}{
@@ -428,7 +413,7 @@ Eğer root parolanızı unuttuysanız. Gerektiği takdirde kök olarak oturum a�
 \end{itemize}}
 \end{subsection}
 \begin{subsection}{Kullanıcı Hesabını Silmek}
-Bir kullanıcı hesabı silmek için, /etc/passwd ve /etc/shadow dan kullanıcının girdilerini kaldırmak, /etc/group daki kullanıcının tüm referanslarını silmek ve kullanıcının ev dizininin yanı sıra oluştulan veya kullanıcı tarafından sahip olunan diğer dosyaların kaldırılması gerekir. Eğer kullanıcı varsa, /var/mail de gelen mesajlar için bir posta kutusu gibi onu da silmiş olmalıdır.
+Bir kullanıcı hesabı silmek için, /etc/passwd ve /etc/shadow dan kullanıcının girdilerini kaldırmak, /etc/group daki kullanıcının tüm referanslarını silmek ve kullanıcının ev dizininin yanı sıra oluştulan veya kullanıcı tarafından sahip olunan diğer dosyaların kaldırılması gerekir. Eğer kullanıcı varsa, /var/mail'de gelen mesajlar için bir posta kutusu gibi onu da silmiş olmalıdır.
 
 Bu adımları otomatikleştirmek için yine uygun bir komut vardır. userdel komutu bir kullanıcı hesabını tamamen siler. Sözdizimi:
 \begin{verbatim}
@@ -443,7 +428,7 @@ find / -uid <UID> -delete
 \end{subsection}
 \begin{subsection}{Kullanıcı Hesabını ve Grup Bilgisini Değiştirmek}
 
-Kullanıcı hesapları ve grup atamaları geleneksel olarak /etc/passwd ve /etc/group dosyaları düzenlenerek değiştirilebilir.Ancak, çoğu sistem aynı amaç için usermod ve groupmod gibi komutlar içerir, daha güvenli ve kullanımı daha uygun olduğundan bunu tercih etmelisiniz.
+Kullanıcı hesapları ve grup atamaları geleneksel olarak /etc/passwd ve /etc/group dosyaları düzenlenerek değiştirilebilir. Ancak, çoğu sistem aynı amaç için usermod ve groupmod gibi komutlar içerir, daha güvenli ve kullanımı daha uygun olduğundan bunu tercih etmelisiniz.
 
 usermod programı çoğunlukla useradd gibi aynı seçenekleri usermod kabul eder fakat kullanıcı hesaplarındaki mevcut değişiklikler yerine yenilerini oluşturur. Örneğin aşağıdaki komut ile kullanıcının birincil grubunu değiştirebilirsiniz.
 \begin{verbatim}
@@ -451,12 +436,10 @@ usermod -g <group> <user name>
 \end{verbatim}
 Dikkat! Eğer mevcut bir kullanıcı hesabının UID'sini değiştirmek istersen, /etc/passwd de doğrudan $<$UID$>$ alanını düzenleyebilirsiniz. Ancak, aynı zamanda chown kullanarak yeni UID'ye kullanıcı dosyalarını transfer etmelisiniz. “chown -R tux /home/tux” ile kullanıcı tux'a kullanıcı tux'un ev dizini altında sahip olduğu tüm dosyaları yeniden kazandırıp sonra hesap için UID değiştirmiş olursunuz. "ls -l" metinsel bir isim yerine sayısal bir UID görüntüler. Bu, bu dosyaların UID için herhangi bir kullanıcı ismi olmadığını ima eder. chown kullanarak bunu düzeltebilirsiniz.
 \end{subsection}
-\begin{subsection}{Kullanıcı Bilgisini Doğrudan Değiştirmek --- vipw}
+\begin{subsection}{Kullanıcı Bilgisini Doğrudan Değiştirmek -- vipw}
 Vipw komutu dogrudan /etc/passwd duzenlemek icin bir duzenleyici(vi veya farklı bir editor) cagırır. Söz konusu olan dosyanın diger kullanıcaları da etkilemesi icin e.g kullanılarak etkilendirilebilir. -S secenegi ile /etc/shadow dizinide duzenlenebilir.
 
-The actual editor that is invoked is determined by the value of the VISUAL
-environment variable, alternatively that of the EDITOR environment variable;
-if neither exists, vi will be launched.
+The actual editor that is invoked is determined by the value of the VISUAL environment variable, alternatively that of the EDITOR environment variable; if neither exists, vi will be launched.
 
 \paragraph{Alıştırmalar}{
 \begin{itemize}
@@ -495,8 +478,7 @@ groupdel <group name>
 
 Burada da, bu dosya sistemini kontrol etmek ve ayarlamak için mantıklı “orphaned” group dosya atamaları için chgrp komutu vardır. Kullanıcıların birincil grupları silinmiş olamaz-söz konusu kullanıcılar ya önceden silinmiş ya da farklı bir birincil gruba atanmak için zorlanmış olabilir.
 
-Gpasswd komutu özellikle grup şifreleme işlemleri için kullanılır ve
-passwd komutuna benzer. Sistem yöneticisi, bir veya daha fazla grup, idari grup yöneticisi, grup üyeliği listesinin yönetimi temsil edebilir. Grup adminleri aynı zamanda gpasswd komutunu kullanır:
+Gpasswd komutu özellikle grup şifreleme işlemleri için kullanılır ve passwd komutuna benzer. Sistem yöneticisi, bir veya daha fazla grup, idari grup yöneticisi, grup üyeliği listesinin yönetimi temsil edebilir. Grup adminleri aynı zamanda gpasswd komutunu kullanır:
 \begin{verbatim}
 gpasswd -a <user> <group>
 \end{verbatim}
@@ -546,10 +528,10 @@ Sistem yöneticisi olarak, vigr komutu doğrudan kullanarak grub veritabanını 
 \paragraph{Özet}{
 \begin{itemize}
 \item Sisteme erisim kullanıcı hesapları tarafından yonetilir.
-\item Bir kullanıcı hesabının bir sayisal UID ve(en az )bir metinsel kullanıcı adı vardır.
+\item Bir kullanıcı hesabının bir sayisal UID ve (en az)bir metinsel kullanıcı adı vardır.
 \item Kullanıclar gruplar olusturabilir.Bu grupların adları ve sayısal GID'leri vardır.
 \item “Pseudo-users" ve “pseudo-groups” erişim haklarını daha da geliştirmek icin hizmet verilmektedir.
-\item Merkezi kullanıcı veritabanı(normal) /etc/passwd dosyasında saklanır.
+\item Merkezi kullanıcı veritabanı (normal) /etc/passwd dosyasında saklanır.
 \item Kullanınıcın parolaları /etc/shadow dosyasında saklanır ve normal kullanıcılar bu dosyada yer alan parametrelere erisemezler.
 \item Grup bilgileri /etc/group ve /etc/gshadow dosylarında saklanır.
 \item Sifrele passwd komutu kullanılarak degistirilir.
