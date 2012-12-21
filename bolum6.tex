@@ -84,7 +84,7 @@ Dizinler ağaç-tarzı(yaratıcı bir şekilde "dizin ağacı"  denen) yapı ile
 	
 Burada taksimin çift görevi vardır, hem kök dizininin adıdır, hem de dizin isimleri arasında ayraç görevi üstlenir. Bu konuya birazdan geri döneceğiz.
 	
-Yaygın Linux dağıtımlarında temel yükleme, genellikle tek bir dosya hiyerarşisinde bulunan ve bunun çokça belirli düzene göre yapılandırılmış olduğu onbinlerce dosyayı içerir. Bu dosya hiyerarşisine Bölüm 10'da daha çok yer vereceğiz.
+Yaygın Linux dağıtımlarında temel yükleme, genellikle tek bir dosya hiyerarşisinde bulunan ve bunun çokça belirli düzene göre yapılandırılmış olduğu onbinlerce dosyayı içerir. Bu dosya hiyerarşisine Bölüm ~\ref{chap:bolum10}'da daha çok yer vereceğiz.
 \end{subsection}
 \begin{subsection}{Mutlak ve Göreceli Yol İsimleri}
 
@@ -98,7 +98,7 @@ Mevcut dizin evebeyn ve çocuk süreçler arasındaki "miras"'tır. Yani kabukta
 	
 Göreli yol isimlerinde(hatta mutlak olanlarda bile) 2 kullanışlı kestirme vardır: ".." isminde her zaman dizin ağacında bir bilinmeyen olan mevcut dizinin üst dizinini işaret eder—Örneğin, /home/joe, /home durumudur. Bu sıklıkla mutlak yol ismine başvurmak zorunda kalmadan, mevcut dizinden, dizin ağacı gibi gösterilen "yan dal"'a ayrılmak için kullanışlı bir yoldur. Farzedelim ki /home/joe dizininin letters ve novels isminde altdizinleri olsun. letters sizin mevcut dizininiz gibi olsun, novels dizininin içerisinde ivanhoe.txt dosyasına kaba bir şekilde mutlak yol ismi olan /home/joe/novels/ivanhoe.txt'yi kullanmaksızın ../novels/ivanhoe.txt şeklinde göreceli yol ismi belirterek referans belirtebilirsiniz.
 	
-İkinci kestirme ise size açıkça bir anlam ifade etmiyor gibi gelebilir: "." ismi dizin içerisinde bulunur ve her zaman dizinin kendisini ifade eder. Neden zaten içinde bulunduğumuz dizine işaret eden böyle bir metoda ihtiyacımızın olduğunun direkt olarak bir cevabı yoktur, fakat  tabi ki bu durumların bize kattığı kullanışlı becerileri vardır. Örneğin, belki biliyorsunuzdur (ya da Bölüm 9'a bakınız) kabuğun harici komutlar için program dosyalarını ararken kullandığı çevresel dizin değişkeni olan PATH vardır. Diyelim ki bir yazılım geliştiricisisiniz, bir program çalıştırmak istiyorsunuz, haydi (a) isimli mevcut dizininiz içerisindeki dosya, ve PATH içerisinde yer almayan (Güvenlik nedenleri için her zaman iyi bir fikirdir) (b) dizniniz içerisindeki prog'u çalıştıralım, halâ kabuğunuzdayken
+İkinci kestirme ise size açıkça bir anlam ifade etmiyor gibi gelebilir: "." ismi dizin içerisinde bulunur ve her zaman dizinin kendisini ifade eder. Neden zaten içinde bulunduğumuz dizine işaret eden böyle bir metoda ihtiyacımızın olduğunun direkt olarak bir cevabı yoktur, fakat  tabi ki bu durumların bize kattığı kullanışlı becerileri vardır. Örneğin, belki biliyorsunuzdur (ya da Bölüm ~\ref{chap:bolum9}'a bakınız) kabuğun harici komutlar için program dosyalarını ararken kullandığı çevresel dizin değişkeni olan PATH vardır. Diyelim ki bir yazılım geliştiricisisiniz, bir program çalıştırmak istiyorsunuz, haydi (a) isimli mevcut dizininiz içerisindeki dosya, ve PATH içerisinde yer almayan (Güvenlik nedenleri için her zaman iyi bir fikirdir) (b) dizniniz içerisindeki prog'u çalıştıralım, halâ kabuğunuzdayken
 \begin{verbatim}
  $ ./prog
 \end{verbatim} 
@@ -184,7 +184,7 @@ Parametre & Sonuç \\
 
 Dizin ağacı etrafında yolunuzu bulmak için hangi dosya ve dizinlerin mevcut dizin içerisinde olduğunu bilmeniz gerekir. ls("list") komutu tam da bu iş için vardır.
 
-Parametresiz kullanımda çıktı olarak dosyaların isme göre sıralandığı bir çeşit tablo görünümlü bir yapı elde edilir. Renkli ekranların günümüzde standart haline gelmesiyle, dosya isimleri ve türlerinin farklı renklerde görüntülenmesi genelek haline geldi (Daha dosya tipleri hakkında konuşmadık; bu konuya Bölüm 10'da değineceğiz).
+Parametresiz kullanımda çıktı olarak dosyaların isme göre sıralandığı bir çeşit tablo görünümlü bir yapı elde edilir. Renkli ekranların günümüzde standart haline gelmesiyle, dosya isimleri ve türlerinin farklı renklerde görüntülenmesi genelek haline geldi (Daha dosya tipleri hakkında konuşmadık; bu konuya Bölüm ~\ref{chap:bolum10}'da değineceğiz).
 	
 Neyse ki, günümüzde birçok dağıtım renkli kullanımı bünyesinde barındırıyor. Tablo 6.1'de en yaygın gösterimler vardır.
 
@@ -206,7 +206,7 @@ $ ls -l
 
 İlk durumda, bütün gizli olmayan dosyalar listelendi; ikinci durumda ise ekstra bilgi eklendi.
 
-	Uzun formatın farklı parçalarının anlamları vardır: İlk karakter dosya türünü verir (Bölüm 10'a bakınız); sade dosyalar "-", dizinler "d" şeklinde vb.(Tablo 6.1'deki "karakter türleri").
+	Uzun formatın farklı parçalarının anlamları vardır: İlk karakter dosya türünü verir (Bölüm ~\ref{chap:bolum10}'a bakınız); sade dosyalar "-", dizinler "d" şeklinde vb.(Tablo 6.1'deki "karakter türleri").
 	
 	Sonraki 9 karakter erişim izinlerini gösterir. Sonraki dosyanın adedini, dosyanın sahibini(joe), ve dosyanın grubunu(users) gösterir. Byte olarak dosyanın boyutundan sonra, dosyanın içerdiği son değiştirilme bilgisini tarih ve saat olarak görebilirsiniz. Ve tabi ki dosyanın adı da görüntülenir.
 	
@@ -455,37 +455,37 @@ Ek olarak -i ve -r parametrerin, rm cp'nin -v ve -f parametrelerinin kullanımı
 
 \paragraph{Alıştırmalar}{
 \begin{itemize}
- \item Kendi ev dizininizde myservices denilen /etc/services dosyasının kopyasını oluşturun. Bu dosyayı srv.dat olarak tekrar isimlendirin ve /tmp dizinine kopyalayın(yeni adını koruyarak). Dosyanın iki kopyasını da silin.
+ \item Kendi ev dizininizde myservices denilen /etc/services dosyasının kopyasını oluşturun. Bu dosyayı srv.dat olarak tekrar isimlendirin ve /tmp dizinine kopyalayın (yeni adını koruyarak). Dosyanın iki kopyasını da silin.
  \item mv neden -R parametresine sahip değildir(cp'nin sahip olduğu gibi)?
- \item Farzedelim ki dizinlerinizden biri "-file" isminde bir dosya içersin(isminin başında tire karakteri bulunsun). Bu dosyayı silmek için nasıl bir yol izlersiniz?
+ \item Farzedelim ki dizinlerinizden biri "-file" isminde bir dosya içersin (isminin başında tire karakteri bulunsun). Bu dosyayı silmek için nasıl bir yol izlersiniz?
  \item Eğer "rm *"'ye kazara kurban gitmesini istemediğiniz yerde bir dizininiz olsa \begin{verbatim}
  $ > -i
- \end{verbatim}gibi içerisinde "-i" denilen bir dosya oluşturabilirsiniz(Bölüm 8'de daha fazla detay açıklanacaktır). Eğer "rm *" komutunu çalıştırsanız ne olur? Neden?
+ \end{verbatim}gibi içerisinde "-i" denilen bir dosya oluşturabilirsiniz (Bölüm ~\ref{chap:bolum8}'de daha fazla detay açıklanacaktır). Eğer "rm *" komutunu çalıştırsanız ne olur? Neden?
 \end{itemize}}
 \end{subsection}
 \begin{subsection}{Dosyaların bağlanması — ln ve ln -s}
 
 Linux dosyalara "bağlantılar" adı verilen referanslar oluşturmaya izin verir, ve böylece aynı dosyaya birkaç isim atanabilir. Fakat bu neyi amaçlar? Dosya ve dizin isimleri için olan kısayollar, uygulamaların erişmesinde oluşturulması istenmeyen dosya silme işlemleri için güven, programcılar için kolaylık, geniş dizin ağaçları için alan tasarrufu sağlar ve birkaç sürümlerinde sadece küçük farklılıklarla mevcut olmalıdır.
 
-ln("link")("bağlantı") komutu varolan dosyaya(ilk argüman) ek olarak, yeni bir isim(ikinci argüman) ataması yapar.
+ln("link")("bağlantı") komutu varolan dosyaya (ilk argüman) ek olarak, yeni bir isim(ikinci argüman) ataması yapar.
 \begin{verbatim}
 $ ln list list2
 $ ls -l
 -rw-r--r-- 2 joe users 2500 Oct 4 11:11 list
 -rw-r--r-- 2 joe users 2500 Oct 4 11:11 list2
 \end{verbatim}
-Dizinin şimdi list2 isminde yeni bir dosya içerdiği görülür. Aslında aynı dosyaya sadece iki tane referans vardır. Bu bilgi referans sayıcısı tarafından "ls -l" çıktısının ikinci sütununda ipucu olarak verilir. Değeri 2'dir, dosyanın gerçekten 2 tane isme sahip olduğunu belirtir. İki dosya isimlerinin gerçekten aynı dosyaya referans olup olmadığını, sadece "ls -i" komutu kullanarak tespit edebilirsiniz. Bu durumda, ilk sütundaki dosya numarası, iki dosya için de özdeş olmalıdır. Dosya numaraları, ayrıca inode(indeks düğümü) numaraları da denir, dosya sisteminde dosyaları eşsiz olarak tanımlar:
+Dizinin şimdi list2 isminde yeni bir dosya içerdiği görülür. Aslında aynı dosyaya sadece iki tane referans vardır. Bu bilgi referans sayıcısı tarafından "ls -l" çıktısının ikinci sütununda ipucu olarak verilir. Değeri 2'dir, dosyanın gerçekten 2 tane isme sahip olduğunu belirtir. İki dosya isimlerinin gerçekten aynı dosyaya referans olup olmadığını, sadece "ls -i" komutu kullanarak tespit edebilirsiniz. Bu durumda, ilk sütundaki dosya numarası, iki dosya için de özdeş olmalıdır. Dosya numaraları, ayrıca inode (indeks düğümü) numaraları da denir, dosya sisteminde dosyaları eşsiz olarak tanımlar:
 \begin{verbatim}
 $ ls -i
 876543 list 876543 list2
 \end{verbatim}
 "Inode", "indirection node"'un kısaltmasıdır. Dosya numaraları, dosyaların hakkında ismi haricinde tüm bilgiyi tutar. Her dosya için kesinlikle bir tane dosya numarası vardır.
 
-Eğer dosyalardan birinin içeriğini değiştirmek isterseniz, diğerinin içeriği de değişir, fakat aslında sadece bir tane dosya vardır(eşsiz dosya numarası 876543 olan). Biz sadece dosyaya başka bir isim verdik.
+Eğer dosyalardan birinin içeriğini değiştirmek isterseniz, diğerinin içeriği de değişir, fakat aslında sadece bir tane dosya vardır (eşsiz dosya numarası 876543 olan). Biz sadece dosyaya başka bir isim verdik.
 
 Dizinler dosya numaraları için dosya isimlerini eşlemede basit bir tablo görünümü üstlenirler. Açıkçası tabloda farklı isim içeren fakat aynı dosya numarası olan birçok girdi olabilir. İsim ve dosya numarasıyla birlikte olan dizin girdisine "bağlantı" adı verilir. İki bağlantısı bulunan dosya için, "orijinal" isme sahip olanı bulmanın imkansız olduğunu farketmelisiniz, ln komutu içerisindeki ilk parametre örnek olarak verilebilir. Sistemin bakış açısından iki isim tamamen farksızdır ve birbirine eşittir.
 
-Bu arada, dizinlere bağlantı atamak Linux'ta geçerli değildir. Yalnızca, sistemin baktığı her dizin için  sadece "." ve ".." birer istisnadır. Dizinlerin ayrıca dosya olduğu ve kendi dosya numaralarına sahip olduklarından beri, dosya sisteminin nasıl içten bir şekilde uyguğunun izini sürebilirsiniz.(Ayrıca bkz. Alıştırma 6.19).
+Bu arada, dizinlere bağlantı atamak Linux'ta geçerli değildir. Yalnızca, sistemin baktığı her dizin için  sadece "." ve ".." birer istisnadır. Dizinlerin ayrıca dosya olduğu ve kendi dosya numaralarına sahip olduklarından beri, dosya sisteminin nasıl içten bir şekilde uyguğunun izini sürebilirsiniz (Ayrıca bkz. Alıştırma 6.19).
 
 İki dosyadan birinin silinmesi, dosya numarası 876543 için olan isimlerin azalmasına yol açar. Referans sayıcısını 0 değerine ulaşmadan önce dosyanın içeriği aslında silinmiş olur.
 \begin{verbatim}
@@ -493,11 +493,11 @@ $ rm list
 $ ls -li
 876543 -rw-r--r-- 1 joe users 2500 Oct 4 11:11 list2
 \end{verbatim}
-Dosya numaralarının sadece aynı fiziksel dosya sistemi(disk bölümü, USB sürücü, ...) içerisinde eşsiz olduğundan beri, bu tür bağlantılar sadece dosyanın bulunduğu aynı dosya sistemi üzerinde geçerlidirler.
+Dosya numaralarının sadece aynı fiziksel dosya sistemi (disk bölümü, USB sürücü, ...) içerisinde eşsiz olduğundan beri, bu tür bağlantılar sadece dosyanın bulunduğu aynı dosya sistemi üzerinde geçerlidirler.
 
 Dosyanın içeriğinin silinmesi hakkındaki açıklama tam olarak doğru değildir: Eğer son dosya adı silinmişse, dosya artık açılamayabilir, fakat eğer bir süreç hala dosyayı kullanıyorsa, dosyanın açık bir şekilde kapanana veya sonlanmasına kadar devam edebilir. Unix sisteminde program sonlandırıldığında dosyanın yok olması geçici dosyaların işlemesi için yaygın bir deyimdir: Yazma, okuma için oluşturduğunuz dosyayı sonra hemen silebilirsiniz. Daha sonra dosyaya veriyi yazabilir ve devamında geri atlayıp başa dönerek tekrar okuyabilirsiniz.
 
-ln'yi sadece iki dosya ismi argümanları değil ayrıca bir veya daha fazlası ile çalıştırabilirsiniz. İlk durumda, orijinal olarak aynı isimli bağlantı mevcut dizinde oluşturulacaktır(dosyanın konumlandığı yerde bi gerçekten farklı olmalı), ikinci durumda tüm isimlendirilen dosyalar son argüman olarak verilen dizinde orijinal adları "bağlanmış" olacaktır(mv gibi).
+ln'yi sadece iki dosya ismi argümanları değil ayrıca bir veya daha fazlası ile çalıştırabilirsiniz. İlk durumda, orijinal olarak aynı isimli bağlantı mevcut dizinde oluşturulacaktır (dosyanın konumlandığı yerde bi gerçekten farklı olmalı), ikinci durumda tüm isimlendirilen dosyalar son argüman olarak verilen dizinde orijinal adları "bağlanmış" olacaktır (mv gibi).
 
 Hepsi bu kadar değil ancak: Linux sistemlerinde iki farklı tip bağlantı türü vardır. "sıkı bağ" denilen tür, ln komutu için ön tanımlı durum altında açıklanmıştır. Dosyayı teşhis etmek için daima dosya numarasını kullanır. Ek olarak, sembolik bağlantılar da vardır(ayrıca "sıkı bağlara" zıt olarak "dayanıksız bağ" adı verilir). Sembolik bağlantılar gerçekten  bağlantı ismindeki "hedef dosya"yı içerirler, bayrak ile birlikte dosyanın sembolik link olduğunu belirtir ve erişim de hedef dosyaya yeniden yönlendirilerek yapılmalıdır.
 
@@ -505,7 +505,7 @@ Hard bağlantıların aksine, hedef dosya sembolik bağlantı hakkından hiçbir
 
 Sıkı bağların aksine, sembolik bağlantılar farklı fiziksel dosya sistemlerinde dosyalardaki gibi dizinlere bağlantı oluşturmaya izin verirler. Uygulamada, yol isimlerinin anlamı yoluyla bağın izinin tutulmasından beri, sembolik bağlantılar kolay olmasından dolayı sıklıkla tercih edilir.
 
-Dosya veya dizin isimleri değiştiğinde fakat isteğe bağlı olarak geriye uyumluluk istenmesi açısından sembolik bağlantılar popülerdir. Örneğin kullanıcının posta kutuları(okunmamış elektronik posta içerir) /var/mail dizini altında depolanmalıdır. Geleneksel olarak, bu dizine /var/spool/mail denmiştir, ve birçok programın içinde bu değer doğrudan koda gömülüdür. /var/mail'e geçişi hafifletmek için, dağıtım /var/mail'e işaret eden /var/spool/mail adı altında sembolik bağlantı içermiş bir biçimde ayarlanabilir.(Sıkı bağlantıların dizinlere uygulanmasının geçerli olmadığı zamanlarda, sıkı bağlantılar kullanarak bunu yapmak imkansız olacaktır).
+Dosya veya dizin isimleri değiştiğinde fakat isteğe bağlı olarak geriye uyumluluk istenmesi açısından sembolik bağlantılar popülerdir. Örneğin kullanıcının posta kutuları(okunmamış elektronik posta içerir) /var/mail dizini altında depolanmalıdır. Geleneksel olarak, bu dizine /var/spool/mail denmiştir, ve birçok programın içinde bu değer doğrudan koda gömülüdür. /var/mail'e geçişi hafifletmek için, dağıtım /var/mail'e işaret eden /var/spool/mail adı altında sembolik bağlantı içermiş bir biçimde ayarlanabilir (Sıkı bağlantıların dizinlere uygulanmasının geçerli olmadığı zamanlarda, sıkı bağlantılar kullanarak bunu yapmak imkansız olacaktır).
 
 Sembolik bağlantı oluşturmak için, ln'ye -s parametresini vermelisiniz:
 \begin{verbatim}
@@ -547,11 +547,11 @@ $ ls -ai /
 
 Metin dosyalarının ekranda kullanışlı ve olanaklı olarak görüntülenmesinde, uzun dökümanları sayfa sayfa görmenizi sağlayan more komutu çok yardımcı bir araçtır. Çıktı, bir ekrandan sonra ve "--More--"'un son satırda(zaten görünen dosyanın yüzdesi tarafından tespit edilir) görüntülenmesinden sonra durur. Çıktı bir tuşa bastıktan sonra devam eder. Çeşitli tuşların anlamları Tablo 6.4'te gösterilmiştir.
 
-more ayrıca bazı parametreleri alır. -s("squeeze")("sıkıştırma") ile, boş satırların bulunduğu alanlar sadece bir tanesi kalacak şekilde sıkıştırılır, -l parametresi sayfa çıktısını yoksayar(genellikle "\^L" olarak tanımlanır) aksi halde çıktıyı durdurur. -n$<$number$>$ $<$sayı$>$ parametresi ekrandaki gösterilen satır sayılarını ayarlar, aksi halde more terminal tanımlamasına referans oluşturan TERM'den sayıyı alır.
+more ayrıca bazı parametreleri alır. -s("squeeze")("sıkıştırma") ile, boş satırların bulunduğu alanlar sadece bir tanesi kalacak şekilde sıkıştırılır, -l parametresi sayfa çıktısını yoksayar (genellikle "\^L" olarak tanımlanır) aksi halde çıktıyı durdurur. -n$<$number$>$ $<$sayı$>$ parametresi ekrandaki gösterilen satır sayılarını ayarlar, aksi halde more terminal tanımlamasına referans oluşturan TERM'den sayıyı alır.
 
-more'un çıktısında hala çıktının başlangıcına doğru geri gitmenin genel olarak imkansız olması gibi can sıkan sınırlamalar vardır. Bu sebeple, gelişmiş sürümü olan less(hafif bir kelime oyunu var—"less is more"("less daha fazla") olarak düşünün) daha fazla [böyle!] günümüzde çoklukla görülür. less her zamanki gibi yön tuşlarıyla metin çevresinde dolaşmanıza imkan tanır, arama alışkanlıkları geliştirilmiştir ve metininin başına/sonuna gitmeye izin verir. En yaygın kullanılan klavye komutları Tablo 6.5'te özetlenmiştir.
+more'un çıktısında hala çıktının başlangıcına doğru geri gitmenin genel olarak imkansız olması gibi can sıkan sınırlamalar vardır. Bu sebeple, gelişmiş sürümü olan less (hafif bir kelime oyunu var— "less is more" ("less daha fazla") olarak düşünün) daha fazla [böyle!] günümüzde çoklukla görülür. less her zamanki gibi yön tuşlarıyla metin çevresinde dolaşmanıza imkan tanır, arama alışkanlıkları geliştirilmiştir ve metininin başına/sonuna gitmeye izin verir. En yaygın kullanılan klavye komutları Tablo 6.5'te özetlenmiştir.
 
-Bölüm 5'te bahsettiğimiz gibi, less genellikle man aracılığıyla kılavuz sayfalarını görüntüleyen bir program gibi hizmet eder. Böylece kılavuz sayfalarını incelerken tüm komutlar mevcuttur.
+Bölüm ~\ref{chap:bolum5}'te bahsettiğimiz gibi, less genellikle man aracılığıyla kılavuz sayfalarını görüntüleyen bir program gibi hizmet eder. Böylece kılavuz sayfalarını incelerken tüm komutlar mevcuttur.
 \end{subsection}
 \begin{subsection}{Dosya arama - find}
 
@@ -565,7 +565,7 @@ find komutu dizin ağacında özyinelemeli bir şekilde verilen kriterlere göre
 $ find . -user joe -print
 ./list
 \end{verbatim}
-Bu komut mevcut dizinde tüm alt dizinlerin dahilinde joe kullanıcısına ait olan dosyaları arar. -print komutu terminalde sonucu görüntüler(bizim örneğimizde tek dosya). Kolaylık için, eğer eşleşen dosyalarla ne yapacağınızı belirlemediyseniz, -print varsayılan olacaktır.
+Bu komut mevcut dizinde tüm alt dizinlerin dahilinde joe kullanıcısına ait olan dosyaları arar. -print komutu terminalde sonucu görüntüler (bizim örneğimizde tek dosya). Kolaylık için, eğer eşleşen dosyalarla ne yapacağınızı belirlemediyseniz, -print varsayılan olacaktır.
 
 find kendi işini yaparken birkaç argümana ihtiyacı olduğunu göz önünde bulundurun.
 
@@ -637,7 +637,7 @@ Bu örnek dizine işaretçi olan veya "A" ile başlayan, ya da her ikisi koşulu
 
 -exec parametresini yöneten bazı genel kurallar şunlardır:
 \begin{itemize}
-\item -exec'in devamındaki komut noktalı virgül(";") ile sonlandırılmak zorundadır. Birçok kabuklarda noktalı virgülün özel karakter olduğundan beri, find'ı görünebilir yapmak için noktalı virgül kaçırılmış olmak zorundadır (örneğin "\textbackslash" veya yorumların kullanımı gibi).
+\item -exec'in devamındaki komut noktalı virgül (";") ile sonlandırılmak zorundadır. Birçok kabuklarda noktalı virgülün özel karakter olduğundan beri, find'ı görünebilir yapmak için noktalı virgül kaçırılmış olmak zorundadır (örneğin "\textbackslash" veya yorumların kullanımı gibi).
 \item Komutun içerisindeki iki süslü parantez ("\{\}") bulunan isimle, dosya ismini yer değiştirir. Bu dosya adlarında boşluk sorunlarını önlemek için tırnak içinde parantez içine almak en iyisidir.
 \end{itemize}
 
@@ -703,7 +703,7 @@ $ locate Letters/granny
 /home/joe/Letters/grannyletter.txt~
 \end{verbatim}
 
-locate çok hızlıdır çünkü dosya sistem ağacında gezinmez, fakat önceden ubdatedb programı kullanılarak oluşturulması gereken dosya isimleri "veritabanı"'nı kontrol eder. Bu son veritabanı güncellemesinden beri sisteme eklenen dosyaların locate tarafından yakalanamayacağı anlamına gelir, ve aksi bir şekilde bu zamanda silinmiş olan dosyaların isimlerini de çıktıya verebilir.
+locate çok hızlıdır çünkü dosya sistem ağacında gezinmez, fakat önceden ubdatedb programı kullanılarak oluşturulması gereken dosya isimleri "veritabanı"'nı kontrol eder. Bu son veritabanı güncellemesinden beri sisteme eklenen dosyaların locate tarafından yakalanamayacağı anlamına gelir ve aksi bir şekilde bu zamanda silinmiş olan dosyaların isimlerini de çıktıya verebilir.
 
 locate'in varolan dosyalarını sadece "-e" parametresi kullanarak alabillirsiniz, fakat bu yöntem locate'in hız avantajını reddeder.
 
@@ -728,7 +728,7 @@ Birçok durumda, slocate de ayrıca locate komutu gibi çalıştırılabilir.
 \paragraph{Alıştırmalar}{
 \begin{itemize}
  \item README çok yaygın bir dosya ismidir. Sisteminizde README denilen tüm dosyaların mutlak yol isimlerini bulunuz.
- \item Kendi ev dizininizde yeni bir dosya oluşturun ve locate çağırıldığında bu dosyanın listelenmeyeceği konusunda kendinizi ikna edin(uygun egzotik bir dosya adı kullandığınızdan emin olun. updatedb'i çalıştırın(büyük olasılıkla yönetici yetkileri kullanarak). locate sonradan sizin dosyanızı bulabildi mi? Dosyayı silin ve bu adımları tekrarlayın.
+ \item Kendi ev dizininizde yeni bir dosya oluşturun ve locate çağırıldığında bu dosyanın listelenmeyeceği konusunda kendinizi ikna edin (uygun egzotik bir dosya adı kullandığınızdan emin olun. updatedb'i çalıştırın (büyük olasılıkla yönetici yetkileri kullanarak). locate sonradan sizin dosyanızı bulabildi mi? Dosyayı silin ve bu adımları tekrarlayın.
  \item Kendinizi slocate'in /etc/shadow gibi dosyaları normal kullanıcı olarak çalıştırılıp arama yaptığına ikna edin.
 \end{itemize}}
 
@@ -763,7 +763,7 @@ Birçok durumda, slocate de ayrıca locate komutu gibi çalıştırılabilir.
  \item mkdir ve rmdir kullanarak dizin oluşturabilir veya silebilirsiniz.
  \item cp, mv ve rm komutları dosya ve dizinleri kopyalar, taşır ve siler.
  \item ln komutu "sıkı" ve "sembolik" bağlantılar oluşturmanıza olanak tanır.
- \item more ve less terminal çıktısında dosyaları(ve komut çıktısını) sayfalar halinde görüntülemeye yarar.
+ \item more ve less terminal çıktısında dosyaları (ve komut çıktısını) sayfalar halinde görüntülemeye yarar.
  \item find belirli kriterlere göre eşleşen dosya ve dizinleri arar.
 \end{itemize}}
 \end{subsection}

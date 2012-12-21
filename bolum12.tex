@@ -24,7 +24,7 @@ Lpi Linux temelleri sınavında sistem yönetiminden vurgulanmamaktadır fakat e
 
 Bu bölümde bir Linux bilgisayarın  hemen kullanımı ile ilgili daha az olan birkaç konudan söz edeceğiz. Fakat  örneğin bir resim  elde etmek için bilgisayarda ne çalıştıracağını (“neden  bilgisayarım yavaş”)  ve yazılımın bilgisayarda nasıl yönetildiğini içerir. Biz burada ki büyük resimden sonra detaylara bakmıyoruz.  
 
-Linux sisteminde, sistem yöneticisi özel bir kullanıcı hesabı erişimine sahiptir, root. bu hesap erişim kontrollerinden muaftır, aksi yapıldığında da (bölüm 14). Bu nedenle sistemden  bütün dosyalara erişilebilir. Bu gereklidir, örneğin, yeni yazılım kurmak için-"Normal" kullanıcıların sistem dizinleri program dosyalarını okuma ve yürütme olabilir. fakat, diğer kullanıcıların zararına manipülasyonlar önlemek amacıyla,bunlar yazılmamalıdır. Yöneticinin ayrıca yedek kopyalarını oluşturmak için herhangi bir kullanıcının dosyalarını okuması gerekir (ve bir yedeği geri yüklemesi gerekiyorsa bunları geri yazması için).
+Linux sisteminde, sistem yöneticisi özel bir kullanıcı hesabı erişimine sahiptir, root. bu hesap erişim kontrollerinden muaftır, aksi yapıldığında da (bölüm ~\ref{chap:bolum14}). Bu nedenle sistemden  bütün dosyalara erişilebilir. Bu gereklidir, örneğin, yeni yazılım kurmak için-"Normal" kullanıcıların sistem dizinleri program dosyalarını okuma ve yürütme olabilir. fakat, diğer kullanıcıların zararına manipülasyonlar önlemek amacıyla,bunlar yazılmamalıdır. Yöneticinin ayrıca yedek kopyalarını oluşturmak için herhangi bir kullanıcının dosyalarını okuması gerekir (ve bir yedeği geri yüklemesi gerekiyorsa bunları geri yazması için).
 
 Sistemdeki tüm  dosyaları yazma yeteneği sisteme ciddi zarar fırsatı  içerdiği açıktır. Eğer root olarak oturum açıyorsanız, Linux
 \begin{verbatim}
@@ -121,7 +121,7 @@ F UID PID PPID PRI NI VSZ RSS WCHAN STAT TTY TIME COMMAND
 
 ("\$\$" kabukta "mevcut süreci" gösterir)
 
-UID, sürecin sahibinin sayısal kimliği (bkz. Bölüm 3), PPID Sürecin "ana" bir süreç kimliği. PRI önceliği- sayı yükseldikçe öncelik düşecektir(!)-VSZ Çalışma belleğinde boyut (KiB içinde) ve RSS RAM içindeki geçerli büyüklük (üstelik KiB içinde).
+UID, sürecin sahibinin sayısal kimliği (bkz. Bölüm ~\ref{chap:bolum3}), PPID Sürecin "ana" bir süreç kimliği. PRI önceliği- sayı yükseldikçe öncelik düşecektir(!)-VSZ Çalışma belleğinde boyut (KiB içinde) ve RSS RAM içindeki geçerli büyüklük (üstelik KiB içinde).
 
 Sürecinin bir parçası diske taşınmış olabilir, böyle bir durumda VSZ ve RSS, özdeş değildir. Bir disk bölümünde veya dosya üzerinde takas alanı ekleyerek Linux bilgisayarında mevcut çalışan belleği büyütebilirsiniz. 
 

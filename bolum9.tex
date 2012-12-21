@@ -158,7 +158,7 @@ $ unset foo 		foo sonsuza dek gider ve kaybolur
 \end{section}
 \begin{section}{Komut Tipleri - Yeniden Yüklemeler}
 
-Kabuk kontrol: Kabuk değişkenlerinin bir uygulaması kabuğun kendisinin kontrolündedir. İşte başka bir örnek: 4. bölümde de tartıştığımız üzere kabuk iç ve dış komutları ayırır. Kabuk dış komutları PATH ortam değişkeninin değerini oluşturan dizinlerde hangi çalıştırılabilir programa karşılık geldiğini arar. İşte PATH için genel bir değer:
+Kabuk kontrol: Kabuk değişkenlerinin bir uygulaması kabuğun kendisinin kontrolündedir. İşte başka bir örnek: ~\ref{chap:bolum4} . bölümde de tartıştığımız üzere kabuk iç ve dış komutları ayırır. Kabuk dış komutları PATH ortam değişkeninin değerini oluşturan dizinlerde hangi çalıştırılabilir programa karşılık geldiğini arar. İşte PATH için genel bir değer:
 \begin{verbatim}
 $ echo $PATH
 /home/joe/bin:/usr/local/bin:/usr/bin:/bin:/usr/games
@@ -251,7 +251,7 @@ Kabuk birçok Linux kullanıcıları için en sık kullanılan araç olduğundan
 
 Sistem oturumunuzu kapattığınızda, kabuk gizli dosya $\sim$/.bash\_history içinde geçmişini depolar ve daha sonra giriş yaptıktan sonra tekrar kullanılabilir hale getirir. (Söz konusu isim HISTFILE değişkenini ayarlayarak farklı bir dosya adı kullanabilir.)
 
-“plain” dosyasında depolanan geçmişin saklanır olduğunun bir sonucu olarak bu dosya metin editörü kullanılarak düzenlenebilir (bölüm 3 ne söyler). Öyleki
+“plain” dosyasında depolanan geçmişin saklanır olduğunun bir sonucu olarak bu dosya metin editörü kullanılarak düzenlenebilir (Bölüm ~\ref{chap:bolum3}'de anlatıldığı gibi). Öyleki
 komut satırına yanlışlıkla şifrenizi girdiniz, el ile tarihi kaldırabilirsiniz - özellikle, sistem başıboşsa ev dizinlerinden herhangi birini herkes görebilir.
 \paragraph{Otamatik Tamamlama}{Otomatik olarak komut ve dosya adlarını tamamlamak Bash kabuğunun muazzam bir yeteneğidir. Eğer tab tuşuna bastığınızda kabuk benzersiz bir tespit ile eksik bir girdi var ise devamını tamamlar. Bir komutun ilk sözcüğü için, bash geçerli veya belirtilen dizindeki tüm dosyaların komut satırı geri kalanı içinde tüm çalıştırılabilir programları düşünmektedir. Çeşitli komutlar veya dosyaların adları aynı başlıyorsa, kabuk adını mümkün olduğu kadar tamamlar sonrasında komut veya dosya adı hala eksik olabilir. İkinci bir tab tuşuna basıldığında kalan olasılıkları listeler.}
 
@@ -320,7 +320,7 @@ Unsuccessful
 \end{section}
 \begin{section}{Dosyadan Komutlar}
 
-Bir dosya içinde kabuk komutları depolamayabilir ve bunu en bloc ile yürütebilirsiniz. (Elverişli bir dosya oluşturma bölüm 3'de öğrenilecektir.) Parametre olarak verilen dosya adını sadece kabuğun çağırması gerekir.
+Bir dosya içinde kabuk komutları depolamayabilir ve bunu en bloc ile yürütebilirsiniz. (Elverişli bir dosya oluşturma ~\ref{chap:bolum3}'de öğrenilecektir.) Parametre olarak verilen dosya adını sadece kabuğun çağırması gerekir.
 \begin{verbatim}
 $ bash my-commands
 \end{verbatim}
@@ -337,7 +337,7 @@ bash komutunun başa eklenmek zorunda kalma durumunu engelleyebilirsiniz.
 $ chmod +x my-commands
 \end{verbatim}
 		
-(Bölüm 14'de chmod ve erişim haklarıyla ilgili daha fazla bilgi bulabilirsiniz.) Bundan sonra
+(Bölüm ~\ref{chap:bolum14}'de chmod ve erişim haklarıyla ilgili daha fazla bilgi bulabilirsiniz.) Bundan sonra
 \begin{verbatim}
 $ ./my-commands
 \end{verbatim}
