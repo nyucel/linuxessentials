@@ -11,6 +11,6 @@ Attribution You must make clear that this document is a product of Linup Front G
 
 No commercial use You may not use this document for commercial purposes (contact us if you want to use this document commercially).
 
-No derivatives You may not alter, transform, or build upon this document (con- tact us if necessary).
+No derivatives You may not alter, transform, or build upon this document (contact us if necessary).
 
 The full legal license grant can be found at http://creativecommons.org/licenses/by- nc-nd/3.0/legalcode
