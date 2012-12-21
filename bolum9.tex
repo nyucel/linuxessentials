@@ -53,7 +53,7 @@ $ unset TZ
 
 /usr/share/zoneinfo çevresinde köklenen bilgiyle geçerli şehir isimleri ve zaman dilimlerini öğrenebilirsiniz.
 
-Sistem saatini ayarlama:Her kullanıcı sistem saatini okumak için izinliyken, sadece sistem yöneticisi olan root date komutunu kullanarak sistem saatini değiştirebilir ve MM, DD, hh, mm biçimindeki argümanlardan MM takvim ayı, DD takvim günü, hh saat ve mm de dakikadır. İsteğe bağlı olarak nadiren iki basamaklı yıl (yüzyıl için muhtemelen bir ya da iki) ve saniye (nokta ile ayrılmış) gerektiğinde ekleyebilirsiniz.
+Sistem saatini ayarlama: Her kullanıcı sistem saatini okumak için izinliyken, sadece sistem yöneticisi olan root date komutunu kullanarak sistem saatini değiştirebilir ve MM, DD, hh, mm biçimindeki argümanlardan MM takvim ayı, DD takvim günü, hh saat ve mm de dakikadır. İsteğe bağlı olarak nadiren iki basamaklı yıl (yüzyıl için muhtemelen bir ya da iki) ve saniye (nokta ile ayrılmış) gerektiğinde ekleyebilirsiniz.
 \begin{verbatim}
 $ date
 Thu Oct 5 14:28:13 CEST 2006
@@ -62,8 +62,7 @@ date: cannot set date: Operation not permitted
 Fri Aug 18 17:15:00 CEST 2006
 \end{verbatim}
 
-Date komutu yalnızca Linux sisteminin saatini değiştirir. Bu saat bilgisayarın anakartı üzerinde CMOS saatine aktarılmamış olabilir. Bu nedenle bu işlemi
-gerçekleştirmek için özel bir komut gerekli olabilir. Birçok dağıtım sistem kapatıldığında bunu otomatik olarak yapar.
+Date komutu yalnızca Linux sisteminin saatini değiştirir. Bu saat bilgisayarın anakartı üzerinde CMOS saatine aktarılmamış olabilir. Bu nedenle bu işlemi gerçekleştirmek için özel bir komut gerekli olabilir. Birçok dağıtım sistem kapatıldığında bunu otomatik olarak yapar.
 
 \paragraph{Alıştırmalar}{
 \begin{itemize}
@@ -81,8 +80,7 @@ gerçekleştirmek için özel bir komut gerekli olabilir. Birçok dağıtım sis
 
 Çoğu yaygın kabuklar gibi bash diğer programlama dillerinde bulunan özelliklere sahiptir. Örneğin; değişkenlerde sayıları veya matinlerin bir parçasını depolamak mümkündür ve geri alınabilir. Değişkenler kabuk işlemlerini çeşitli şekilde denetlerler.
 
-Ayarlama değişkenleri:Kabuk içinde bir değişken “foo=bar” gibi bir komut ile ayarlanır(Bu komut foo değişkenini metin değeri bar değişkenine ayarlar). Önünde veya
-eşittir işareti arkasında boşluk eklememeye dikkat edin! Önünde dolar işareti ile değişken adını kullanarak değişkenin değerini alabilirsiniz:
+Ayarlama değişkenleri: Kabuk içinde bir değişken “foo=bar” gibi bir komut ile ayarlanır(Bu komut foo değişkenini metin değeri bar değişkenine ayarlar). Önünde veya eşittir işareti arkasında boşluk eklememeye dikkat edin! Önünde dolar işareti ile değişken adını kullanarak değişkenin değerini alabilirsiniz:
 \begin{verbatim}
 $ foo=bar
 $ echo foo
@@ -159,7 +157,7 @@ $ unset foo 		foo sonsuza dek gider ve kaybolur
 \end{section}
 \begin{section}{Komut Tipleri - Yeniden Yüklemeler}
 
-Kabuk kontrol:Kabuk değişkenlerinin bir uygulaması kabuğun kendisinin kontrolündedir. İşte başka bir örnek: 4. bölümde de tartıştığımız üzere kabuk iç ve dış komutları ayırır. Kabuk dış komutları PATH ortam değişkeninin değerini oluşturan dizinlerde hangi çalıştırılabilir programa karşılık geldiğini arar. İşte PATH için genel bir değer:
+Kabuk kontrol: Kabuk değişkenlerinin bir uygulaması kabuğun kendisinin kontrolündedir. İşte başka bir örnek: 4. bölümde de tartıştığımız üzere kabuk iç ve dış komutları ayırır. Kabuk dış komutları PATH ortam değişkeninin değerini oluşturan dizinlerde hangi çalıştırılabilir programa karşılık geldiğini arar. İşte PATH için genel bir değer:
 \begin{verbatim}
 $ echo $PATH
 /home/joe/bin:/usr/local/bin:/usr/bin:/bin:/usr/games
@@ -181,8 +179,7 @@ kabuk bunun iç komut olmadığını bilir (kendi iç komutlarını bilir) ve bu
 
 Bu /bin/ls dosyası adı üstünde ls komutu çalıştırmak için kullanılır. 
 
-Tabiki bu arama oldukça karışık süreçlerdir. Bunun sebebi kabuğun gelecek için hazırlık yapmasıdır: Eğer daha önce ls komutunun uygulası olarak /bin/ls
-dosyası tespit edilmiş ise, şu an için bu yazışmalar hatırlanır. "hashing" süreci çağrılır ve bunun ls komut tipini uygulayarak meydana geldiğini görebilirsiniz.
+Tabiki bu arama oldukça karışık süreçlerdir. Bunun sebebi kabuğun gelecek için hazırlık yapmasıdır: Eğer daha önce ls komutunun uygulası olarak /bin/ls dosyası tespit edilmiş ise, şu an için bu yazışmalar hatırlanır. "hashing" süreci çağrılır ve bunun ls komut tipini uygulayarak meydana geldiğini görebilirsiniz.
 \begin{verbatim}
 $ type ls
 ls is hashed (/bin/ls)
@@ -190,7 +187,7 @@ ls is hashed (/bin/ls)
 
 Hash komutu hangi bash'de "hashing" olan emrediyor size söyler ve ne sıklıkla na zaman çağrıldığını söyler. "hashing-r" ile kabuğun karma belleğini 	silebilirsiniz. Diğer bir kaç seçeneğe bash klavuzundan bakabilir ya da "help hash" kullanarak öğrenebilirsiniz.
 
-Açıkça söylemek gerekirse PATH değişkenin bir ortam değişkeni olmasına gerek yoktur- kabuk değişkeni mevcut kabuk için iyi durumda (bkz. alıştırma 9.5).
+Açıkça söylemek gerekirse PATH değişkenin bir ortam değişkeni olmasına gerek yoktur - kabuk değişkeni mevcut kabuk için iyi durumda (bkz. alıştırma 9.5).
 
 Her halükarda bir ortam değişkeni olarak tanımlamak için uygundur (genellikle de kabukları). Böylece kabuğun çocuk süreçlerinin istenilen değeri kullanılır.
 
@@ -245,7 +242,7 @@ $ echo $foo 		ne alacağız?
 \end{section}
 \begin{section}{Uygun Bir Araç Olarak Kabuk}
 
-Kabuk birçok Linux kullanıcıları için en sık kullanılan araç olduğundan beri, geliştiricileri tarafından kullanımını rahat hale getirmek için birçok sorunu çözmelmek üzere tartışıldı. Daha kullanışlı bazı önemsiz şeyler buradadır:
+Kabuk birçok Linux kullanıcıları için en sık kullanılan araç olduğundan beri, geliştiricileri tarafından kullanımını rahat hale getirmek için birçok sorunu çözmek üzere tartışıldı. Daha kullanışlı bazı önemsiz şeyler buradadır:
 
 \paragraph{Komut Editörü} {Basit bir metin editöründeki gibi komut satırlarını düzenleyebilirsiniz. Bu sayede, enter tuşu kullanarak giriş bitmeden önce keyfi karekterler ekleyebilir veya silebilir ve giriş satırının etrafında imleci hareket ettirebilirsiniz. Bu editörün davranışları Linux üzerinde en popüler editörlerin "set-o vi" ve "set-o emacs" komutlarını kullanarak uyarlanabilir.}
 \paragraph{Durdurulan Komutlar}{Linux komutları çevresinde çokça isim karıştırmak veya yanlış bir parametreye geçmek kolaydır. Haliyle çalıştırılma anında iptal komutu olmalıdır. Bu işlem için sadece eş zamanlı olarak Ctrl+c tuşuna basılmalıdır.}
@@ -300,8 +297,7 @@ $ _
 
 Ama bunun sonrakiler üzerinde etkisi yoktur.
 
-İki komut arasında, "ayırıcı" olarak \&\& kullanılır (aksi halde noktalı virgül nerde ise), ilk komuttan başarılı bir şekilde çıkıldığı zaman, ikinci komut
-yalnız yürütülür. Bunu görebilmek için kabuğun -c seçeneğini kullanabilirsiniz, bununla birlikte komut satırı üzerinden çocuk kabuğa bir komut iletilir (Etkileyici, değil mi?):
+İki komut arasında, "ayırıcı" olarak \&\& kullanılır (aksi halde noktalı virgül nerde ise), ilk komuttan başarılı bir şekilde çıkıldığı zaman, ikinci komut yalnız yürütülür. Bunu görebilmek için kabuğun -c seçeneğini kullanabilirsiniz, bununla birlikte komut satırı üzerinden çocuk kabuğa bir komut iletilir (Etkileyici, değil mi?):
 \begin{verbatim}
 $ bash -c "exit 0" && echo "Successful"
 Successful
@@ -340,7 +336,7 @@ bash komutunun başa eklenmek zorunda kalma durumunu engelleyebilirsiniz.
 $ chmod +x my-commands
 \end{verbatim}
 		
-(Bölüm 14 de chmod ve erişim haklarıyla ilgili daha fazla bilgi bulabilirsiniz.) Bundan sonra
+(Bölüm 14'de chmod ve erişim haklarıyla ilgili daha fazla bilgi bulabilirsiniz.) Bundan sonra
 \begin{verbatim}
 $ ./my-commands
 \end{verbatim}
@@ -348,7 +344,7 @@ komutu yeterli olacaktır.
 
 Eğer yukarıdaki gibi bir kabuk betiği çağırılırsa bash komutunu başa ekleyerek veya dosyayı çalıştırarak geçerli kabuğun çocuk süreci bir alt kabukta çalıştırılır.
 
-Bu da demektir ki, e. g., kabuk ya da ortam değişkenlerindeki değişikliklerin geçerli kabukta etkisi yoktur. Örneğin; dosyanın atama satırı içerdiğini varsayalım
+Bu da demektir ki, kabuk ya da ortam değişkenlerindeki değişikliklerin geçerli kabukta etkisi yoktur. Örneğin; dosyanın atama satırı içerdiğini varsayalım
 \begin{verbatim}
 foo=bar
 \end{verbatim}
@@ -461,11 +457,9 @@ done
 \end{verbatim}
 }
 
-Betik, örneğin; parametre olarak iletilen düzenli ifade ile eşleşen en az bir satır içerirse (for döngüsü sağlar) ve ismi .txt ile sonlanıyorsa sadece backup
-dizine bir dosya kopyalar.
+Betik, örneğin; parametre olarak iletilen düzenli ifade ile eşleşen en az bir satır içerirse (for döngüsü sağlar) ve ismi .txt ile sonlanıyorsa sadece backup dizine bir dosya kopyalar.
 
-Alternatifler için yararlı bir araç olarak çeşitli şartlarda kontrol sağlayan test komutu vardır. Koşul gerçekleşirse çıkış kodu 0 döndürür (başarılı),
-gerçekleşmemesi durumunda sıfırdan farklı bir çıktı verir (başarısız). Örneği inceleyin:
+Alternatifler için yararlı bir araç olarak çeşitli şartlarda kontrol sağlayan test komutu vardır. Koşul gerçekleşirse çıkış kodu 0 döndürür (başarılı), gerçekleşmemesi durumunda sıfırdan farklı bir çıktı verir (başarısız). Örneği inceleyin:
 \begin{verbatim}
 #!/bin/bash
 # filetest NAME1 NAME2 ...
@@ -551,7 +545,7 @@ yerine
 wc -l $f
 \end{verbatim}
 kullanıyoruz?
-\item grepcp değiştirilebilir. Bu şekilde dikkat edilmesi gereken dosyaların listesi de komut satırından alınır. (İpucu: Shift kabuk komutu \$ dan ilk komut satırı parametresini siler ve oluşacak açığı kapatmak için diğerlerini yukarı çeker. Kaydırmadan sonra, önceki \$2 \$1 olur, \$3 de \$ 2 olur ve böyle devam eder.)
+\item grepcp değiştirilebilir. Bu şekilde dikkat edilmesi gereken dosyaların listesi de komut satırından alınır (İpucu: Shift kabuk komutu \$ dan ilk komut satırı parametresini siler ve oluşacak açığı kapatmak için diğerlerini yukarı çeker. Kaydırmadan sonra, önceki \$2 \$1 olur, \$3 de \$2 olur ve böyle devam eder).
 \item Neden filetest komutunun sembolik linkler için (sembolik bağ $<$yerine sadece$>$ foo) çıktısı yoktur?
 \begin{verbatim}
 $ ./filetest foo
@@ -561,18 +555,19 @@ foo: symbolic link
 \end{itemize}
 }
 \end{section}
-\paragraph{Bu Bölümdeki Komutlar}{}
-\paragraph{.}{Komut satırına giriş yapılırsa kabuk komutlarını içeren dosyaları okur}
-\paragraph{date}{Tarih ve saati görüntüler}
-\paragraph{env}{Süreç ortamı Çıkışlarını veya ayarlanmış ortam programlarını başlatır}
-\paragraph{export}{Tanımlananları ve ortam değişkenlerini yönetir}
-\paragraph{hash}{bash deki "görülen" komutları gösterir ve yönetir}
-\paragraph{set}{Kabuk değişkenlerini ve seçeneklerini yönetir}
-\paragraph{source}{Komut satırına giriş yapılırsa kabuk komutlarını içeren dosyaları okur}
-\paragraph{test}{Komut satırında mantıksal ifadeleri değerlendirir}
-\paragraph{unset}{Kabuk veya ortam değişkenlerini siler}
-\paragraph{whereis}{Çalıştırılabilir programları, el ile oluşturulmuş sayfaları ve kaynak kodu verilen programları arar}
-\paragraph{which}{PATH boyunca programları arar}
+\paragraph{Bu Bölümdeki Komutlar}{
+\begin{itemize}
+\item[.]Komut satırına giriş yapılırsa kabuk komutlarını içeren dosyaları okur
+\item[date]Süreç ortamı Çıkışlarını veya ayarlanmış ortam programlarını başlatır
+\item[export]Tanımlananları ve ortam değişkenlerini yönetir
+\item[hash]bash deki "görülen" komutları gösterir ve yönetir
+\item[set]Kabuk değişkenlerini ve seçeneklerini yönetir
+\item[source]Komut satırına giriş yapılırsa kabuk komutlarını içeren dosyaları okur
+\item[test]Komut satırında mantıksal ifadeleri değerlendirir
+\item[unset]Kabuk veya ortam değişkenlerini siler
+\item[whereis]Çalıştırılabilir programları, el ile oluşturulmuş sayfaları ve kaynak kodu verilen programları arar
+\item[which]PATH boyunca programları arar
+\end{itemize}}
 
 \paragraph{Özet}{
 \begin{itemize}
