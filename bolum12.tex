@@ -22,13 +22,13 @@ Lpi Linux Temelleri sınavında sistem yönetiminden vurgulanmamaktadır fakat e
 
 Bu bölümde bir Linux bilgisayarın hemen kullanımı ile ilgili daha az olan birkaç konudan söz edeceğiz. Fakat  örneğin bir resim  elde etmek için bilgisayarda ne çalıştıracağını (“neden  bilgisayarım yavaş”)  ve yazılımın bilgisayarda nasıl yönetildiğini içerir. Biz burada ki büyük resimden sonra detaylara bakmıyoruz.  
 
-Linux sisteminde, sistem yöneticisi özel bir kullanıcı hesabı erişimine sahiptir, root. Bu hesap erişim kontrollerinden muaftır, aksi yapıldığında da (bölüm ~\ref{chap:bolum14}). Bu nedenle sistemden  bütün dosyalara erişilebilir. Bu gereklidir, örneğin, yeni yazılım kurmak için-"Normal" kullanıcıların sistem dizinleri program dosyalarını okuma ve yürütme olabilir. Fakat, diğer kullanıcıların zararına manipülasyonlar önlemek amacıyla, bunlar yazılmamalıdır. Yöneticinin ayrıca yedek kopyalarını oluşturmak için herhangi bir kullanıcının dosyalarını okuması gerekir (ve bir yedeği geri yüklemesi gerekiyorsa bunları geri yazması için).
+Linux sisteminde, sistem yöneticisi özel bir kullanıcı hesabı erişimine sahiptir, root. Bu hesap erişim kontrollerinden muaftır, aksi yapıldığında da (bölüm ~\ref{chap:bolum14}). Bu nedenle sistemden  bütün dosyalara erişilebilir. Bu gereklidir, örneğin, yeni yazılım kurmak için - "Normal" kullanıcıların sistem dizinleri program dosyalarını okuma ve yürütme olabilir. Fakat, diğer kullanıcıların zararına manipülasyonlar önlemek amacıyla, bunlar yazılmamalıdır. Yöneticinin ayrıca yedek kopyalarını oluşturmak için herhangi bir kullanıcının dosyalarını okuması gerekir (ve bir yedeği geri yüklemesi gerekiyorsa bunları geri yazması için).
 
-Sistemdeki tüm  dosyaları yazma yeteneği sisteme ciddi zarar fırsatı  içerdiği açıktır. Eğer root olarak oturum açıyorsanız, Linux
+Sistemdeki tüm dosyalara yazma yetkisinin sisteme ciddi zarar riski içerdiği açıktır. Eğer root olarak oturum açıyorsanız, Linux
 \begin{verbatim}
 # rm -rf /
 \end{verbatim}
-gibi  tüm sistem dosyalarını yok eden bir komutu kullanmanızı engelleyemez (ve zarar verebilmek için daha incelikli yolları vardır). Dolayısıyla sadece onlara ihtiyacımız olduğunda root yetkilerinden yararlanmak gereklidir. root  olarak giriş yaptığında  RIGHT OUT olduğunda web de sörf  yapılabilir veya posta okunabilir.
+gibi  tüm sistem dosyalarını yok eden bir komutu kullanmanızı engelleyemez (ve zarar verebilmek için daha incelikli yolları vardır). Dolayısıyla sadece onlara ihtiyacımız olduğunda root yetkilerinden yararlanmak gereklidir. root  olarak giriş yaptığında  RIGHT OUT olduğunda web'de sörf  yapılabilir veya posta okunabilir.
 
 Eğer root olarak sistemdeki tüm dosyaları okuyabilirseniz, günaha yenik düşebilirsiniz, diyelim ki, patronunuzun (veya eşinizin) epostasını düzenli olarak kontrol edebilirsiniz. Yapmayın. Bu güvensiz olabilir (en azından eş durumunda) ve/veya yasadışı (en azından patronun durumunda) ve linux ve sistem yönetimi ile eğlenceli yağma yükümlü olduğundan bu sorunun her türlü içine alınabilirsiniz. Evde ve işyerinde huzur için söylenecek bişey. Katılan kişi ile iştişare içinde izole kısa bir gözetlemeye almakta yanlış birşey yoktur. Fakat bunun alışkanlık haline gelmesine izin vermeyin. Şüpheniz olduğunda, Peter Parker'ı düşünün, a. k. a. Spider-Man: "büyük güç büyük sorumluluk getirir."
 
@@ -50,19 +50,19 @@ $ sudo less /var/log/syslog Peruse system log
 
 \paragraph{Alıştırmalar}{
 \begin{itemize}
- \item su komutunu deneyin.Neden örnek programı çağırmak için bir mutlak yol adı kullanıyor?
+ \item su komutunu deneyin. Neden örnek programı çağırmak için bir mutlak yol adı kullanıyor?
  \item su için root parolasını bilmeniz gerekir. sudo genelde kendi parolanızı sorar. Hangisi daha iyi?
 \end{itemize}}
 \end{section}
 \begin{section}{Sistem Yapılandırması}
 
-Diğer sistemlerde sadece veritabanında özel araçlar yoluyla değiştirilmiş ve "bit-rot" (windows kayıt defteri) duyarlı  olan  kendi yapılandırma bilgilerini gömerken,  linux genellikle /etc dizini içindeki metin dosyalarında sistem genelindeki yapılandırma girişlerini bulundurur (Birkaç örneği Bölüm ~\ref{sec:bolum103}'de görülebilir). Burada sistem yöneticisi bunları değiştirmek veya genişletmek için kendi seçtikleri bir metin düzenleyicisi kullanabilir. Örneğin, yeni bir kullanıcı, kullanıcı adı,sayısal kullanıcı kimliği veya /etc/passwd dosyasına ev dizini ismi gibi ilgili parametreleri katarak eklenebilir. Yeni bir sabit disk aygıt dosyası adını ve disk görünmesini gerekenr dizini belirten bir satırına /etc/fstab ekleyerek yapılandırılmış olabilir.
+Diğer sistemlerde sadece veritabanında özel araçlar yoluyla değiştirilmiş ve "bit-rot" (windows kayıt defteri) duyarlı  olan  kendi yapılandırma bilgilerini gömerken,  linux genellikle /etc dizini içindeki metin dosyalarında sistem genelindeki yapılandırma girişlerini bulundurur (Birkaç örneği Bölüm ~\ref{sec:bolum103}'de görülebilir). Burada sistem yöneticisi bunları değiştirmek veya genişletmek için kendi seçtikleri bir metin düzenleyicisi kullanabilir. Örneğin, yeni bir kullanıcı, kullanıcı adı, sayısal kullanıcı kimliği veya /etc/passwd dosyasına ev dizini ismi gibi ilgili parametreleri katarak eklenebilir. Yeni bir sabit disk aygıt dosyası adını ve disk görünmesini gerekenr dizini belirten bir satırına /etc/fstab ekleyerek yapılandırılmış olabilir.
 
 Bir linux sistemi yaygın farklı kaynak yazılım bileşenlerinin karmaşık bir sistemidir. Bbunların bazıları linux kendisinden daha yaşlıdır) Tarihsel olarak gelişmiş kurulumlar  /etc içindeki farklı yapılandırma dosyaları çok düzgün olmayan bir biçimde yapılandırmasını takip eder. Bazıları satırlar tarafından organize edilmektedir, diğerleri bölümleri ayraçlar ile ayrılmış olarak içerir, hatta diğerleri XML dosyalarını ya da yürütülebilir bir kabuk betiğidir. Kesinlikle tüm bu farklı biçimleri ile uğraşması gerekir, yöneticiler  için bir sıkıntıdır. Yazılım paketleri her türlü değiştirilmesi gerekir fakat bu kolay değildir.
 
 Bununla, birlikte bazı çok yaygın usuller: Örneğin, çoğu yapılandırma dosyalarında "\#" ile başlayan satırlar açıklamala satırlarıdır.
 
-Farklı metin dosyaları sistem yapılandırmasını yönetme fikrinde olabilirken ilk başta antediluvial görünür, bunun bazı somut avantajları vardır:
+Sistem yapılandırmasını farklı metin dosyaları ile yönetme fikri  başlangıçta eski moda bir fikir gibi görünür ama bunun bazı somut avantajları vardır:
 
 \begin{itemize}
 \item Tek bir yazılım paketi veya hizmet yapılandırması hataları ile bütün olarak genellikle sisteme zarar verilmesi mümkün değildir (Sistemin işlevseliği için çok gerekli yapılandırma dosyaları vardır tabi ki onların hataları olabilir, örneğin, sistemi yeniden önyükleme yapamayan hale getirebilir. Ama bunlar en iyi ihtimalle küçük bir azınlıktır).
