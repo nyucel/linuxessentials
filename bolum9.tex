@@ -21,8 +21,7 @@ $ sleep 10
        Yaklaşık 10 saniye hiçbir şey olmaz
 $ _
 \end{verbatim}
-\paragraph{echo}{Bu komut argümanların çıktılarını verir, argümanlar boşluklarla ayrılmış olmalıdır. Kabuk değişkenlerin referanslarını değiştirebildiğinden
-beri ilginç ve kullanışlıdır (bkz. Bölüm 9.2). Bu konuya benzer bir örnek:}
+\paragraph{echo}{Bu komut argümanların çıktılarını verir, argümanlar boşluklarla ayrılmış olmalıdır. Kabuk değişkenlerin referanslarını değiştirebildiğinden beri ilginç ve kullanışlıdır (bkz. Bölüm ~\ref{sec:bolum92}). Bu konuya benzer bir örnek:}
 \begin{verbatim}
 $ p=Planet
 $ echo Hello $p
@@ -78,7 +77,7 @@ Date komutu yalnızca Linux sisteminin saatini değiştirir. Bu saat bilgisayar�
 \end{itemize}}
 \end{section}
 \begin{section}{Kabuk Değişkenleri ve Ortamı}
-
+\label{sec:bolum92}
 Çoğu yaygın kabuklar gibi bash diğer programlama dillerinde bulunan özelliklere sahiptir. Örneğin; değişkenlerde sayıları veya matinlerin bir parçasını depolamak mümkündür ve geri alınabilir. Değişkenler kabuk işlemlerini çeşitli şekilde denetlerler.
 
 Ayarlama değişkenleri: Kabuk içinde bir değişken “foo=bar” gibi bir komut ile ayarlanır(Bu komut foo değişkenini metin değeri bar değişkenine ayarlar). Önünde veya eşittir işareti arkasında boşluk eklememeye dikkat edin! Önünde dolar işareti ile değişken adını kullanarak değişkenin değerini alabilirsiniz:

@@ -464,6 +464,7 @@ Ek olarak -i ve -r parametrerin, rm cp'nin -v ve -f parametrelerinin kullanımı
 \end{itemize}}
 \end{subsection}
 \begin{subsection}{Dosyaların bağlanması — ln ve ln -s}
+\label{sec:bolum642}
 
 Linux dosyalara "bağlantılar" adı verilen referanslar oluşturmaya izin verir, ve böylece aynı dosyaya birkaç isim atanabilir. Fakat bu neyi amaçlar? Dosya ve dizin isimleri için olan kısayollar, uygulamaların erişmesinde oluşturulması istenmeyen dosya silme işlemleri için güven, programcılar için kolaylık, geniş dizin ağaçları için alan tasarrufu sağlar ve birkaç sürümlerinde sadece küçük farklılıklarla mevcut olmalıdır.
 
@@ -581,7 +582,7 @@ Bu parametreler dosyalar üzerinde detaylı bir şekilde gereksinimleri tanımla
 Deneme & Açıklama \\
 \hline
 -name & Dosya adı örneğini belirler. Tüm kabuk arama şablonu karakterleri geçerlidir. -iname parametresi büyük/küçük harf farklılıklarını yoksayar. \\
--type & Dosya türünü belirler (bkz. Bölüm 10.2). İçerdikleri:\\
+-type & Dosya türünü belirler (bkz. Bölüm ~\ref{sec:bolum102}). İçerdikleri:\\
  & b blok aygıt dosyası\\
  & c karakter aygıt dosyası\\
  & d dizin\\
@@ -662,7 +663,7 @@ $ find . -atime +13 | xargs -r rm -i
 \end{verbatim}
 xargs standart girdiyi,  maksimum (yapılandırılabilir) karakter veya satıra kadar okur ve bu materyali belirlenen komut için argüman olarak kullanır (bu örnekte rm). Girdide, argümanlar boşluk karakterleri(tırnaklar veya "\" kullanarak kaçırılabilir) veya yeni satırlar tarafından ayrılmıştır. Komut girişi bitirmeye gerektiği kadar çağrılır.— -r parametresi sadece eğer find gerçekten dosya ismi gönderdiyse çağrılmasını sağlar; aksi halinde en azından bir kez çalıştırılmış olacakatır.
 
-Garip dosya isimleri find/xargs kompinasyonunun kullanımında sorun oluşturabilir, örneğin ayrıcılar olarak sorun olabilen boşluklar veya, gerçekten de, yeni satırlar içerenler. Sihirli çözüm find'da "-print"'in yaptığı gibi dosya isimlerini çıktıya veren, fakat yeni satırlar yerine null byte'lar kullanarak ayıran "-print0" parametresinin kullanımıyla sağlanır. Null byte'ın yol isimlerinde geçerli karakter olmadığından beri, karışıklık artık mümkün değildir. xargs bu tarz girdideki gibi "-0" parametresi kullanarak çağırılmak zorundadır:
+Garip dosya isimleri find/xargs kombinasyonunun kullanımında sorun oluşturabilir, örneğin ayrıcılar olarak sorun olabilen boşluklar veya gerçekten de, yeni satırlar içerenler. Sihirli çözüm find'da "-print"'in yaptığı gibi dosya isimlerini çıktıya veren, fakat yeni satırlar yerine null byte'lar kullanarak ayıran "-print0" parametresinin kullanımıyla sağlanır. Null byte'ın yol isimlerinde geçerli karakter olmadığından beri, karışıklık artık mümkün değildir. xargs bu tarz girdideki gibi "-0" parametresi kullanarak çağırılmak zorundadır:
 \begin{verbatim}
 $ find . -atime +13 -print0 | xargs -0r rm -i
 \end{verbatim}
