@@ -16,25 +16,25 @@
 \begin{subsection}{Giriş ve Protokoller}
 
 21. yüzyılda, yerel ağ bölgesi aracılığıyla bilgisayarlarda internete bağlanmak gerçek bir eğlencedir. Bu ağ ev DSL yönlendiricisi ya da kablosuz ağ olabilir.
-İnternete girmenin çeşitli yöntemleri vardır fakat siz hangi yolu kullanıyor olsanızda o yöntemlerin hemen hemen hepsi birbirine benzer çalışır.
+İnternete girmenin çeşitli yöntemleri vardır fakat siz hangi yolu kullanıyor olsanızda o yöntemlerin hemen hepsi birbirine benzer çalışır.
 
-İnternet TCP/IP denilen protokol ailesi tabanlıdır. Bir protokol diğer bir bilgisayarla nasıl konuşacağı konusunda anlaşır ve özellikle elektrikten, optik ya da radyo sinyallerine ve cevaplarına kadar birçok şeyi kapsayabilir. Örneğin bir web sunucusu gibidir ama bunların hepsi aynı anda olmaz. Çok ince ayrıntılarıyla kesmeden bu üç protokolü birbirinden ayırmak mümkündür. Bu üç farklı protokol şöyledir:
+İnternet TCP/IP denilen protokol ailesi tabanlıdır. Bir protokol bir bilgisayarın diğer bilgisayarlarla nasıl konuşucağı konusunda bir anlaşmadır ve belirli elektriksel, optik ya da radyo sinyallerine ve cevaplarından web sunucusuna kadar bir çok şeyi kapsayabilir(ama bunların hepsi aynı anda olmaz). Çok ince ayrıntılarıyla kesmeden bu üç protokolü birbirinden ayırmak mümkündür. Bu üç farklı protokol şöyledir:
 
-\paragraph{Orta Erişim Protokolü}{Ağ kartının bir seviyesinde ve kablolarla veri iletimini yönetir. Bunlara örnek olarak Ethernet (LAN için) ya da I.E.E. 802.11 gibi WLAN protokolleridir.} 
+\paragraph{Orta Erişim Protokolü}{Ağ kartının bir seviyesinde ve kablolarla veri iletimini yönetir. Bunlara örnek olarak Ethernet (LAN için) ya da I.E.E. 802.11 gibi WLAN protokolleri içerirler. } 
 
 \paragraph{Haberleşme Protokolü}{Farklı ağ durumları arasında haberleşmeyi yönetir. İngiltere'den Avusturalya'daki bir web sitesine erişmek isterseniz haberleşme protokolü olan TCP ve IP protokolleri veri iletimini düzenler. Aslında gönderdikleriniz "indirme altında" ya da bunun tam tersi olarak ulaşır.}
 
-\paragraph{Uygulama Protokolleri}{Verilerinizi alan Avustralya' daki alıcının bu verilerle bir şeyler yapabileceğine emin olur. Örneğin web uygulama protokolü, HTTP, sizin bir koala resmi almanıza imkan tanır, Avusturalya' daki sunucu isteğinizi yorumlar ve size koala resmini yollar (kanguru resmini yollamak yerine), bu arada İngiltere'deki tarayızı sizin gerçektende resim aldığınızı, aldığınız verinin hata mesajı olmadığınızı çözer.}
+\paragraph{Uygulama Protokolleri}{Verilerinizi alan Avustralya'daki alıcının bu verilerle bir şeyler yapabileceğine emin olur. Örneğin web uygulama protokolü, HTTP, sizin bir koala resmi almanıza imkan tanır, Avusturalya'daki sunucu isteğinizi yorumlar ve size koala resmini yollar(kanguru resmini yollamak yerine), bu arada İngiltere'deki tarayıcı sizin gerçekten resim aldığınızı, aldığınız verinin hata mesajı olmadığını çözer.}
 
-Bu çok katmanlı yapı her katmanın hemen bir altındaki ve bir üstündeki ile haberleşmesi konusunda ciddi avantaja sahiptir. Uygulama protokolü, Http, byteların İngiltere'den Avustralya'ya ne kadar byte göndereceiğini bilmeye gerek duymaz çünkü haberleşme protkolünü temsil eder. Haberleşme protkolü sırayla orta erişim prokolündeki gerçek veri iletimine ayrılır.
+Bu çok katmanlı yapı her katmanın hemen bir altındaki ve bir üstündeki ile haberleşmesi konusunda ciddi avantaja sahiptir. Uygulama protokolü, HTTP, İngiltere'den Avustralya'ya ne kadar byte göndereceiğini bilmeye gerek duymaz(iyi ki!), çünkü haberleşme protokolünü temsil eder. Haberleşme protokolü sırayla byteların gerçek iletiminin orta erişim protokolüne ayrılır.
 
-Bu noktada en az yedi katmandan oluşan ISO/OSI referans modelinenden yararlanmak başvurmak yaygın bir durumdur. Detayların önem kısalıklarına göre konuları size ayıracağız.
+Bu noktada bilgisayar ağının organizasyonu için yedi katmandan az olmayan ISO/OSI referans modeline başvurmaya alışılmıştır. Özetini ilgili yerlerde detaylarıyla size ayıracağız.
 
-TCP/IP uygulama protokolü beraberinde HTTP de SMTP (mail için olan haberleşme protkolü), SSH (uzaktaki makinede oturum açmak için), DNS(host ismini çözümlemek için) ya da ISP (internet tabanlı telefonculuk) ve diğer pek çoğunu içerirler. Bunlar genelde ya TCP ya da UDP tabanlıdır. UDP bağlantısız güvenilmez iletişim sağlarken (veri iletim sırasında kaybolabilir, ya da farklı sırada varması gereken yere erişebilir), TCP bağlantıya yönelik güvenilir bir servis sunar (bu tüm verilerin diğer uçtaki doğru sırayla varacakları anlamına gelir).
+TCP/IP uygulama protokolü-yanında HTTP, bunlar SMTP(mail için olan haberleşme protokolü), SSH(uzaktaki makinede oturum açmak için), DNS(host ismini çözümlemek için) ya da ISP(internet tabanlı telefonculuk) ve diğer pek çoğunu içerirler-genelde ya TCP ya da UDP tabanlıdır. UDP bağlantısız güvenilmez iletişim sağlarken(veri iletim sırasında kaybolabilir, ya da hedef yere gönderildiğinden farklı sırada varması gibi), TCP bağlantıya yönelik, güvenilir bir servis sunar(bu tüm verilerin diğer uca uygun sırayla varacakları anlamına gelir).
 
-Uygulamalar hangi haberleşme protokolünün daha kullanışlı olduğunu belirlerler. Webde veri iletimi sırasında hata oluşsun istemezsiniz (yazının bir kısmı, resim ya da indirilen yazılımın bir kısmı kaybolabilir, bu can sıkıcı felaket bir durumdur), bu nedenle TCP doğru seçimdir. Televizyonlar ya da sesli sohbetler için, genellikle servislerde yaşan küçük molalar tercih edilebilirliğine (pikselli resim ya da statik kısa bir patlama) göre yanlış veri iletimi olduğunda sistemi düzenlerken her şeyi durdurur.
+Uygulamalar hangi haberleşme protokolünün daha kullanışlı olduğunu belirlerler. Webde veri iletimi sırasında hata oluşsun istemezsiniz(yazının bir kısmı, resim ya da indirilen yazılımın bir kısmı kaybolabilir, bu can sıkıcı felaket bir durumdur), bu nedenle TCP doğru seçimdir. Televizyonlar ya da sesli sohbetler için, genellikle servislerde küçük bırakmalarla yaşama tercih edilebilir(a pixelated picture or a brief burst of static) bu her şeyi durdurmaya çekmek olduğuna göre veriler iletilirken oluşan hatalar için sistem düzenlenir.
 
-Bu noktada UDP daha anlamlıdır. UDP aynı zamanda servislerde(örneğin DNS) daha iyidir, küçük isteklerde daha hızlı ve kısa yanıtlar sonuç olmalıdır. 
+Bu noktada UDP daha anlamlıdır. UDP aynı zamanda DNS gibi servislerde küçük isteklerin hızlı ve kısa cevap olduğu yerlerde daha iyidir.
 
 Üçüncü TCP/IP protokolü,ICMP sorun çözme ve kontrol amaçlı kullanılır. Normalde direkt olarak kullanıcı düzeyindeki uygulamalarda kullanılmaz.
 \end{subsection}
