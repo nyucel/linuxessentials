@@ -32,7 +32,7 @@ Bu noktada bilgisayar ağının organizasyonu için yedi katmandan az olmayan IS
 
 TCP/IP uygulama protokolü-yanında HTTP, bunlar SMTP (mail için olan haberleşme protokolü), SSH (uzaktaki makinede oturum açmak için), DNS(host ismini çözümlemek için) ya da ISP (internet tabanlı telefonculuk) ve diğer pek çoğunu içerirler-genelde ya TCP ya da UDP tabanlıdır. UDP bağlantısız güvenilmez iletişim sağlarken (veri iletim sırasında kaybolabilir, ya da hedef yere gönderildiğinden farklı sırada varması gibi), TCP bağlantıya yönelik, güvenilir bir servis sunar (bu tüm verilerin diğer uca uygun sırayla varacakları anlamına gelir).
 
-Uygulamalar hangi haberleşme protokolünün daha kullanışlı olduğunu belirlerler. Webde veri iletimi sırasında hata oluşsun istemezsiniz (yazının bir kısmı, resim ya da indirilen yazılımın bir kısmı kaybolabilir, bu can sıkıcı felaket bir durumdur), bu nedenle TCP doğru seçimdir. Televizyonlar ya da sesli sohbetler için, genellikle servislerde küçük bırakmalarla yaşama tercih edilebilir(a pixelated picture or a brief burst of static) bu her şeyi durdurmaya çekmek olduğuna göre veriler iletilirken oluşan hatalar için sistem düzenlenir.
+Uygulamalar hangi haberleşme protokolünün daha kullanışlı olduğunu belirlerler. Webde veri iletimi sırasında hata oluşsun istemezsiniz (yazının bir kısmı, resim ya da indirilen yazılımın bir kısmı kaybolabilir, bu can sıkıcı felaket bir durumdur), bu nedenle TCP doğru seçimdir. Televizyonlar ya da sesli sohbetler için, genellikle servislerde küçük bırakmalarla yaşama tercih edilebilir (a pixelated picture or a brief burst of static) bu her şeyi durdurmaya çekmek olduğuna göre veriler iletilirken oluşan hatalar için sistem düzenlenir.
 
 Bu noktada UDP daha anlamlıdır. UDP aynı zamanda DNS gibi servislerde küçük isteklerin hızlı ve kısa cevap olduğu yerlerde daha iyidir.
 
@@ -40,28 +40,28 @@ Bu noktada UDP daha anlamlıdır. UDP aynı zamanda DNS gibi servislerde küçü
 \end{subsection}
 \begin{subsection}{Adresleme ve Yönlendirme}
 
-Usule uygun olarak her bilgisayar tekil bir adres kullanarak internet üzerinden erişime izin verir (bilgisayarınız istek gönderdiğini sunucuya belirtir ve bazı yollardan bilgisayarınıza cevap döner). Bu adress IP adresidir. Hala çok popüler olan şema IPV4'tür. IPV4 dört tane sekizlik bir dizidir. Numaralar 0-255 arasındadır. Örneğin: 192.168.178.10 gibi. 
+Usulüne göre her bilgisayar tekil bir adres kullanarak internet üzerinden erişime izin verir (bilgisayarınız belirtilmiş bir sunucuya istek gönderir ve bu isteğinize cevabı herhangi bir şekilde bulur). Bu adres IP adresidir. Hala çok popüler olan şema IPv4'tür. IPv4 dört tane sekizlik bir dizidir. Numaralar 0-255 arasındadır. Örneğin: 192.168.178.10 gibi. 
 
-Her kişi basitçe isteğine göre IP alamaz. Bunun yerine IP'ler bire bir atanır. Şirketlerde bu ağ yöneticileri ya da sistemciler tarafından yapılacaktır. Şirketlerde ise bunu sistemciler ya da ağcılar yapar. ISP ev bağlantnız için dikkat edecektir.
+Her kişi basitçe isteğine göre IP alamaz. Bunun yerine IP'ler bire bir atanır. ISP'niz ev bağlantınız için dikkat edecekken, şirketlerde bu işi sitemciler ya da ağ yöneticileri yapacaktır.
 
-Bir şirket muhtemelen tüm zamanlarda aynı IP adresini alır. Öte yandan ISP'niz kesin olan sınırlı bir süre için size sadece ödünç bir adres verecektir, sonraki zamanlarda ise farklı bir adres alacaksınız. Bir yanda da müşterilerinin sayısından daha az adres kullanarak ISP'nizi etkinleştirir (her müşteri tüm zamanlarda cevirim içi olmuyor) ve öte yandan ise bu servislerin sürekli IP adreslerisinizi değiştrime sıkıntısına engel olduğu varsayılır.
+Bir şirket muhtemelen tüm zamanlarda aynı IP adresini alır. Öte yandan ISP'niz kesin olan sınırlı bir süre için size sadece ödünç bir adres verecektir, sonraki zamanlarda ise farklı bir adres alacaksınız. Bir yanda da müşterilerinin sayısından daha az adres kullanarak ISP'nizi etkinleştirir (her müşteri her zaman çevirim içi olmadığından beri) ve öte yandan ise bu servislerin sürekli IP adreslerisinizi değiştirme sıkıntısına engel olduğu varsayılır.
 
-IP adresleri gökten düşmezler fakat mümkün olduğunca önlem ile atanırlar, farklı ağların arasında verilerin değişimi sırayla korunurlar, ya da "yönlendirme", kolaydır. Daha sonra tekrar daha ayrıntılı bakacağız. 
+IP adresleri gökten düşmezler fakat-mümkün olduğu kadar-önlem ile atanırlar, farklı ağların arasında verilerin değişimi düzenli olarak korunurlar, ya da "yönlendirme", bundan basittir. Buna daha sonra tekrar daha ayrıntılı bakacağız. 
 
-Bilgisayarlar genelde daha fazla IP adresine sahiptir. Geri dönüş aygıt adresi 127.0.0.1 her bilgisayarda mevcuttur, bilgisayarlar ona başvuru yaparlar ama dışarıdan erişilebilir değildir. Bir servis 127.0.0.1' bağlandığında sadece aynı makinede çalışan istemci olarak erişebilir.
+Bilgisayarlar genelde daha fazla IP adresine sahiptir. Geri dönüş aygıt adresi 127.0.0.1 olarak her bilgisayarda mevcuttur, bilgisayarlar ona başvuru yaparlar ancak o dışarıdan erişilebilir değildir. Bir servis 127.0.0.1 adresine sadece istemci tarafından erişebilir ve  aynı makinede çalışarak bağlanır.
 
-Bu söylenenler kullanışsız ve saçmadır ama aslında seçkin anlamdadır. Örneğin kullanıcılara mail gönderebilecek bir web sitesi geliştiriyor olabilirsiniz (kullanıcı hesabı için içerikteki aktifleştirme linkine tıklayın gibi). Bu test sizin geliştirme makinenizde yapılır, geri dönüş adresi üzerinde sadece mail kabul edilsin diye yerel mail sunucusunu yükleyebilirsiniz. —which will be perfectly adequate for your project while keeping you safe from being inundated with spam from elsewhere on the Internet.
+Bu söylenenler kullanışsız ve saçmadır ama aslında seçkin anlamdadır. Örneğin kullanıcılara mail gönderebilecek bir web sitesi geliştiriyor olabilirsiniz (kullanıcı hesabı için içerikteki aktifleştirme linkine tıklayın gibi). Bu test sizin geliştirme makinenizde yapılır, geri dönüş aygıt adresi üzerinde sadece mail kabul edilsin diye yerel mail sunucusunu yükleyebilirsiniz—internetteki spamların istilasından projenizi kormuak için mükemmel bir uygun olacak
 
-Bilgisayarların üzerindeki Ethernet ya da Wifi aynı zamanda IP adresinize karşılık gelen arayüzdür (en azından bilgisayarınız şimdilik arayüze bağlıysa). Ek olarak hiçbirşey  ağ arayüzüne denemek ya da özel yapılandırma için sizden ek olarak adres verilmesini önleyemez.
+Bilgisayarların üzerindeki Ethernet ya da Wifi IP adresinize sahip uygun bir arayüzdür (en azından bilgisayarınız şimdilik arayüze bağlıysa). Ek olarak hiçbir şey test ya da uzman yapılandırmalarınız için ağ arayüzüne sizden ek bir adres atamasını önlemez.
 
-X bilgisayarının internette diğer Y bilgisayarı ile bağlanabilmesinin hazırlanması için rekabet oluşur, Y'nin IP adresinin bilinmesi şartıyla (Eğer X İngiltere'de ve Y'de Avusturalya'da ise X'in kaç baytının Y'ye ulaşması gerektiği \%100 açık değildir.) Bunu yapmak büyülü kelime olan "routing (yönlendirme)" ile mümkündür. Ve yönlendirme yaklaşık olarak bunun gibi çalışır:
+X bilgisayarının internette diğer Y bilgisayarı ile bağlanabilmesinin hazırlanması için rekabet oluşur, bu Y'nin IP adresinin bilinmesi şartıyladır. (Eğer X İngiltere'de ve Y'de Avusturalya'da ise X'in kaç baytının Y'ye ulaşması gerektiği \%100 açık değildir.) Bunu yapmak büyülü kelime olan "routing (yönlendirme)" ile mümkündür. Ve yönlendirme yaklaşık olarak bunun gibi çalışır:
 \begin{itemize}
-\item X bilgisiyarınız Y'nin IP adresini bulabilir (DNS bu işe yarar). 10.11.12.13 olduğunu varsayalım.
-\item X bilgisayarı IP adresi olan 10.11.12.13'ü çözdüğünde yerel ağdaki ile değerler aynı değildir (which is no wonder considering that Y is in
-Australia). Bu X bilgisayarının direkt olarak Y'ye veri gönderemediği anlamına gelir (büyük sürpriz).
+\item X bilgisiyarınız Y'nin IP adresini çözebilir (DNS bu işe yarar). 10.11.12.13 olduğunu varsayalım.
+\item X bilgisayarı IP adresi olan 10.11.12.13'ü çözdüğünde yerel ağdaki ile değerler aynı değildir (Y'nin Avusturalya'da olduğunu düşünmemizde hiç garip yan yok)
+ Bu X bilgisayarının direkt olarak Y'ye veri gönderemediği anlamına gelir (büyük sürpriz).
 \item X bilgisayarının ağ yapılandırması "varsayılan rota" içerir, aksi halde verilerle ne yapacağını bilemediğinden direkt olarak hedef yere gönderilemez,tarif olarak bilinir. Bu görünüş olarak belki buna benzeyebilir "Bir şeyler gönderdiğinizde hemen Z bilgisayarına iletilemez". Z bilgisayarı aynı zamanda "varsayılan ağ geçidi" denilir.
 \item Z bilgisayarı --belki DSL yönlendiriciniz-- Y bilgisayarına direkt olarak verileri iletemez. Ancak, X bilgisayarı gibi direkt olarak ona bağlanarak adreslenmemiş verilerle ne yapacağını bilir. Bu ISP'niz üzerinden ona göndererek gerçekleşir.
-\item Bilgisayarınızdaki veriler gelene kadar bu oyun bir kaç düzey daha devam eder. Adreslenmiş veriler 10.11.x.y şeklinde  Avusturalyan ISP'sine gönderilmelidir(ona "Billabong-Net" diyelim). Yani veriler burada gönderildi.
+\item Bilgisayarınızdaki veriler gelene kadar bu oyun bir kaç düzey daha devam eder. Adreslenmiş veriler 10.11.x.y şeklinde  Avusturalyan ISP'sine gönderilmelidir (ona "Billabong-Net" diyelim). Yani veriler burada gönderildi.
 \item Billabong-Net 10.11.12.13 e gelen verilerin en yüksek hedefe nasıl iletileceğini bilir. Özellikle Y bilgisayarı Billabong-Net's alıcısınn birine yerleşmiş olabilir ya da alıcısının alıcısına yerleşmiş olabilir. Fakat doğru yapılandırılımışsa dogru çözecektir.
 \item Y' den X' e doğru alınan herhangi bir yanıt aynı geri dönüş aygıtını kullanır.
 \end{itemize}
@@ -74,11 +74,11 @@ Bu esasında "yavaş giden e-posta"ya benzer. Sydney'deki gerçek rota doğum g�
 
 Günün sonunda bu şu anlama gelir: Linux bilgiasayar 3 şeyi bilemeye gerek duyar, kendi IP'sine, direkt olarak ulaşabilsin diye ayarlanmış adrese, ve dinlenmek için olan ağ geçidine. The set of addresses that your computer can reach directly is subnet mask described by the IP address of your local network together with a which today is most commonly specified as a number.
 
-Bilgisayarınızın IP adresinin 192.168.178.111 olduğunu düşünün yerel ağda ise 192.168.178.0/24. Burada, 24 alt ağda maskeler. İlk 24 biti adresinizi belirtir (yani ilk üçlü sekizlik, şöyleki 192.168.178). Son sekizlik de ise( ya da sonraki 8'li 32 yapar) yerel adresiniz mevcuttur. Bu tüm bilgisayarların 192.168.178.0 dan 192.168.178.255 arasında olduğu anlamına gelir- olşuturdularsa- direkt olarak ulaşabilirler; varsayılan ağ geçidi (yerel ağdaki adres sahip olmalı) diğer IP adreslerine ulaşmayı kullanmalıdır. 
+Bilgisayarınızın IP adresinin 192.168.178.111 olduğunu düşünün yerel ağda ise 192.168.178.0/24. Burada, 24 alt ağda maskeler. İlk 24 biti adresinizi belirtir (yani ilk üçlü sekizlik, şöyleki 192.168.178). Son sekizlik de ise ( ya da sonraki 8'li 32 yapar) yerel adresiniz mevcuttur. Bu tüm bilgisayarların 192.168.178.0 dan 192.168.178.255 arasında olduğu anlamına gelir- olşuturdularsa- direkt olarak ulaşabilirler; varsayılan ağ geçidi (yerel ağdaki adres sahip olmalı) diğer IP adreslerine ulaşmayı kullanmalıdır. 
 
 Aslında, örneğimizdeki 192.168.178.0 ve 192.168.178.255 adresleri özel anlamlara sahip olduklarında beri bilgisayarlar için mevcut değildir. Fakat sadece bütünlük icin onlardan bahsediyoruz.
 
-Bu ilkede elle bilgisayarınızın ağ yapılandırmasının bir parçası gibi (Detaylar dağıtımınıza bağlıdır) bütün ağ parametrelerini ayarlayabilirsiniz -- IP adres, alt ağ(maskeleme) ve varsayılan ağ geçidi. Ancak, çok muhtemel olarak "DHCP sunucusu" size bir ağ sağlar, bu mevcut olan bu parametrelerle bilgisayarınıza endişelenmeden ayarlar yapılacaktır.
+Bu ilkede elle bilgisayarınızın ağ yapılandırmasının bir parçası gibi (Detaylar dağıtımınıza bağlıdır) bütün ağ parametrelerini ayarlayabilirsiniz -- IP adres, alt ağ (maskeleme) ve varsayılan ağ geçidi. Ancak, çok muhtemel olarak "DHCP sunucusu" size bir ağ sağlar, bu mevcut olan bu parametrelerle bilgisayarınıza endişelenmeden ayarlar yapılacaktır.
 
 Bundan dolayı, Linux bilgisayarınaz LAN istemcisi eklemeyi isterseniz, Ethernet kablosu uygun sockete takılmalı ya da wifi doğru bir şekilde girilmedilir. Herhangi bir problem varsa, sistemciniz ya da ağ yöneticiniz yüksek sesle ve ısrarla çağırılmalıdır.
 
@@ -87,7 +87,7 @@ Bundan dolayı, Linux bilgisayarınaz LAN istemcisi eklemeyi isterseniz, Etherne
 
 IP adresleri güzel ve önemlidir, fakat kullanması oldukça sakıncalıdır. It would be very aggravating if you had to enter (much less remember) the address 213.157.7.75 to access the server offering the latest version of this manual. shop.linupfront.com is that much handier.
 
-Bu yol uygun olmayan IP adreslerini uygun isimlere DNS üzerinden verir(ya da tam tersi). DNS host isimleri için global veritabanı dağıtımıdır, IP adresler ve çeşitli maddeleri DNS sunucusu üzerinden erişebilir.
+Bu yol uygun olmayan IP adreslerini uygun isimlere DNS üzerinden verir (ya da tam tersi). DNS host isimleri için global veritabanı dağıtımıdır, IP adresler ve çeşitli maddeleri DNS sunucusu üzerinden erişebilir.
 
 DNS ayarını kendi Linux'unuza yapabilirsiniz, tabiki-, aynı zamanda oldukça makul bir şekilde şirketinizdeki web ve mail sunucusu boyutlandırılmış LAN çalışıyor. Bu genellikle iyi bir fikirdir. Ancak, bu konular LPI2 kitabında daha geniş bahsedilmektedir.
 
@@ -110,11 +110,11 @@ The advantage of this scheme is that we at Linup Front are free to dispose of na
 \end{subsection}
 \begin{subsection}{IPv6}
 
-IP as a communications protocol has been around for something like 30 years, and we have found out in the meantime that some assumptions that were made back then must have been somewhat naive. Mesela, IPV4(şu anki sürümü) prensip olarak 2$ ^\wedge $32 ya da yaklaşık olarak 4 milyar adrese izin verir. Due to limitations in the protocol as well as various awkwardnesses with their distribution, there are very few if any unused IPv4 addresses left and in an age where nearly everybody carries an Internet-enabled smartphone and even more people would like to have one, this is a definite problem.
+IP as a communications protocol has been around for something like 30 years, and we have found out in the meantime that some assumptions that were made back then must have been somewhat naive. Mesela, IPv4(şu anki sürümü) prensip olarak 2$ ^\wedge $32 ya da yaklaşık olarak 4 milyar adrese izin verir. Due to limitations in the protocol as well as various awkwardnesses with their distribution, there are very few if any unused IPv4 addresses left and in an age where nearly everybody carries an Internet-enabled smartphone and even more people would like to have one, this is a definite problem.
 
 Bu problemi hafifletmenin yolları vardır, mesela, internette tek olmayan her şey-cep telefonları  internetin her yerinden görülebilir olan bir IP adresi alır. Instead, the operators wall off their networks from the actual Internet in order to be able to distribute more addresses (cue “network address translation”, NAT). These methods are fairly disgusting and do imply other problems.
 
-Genişletilmiş adres boşlukları: IPV6 32  bitlik adres yerine 128 bitlik adresi kullanır, görülebilir gelecek için yeterli olması beklenmektedir (şanslar oldukça iyidir) IPV6 adresler,  IPv6 addresses are notated by writing down chunks of two bytes in hexadecimal (base 16), iki nokta üst üste kullanımıyla ayrılmıştır:
+Genişletilmiş adres boşlukları: IPv6 32  bitlik adres yerine 128 bitlik adresi kullanır, görülebilir gelecek için yeterli olması beklenmektedir (şanslar oldukça iyidir) IPv6 adresler,  IPv6 addresses are notated by writing down chunks of two bytes in hexadecimal (base 16), iki nokta üst üste kullanımıyla ayrılmıştır:
 \begin{verbatim}
 fe80:0000:0000:0000:025a:b6ff:fe9c:406a
 \end{verbatim}
@@ -130,7 +130,7 @@ fe80::25a:b6ff:fe9c:406a
 
 The loopback address, i. e., the moral equivalent to IPv4’s 127.0.0.1 , is ::1.
 
-\paragraph{Adres Atamak}{IPV4 ile, ISP'niz aynı IPV4 adresini atar ya da en fazla bir kaç tane atar. (Gerçek büyük bir şirkette olmağınız müddetçe ya da diğer ISP ve daha olanlar için adres oldukça zor bulunurdur.) Bilgisayarınız için daha fazla adres gerekmezse, dolambaçlı olmaya ihtiyaç duyarsınız. With IPv6, you are instead assigned a complete network, namely a “subnet prefix” that fixes only 48 or 56 of the possible 128 address bits. Öyleyse her alt ağ grubunun 2$ ^\wedge $64 lük adresi serbestçe atanmıştır, ve bu muhtemelen kullanılabilecek olandan daha fazladır. (IPV4'e göre tüm internet sadece 2$ ^\wedge $32 adresleri kullanır- bunun küçük bir kısmı)}
+\paragraph{Adres Atamak}{IPv4 ile, ISP'niz aynı IPv4 adresini atar ya da en fazla bir kaç tane atar. (Gerçek büyük bir şirkette olmağınız müddetçe ya da diğer ISP ve daha olanlar için adres oldukça zor bulunurdur.) Bilgisayarınız için daha fazla adres gerekmezse, dolambaçlı olmaya ihtiyaç duyarsınız. With IPv6, you are instead assigned a complete network, namely a “subnet prefix” that fixes only 48 or 56 of the possible 128 address bits. Öyleyse her alt ağ grubunun 2$ ^\wedge $64 lük adresi serbestçe atanmıştır, ve bu muhtemelen kullanılabilecek olandan daha fazladır. (IPV4'e göre tüm internet sadece 2$ ^\wedge $32 adresleri kullanır- bunun küçük bir kısmı)}
 
 \paragraph{Basit Yapılandırma}{Simple configuration While with IPv4 a computer must be assigned a local IP address—possibly with the aid of a DHCP server—, using IPv6 a computer can assign itself an address that is suitable to communicate with other computers in the immediate vicinity. With IPv6, a computer can also, without DHCP, locate routers in the neighbourhood which are prepared to forward data to the Internet. This avoids various problems with DHCP on IPv4.} DHCP, IPV4 deki çeşitli problemleri önler. Bu arada IPV6 "varsayılan rota" kullanmaz.
 
