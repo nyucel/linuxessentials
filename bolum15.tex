@@ -40,25 +40,25 @@ Bu noktada UDP daha anlamlıdır. UDP aynı zamanda DNS gibi servislerde küçü
 \end{subsection}
 \begin{subsection}{Adresleme ve Yönlendirme}
 
-Usule uygun olarak her bilgisayar tekil bir adres kullanarak internet üzerinden erişime izin verir (bilgisayarınız istek gönderdiğini sunucuya belirtir ve bazı yollardan bilgisayarınıza cevap döner). Bu adress IP adresidir. Hala çok popüler olan şema IPV4'tür. IPV4 dört tane sekizlik bir dizidir. Numaralar 0-255 arasındadır. Örneğin: 192.168.178.10 gibi. 
+Usulüne göre her bilgisayar tekil bir adres kullanarak internet üzerinden erişime izin verir (bilgisayarınız belirtilmiş bir sunucuya istek gönderir ve bu isteğinize cevabı herhangi bir şekilde bulur). Bu adres IP adresidir. Hala çok popüler olan şema IPV4'tür. IPV4 dört tane sekizlik bir dizidir. Numaralar 0-255 arasındadır. Örneğin: 192.168.178.10 gibi. 
 
-Her kişi basitçe isteğine göre IP alamaz. Bunun yerine IP'ler bire bir atanır. Şirketlerde bu ağ yöneticileri ya da sistemciler tarafından yapılacaktır. Şirketlerde ise bunu sistemciler ya da ağcılar yapar. ISP ev bağlantnız için dikkat edecektir.
+Her kişi basitçe isteğine göre IP alamaz. Bunun yerine IP'ler bire bir atanır. ISP'niz ev bağlantınız için dikkat edecekken, şirketlerde bu işi sitemciler ya da ağ yöneticileri yapacaktır.
 
-Bir şirket muhtemelen tüm zamanlarda aynı IP adresini alır. Öte yandan ISP'niz kesin olan sınırlı bir süre için size sadece ödünç bir adres verecektir, sonraki zamanlarda ise farklı bir adres alacaksınız. Bir yanda da müşterilerinin sayısından daha az adres kullanarak ISP'nizi etkinleştirir (her müşteri tüm zamanlarda cevirim içi olmuyor) ve öte yandan ise bu servislerin sürekli IP adreslerisinizi değiştrime sıkıntısına engel olduğu varsayılır.
+Bir şirket muhtemelen tüm zamanlarda aynı IP adresini alır. Öte yandan ISP'niz kesin olan sınırlı bir süre için size sadece ödünç bir adres verecektir, sonraki zamanlarda ise farklı bir adres alacaksınız. Bir yanda da müşterilerinin sayısından daha az adres kullanarak ISP'nizi etkinleştirir (her müşteri her zaman çevirim içi olmadığından beri) ve öte yandan ise bu servislerin sürekli IP adreslerisinizi değiştirme sıkıntısına engel olduğu varsayılır.
 
-IP adresleri gökten düşmezler fakat mümkün olduğunca önlem ile atanırlar, farklı ağların arasında verilerin değişimi sırayla korunurlar, ya da "yönlendirme", kolaydır. Daha sonra tekrar daha ayrıntılı bakacağız. 
+IP adresleri gökten düşmezler fakat-mümkün olduğu kadar-önlem ile atanırlar, farklı ağların arasında verilerin değişimi düzenli olarak korunurlar, ya da "yönlendirme", bundan basittir. Buna daha sonra tekrar daha ayrıntılı bakacağız. 
 
-Bilgisayarlar genelde daha fazla IP adresine sahiptir. Geri dönüş aygıt adresi 127.0.0.1 her bilgisayarda mevcuttur, bilgisayarlar ona başvuru yaparlar ama dışarıdan erişilebilir değildir. Bir servis 127.0.0.1' bağlandığında sadece aynı makinede çalışan istemci olarak erişebilir.
+Bilgisayarlar genelde daha fazla IP adresine sahiptir. Geri dönüş aygıt adresi 127.0.0.1 olarak her bilgisayarda mevcuttur, bilgisayarlar ona başvuru yaparlar ancak o dışarıdan erişilebilir değildir. Bir servis 127.0.0.1 adresine sadece istemci tarafından erişebilir ve  aynı makinede çalışarak bağlanır.
 
-Bu söylenenler kullanışsız ve saçmadır ama aslında seçkin anlamdadır. Örneğin kullanıcılara mail gönderebilecek bir web sitesi geliştiriyor olabilirsiniz (kullanıcı hesabı için içerikteki aktifleştirme linkine tıklayın gibi). Bu test sizin geliştirme makinenizde yapılır, geri dönüş adresi üzerinde sadece mail kabul edilsin diye yerel mail sunucusunu yükleyebilirsiniz. —which will be perfectly adequate for your project while keeping you safe from being inundated with spam from elsewhere on the Internet.
+Bu söylenenler kullanışsız ve saçmadır ama aslında seçkin anlamdadır. Örneğin kullanıcılara mail gönderebilecek bir web sitesi geliştiriyor olabilirsiniz (kullanıcı hesabı için içerikteki aktifleştirme linkine tıklayın gibi). Bu test sizin geliştirme makinenizde yapılır, geri dönüş aygıt adresi üzerinde sadece mail kabul edilsin diye yerel mail sunucusunu yükleyebilirsiniz—internetteki spamların istilasından projenizi kormuak için mükemmel bir uygun olacak
 
-Bilgisayarların üzerindeki Ethernet ya da Wifi aynı zamanda IP adresinize karşılık gelen arayüzdür (en azından bilgisayarınız şimdilik arayüze bağlıysa). Ek olarak hiçbirşey  ağ arayüzüne denemek ya da özel yapılandırma için sizden ek olarak adres verilmesini önleyemez.
+Bilgisayarların üzerindeki Ethernet ya da Wifi IP adresinize sahip uygun bir arayüzdür (en azından bilgisayarınız şimdilik arayüze bağlıysa). Ek olarak hiçbir şey test ya da uzman yapılandırmalarınız için ağ arayüzüne sizden ek bir adres atamasını önlemez.
 
-X bilgisayarının internette diğer Y bilgisayarı ile bağlanabilmesinin hazırlanması için rekabet oluşur, Y'nin IP adresinin bilinmesi şartıyla (Eğer X İngiltere'de ve Y'de Avusturalya'da ise X'in kaç baytının Y'ye ulaşması gerektiği \%100 açık değildir.) Bunu yapmak büyülü kelime olan "routing (yönlendirme)" ile mümkündür. Ve yönlendirme yaklaşık olarak bunun gibi çalışır:
+X bilgisayarının internette diğer Y bilgisayarı ile bağlanabilmesinin hazırlanması için rekabet oluşur, bu Y'nin IP adresinin bilinmesi şartıyladır. (Eğer X İngiltere'de ve Y'de Avusturalya'da ise X'in kaç baytının Y'ye ulaşması gerektiği \%100 açık değildir.) Bunu yapmak büyülü kelime olan "routing (yönlendirme)" ile mümkündür. Ve yönlendirme yaklaşık olarak bunun gibi çalışır:
 \begin{itemize}
-\item X bilgisiyarınız Y'nin IP adresini bulabilir (DNS bu işe yarar). 10.11.12.13 olduğunu varsayalım.
-\item X bilgisayarı IP adresi olan 10.11.12.13'ü çözdüğünde yerel ağdaki ile değerler aynı değildir (which is no wonder considering that Y is in
-Australia). Bu X bilgisayarının direkt olarak Y'ye veri gönderemediği anlamına gelir (büyük sürpriz).
+\item X bilgisiyarınız Y'nin IP adresini çözebilir (DNS bu işe yarar). 10.11.12.13 olduğunu varsayalım.
+\item X bilgisayarı IP adresi olan 10.11.12.13'ü çözdüğünde yerel ağdaki ile değerler aynı değildir (Y'nin Avusturalya'da olduğunu düşünmemizde hiç garip yan yok)
+ Bu X bilgisayarının direkt olarak Y'ye veri gönderemediği anlamına gelir (büyük sürpriz).
 \item X bilgisayarının ağ yapılandırması "varsayılan rota" içerir, aksi halde verilerle ne yapacağını bilemediğinden direkt olarak hedef yere gönderilemez,tarif olarak bilinir. Bu görünüş olarak belki buna benzeyebilir "Bir şeyler gönderdiğinizde hemen Z bilgisayarına iletilemez". Z bilgisayarı aynı zamanda "varsayılan ağ geçidi" denilir.
 \item Z bilgisayarı --belki DSL yönlendiriciniz-- Y bilgisayarına direkt olarak verileri iletemez. Ancak, X bilgisayarı gibi direkt olarak ona bağlanarak adreslenmemiş verilerle ne yapacağını bilir. Bu ISP'niz üzerinden ona göndererek gerçekleşir.
 \item Bilgisayarınızdaki veriler gelene kadar bu oyun bir kaç düzey daha devam eder. Adreslenmiş veriler 10.11.x.y şeklinde  Avusturalyan ISP'sine gönderilmelidir(ona "Billabong-Net" diyelim). Yani veriler burada gönderildi.
