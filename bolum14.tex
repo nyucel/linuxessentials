@@ -14,15 +14,15 @@
 
 \begin{section}{Linux Erişim Kontrol Sistemi}
 \paragraph{Erişim Kontrol Sistemi}{Birkaç kullanıcı aynı bilgisayar sistemine erişmek istedikleri zaman, A kullanıcısının B kullanıcısının özel dosyalarına erişememesini sağlamak için dizinler, dosyalar ve işlemler için erişim kontrol sistemi olmalıdır. Bunun sonucunda Linux, Unix izinlerinin standart sistemini uygulamaya koyar.}
-\paragraph{İzinleri Ayırmak}{Unix geleneklerinde, her dosya ve her dizin bir kullanıcıya (sahibine) ve bir gruba kesinlikle atanmıştır. Her dosya, sahibi, grup üyeleri (kısaca group olarak atanmıştır) ve tüm diğer kullanıcılar (others) için izinlere ayırmayı destekler. Okuma, yazma ve çalıştırma izinleri ayrı ayrı bu üç kullanıcı takımı için seçilir haldedir. Sahibi bir dosyanın erişim izinlerini belirleyebilir. Eğer ki sahibi uygun izinleri verirse grup ve diğerleri de bir dosyaya erişebilir.}
+\paragraph{İzinleri Ayırmak}{Unix geleneklerinde, her dosya ve her dizin, bir kullanıcıya (sahibine) ve bir gruba kesinlikle atanmıştır. Her dosya, sahibi, grup üyeleri (kısaca group olarak atanmıştır) ve tüm diğer kullanıcılar (others) için izinlere ayırmayı destekler. Okuma, yazma ve çalıştırma izinleri ayrı ayrı bu üç kullanıcı takımı için seçilir haldedir. Sahibi, bir dosyanın erişim izinlerini belirleyebilir. Eğer ki sahibi, uygun izinleri verirse grup ve diğerleri de bir dosyaya erişebilir.}
 \paragraph{Erişim Modu}{Bir dosyanın erişim izinlerinin genel toplamı, erişim modu olarak adlandırılır.}
-\paragraph{Erişim Kontrolü}{Genellikle erişilebilir ortamda özel veya grup-içi veri depolayan birçok kullanıcılı bir sistemde, bir dosyanın sahibi uygun erişim kontrolü ile dosyalarını okurken veya değiştirirken başkalarını da tutabilirsiniz. Bir dosya için haklar, sahibi, grubu ve diğerleri için ayrı ayrı bağımsız olarak tespit edilebilir. Erişim izinleri grubun birlikte çalıştığı dosyalara, bir grup işbirlikçi süreç sorumlulukları eşlemek için kullanıcılara izin verir.}
+\paragraph{Erişim Kontrolü}{Genellikle erişilebilir ortamda özel veya grup-içi veri depolayan birçok kullanıcılı bir sistemde, bir dosyanın sahibi, uygun erişim kontrolü ile dosyalarını okurken veya değiştirirken başkalarını da tutabilirsiniz. Bir dosya için haklar, sahibi, grubu ve diğerleri için ayrı ayrı bağımsız olarak tespit edilebilir. Erişim izinleri, grubun birlikte çalıştığı dosyalara, bir grup işbirlikçi süreç sorumlulukları eşlemek için kullanıcılara izin verir.}
 \end{section}
 \begin{section}{Dosya ve Dizinler İçin Erişim Kontrolü}
 \begin{subsection}{Temel Bilgiler}
-\paragraph{Dosya İzinleri}{Sistemdeki her dosya ve dizin için, Linux 3 kullanıcı sınıfının her biri için (sahibi, grup ve diğer) erişim haklarını ayırmaya izin verir. Bu haklar okuma, yazma ve çalıştırma izinlerini içerir.}
+\paragraph{Dosya İzinleri}{Sistemdeki her dosya ve dizin için, Linux, 3 kullanıcı sınıfının her biri için (sahibi, grup ve diğer) erişim haklarını ayırmaya izin verir. Bu haklar okuma, yazma ve çalıştırma izinlerini içerir.}
 
-Dosyalara göre, bu izinler kabaca adlarının ima ettiklerini kontrol ederler. Her kim okuma iznine sahipse bir dosyanın içeriğine bakabilir, her kim yazma iznine sahipse içeriğin değiştirilmesine izin verilmiştir. Çalışma izni bir dosyanın bir işlem gibi çalışması için gereklidir.
+Dosyalara göre, bu izinler kabaca adlarının ima ettiklerini kontrol ederler. Her kim okuma iznine sahipse bir dosyanın içeriğine bakabilir, her kim yazma iznine sahipse içeriğin değiştirilmesine izin verilmiştir. Çalışma izni, bir dosyanın bir işlem gibi çalışması için gereklidir.
 
 Binary yani makine kodlu bir program çalıştırılırken çalışma izni gereklidir. Kabuk betikleri veya "yorumlanabilir" programların diğer türlerini içeren dosyalar için, ayrıca okuma izni gerekir.
 
@@ -49,31 +49,31 @@ Tablonun ilk sütunundaki karakter dizeleri kullanıcının, grubun ve diğerler
 
 Erişim dizelerindeki “r”, “w”, “x” , sırasıyla okuma, yazma ve çalıştırma izinlerini ifade eder. Eğer ki listede “-“ varsa, yerini tutan kategorinin ilişkili ayrıcalığa sahip olmadığını gösterir. Bunun sonucu olarak, “rw-r--r--“ dizesi, kullanıcı için okuma ve yazma, grup ve diğerleri için de sadece okuma izninin verildiğini belirtir.
 
-Dosya sahibiyseniz, chmod komutu ile bir dosyanın erişim haklarını ayarlayabilirsiniz. Dosya sahibi için “u”, grup üyeleri için “g”, diğer herkes için “o” kısaltmaları ile 3 kategori belirtebilirsiniz. İzinler kendilerine zaten bahsedilen kısaltmalar “r”, “w”ve “x” tarafından verilmektedir. “+”, “-“ ve “=” kullanarak, herhangi bir izni ekleyebilir, mevcut izinlerden çıkartabilir yada önceden ayarlananların tümünü değiştirebilirsiniz.
+Dosya sahibiyseniz, chmod komutu ile bir dosyanın erişim haklarını ayarlayabilirsiniz. Dosya sahibi için “u”, grup üyeleri için “g”, diğer herkes için “o” kısaltmaları ile 3 kategori belirtebilirsiniz. İzinler kendilerine zaten bahsedilen kısaltmalar “r”, “w”ve “x” tarafından verilmektedir. “+”, “-“ ve “=” kullanarak, herhangi bir izni ekleyebilir, mevcut izinlerden çıkartabilir ya da önceden ayarlananların tümünü değiştirebilirsiniz.
 \begin{verbatim}
-$ chmod u+x file   sahibi için çalıştırma izni verir
-$ chmod go+w file  grup ve diğerleri için yazma izni verir
-$ chmod g+rw file  grup için okuma ve yazma izni verir
-$ chmod g=rw,o=r file okuma ve yazma izni verir,
-     Grubun çalışma iznini siler;
-     Diğerleri için sadece okuma izni verir
-$ chmod a+w fileugo+w ile eşdeğerdir.
+$ chmod u+x file          sahibi için çalıştırma izni verir
+$ chmod go+w file         grup ve diğerleri için yazma izni verir
+$ chmod g+rw file         grup için okuma ve yazma izni verir
+$ chmod g=rw,o=r file     okuma ve yazma izni verir,
+                          Grubun çalışma iznini siler;
+                          Diğerleri için sadece okuma izni verir
+$ chmod a+w file , ugo+w ile eşdeğerdir.
 \end{verbatim}
 
-slında, belirtilen izinler oldukça karmaşıktır. Chmod ile ilgili bütün detayları bulmak için bilgi dokümantasyonlarına bakabilirsiniz.
+Aslında, belirtilen izinler oldukça karmaşıktır. Chmod ile ilgili bütün detayları bulmak için bilgi dokümantasyonlarına bakabilirsiniz.
 
-Bir dosyanin yada dizinin erişim haklarını değiştirmeye izin veren tek kullanıcı o dosyanın sahibidir. Bu ayrıcalık, gerçek izinlerin bağımsızlığındandır. Sahibi onların tüm izinlerini alır fakat geri verirken onları tutmaz.
+Bir dosyanin yada dizinin erişim haklarını değiştirmeye izin veren tek kullanıcı o dosyanın sahibidir. Bu ayrıcalık, gerçek izinlerin bağımsızlığındandır. Sahibi, onların tüm izinlerini alır fakat geri verirken onları tutmaz.
 
 Chmod komutunun genel yazımı
 \begin{verbatim}
 chmod [<seçenekler>] <izinler> <isim>...
 \end{verbatim}
 
-Birçok dosyaya yada dizine isteğinize göre verebilirsiniz. En önemli seçenekler şu şekilde:
+Bir çok dosyaya yada dizine isteğinize göre verebilirsiniz. En önemli seçenekler şu şekilde:
 \paragraph{-R}{Eğer ki bir dizine verilmişse , dizinlerin altındaki dizin ve dosyaların izinleri de değiştirilmiş olacaktır.}
 \paragraph{--reference=$<$isim$>$}{Dosyanın erişim izinlerini kullanır. Bu durumda hiçbir izin komut ile verilmemelidir.}
 
-Bir dosyanın erişim modunu sembolik yerine sayısal olarak da belirtebilirsiniz (biraz yukarda söylenilmişti). Uygulamada bu, bir dosyanın yada dizinin tüm izinlerini ayarlarken çok yaygındır ve şöyle çalışır. Üç izin, üç basamaklı sekizli sayı olarak temsil edilebilir. İlk basamak sahibinin haklarını, ikinci basamak grup haklarını ve üçüncü basamak da diğerlerinin haklarını tanımlar. Bu basamakların herbiri okuma izni 4, yazma izni 2 ve çalışma izni 1 olan bireysel izinlerin toplamından türetilmiştir. “ls -l” ve sekizli form ile yaygın erişim modlarına birkaç örnek:
+Bir dosyanın erişim modunu sembolik yerine sayısal olarak da belirtebilirsiniz (biraz yukarda söylenilmişti). Uygulamada bu, bir dosyanın yada dizinin tüm izinlerini ayarlarken çok yaygındır ve şöyle çalışır. Üç izin, üç basamaklı sekizli sayı olarak temsil edilebilir. İlk basamak sahibinin haklarını, ikinci basamak grup haklarını ve üçüncü basamak da diğerlerinin haklarını tanımlar. Bu basamakların her biri okuma izni 4, yazma izni 2 ve çalışma izni 1 olan bireysel izinlerin toplamından türetilmiştir. “ls -l” ve sekizli form ile yaygın erişim modlarına birkaç örnek:
 \begin{verbatim}
 rw-r--r-- 644
 r-------- 400
@@ -92,13 +92,13 @@ $ chmod u=rw,go=r file
 \end{subsection}
 \begin{subsection}{Dosya Sahibi ve Grubunu Belirleme—chown ve chgrp}
 
-Chown komutu bir dosya yada dizinin sahibini ve grubunu ayarlamaya izin verir. Değişikliğin uygulanabilmesi için bu komut istenilen kullanıcı ismi ve/veya grup ismi ve dosya veya dizin ismini alır. Şu şekilde çağrılır :
+Chown komutu, bir dosya yada dizinin sahibini ve grubunu ayarlamaya izin verir. Değişikliğin uygulanabilmesi için bu komut istenilen kullanıcı ismi ve/veya grup ismi ve dosya veya dizin ismini alır. Şu şekilde çağrılır :
 \begin{verbatim}
 chown <kullanıcı adı>[:][<grup adı>] <ad>…
 chown :<grup adı><ad>…
 \end{verbatim}
 
-Hem kullanıcı hem de grup adı verilirse, ikisi de değiştirilir. Eğer ki sadece kullanıcı adı verilirse, grup olduğu gibi kalır. Eğer ki kullanıcı adından sonra iki nokta geliyorsa , dosya kullanıcının birincil grubuna atanır. Eğer ki grup isminin önünde iki nokta var, sahibi değişmeden kalır. Örneğin:
+Hem kullanıcı hem de grup adı verilirse, ikisi de değiştirilir. Eğer ki sadece kullanıcı adı verilirse, grup olduğu gibi kalır. Eğer ki kullanıcı adından sonra iki nokta geliyorsa , dosya kullanıcının birincil grubuna atanır. Eğer ki grup isminin önünde iki nokta varsa, sahibi değişmeden kalır. Örneğin:
 \begin{verbatim}
 # chown joe:devel letter.txt
 # chown www-data foo.html      yeni kullanıcı www-data
@@ -118,7 +118,7 @@ Bir dosyanın sahibini ya da grubunu değiştirirken, çeşitli kategoriler içi
 
 Chown ve chgrp aynı zamanda dizin hiyerarşisinin parçası için yinelemeli değişiklikleri uygulamak için -R yi destekler.
 
-Tabi ki bir dosyanın izinlerini, grubunu, sahibini, çok popüler olan dosya tarayıcısını (Konqueror yada Nautilus gibi) kullanarak da değiştirebilirsiniz.
+Tabiki bir dosyanın izinlerini, grubunu, sahibini, çok popüler olan dosya tarayıcısını (Konqueror yada Nautilus gibi) kullanarak da değiştirebilirsiniz.
 
 \paragraph{Alıştırmalar}{
 \begin{itemize}
@@ -129,9 +129,9 @@ Tabi ki bir dosyanın izinlerini, grubunu, sahibini, çok popüler olan dosya ta
 \end{section}
 \begin{section}{Süreç Sahipliği}
 
-Linux depolama ortamı üzerindeki verilerin nesneler gibi sahipliliğini göz ününde bulundurur. İşlemlerin sistem üzerinde de sahipleri vardır.
+Linux depolama ortamı, üzerindeki verilerin, nesneler gibi sahipliliğini göz ününde bulundurur. İşlemlerin sistem üzerinde de sahipleri vardır.
 
-Birçok komut sistem belleğinde bir süreç oluşturur. Normal kullanım sırasında birbirlerinden korunan birçok süreç bulunmaktadır. Kendi sanal adres alanı içindeki tüm verileri ile birlikte her süreç, kullanıcı ve sahibe sahip olan bir sürece atanmıştır. Bu genellikle süreci başlatan kullanıcıdır fakat süreçler yönetici ayrıcalıkları kullanarak oluşturulur ki onların sahipliği değiştirilebilir ve SUID mekanizması aynı zamanda bunu yapma yetkisine sahiptir.
+Birçok komut sistem belleğinde bir süreç oluşturur. Normal kullanım sırasında birbirlerinden korunan bir çok süreç bulunmaktadır. Kendi sanal adres alanı içindeki tüm verileri ile birlikte her süreç, kullanıcı ve sahibe sahip olan bir sürece atanmıştır. Bu genellikle süreci başlatan kullanıcıdır fakat süreçler yönetici ayrıcalıkları kullanarak oluşturulur ki onların sahipliği değiştirilebilir ve SUID mekanizması aynı zamanda bunu yapma yetkisine sahiptir.
  
 "-u" seçeneği kullanılarak çağrıldığında ise süreçlerin sahipleri ps program tarafından gösterilir.
 \begin{verbatim}
@@ -175,7 +175,7 @@ You can recognise set-UID and set-GID programs in the output of “ls -l” by t
 
 Oluşturucunun kimliğine göre, sahiplik dosya atama prensibinden başka bir istisna var: Dizin sahibi kendi hedef dizini gibi, o dizin aynı gruba sahip olmalı diye dosyalara komut verebilir. Dizinler üstündeki SGID biti ayarlanarak (kurularak) belirlenmiş olabilir. (Dizinler gibi çalıştırılamaz, SGID biti böyle şeyler için kullanılmaya uygundur.)
 
-SGID bitiyle dizin erişim izni değiştirilemez. Ona başvurmak için kategori içindeki izni yazılmış olmalıdır. (sahip, grup, diğerleri) Eğer, örneğin kullanıcı, ne dizinin sahibi ne de dizin grubunun üyesi değilse, dosyaların orada oluşturulabilir olması için dizin grubu ‘diğerleri’ için yazılabilir olmalı. Eğer kullanıcı hiçbir biçimde grubun üyesi olmasa bile, SGID içinde oluşturulan dosya sonra o dosya dizinine sahip olur.
+SGID bitiyle dizin erişim izni değiştirilemez. Ona başvurmak için kategori içindeki izni yazılmış olmalıdır. (sahip, grup, diğerleri) Eğer, örneğin kullanıcı, ne dizinin sahibi ne de dizin grubunun üyesi değilse, dosyaların orada oluşturulabilir olması için dizin grubu ‘diğerleri’ için yazılabilir olmalıdır. Eğer kullanıcı hiç bir biçimde grubun üyesi olmasa bile, SGID içinde oluşturulan dosya sonra o dosya dizinine sahip olur.
 
 Bir dizindeki SGID bit için tipik bir uygulama bir dizindir. Bu, bir "proje grubu" için dosya deposu olarak kullanılır. (Sadece) proje grubu üyelerinin dizindeki tüm dosyaları yazıp ve okuyabilme ve yeni dosyalar oluşturabilme yeteneğine sahip oldukları varsayılır. Bunun anlamı, projeye katkıda bulunan tüm kullanıcıları bir proje grubuna eklemeye ihtiyacınız olduğudur (ikinci bir grup yeterli olacaktır).
 \begin{verbatim}
@@ -184,7 +184,7 @@ Bir dizindeki SGID bit için tipik bir uygulama bir dizindir. Bu, bir "proje gru
 # usermod -a -G project sue sue grubun içinde
 \end{verbatim}
 
-Şimdi dizin oluşturabilir ve grubu onu atayabilirsin. Sahibi ve gruba tüm izinler verilmiş , diğerlerine verilmemiştir. Aynı zamanda SGID biti ayarlayabilirsin.
+Şimdi dizin oluşturabilir ve grubu onu atayabilirsiniz. Sahibi ve gruba tüm izinler verilmiş , diğerlerine verilmemiştir. Aynı zamanda SGID biti ayarlayabilirsin.
 \begin{verbatim}
 # cd /home/project
 # chgrp project /home/project
