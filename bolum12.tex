@@ -183,7 +183,7 @@ Modern Linux dağıtımları normalde kalabalık (tipik olarak binlerce) her bir
 
 İşlevselliğin paketler şeklinde nasıl bölündüğünün ayrıntıları dağıtıma bağlıdır. Kütüphanelerle genelde bir “run-time paketi” ve bir “geliştirme paketi” arasında ayrım yapılır. Run-time paketi diğer programların kütüphaneyi kullanabilmesi için yüklenmesi zorunlu olan dosyaları içerir (bir .so dosyası içinde asıl dinamik olarak yüklenilebilir kütüphane gibi). Geliştirme paketini kurmaya sadece eğer, kütüphaneyi kullanan yeni yada var olan programları derlemeyi hedeflerseniz, ihtiyaç duyarsınız. C derleyicisi bilgileri içerir bu durum kütüphaneyi kullanmaya ihtiyaç duyar (“include files”), hata ayıklama için istatiksel olarak ilişkilendirirlebilir bir kütüphane, ya da kütüphane içeriği hakkında belgelendirme. Eğer belgelendirme büyükse başka bir pakete bölünebilir.
 
-Örneğin, burada Debian GNU/Linux 6.0 (“Squeeze”) e göre rsvg kütüphanesi (SVG- format grafikleri ile ilgilenen) paket bölünmüş: 
+Örneğin, burada Debian GNU/Linux 6.0'a (“Squeeze”) göre rsvg kütüphanesi (SVG format grafikleri ile ilgilenen) paket bölünmüş: 
 \begin{verbatim}
 	librsvg2-2 		Gerçek (run-time) kütüphanesi
 	librsvg2-dev 		geliştirme paketi
@@ -195,7 +195,8 @@ Modern Linux dağıtımları normalde kalabalık (tipik olarak binlerce) her bir
 	libimage-librsvg-perl 	Perl dili bağlama
 \end{verbatim}
 
-Her linux bilgisayarında, bilgisayarın farkında olduğu ve yakın zamanda yüklenmiş olan paketler hakkında bilgiler içeren bir “paket veritabanı” vardır. Dağıtıcınızın “depoları” ya da paketler içeren sunucu ile paket veritabanınızı periyodik olarak eşzamanlayabilirsiniz ve bu şekilde bilgisayarınızdaki paketlerden hangilerinin güncel olmadığını bulabilirsiniz çünkü dağıtımcılar yeni versiyonları önerirler. Paket yönetim sistemimi genelde size söz konusu paketleri seçerek güncelleme fırsatı verir.
+Her linux bilgisayarında
+\footnote{Those using one of the major distributions, at any rate—there are a few distributions that seem to get by without a package management system, but these are for nerds.}, bilgisayarın farkında olduğu ve yakın zamanda yüklenmiş olan paketler hakkında bilgiler içeren bir “paket veritabanı” vardır. Dağıtıcınızın “depoları” ya da paketler içeren sunucu ile paket veritabanınızı periyodik olarak eşzamanlayabilirsiniz ve bu şekilde bilgisayarınızdaki paketlerden hangilerinin güncel olmadığını bulabilirsiniz çünkü dağıtımcılar yeni versiyonları önerirler. Paket yönetim sistemimi genelde size söz konusu paketleri seçerek güncelleme fırsatı verir.
 
 Bunun pratikte ne kadar iyi işleyeceği (bir kez daha) dağıtımınıza bağlıdır. Özellikle, konu göründüğünden daha karmaşık olabilir: bir paketin yeni versiyonu bir kütüphanenin (kendi paketinde kullanılabilir olan) mutlaka yeni versiyonda yüklenilmesine ihtiyaç duyabilir ve eğer kurulu olan başka bir program tam olarak bu kütüphanenin eski versiyonuna ihtiyaç duyarsa bu problemlerin ortaya çıkmasına sebep olabilir. Bazen bir paketin sistemde başka bir yerde ciddi değişiklikler yapmadan güncellenebilmesi mümkün olmayabilir. İyi paket yönetim sistemleri bu gibi durumları saptar ve yönetici olarak sizi uyarır ve/veya size 	müdahale etme şansı sunar.
 

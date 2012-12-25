@@ -114,7 +114,10 @@ IP as a communications protocol has been around for something like 30 years, and
 
 Bu problemi hafifletmenin yolları vardır, mesela, internette tek olmayan her şey-cep telefonları  internetin her yerinden görülebilir olan bir IP adresi alır. Instead, the operators wall off their networks from the actual Internet in order to be able to distribute more addresses (cue “network address translation”, NAT). These methods are fairly disgusting and do imply other problems.
 
-Genişletilmiş adres boşlukları: IPv6 32  bitlik adres yerine 128 bitlik adresi kullanır, görülebilir gelecek için yeterli olması beklenmektedir (şanslar oldukça iyidir) IPv6 adresler,  IPv6 addresses are notated by writing down chunks of two bytes in hexadecimal (base 16), iki nokta üst üste kullanımıyla ayrılmıştır:
+IPv6, the designated successor to IPv4\
+\footnote{IPv5 asla varolmamaıştır}, has been available since the late 1990s. IPv6 does away with various restrictions of IPv4, but ISPs are still somewhat reluctant to roll IPv6 out comprehensively. Linux does deal very well with IPv6, and since you can quite happily run IPv4 and IPv6 in parallel, there is nothing preventing you from setting up an IPv6-based infrastructure in your company (or even your domestic LAN—many DSL routers support IPv6 by now). Here are some of the more important properties of IPv6:
+
+\paragraph{Genişletilmiş adres uzayı}{ IPv6 32  bitlik adres yerine 128 bitlik adresi kullanır, görülebilir gelecek için yeterli olması beklenmektedir (şanslar oldukça iyidir) IPv6 adresler,  IPv6 addresses are notated by writing down chunks of two bytes in hexadecimal (base 16), iki nokta üst üste kullanımıyla ayrılmıştır:
 \begin{verbatim}
 fe80:0000:0000:0000:025a:b6ff:fe9c:406a
 \end{verbatim}
@@ -129,8 +132,8 @@ fe80::25a:b6ff:fe9c:406a
 \end{verbatim}
 
 The loopback address, i. e., the moral equivalent to IPv4’s 127.0.0.1 , is ::1.
-
-\paragraph{Adres Atamak}{IPv4 ile, ISP'niz aynı IPv4 adresini atar ya da en fazla bir kaç tane atar. (Gerçek büyük bir şirkette olmağınız müddetçe ya da diğer ISP ve daha olanlar için adres oldukça zor bulunurdur.) Bilgisayarınız için daha fazla adres gerekmezse, dolambaçlı olmaya ihtiyaç duyarsınız. With IPv6, you are instead assigned a complete network, namely a “subnet prefix” that fixes only 48 or 56 of the possible 128 address bits. Öyleyse her alt ağ grubunun 2$ ^\wedge $64 lük adresi serbestçe atanmıştır, ve bu muhtemelen kullanılabilecek olandan daha fazladır. (IPV4'e göre tüm internet sadece 2$ ^\wedge $32 adresleri kullanır- bunun küçük bir kısmı)}
+}
+\paragraph{Adres Ataması}{IPv4 ile, ISP'niz aynı IPv4 adresini atar ya da en fazla bir kaç tane atar. (Gerçek büyük bir şirkette olmağınız müddetçe ya da diğer ISP ve daha olanlar için adres oldukça zor bulunurdur.) Bilgisayarınız için daha fazla adres gerekmezse, dolambaçlı olmaya ihtiyaç duyarsınız. With IPv6, you are instead assigned a complete network, namely a “subnet prefix” that fixes only 48 or 56 of the possible 128 address bits. Öyleyse her alt ağ grubunun 2$ ^\wedge $64 lük adresi serbestçe atanmıştır, ve bu muhtemelen kullanılabilecek olandan daha fazladır. (IPV4'e göre tüm internet sadece 2$ ^\wedge $32 adresleri kullanır- bunun küçük bir kısmı)}
 
 \paragraph{Basit Yapılandırma}{Simple configuration While with IPv4 a computer must be assigned a local IP address—possibly with the aid of a DHCP server—, using IPv6 a computer can assign itself an address that is suitable to communicate with other computers in the immediate vicinity. With IPv6, a computer can also, without DHCP, locate routers in the neighbourhood which are prepared to forward data to the Internet. This avoids various problems with DHCP on IPv4.} DHCP, IPV4 deki çeşitli problemleri önler. Bu arada IPV6 "varsayılan rota" kullanmaz.
 

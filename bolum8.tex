@@ -314,7 +314,8 @@ ilk echo nun ardından başka bir pencerede çalıştırdığınızde ne olduğu
 \begin{section}{Veri Yönetimi}
 \begin{subsection}{Sıralı Dosyalar—sort ve uniq}
 
-sort komutu satırları önceden belirtilmiş bir kritere göre sıralamaya izin verir. Varsayılan ayar her satırın ilk birkaç karakterinin ASCII setine göre olan artan (A-Z) sıralamasıdır. Bu yüzden özel Alman karakterleri gibi karakterler genelde yanlış sıralanır. Örneğin, “A” nın karakter kodu 143'tür, bu yüzden bu karakter karakter kodu 91 olan “Z” karakterinden çok daha sonra biter. Küçük “a” karakteri bile büyük “Z” karakterinden daha büyük olarak düşünülür.
+sort komutu satırları önceden belirtilmiş bir kritere göre sıralamaya izin verir. Varsayılan ayar her satırın ilk birkaç karakterinin ASCII setine
+\footnote{ Of course ASCII only goes up to 127. What is really meant here is ASCII together with whatever extension for the characters with codes from 128 up is currently used, for example ISO-8859-1, also known as ISO-Latin-1.} göre olan artan (A-Z) sıralamasıdır. Bu yüzden özel Alman karakterleri gibi karakterler genelde yanlış sıralanır. Örneğin, “A” nın karakter kodu 143'tür, bu yüzden bu karakter karakter kodu 91 olan “Z” karakterinden çok daha sonra biter. Küçük “a” karakteri bile büyük “Z” karakterinden daha büyük olarak düşünülür.
 
 Elbette sort kendisini değişik dillere ve kültürlere uyarlayabilir. Alman kurallarına göre sıralamak için LANG, LC\_ALL ya da LC\_COLLATE  çevre değişkenlerinden birini “de”, “de\_DE” ya da “de\_DE@UTF-8” olarak değiştirebilirsiniz. (gerçek değer kullandığınız dağıtıma göre değişir) Eğer bunu sadece tek bir sıralama işlemi için değiştirmek istiyorsanız şunu yapın
 \begin{verbatim}

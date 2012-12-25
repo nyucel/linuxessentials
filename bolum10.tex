@@ -147,13 +147,13 @@ Aksi halde ağda gösterilen programın standart çıkışı göz ardı edilir. 
 \item[/etc/inittab]bu dosya init programı için ve sistem başlangıcı için yapılandırma dosyasıdır.
 \item[/etc/init.d/*]bu dizin çeşitli sistem servisleri için “init kodlarını” içerir. Bunlar başlatmak için ya da sistem kapandığında sistem dosyalarını durdurmak için kullanılırlar. Red Hat dağıtımlarında bu dizine /etc/rc.d/init.d denilmektedir.
 \item[/etc/issue]bu dosya giriş yapmak için kullanıcıya sorulmadan önce karşılamayı içerir. Yeni bir sistemin yüklenmesinden sonra çoğunlukla satıcının ismini içerir.
-\item[/etc/motd]bu dosya kullanıcı başarılı bir şekilde giriş yaptıktan sonra ortaya çıkan “günün mesajını” içerir. Sistem yöneticisi bu dosyayı önemli bilgileri ve olayların kullanıcılarını bildirmek için kullanır.
+\item[/etc/motd]bu dosya kullanıcı başarılı bir şekilde giriş yaptıktan sonra ortaya çıkan “günün mesajını” içerir. Sistem yöneticisi bu dosyayı önemli bilgileri ve olayların kullanıcılarını bildirmek için kullanır.\footnote{There is a well-known claim that the only thing all Unix systems in the world have in common is the “message of the day” asking users to remove unwanted files since all the disks are 98\% full.}
 \item[/etc/mtab]bu yerleştirme noktalarını içeren tüm yerleştirilmiş dosya sistemlerini içeren bir listedir. Bu dosya an itibariyle yerleştirilmiş tüm dosya sistemlerini içermesinden dolayı /etc/fstab dosyasından ayrılmaktadır, /etc/fstab dosyası sadece yerleştirilmesi mümkün olan dosya sistemleri için ayarları ve seçenekleri içerir. Hatta bu liste komut satırı aracılığıyla dosya sistemlerini yerleştirebildiği için ayrıntılı değildir.
 Dosyaların durgun olması gereken /etc içindeki bir dosyaya bu tür bilgileri yerleştirmemeliyiz.
 \item[/etc/passwd]burada sistemce bilinen tüm kullanıcıların bir listesi vardır, kullanıcının belirli bilgilerinin çeşitli araçlarını toplamak için. Dosyanın ismine rağmen modern sistemlerde şifreler bu dosya içinde depolanmaz fakat /etc/shadow denilen başka bir dosya içinde depolanır. /etc/paswd’un aksine bu dosya normal kullanıcılar tarafından okunamaz.
 \end{itemize}
 
-\paragraph{Aksesuarlar-/opt}{ bu dizin gerçekten 3. şahıs yazılımına yöneliktir - bölgesel olarak yüklenen dosyalar ya da dağıtım dosyalarıyla çelişmeden yüklenebilmesi gereken tüm paketler. Böyle yazılım paketleri /opt (packages)  gibi bir alt dizin meydana getirirler. Haklı olarak /opt dizini boş bir disk üzerine dağıtım yüklendikten sonra tamamen boş olmalı.}
+\paragraph{Aksesuarlar-/opt}{Bu dizin gerçekten 3. şahıs yazılımına yöneliktir - bölgesel olarak yüklenen dosyalar ya da dağıtım dosyalarıyla çelişmeden yüklenebilmesi gereken tüm paketler. Böyle yazılım paketleri /opt (packages)  gibi bir alt dizin meydana getirirler. Haklı olarak /opt dizini boş bir disk üzerine dağıtım yüklendikten sonra tamamen boş olmalı.}
 
 \paragraph{“değişmeyen dosyalar”-/usr}{burada programları ve sistemin onarımı ya da başlatılması için önemli olmayan bilgi dosyalarını içeren çeşitli alt dizinler vardır. En önemli dizinler şunları içerir:}
 \begin{itemize}
