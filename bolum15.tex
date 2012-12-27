@@ -59,14 +59,14 @@ X bilgisayarının internette diğer Y bilgisayarı ile bağlanabilmesinin hazı
 \item X bilgisiyarınız Y'nin IP adresini çözebilir (DNS bu işe yarar). 10.11.12.13 olduğunu varsayalım.
 \item X bilgisayarı IP adresi olan 10.11.12.13'ü çözdüğünde yerel ağdaki ile değerler aynı değildir (Y'nin Avusturalya'da olduğunu düşünmemizde hiç garip yan yok)
  Bu X bilgisayarının direkt olarak Y'ye veri gönderemediği anlamına gelir (büyük sürpriz).
-\item X bilgisayarının ağ yapılandırması "varsayılan rota" içerir, aksi halde verilerle ne yapacağını bilemediğinden direkt olarak hedef yere gönderilemez,tarif olarak bilinir. Bu görünüş olarak belki buna benzeyebilir "Bir şeyler gönderdiğinizde hemen Z bilgisayarına iletilemez". Z bilgisayarı aynı zamanda "varsayılan ağ geçidi" denilir.
-\item Z bilgisayarı --belki DSL yönlendiriciniz-- Y bilgisayarına direkt olarak verileri iletemez. Ancak, X bilgisayarı gibi direkt olarak ona bağlanarak adreslenmemiş verilerle ne yapacağını bilir. Bu ISP'niz üzerinden ona göndererek gerçekleşir.
-\item Bilgisayarınızdaki veriler gelene kadar bu oyun bir kaç düzey daha devam eder. Adreslenmiş veriler 10.11.x.y şeklinde  Avusturalyan ISP'sine gönderilmelidir (ona "Billabong-Net" diyelim). Yani veriler burada gönderildi.
-\item Billabong-Net 10.11.12.13 e gelen verilerin en yüksek hedefe nasıl iletileceğini bilir. Özellikle Y bilgisayarı Billabong-Net's alıcısınn birine yerleşmiş olabilir ya da alıcısının alıcısına yerleşmiş olabilir. Fakat doğru yapılandırılımışsa dogru çözecektir.
-\item Y' den X' e doğru alınan herhangi bir yanıt aynı geri dönüş aygıtını kullanır.
+\item X bilgisayarının ağ yapılandırması "varsayılan rota" içerir, aksi halde verilerle ne yapacağını bilemediğinden direkt olarak hedef yere gönderilemez, tarif olarak bilinir. Bu görünüş olarak belki buna benzeyebilir "Bir şeyler gönderdiğinizde hemen Z bilgisayarına iletilemez". Z bilgisayarına aynı zamanda "varsayılan ağ geçidi" denilir.
+\item Z bilgisayarı --belki DSL yönlendiriciniz-- Y bilgisayarına direkt olarak verileri iletemez. Ancak Z bilgisayarı, X bilgisayarı gibi adreslenmemiş bilgisayarlara direkt bağlanarak elindeki verilerle ne yapacağını bilir, yani onu ISP'niz üzerinden gönderir.
+\item Verileriniz bilgisayara gelene kadar bu oyun bir kaç düzey daha devam eder. Adreslenmiş veriler 10.11.x.y şeklinde  Avusturalyan ISP'sine gönderilmelidir (ona "Billabong-Net" diyelim). Yani veriler burada gönderildi.
+\item Billabong-Net 10.11.12.13 e gelen verilerin en yüksek hedefe nasıl iletileceğini (umarım) bilir. Özellikle Y bilgisayarı Billabong-Net's alıcısınn birine yerleşmiş olabilir ya da alıcısının alıcısına yerleşmiş olabilir. Fakat doğru yapılandırılımışsa dogru çözecektir.
+\item Y'den X'e doğru alınan herhangi bir yanıt benzer geri dönüş aygıtını kullanır.
 \end{itemize}
 
-Burada önemli bir gözlem, veri geçişi olduğunda gerçek rota X 'den Y'ye verileri aldığını belirtir. X bilgisayarı orta hedeflerin tam listesini belirtmeye gerek duymaz, fakat her ara hedefin doğru şeyi yaptığına güvenir. Aksine, her bilgisayar sadece "yerel" bilgiye ihtiyaç duyar ve tüm internetin nerede olduğunu bilmeye gerek duymaz - bu oldukça imkansız olurdu.
+Burada önemli bir gözlem, veri geçişi olduğunda gerçek rota X'den Y'ye verileri aldığını belirtir. X bilgisayarı orta hedeflerin tam listesini belirtmeye gerek duymaz, fakat her ara hedefin doğru şeyi yaptığına güvenir. Aksine, her bilgisayar sadece "yerel" bilgiye ihtiyaç duyar ve tüm internetin nerede olduğunu bilmeye gerek duymaz - bu oldukça imkansız olurdu.
 
 Haberleşme protokolü olarak IP özelliğinin birini bir ilke içerisinde yönlendirebildiğinde bir paketten bir sonrakine değiştirirsin (hatta genellikle herhangi bir olay olmaz). Bu internet bağlantı kesintileri, sıkışıklığı ve tepkilerine izin verir.
 
@@ -76,7 +76,7 @@ Günün sonunda bu şu anlama gelir: Linux bilgiasayar 3 şeyi bilemeye gerek du
 
 Bilgisayarınızın IP adresinin 192.168.178.111 olduğunu düşünün yerel ağda ise 192.168.178.0/24. Burada, 24 alt ağda maskeler. İlk 24 biti adresinizi belirtir (yani ilk üçlü sekizlik, şöyleki 192.168.178). Son sekizlik de ise ( ya da sonraki 8'li 32 yapar) yerel adresiniz mevcuttur. Bu tüm bilgisayarların 192.168.178.0 dan 192.168.178.255 arasında olduğu anlamına gelir- olşuturdularsa- direkt olarak ulaşabilirler; varsayılan ağ geçidi (yerel ağdaki adres sahip olmalı) diğer IP adreslerine ulaşmayı kullanmalıdır. 
 
-Aslında, örneğimizdeki 192.168.178.0 ve 192.168.178.255 adresleri özel anlamlara sahip olduklarında beri bilgisayarlar için mevcut değildir. Fakat sadece bütünlük icin onlardan bahsediyoruz.
+Aslında, örneğimizdeki 192.168.178.0 ve 192.168.178.255 adresleri özel anlamlara sahip olduklarında beri bilgisayarlar için mevcut değildir. Fakat sadece bütünlük için onlardan bahsediyoruz.
 
 Bu ilkede elle bilgisayarınızın ağ yapılandırmasının bir parçası gibi (Detaylar dağıtımınıza bağlıdır) bütün ağ parametrelerini ayarlayabilirsiniz -- IP adres, alt ağ (maskeleme) ve varsayılan ağ geçidi. Ancak, çok muhtemel olarak "DHCP sunucusu" size bir ağ sağlar, bu mevcut olan bu parametrelerle bilgisayarınıza endişelenmeden ayarlar yapılacaktır.
 
@@ -133,13 +133,13 @@ fe80::25a:b6ff:fe9c:406a
 
 The loopback address, i. e., the moral equivalent to IPv4’s 127.0.0.1 , is ::1.
 }
-\paragraph{Adres Ataması}{IPv4 ile, ISP'niz aynı IPv4 adresini atar ya da en fazla bir kaç tane atar. (Gerçek büyük bir şirkette olmağınız müddetçe ya da diğer ISP ve daha olanlar için adres oldukça zor bulunurdur.) Bilgisayarınız için daha fazla adres gerekmezse, dolambaçlı olmaya ihtiyaç duyarsınız. With IPv6, you are instead assigned a complete network, namely a “subnet prefix” that fixes only 48 or 56 of the possible 128 address bits. Öyleyse her alt ağ grubunun 2$ ^\wedge $64 lük adresi serbestçe atanmıştır, ve bu muhtemelen kullanılabilecek olandan daha fazladır. (IPV4'e göre tüm internet sadece 2$ ^\wedge $32 adresleri kullanır- bunun küçük bir kısmı)}
+\paragraph{Adres Ataması}{IPv4 ile, ISP'niz aynı IPv4 adresini atar ya da en fazla bir kaç tane atar. (Gerçek büyük bir şirkette olmağınız müddetçe ya da diğer ISP ve daha olanlar için adres oldukça zor bulunurdur.) Bilgisayarınız için daha fazla adres gerekmezse, dolambaçlı olmaya ihtiyaç duyarsınız. With IPv6, you are instead assigned a complete network, namely a “subnet prefix” that fixes only 48 or 56 of the possible 128 address bits. Öyleyse her alt ağ grubunun 2$ ^\wedge $64 lük adresi serbestçe atanmıştır, ve bu muhtemelen kullanılabilecek olandan daha fazladır. (IPv4'e göre tüm internet sadece 2$ ^\wedge $32 adresleri kullanır- bunun küçük bir kısmı)}
 
-\paragraph{Basit Yapılandırma}{Simple configuration While with IPv4 a computer must be assigned a local IP address—possibly with the aid of a DHCP server—, using IPv6 a computer can assign itself an address that is suitable to communicate with other computers in the immediate vicinity. With IPv6, a computer can also, without DHCP, locate routers in the neighbourhood which are prepared to forward data to the Internet. This avoids various problems with DHCP on IPv4.} DHCP, IPV4 deki çeşitli problemleri önler. Bu arada IPV6 "varsayılan rota" kullanmaz.
+\paragraph{Basit Yapılandırma}{Simple configuration While with IPv4 a computer must be assigned a local IP address—possibly with the aid of a DHCP server—, using IPv6 a computer can assign itself an address that is suitable to communicate with other computers in the immediate vicinity. With IPv6, a computer can also, without DHCP, locate routers in the neighbourhood which are prepared to forward data to the Internet. This avoids various problems with DHCP on IPv4.} DHCP, IPv4 deki çeşitli problemleri önler. Bu arada IPv6 "varsayılan rota" kullanmaz.
 
 \paragraph{Diğer gelişmeler}{The format of IP datagrams was changed to enable more efficient routing. In addition, IPv6 defines methods to change a network’s subnet prefix much more easily than a network’s address could be changed in IPv6—this is also an attempt to simplify routing. Furthermore, IPv6 supports encrypted networks (IPsec) and mobility where computers—think of cell phones—can migrate from one network to another without changing addresses or interrupting existing connections (“mobile IPv6”).}
 
-\paragraph{Uygunluk}{IPV6 nın tanıtılması sadece IP-protokollerine etki eder. TCP ve UDP ya da diğer uygulamala protokolleri değişmeden kalır. Aynı zamanda IPV6 ve IPV4 ün paralel çalışabiliceğinden bahsetmiştik.}
+\paragraph{Uygunluk}{IPv6 nın tanıtılması sadece IP-protokollerine etki eder. TCP ve UDP ya da diğer uygulamala protokolleri değişmeden kalır. Aynı zamanda IPv6 ve IPv4 ün paralel çalışabiliceğinden bahsetmiştik.}
 
 \paragraph{Alıştırmalar}{
 \begin{itemize}
@@ -220,11 +220,11 @@ eth0   Link encap:Ethernet HWaddr 70:5a:b6:9c:40:6a
 
 \begin{itemize}
 \item İlk satırdaki çıktı "donanım" ya da "MAC adresi" ni içerir. Bu çıktı arayüz üreticisi tarafından atanmıştır(buradaki, Ethernet arayüzüdür)
-\item İkinci satıra IPV4 adresi atanmıştır. Oldukça sağ taraftaki oldfashioned/tedious daki gösterimde alt ağ maskesi vardır. 
-\item 3 ve 4. satırdaki adresler çeşitli IPV6 adresleri içerir. 3.sü alt ağ ön  ekini içerirken (bu eke internet üzerinden erişebilir), 4. satır bilgisayara atanan yerel adresi içerir.
+\item İkinci satıra IPv4 adresi atanmıştır. Oldukça sağ taraftaki oldfashioned/tedious daki gösterimde alt ağ maskesi vardır. 
+\item 3 ve 4. satırdaki adresler çeşitli IPv6 adresleri içerir. 3.sü alt ağ ön  ekini içerirken (bu eke internet üzerinden erişebilir), 4. satır bilgisayara atanan yerel adresi içerir.
 \end{itemize}
 
-Yakından bakarsanız, her IPV6 adresinizin ikinci yarısının MAC adresiniz olduğunu tanıyacaksınız.
+Yakından bakarsanız, her IPv6 adresinizin ikinci yarısının MAC adresiniz olduğunu tanıyacaksınız.
 
 The “UP ” at the start of the fifth line denotes that the interface is actually switched on.
 
@@ -292,7 +292,7 @@ Ağ bağlantınız bazen çalışır bazen de "ping -f" yi kullanarak test edeme
 
 If you’re not root but an ordinary user, you must make do with a minimal interval of 0.2 seconds between two packets sent. Sistem yöneticisiyseniz sadece ağ taşmış olabilir.
 
-IPV6 bağlantınızı kontrol etmek için ping yerine ping6 komutunu kullanabilirsiniz. 
+IPv6 bağlantınızı kontrol etmek için ping yerine ping6 komutunu kullanabilirsiniz. 
 \begin{verbatim}
 $ ping6 ::1
 \end{verbatim}
@@ -429,7 +429,7 @@ Ve "netstat -r" komutu aslında "route" komutuna benzer (parametre olmadan).
 \item[ifconfig]ağ arayüzünü yapılandırır
 \item[netstat]ağ bağlantısı hakkında bilgi gösterir, suncular, yönlendirmeler gibi
 \item[ping]ICMP'yi kullanarak temel ağ bağlantısını kontrol eder
-\item[ping6]temel ağ bağlantısını kontrol eder (IPV6 için)
+\item[ping6]temel ağ bağlantısını kontrol eder (IPv6 için)
 \item[route]Linux çekirdeğinin yönlendirme tablosunu yönetir
 \end{itemize}}
 
@@ -442,7 +442,7 @@ Ve "netstat -r" komutu aslında "route" komutuna benzer (parametre olmadan).
 \item Yönlendirmeler bilgisayarların arasında birbirlerine direkt bağlanmadan haberleşmelerini sağlarlar.
 \item Ağa bağlanırken, Linux bilgisayar bir IP adres ister, alt ağdaki adres ile maskelenir, varsayılan bir ağ geçidi, ve adresin üzerinde bulunduğu en az bir adres vardır. 
 \item DNS IP adreslerini ev sahibi isimlerine eşleştiren ya da bunun tam tersidir(diğer şeyler arasında).
-\item IPV6, IPV4 ün varisidir, IPV6 da çeşitli sınırlamalar kaldırılmıştır ve çeşitli gelişmeler içerir. 
+\item IPv6, IPv4 ün varisidir, IPv6 da çeşitli sınırlamalar kaldırılmıştır ve çeşitli gelişmeler içerir. 
 \item ifconfig ve route ağı elle yapılandırmada kullanılır. Dağıtımlar ağ yapılandırması için çeşitli şemalar kullanırlar. 
 \item ifconfig, ping, dig ve netstat programları iyi ağ sorunu çözümleri için kullanılır.
 \end{itemize}
