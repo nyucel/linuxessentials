@@ -103,8 +103,9 @@ Geçerli Unix sistemlerinin (Linux dahil) komut yapısı 40 yıllık bir süreç
 
 Kabuklar içerisinde aslında iki tip komut vardır:
 
-\paragraph{Dahili komutlar}{Bu komutlar kabuğun kendisi tarafından sunulmaktadır. Bourne-again hızlı gerçekleştirilebilen 30 kadar dahili komut içerir. Kabuğun durumunu degiştiren bazı komutlar (exit veya cd gibi) dışarıdan temin edilemez.}
-\paragraph{Harici komutlar}{Kabuk bu tür komutları kendi kendine çalıştırmaz ama çalıştırılabilir dosyaları başlatır. Ki bu tür dosyalar genelde /bin veya /usr/bin dizinleri altında bulunurlar.Bir kullanıcı olarak kendi programlarınızı temin edip kabuğun diğer tüm harici komutları çalıştırdığı gibi kendi programlarınızın çalıştırılmasını sağlayabilirsiniz. Komutunuzun türünü öğrenmek için "type" komutunu kullanabilirsiniz. Bu komuta delil olarak komut adı verirseniz çıktı olarak size komutun türünü ya da karşılık gelen dosya ismini verir, örneğin}
+\paragraph{Dahili komutlar}{Bu komutlar kabuğun kendisi tarafından sunulmaktadır. Bourne-again hızlı gerçekleştirilebilen 30 kadar dahili komut içerir. Kabuğun durumunu değiştiren bazı komutlar (exit veya cd gibi) dışarıdan temin edilemez.}
+\paragraph{Harici komutlar}{Kabuk bu tür komutları kendi kendine çalıştırmaz ama çalıştırılabilir dosyaları başlatır. Ki bu tür dosyalar genelde /bin veya /usr/bin dizinleri altında bulunurlar. Bir kullanıcı olarak kendi programlarınızı temin edip kabuğun diğer tüm harici komutları çalıştırdığı gibi kendi programlarınızın çalıştırılmasını sağlayabilirsiniz.}
+\paragraph{Komutunuzun türünü öğrenmek için \emph{type} komutunu kullanabilirsiniz. Bu komuta bağımsız değişken olarak olarak komut adı verirseniz çıktı olarak size komutun türünü ya da karşılık gelen dosya ismini verir, örneğin}
 \begin{verbatim}
  $ type echo
  echo is a shell builtin
@@ -112,23 +113,23 @@ Kabuklar içerisinde aslında iki tip komut vardır:
  date is /bin/date
 \end{verbatim}
 
-("echo" komutu ilginç bir komut olup kendisine verilen parametreleri çıktı olarak verir:
+(\emph{echo} komutu ilginç bir komut olup kendisine verilen parametreleri çıktı olarak verir:
 
 \begin{verbatim}
  $ echo Thou hast it now, king, Cawdor, Glamis, all
  Thou hast it now, king, Cawdor, Glamis, all
 \end{verbatim}
 
-"date" komutu da geçerli tarih ve saat olarak ayarlanmış olan saat dilimi ve dile göre gösterir:
+\emph{date} komutu da mevcut tarih ve saati ayarlanmış olan saat dilimi ve dile göre gösterir:
 
 \begin{verbatim}
  $ date
  Mon May 7 15:32:03 CEST 2012
 \end{verbatim}
 
-echo ve date komutları hakkında daha fazlası için ~\ref{chap:bolum9} . Bölüme bakınız.)
+\emph{echo} ve \emph{date} komutları hakkında daha fazlası için ~\ref{chap:bolum9} . Bölüme bakınız.)
 
-"help" komutuyla dahili Bash komutları ile ilgili bilgiyi alabilirsiniz: 
+\emph{help} komutuyla dahili Bash komutları ile ilgili bilgiyi alabilirsiniz: 
 \begin{verbatim}
  $ help type
  type: type [-afptP] name [name ...]
@@ -139,9 +140,9 @@ echo ve date komutları hakkında daha fazlası için ~\ref{chap:bolum9} . Böl�
    `alias', `keyword', `function', `builtin', `file' or `', if NAME is an
 \end{verbatim}
 \paragraph{Alıştırmalar}{
-\begin{itemize}
-\item Aşağıdaki programlardan hangileri bash ile harici ve hangileri dahili olarak temin edilir: \begin{em}alias, echo, rm, test\end{em}?
-\end{itemize}
+\pointedenum\begin{enumerate}
+\item Aşağıdaki programlardan hangileri harici ve hangileri kabuk içerisinde dahili olarak temin edilir: \begin{em}alias, echo, rm, test\end{em}?
+\end{enumerate}
 }
 \end{subsection}
 \begin{subsection}{Daha da fazla kurallar}
