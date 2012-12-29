@@ -68,34 +68,34 @@ Linux sisteminde kabuk bir "\emph{komut istemini}" görüntüler, bu da komutlar
 \begin{verbatim}joe@red:/home > _
 \end{verbatim}
 
-Bu örnek,"joe" kullanıcısının "red" adındaki bilgisayarın "/home" dizininde bulunduğunu ifade etmektedir.
+Bu örnek,\emph{joe} kullanıcısının \emph{red} adındaki bilgisayarın \emph{/home} dizininde bulunduğunu ifade etmektedir.
 \end{subsection}
 \begin{subsection}{Komut Yapısı}
 
-Bir komut aslında karakterler dizisinden oluşur ve enter tuşuna basılmasıyla komut, kabuk tarafından değerlendirilir. Çogu komut Inglizce'den esinlenilerek "komut diline" verilmiş bir şekildir. Bu dilde komutlar belli kurallara, "sözdizimine" uymalıdır ki kabuk bunları yorumlayabilsin.
+Bir komut aslında karakterler dizisinden oluşur ve Enter tuşuna basılmasıyla komut, kabuk tarafından değerlendirilir. Çoğu komut belli belirsiz İnglizce'den esinlenilmiştir ve onlara adanmış bir "komut dilini" oluşturur. Bu dilde komutlar belli kurallara, "sözdizimine" uymalıdır ki kabuk bunları yorumlayabilsin.
 
-Kabuk komut satırını yorumlayabilmek için ilk önce satırı sözcüklere ayırır. Gerçek hayatta olduğu gibi sözcükler bosluklarla ayırılır. Satırdaki ilk sözcük genellikle asıl komuttur. Satırdaki geri kalan sözcükler detaylı olarak ne yapılmak istendiğini belirten parametrelerdir.
+Kabuk komut satırını yorumlayabilmek için ilk önce satırı sözcüklere ayırır. Gerçek hayatta olduğu gibi sözcükler boşluklarla ayırılır. Satırdaki ilk sözcük genellikle asıl komuttur. Satırdaki geri kalan sözcükler detaylı olarak ne yapılmak istendiğini belirten parametrelerdir.
 
-Kabuğun büyük ve küçük karakterleri birbirinden ayırabiliyor olması DOS ve Windows kullanıcılarını şaşırtabilir. Linux komutları genellikle sadece küçük harflerle (istisnaları kanıtlama kuralı) yazılır. Ayrıca 4.2.4'e bakın.
+Kabuğun büyük ve küçük karakterleri birbirinden ayırabiliyor olması DOS ve Windows kullanıcılarını şaşırtabilir. Linux komutları genellikle sadece küçük harflerle (istisnalar kuralı kanıtlar) yazılır ve aksi halde anlaşılmaz. Ayrıca bölüm 4.2.4'e bakın.
 
-Komutları sözcüklere ayırırken, kabuk için sözcüklerin arasında bir veya daha fazla boşluk karakterinin olması aynı şeydir. Aslında, kabuk için sözcükler arasında boşluk karakterinin olup olmamasının önemi yoktur; tabulator karakterine de izin verilmiştir. Bu karakterin önemi de komutları dosyalardan okurkendir, çünkü kabuk doğrudan doğruya tab karakterini girmeye izin vermez (en azından çemberleri atlamadan).
+Komutları sözcüklere ayırırken, kabuk için sözcüklerin arasında bir veya daha fazla boşluk karakterinin olması aynı şeydir. Aslında, kabuk için sözcükler arasında boşluk karakterinin olup olmamasının önemi yoktur; bir satır üzerinde dizme yapan karakterine de izin verilmiştir. Bu karakterin önemi de komutları dosyalardan okurkendir, çünkü kabuk doğrudan doğruya sekme karakterini girmeye izin vermez (en azından çemberlerin içinden atlamadan).
 
-Bilgisayara girdiğiniz komut tek satıra sığmayacaksa bunu birkaç satırda ifade etmek de mümkün. Ama bunun bir komut girdisi olarak  anlaşılmaması için satır sonlandırıcıdan önce (enter) "Token \textbackslash" karakteri yazılmalıdır. Komutların parametreleri kabaca ikiye ayırmak mümkündür:
+Bilgisayara girdiğiniz komut tek satıra sığmayacaksa bunu birkaç satırda ifade etmek de mümkün. Ama bunun bir komut girdisi olarak  anlaşılmaması için satır sonlandırıcıdan önce (Enter) "Token \textbackslash" karakteri yazılmalıdır. Komutların parametreleri kabaca ikiye ayırmak mümkündür:
 \begin{itemize}
- \item Tire("-") ile başlayan parametreler seçenekler diye isimlendirilir. Bunlar genelde, isteğe bağlıdır, detaylar söz konusu komuta göre değisir. Bunlara mecazi olarak "anahtarlar" demek mümkündür. Bunlar komutun bazı özelliklerinin açılıp kapanmasını sağlarlar. Eğer komuta birkaç tane seçenek eklenmek istenirse bunları ayrı ayrı tire karakteri ("-a -l -F") ile yazabileceğimiz gibi tek tire karakteri ile de yapılabilir ("-alF"). Konsol komutları birden fazla seçenek alabilir. Bunların bazısı tek karakterle yazılabilen seçenekler olurken kimisi okunabilirliği arttırmak için uzun şekilde yazılan seçeneklerdir. Uzun seçenekler çoğu zaman iki tire karakteri ile başlarlar ve birleştirilemezler: "foo --bar --baz".
- \item Tire ile başlamayan parametreler "delil" olarak adlandırılır. Bu da çogu zaman komutun işlemesi gerektiği dosyanın adına karşılık gelir
+ \item Tire("-") ile başlayan parametreler seçenekler diye isimlendirilir. Bunlar genelde, isteğe bağlıdır, detaylar söz konusu komuta göre değisir. Bunlara mecazi olarak "anahtarlar" demek mümkündür. Bunlar komutun bazı özelliklerinin açılıp kapanmasını sağlarlar. Eğer komuta birkaç tane seçenek eklenmek istenirse bunları ayrı ayrı tire karakteri ("-a -l -F") ile yazabileceğimiz gibi tek tire karakteri ile de yapılabilir ("-alF"). Konsol komutları birden fazla seçenek alabilir. Bunların bazısı tek karakterle yazılabilen seçenekler olurken kimisi okunabilirliği arttırmak için uzun şekilde yazılan (genellikle de tekil karakter karşılıklarına ek olarak) seçeneklerdir. Uzun seçenekler çoğu zaman iki tire karakteri ile başlarlar ve birleştirilemezler: "foo --bar --baz".
+ \item Tire ile başlamayan parametreler "bağımsız değişken" olarak adlandırılır. Bu da çoğu zaman komutun işlemesi gerektiği dosyaların adlarına karşılık gelir
 \end{itemize}
 
 \paragraph{}{Genel komut yapısı aşağıdaki gibi gösterilebilir:
 \begin{itemize}
 \item Komut - "Ne yapılacak?"
 \item Seçenekler - "Nasıl yapılacak?"
-\item Deliller - "Ne ile yapılacak?"
+\item Bağımız Değişkenler - "Ne ile yapılacak?"
 \end{itemize}
 }
 \end{subsection}
 
-Genellikle seçenekler komutlardan sonra, delillerden önce gelir. Ancak, komutların tümü bu şekilde kuralın işlemesini şart koşmazlar. Bazıları delil ve seçenekleri keyfi olarak karıştırabilirler ve onlar, bütün seçenekler komuttan sonra gelmiş gibi davranırlar. Komut satırı sırayla işlenirken -*-*diğerleriyle karşılaşıldığında seçenekler de dikkate alınır.
+Genellikle seçenekler komutlardan sonra, delillerden önce gelir. Ancak, komutların tümü bu şekilde kuralın işlemesini şart koşmazlar. Bazıları delil ve seçenekleri keyfi olarak karıştırabilirler ve bütün seçenekler komuttan sonra gelmiş gibi davranırlar. Diğerleri ile birlikte komut satırı sırayla işlenirken seçenekler de karşılaşıldığında dikkate alınır.
 
 Geçerli Unix sistemlerinin (Linux dahil) komut yapısı 40 yıllık bir süreç içinde büyük bir gelişme sağladı ve bu nedenle bazen çeşitli tutarsızlıkların ve küçük sürprizlerin görülmesi doğaldır. Biz de daha tutarlı olması gerektiğine inanıyoruz ama 30 yıllık geçmişe sahip kabuk betiklerini tamamen göz ardı etmek zordur. Bu nedenle sık sık görülen küçük garipliklere hazırlıklı olun.
 
