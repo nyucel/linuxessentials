@@ -145,11 +145,10 @@ Kabuklar içerisinde aslında iki tip komut vardır:
 \end{enumerate}
 }
 \end{subsection}
-\begin{subsection}{Daha da fazla kurallar}
+\begin{subsection}{Daha da fazla kural}
 Yukarıda belirtildigi gibi, kabuk, komut girildiğinde büyük-küçük harflere duyarlıdır. Bu durum sadece komutlar için geçerli olmayıp seçenekleri ve parametreleri (çoğunlukla dosya isimlerini) de kapsar.
 
-Şunu da göz önünde bulundurmalısınız ki kabuk bazı karakterleri özel giriş karakterleri olarak algılar. En önemlisi de daha önce belirtilmiş olan
-boşluk karakteri komut satırındaki sözcükleri ayırmak için kullanılmaktadır. Özel anlamı olan diğer karakterler şunlardır:
+Şunu da göz önünde bulundurmalısınız ki kabuk, bazı karakterlerini özel giriş karakterleri olarak algılar. En önemlisi de daha önce belirtilmiş olan boşluk karakteri komut satırındaki sözcükleri ayırmak için kullanılmaktadır. Özel anlamı olan diğer karakterler şunlardır:
 
 \begin{verbatim}
  $&;(){}[]*?!<>"'
@@ -163,22 +162,22 @@ Tabi bunları kullanmak isteyebiliriz. Bu durumda onlar kabuk tarafından özel 
 
 Tırnak işareti olduğu için komut tek bir dosya olan "New File" için geçerlidir. Tırnak işareti olmasaydı "New" ve "File" diye iki ayrı dosya olarak algılanırdı.
 
-Burada özel karakterlerin hepsini açıklayamayız. Çoğu bu kilavuzun farklı yerlerinde karşımıza çıkacaktır ya da Bash belgelerini kontrol edin.
+Burada özel karakterlerin hepsini açıklayamayız. Çoğu bu kılavuzun farklı yerlerinde karşımıza çıkacaktır ya da Bash belgelerini kontrol edin.
 
 \paragraph{Bu bölümdeki Komutlar}{
 \begin{itemize}
 \item[bash] 	"Bourne-Again-Shell" - etkileşimli komut yorumlayıcısı
 \item[date] 	Tarihi ve zamanı görüntüler
 \item[echo] 	Boşlukla ayrılan tüm parametrelerini standart çıktıya yazar
-\item[help]	bash komutları için yardımı görüntüler
+\item[help]		bash komutları için yardımı görüntüler
 \item[type] 	Komutun türünü gösterir (dahili, harici, takma ad)
 \end{itemize}}
 \paragraph{Özet}{
 \begin{itemize}
 \item Kabuk kullanıcı komutlarını okur ve onları çalıştırır.
-\item Çoğu kabukta programlama dilinin özellikleri vardır. Ayrıca komut dizileri içeren kabuk betiklerini destekler.
-\item Komutlar delil ve seçeneklere sahip olabilir. Seçenekler komutun nasil çalistigini belirlerken deliller ne üzerine çalıştığını belirler.
-\item Kabuklar dahili komutları ve harici komutları ayırt edebilir.
+\item Çoğu kabukta programlama dilinin özellikleri vardır. Ayrıca henüz işlenmemiş komut dizileri içeren kabuk betiklerini destekler.
+\item Komutlar bağımsız değişken ve seçeneklere sahip olabilir. Seçenekler komutun \emph{nasıl} çalıştığını belirlerken bağımsız değişkenler \emph{ne} üzerine çalıştığını belirler.
+\item Kabuklar dahili, kabuğun içerisinde tanımlı, komutları ve harici, ayrı süreçler olarak başlatılan çalıştırılabilir dosyalara kaşılık gelen, komutları ayırt edebilir.
 \end{itemize}}
 \end{subsection}
 \end{section}
