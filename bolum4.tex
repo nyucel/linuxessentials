@@ -100,6 +100,9 @@ Genellikle seçenekler komutlardan sonra, delillerden önce gelir. Ancak, komutl
 Geçerli Unix sistemlerinin (Linux dahil) komut yapısı 40 yıllık bir süreç içinde büyük bir gelişme sağladı ve bu nedenle bazen çeşitli tutarsızlıkların ve küçük sürprizlerin görülmesi doğaldır. Biz de daha tutarlı olması gerektiğine inanıyoruz ama 30 yıllık geçmişe sahip kabuk betiklerini tamamen göz ardı etmek zordur. Bu nedenle sık sık görülen küçük garipliklere hazırlıklı olun.
 
 \begin{subsection}{Komut Tipleri}
+
+Kabuklar içerisinde aslında iki tip komut vardır:
+
 \paragraph{Dahili komutlar}{Bu komutlar kabuğun kendisi tarafından sunulmaktadır. Bourne-again hızlı gerçekleştirilebilen 30 kadar dahili komut içerir. Kabuğun durumunu degiştiren bazı komutlar (exit veya cd gibi) dışarıdan temin edilemez.}
 \paragraph{Harici komutlar}{Kabuk bu tür komutları kendi kendine çalıştırmaz ama çalıştırılabilir dosyaları başlatır. Ki bu tür dosyalar genelde /bin veya /usr/bin dizinleri altında bulunurlar.Bir kullanıcı olarak kendi programlarınızı temin edip kabuğun diğer tüm harici komutları çalıştırdığı gibi kendi programlarınızın çalıştırılmasını sağlayabilirsiniz. Komutunuzun türünü öğrenmek için "type" komutunu kullanabilirsiniz. Bu komuta delil olarak komut adı verirseniz çıktı olarak size komutun türünü ya da karşılık gelen dosya ismini verir, örneğin}
 \begin{verbatim}
