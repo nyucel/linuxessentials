@@ -24,18 +24,17 @@ Eskiden hepsinin Windows kullanıyor olması gibi}. Tabi ki birinci vitesle de u
 
 \begin{subsection}{Kabuk nedir?}
 
-Kullanıcılar doğrudan doğruya işletim sisteminin çekirdeğiyle iletişim kuramazlar. Bu sadece "sistem çağrıları"nı kullanan programlarla mümkündür. Ancak, bir şekilde bu tür programları başlatabiliyor olmanız gerekir. Kabuk, klavyeden girilen komutları (genellikle) okuyup onları çalıştırılabilir hale getiren, özel bir kullanıcı programı olarak bu görevi üstlenir. Kabuk, bilgisayara "arayüz" hizmeti vererek asıl işletim sisteminin kabuğunu örter. Tabi ki kabuk, işletim sistemine erişen programlar arasından sadece bir tanesidir.
+Kullanıcılar doğrudan doğruya işletim sisteminin çekirdeğiyle iletişim kuramazlar. Bu sadece "sistem çağrıları"nı kullanan programlarla mümkündür. Ancak, bir şekilde bu tür programları başlatabiliyor olmanız gerekir. Kabuk, klavyeden girilen komutları (genellikle) okuyup onları (örneğin) çalıştırılabilir komutlar haline getiren, özel bir kullanıcı programı olarak bu görevi üstlenir. Kabuk, bilgisayara "arayüz" hizmeti vererek asıl işletim sistemini bir kabuk gibi örter (kabuklu deiz hayvanının adındaki gibi) ve onu görünmekten saklar. Elbette ki kabuk, işletim sistemine erişen programlar arasından sadece bir tanesidir.
 
-Bugünün görsel "masaüstü" de "kabuk" olarak kabul edilebilir, örneğin KDE gibi. Klavyeden girilen komutlar kabuk tarafından belli bir dil bilgisi kuralına göre işleme konur; aynı şeyi görsel masaüstü, komutları fareden alarak gerçekleştirir. Örneğin, fare yardımıyla nesneleri tıklayarak seçersiniz ve ne yapacağınıza karar verirsiniz: açmak, kopyalamak, silmek vs.
+Bugünün KDE gibi görsel "masaüstleri" de "kabuk" olarak kabul edilebilir. Klavyeden girilen metin komutları yerine fare ile girilen grafik komutlarını okur, metin komutlarının belli bir dil bilgisini takip etmesi gibi aynı şey fareden alınarak gerçekleştirilir. Örneğin, fare yardımıyla nesneleri tıklayarak seçersiniz ve ne yapacağınıza karar verirsiniz: açmak, kopyalamak, silmek vs.
 
-Hatta 1960 Unix modelinde bile kabuk vardı. En eski kabuk 1970'lerin ortalarında "Unix'in 7. sürümü" için Stephen L.Bourne tarafından geliştirildi. "Bourne kabuğu" olarak isimlendirilen bu kabuk temel işlevleri yerine getirip yaygın olarak kullanılıyordu, ama bugün bu kabuk orijinal haliyle nadiren görülür. (C kabugu) Diğer klasik Unix kabukları C kabuğunu içerir, bu kabuk Berkeley'de bulunan California Üniversitesi'nde C programlama dili ile oluşturuldu ve büyük ölçüde Bourne kabuğu ile uyumlu olmasına rağmen daha işlevsellik açısından daha gelişmiş (David Korn tarafından geliştirildi, AT\&T'de de geliştirildi).
+1960ların sonlarındaki Unix modelinde bile kabuk vardı. En eski kabuk 1970'lerin ortalarında "Unix'in 7. sürümü" için Stephen L.Bourne tarafından geliştirildi. "Bourne kabuğu" olarak isimlendirilen bu kabuk temel işlevleri yerine getirip yaygın olarak kullanılıyordu, ama bugün bu kabuk orijinal haliyle nadiren görülür. Diğer klasik Unix kabukları C kabuğunu içerir, bu kabuk Berkeley'de bulunan California Üniversitesi'nde C programlama dili ile oluşturulmuştur ve büyük ölçüde Bourne kabuğu ile uyumlu olmasına rağmen işlevsellik açısından daha gelişmiş Korn kabuğudur (David Korn tarafından geliştirildi, AT\&T'de de geliştirildi).
 
-Linux sistemlerinde standart Bourne-again shell kabuğudur, kısacası bash. Bu kabuk, Brian Fox ve Chet Ramey tarafından Özgür Yazılım Vakfı'nın GNU projesi altında geliştirilmiş olup, Korn ve C kabularının birçok işlevlerini
-birleştirir.
+Linux sistemlerinde standart, Bourne-again kabuğudur, kısacası \emph{bash}. Bu kabuk, Brian Fox ve Chet Ramey tarafından Özgür Yazılım Vakfı'nın GNU projesi altında geliştirilmiş olup, Korn ve C kabuklarının birçok işlevini birleştirir.
 
-Bahsettiğimiz kabukların haricinde başka kabuklar da mevcuttur. Unix'te, kabuk diğer programlar gibi sıradan bir uygulama programıdır, üzerine yazmak için ek olarak ayrıcalığa gerel yoktur - sadece kabuğun diğer programlarla nasıl iletişim kurması gerektiği yönetmeliğinin kurallarına bağlı kalmanız yeterlidir.
+Bahsettiğimiz kabukların haricinde başka kabuklar da mevcuttur. Unix üzerinde kabuk diğer programlar gibi sıradan bir uygulama programıdır, yeni bir tane yazmak için özel bir ayrıcalığa gerel yoktur - sadece kabuğun diğer programlarla nasıl iletişim kurması gerektiği yönetmeliğinin kurallarına bağlı kalmanız yeterlidir.
 
-Kabuklar kullanıcı komutlarını okumak için etkilesimli olarak çağrılabilirler (genellikle "terminal" üzerinde). Pek çok kabuk bir de dosyadan komut dizilerini okuyabilir. Bu tür dosyalara "kabuk betikleri" denir.
+Kabuklar kullanıcı komutlarını okumak için etkilesimli olarak çağrılabilirler (genellikle "terminal" üzerinde). Pek çok kabuk bir de dosyadan henüz işlenmemiş komut dizilerini okuyabilir. Bu tür dosyalara "kabuk betikleri" denir.
 \paragraph{}{Kabuk aşağıdaki adımları takip eder:
 \begin{itemize}
 \item Terminalden (veya dosyadan) komut okumak
