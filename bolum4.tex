@@ -2,107 +2,110 @@
 \label{chap:bolum4}
 \paragraph{Amaçlar}
 \begin{itemize}
- \item Komut-satır kullanıcı arayüzünün önemini anlamak
+ \item Komut-satırı kullanıcı arayüzünün önemini anlamak
  \item Bourne-Again Shell(Bash) komutları ile çalışmak
  \item Linux komutlarının yapısını anlamak
  \end{itemize}
  
 \paragraph{Önceden Bilinmesi Gerekenler}
 \begin{itemize}
- \item Temel bilgisayar bilgisi işe yarar olacaktır.
+ \item Temel bilgisayar kullanım bilgisi faydalı olur.
  \end{itemize}
 
 \begin{section}{Neden?}
 
-Linux, diğer modern işletim sistemlerine göre klavye ile metinsel komutlar girme fikrine dayanır. Windows tarzı sistemler kullananlar için çok eski bir teknik gibi gelebilir, hatta Linux'e Windows'tan gelen çoğu kişiler için komut satır arayüzü "kültür şoku" gibidir.
+Linux (Unix gibi), diğer modern işletim sistemlerinden farklı olarak klavye ile metinsel komutlar girme fikrine dayanır. Windows tarzı, 15 yıldan bu yana izleyicilerini grafik arayüzlerin vazgeçilmez en önemli bileşen olduklarını düşündürterek beyin yıkayan sistemler kullananlar için çok eski bir teknik gibi gelebilir. Linux ortamına Windows ortamından geçen çoğu kişi için komut satırı arayüzü ilk başta karşılaştırmalı olarak bakılınca, bir 21. yy. insanının cep telefonu şebesi olmayan, kötü masa adabı ve ölümcü dişçileri olan Kral Artur sarayına geçişindeki durum gibi bir "kültür şoku"dur.
 
-Ama herşey o kadar göründügü gibi kötü değil. Günümüzde Linux için de Windows'ta, Mac OS X'te olduğu gibi onlara eşit veya bazı noktalarda daha iyi kullanım sunan görsel arayüzler var. Öte yandan, görsel arayüzler ve metin odaklı komut satırı birbirini dışlayan değil, aslında tamamlayıcıdırlar ("Her iş için doğru araç" felsefesine göre).
+Ama herşey o kadar göründügü gibi kötü değildir. Günümüzde Linux için de Windows'ta, Mac OS X'te olduğu gibi onlara eşit veya bazı noktalarda daha iyi kullanım sunan görsel arayüzler var. Öte yandan, görsel arayüzler ve metin odaklı komut satırı birbirini dışlayan değil, aslında tamamlayıcıdırlar ("Her iş için doğru araç" felsefesine göre).
 
-Günün sonunda gelişmekte olan Linux kullanıcısı olmak dışında aynı zamanda "kabuk" olarak bilinen metin odaklı kullanıcı arayüzüne alışmış olacaksınız. Kimse sizin görsel masaüstü kullanmanızı engellemez. Ancak, kabuk ile yapabileceğimiz son derece güçlü, karmaşık operasyonları görsel olarak yapmak oldukça güçtür. Kabuğu ihmal etmek arabanın birinci vitesi dışında tüm viteslerini gereksiz saymak gibidir
-\footnote{Bu metafor manuel vites kullanan Avrupalılar ve diğer insanlar içindir; bizim Amerikan okuyucularımız tabi ki otomatik vites kullanırlar.
-Hepsinin Windows kullanıyor olması gibi}. Tabi ki birinci vitesle de ulaşmak istediğiniz yere ulaşırsınız fakat bu zaman kaybına ve gereksiz gürültüye sebep olur. Pekala, bu işlemin Linux'ta nasıl yapıldığını niçin ögrenmeyelim? Şimdi iyice dikkat ederseniz size bu konuyla ilgili birkaç püf noktası aktaralım.
+Günün sonunda gelişmekte olan Linux kullanıcısı olmak dışında aynı zamanda "kabuk" olarak bilinen metin odaklı kullanıcı arayüzüne alışmış olacaksınız. Elbette kimse sizin görsel masaüstü kullanmanızı engellemek istemez. Ancak, kabuk ile yapabileceğimiz son derece güçlü, karmaşık operasyonları görsel olarak yapmak oldukça güçtür. Kabuğu ihmal etmek arabanın birinci vitesi dışında tüm viteslerini gereksiz saymak gibidir
+\footnote{Bu benzetim elle vites kullanan Avrupalılar ve diğer insanlar içindir; bizim Amerikan okuyucularımız tabi ki otomatik vites kullanır.
+Eskiden hepsinin Windows kullanıyor olması gibi}. Tabi ki birinci vitesle de ulaşmak istediğiniz yere ulaşırsınız fakat bu zaman kaybına ve gereksiz gürültüye sebep olur. Öyleyse bu işlemin Linux altında nasıl yapıldığını niçin ögrenmeyelim? Şimdi iyice dikkat ederseniz size bu konuyla ilgili birkaç püf noktası aktaralım.
 
 \begin{subsection}{Kabuk nedir?}
 
-Kullanıcılar doğrudan doğruya işletim sisteminin çekirdeğiyle iletişim kuramazlar. Bu sadece "sistem çağrıları"nı kullanan programlarla mümkündür. Ancak, bir şekilde bu tür programları başlatabiliyor olmanız gerekir. Kabuk, klavyeden girilen komutları (genellikle) okuyup onları çalıştırılabilir hale getiren, özel bir kullanıcı programı olarak bu görevi üstlenir. Kabuk, bilgisayara "arayüz" hizmeti vererek asıl işletim sisteminin kabuğunu örter. Tabi ki kabuk, işletim sistemine erişen programlar arasından sadece bir tanesidir.
+Kullanıcılar doğrudan doğruya işletim sisteminin çekirdeğiyle iletişim kuramazlar. Bu sadece "sistem çağrıları"nı kullanan programlarla mümkündür. Ancak, bir şekilde bu tür programları başlatabiliyor olmanız gerekir. Kabuk, klavyeden girilen komutları (genellikle) okuyup onları (örneğin) çalıştırılabilir komutlar haline getiren, özel bir kullanıcı programı olarak bu görevi üstlenir. Kabuk, bilgisayara "arayüz" hizmeti vererek asıl işletim sistemini bir kabuk gibi örter (kabuklu deiz hayvanının adındaki gibi) ve onu görünmekten saklar. Elbette ki kabuk, işletim sistemine erişen programlar arasından sadece bir tanesidir.
 
-Bugünün görsel "masaüstü" de "kabuk" olarak kabul edilebilir, örneğin KDE gibi. Klavyeden girilen komutlar kabuk tarafından belli bir dil bilgisi kuralına göre işleme konur; aynı şeyi görsel masaüstü, komutları fareden alarak gerçekleştirir. Örneğin, fare yardımıyla nesneleri tıklayarak seçersiniz ve ne yapacağınıza karar verirsiniz: açmak, kopyalamak, silmek vs.
+Bugünün KDE gibi görsel "masaüstleri" de "kabuk" olarak kabul edilebilir. Klavyeden girilen metin komutları yerine fare ile girilen grafik komutlarını okur, metin komutlarının belli bir dil bilgisini takip etmesi gibi aynı şey fareden alınarak gerçekleştirilir. Örneğin, fare yardımıyla nesneleri tıklayarak seçersiniz ve ne yapacağınıza karar verirsiniz: açmak, kopyalamak, silmek vs.
 
-Hatta 1960 Unix modelinde bile kabuk vardı. En eski kabuk 1970'lerin ortalarında "Unix'in 7. sürümü" için Stephen L.Bourne tarafından geliştirildi. "Bourne kabuğu" olarak isimlendirilen bu kabuk temel işlevleri yerine getirip yaygın olarak kullanılıyordu, ama bugün bu kabuk orijinal haliyle nadiren görülür. (C kabugu) Diğer klasik Unix kabukları C kabuğunu içerir, bu kabuk Berkeley'de bulunan California Üniversitesi'nde C programlama dili ile oluşturuldu ve büyük ölçüde Bourne kabuğu ile uyumlu olmasına rağmen daha işlevsellik açısından daha gelişmiş (David Korn tarafından geliştirildi, AT\&T'de de geliştirildi).
+1960ların sonlarındaki Unix modelinde bile kabuk vardı. En eski kabuk 1970'lerin ortalarında "Unix'in 7. sürümü" için Stephen L.Bourne tarafından geliştirildi. "Bourne kabuğu" olarak isimlendirilen bu kabuk temel işlevleri yerine getirip yaygın olarak kullanılıyordu, ama bugün bu kabuk orijinal haliyle nadiren görülür. Diğer klasik Unix kabukları C kabuğunu içerir, bu kabuk Berkeley'de bulunan California Üniversitesi'nde C programlama dili ile oluşturulmuştur ve büyük ölçüde Bourne kabuğu ile uyumlu olmasına rağmen işlevsellik açısından daha gelişmiş Korn kabuğudur (David Korn tarafından geliştirildi, AT\&T'de de geliştirildi).
 
-Linux sistemlerinde standart Bourne-again shell kabuğudur, kısacası bash. Bu kabuk, Brian Fox ve Chet Ramey tarafından Özgür Yazılım Vakfı'nın GNU projesi altında geliştirilmiş olup, Korn ve C kabularının birçok işlevlerini
-birleştirir.
+Linux sistemlerinde standart, Bourne-again kabuğudur, kısacası \emph{bash}. Bu kabuk, Brian Fox ve Chet Ramey tarafından Özgür Yazılım Vakfı'nın GNU projesi altında geliştirilmiş olup, Korn ve C kabuklarının birçok işlevini birleştirir.
 
-Bahsettiğimiz kabukların haricinde başka kabuklar da mevcuttur. Unix'te, kabuk diğer programlar gibi sıradan bir uygulama programıdır, üzerine yazmak için ek olarak ayrıcalığa gerel yoktur - sadece kabuğun diğer programlarla nasıl iletişim kurması gerektiği yönetmeliğinin kurallarına bağlı kalmanız yeterlidir.
+Bahsettiğimiz kabukların haricinde başka kabuklar da mevcuttur. Unix üzerinde kabuk diğer programlar gibi sıradan bir uygulama programıdır, yeni bir tane yazmak için özel bir ayrıcalığa gerel yoktur - sadece kabuğun diğer programlarla nasıl iletişim kurması gerektiği yönetmeliğinin kurallarına bağlı kalmanız yeterlidir.
 
-Kabuklar kullanıcı komutlarını okumak için etkilesimli olarak çağrılabilirler (genellikle "terminal" üzerinde). Pek çok kabuk bir de dosyadan komut dizilerini okuyabilir. Bu tür dosyalara "kabuk betikleri" denir.
+Kabuklar kullanıcı komutlarını okumak için etkilesimli olarak çağrılabilirler (genellikle "terminal" üzerinde). Pek çok kabuk bir de dosyadan henüz işlenmemiş komut dizilerini okuyabilir. Bu tür dosyalara "kabuk betikleri" denir.
 \paragraph{}{Kabuk aşağıdaki adımları takip eder:
-\begin{itemize}
+\begin{enumerate}
 \item Terminalden (veya dosyadan) komut okumak
 \item Komutları onaylamak
-\item Komutu doğrudan doğruya çalıştırmak veya karşılık gelen programı çalıştırmak
+\item Komutu doğrudan çalıştırmak veya karşılık gelen programı çalıştırmak
 \item Sonucu ekrana (veya başka yere) vermek
 \item 1. adımdan devam etmek
-\end{itemize}}
+\end{enumerate}}
 
-Standart komut döngüsü dışında, kabuk genellikle programlama dili gibi ilave özellikler de içerir. Bu da karmaşık komut yapıları, koşulları ve değiskenleri içerir. Son zamanlarda kullanılan komutlar yeniden kullanabilme kullanıcının hayatını kolaylaştırmaktadır.
+Standart komut döngüsü dışında, kabuk genellikle programlama dili gibi ilave özellikler de içerir. Bu da döngüler, durum kontrolleri ve değişkenleri kapsayan (daha çok kabuk betiklerinde, az sıklıktı da etkileşimli kullanımda) karmaşık komut yapıları içerir. Son zamanlarda kullanılan komutlar arasında dönerek yeniden kullanabilme gibi gelişmiş bir özellik kullanıcının hayatını kolaylaştırmaktadır.
 
-Kabuk oturumları genellikle "exit" komutu ile sonlandırılabilir. Bu işlem oturum açtıktan hemen sonra elde ettiğimiz kabuk için de geçerlidir.
+Kabuk oturumları genellikle \emph{exit} komutu ile sonlandırılabilir. Bu işlem oturum açtıktan hemen sonra elde ettiğimiz kabuk için de geçerlidir.
 
-Daha önce de bahsettiğimiz gibi birçok kabuk vardır. Ama biz çoğu Linux dağıtımında gelen standart kabuk olan "bash" üzerinde odaklanalım. LPI sınavları da özellikle bash'e işaret eder.
+Her ne kadar yukarıda bahsettiğimiz gibi farklı kabuklar olsa da biz çoğu Linux dağıtımında standart kabuk olarak "bash" üzerinde odaklanalım. LPI sınavları da özellikle \emph{bash} kullanımına işaret eder.
 \paragraph{Alıştırmalar}{
-\begin{itemize}
- \item 2 Oturumunu kapatın ve tekrar açın, sonra "echo \$0" komutun çıktısını giriş kabuğunda kontrol edin. "bash" komutu ile yeni bir kabuk başlatın ve "echo \$0"i tekrar girin. İki komutun çıktısını karşılaştırın. Alışılmadık herhangi birşey farkettiniz mi?
-\end{itemize}}
+\pointedenum\begin{enumerate}
+ \item Oturumunu kapatın ve tekrar açın, sonra da "\emph{echo \$0}" komutun çıktısını giriş kabuğunda kontrol edin. "\emph{bash}" komutu ile yeni bir kabuk başlatın ve "\emph{echo \$0}" komutunu tekrar girin. İki komutun çıktısını karşılaştırın. Alışılmadık herhangi birşey farkettiniz mi?
+\end{enumerate}}
 \end{subsection}
 \end{section}
 \begin{section}{Komutlar}
-\begin{subsection}{Neden komutlar?}
+\begin{subsection}{Neden Komutlar?}
 \paragraph{}{Bir birgisayarın eylemleri, işletim sistemi ne olursa olsun üç adımla tanımlanabilir:
-\begin{itemize}
+\begin{enumerate}
  \item Bilgisayar kullanıcının veri girmesi için bekler
  \item Kullanıcı komut seçer ve klavye ya da fare aracılığıyla komutu girer
  \item Bilgisayar komutu gerçekleştirir
-\end{itemize}}
+\end{enumerate}}
 
-Linux sisteminde kabuk bir "istemi" görüntüler, bu da komutların girilebileceğini gösterir. Bu istem genellikle geçerli bir kullanıcı ve host (bilgisayar) adını, bulunduğumuz geçerli dizini ve son karakteri içerir:
-\begin{verbatim}joe@red:/home $>$ \_
+Linux sisteminde kabuk bir "\emph{komut istemini}" görüntüler, bu da komutların girilebileceğini gösterir. Bu istem genellikle geçerli bir kullanıcı ve ana bilgisayar adını, mevcut dizini ve son karakteri içerir:
+\begin{verbatim}joe@red:/home > _
 \end{verbatim}
 
-Bu örnek,"joe" kullanıcısının "red" adındaki bilgisayarın "/home" dizininde bulunduğunu ifade etmektedir.
+Bu örnek,\emph{joe} kullanıcısının \emph{red} adındaki bilgisayarın \emph{/home} dizininde bulunduğunu ifade etmektedir.
 \end{subsection}
 \begin{subsection}{Komut Yapısı}
 
-Bir komut aslında karakterler dizisinden oluşur ve enter tuşuna basılmasıyla komut, kabuk tarafından değerlendirilir. Çogu komut Inglizce'den esinlenilerek "komut diline" verilmiş bir şekildir. Bu dilde komutlar belli kurallara, "sözdizimine" uymalıdır ki kabuk bunları yorumlayabilsin.
+Bir komut aslında karakterler dizisinden oluşur ve Enter tuşuna basılmasıyla komut, kabuk tarafından değerlendirilir. Çoğu komut belli belirsiz İnglizce'den esinlenilmiştir ve onlara adanmış bir "komut dilini" oluşturur. Bu dilde komutlar belli kurallara, "sözdizimine" uymalıdır ki kabuk bunları yorumlayabilsin.
 
-Kabuk komut satırını yorumlayabilmek için ilk önce satırı sözcüklere ayırır. Gerçek hayatta olduğu gibi sözcükler bosluklarla ayırılır. Satırdaki ilk sözcük genellikle asıl komuttur. Satırdaki geri kalan sözcükler detaylı olarak ne yapılmak istendiğini belirten parametrelerdir.
+Kabuk komut satırını yorumlayabilmek için ilk önce satırı sözcüklere ayırır. Gerçek hayatta olduğu gibi sözcükler boşluklarla ayırılır. Satırdaki ilk sözcük genellikle asıl komuttur. Satırdaki geri kalan sözcükler detaylı olarak ne yapılmak istendiğini belirten parametrelerdir.
 
-Kabuğun büyük ve küçük karakterleri birbirinden ayırabiliyor olması DOS ve Windows kullanıcılarını şaşırtabilir. Linux komutları genellikle sadece küçük harflerle (istisnaları kanıtlama kuralı) yazılır. Ayrıca 4.2.4'e bakın.
+Kabuğun büyük ve küçük karakterleri birbirinden ayırabiliyor olması DOS ve Windows kullanıcılarını şaşırtabilir. Linux komutları genellikle sadece küçük harflerle (istisnalar kuralı kanıtlar) yazılır ve aksi halde anlaşılmaz. Ayrıca bölüm 4.2.4'e bakın.
 
-Komutları sözcüklere ayırırken, kabuk için sözcüklerin arasında bir veya daha fazla boşluk karakterinin olması aynı şeydir. Aslında, kabuk için sözcükler arasında boşluk karakterinin olup olmamasının önemi yoktur; tabulator karakterine de izin verilmiştir. Bu karakterin önemi de komutları dosyalardan okurkendir, çünkü kabuk doğrudan doğruya tab karakterini girmeye izin vermez (en azından çemberleri atlamadan).
+Komutları sözcüklere ayırırken, kabuk için sözcüklerin arasında bir veya daha fazla boşluk karakterinin olması aynı şeydir. Aslında, kabuk için sözcükler arasında boşluk karakterinin olup olmamasının önemi yoktur; bir satır üzerinde dizme yapan karakterine de izin verilmiştir. Bu karakterin önemi de komutları dosyalardan okurkendir, çünkü kabuk doğrudan doğruya sekme karakterini girmeye izin vermez (en azından çemberlerin içinden atlamadan).
 
-Bilgisayara girdiğiniz komut tek satıra sığmayacaksa bunu birkaç satırda ifade etmek de mümkün. Ama bunun bir komut girdisi olarak  anlaşılmaması için satır sonlandırıcıdan önce (enter) "Token \textbackslash" karakteri yazılmalıdır. Komutların parametreleri kabaca ikiye ayırmak mümkündür:
+Bilgisayara girdiğiniz komut tek satıra sığmayacaksa bunu birkaç satırda ifade etmek de mümkün. Ama bunun bir komut girdisi olarak  anlaşılmaması için satır sonlandırıcıdan önce (Enter) "Token \textbackslash" karakteri yazılmalıdır. Komutların parametreleri kabaca ikiye ayırmak mümkündür:
 \begin{itemize}
- \item Tire("-") ile başlayan parametreler seçenekler diye isimlendirilir. Bunlar genelde, isteğe bağlıdır, detaylar söz konusu komuta göre değisir. Bunlara mecazi olarak "anahtarlar" demek mümkündür. Bunlar komutun bazı özelliklerinin açılıp kapanmasını sağlarlar. Eğer komuta birkaç tane seçenek eklenmek istenirse bunları ayrı ayrı tire karakteri ("-a -l -F") ile yazabileceğimiz gibi tek tire karakteri ile de yapılabilir ("-alF"). Konsol komutları birden fazla seçenek alabilir. Bunların bazısı tek karakterle yazılabilen seçenekler olurken kimisi okunabilirliği arttırmak için uzun şekilde yazılan seçeneklerdir. Uzun seçenekler çoğu zaman iki tire karakteri ile başlarlar ve birleştirilemezler: "foo --bar --baz".
- \item Tire ile başlamayan parametreler "delil" olarak adlandırılır. Bu da çogu zaman komutun işlemesi gerektiği dosyanın adına karşılık gelir
+ \item Tire("-") ile başlayan parametreler seçenekler diye isimlendirilir. Bunlar genelde, isteğe bağlıdır, detaylar söz konusu komuta göre değisir. Bunlara mecazi olarak "anahtarlar" demek mümkündür. Bunlar komutun bazı özelliklerinin açılıp kapanmasını sağlarlar. Eğer komuta birkaç tane seçenek eklenmek istenirse bunları ayrı ayrı tire karakteri ("-a -l -F") ile yazabileceğimiz gibi tek tire karakteri ile de yapılabilir ("-alF"). Konsol komutları birden fazla seçenek alabilir. Bunların bazısı tek karakterle yazılabilen seçenekler olurken kimisi okunabilirliği arttırmak için uzun şekilde yazılan (genellikle de tekil karakter karşılıklarına ek olarak) seçeneklerdir. Uzun seçenekler çoğu zaman iki tire karakteri ile başlarlar ve birleştirilemezler: "foo --bar --baz".
+ \item Tire ile başlamayan parametreler "bağımsız değişken" olarak adlandırılır. Bu da çoğu zaman komutun işlemesi gerektiği dosyaların adlarına karşılık gelir
 \end{itemize}
 
 \paragraph{}{Genel komut yapısı aşağıdaki gibi gösterilebilir:
 \begin{itemize}
 \item Komut - "Ne yapılacak?"
 \item Seçenekler - "Nasıl yapılacak?"
-\item Deliller - "Ne ile yapılacak?"
+\item Bağımız Değişkenler - "Ne ile yapılacak?"
 \end{itemize}
 }
 \end{subsection}
 
-Genellikle seçenekler komutlardan sonra, delillerden önce gelir. Ancak, komutların tümü bu şekilde kuralın işlemesini şart koşmazlar. Bazıları delil ve seçenekleri keyfi olarak karıştırabilirler ve onlar, bütün seçenekler komuttan sonra gelmiş gibi davranırlar. Komut satırı sırayla işlenirken -*-*diğerleriyle karşılaşıldığında seçenekler de dikkate alınır.
+Genellikle seçenekler komutlardan sonra, delillerden önce gelir. Ancak, komutların tümü bu şekilde kuralın işlemesini şart koşmazlar. Bazıları delil ve seçenekleri keyfi olarak karıştırabilirler ve bütün seçenekler komuttan sonra gelmiş gibi davranırlar. Diğerleri ile birlikte komut satırı sırayla işlenirken seçenekler de karşılaşıldığında dikkate alınır.
 
 Geçerli Unix sistemlerinin (Linux dahil) komut yapısı 40 yıllık bir süreç içinde büyük bir gelişme sağladı ve bu nedenle bazen çeşitli tutarsızlıkların ve küçük sürprizlerin görülmesi doğaldır. Biz de daha tutarlı olması gerektiğine inanıyoruz ama 30 yıllık geçmişe sahip kabuk betiklerini tamamen göz ardı etmek zordur. Bu nedenle sık sık görülen küçük garipliklere hazırlıklı olun.
 
 \begin{subsection}{Komut Tipleri}
-\paragraph{Dahili komutlar}{Bu komutlar kabuğun kendisi tarafından sunulmaktadır. Bourne-again hızlı gerçekleştirilebilen 30 kadar dahili komut içerir. Kabuğun durumunu degiştiren bazı komutlar (exit veya cd gibi) dışarıdan temin edilemez.}
-\paragraph{Harici komutlar}{Kabuk bu tür komutları kendi kendine çalıştırmaz ama çalıştırılabilir dosyaları başlatır. Ki bu tür dosyalar genelde /bin veya /usr/bin dizinleri altında bulunurlar.Bir kullanıcı olarak kendi programlarınızı temin edip kabuğun diğer tüm harici komutları çalıştırdığı gibi kendi programlarınızın çalıştırılmasını sağlayabilirsiniz. Komutunuzun türünü öğrenmek için "type" komutunu kullanabilirsiniz. Bu komuta delil olarak komut adı verirseniz çıktı olarak size komutun türünü ya da karşılık gelen dosya ismini verir, örneğin}
+
+Kabuklar içerisinde aslında iki tip komut vardır:
+
+\paragraph{Dahili komutlar}{Bu komutlar kabuğun kendisi tarafından sunulmaktadır. Bourne-again hızlı gerçekleştirilebilen 30 kadar dahili komut içerir. Kabuğun durumunu değiştiren bazı komutlar (exit veya cd gibi) dışarıdan temin edilemez.}
+\paragraph{Harici komutlar}{Kabuk bu tür komutları kendi kendine çalıştırmaz ama çalıştırılabilir dosyaları başlatır. Ki bu tür dosyalar genelde /bin veya /usr/bin dizinleri altında bulunurlar. Bir kullanıcı olarak kendi programlarınızı temin edip kabuğun diğer tüm harici komutları çalıştırdığı gibi kendi programlarınızın çalıştırılmasını sağlayabilirsiniz.}
+\paragraph{Komutunuzun türünü öğrenmek için \emph{type} komutunu kullanabilirsiniz. Bu komuta bağımsız değişken olarak olarak komut adı verirseniz çıktı olarak size komutun türünü ya da karşılık gelen dosya ismini verir, örneğin}
 \begin{verbatim}
  $ type echo
  echo is a shell builtin
@@ -110,23 +113,23 @@ Geçerli Unix sistemlerinin (Linux dahil) komut yapısı 40 yıllık bir süreç
  date is /bin/date
 \end{verbatim}
 
-("echo" komutu ilginç bir komut olup kendisine verilen parametreleri çıktı olarak verir:
+(\emph{echo} komutu ilginç bir komut olup kendisine verilen parametreleri çıktı olarak verir:
 
 \begin{verbatim}
  $ echo Thou hast it now, king, Cawdor, Glamis, all
  Thou hast it now, king, Cawdor, Glamis, all
 \end{verbatim}
 
-"date" komutu da geçerli tarih ve saat olarak ayarlanmış olan saat dilimi ve dile göre gösterir:
+\emph{date} komutu da mevcut tarih ve saati ayarlanmış olan saat dilimi ve dile göre gösterir:
 
 \begin{verbatim}
  $ date
  Mon May 7 15:32:03 CEST 2012
 \end{verbatim}
 
-echo ve date komutları hakkında daha fazlası için ~\ref{chap:bolum9} . Bölüme bakınız.)
+\emph{echo} ve \emph{date} komutları hakkında daha fazlası için ~\ref{chap:bolum9} . Bölüme bakınız.)
 
-"help" komutuyla dahili Bash komutları ile ilgili bilgiyi alabilirsiniz: 
+\emph{help} komutuyla dahili Bash komutları ile ilgili bilgiyi alabilirsiniz: 
 \begin{verbatim}
  $ help type
  type: type [-afptP] name [name ...]
@@ -137,16 +140,15 @@ echo ve date komutları hakkında daha fazlası için ~\ref{chap:bolum9} . Böl�
    `alias', `keyword', `function', `builtin', `file' or `', if NAME is an
 \end{verbatim}
 \paragraph{Alıştırmalar}{
-\begin{itemize}
-\item Aşağıdaki programlardan hangileri bash ile harici ve hangileri dahili olarak temin edilir: \begin{em}alias, echo, rm, test\end{em}?
-\end{itemize}
+\pointedenum\begin{enumerate}
+\item Aşağıdaki programlardan hangileri harici ve hangileri kabuk içerisinde dahili olarak temin edilir: \begin{em}alias, echo, rm, test\end{em}?
+\end{enumerate}
 }
 \end{subsection}
-\begin{subsection}{Daha da fazla kurallar}
+\begin{subsection}{Daha da fazla kural}
 Yukarıda belirtildigi gibi, kabuk, komut girildiğinde büyük-küçük harflere duyarlıdır. Bu durum sadece komutlar için geçerli olmayıp seçenekleri ve parametreleri (çoğunlukla dosya isimlerini) de kapsar.
 
-Şunu da göz önünde bulundurmalısınız ki kabuk bazı karakterleri özel giriş karakterleri olarak algılar. En önemlisi de daha önce belirtilmiş olan
-boşluk karakteri komut satırındaki sözcükleri ayırmak için kullanılmaktadır. Özel anlamı olan diğer karakterler şunlardır:
+Şunu da göz önünde bulundurmalısınız ki kabuk, bazı karakterlerini özel giriş karakterleri olarak algılar. En önemlisi de daha önce belirtilmiş olan boşluk karakteri komut satırındaki sözcükleri ayırmak için kullanılmaktadır. Özel anlamı olan diğer karakterler şunlardır:
 
 \begin{verbatim}
  $&;(){}[]*?!<>"'
@@ -160,22 +162,22 @@ Tabi bunları kullanmak isteyebiliriz. Bu durumda onlar kabuk tarafından özel 
 
 Tırnak işareti olduğu için komut tek bir dosya olan "New File" için geçerlidir. Tırnak işareti olmasaydı "New" ve "File" diye iki ayrı dosya olarak algılanırdı.
 
-Burada özel karakterlerin hepsini açıklayamayız. Çoğu bu kilavuzun farklı yerlerinde karşımıza çıkacaktır ya da Bash belgelerini kontrol edin.
+Burada özel karakterlerin hepsini açıklayamayız. Çoğu bu kılavuzun farklı yerlerinde karşımıza çıkacaktır ya da Bash belgelerini kontrol edin.
 
 \paragraph{Bu bölümdeki Komutlar}{
 \begin{itemize}
 \item[bash] 	"Bourne-Again-Shell" - etkileşimli komut yorumlayıcısı
 \item[date] 	Tarihi ve zamanı görüntüler
 \item[echo] 	Boşlukla ayrılan tüm parametrelerini standart çıktıya yazar
-\item[help]	bash komutları için yardımı görüntüler
+\item[help]		bash komutları için yardımı görüntüler
 \item[type] 	Komutun türünü gösterir (dahili, harici, takma ad)
 \end{itemize}}
 \paragraph{Özet}{
 \begin{itemize}
 \item Kabuk kullanıcı komutlarını okur ve onları çalıştırır.
-\item Çoğu kabukta programlama dilinin özellikleri vardır. Ayrıca komut dizileri içeren kabuk betiklerini destekler.
-\item Komutlar delil ve seçeneklere sahip olabilir. Seçenekler komutun nasil çalistigini belirlerken deliller ne üzerine çalıştığını belirler.
-\item Kabuklar dahili komutları ve harici komutları ayırt edebilir.
+\item Çoğu kabukta programlama dilinin özellikleri vardır. Ayrıca henüz işlenmemiş komut dizileri içeren kabuk betiklerini destekler.
+\item Komutlar bağımsız değişken ve seçeneklere sahip olabilir. Seçenekler komutun \emph{nasıl} çalıştığını belirlerken bağımsız değişkenler \emph{ne} üzerine çalıştığını belirler.
+\item Kabuklar dahili, kabuğun içerisinde tanımlı, komutları ve harici, ayrı süreçler olarak başlatılan çalıştırılabilir dosyalara kaşılık gelen, komutları ayırt edebilir.
 \end{itemize}}
 \end{subsection}
 \end{section}
