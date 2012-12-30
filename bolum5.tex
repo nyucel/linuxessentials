@@ -2,26 +2,26 @@
 \label{chap:bolum5}
 \paragraph{Amaçlar}
 \begin{itemize}
- \item Kılavuz ve Bilgi sayfalarıyla çalışabilmek
+ \item Kılavuz ve bilgi sayfalarıyla çalışabilmek
  \item Nasıl Yapılır kısmını anlamak ve onları bulabilmek
  \item Diğer en önemli bilgi kaynaklarına aşina olmak
  \end{itemize}
 \paragraph{Önceden Bilinmesi Gerekenler}
 \begin{itemize}
- \item Linux'a genel bakış
+ \item Linux'a Genel Bakış
  \item Temel Linux komut satırı kullanımı (örneğin daha önceki bölümlerde bahsedilenler)
 \end{itemize}
 \begin{section}{Kendi kendine yardım}
 
-Linux güçlü ve dallı budaklı sistemdir. Kural olarak güçlü ve dallı budaklı sistemler karışıktır. Belgeler, bu karmaşıklığı yönetebilmek için önemli bir araçtır. Birçok (ne yazık ki hepsi değil) Linux dağıtımı geniş olarak belgelenmiş olarak gelir. Bu bölümde bu belgelere nasıl ulaşılacağının bazı yötemlerini açıklar.
+Linux güçlü ve karışık bir sistemdir ve kural olarak da güçlü ve karışık sistemler karmaşıktır. Belgeler, bu karmaşıklığı yönetebilmek için önemli bir araçtır. Linux'ün birçok kısmı (ne yazık ki hepsi değil) geniş olarak belgelenmiştir. Bu bölüm bu belgelere nasıl ulaşılacağının bazı yötemlerini açıklar.
 
-Linux'da "help" birçok durumda "self-help" anlamına gelir. Özgür Yazılımın kültüründe toplulukta boş zamanlarını geçiren diğer insanların zamanını ve iyi niyetini kılavuzun ilk birkaç paragrafında zaten açık olarak anlatılmış olan şeyleri sormamanıza dikkat çeker. Linux kullanıcısı olarak sizin de mevcut belgelere en azından kısaca gözden geçirmiş olmak ve gerektiğinde yardım kısmını elde edinebilmelisiniz. Eğer siz size düşeni yaparsanız yani ödevinizi yaparsanız göreceksiniz ki genellikle insanlar çıkmaza girdiğinizde yardım edeceklerdir. Ama baskalarının onların yerine işlerini yapmasını bekleyen tembel bireyler hoşgörüyle karşılanmazlar.
+Linux'ta "Yardım" birçok durumda "kendi kendine yardım" anlamına gelir. Özgür Yazılımın kültürü toplulukta boş zamanlarını geçiren diğer insanların zamanını ve iyi niyetini kılavuzun ilk birkaç paragrafında zaten açık olarak anlatılmış olan şeyleri sormamanıza dikkat çeker. Linux kullanıcısı olarak en azından mevcut belgelendirmelerin genel bilgisini edinmede ve acil durumlarda yardım almak için yapılacakları bulmada iyisinizdir. Eğer size düşeni yaparsanız göreceksiniz ki genellikle insanlar çikmazdan kurtulmanız için yardım edeceklerdir. Ama baskalarının onların yerine işlerini yapmasını bekleyen tembel bireyler hoşgörüyle karşılanmazlar.
 
-İyice araştırılmamış sorularınıza ve problemlerinize haftanın yedi günü cevap vermesini istiyorsanız çok sayıda bulunan "ticari" destek tekliflerinden faydalanmanız gerekir. Bunlar bütün ortak dağıtımlar için mevcut olup bu destek ya dağıtım satıcısı tarafından ya da yan şirketlerle verilmektedir. Farklı servis satıcılarını karşılaştırın, hangisinin fiyati ve servis anlaşması size uyuyorsa seçin.
+İyice araştırılmamış sorularınıza ve problemlerinize haftanın yedi günü birinin cevap vermesini istiyorsanız çok sayıda bulunan "ticari" destek tekliflerinden faydalanmanız gerekir. Bunlar bütün ortak dağıtımlar için mevcut olup bu destek ya dağıtım satıcısı tarafından ya da yan şirketlerle verilmektedir. Farklı servis satıcılarını karşılaştırın, hangisinin fiyatı ve servis anlaşması size uyuyorsa seçin.
 \end{section}
-\begin{section}{"help" Komutu ve "--help" Seçeneği}
+\begin{section}{\emph{help} Komutu ve \emph{--help} Seçeneği}
 
-\begin{em}bash\end{em}'te dahili komutlar hakkındaki daha detaylı bilgi help komutuna delil olarak komutun adı verilerek öğrenilebilir:
+\begin{em}bash\end{em} içerisinde dahili komutlar hakkındaki daha detaylı bilgi \emph{help} komutuna bağımsız değişken olarak komutun adı verilerek öğrenilebilir:
 \begin{verbatim}
 $ help exit
 exit: exit [n]
@@ -31,17 +31,16 @@ exit: exit [n]
 $ _
 \end{verbatim}
 
-Daha detaylı açıklama için kabuğun rehber sayfasında ve bilgi belgelerinde mevcuttur.Bu bilgi kaynakları daha sonra bu bölümde ele alınacaktır.
+Daha detaylı açıklama için kabuğun rehber sayfasında ve bilgi belgelerinde mevcuttur. Bu bilgi kaynakları daha sonra bu bölümde ele alınacaktır.
 
-Bunun yerine harici komutların (programların) birçoğu --help seçeneğini destekler. Çoğu komutlar kısaca kendileriyle kullanılan parametrelerini ve sözdizmini sıralar.
+Bunun yerine harici komutların (programların) birçoğu \emph{--help} seçeneğini destekler. Çoğu komut kısaca kendileriyle kullanılan parametrelerini ve sözdizminlerini sıralar.
 
-Her komut --help seçeneğini desteklemeyebilir; sık sık çağrilan seçenekler -h veya -?, ya da yanlis bir seçenek veya geçersiz komut satırı belirtirseniz yardım ekrana gelecektir. Ne yazık ki genel kuralı yoktur.
+Her komut --help seçeneğini desteklemeyebilir; sık sık çağrılan seçenekler -h veya -?, ya da yanlış bir seçenek veya geçersiz komut satırı belirtirseniz yardım ekrana gelecektir. Ne yazık ki genel kuralı yoktur.
 \end{section}
-\begin{section}{Kabuk Satırı Kılavuz}
+\begin{section}{Çevrim İçi Kılavuz}
 \begin{subsection}{Genel Bakış}
 
-Nerdeyse her komut-satırı programı yardım sayfasıyla "manual page" (ya da "man page") gelir, ayrıca ayar dosyaları ve sistem çağrıları vs. Bu metinler 
-genelde yazılımla beraber kurulur. İncelemek için "man $<$isim$>$" komutu kullanılır.
+Nerdeyse her komut satırı programı ayar dosyaları ve sistem çağrıları vs. yanında "kılavuz sayfası" (ya da "man sayfası") ile gelir. Bu metinler genelde yazılımla beraber kurulur ve ,ncelemek için "\emph{man $<$isim$>$}" komutu kullanılır.
 
 \paragraph{}{
 \begin {table}[H]
@@ -54,11 +53,11 @@ Bölüm &
 NAME 	&	Komutun adı ve kısa açıklama \\
 SYNOPSIS &	Komutun sözdizimi açıklaması \\
 DESCRIPTION &	Komutun etkisi ile ilgili açıklama \\
-OPTIONS &	Mevcut seçeenekler \\
-ARGUMENTS &	Mevcut deliller \\
+OPTIONS &	Kullanılabilir seçenekler \\
+ARGUMENTS &	Kullanılabilir bağımsız değişkenler \\
 FILES 	&	Yardımcı dosyalar \\
 EXAMPLES &	Örnek komut satırları \\
-SEE ALSO &	Ilgili konulara çapraz referanslar \\
+SEE ALSO &	İlgili konulara çapraz referanslar \\
 DIAGNOSTICS &	Hata ve uyarı mesajları \\
 COPYRIGHT & 	Komutun yazarları \\
 BUGS	&	Bilinen komut sınırlamaları \\
@@ -67,21 +66,21 @@ BUGS	&	Bilinen komut sınırlamaları \\
 \end {table}
 }
 
-Buradaki $<$isim$>$ açıklanmasını istediğiniz komutun yada dosyanın adıdır. Örneğin "man bash", anılan iç kabuk komutlarının listesini üretir.
+Buradaki \emph{$<$isim$>$} açıklanmasını istediğiniz komutun yada dosyanın adıdır. Örneğin "\emph{man bash}", anılan iç kabuk komutlarının listesini üretir.
 
-Ancak, kılavuz sayfalarinin bazi dezavantajlari vardir: Bu kılavuzların çoğu sadece İngilizcedir; farklı dillere çevirilenleri vardır ama tam değil. Üstelik açiklamalar çoğunlukla karışıktır. Yeni başlayanlar belgeleri anlamayabilir o yüzden her kelime çok önemlidir. Buna ilaveten, özellikle uzun belgelerin yapısı anlaşılmaz olabiliyor. Öyle olsa bile, bu belgelerin değeri göz ardı edilemez. Kağıtlarla kullanıcıyı canından bezdirmek yerine sistemle beraber kılavuz mevcuttur.
+Ancak, kılavuz sayfalarinin bazi dezavantajlari vardir: Bu kılavuzların çoğu sadece İngilizcedir; farklı dillere çevirilenleri vardır ama tam değil. Üstelik açiklamalar çoğunlukla karışıktır. Her kelime çok önemlidir, bu durum da yeni başlayanlar için belgeleri erişilebilirlikten uzaklaştırır. Ek olarak, özellikle uzun belgelerin yapısı anlaşılmaz olabilir. Öyle olsa bile, bu belgelerin değeri göz ardı edilemez. Kağıtlarla kullanıcıyı canından bezdirmek yerine sistemle beraber çevrim içi kılavuz mevcuttur.
 
-Birçok Linux dağıtımlari komut satırından çağrılabilen her komut için bir kılavuz sayfasının olması gerektiği felsefesini takip eder. Bu, görsel masaüstü ortamı ait programları KDE ve GNOME için aynı ölçüde geçerli değildir. Bunların hiç bir kılavuz sayfasının bulunmaması haricinde görsel masaüstü çevresinde bile berbat bir şekilde belgelendirilmiştir. Bu programların çoğu gönüllüler tarafından katkıda bulunması gerçegi sadece zayıf bir bahane.
+Birçok Linux dağıtımlari komut satırından çağrılabilen her komut için bir kılavuz sayfasının olması gerektiği felsefesini takip eder. Bu durum KDE ve GNOME görsel masaüstü ortamına ait programlar için aynı ölçüde geçerli değildir. Bunların pek çoğunun hiç bir kılavuz sayfasının bulunmaması yanında bazıları da görsel masaüstü çevresinde bile berbat bir şekilde belgelendirilmiştir. Bu programların çoğunun gönüllüler tarafından katkıda bulunulduğu gerçegi sadece zayıf bir bahanedir.
 \end{subsection}
 \begin{subsection}{Yapı}
 
-man'in yapısı kabaca yukarda belirttiğimiz Tablo 5.1 taslağını takip eder. Yine de her kılavuz sayfası orada belirtilen her bölümü içermeyebilir. Özellikle de, EXAMPLES sık sık kısa kesilmiştir.
+Yardım sayfalarının yapısı kabaca Tablo 5.1 taslağını takip eder. Yine de her kılavuz sayfası orada belirtilen her bölümü içermeyebilir. Özellikle de, EXAMPLES kısmı sık sık kısa kısa verilmiştir.
 
-BUGS başlığı genellikle yanlış anlaşılır: burda belgelendirilen genellikle komutun aldığı yaklaşımındaki kısıtlamalardir ve siz bu kısıtlamaların makul bir çabayla kaldırılamadığını siz bir kullanıcı olarak bilmelisiniz. Örneğin, grep komutunun belgeleri normal ifadelerin çeşitli yapılarının bulunması grep sürecinin çok bellek kullanmasına yol açabildiğini belirtir. Bu grep komutunun uyguladığı arama yönteminin sonucudur ve önemsiz, kolayca giderilebilen hata değildir.    
+BUGS başlığı genellikle yanlış anlaşılır: Düzeltilen uygulamanın içindeki \emph{hataları} okuyun; elbette burada belgelendirilen genellikle komutun aldığı yaklaşımdaki kısıtlamalardır ve siz bu kısıtlamaların makul bir çabayla kaldırılamadığını bir kullanıcı olarak bilmelisiniz. Örneğin, \emph{grep} komutunun belgeleri düzenli ifadelerin çeşitli yapılarının bulunması grep sürecinin çok bellek kullanmasına yol açabildiğini belirtir. Bu \emph{grep} komutunun uyguladığı arama yönteminin sonucudur ve önemsiz, kolayca giderilebilen hata değildir.    
 
-Man sayfaları groff adında bir program tarafından metni görüntülemek veya yazdırmak için özel bir girdi biçimi olarak yazılır. Kılavuz sayfaları /usr/share/man dizininin mann alt dizini içinde saklanır. n Tablo 5.2'de verilen bölüm numaraları içindir.
+Yardım sayfaları \emph{groff} adında bir program tarafından metni görüntülemek veya yazdırmak için özel bir girdi biçimi olarak yazılır. Kılavuz sayfaları /usr/share/man dizininin \emph{man}n alt dizini içinde saklanır. n Tablo 5.2'de verilen bölüm numaraları içindir.
 
-Diğer dizinlerdeki man sayfalarını MANPATH çevresel degişkenini ayarlayarak birleştirebilirsiniz. "manpath" komutu MANPATH'in nasıl ayarlanabileceği hakkında ipuçları barındırır.
+Diğer dizinlerdeki yardım sayfalarını, \emph{man} komutu tarafından sırasıyla taranacak dizinleri içeren, MANPATH çevresel değişkenini ayarlayarak birleştirebilirsiniz. \emph{manpath} komutu MANPATH değişkeninin nasıl ayarlanabileceği hakkında ipuçları barındırır.
 \paragraph{}{
 \begin {table}[H]
 \caption {Kılavuz sayfası konuları} \label{tab:title} 
@@ -107,26 +106,39 @@ n & "Yeni" komutlar \\
 \end{subsection}
 \begin{subsection}{Bölümler}
 
-Her kılavuz sayfası "kılavuzu" kapsayan "bölüme" aittir (Tablo 5.2). 1, 5 ve 8 bölümler en önemlileridir. Aramayı daraltmak için man komutu satırına bölüm numarası verebilirsiniz. Örneğin, "man 1 crontab"-crontab komutu için man sayfasını görüntülerken, "man 5 crontab"-crontab crontab dosyalarının formatlarını açıklar. man sayfalarını işaret ederken, bölüm numarasını parantez içinde belirtmek gelenekseldir; biz, crontab(1)-crontab komut kılavuzu, ve crontab(5)-dosya formatı açıklaması aradaki farkı ayırt ederiz.
+Her kılavuz sayfası "kılavuzu" kapsayan "bölüme" aittir (Tablo 5.2). 1., 5. ve 8. bölümler en önemlileridir. Aramayı daraltmak için \emph{man} komutu satırına bölüm numarası verebilirsiniz. Örneğin, "\emph{man 1 crontab}" \emph{crontab} komutu için kılavuz sayfasını görüntülerken, "\emph{man 5 crontab}"-\emph{crontab} dosyalarının biçimlerini açıklar. Kılavuz sayfalarını işaret ederken, bölüm numarasını parantez içinde belirtmek gelenekseldir; biz, \emph{crontab}(1) \emph{crontab} komut kılavuzu, ve \emph{crontab}(5) dosya biçimi açıklaması aradaki farkı ayırt ederiz.
 
--a seçeneğiyle man verilen isme göre bulunan kilavuzu gösterir; seçenek vermezsek ilk bulunan sayfayı (genellikle bölüm 1) gösterir.
+-a seçeneğiyle \emph{man} verilen isme göre bulunan kılavuzu gösterir; seçenek vermezsek ilk bulunan sayfayı (genellikle bölüm 1) gösterir.
 \end{subsection}
-\begin{subsection}{Kılavuz Sayfalarını Görüntülemek }
+\begin{subsection}{Kılavuz Sayfalarını Görüntülemek}
 
-man sayfalarını metin terminalde görüntülemek için asıl program daha üzerinde duracağımız less ile gerçekleştirilir. Bu aşamada man sayfasında yukarı ok işareti ? ve aşağı ok işareti ? ile gezinebilirsiniz. Metnin içinde anahtar kelime karakterine basarak / ardından kelimeyi girip geri dönüş tuşuna basarak arayabilirsiniz. Her geri dönüş tuşuna bastığınızda bir sonraki bulunan kayda sıçrar (eğer varsa). Kabuğa q tusuna basarak geri dönebilirsiniz.
+Kılavuz sayfalarını metin terminalde görüntülemek daha üzerinde duracağımız \emph{less} ile gerçekleştirilir. Bu aşamada kılavuz sayfasında yukarı ok \begin{math}\uparrow\end{math} ve aşağı ok \begin{math}\downarrow\end{math} tuşları ile gezinebileceğinizi bilmek önemlidir. Metnin içindeki bir anahtar kelimeyi \emph{/} tuşuna basıp ardından kelimeyi girip Enter tuşuna basarak arayabilirsiniz. Her geri dönüş tuşuna bastığınızda bir sonraki bulunan kayda sıçrar (eğer varsa). Kabuğa \emph{q} tusuna basarak geri dönebilirsiniz.
 
-KDE web tarayıcısı, Konqueror kullanarak güzel biçimlendirilmiş uygun man sayfaları elde etmek mümkün. Basitçe "man:/$<$isim$>$" (hatta "\#$<$isim$>$") URL'yi tarayıcının adres satırına girin. Bu metot aynı zamanda KDE komut satırı için de geçerlidir.
+KDE web tarayıcısı, Konqueror, kullanarak güzel biçimlendirilmiş uygun kılavuz sayfaları elde etmek mümkündür. Basitçe "\emph{man:/$<$isim$>$}" (hatta "\emph{\#$<$isim$>$}") URL adresini tarayıcının adres satırına girin. Bu yöntem aynı zamanda KDE komut satırı için de geçerlidir.
 
-\paragraph{buraya iki şekil eklenecek}{şekiller}
+\begin{figure}
+        \centering
+        \begin{subfigure}[b]{0.3\textwidth}
+                \centering
+                \includegraphics[width=\textwidth]{./bolum5/img1}
+        \end{subfigure}%
+        ~ %add desired spacing between images, e. g. ~, \quad, \qquad etc. 
+          %(or a blank line to force the subfigure onto a new line)
+        \begin{subfigure}[b]{0.3\textwidth}
+                \centering
+                \includegraphics[width=\textwidth]{./bolum5/img2}
+        \end{subfigure}
+        \caption{Metin terminali (sol) ve Konqueror (sağ) içerisinde bir kılavuz sayfası }\label{fig:manpages}
+\end{figure}
 
-Amaçsızca sayısız man sayfalarını aramadan önce, konu hakkında apropos yardımıyla genel bir bilgi edinmek daha mantıklıdır. Bu komut basitçe şöyle çalıştırılır "man -k"; hem de komut satırında verilen bir anahtar kelimenin "NAME" bölümlerine ilişkin tüm man sayfalarını arayabilirsiniz. Bunun sonucunun çıktısı tüm man sayfalarını, adı veya açıklama kısmında anahtar kelimeyi de içerecek şekilde bir liste görüntüler.
+Amaçsızca sayısız kılavuz sayfasını aramadan önce, konu hakkında \emph{apropos} yardımıyla genel bir bilgi edinmek daha mantıklıdır. Bu komut basitçe şöyle çalıştırılır "man -k"; her ikisi de komut satırında verilen bir anahtar kelimenin "NAME" bölümlerine ilişkin tüm kılavuz sayfalarını arar. Bunun sonucunun çıktısı tüm man sayfalarını, adı veya açıklama kısmında anahtar kelimeyi de içerecek şekilde bir liste görüntüler.
 
-Bu konuyla alakalı olan bir başka komut whatis'dir.Bu komut da tüm man sayfalarını arar ama yukarida belirttiğimiz komuttan farkı whatis aramayı anahtar kelimeye göre değilde komutun (dosya,...) adına göre yapar. Bu istenilen komut, sistem çağrıları vs. hakkında kısaca bir açıklama görüntüler. Özellikle söz konusu man sayfasının(lar) "NAME" bölümünün ikinci  kısmını verir. "whatis" ile "man -f" eşdeğerdir.
+Bu konuyla alakalı olan bir başka komut \emph{whatis} komutudur.Bu komut da tüm man sayfalarını arar ama yukarıda belirttiğimiz komuttan farkı \emph{whatis} aramayı anahtar kelimeye göre değil de komutun (dosya,...) \emph{adına} göre yapar. Bu istenilen komut, sistem çağrıları vs. hakkında kısaca bir açıklama görüntüler. Özellikle söz konusu man sayfasının(lar) "NAME" bölümünün ikinci  kısmını verir. \emph{whatis} ile "man -f" eşdeğerdir.
 \paragraph{Alıştırmalar}{
 \begin{itemize}
- \item ls komutu için kılavuz sayfasını görüntüleyin. Metin tabanlı man komutunu kullanın ve eğer mümkünse - Konqueror tarayıcısını.
+ \item \emph{ls} komutu için kılavuz sayfasını görüntüleyin. Metin tabanlı \emph{man} komutunu kullanın ve eğer mümkünse - Konqueror tarayıcısını da kullanın.
  \item Sisteminizde hangi kılavuz sayfaları (en azından "NAME" bölümlerine göre) süreçlerle iş yapar.
- \item (Ileri düzey) Kuramsal bir komutun kılavuz sayfasını yazmak için metin editörü kullanın. Önceden man(7) man sayfasını okuyun. man sayfasının görünürlüğünü kontrol edin ("groff -Tascii -man $<$dosya$>$ | less" komutunu kullanarak) yazılı çıktı olarak ("groff -Tps -man $<$dosya$>$ | gv -" gibi birşey kullanın).
+ \item (Ileri düzey) Kuramsal bir komutun kılavuz sayfasını yazmak için metin editörü kullanın. Önceden \emph{man}(7) kılavuz sayfasını okuyun. Kılavuz sayfasının görünürlüğünü hem ekranda ("\emph{groff -Tascii -man $<$dosya$>$ | less}" komutunu kullanarak) hem de yazılı çıktı olarak ("\emph{groff -Tps -man $<$dosya$>$ | gv -}" gibi birşey kullanın) kontrol edin.
 \end{itemize}}
 \end{subsection}
 \end{section}
