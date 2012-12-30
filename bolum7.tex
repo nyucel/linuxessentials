@@ -32,21 +32,43 @@ Son olarak, “*” kendisinden önce gelen düzenli ifadenin isteğe göre defa
 
 \begin{subsection}{Düzenli İfadeler: Ekstralar}
 
-En iyi gerçekleştirimler, şuan Tcl, Perl, veya Python benzeri modern betik dilleri içinde bulunur. Bu dillerin gerçekleştirimleri orjinal bilgisayar bilimleri içinde düzenli ifadelerin gücünü şimdiye kadar aşmıştır. 
+Bir önceki bölümdeki açıklamalar düzenli ifadeler kullanan neredeyse tüm Linux programları için geçerlidir. Birçok program ilave işlevsellik veya gösterim kolaylığı sağlayan farklı eklentileri destekler. En iyi gerçekleştirimler, şu an Tcl, Perl, Python gibi modern betik dilleri içinde bulunur. Bu dillerin gerçekleştirimleri orjinal bilgisayar bilimlerinde kullanılan düzenli ifadelerin gücünü şimdiye kadar aşmıştır.
 
 Bazı yaygın uzantılar:
 
-\paragraph{Kelime ayıraçları}{ “\textbackslash $<$” bir harften önce gelen harf olmayan yer eyerleşen kelimenin başlangıcında karşılaşılır. Benzer olarak, “\textbackslash$>$”  non-terminal tarafından takip edilen terminalin olduğu yerdeki kelimenin sonunda karşılaşılır.}
-\paragraph{Gruplama:parantezler}{ “((...))” düzenli ifadelerin birleşiminin tekrarına izin verir. “a(bc)*” ifadesi “a”dan sonra “bc”nin bir veya daha fazla tekrarını temsil eder.}
-\paragraph{Alternatif} {Dikey çubukla (“$\vert$”) birden çok düzenli ifade arasından seçim yapılabilir. “hava(alanı$\vert$limanı$\vert$sahası)” ifadesi, “havalimanı”, “havasahası” ve “havaalanı” nı temsil edebilir. Fakat tek başına “hava” olmaz.}
-\paragraph{Seçimli ifadeler} {soru işareti (“?”) düzenli ifadelerin seçimli olmasını sağlar. Ya bir kez gelir ya da hiç olmaz.	“uçak (savar)?” ifadesi ya “uçak” ya da “uçaksavar”ı temsil eder.}
-\paragraph{En az bir tekrar}{ (“+”) işareti (“*”) operatörüne en az bir kez bir düzenli ifade içermesi haricinde tamamen aynıdır. }
-\paragraph{Belirli tekrar sayıları}{ parantezler içinde minimum ve maksimum tekrar sayılarını belirtebilirsiniz. “ab{2,4}” ifadesi “abb”,”abbb” ve “abbbb” ifadelerini temsil eder ama “ab” yada “abbbbbb” ifadelerini temsil etmez. Minimum ve maksimum sayıyı es geçebilirsiniz. Eğer minimum sayısı yoksa 0 kabul edilir, maksimum sayı yoksa  “sonsuz” kabul edilir.}
-\paragraph{Geri-referans}{ “\textbackslash \textbackslash n” benzeri bir ifadeyle parantezli ifade olmaksızın girdinin bir bölümünün tekrarını gösterebilirsiniz. Düzenli ifade içindeki n, hayır anlamına gelir. Mesela “(ab)\textbackslash \textbackslash 1” ifadesi “abab” ile eşleşir. “(ab*a)x\textbackslash 1” ifadesi ise parantezler “abba” ile eşleşir ve tüm ifade “abbaxabba” ile eşleşir (başka hiçbirşeyle eşleşmez). Daha fazla ayrıntıyı GNU grep’in dökümanları içinde mevcuttur.}
-\paragraph{Aç gözlü olmayan (eşleşme:}{
- “*” , “+” ve “?” operatörleri genellikle açgözlüdür. Onlar mümkün olduğunca çok sayıda girdiyle eşleşmeye çalışırlar: ”$ ^\wedge $a.*a” ifadesi “abacada” giriş stringine uygulanır. Sadece “aba” yada “abaca”ya uygulanamaz. Ancak açgözlü olmayan versiyonlarıda vardır. “*?” ,”+?” ve “??” açgözlü olmayan versiyonlara karşılık gelir. Bunlar mümkün olduğu kadar az girdiyle eşleşmeye çalışırlar. Büzüm örneğimizde “a.*?a” , “aba” ile eşleşebilir. Parantez operatörüde aç gözlü olmayan versiyonu sağlayabilir.}
+\paragraph{Kelime ayıraçları}{ “\textbackslash $<$” bir kelimenin başı (harf olmayan bir karakterin harften önce geldiği yer) ile eşleşir. Benzer olarak, “\textbackslash$>$” kelimenin sonu (harf olmayan bir karakterin bir harfi takip ettiği yer) ile eşleşir.}
+\paragraph{Gruplama}{ Parantezler “((...))” düzenli ifadelerin birleşiminin tekrarına izin verir. “a(bc)*” ifadesi “a”dan sonra “bc”nin bir veya daha fazla tekrarı ile eşleşir.}
+\paragraph{Alternatif} {Dikey çubukla (“$\vert$”) birden çok düzenli ifade arasından seçim yapılabilir. “hava(alanı$\vert$limanı$\vert$sahası)” ifadesi, “havalimanı”, “havasahası” ve “havaalanı” ile eşleşebilir. Fakat tek başına “hava” ile eşleşmez.}
+\paragraph{Seçimli ifadeler} {soru işareti (“?”) düzenli ifadelerin seçimli olmasını sağlar. Ya bir kez gelir ya da hiç olmaz. “uçak(savar)?” ifadesi ya “uçak” ya da “uçaksavar” ile eşleşir.}
+\paragraph{En az bir tekrar}{ (“+”) işareti önceki düzenli ifadenin en az bir kez bulunması haricinde (“*”) operatörü ile tamamen aynıdır. }
+\paragraph{Belirli tekrar sayıları}{ Kıvrık parantezler içinde en az ve en çok tekrar sayılarını belirtebilirsiniz. “ab\{2,4\}” ifadesi “abb”,”abbb” ve “abbbb” ifadelerini temsil eder ama “ab” yada “abbbbbb” ifadelerini temsil etmez. En az veya en çok sayıyı es geçebilirsiniz. Eğer en az sayı yoksa 0 kabul edilir, en çok sayı yoksa  “sonsuz” kabul edilir.}
+\paragraph{Geri-referans}{ “\textbackslash \textbackslash n” benzeri bir ifadeyle girdinin düzenli ifade içindeki ”n”inci sayılı parantez içindeki ifade ile eşleşen parçasını belirtebilirsiniz. Mesela “(ab)\textbackslash \textbackslash 1” ifadesi “abab” ile eşleşir. “(ab*a)x\textbackslash 1” ifadesini işlerken parantezler “abba” ile eşleştiyse ve tüm ifade “abbaxabba” ile eşleşir (başka hiçbirşeyle eşleşmez). Daha fazla ayrıntı GNU grep’in dökümanları içinde mevcuttur.}
+\paragraph{Aç gözlü olmayan (eşleşme):}{“*” , “+” ve “?” operatörleri genellikle açgözlüdür, yani mümkün olduğunca çok sayıda girdiyle eşleşmeye çalışırlar: ”$ ^\wedge $a.*a” ifadesi “abacada” giriş karakter dizisine uygulandığında “aba” yada “abaca” ile değil, “abacada” ile eşleşir. Ancak aynı operatörlerin açgözlü olmayan versiyonları da vardır. “*?” ,”+?” ve “??” girdinin mümkün olduğu kadar azıyla eşleşmeye çalışırlar. Örneğimizde “a.*?a” , “aba” ile eşleşebilir. Kıvrık parantez operatörü ile de aç gözlü olmayan versiyonu sağlayabilir.}
  
-Her program her uzantıyı desteklemez. Tablo 7.1 çok önemli programları kısaca gösterir. Emacs, Perl ve Tcl burada tartışılmayan bir çok uzantıyı destekler.
+Her program her uzantıyı desteklemez. Tablo ~\ref{tab:7.1} bazı önemli programları kısaca gösterir. Emacs, Perl ve Tcl burada tartışılmayan bir çok uzantıyı destekler.
+
+\begin {table}[htb]\footnotesize
+\caption {Düzenli İfade Desteği} \label{tab:7.1}
+\begin{tabular}{l*{7}{c}}
+\hline
+Uzantı & GNU Grep & GNU egrep & trad egrep & vim & emacs & Perl & Tcl \\
+\hline
+Kelime ayıraçları & + & + & + & +$^1$ & +$^1$ & +$^4$ & +$^4$ \\
+Gruplama & +$^1$ & + & + & +$^1$ & +$^1$ & + & + \\
+Alternatif & +$^1$ & + & + & +$^2$ & +$^1$ & + & + \\
+Seçimli ifadeler & +$^1$ & + & + & +$^3$ & + & + & + \\
+En az bir tekrar & +$^1$ & + & + & +$^1$ & + & + & + \\
+Sınırlar & +$^1$ & + & - & +$^1$ & +$^1$ & + & + \\
+Geri-referans & - & + & + & - & + & + & + \\
+Aç gözlü olmayan eşleşme & - & - & - & +$^4$ & + & + & + \\
+\hline
+\multicolumn{8}{l}{$^1$Kendinden önce “\textbackslash” işareti gelmelidir, örn: “ab+” yerine “ab\textbackslash+”.} \\
+\multicolumn{8}{l}{$^2$Parantez kullanımı gerekmez, alternatifler daima tüm ifadeye aittir.} \\
+\multicolumn{8}{l}{$^3$“?” yerine “\textbackslash=” kullanılır.} \\
+\multicolumn{8}{l}{$^4$Sözdizimi tamamen farklıdır (kendi dökümanlarına başvurun).} \\
+\end{tabular}
+\end {table}
+
 \end{subsection}
 \end{section}
 \begin{section}{Dosya içinde metin arama – grep}
@@ -54,26 +76,6 @@ Her program her uzantıyı desteklemez. Tablo 7.1 çok önemli programları kıs
 Düzenli ifadeyi kullanan en önemli Linux programlarından biri grep’tir. Verilen düzenli ifade ile eşleşen metinleri dosya içindeki satırlarda arar. Eşleşen satırlar çıktı olarak verilir,eşleşmeyenler atılır.
 
 Grep’in iki çeşidi vardır. Geleneksel olarak stripped-down fgrep (“sabit”) düzenli ifadelere izin vermez. Karakter stringlerine ayrılmıştır ama çok hızlıdır. egrep (“gelişmiş”) ek düzenli ifade operatörleri sunar ama çok daha yavaştır ve daha fazla hafızaya ihtiyaç duyar.
-
-\paragraph{}{
-\begin {table}[H]
-\caption {Düzenli İfade Desteği} \label{tab:title} 
-\begin{tabular}{l c c c c c c c c}
-\hline
-Uzantı & GNU Grep & GNU egrep & trad egrep & wim & emacs & Perl & Tcl \\
-\hline
-Word brackets & + & + & + &+1&+1&+4&+4\\
-Gruplama & +1 & +&+&+1&+1&+&+\\
-Alternatif & +1 & +&+&+2&+1&+&+\\
-Seçenek & +1 & +&+&+3&+&+&+\\
-En azından bir & +1 & +&+&+1&+&+&+\\
-Sınırlar & +1 & +&-&+1&+1&+&+\\
-Geriye referans & - & +&+&-&+&+&+\\
-Non-Greedy & - & -&-&+4&+&+&+\\
-\hline
-\end{tabular}
-\end {table}
-}
 
 \paragraph{}{
 \begin {table}[H]
