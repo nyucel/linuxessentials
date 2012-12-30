@@ -35,13 +35,12 @@ Daha detaylı açıklama için kabuğun rehber sayfasında ve bilgi belgelerinde
 
 Bunun yerine harici komutların (programların) birçoğu \emph{--help} seçeneğini destekler. Çoğu komut kısaca kendileriyle kullanılan parametrelerini ve sözdizminlerini sıralar.
 
-Her komut --help seçeneğini desteklemeyebilir; sık sık çağrilan seçenekler -h veya -?, ya da yanlis bir seçenek veya geçersiz komut satırı belirtirseniz yardım ekrana gelecektir. Ne yazık ki genel kuralı yoktur.
+Her komut --help seçeneğini desteklemeyebilir; sık sık çağrılan seçenekler -h veya -?, ya da yanlış bir seçenek veya geçersiz komut satırı belirtirseniz yardım ekrana gelecektir. Ne yazık ki genel kuralı yoktur.
 \end{section}
-\begin{section}{Kabuk Satırı Kılavuz}
+\begin{section}{Çevrim İçi Kılavuz}
 \begin{subsection}{Genel Bakış}
 
-Nerdeyse her komut-satırı programı yardım sayfasıyla "manual page" (ya da "man page") gelir, ayrıca ayar dosyaları ve sistem çağrıları vs. Bu metinler 
-genelde yazılımla beraber kurulur. İncelemek için "man $<$isim$>$" komutu kullanılır.
+Nerdeyse her komut satırı programı ayar dosyaları ve sistem çağrıları vs. yanında "kılavuz sayfası" (ya da "man sayfası") ile gelir. Bu metinler genelde yazılımla beraber kurulur ve ,ncelemek için "\emph{man $<$isim$>$}" komutu kullanılır.
 
 \paragraph{}{
 \begin {table}[H]
@@ -54,11 +53,11 @@ Bölüm &
 NAME 	&	Komutun adı ve kısa açıklama \\
 SYNOPSIS &	Komutun sözdizimi açıklaması \\
 DESCRIPTION &	Komutun etkisi ile ilgili açıklama \\
-OPTIONS &	Mevcut seçeenekler \\
-ARGUMENTS &	Mevcut deliller \\
+OPTIONS &	Kullanılabilir seçenekler \\
+ARGUMENTS &	Kullanılabilir bağımsız değişkenler \\
 FILES 	&	Yardımcı dosyalar \\
 EXAMPLES &	Örnek komut satırları \\
-SEE ALSO &	Ilgili konulara çapraz referanslar \\
+SEE ALSO &	İlgili konulara çapraz referanslar \\
 DIAGNOSTICS &	Hata ve uyarı mesajları \\
 COPYRIGHT & 	Komutun yazarları \\
 BUGS	&	Bilinen komut sınırlamaları \\
@@ -67,11 +66,11 @@ BUGS	&	Bilinen komut sınırlamaları \\
 \end {table}
 }
 
-Buradaki $<$isim$>$ açıklanmasını istediğiniz komutun yada dosyanın adıdır. Örneğin "man bash", anılan iç kabuk komutlarının listesini üretir.
+Buradaki \emph{$<$isim$>$} açıklanmasını istediğiniz komutun yada dosyanın adıdır. Örneğin "\emph{man bash}", anılan iç kabuk komutlarının listesini üretir.
 
-Ancak, kılavuz sayfalarinin bazi dezavantajlari vardir: Bu kılavuzların çoğu sadece İngilizcedir; farklı dillere çevirilenleri vardır ama tam değil. Üstelik açiklamalar çoğunlukla karışıktır. Yeni başlayanlar belgeleri anlamayabilir o yüzden her kelime çok önemlidir. Buna ilaveten, özellikle uzun belgelerin yapısı anlaşılmaz olabiliyor. Öyle olsa bile, bu belgelerin değeri göz ardı edilemez. Kağıtlarla kullanıcıyı canından bezdirmek yerine sistemle beraber kılavuz mevcuttur.
+Ancak, kılavuz sayfalarinin bazi dezavantajlari vardir: Bu kılavuzların çoğu sadece İngilizcedir; farklı dillere çevirilenleri vardır ama tam değil. Üstelik açiklamalar çoğunlukla karışıktır. Her kelime çok önemlidir, bu durum da yeni başlayanlar için belgeleri erişilebilirlikten uzaklaştırır. Ek olarak, özellikle uzun belgelerin yapısı anlaşılmaz olabilir. Öyle olsa bile, bu belgelerin değeri göz ardı edilemez. Kağıtlarla kullanıcıyı canından bezdirmek yerine sistemle beraber çevrim içi kılavuz mevcuttur.
 
-Birçok Linux dağıtımlari komut satırından çağrılabilen her komut için bir kılavuz sayfasının olması gerektiği felsefesini takip eder. Bu, görsel masaüstü ortamı ait programları KDE ve GNOME için aynı ölçüde geçerli değildir. Bunların hiç bir kılavuz sayfasının bulunmaması haricinde görsel masaüstü çevresinde bile berbat bir şekilde belgelendirilmiştir. Bu programların çoğu gönüllüler tarafından katkıda bulunması gerçegi sadece zayıf bir bahane.
+Birçok Linux dağıtımlari komut satırından çağrılabilen her komut için bir kılavuz sayfasının olması gerektiği felsefesini takip eder. Bu durum KDE ve GNOME görsel masaüstü ortamına ait programlar için aynı ölçüde geçerli değildir. Bunların pek çoğunun hiç bir kılavuz sayfasının bulunmaması yanında bazıları da görsel masaüstü çevresinde bile berbat bir şekilde belgelendirilmiştir. Bu programların çoğunun gönüllüler tarafından katkıda bulunulduğu gerçegi sadece zayıf bir bahanedir.
 \end{subsection}
 \begin{subsection}{Yapı}
 
