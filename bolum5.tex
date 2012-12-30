@@ -74,13 +74,13 @@ Birçok Linux dağıtımlari komut satırından çağrılabilen her komut için 
 \end{subsection}
 \begin{subsection}{Yapı}
 
-man'in yapısı kabaca yukarda belirttiğimiz Tablo 5.1 taslağını takip eder. Yine de her kılavuz sayfası orada belirtilen her bölümü içermeyebilir. Özellikle de, EXAMPLES sık sık kısa kesilmiştir.
+Yardım sayfalarının yapısı kabaca Tablo 5.1 taslağını takip eder. Yine de her kılavuz sayfası orada belirtilen her bölümü içermeyebilir. Özellikle de, EXAMPLES kısmı sık sık kısa kısa verilmiştir.
 
-BUGS başlığı genellikle yanlış anlaşılır: burda belgelendirilen genellikle komutun aldığı yaklaşımındaki kısıtlamalardir ve siz bu kısıtlamaların makul bir çabayla kaldırılamadığını siz bir kullanıcı olarak bilmelisiniz. Örneğin, grep komutunun belgeleri normal ifadelerin çeşitli yapılarının bulunması grep sürecinin çok bellek kullanmasına yol açabildiğini belirtir. Bu grep komutunun uyguladığı arama yönteminin sonucudur ve önemsiz, kolayca giderilebilen hata değildir.    
+BUGS başlığı genellikle yanlış anlaşılır: Düzeltilen uygulamanın içindeki \emph{hataları} okuyun; elbette burada belgelendirilen genellikle komutun aldığı yaklaşımdaki kısıtlamalardır ve siz bu kısıtlamaların makul bir çabayla kaldırılamadığını bir kullanıcı olarak bilmelisiniz. Örneğin, \emph{grep} komutunun belgeleri düzenli ifadelerin çeşitli yapılarının bulunması grep sürecinin çok bellek kullanmasına yol açabildiğini belirtir. Bu \emph{grep} komutunun uyguladığı arama yönteminin sonucudur ve önemsiz, kolayca giderilebilen hata değildir.    
 
-Man sayfaları groff adında bir program tarafından metni görüntülemek veya yazdırmak için özel bir girdi biçimi olarak yazılır. Kılavuz sayfaları /usr/share/man dizininin mann alt dizini içinde saklanır. n Tablo 5.2'de verilen bölüm numaraları içindir.
+Yardım sayfaları \emph{groff} adında bir program tarafından metni görüntülemek veya yazdırmak için özel bir girdi biçimi olarak yazılır. Kılavuz sayfaları /usr/share/man dizininin \emph{man}n alt dizini içinde saklanır. n Tablo 5.2'de verilen bölüm numaraları içindir.
 
-Diğer dizinlerdeki man sayfalarını MANPATH çevresel degişkenini ayarlayarak birleştirebilirsiniz. "manpath" komutu MANPATH'in nasıl ayarlanabileceği hakkında ipuçları barındırır.
+Diğer dizinlerdeki yardım sayfalarını, \emph{man} komutu tarafından sırasıyla taranacak dizinleri içeren, MANPATH çevresel değişkenini ayarlayarak birleştirebilirsiniz. \emph{manpath} komutu MANPATH değişkeninin nasıl ayarlanabileceği hakkında ipuçları barındırır.
 \paragraph{}{
 \begin {table}[H]
 \caption {Kılavuz sayfası konuları} \label{tab:title} 
@@ -106,17 +106,30 @@ n & "Yeni" komutlar \\
 \end{subsection}
 \begin{subsection}{Bölümler}
 
-Her kılavuz sayfası "kılavuzu" kapsayan "bölüme" aittir (Tablo 5.2). 1, 5 ve 8 bölümler en önemlileridir. Aramayı daraltmak için man komutu satırına bölüm numarası verebilirsiniz. Örneğin, "man 1 crontab"-crontab komutu için man sayfasını görüntülerken, "man 5 crontab"-crontab crontab dosyalarının formatlarını açıklar. man sayfalarını işaret ederken, bölüm numarasını parantez içinde belirtmek gelenekseldir; biz, crontab(1)-crontab komut kılavuzu, ve crontab(5)-dosya formatı açıklaması aradaki farkı ayırt ederiz.
+Her kılavuz sayfası "kılavuzu" kapsayan "bölüme" aittir (Tablo 5.2). 1., 5. ve 8. bölümler en önemlileridir. Aramayı daraltmak için \emph{man} komutu satırına bölüm numarası verebilirsiniz. Örneğin, "\emph{man 1 crontab}" \emph{crontab} komutu için kılavuz sayfasını görüntülerken, "\emph{man 5 crontab}"-\emph{crontab} dosyalarının biçimlerini açıklar. Kılavuz sayfalarını işaret ederken, bölüm numarasını parantez içinde belirtmek gelenekseldir; biz, \emph{crontab}(1) \emph{crontab} komut kılavuzu, ve \emph{crontab}(5) dosya biçimi açıklaması aradaki farkı ayırt ederiz.
 
--a seçeneğiyle man verilen isme göre bulunan kilavuzu gösterir; seçenek vermezsek ilk bulunan sayfayı (genellikle bölüm 1) gösterir.
+-a seçeneğiyle \emph{man} verilen isme göre bulunan kılavuzu gösterir; seçenek vermezsek ilk bulunan sayfayı (genellikle bölüm 1) gösterir.
 \end{subsection}
-\begin{subsection}{Kılavuz Sayfalarını Görüntülemek }
+\begin{subsection}{Kılavuz Sayfalarını Görüntülemek}
 
-man sayfalarını metin terminalde görüntülemek için asıl program daha üzerinde duracağımız less ile gerçekleştirilir. Bu aşamada man sayfasında yukarı ok işareti ? ve aşağı ok işareti ? ile gezinebilirsiniz. Metnin içinde anahtar kelime karakterine basarak / ardından kelimeyi girip geri dönüş tuşuna basarak arayabilirsiniz. Her geri dönüş tuşuna bastığınızda bir sonraki bulunan kayda sıçrar (eğer varsa). Kabuğa q tusuna basarak geri dönebilirsiniz.
+Kılavuz sayfalarını metin terminalde görüntülemek daha üzerinde duracağımız \emph{less} ile gerçekleştirilir. Bu aşamada kılavuz sayfasında yukarı ok \begin{math}\uparrow\end{math} ve aşağı ok \begin{math}\downarrow\end{math} tuşları ile gezinebileceğinizi bilmek önemlidir. Metnin içindeki bir anahtar kelimeyi \emph{/} tuşuna basıp ardından kelimeyi girip Enter tuşuna basarak arayabilirsiniz. Her geri dönüş tuşuna bastığınızda bir sonraki bulunan kayda sıçrar (eğer varsa). Kabuğa \emph{q} tusuna basarak geri dönebilirsiniz.
 
-KDE web tarayıcısı, Konqueror kullanarak güzel biçimlendirilmiş uygun man sayfaları elde etmek mümkün. Basitçe "man:/$<$isim$>$" (hatta "\#$<$isim$>$") URL'yi tarayıcının adres satırına girin. Bu metot aynı zamanda KDE komut satırı için de geçerlidir.
+KDE web tarayıcısı, Konqueror, kullanarak güzel biçimlendirilmiş uygun kılavuz sayfaları elde etmek mümkündür. Basitçe "\emph{man:/$<$isim$>$}" (hatta "\emph{\#$<$isim$>$}") URL adresini tarayıcının adres satırına girin. Bu yöntem aynı zamanda KDE komut satırı için de geçerlidir.
 
-\paragraph{buraya iki şekil eklenecek}{şekiller}
+\begin{figure}
+        \centering
+        \begin{subfigure}[b]{0.3\textwidth}
+                \centering
+                \includegraphics[width=\textwidth]{./bolum5/img1}
+        \end{subfigure}%
+        ~ %add desired spacing between images, e. g. ~, \quad, \qquad etc. 
+          %(or a blank line to force the subfigure onto a new line)
+        \begin{subfigure}[b]{0.3\textwidth}
+                \centering
+                \includegraphics[width=\textwidth]{./bolum5/img2}
+        \end{subfigure}
+        \caption{Metin terminali (sol) ve Konqueror (sağ) içerisinde bir kılavuz sayfası }\label{fig:manpages}
+\end{figure}
 
 Amaçsızca sayısız man sayfalarını aramadan önce, konu hakkında apropos yardımıyla genel bir bilgi edinmek daha mantıklıdır. Bu komut basitçe şöyle çalıştırılır "man -k"; hem de komut satırında verilen bir anahtar kelimenin "NAME" bölümlerine ilişkin tüm man sayfalarını arayabilirsiniz. Bunun sonucunun çıktısı tüm man sayfalarını, adı veya açıklama kısmında anahtar kelimeyi de içerecek şekilde bir liste görüntüler.
 
