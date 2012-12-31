@@ -144,69 +144,69 @@ Bu konuyla alakalı olan bir başka komut \emph{whatis} komutudur.Bu komut da t�
 \end{section}
 \begin{section}{Bilgi Sayfaları}
 
-Bazı komutlar için - genellikle karmaşık olanlar için sıradan man sayfaları yerine (ya da ilave olarak) "bilgi sayfaları" mevcuttur. Bunlar genellikle daha genis olup hiper metin prensibine göre kurulmuştur. World Wide Web'e benzer şekilde.
+Bazı komutlar için - genellikle karmaşık olanlar için sıradan kılavuz sayfaları yerine (ya da ilave olarak) "bilgi sayfaları" mevcuttur. Bunlar genellikle daha geniş olup World Wide Web'e benzer şekilde hiper metin prensibine göre kurulmuştur.
 
-Bilgi sayfaları fikri GNU projesi ile birlikte ortaya çıkmıştırtir; o yüzden onlar en sik FSF (özgür yazilim vakfi)'le yayimlanan yazilimlarla gelir. Aslında "GNU sistem"de sadece bilgi belgeleri olmasi gerekiyordu; ancak GNU, FSF himayesinde geliştirilmeyen bir sürü yazılımları da kendi içine alır, ve GNU araçları çizgileri daha kesin olan sistemlerde kullanılmaktadır, FSF ise bazı durumlarda taviz vermeye başladı.
+Bilgi sayfaları fikri GNU projesi ile birlikte ortaya çıkmıştır; o yüzden onlar en sık FSF (Özgür Yazılım Vakfı) ile  yayımlanan veya GNU projesine ait yazılımlarla gelir. Aslında "GNU sistem" için sadece bilgi belgeleri olması gerekiyordu; ancak GNU, FSF himayesinde geliştirilmeyen bir sürü yazılımları da kendi içine alır, ve GNU araçları çizgileri daha kesin olan sistemlerde kullanıldığından FSF bazı durumlarda taviz vermeye başladı.
 
-man sayfalarının dengi olan bilgi sayfaları "bilgi $<$komut$>$" komutu (bilgi programını içeren paket açıkça kurulmuş olması gerekebilir) kullanılarak görüntülenir. Ayrıca, bilgi sayfaları emacs editöründe veya KDE web tarayıcısı Konqueror'da URL'ler yardımıyla "info:/$<$command$>$" görüntülenebilir.
+Kılavuz sayfalarının dengi olan bilgi sayfaları "\emph{info $<$komut$>$}" komutu (bilgi programını içeren paket açıkça kurulmuş olması gerekebilir) kullanılarak görüntülenir. Ayrıca, bilgi sayfaları \emph{emacs} editöründe veya KDE web tarayıcısı Konqueror'da URL'ler yardımıyla "\emph{info:/$<$komut$>$}" görüntülenebilir.
 
-Bilgi sayfalarının bir avantajı, man sayfaları gibi kaynak formatında yazılmış olmalarıdır. Bilgi sayfaları PDF ve PostScript formatında yazdırılabilir veya ekranda islenebilir. groff yerine, \TeX{} dizgi programını kullanarak çıktı işlemi için hazırlanabilir.
+Bilgi sayfalarının bir avantajı, kılavuz sayfaları gibi kaynak formatında yazılmış olmalarıdır. Bilgi sayfaları PDF ve PostScript formatında yazdırılabilir veya ekranda işlenebilir. \emph{groff} yerine, \TeX{} dizgi programı çıktı işlemi için hazırlanabilir.
 
 \paragraph{Alıştırmalar}{
 \begin{itemize}
- \item ls programı için bilgi sayfasına bakın. Metin tabanlı bilgi tarayıcısı ve, varsa, Konqueror tarayıcısını deneyin.
- \item Bilgi sayfaları hiper metnin ilkel formunu kullanır. Günümüzde HTML dosyalarının World Wide Web'de olduğu gibi. Bilgi sayfaları neden HTML ile yazılmamıştır?
+ \item \emph{ls} programı için bilgi sayfasına bakın. Metin tabanlı bilgi tarayıcısı ve, varsa, Konqueror tarayıcısını deneyin.
+ \item Bilgi sayfaları günümüzde HTML dosyalarının World Wide Web'de olduğu gibi hiper metnin ilkel formunu kullanır. Bilgi sayfaları neden HTML ile yazılmamıştır?
 \end{itemize}}
 \end{section}
 \begin{section}{NASIL Belgeleri}
 
-Kılavuz ile bilgi sayfaları arasındaki ortak problem şudur: Kullanıcılar kullanacakları programın adını bilmek zorundadırlar. Hatta apropos'la arama yapmak şans oyunu gibi birşeydir. Ayrıca, her problem tek bir komut kullanılarak çözülemez. Bu nedenle bunlar "komut odaklı" belgeler yerine genellikle "problem odaklı" olarak adlandırılır. Nasıl Yapılır kısmı bunlara çözüm üretmek için tasarlandı.
+Kılavuz ile bilgi sayfaları arasındaki ortak problem şudur: Kullanıcılar kullanacakları programın adını bilmek zorundadırlar. Hatta \emph{apropos} ile arama yapmak şans oyunu gibi birşeydir. Ayrıca, her problem tek bir komut kullanılarak çözülemez. Bu nedenle bunlar "komut odaklı" belgeler yerine genellikle "problem odaklı" olarak adlandırılır. Nasıl Yapılır kısmı bunlara çözüm üretmek için tasarlandı.
 
-Nasıl Belgeleri kendilerini tek bir komutla  kısıtlamayan geniş kapsamlı belgelerdir, ama sorunların çözümü için tam yaklaşımları açıklamaya çalışırlar. Örneğin, DSL yoluyla Linux sisteminin internete nasıl bağlanacağını detaylı olarak açıklayan "DSL HOWTO" kısmı vardır, ya da Linux için astronomi yazılımını tartışan "Astronomi NASIL" vardır. Nasıl Yapılır kısımlarının birçoğu İnglizce aslını genellikle geriden takip etse de bunlar başka dillerde de mevcuttur.
+Nasıl Belgeleri kendilerini tek bir komutla  kısıtlamayan geniş kapsamlı belgelerdir, ama sorunların çözümü için tam yaklaşımları açıklamaya çalışırlar. Örneğin, DSL yoluyla Linux sisteminin internete nasıl bağlanacağını detaylı olarak açıklayan "DSL Nasıl" belgesi vardır, ya da Linux için astronomi yazılımını tartışan "Astronomi NASIL" vardır. Nasıl Yapılır kısımlarının birçoğu İnglizce aslını genellikle geriden takip etse de bunlar başka dillerde de mevcuttur.
 
-Nasıl Belgeleri çoğu Linux dağıtımında yerel olarak kurulu olmasını sağlar. Bunlar dagıtıma özel dizinlerin altında bulunurlar. /usr/share/doc/howto SUSE dagıtımları için, /usr/share/HOWTO Debian GNU/Linux içindir. Tipik olarak düz metin veya HTML dosyaları içerir. Nasıl Yapılır'ların geçerli tüm sürümleri ve diğer PostScript veya PDF biçimindekilerinin hepsi internet üzerinde "Linux Documentation Project" (http://www.tldp.org) bulunabilir. Ayrıca diğer
-Linux belgeleri de sunar.
+Çoğu Linux dağıtımı Nasıl Belgelerinin (veya büyük bir alt kümesinin) yerel olarak kurulu olmasını sağlar. Bunlar dağıtıma özel dizinlerin altında bulunurlar. /usr/share/doc/howto SUSE dağıtımları için, /usr/share/HOWTO Debian GNU/Linux içindir. Tipik olarak düz metin veya HTML dosyaları içerir. Nasıl Yapılır'ların geçerli tüm sürümleri ve diğer PostScript veya PDF biçimindekilerinin hepsi internet üzerinde "Linux Belgelendirme Projesi" (http://www.tldp.org) altında bulunabilir. Bu adres ayrıca diğer Linux belgelerini de sunar.
 \end{section}
-\begin{section}{Daha fazla Bilgi Kaynakları}
+\begin{section}{Ek Bilgi Kaynakları}
 
-Neredeyse her kurulu olan yazılım için ilave belgeleri veya örnek dosyaları /usr/share/doc ya da /usr/share/doc/packages (kullandığınız dağıtıma bağlı olarak değişir) altında bulunur. Çoğu GUI uygulamaları (KDE veya GNOME paketlerindeki gibi) "help" yardım menüsü sunar. Üstelik birçok dağıtımlar uzmanlaştırılmış "help centers" yardım merkezleri sunar. Sistem üzerindeki çoğu belgelere uygun erişimi sağlar.
+Neredeyse her kurulu olan yazılım için ilave belgeleri veya örnek dosyaları /usr/share/doc ya da /usr/share/doc/packages (kullandığınız dağıtıma bağlı olarak değişir) altında bulunur. Çoğu GUI uygulamaları (KDE veya GNOME paketlerindeki gibi) "yardım" menüsü sunar. Üstelik birçok dağıtım uzmanlaştırılmış "yardım merkezleri" sunar. Sistem üzerindeki çoğu belgelere uygun erişimi sağlar.
+
+Yerel sistemden bağımsız olarak WWW ve USENET arşivlerinin de arasında bulunduğu, pek çok belge Internet ortamında bulunmaktadır. 
 
 Linux için daha ilgi çekici sitelerden bazıları:
-\paragraph{http://www.tldp.org/}{“Linux Documentation Project”, man sayfaları ve Nasıl Yapılır'dan sorumlu (diğer şeylerin yanı sıra).}
+\paragraph{http://www.tldp.org/}{“Linux Belgelendirme Projesi”, kılavuz sayfaları ve Nasıl Yapılır'dan sorumlu (diğer şeylerin yanı sıra).}
 \paragraph{http://www.linux.org/}{Linux meraklıları için genel portal.}
 \paragraph{http://www.linuxwiki.de/}{Linux ile ilgili her şey için serbest biçimli metin bilgi veritabanı (Almanca)}
-\paragraph{http://lwn.net/}{Haftalik Linux Haberleri - her türlü Linux haberleri için belki de en iyi web sitesi. Yeni gelişmeler, ürünler, güvenlik açıkları, basındaki Linux savunuculuğu vs. ayrıca her persembe günü geçmiş haftaların araştırmalarının yer aldığı çevrimiçi dergi de bulunur. Günlük haberlere ücretsiz olarak ulaşılabilir iken haftalık yayınlamalara belli bir ücret ödenmesi gerekiyor (aylık 5\$'dan başlayan fiyatlarla). İlk çıktığı haftadan sonra o yayınları ücretsiz olarak erişilebilir hale getiriyorlar.}
-\paragraph{http://freecode.com/}{Bu site yeni (genel olarak serbest) çıkan yazılım paketlerini tanıtır. Buna ek olarak ilginç projeler veya yazilim paketleri için sorguları sağlayan bir veritabanı var}
-\paragraph{http://www.linux-knowledge-portal.de/}{LWN ve Freshment dahil diğer Linux sitelerinden haber başlıklarını toplarlar.}
+\paragraph{http://lwn.net/}{Haftalık Linux Haberleri - her türlü Linux haberleri için belki de en iyi web sitesi. Yeni gelişmeler, ürünler, güvenlik açıkları, basındaki Linux savunuculuğu vs. ayrıca her persembe günü geçmiş haftaların araştırmalarının yer aldığı çevrimiçi dergi de bulunur. Günlük haberlere ücretsiz olarak ulaşılabilir iken haftalık yayınlamalara belli bir ücret ödenmesi gerekiyor (aylık 5\$'dan başlayan fiyatlarla). İlk çıktığı haftadan sonra o yayınları ücretsiz olarak erişilebilir hale getiriyorlar.}
+\paragraph{http://freecode.com/}{Bu site yeni (genel olarak serbest) çıkan yazılım paketlerini tanıtır. Buna ek olarak ilginç projeler veya yazılım paketleri için sorguları sağlayan bir veritabanı var}
+\paragraph{http://www.linux-knowledge-portal.de/}{LWN ve Freshmeat dahil diğer Linux sitelerinden haber başlıklarını toplar.}
 
-Eğer Internette veya Usenet arşivlerinde bulmadıysanız aradığınızı sorunuza cevabı  posta listelerinde soru sorarak yada Usenet gruplarında bulabilirsiniz. Bu forumlardaki çoğu kullanıcılar daha önce cevaplanmış yada dokumantasyonda olan birşeyi sormanıza kötü tepki verebilirler. Probleminizin detaylı açıklamasını hazırlayın, log dosyalarından ilgili ayrıntıları verin çünkü karmaşık problemleri sizde olduğu gibi uzak mesafeden çözmek zordur (karmaşık olmayan problemleri kendinizin çözebiliyor olmaniz lazım).
+Eğer Internette veya Usenet arşivlerinde bulmadıysanız aradığınızı, sorunuza cevabı  posta listelerinde ya da Usenet gruplarında soru sormak her zaman mümkündür. Bu forumlardaki çoğu kullanıcıların daha önce cevaplanmış ya da belgelendirmede veya "SSS" (Sıkça Sorulan Sorula) kısmında olan birşeyi sormanıza kötü tepki verebileceklerini unutmayın. Probleminizin detaylı açıklamasını hazırlayın, kayıt dosyalarından ilgili ayrıntıları verin çünkü karmaşık problemleri sizde olduğu gibi uzak mesafeden çözmek zordur (karmaşık olmayan problemleri kendinizin çözebiliyor olmanız lazım).
 
-Haber arşivlerini http://groups.google.com/ (eskiden DejaNews) adresinde bulabilirsiniz.
+Haber arşivlerini \emph{http://groups.google.com/} (eskiden DejaNews) adresinde bulabilirsiniz.
 
-Linux için ilgi çekici haberler, gruplar inglizce için comp.os.linux.* veya almanca için de.comp.os.linux.* hiyerarsilerinde bulunabilir. Birçok Unix grupları Linux konuları için uygundur; kabukla ilgili soruları kabuk programlama için ayrılan grupta sorulması gerekiyor Linux grubunda değil çünkü kabuklar genellikle Linux'a özgü birşey değildir.
+Linux için ilgi çekici \emph{haber grupları} İngilizce için \emph{comp.os.linux.*} veya Almanca için \emph{de.comp.os.linux.*} hiyerarşilerinde bulunabilir. Birçok Unix grupları Linux konuları için uygundur; kabukla ilgili soruların kabuk programlama için ayrılan grupta sorulması gerekir, Linux grubunda değil, çünkü kabuklar genellikle Linux'a özgü değildir.
 
-Linux tabanlı posta listelerini örneğin, majordomo@vger.kernel.org adresinde bulabilirsiniz. LIST denilen listeye katılmak için önce "subscribe LIST" adresine e-posta atmanız gerekiyor. Sistemde mevcut yorumlanmış tüm posta listeleri http://vger.kernel.org/vger-lists.html'de bulabilirsiniz.
+Linux tabanlı posta listelerini örneğin, \emph{majordomo@vger.kernel.org} adresinde bulabilirsiniz. LIST denilen listeye katılmak için önce "subscribe LIST" adresine e-posta atmanız gerekir. Sistemde mevcut yorumlanmış tüm posta listeleri \emph{http://vger.kernel.org/vger-lists.html} adresinde bulabilirsiniz.
 
 Görünüşte anlaşılmayan problemleri çözmenin yolu hata mesajının Google'da aratmaktır(ya da güvendiğiniz baska bir arama motoru). Eğer faydalı bir sonuç alamazsanız, arama yaptığınız sorguda sadece size özel duruma bağlı kısımları kaldırın (mesela alan adları gibi). Google'da aramanın avantajı sadece ortak web sayfalarını indekslemek değil bunun yanında posta liste arsivlerini de indeksler. O yüzden sizin gibi sorunu yaşayan bir başka birilerinin bulunması da olası bir durum.
 
-Açık kaynak kodlu yazılımların önemli avantajlarından biri büyük miktarda dokumantasyonun olması değildir ayrıca çoğu dokumantasyonun da en az yazılımının kendisi gibi kısıtlı olmasıdır. Bu yazılım geliştiricileri ve belge yazarlar arasındaki işbirliğini kolaylaştırır ve belgelerin diğer dillere çevrilmesi daha kolaydır. Aslında, programcı olmayanlar için özgür yazılım projelerine destek verebilmeleri için bol fırsat var. Mesela güzel belgelemeler yazarak. Özgür yazılım faaliyet alanında programcılara verilen saygıyı belge yazarlarına da vermeye çalışılmalı.
+Açık kaynak kodlu yazılımların büyük miktarda belgelendirmelerinin olması tek büyük faydaları değildir ayrıca çoğu belgelendirmenin de en az yazılımının kendisi gibi kısıtlı olmasıdır. Bu, yazılım geliştiricileri ve belge yazarları arasındaki işbirliğini kolaylaştırır ve belgelerin diğer dillere çevrilmesi daha kolaydır. Aslında, programcı olmayanlar için özgür yazılım projelerine destek verebilmeleri için bol fırsat bulunmaktadır, örn. iyi belgelemeler yazmak. Özgür yazılım faaliyet alanında programcılara verilen saygıyı belge yazarlarına da vermeye çalışılmalı. Bu durum kaymasının başlamış olması henüz tamamlandığı anlamına gelmemektedir.
 \end{section}
-\paragraph{Bu bölümdeki Komutlar}{
-\begin{itemize}
-\item[apropos] 	NAME bölümünde verilen anahtar kelimeyi içeren tüm kılavuz sayfalarını görüntüler
-\item[groff]		Gelişmiş dizgi programı
-\item[help] 		bash komutları için yardımı görüntüler
-\item[info] 		Karakter tabanlı terminalde GNU Bilgi sayfalarını görüntüler
-\item[less]		sayfa sayfa metinleri (kılavuz sayfaları gibi) görüntüler
-\item[man]		Sistem kılavuz sayfalarını görüntüler
-\item[manpath]		Sistem kılavuz sayfalarının aranacağı yolu belirler
-\item[whatis]		Açıklamasında verilen belirli bir anahtar kelime ile kılavuz sayfaları bulur
-\end{itemize}}
+\paragraph{Bu Bölümdeki Komutlar}{:\\
+\textbf{apropos}	NAME bölümünde verilen anahtar kelimeyi içeren tüm kılavuz sayfalarını görüntüler \\
+\textbf{groff}		Gelişmiş dizgi programı \\
+\textbf{help}		\emph{bash} komutları çevrim için yardımı görüntüler \\
+\textbf{info}		Karakter tabanlı terminalde GNU Bilgi sayfalarını görüntüler \\
+\textbf{less}		Metinleri sayfa sayfa (kılavuz sayfaları gibi) görüntüler \\
+\textbf{man}		Sistem kılavuz sayfalarını görüntüler \\
+\textbf{manpath}		Sistem kılavuz sayfalarının aranacağı yolu belirler \\
+\textbf{whatis}		Açıklamasında verilen belirli bir anahtar kelime ile kılavuz sayfalarını bulur \\
+}
 \paragraph{Özet}{
 \begin{itemize}
-\item "help $<$komut$>$" dahili bash komutlarını açıklar. Birçok harici komut --help seçeneğini destekler.
-\item Çoğu program kılavuz sayfalarıyla gelirler. Bunlar man komutuyla incelenebilir. apropos verilen anahtar kelimelere göre tüm kılavuz sayfalarını arar, whatis kılavuz sayfa isimlerine bakar.
+\item "\emph{help $<$komut$>$}" dahili bash komutlarını açıklar. Birçok harici komut \emph{--help} seçeneğini destekler.
+\item Çoğu program kılavuz sayfalarıyla gelir. Bunlar \emph{man} komutuyla incelenebilir. \emph{apropos} verilen anahtar kelimelere göre tüm kılavuz sayfalarını arar, \emph{whatis} kılavuz sayfa isimlerine bakar.
 \item Bazı programlar için bilgi sayfaları kılavuz sayfalarına bir alternatiftir.
-\item Nasıl Yapılır'lar problem tabanlı bir belgeleme olustururlar.
-\item World Wide Web ve USENET'te Linux ile ilgili çok sayıda ilginç kaynaklar var.
+\item Nasıl Yapılır belgeleri problem tabanlı bir belgeleme olustururlar.
+\item World Wide Web ve USENET dünyasında Linux ile ilgili çok sayıda ilginç kaynaklar var.
 \end{itemize}}
