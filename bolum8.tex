@@ -168,14 +168,14 @@ make >make.log 2>&1
 make 2>&1 >make.log 
 \end{verbatim}
 
-\paragraph{Alıştırmalar}{
-\begin{itemize}
+\paragraph{{\Huge{\PencilLeftDown}}Alıştırmalar}{
+\begin{enumerate}
  \item -U seçeneğini ls komutunun çıktısını sıralamadan vermesi için kullanabilirsiniz. “ls -laU $>$filelist ” yazmanızdan sonra bile filelist için dosyanın boyutu 0 olur. Bunun nedeni ne olabilir?
  \item “ls /tmp ” and “ls /tmp $>$ls- tmp.txt ” komutlarının çıktılarını karşılaştırınız. Bir şeyi fark ettiniz mi? Eğer fark ettiyseniz bunu nasıl açıklarsınız? 
  \item Neden bir dosyayı bir adımda yeni haliyle değiştirmek mümkün değildir? Mesela “grep xyz file $>$ file” neden mümkün değildir?
 \item Ve “cat foo $>>$foo ” komutunda foo'nun boş bir dosya olmadığını varsayarsak bu komuttaki sorun nedir?
 \item Kabukta, bir hata mesajını nasıl standart hata çıktısı olarak alırsınız?
-\end{itemize}}
+\end{enumerate}}
 \end{subsection}
 \begin{subsection}{Komut Boru Hatları}
 
@@ -218,10 +218,10 @@ drwxr-xr-x 3 joe users 1024 Aug 20 12:30 photos/
 
 Bu örnekte bulunulan dizinin içeriği hem list dosyasına hem de ekrana yazılır. (list dosyası ls komutunun çıktısında görünmez çünkü tee komutunun arkasından oluşturulmuştur.)
 
-\paragraph{Alıştırmalar}{
-\begin{itemize}
+\paragraph{{\Huge{\PencilLeftDown}}Alıştırmalar}{
+\begin{enumerate}
  \item Aynı ara sonucu birden fazla dosyaya aynı anda nasıl yazardınız?
-\end{itemize}}
+\end{enumerate}}
 \end{subsection}
 \end{section}
 \begin{section}{Filtre Komutları}
@@ -270,10 +270,10 @@ Söylemeye gerek olmasa bile belirtmekte yarar var, cat sadece metin dosyaların
 
 En Kullanışsız cat Kullanımı Ödülü” cat'i fazlalık olarak kullanan insanlara gidiyor. Çoğu durumda komutlar dosya isimlerini kabul eder bu sebeple cat tek bir dosyayı standart girdiye göndermek için gerekmez. “cat data.txt \textbar grep foo ” gibi bir komut gereksizdir bunun yerine basitçe “grep foo data.txt ” yazabilirsiniz. Hatta grep sadece standart girdiden bir şeyler okuyabiliyor olsaydı bile “grep foo $<$data.txt ” daha kısa olurdu ve ek bir sürece ihtiyacı olmazdı.
 
-\paragraph{Alıştırmalar}{
-\begin{itemize}
+\paragraph{{\Huge{\PencilLeftDown}}Alıştırmalar}{
+\begin{enumerate}
  \item Bir dizinin “garip” isimlere sahip dosyalara sahip olduğunu nasıl kontrol edebilirsiniz (örneğin bitiminde bir boşluk karakteri bulunduranlar ya da ortasında görünmez kontrol karakteri bulunduranlar gibi)?
-\end{itemize}}
+\end{enumerate}}
 \end{subsection}
 \begin{subsection}{Başlangıç ve Bitiş—head ve tail}
 
@@ -293,8 +293,8 @@ $ tail -n +3 file           satır 3 ve sonrasındakiler
 
 tail komutu ayrıca önemli olan -f seçeneğini destekler. Bu tail komutunu başka bir şeyler eklenmesi ihtimaline karşı bekletir. Bu bazı kayıt dosyalarını gözetlemek istediğiniz zaman çok işe yarar olacaktır. Eğer tail -f komutuna birden fazla dosyayı gönderirseniz, her çıktı satırı bloğu için hangi dosyaya yeni veri eklendiğini gösteren bir başlık satırı koyar.
 
-\paragraph{Alıştırmalar}{
-\begin{itemize}
+\paragraph{{\Huge{\PencilLeftDown}}Alıştırmalar}{
+\begin{enumerate}
  \item Standart girdinin 13. satırını nasıl çıktı olarak alabilirsiniz?
  \item “tail -f ” komutunu kontol edin: Bir dosya oluşturun ve bu dosya üzerinde “tail -f ” komutunu deneyin. Sonra başka bir pencereden ya da sanal bir konsoldan dosyaya bir şeyler ekleyin (örneğin echo ya da $>>$ kullanarak) ve tail komutunun sonucunu gözlemleyin. Tail aynı dosyayı eşzamanlı olarak nasıl izliyor? 
 \item Gözlenen dosya küçülürse “tail -f ” komutunun sonucu ne olur? 
@@ -308,7 +308,7 @@ bu komutu çalıştırdığınızda
 $ tail -f /tmp/hello
 \end{verbatim}
 ilk echo nun ardından başka bir pencerede çalıştırdığınızde ne olduğuna bakın.
-\end{itemize}}
+\end{enumerate}}
 \end{subsection}
 \end{section}
 \begin{section}{Veri Yönetimi}
@@ -502,8 +502,8 @@ Hipp
 Hopp
 \end{verbatim}
 
-\paragraph{Alıştırmalar}{
-\begin{itemize}
+\paragraph{{\Huge{\PencilLeftDown}}Alıştırmalar}{
+\begin{enumerate}
  \item Katılımcılar0.dat dosyasındaki katılımcı listesini koşucuların isimlerinin sıralı olduğu liste ele alınarak kulüp isimlerine göre sıralayın.
  \item Katılımcı listesini artan bir şekilde (a-z) “numaraların ters yönde sıralanmış halini” ele alarak kulüplerin ismine göre sıralayabilirsiniz? (İpucu: Belgeyi okuyun!)
  \item Bu örnekteki hata nedir ve neden meydana gelir?
@@ -524,7 +524,7 @@ Hopp
 <<<
 12-2003.txt
  \end{verbatim}
-\end{itemize}}
+\end{enumerate}}
 \end{subsection}
 \begin{subsection}{Sütunlar ve Alanlar—cut , paste vb.}
 
@@ -616,13 +616,13 @@ Keeper Chaser Seeker
 
 list* arama karakteriyle eşleşen bütün dosyalar (bu durumda list1 ve list2) paste kullanılarak birleştirildi. -s seçeneği bu dosyalarının bütün satılarının çıktının bir sütununu oluşturmasını sağlar. 
 
-\paragraph{Alıştırmalar}{
-\begin{itemize}
+\paragraph{{\Huge{\PencilLeftDown}}Alıştırmalar}{
+\begin{enumerate}
  \item Katılımcılar.dat dosyasının (eşit aralıklı sütunlar halinde olanının) katılımcı numarası ve kulüp bağlantısının olmadığı bir halini oluşturunuz.
  \item Katılımcılar0.dat dosyasının (: işaretinin ayırıcı olarak kullanıldığı halinin) katılımcı numarası ve kulüp bağlantısının olmadığı bir halini oluşturunuz.
  \item Katılımcılar0.dat dosyasının alanlarının “:” ile değil “,? ” ile ayrıldığı (virgül ve boşluk işareti)bir halini oluşturunuz.
  \item Sisteminizde kaç tane grup kullanıcılar tarafından birincil grup olarak kullanılıyor? (birinci grup kullanıcıları /etc/passwd nin altındaki dördüncü alandadır.)
-\end{itemize}}
+\end{enumerate}}
 
 \paragraph{Bu Bölümdeki Komutlar}{
 \begin{itemize}
