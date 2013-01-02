@@ -72,21 +72,21 @@ DOS ve Windows uzmanları için: Bu sistemler dosyanın isminden bağımsız ola
 \end{subsection}
 \begin{subsection}{Dizinler}
 
-Birçok kullanıcı aynı Linux sisteminde potansiyel olarak çalıştığından beri, tüm dosya isimlerinin sadece bir tane olması problem teşkil edebiliyordu. Sue kullanıcısının halihazırda aynı isimde dosya oluşturduğu için Joe kullanıcısının letter.txt isimli bir dosya oluşturamaması belirsizliğe yol açıyordu. Ayrıca Joe'nun, Sue'nun tüm dosyalarını okuyamamasını garanti eden uygun bir yol bulunması gerekiyordu.
+Potansiyel olarak birçok kullanıcı aynı Linux sisteminde alıştığından, tüm dosya isimlerinin sadece bir tane olması problem teşkil edebilirdi. Sue kullanıcısı halihazırda aynı isimde bir dosyaya sahip olduğu için Joe kullanıcısının \emph{letter.txt} isimli bir dosya oluşturmasını oldukça güç hale sokar. Ayrıca Joe'nun, Sue'nun tüm dosyalarını okuyamamasını garanti eden uygun bir yol bulunması gerekir.
 
-Bu nedenle, Linux dosyaları gruplayan "dizinler" hiyerarşik fikrine destek verir. Aynı dizinde olmaması koşuluyla, dosya isimlerinin  tüm sistemde eşsiz olması gerekmez. Özellikle bu, sistemin Joe ve Sue için farklı dizinler atayabilmesini, ve her birinin kendi dosyaları hakkında endişelenmesinin giderilmesi anlamına gelir.
+	Bu nedenle, Linux dosyaları gruplamak için aşamalı  "dizin" fikrine destek verir. Aynı dizindeki dosyalar dışında, dosya isimlerinin  tüm sistemde eşsiz olması gerekmez. Özellikle bu, sistemin Joe ve Sue için farklı dizinler atayabilmesini, ve her birinin kendi dosyaları hakkında diğerlerininkilerin isimlerini dert etmeden çağırabilmeleri anlamına gelir.
 	
-Ek olarak, Joe'ya Sue'nun dizinine (veya tam tersi) erişmesini yasaklayabiliriz ve dizin içerisinde kişisel dosyalar içermesi hakkında endişelenmemize gerek kalmaz.
+	Ek olarak, Joe'ya Sue'nun \emph{dizinine} (veya tam tersi) erişmesini yasaklayabiliriz ve dizin içerisindeki kişisel dosyalar hakkında endişelenmemize gerek kalmaz.
 	
-Linux'ta dizinler basit dosyalar olsa da, "sade" dosyalara erişmek için kullandığınız yöntemler ile onlara erişemeyebilirsiniz. Ancak, bu davranışı uygularken daha önce bahsettiğimiz dosya adları ve dizin isimleri kurallarını(önceki bölüme bakınız) göz önünde bulundurmanız gerekir. Sadece taksim("/") karakterinin, dizin isimlerinden,dosya isimlerini ve/veya diğer dizinleri ayrıması gerektiğini bilmeniz yeterlidir. Örnek olarak: joe/letter.txt, joe dizinindeki letter.txt dosyasıdır.
+	Linux'ta dizinler basit dosyalar olsa da, "düz" dosyalara erişmek için kullandığınız yöntemler ile onlara erişemeyebilirsiniz. Ancak, daha önce bahsettiğimiz dosya isimleri kurallarını(önceki bölüme bakınız) dizin isimlendirmelerinde de göz önünde bulundurmanız gerekir. Sadece bölü ("/") karakterinin, dizin isimlerinden dosya isimlerini ve dizinleri birbirlerinden ayrımak için kullanıldığını bilmeniz yeterlidir. Örnek olarak: \emph{joe/letter.txt}, \emph{joe} dizinindeki \emph{letter.txt} dosyasıdır.
 	
-Dizinler ağaç-tarzı(yaratıcı bir şekilde "dizin ağacı"  denen) yapı ile tasvir edilen diğer dizinleri içerebilir(bu "hiyerarşi" teriminden daha önce de bahsetmiştik). Bir Linux sistemi, ağacın kökleri gibi bir yapıda olan "kök dizini" denilen özel bir dizin içerir.  "/"(bölü) ile ifade edilir.
+	Dizinler ağaç-benzeri (yaratıcı bir şekilde "dizin ağacı" denen) yapı ile tasvir edilen diğer dizinleri içerebilir (bu "aşamalı" teriminden daha önce de bahsetmiştik). Bir Linux sistemi, ağacın kökleri gibi bir yapıda olan "kök dizini" denilen özel bir dizin içerir. "/"(bölü) ile ifade edilir.
 	
-İsminin aksine, kök dizininin, sistem yöneticisi anlamına gelen root ile alakası yoktur. Sadece isimleri benzerdir.
+	İsminin aksine, kök dizininin, sistem yöneticisi anlamına gelen \emph{root} ile alakası yoktur. Sadece isimleri benzerdir.
 	
-Burada taksimin çift görevi vardır, hem kök dizininin adıdır, hem de dizin isimleri arasında ayraç görevi üstlenir. Bu konuya birazdan geri döneceğiz.
+	Burada bölünün çift görevi vardır, hem kök dizininin adıdır, hem de dizin isimleri arasında ayraç görevi üstlenir. Bu konuya birazdan geri döneceğiz.
 	
-Yaygın Linux dağıtımlarında temel yükleme, genellikle tek bir dosya hiyerarşisinde bulunan ve bunun çokça belirli düzene göre yapılandırılmış olduğu onbinlerce dosyayı içerir. Bu dosya hiyerarşisine Bölüm ~\ref{chap:bolum10}'da daha çok yer vereceğiz.
+	Yaygın Linux dağıtımlarındaki temel yükleme, genellikle tek bir dosya hiyerarşisinde bulunan ve bunun çokça belirli düzene göre yapılandırılmış olduğu onbinlerce dosyayı içerir. Bu dosya hiyerarşisine Bölüm ~\ref{chap:bolum10}'da daha çok yer vereceğiz.
 \end{subsection}
 \begin{subsection}{Mutlak ve Göreceli Yol İsimleri}
 
