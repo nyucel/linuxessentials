@@ -136,11 +136,11 @@ joe@red:~/letters> _
 
 gibi bir satırla karşılaşabilirsiniz. $\sim$/letters /home/joe/letters'a kısaltmadır; tilda ("$\sim$") ise mevcut kullanıcı ev dizininizi gösterir. "cd -" komutu cd komutu ile son kullanılmış dizine tekrar geri dönmeyi sağlar. Bu kullanışlı komut iki dizin arasında peş peşe geçiş yapmayı sağlar.
 
-\paragraph{Alıştırmalar}{
-\begin{itemize}
+\paragraph{{\Huge{\PencilLeftDown}}Alıştırmalar}{
+\begin{enumerate}
  \item Kabukta cd dahili mi, harici mi komuttur? Neden?
  \item Kabuk kılavuz dosyasında pushd, popd, dirs komutlarını okuyunuz. Bu komutların tasvir edildiği gibi çalıştığına kendinizi ikna ediniz.
-\end{itemize}}
+\end{enumerate}}
 
 \paragraph{}{
 \begin {table}[H]
@@ -217,12 +217,12 @@ $ ls -l
 ls burada bahsedilenlerden çok daha fazlasına destek verir; önemli olanlarından bir kaçı Tablo 6.2'de gösterilmişti.
 
 Linux Essentials ve LPI-101 gibi LPI sınavlarında, kimse sizden ls'nin tüm 57 tane parametresini bilmenizi beklemez. Ancak en önemli yarım düzine kadarını—yaklaşık Tablo 6.2. içeriğindeki kadarını— ezberlemek isteyebilirsiniz.
-\paragraph{Alıştırmalar}{
-\begin{itemize}
+\paragraph{{\Huge{\PencilLeftDown}}Alıştırmalar}{
+\begin{enumerate}
  \item /boot dizinini hangi dosyaları içerir? Alt dizinleri var mıdır? Varsa hangileridir?
  \item Dosya ismini parametre olarak alan ls ile dizin ismini parametre olarak alan ls arasındaki fark nedir?
  \item Eğer dizin adı programda geçiyorsa, dizindeki dosyaların bilgisini görüntülemektense ls'ye sadece dizinleri göstermesi için hangi parametre ile çalıştırırız? (İpucu:Belgeye bakınız.)
-\end{itemize}}
+\end{enumerate}}
 \end{subsection}
 \begin{subsection}{Dizin Oluşturma ve Silme: mkdir ve rmdir}
 
@@ -363,8 +363,8 @@ Bu kullanışlıdır, örneğin, sistematik olarak yeni dizinler oluşturmak iç
 \begin{verbatim}
 $ mkdir -p revenue/200{8,9}/q{1,2,3,4}
 \end{verbatim}
-\paragraph{Alıştırmalar}{
-\begin{itemize}
+\paragraph{{\Huge{\PencilLeftDown}}Alıştırmalar}{
+\begin{enumerate}
  \item Aşağıda mevcut dizindeki dosyalar listelenmiştir\begin{verbatim}
  prog.c prog1.c prog2.c progabc.c prog
 p.txt p1.txt p21.txt p22.txt p22.dat
@@ -378,7 +378,7 @@ $ ls *
 -rw-r--r-- 1 joe users 0 Dec 19 11:24 file2
 -rw-r--r-- 1 joe users 0 Dec 19 11:24 file3
  \end{verbatim}
-\end{itemize}}
+\end{enumerate}}
 \paragraph{}{
 \begin {table}[H]
 \caption {cp parametreleri} \label{tab:title} 
@@ -454,15 +454,15 @@ KDE gibi masaüstü ortamları genellikle dosya yöneticisinden geri dönüşüm
 
 Ek olarak -i ve -r parametrerin, rm cp'nin -v ve -f parametrelerinin kullanımına izin verir ve benzer sonuçlar üretir.
 
-\paragraph{Alıştırmalar}{
-\begin{itemize}
+\paragraph{{\Huge{\PencilLeftDown}}Alıştırmalar}{
+\begin{enumerate}
  \item Kendi ev dizininizde myservices denilen /etc/services dosyasının kopyasını oluşturun. Bu dosyayı srv.dat olarak tekrar isimlendirin ve /tmp dizinine kopyalayın (yeni adını koruyarak). Dosyanın iki kopyasını da silin.
  \item mv neden -R parametresine sahip değildir(cp'nin sahip olduğu gibi)?
  \item Farzedelim ki dizinlerinizden biri "-file" isminde bir dosya içersin (isminin başında tire karakteri bulunsun). Bu dosyayı silmek için nasıl bir yol izlersiniz?
  \item Eğer "rm *"'ye kazara kurban gitmesini istemediğiniz yerde bir dizininiz olsa \begin{verbatim}
  $ > -i
  \end{verbatim}gibi içerisinde "-i" denilen bir dosya oluşturabilirsiniz (Bölüm ~\ref{chap:bolum8}'de daha fazla detay açıklanacaktır). Eğer "rm *" komutunu çalıştırsanız ne olur? Neden?
-\end{itemize}}
+\end{enumerate}}
 \end{subsection}
 \begin{subsection}{Dosyaların bağlanması — ln ve ln -s}
 \label{sec:bolum642}
@@ -527,8 +527,8 @@ $ ls
 liste2
 \end{verbatim}
 
-\paragraph{Alıştırmalar}{
-\begin{itemize}
+\paragraph{{\Huge{\PencilLeftDown}}Alıştırmalar}{
+\begin{enumerate}
  \item Kendi ev dizininizde, keyfi içerikli bir dosya oluşturun(örneğin “echo Hello >~/hello” veya bir metin editörü kullanarak). link denilen dosyaya bir sıkı bağlantı oluşturun. Dosyanın iki tane isme sahip olduğundan emin olun. Dosyayı metin editörüyle değiştirmeye çalışın. Ne oluşur?
  \item Geçenki alıştırmadaki dosyaya ~/symlink denilen bir bağlantı oluşturun. Sembolik bağlantının çalıştırılması yardımıyla dosyaya erişimin yapılıp yapılmadığını kontrol edin. Eğer sembolik bağlantının işaret ettiği dosyayı silerseniz ne olur?
  \item Hangi dizinin .. bağlantısı "/" dizinine işaret eder?
@@ -543,7 +543,7 @@ $ ls -ai /
  \item Dizinlere sıkı bağlantı yapılmasının geçerli olmadığına önceden değinmiştik. Bunun nedeni nedir?
  \item “ls -l ~”'nin çıktısında, ~'nin altdizininin alt dizinler içermediğini nasıl söyleyebilirsiniz?
  \item (Zeka oyunu/araştırma alıştırması:) Diskte sembolik bağlantı veya sıkı bağlantı için ne gereklidir? Neden?
-\end{itemize}}
+\end{enumerate}}
 \end{subsection}
 \begin{subsection}{Dosya İçeriğinin Görüntülenmesi—more ve less}
 
@@ -669,12 +669,12 @@ Garip dosya isimleri find/xargs kombinasyonunun kullanımında sorun oluşturabi
 $ find . -atime +13 -print0 | xargs -0r rm -i
 \end{verbatim}
 
-\paragraph{Alıştırmalar}{
-\begin{itemize}
+\paragraph{{\Huge{\PencilLeftDown}}Alıştırmalar}{
+\begin{enumerate}
  \item Sisteminizdeki 1MB'dan daha büyük olan tüm dosyaları bulun ve isimlerini çıktıya verin.
  \item Bir olağandışı isime sahip dosyayı find kullanarak nasıl silebilirsiniz (örneğin eski kabukların başa çıkamadığı görünmez kontrol karakterleri veya umlautlar)?
  \item (Kitap aracılığıyla ikinci kez) Nasıl kendinize ait bir kez çıktığınızda silinen dosyaları koruma altına alırsınız?
-\end{itemize}}
+\end{enumerate}}
 \end{subsection}
 \begin{subsection}{Çabukça Dosyaları Bulma - locate ve slocate}
 
@@ -727,12 +727,12 @@ slocate programı —alışılmış locate'e alternatif olarak— bu problemi do
 
 Birçok durumda, slocate de ayrıca locate komutu gibi çalıştırılabilir.
 
-\paragraph{Alıştırmalar}{
-\begin{itemize}
+\paragraph{{\Huge{\PencilLeftDown}}Alıştırmalar}{
+\begin{enumerate}
  \item README çok yaygın bir dosya ismidir. Sisteminizde README denilen tüm dosyaların mutlak yol isimlerini bulunuz.
  \item Kendi ev dizininizde yeni bir dosya oluşturun ve locate çağırıldığında bu dosyanın listelenmeyeceği konusunda kendinizi ikna edin (uygun egzotik bir dosya adı kullandığınızdan emin olun. updatedb'i çalıştırın (büyük olasılıkla yönetici yetkileri kullanarak). locate sonradan sizin dosyanızı bulabildi mi? Dosyayı silin ve bu adımları tekrarlayın.
  \item Kendinizi slocate'in /etc/shadow gibi dosyaları normal kullanıcı olarak çalıştırılıp arama yaptığına ikna edin.
-\end{itemize}}
+\end{enumerate}}
 
 \paragraph{Bu Bölümdeki Komutlar}{}
 \begin{itemize}
