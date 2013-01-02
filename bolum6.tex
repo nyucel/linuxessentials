@@ -16,25 +16,27 @@
 \begin{section}{Dosya ve Yol İsimleri}
 \begin{subsection}{Dosya İsimleri}
 
-Linux gibi işletim sisteminin en önemli hizmetlerinden birisi de, veriyi sabit disk veya USB sürücüler gibi kalıcı hafızaya depolamak ve sonrasında onları kullanmaktır. Bunu insanların yapması kolaydır, benzer veriler genellikle üstünde adının yazıldığı "dosyalar" altında toplanır.
+Linux gibi işletim sisteminin en önemli hizmetlerinden birisi de, veriyi sabit disk veya USB sürücüler gibi kalıcı hafızaya depolamak ve sonrasında onları kullanmaktır. Bu işi insan açısından katlanılabilir kılmak için, benzer veriler cihaz üzerinde "dosyalar" altında toplanır.
 
-Eğer bu bile sizin için önemsiz gözüküyorsa, bu anlatılanların size hiçbir getirisi yoktur. Eskiden bazı işletim sistemleri, bir verinin bilgisini almak için disk üzerindeki track sayıları gibi ayrıntıları belirtmeyi zorunlu kılıyordu. Bu yüzden, size dosyalarla nasıl uğraşılacağını anlatmaktan önce, Linux'un dosyaları nasıl isimlendirdiğini açıklamalıyız.
+Eğer bu bile sizin için önemsiz gözüküyorsa, bu anlatılanların size hiçbir getirisi yoktur. Eskiden bazı işletim sistemleri, bir verinin bilgisini almak için disk üzerindeki iz sayıları gibi ayrıntıları belirtmeyi zorunlu kılıyordu. 
 
-Linux dosya isimlerinde, aslında bilgisayarınızın gösterebileceği her karakteri (hatta daha fazlasını) kullanmanıza olanak tanır. Ancak, karakterlerden bazılarının özel anlam içerdiğinden beri, dosya isimlerinde bu karakterleri kullanmanızı tavsiye ederiz. Yalnızca iki karakterin kullanılamaz: bölü ("/") işareti ve 0 byte (ASCII değeri 0 olan karakter). Boşluk, inceltme işareti ya da dolar işaretleri gibi karakterler serbestçe kullanılabilir, fakat komut satırında "$\backslash$" veya tırnak işaretlerinin sırası kabuk tarafından yanlış yorumlanacağından, genellikle bu kullanımdan kaçınmak gerekir.
+	Bu yüzden, size dosyalarla nasıl uğraşılacağını anlatmaktan önce, Linux'un dosyaları nasıl isimlendirdiğini açıklamalıyız.
 
-Acemilerin kolayca tuzağa düşeceği olay ise, Linux'un dosya isimlerinde büyük/küçük harfleri ayırt edebilmesidir. Aksine Windows, dosya isimlerinde büyük/küçük harfleri gösterir, fakat aynı dosya gibi davranır, Linux ise x-dosyaları ve X-Dosyalarının iki farklı dosya adı olduğunun farkındadır.
+	Linux dosya isimlerinde, aslında bilgisayarınızın gösterebileceği her karakteri (hatta daha fazlasını) kullanmanıza olanak tanır. Ancak, karakterlerden bazılarının özel anlam içerdiğinden beri, dosya isimlerinde bu karakterleri kullanmanızı tavsiye ederiz. Yalnızca iki karakterin kullanılamaz: bölü ("/") işareti ve 0 byte (ASCII değeri 0 olan karakter). Boşluk, inceltme işareti ya da dolar işaretleri gibi karakterler serbestçe kullanılabilir, fakat kabuk tarafından yanlış yorumlanmakyan kaçınmak için komut satırında "$\backslash$" veya tırnak işaretleri kullanılarak bu karakterlerden kaçılır.
 
-	Limitlerin "dosya sistemine" bağlı olduğundan beri, Linux altında byte'lar halinde düzenlenen dosya adları "çok uzun" olabilir(Linux'ta  bu düzenlemeyle ilgili birçok yöntem vardır). Normal sınır 255 karakterdir— fakat 3 satırdan daha fazla uzunlukta dosya isimleri standart metin terminalinde size karmaşıklık yaratabilir.
+	Acemilerin kolayca tuzağa düşeceği olay ise, Linux'un dosya isimlerinde büyük/küçük harfleri ayırt edebilmesidir. Büyük ve küçük harfli dosyaların ayrı gösterildiği fakat aynı davranıldığı Windows işletim sisteminin tersine Linux \emph{x-files} ve \emph{X-Files} dosya isimlerini iki farklı dosya olarak ele alır.
+
+	Limitlerin "dosya sistemine" bağlı olduğundan beri, Linux altında byte'lar halinde düzenlenen dosya adları "çok uzun", belli bir üst limit yoktur, olabilir( Linux'ta  bu düzenlemeyle ilgili birçok yöntem vardır). Normal sınır 255 karakterdir, fakat 3 satırdan daha fazla uzunlukta dosya isimleri standart metin terminalinde size bir karmaşıklık oluşturmamalıdır.
 	
-	DOS ve Windows bilgisayarlardan başka bir fark da Linux, dosyanın tipini belirlemek için sonekleri kullanmaz. Bu yüzden, dosya ismindeki nokta tamamen sıradan bir karakterdir. Bir metin dosyasını mumble.txt olarak kaydetmede serbestsiniz, fakat prensip olarak sadece mumble kelimesi de  kabul edilebilir. Bu kullanım tabi ki sizin tamamen uzantı ile adlandırmanızı engellememelidir—Bununla birlikte bu kullanım dosya içeriğini tanımlamanızda kolaylık sağlar.
+	DOS ve Windows bilgisayarlardan başka bir fark da Linux, dosyanın tipini belirlemek için sonekleri kullanmaz. Bu yüzden, dosya ismindeki nokta tamamen sıradan bir karakterdir. Bir metin dosyasını \emph{mumble.txt} olarak kaydetmede serbestsiniz, fakat prensip olarak sadece \emph{mumble} kelimesi de  kabul edilebilir. Bu kullanım tabi ki sizin tamamen uzantı ile adlandırmanızı engellememelidir, sonuçta bu kullanım dosya içeriğini tanımlamanızda kolaylık sağlar.
 	
-	Bazı programlar girdi dosyalarında özel uzantı kullanmayı zorunlu kılar. Örneğin C derleyicisi olan gcc, ".c" ile biten C kaynak kodu, ".s" ile biten makine dili kaynak kodu, ve ".o" ile biten ön derlenmiş nesne dosyaları isimlerini dikkate alır.
+	Bazı programlar girdi dosyalarında özel uzantı kullanmayı zorunlu kılar. Örneğin C derleyicisi olan \emph{gcc}, "\emph{.c}" ile biten C kaynak kodu, "\emph{.s}" ile biten makine dili kaynak kodu ve "\emph{.o}" ile biten ön derlenmiş nesne dosyaları isimlerini dikkate alır.
 	
 	Dosya isimlendirmede özgürce inceltme işareti ve diğer özel karakterleri kullanabilirsiniz. Yine de, eğer dosyalar diğer sistemlerde kullanılacaksa özel karakterleri kullanımından kaçmak en iyisidir, çünkü diğerlerinde dosyaların aynı isimle gösterileceğinin bir garantisi yoktur.
 	
-	Özel karakterler ayrıca sizin yerel ayarlarınıza bağlıdır, karakterlerin temsili için genel bir standartın olmayışı ASCII karakter setini (Çoğunlukla içinde İngilizce dili, rakamlar ve yaygın özel karakterlerin bulunduğu 128 karakteri) aşar. Çokça kullanılan kodlamalara örnek olarak ISO 8859-1 ve ISO 8859-15(sırasıyla ISO-Latin-1 ve ISO-Latin-9 olarak bilinir) bununla birlikte ISO 10646, gelişigüzel ve çok doğru olmayarak adına "Unicode" denilen genellikle "UTF-8" karakter seti ile kodlanır. Y kodlaması sistemde yürürlükte iken dizine baktığınız zaman X kodlamasıyla oluşturduğunuz dosyalar tamamen farklı gözükebilir. Bu konuların üzerinde çok durursanız, size tüm konu hiçbir şey gibi gelir.
+	Özel karakterlerin ne olduğu sizin yerel ayarlarınıza bağlıdır, çünkü ASCII karakter setini (Çoğunlukla içinde İngilizce dili, rakamlar ve yaygın özel karakterlerin bulunduğu 128 karakter) aşan karakterlerin temsili için genel bir standart yoktur. Çokça kullanılan kodlamalara örnek olarak ISO 8859-1 ve ISO 8859-15 (sırasıyla ISO-Latin-1 ve ISO-Latin-9 olarak bilinir) bununla birlikte gelişigüzel ve çok doğru olmayarak adına "Unicode" denilen genellikle "UTF-8" karakter seti ile kodlanan ISO 10646. Y kodlaması sistemde yürürlükte iken dizine baktığınız zaman X kodlamasıyla oluşturduğunuz dosyalar tamamen farklı gözükebilir. Bu konuların üzerinde çok durursanız, size tüm konu hiçbir şey gibi gelir.
 	
-	Bazen kendinizi yanlış karakter setiyle kodlanmış bir yığın dosya ile uğraşıyor olarak bulabilirsiniz. Çeşitli karakter setleri arasında dönüşüm yapabilen convmv programı bu konuda size yardım edebilir. (Çoğu dağıtımlarının standart kurulumunun bir parçasıdır olmadığından dolayı, muhtemelen kendiniz yüklemeniz gerekecektir.) Ancak, bunu tüm bölümü bitirdiğimiz zaman yapmanız daha uygun olur, çünkü daha normal mv'den bahsetmedik bile ...
+	Bazen kendinizi yanlış karakter setiyle kodlanmış bir yığın dosya ile uğraşıyor olarak bulabilirsiniz. Çeşitli karakter setleri arasında dönüşüm yapabilen \emph{convmv} programı bu konuda size yardım edebilir. (Çoğu dağıtımın standart kurulumunun bir parçası olmadığından, muhtemelen kendiniz yüklemeniz gerekecektir.) Ancak, bunu tüm bölümü bitirdiğimiz zaman yapmanız daha uygun olur, çünkü daha normal \emph{mv}'den bahsetmedik bile ...
 	
 Aşağıdaki tüm karakterleri dosya isimlendirmelerinde özgürce kullanabilirsiniz:
 \begin{verbatim}
@@ -45,7 +47,7 @@ Aşağıdaki tüm karakterleri dosya isimlendirmelerinde özgürce kullanabilirs
 
 Ancak aşağıdaki ipuçlarına dikkat etmelisiniz:
 \begin{itemize}
-\item Linux ve daha eski Unix sistemlerde taşınan dosyaların isimlendirilmesinde izin verilen dosya uzunluğu en fazla 14 karakterdir. (Bu kurala uymak gerçekten önemlidir.)
+\item Linux ve daha eski Unix sistemleri arasında dosya taşımalarını mümkün kılmak için dosya isimleri en fazla 14 karakter olmalıdır. (Bu kurala uymak gerçekten önemlidir.)
 \item Dosya isimleri her zaman harf veya rakamlardan biriyle başlamalıdır; diğer 4 karakterleri sadece dosya içerisinde sorunsuzca kullanabilirsiniz.
 \end{itemize}
 
@@ -64,47 +66,47 @@ verilebilir. Buna karşılık aşağıdaki kullanımlar problem oluşturabilir (
 Smörrebröd 					İnceltme işareti içerir
 \end{verbatim}
 
-Diğer bir tuhaf özellik de, dosya isimlerinin nokta (".") ile başlaması bazı yerlerde dosyanın gözden kaçmasına neden olacak, örneğin dizin içerisindeki dosyaların listelendiği zaman—bu tür dosya isimleri "gizli" gibi düşünülür. Bu özellik genellikle programların içerik ayarlarında ve dizin listelemelerde çok daha önemli dosyaların kullanıcının kafasını karıştırmamak amacıyla kullanılır.
+Diğer bir tuhaf özellik de, dosya isimlerinin nokta (".") ile başlaması bazı yerlerde dosyanın gözden kaçmasına neden olacak, örneğin dizin içerisindeki dosyaların listelendiği zaman, bu tür dosya isimleri "gizli" gibi düşünülür. Bu özellik genellikle programların içerik ayarlarında ve dizin listelemelerde çok daha önemli dosyaların kullanıcının kafasını karıştırmamak amacıyla kullanılır.
 
-DOS ve Windows uzmanları için: Bu sistemler dosyanın isminin bağımsızca ayarlanabildiği dosya özelliklerinin "gizli" olması ile izin verir. Linux ve Unix'te bu tarz bir destek yoktur.
+DOS ve Windows uzmanları için: Bu sistemler dosyanın isminden bağımsız olarak "dosya özniteliklerinin" "gizli" olması ile izin verir. Linux ve Unix böylesi bir işi desteklemez.
 \end{subsection}
 \begin{subsection}{Dizinler}
 
-Birçok kullanıcı aynı Linux sisteminde potansiyel olarak çalıştığından beri, tüm dosya isimlerinin sadece bir tane olması problem teşkil edebiliyordu. Sue kullanıcısının halihazırda aynı isimde dosya oluşturduğu için Joe kullanıcısının letter.txt isimli bir dosya oluşturamaması belirsizliğe yol açıyordu. Ayrıca Joe'nun, Sue'nun tüm dosyalarını okuyamamasını garanti eden uygun bir yol bulunması gerekiyordu.
+Potansiyel olarak birçok kullanıcı aynı Linux sisteminde alıştığından, tüm dosya isimlerinin sadece bir tane olması problem teşkil edebilirdi. Sue kullanıcısı halihazırda aynı isimde bir dosyaya sahip olduğu için Joe kullanıcısının \emph{letter.txt} isimli bir dosya oluşturmasını oldukça güç hale sokar. Ayrıca Joe'nun, Sue'nun tüm dosyalarını okuyamamasını garanti eden uygun bir yol bulunması gerekir.
 
-Bu nedenle, Linux dosyaları gruplayan "dizinler" hiyerarşik fikrine destek verir. Aynı dizinde olmaması koşuluyla, dosya isimlerinin  tüm sistemde eşsiz olması gerekmez. Özellikle bu, sistemin Joe ve Sue için farklı dizinler atayabilmesini, ve her birinin kendi dosyaları hakkında endişelenmesinin giderilmesi anlamına gelir.
+	Bu nedenle, Linux dosyaları gruplamak için aşamalı  "dizin" fikrine destek verir. Aynı dizindeki dosyalar dışında, dosya isimlerinin  tüm sistemde eşsiz olması gerekmez. Özellikle bu, sistemin Joe ve Sue için farklı dizinler atayabilmesini, ve her birinin kendi dosyaları hakkında diğerlerininkilerin isimlerini dert etmeden çağırabilmeleri anlamına gelir.
 	
-Ek olarak, Joe'ya Sue'nun dizinine (veya tam tersi) erişmesini yasaklayabiliriz ve dizin içerisinde kişisel dosyalar içermesi hakkında endişelenmemize gerek kalmaz.
+	Ek olarak, Joe'ya Sue'nun \emph{dizinine} (veya tam tersi) erişmesini yasaklayabiliriz ve dizin içerisindeki kişisel dosyalar hakkında endişelenmemize gerek kalmaz.
 	
-Linux'ta dizinler basit dosyalar olsa da, "sade" dosyalara erişmek için kullandığınız yöntemler ile onlara erişemeyebilirsiniz. Ancak, bu davranışı uygularken daha önce bahsettiğimiz dosya adları ve dizin isimleri kurallarını(önceki bölüme bakınız) göz önünde bulundurmanız gerekir. Sadece taksim("/") karakterinin, dizin isimlerinden,dosya isimlerini ve/veya diğer dizinleri ayrıması gerektiğini bilmeniz yeterlidir. Örnek olarak: joe/letter.txt, joe dizinindeki letter.txt dosyasıdır.
+	Linux'ta dizinler basit dosyalar olsa da, "düz" dosyalara erişmek için kullandığınız yöntemler ile onlara erişemeyebilirsiniz. Ancak, daha önce bahsettiğimiz dosya isimleri kurallarını(önceki bölüme bakınız) dizin isimlendirmelerinde de göz önünde bulundurmanız gerekir. Sadece bölü ("/") karakterinin, dizin isimlerinden dosya isimlerini ve dizinleri birbirlerinden ayrımak için kullanıldığını bilmeniz yeterlidir. Örnek olarak: \emph{joe/letter.txt}, \emph{joe} dizinindeki \emph{letter.txt} dosyasıdır.
 	
-Dizinler ağaç-tarzı(yaratıcı bir şekilde "dizin ağacı"  denen) yapı ile tasvir edilen diğer dizinleri içerebilir(bu "hiyerarşi" teriminden daha önce de bahsetmiştik). Bir Linux sistemi, ağacın kökleri gibi bir yapıda olan "kök dizini" denilen özel bir dizin içerir.  "/"(bölü) ile ifade edilir.
+	Dizinler ağaç-benzeri (yaratıcı bir şekilde "dizin ağacı" denen) yapı ile tasvir edilen diğer dizinleri içerebilir (bu "aşamalı" teriminden daha önce de bahsetmiştik). Bir Linux sistemi, ağacın kökleri gibi bir yapıda olan "kök dizini" denilen özel bir dizin içerir. "/"(bölü) ile ifade edilir.
 	
-İsminin aksine, kök dizininin, sistem yöneticisi anlamına gelen root ile alakası yoktur. Sadece isimleri benzerdir.
+	İsminin aksine, kök dizininin, sistem yöneticisi anlamına gelen \emph{root} ile alakası yoktur. Sadece isimleri benzerdir.
 	
-Burada taksimin çift görevi vardır, hem kök dizininin adıdır, hem de dizin isimleri arasında ayraç görevi üstlenir. Bu konuya birazdan geri döneceğiz.
+	Burada bölünün çift görevi vardır, hem kök dizininin adıdır, hem de dizin isimleri arasında ayraç görevi üstlenir. Bu konuya birazdan geri döneceğiz.
 	
-Yaygın Linux dağıtımlarında temel yükleme, genellikle tek bir dosya hiyerarşisinde bulunan ve bunun çokça belirli düzene göre yapılandırılmış olduğu onbinlerce dosyayı içerir. Bu dosya hiyerarşisine Bölüm ~\ref{chap:bolum10}'da daha çok yer vereceğiz.
+	Yaygın Linux dağıtımlarındaki temel yükleme, genellikle tek bir dosya hiyerarşisinde bulunan ve bunun çokça belirli düzene göre yapılandırılmış olduğu onbinlerce dosyayı içerir. Bu dosya hiyerarşisine Bölüm ~\ref{chap:bolum10}'da daha çok yer vereceğiz.
 \end{subsection}
 \begin{subsection}{Mutlak ve Göreceli Yol İsimleri}
 
-Linux sistemindeki her dosya, kök dizini tarafından başlayan, ve bir dosyaya(dosyanın kendisine) ulaşıncaya kadar devam eden tüm dizinlerin adının geçtiği, ve sonunda dosyanın kendisinin bulunduğu dosya isimleriyle tasvir edilir. Örneğin, /home/joe/letter.txt ismi, joe dizini altında bulunan, sonra home dizini içerisinde konumlanan, daha sonra da evebeyn olan kök dizininin yer aldığı letter.txt dosyasına karşılık gelir. kök dizini ile başlayan isimlere "mutlak yol ismi" adı verilir. İsimler dizin ve dosya isimleri barındırabilen "yol" vasıtasıyla dizin ağacı olarak tanımlandığından beri "yol isimleri" lafını kullanırız.
+Linux sistemindeki her dosya, kök dizini tarafından başlayan, bir dosyaya (dosyanın kendisine) ulaşıncaya kadar devam eden tüm dizinlerin adının geçtiği ve sonunda dosyanın kendisinin bulunduğu dosya isimleriyle tasvir edilir. Örneğin, \emph{/home/joe/letter.txt} ismi, \emph{joe} dizini altında bulunan, \emph{home} dizini içerisinde konumlanan, daha sonra da evebeyn olan kök dizininin yer aldığı \emph{letter.txt} dosyasına karşılık gelir. Kök dizini ile başlayan isimlere "mutlak yol ismi" adı verilir. İsimler dizin ağacı içerisinde dizin ve dosya isimleri barındıran "yol" vasıtasıyla tanımlandığından "yol isimleri" lafını kullanırız.
 
-Linux sisteminde her sürecin bir "mevcut dizini" (genellikle "çalışma dizini" diye adlandırılır) vardır. Dosya isimleri bu dizinin içerisinde aranır; letter.txt "letter.txt denilen mevcut dizin" için, sue/letter.txt "sue dizini içerisindeki, mevcut dizinde bulunan letter.txt" için bir kısaltmadır. Mevcut dizinden başlayan bu tarz isimlere "göreceli yol isimleri" adı verilir.
+	Linux sisteminde her sürecin bir "mevcut dizini" (genellikle "çalışma dizini" diye adlandırılır) vardır. Dosya isimleri bu dizinin içerisinde aranır; \emph{letter.txt} "mevcut dizin içerisindeki letter.txt" için, \emph{sue/letter.txt} "sue dizini içerisindeki, letter.txt" için bir kısaltmadır. Mevcut dizinden başlayan bu tarz isimlere "göreceli yol isimleri" adı verilir.
 	
-Göreceli yol isimlerinin mutlak olduğunu söylemek önemsizdir: Mutlak dosya yolu bir "/" ile başlar; diğer hepsi görecelidir.
+	Göreceli yol isimlerinin mutlak olduğunu söylemek önemsizdir: Mutlak dosya yolu bir "/" ile başlar; diğer hepsi görecelidir.
 	
-Mevcut dizin evebeyn ve çocuk süreçler arasındaki "miras"'tır. Yani kabuktan yeni bir kabuk başlattığınızda(veya başka bir program), bu yeni kabuk, sizin başlatmak için kullandığınız kabuk dizini ile aynı mevcut yolu kullanır. Yeni kabuğunuzda diğer dizine cd komutunu kullanarak geçebilirsiniz, fakat eski kabuğun mevcut dizini değişmez—Eğer yeni kabuktan ayrılırsanız, eski kabuğun mevcut dizinine(değişmemiş dizine) geri dönersiniz. 
+Mevcut dizin evebeyn ve çocuk süreçler arasındaki "miras" olarak aktarılır. Yani kabuktan yeni bir kabuk başlattığınızda(veya başka bir program), bu yeni kabuk, sizin başlatmak için kullandığınız kabuk dizini ile aynı mevcut yolu kullanır. Yeni kabuğunuzda diğer dizine \emph{cd} komutunu kullanarak geçebilirsiniz, fakat eski kabuğun mevcut dizini değişmez. Eğer yeni kabuktan ayrılırsanız, eski kabuğun mevcut dizinine (değişmemiş dizine) geri dönersiniz. 
 	
-Göreli yol isimlerinde(hatta mutlak olanlarda bile) 2 kullanışlı kestirme vardır: ".." isminde her zaman dizin ağacında bir bilinmeyen olan mevcut dizinin üst dizinini işaret eder—Örneğin, /home/joe, /home durumudur. Bu sıklıkla mutlak yol ismine başvurmak zorunda kalmadan, mevcut dizinden, dizin ağacı gibi gösterilen "yan dal"'a ayrılmak için kullanışlı bir yoldur. Farzedelim ki /home/joe dizininin letters ve novels isminde altdizinleri olsun. letters sizin mevcut dizininiz gibi olsun, novels dizininin içerisinde ivanhoe.txt dosyasına kaba bir şekilde mutlak yol ismi olan /home/joe/novels/ivanhoe.txt'yi kullanmaksızın ../novels/ivanhoe.txt şeklinde göreceli yol ismi belirterek referans belirtebilirsiniz.
+	Göreli yol isimlerinde(hatta mutlak olanlarda bile) iki kullanışlı kestirme vardır: ".." ismi her zaman dizin ağacında bir bilinmeyen olan mevcut dizinin üst dizinini işaret eder. Örneğin, \emph{/home/joe}, \emph{/home} durumudur. Bu sıklıkla mutlak yol ismine başvurmak zorunda kalmadan, mevcut dizinden, dizin ağacı gibi gösterilen "yan dal"'a ayrılmak için kullanışlı bir yoldur. Farzedelim ki \emph{/home/joe} dizininin \emph{letters} ve \emph{novels} isminde altdizinleri olsun. \emph{letters} sizin mevcut dizininiz gibi olsun, \emph{novels} dizininin içerisinde \emph{ivanhoe.txt} dosyasına kaba bir şekilde mutlak yol ismi olan \emph{/home/joe/novels/ivanhoe.txt}'yi kullanmaksızın \emph{../novels/ivanhoe.txt} şeklinde göreceli yol ismi belirterek referans belirtebilirsiniz.
 	
-İkinci kestirme ise size açıkça bir anlam ifade etmiyor gibi gelebilir: "." ismi dizin içerisinde bulunur ve her zaman dizinin kendisini ifade eder. Neden zaten içinde bulunduğumuz dizine işaret eden böyle bir metoda ihtiyacımızın olduğunun direkt olarak bir cevabı yoktur, fakat  tabi ki bu durumların bize kattığı kullanışlı becerileri vardır. Örneğin, belki biliyorsunuzdur (ya da Bölüm ~\ref{chap:bolum9}'a bakınız) kabuğun harici komutlar için program dosyalarını ararken kullandığı çevresel dizin değişkeni olan PATH vardır. Diyelim ki bir yazılım geliştiricisisiniz, bir program çalıştırmak istiyorsunuz, haydi (a) isimli mevcut dizininiz içerisindeki dosya, ve PATH içerisinde yer almayan (Güvenlik nedenleri için her zaman iyi bir fikirdir) (b) dizniniz içerisindeki prog'u çalıştıralım, halâ kabuğunuzdayken
+İkinci kestirme ise size açıkça bir anlam ifade etmiyor gibi gelebilir: "." ismi dizin içerisinde bulunur ve her zaman dizinin kendisini ifade eder. Neden zaten içinde bulunduğumuz dizine işaret eden böyle bir metoda ihtiyacımızın olduğunun doğrudan bir cevabı yoktur, fakat  tabi ki bu durumların bize kattığı kullanışlı beceriler vardır. Örneğin, belki biliyorsunuzdur (ya da Bölüm ~\ref{chap:bolum9}'a bakınız) kabuğun harici komutlar için program dosyalarını ararken kullandığı çevresel dizin değişkeni olan \emph{PATH} vardır. Diyelim ki bir yazılım geliştiricisisiniz, bir program çalıştırmak istiyorsunuz, \emph{prog} olarak isimlendirdiğimiz, (a) mevcut dizininiz içerisindeki bulunan ve (b) \emph{PATH} içerisinde yer almayan (Güvenlik nedenleri için her zaman iyi bir fikirdir) dizininiz içerisindeki }emph{prog}'u çalıştıralım, halâ kabuğunuzdayken
 \begin{verbatim}
  $ ./prog
 \end{verbatim} 
 diyerek dosyanızı, mutlak yol ismini vermek zorunda kalmadan program olarak başlatabilirsiniz.
 
-Linux kullanıcısı olarak sisteme girdiğinizden hemen sonra "ev dizinine" ulaşırsınız. Sistem yöneticisi sizin hesabınızı oluşturduğunda bu dizinin ismine karar verir, fakat genellikle kullanıcı isminizle aynı olur ve /home dizini altında yer alır— joe kullanıcısı için atanan /home/joe gibi.
+Linux kullanıcısı olarak sisteme girdiğinizden hemen sonra "ev dizinine" ulaşırsınız. Sistem yöneticisi sizin hesabınızı oluşturduğunda bu dizinin ismine karar verir, fakat genellikle kullanıcı isminizle aynı olur ve /home dizini altında yer alır, \emph{joe} kullanıcısı için atanan \emph{/home/joe} gibi.
 
 \end{subsection}
 \end{section}
