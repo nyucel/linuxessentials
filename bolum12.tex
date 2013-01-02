@@ -22,7 +22,7 @@ Lpi Linux Temelleri sınavında sistem yönetiminden vurgulanmamaktadır fakat e
 
 Bu bölümde bir Linux bilgisayarın hemen kullanımı ile ilgili daha az olan birkaç konudan söz edeceğiz. Fakat  örneğin bir resim  elde etmek için bilgisayarda ne çalıştıracağını (“neden  bilgisayarım yavaş”)  ve yazılımın bilgisayarda nasıl yönetildiğini içerir. Biz burada ki büyük resimden sonra detaylara bakmıyoruz.  
 
-Linux sisteminde, sistem yöneticisi özel bir kullanıcı hesabı erişimine sahiptir, root. Bu hesap erişim kontrollerinden muaftır, aksi yapıldığında da (bölüm ~\ref{chap:bolum14}). Bu nedenle sistemden  bütün dosyalara erişilebilir. Bu gereklidir, örneğin, yeni yazılım kurmak için - "Normal" kullanıcıların sistem dizinleri program dosyalarını okuma ve yürütme olabilir. Fakat, diğer kullanıcıların zararına manipülasyonlar önlemek amacıyla, bunlar yazılmamalıdır. Yöneticinin ayrıca yedek kopyalarını oluşturmak için herhangi bir kullanıcının dosyalarını okuması gerekir (ve bir yedeği geri yüklemesi gerekiyorsa bunları geri yazması için).
+Linux sisteminde, sistem yöneticisi özel bir kullanıcı hesabı erişimine sahiptir, root. Bu hesap erişim kontrollerinden muaftır, aksi yapıldığında da (Bölüm ~\ref{chap:bolum14}). Bu nedenle sistemden  bütün dosyalara erişilebilir. Bu gereklidir, örneğin, yeni yazılım kurmak için - "Normal" kullanıcıların sistem dizinleri program dosyalarını okuma ve yürütme olabilir. Fakat, diğer kullanıcıların zararına manipülasyonlar önlemek amacıyla, bunlar yazılmamalıdır. Yöneticinin ayrıca yedek kopyalarını oluşturmak için herhangi bir kullanıcının dosyalarını okuması gerekir (ve bir yedeği geri yüklemesi gerekiyorsa bunları geri yazması için).
 
 Sistemdeki tüm dosyalara yazma yetkisinin sisteme ciddi zarar riski içerdiği açıktır. Eğer root olarak oturum açıyorsanız, Linux
 \begin{verbatim}
@@ -48,11 +48,11 @@ $ sudo less /var/log/syslog Peruse system log
 
 Çoğu linux dağıtımı sinyali root haklarıyla çalışan olduğunda kabuk "\#" istemiyle biterek çıktılanır. Başka bir şey görüntülenirse—genellikle "\$" veya "$>$", kabuk ayrıcalığı olmadığında.
 
-\paragraph{Alıştırmalar}{
-\begin{itemize}
+\paragraph{{\Huge{\PencilLeftDown}}Alıştırmalar}{
+\begin{enumerate}
  \item su komutunu deneyin. Neden örnek programı çağırmak için bir mutlak yol adı kullanıyor?
  \item su için root parolasını bilmeniz gerekir. sudo genelde kendi parolanızı sorar. Hangisi daha iyi?
-\end{itemize}}
+\end{enumerate}}
 \end{section}
 \begin{section}{Sistem Yapılandırması}
 
@@ -70,10 +70,10 @@ Sistem yapılandırmasını farklı metin dosyaları ile yönetme fikri  başlan
 \item Git veya Mercurial gibi sürüm denetim sistemini için metin dosyalarını "kontrol" edebilir ve böylece sadece çeşitli dosyaları kapsayan büyük değişiklikler belgelenemez. Fakat aynı zamanda gerekirse bunları düzenli bir şekilde geri alır. Bu aynı zamanda merkezi bir sunucu üzerinden bir bilgisayarın tam Yapılandırmasını depolamak için  uygunluğu sağlar. Böylece bilgisayarın herhangi bir nedenle yeniden yüklenmesi gerekirse derhal kullanılabilir - diyelim ki felaket bir donanım hatasında sonra. Veri merkezlerinde bu  çok avantajlar sağlar, özellikle tüm yapılandırma değişikliklerinde ayrıntı bir "denetim" istediğinde.
 \item Metin dosyaları yönetilmesi gereken bilgisayarlara merkezi bir sunucudan yapılandırma dosyaları dağıtarak tüm bilgisayar ağlarının uygun şekilde yapılandırılmasını sağlar. "puppet" veya "salt " gibi sistemlerde yapılandırma dosyaları için "şablonlar" yapmak mümkündür. Onlar tamamen bireysel bilgisayarların elle yapılandırmasını önlemek için dağıtıldığı zaman hedef bilgisayar için uygun bilgilerin kullanıldığı  örneklemedir. (“sneaker net”) Bu da, büyük ağların yönetimini kolaylaştırır  aynı zamanda daha küçük yüklemeye de yardımcıdır.
 \end{itemize}
-\paragraph{Alıştırmalar}{
-\begin{itemize}
+\paragraph{{\Huge{\PencilLeftDown}}Alıştırmalar}{
+\begin{enumerate}
  \item /etc dizinini araştırın. Pek çok dosyayı oradaki kılavuz sayfalarını "man fstab" gibi birşey ile deneyin. /etc nin içindeki dosyalar normal kullanıcı olarak okunamaz mı,  neden ?
-\end{itemize}}
+\end{enumerate}}
 \end{section}
 \begin{section}{Süreçler}
 
@@ -169,13 +169,13 @@ Eğer “m” tuşuna basarsanız, liste hafıza kullanımına göre sıralanaca
 
 “H” tuşunu  top içinde yardım sayfasını görüntülemek için kullanabilirsiniz. Top ana sayfası çıktıları ve olağan tuş kombinasyonlarını açıklar ve size işlem listesi içeriklerini gereksinimlerinize göre nasıl adapte edeceğinizi gösterir.
 \end{itemize}
-\paragraph{Alıştırmalar}{
-\begin{itemize}
+\paragraph{{\Huge{\PencilLeftDown}}Alıştırmalar}{
+\begin{enumerate}
  \item ps komutunun ax seçeneği ile sistemdeki bütün işlemleri görüntüleyebilirsiniz. Listeye göz atın. Hangi işlemleri farkettiniz?
  \item shell oturum içinde uzun yürütülen bir işlem başlatın (“sleep 120” e benzer yapılabilir). Başka bir oturumda  “ps ax” ı çağır ve bu süreci çıktıya 
 yerleştirmeyi dene. (Hint: grep arkadaşınızdır).
 \item top'ı kullanarak hangi sürecin şu an, en çok CPU zamanını kullandığını bul. Hangi işlem en çok hafıza kullanıyor?
-\end{itemize}}
+\end{enumerate}}
 \end{section}
 \begin{section}{Paket Yönetimi}
 
@@ -218,10 +218,10 @@ Bugün, dpkg ve rpm gibi programlar bir paket yönetim sistemi "temelini" oluşt
 
 Bu araçlardan bazıları alttaki paket yönetim sistemi ile bağımsızdır. “PackageKit” de örneğin, Debian veya RPM paket yönetiminin her ikisi de kullanılmayabilir. Bundan başka kontrollü şartlar altında paket güncelleştirmesi veya yüklenmesi için yönetici ayrıcalıkları olmadan izin verebilir.
 
-\paragraph{Alıştırmalar}{
-\begin{itemize}
+\paragraph{{\Huge{\PencilLeftDown}}Alıştırmalar}{
+\begin{enumerate}
 \item Sisteminizde kaç paket yüklü? Yukarıda gösterilen rpm ve dpkg çağrısını kullanın ve çıkış satırlarını sayın. (Dikkat: “dpkg --list” de yüklü olması gereken paketleri görüntüler fakat daha yeni sürümleri silebilir veya yerine geçirebilir. "ii" ile başlayan çıktı satırlarını sayar.)
-\end{itemize}}
+\end{enumerate}}
 
 \paragraph{Bu Bölümdeki Komutlar}{
 \begin{itemize}

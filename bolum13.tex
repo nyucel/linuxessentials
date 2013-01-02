@@ -114,13 +114,13 @@ Root (Yönetici) yetkileri UID 0'a bağlıdır, GID 0'a herhangi bir özel yetki
 
 Bazı yazılım sistemlerine, bilgisayar parçalarına ya da cihazlara (örneğin; yazıcılar, kasetler, ya da floppy sürücüler) ait olan sahte kullanıcılar (örneğin; Usenet-News INN adında kullanıcı ismi vardir yada Postfix posta servisi için postfix adı altında ek olarak birer kullanıcı ismi açılmıştır). Eğer gerekliyse, 'su' komutu ile diğer kullanıcı hesaplarında olduğu gibi bu hesaplarada erişebilmeniz mümkün. Bu yan kullanıcılar, yönetici hesabı olmadan dosya sahipliğine bağlı özel gereksinimlere erişim yetkileri sağlamak için dizin ve dosya sahipleri kadar önemli ve gereklidirler. Aynı gruplara Appkies'ler; disk grubunun üyeleri, örneğin, sistem disklerine erişmelerini engellemek için bazı engeller vardır.
 \end{subsection}
-\paragraph{Alıştırmalar}{
-\begin{itemize}
+\paragraph{{\Huge{\PencilLeftDown}}Alıştırmalar}{
+\begin{enumerate}
 \item işletme sistemi çekirdeği çeşitli kullanıcı ve grupları birbirinden nasıl ayırır?
 \item Eğer bir UID (Kullanıcı kimliği)'ye 2 farklı kullanıcı ismi verilmişse ne olur? Bu mümkün müdür?
 \item Sahte kullanıcı nedir? Örnek veriniz.
 \item (ikinci metinde) Root (Yönetici) güvenmek istemeyeceğiniz şifreli bir grup diskine kullanıcı atamak sizce kabul edilebilir mi? Neden?
-\end{itemize}}
+\end{enumerate}}
 \end{section}
 \begin{section}{Kullanıcı ve Grup Bilgisi}
 \begin{subsection}{/etc/passwd dosyası}
@@ -161,7 +161,7 @@ GECOS - “General Electric Comprehensive Operating System” yani Genel elektri
 
 Bu alan kullanıcı hakkında çeşitli bilgileri, 'reel' ismi ve telefon numarası ya da ofis numarası isteğe bağlı veriler gibi bilgileri içerir. Bu bilgiler 'Mail' yada 'Finger' gibi programlar tarafından kullanılır. Tam isim, genellikle 'news' ya da 'mail' yazılımı sayesinde gönderici adresinde görülebilir.
 
-Teorik açıdan,GECOS alanınızdaki içeriği (kullanıcı olarak) değiştirmenize yarayan 'chfn' adında bir program vardır. İşe yarayıp yaramadığı tartışmalara yol açsada, ortak bir ortamda kimse insanların isimlerini istedikleri gibi değiştirmelerine izin vermek istemez.
+Teorik açıdan,GECOS alanınızdaki içeriği (kullanıcı olarak) değiştirmenize yarayan 'chfn' adında bir program vardır. İşe yarayıp yaramadığı tartışmalara yol açsa da, ortak bir ortamda kimse insanların isimlerini istedikleri gibi değiştirmelerine izin vermek istemez.
 
 Bu dizin kullanıcıların dosyalarını depolayabilecekleri kişisel alanlarıdır.Yeni oluşturulan dizin kesinlikle boş değildir, çünkü kullanıcı genellikle temel gereçler açısından profil dosyalarının numaralarını alır. Kullanıcı giriş yaptığı zaman,kullanıcı kabuğu ana dizinini o anda geçerli olan dizini olarak kullanır örneğin kullanıcı giriş yatığı anda dosyaları burada depolanır.
 
@@ -278,11 +278,11 @@ Eğer güvenli olmak istiyorsanız, unutmayınki her grubun parola slotunda ('*'
 
 Kullanıcı veritabanına gelince, grup veritabanı için gölge parola uzantısı vardır. /etc/group dosyasındaki şifrelenmiş fakat herkesin okuyabildiği grup parolaları etc/gshadow adındaki ayrı bir dosyada depolanır. Burada ayrıca grup hakkındaki diğer bilgiler depolanır, örneğin gruba üye ekleyen veya bu üyeleri kaldırma yetkisi olan yöneticilerin isimleri gibi.
 \end{subsection}
-\paragraph{Alıştırmalar}{
-\begin{itemize}
+\paragraph{{\Huge{\PencilLeftDown}}Alıştırmalar}{
+\begin{enumerate}
 \item /etc/passwd dosyasının 2. sütununda hangi değerle karşılaşırsınız? Neden bu değer buradadır ya da neden bu değeri bulursunuz?
 \item Metin konsoluna geçin (Alt + F1'i kullanarak) ve oturum açmayı deneyin, yalnız kullanıcı isminizi küçük harflerle girin. Uyguladıktan sonra ne olduğunu söyleyin.
-\end{itemize}
+\end{enumerate}
 }
 \end{section}
 \begin{section}{Kullanıcı Hesaplarını ve Grup Bilgisini Yönetmek}
@@ -409,12 +409,12 @@ passwd komutu seçenekleriyle bazı ayarları değiştirebilirsiniz. Aşağıda 
 Eğer seçenek isimlerini hatırlayamıyorsanız, chage komutunu sadece kullanıcı hesabının ismiyle kullanın. Program size değiştirmeniz ya da doğrulamanız için bir dize güncel değer sunar. Eğer yönetici bile düz metin bir parola alamıyor. Hatta tüm parolaların saklandığı /etc/shadow dizini bile yardımcı olmuyorsa. Bir kullanıcı parolasını unutursa genellikle passwd komutu kullanarak yeniyebilir.
 
 Eğer root parolanızı unuttuysanız. Gerektiği takdirde kök olarak oturum açmak için bir kurtarma kabuğuna veya boot linux önyükleme icin disk veya CD ile /etc/shadow root bölgesini temizlemek için bir editör kullanabilirsiniz.
-\paragraph{Alıştırmalar}{
-\begin{itemize}
+\paragraph{{\Huge{\PencilLeftDown}}Alıştırmalar}{
+\begin{enumerate}
 \item Joe adlı kullanıcının  sifresini degistirin.etc/shadow dizininde nasıl bir degisiklik yapmamız gerekir.
 \item Dumbo adlı kullanıcı sifresini unuttu. Nasıl yardımcı olursunuz?
 \item joe adlı kullanıcının sifresini bir veya iki hafta icerisinde degistirilmesi gerekmektedir. Fakat bir ikinci hafta varmadan ikigun once kullanıcı uyarılmalıdır. Bunun icin kullanıcı ayarlarını kontrol edin.
-\end{itemize}}
+\end{enumerate}}
 \end{subsection}
 \begin{subsection}{Kullanıcı Hesabını Silmek}
 Bir kullanıcı hesabı silmek için, /etc/passwd ve /etc/shadow dan kullanıcının girdilerini kaldırmak, /etc/group daki kullanıcının tüm referanslarını silmek ve kullanıcının ev dizininin yanı sıra oluştulan veya kullanıcı tarafından sahip olunan diğer dosyaların kaldırılması gerekir. Eğer kullanıcı varsa, /var/mail'de gelen mesajlar için bir posta kutusu gibi onu da silmiş olmalıdır.
@@ -445,14 +445,14 @@ Vipw komutu dogrudan /etc/passwd duzenlemek icin bir duzenleyici(vi veya farklı
 
 The actual editor that is invoked is determined by the value of the VISUAL environment variable, alternatively that of the EDITOR environment variable; if neither exists, vi will be launched.
 
-\paragraph{Alıştırmalar}{
-\begin{itemize}
+\paragraph{{\Huge{\PencilLeftDown}}Alıştırmalar}{
+\begin{enumerate}
 \item Test adı verilen bir kullanıcı olusturun. Test hesabını değiştirin ve anan dizinde (örneğin /tmp) farklı bir dizinde bir kac dosya olusturun. Test UID root degistirmeye calısın. Kullanıcı test listlerinde gordunuz durumu degerlendirin.
 \item Dağıtım grafiksel aracını kullanarak test1 adında bir kullanıcı olusturun useradd komutu ile test2 ve test3 adında yeni kullanıcıları elle oluşturun. Yapılandırma dosyalarına bakınız. Yeni hesapları kullanarak bir dosya olusturun bu üç hesaptan herhangi birini kullanarak yeni dosyalar sorunsuzca oluşturabilir miyim?
 \item Kullanıcı test2 hesabını silin ve bu kullanıcıya ait sistemde bir dosya kalmadıgından emin olunuz.
 \item Kullanıcı test1 UID degistirin.Baska ne yapmamız lazım?
 \item /home/test1 gelen /home/kullanıcı/ kullanıcı test1 ev dizini değiştirmeye çalışınız..
-\end{itemize}}
+\end{enumerate}}
 \end{subsection}
 \begin{subsection}{Grup Oluşturmak, Değiştirmek ve Silmek}
 
@@ -504,12 +504,12 @@ modifiye kullanıcı sürümleri ve bu grubun yönetim araçları vardır ki LDA
 
 Sistem yöneticisi olarak, vigr komutu doğrudan kullanarak grub veritabanını değiştirebilirsiniz. Bu "özel" erişim vigr için bir editör çağırarak, vipw gibi çalışır /etc/group. Benzer şekilde, "vigr -s" /etc/gshadow erişim sağlar.
 
-\paragraph{Alıştırmalar}{
-\begin{itemize}
+\paragraph{{\Huge{\PencilLeftDown}}Alıştırmalar}{
+\begin{enumerate}
 \item Gruplara ne için ihtiyac duyulur örnek veriniz.
 \item Bir grubun tüm üyelerinin erişebileceği bir dizin oluşturabilir miyiz?
 \item Bir grup testi olusturun.Bu grubun uyesi sadece kullanıcı test1 olmalıdır. Bu gruba bir parola verin. Kullanıcı test1 ve test2 olarak oturum açın ve yeni bir grup olusturmaya çalıştığınızda olusan durumu analiz edin.
-\end{itemize}}
+\end{enumerate}}
 \end{subsection}
 
 \paragraph{Bu Bölümdeki Komutlar}{
