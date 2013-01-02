@@ -245,14 +245,14 @@ $ echo $foo 		ne alacağız?
 Kabuk birçok Linux kullanıcıları için en sık kullanılan araç olduğundan beri, geliştiricileri tarafından kullanımını rahat hale getirmek için birçok sorunu çözmek üzere tartışıldı. Daha kullanışlı bazı önemsiz şeyler buradadır:
 
 \paragraph{Komut Editörü} {Basit bir metin editöründeki gibi komut satırlarını düzenleyebilirsiniz. Bu sayede, enter tuşu kullanarak giriş bitmeden önce keyfi karekterler ekleyebilir veya silebilir ve giriş satırının etrafında imleci hareket ettirebilirsiniz. Bu editörün davranışları Linux üzerinde en popüler editörlerin "set-o vi" ve "set-o emacs" komutlarını kullanarak uyarlanabilir.}
-\paragraph{Durdurulan Komutlar}{Linux komutları çevresinde çokça isim karıştırmak veya yanlış bir parametreye geçmek kolaydır. Haliyle çalıştırılma anında iptal komutu olmalıdır. Bu işlem için sadece eş zamanlı olarak Ctrl+c tuşuna basılmalıdır.}
-\paragraph{Tarihçe}{Kabuk "tarih" in bir parçası olarak şimdiye kadarki komutları hatırlar. \^ ve v imleç tuşlarını kullanarak bu komutların listesinde hareket edebilirsiniz. Yukarıda açıklandığı gibi önceki komutu bulursanız $<$-(enter) kullanarak tekrar çalıştırabilir veya düzenleyip kullanabilirsiniz. Ctrl + r komutunu kullanarak "adım adım" listeyi arayabilirsiniz - sadece karakter dizisi yazdığınızda ve kabuk bu diziyi içeren en son çalıştırılan komutu gösterir. Uzun dizilerde arama daha hassastır.}
+\paragraph{Durdurulan Komutlar}{Linux komutları çevresinde çokça isim karıştırmak veya yanlış bir parametreye geçmek kolaydır. Haliyle çalıştırılma anında iptal komutu olmalıdır. Bu işlem için sadece eş zamanlı olarak \Ctrl+\keystroke{c} tuşuna basılmalıdır.}
+\paragraph{Tarihçe}{Kabuk "tarih" in bir parçası olarak şimdiye kadarki komutları hatırlar. \UArrow ve \DArrow tuşlarını kullanarak bu komutların listesinde hareket edebilirsiniz. Yukarıda açıklandığı gibi önceki komutu bulursanız \Return kullanarak tekrar çalıştırabilir veya düzenleyip kullanabilirsiniz. \Ctrl+\keystroke{r} komutunu kullanarak "adım adım" listeyi arayabilirsiniz - sadece karakter dizisi yazdığınızda ve kabuk bu diziyi içeren en son çalıştırılan komutu gösterir. Uzun dizilerde arama daha hassastır.}
 
 Sistem oturumunuzu kapattığınızda, kabuk gizli dosya $\sim$/.bash\_history içinde geçmişini depolar ve daha sonra giriş yaptıktan sonra tekrar kullanılabilir hale getirir. (Söz konusu isim HISTFILE değişkenini ayarlayarak farklı bir dosya adı kullanabilir.)
 
 “plain” dosyasında depolanan geçmişin saklanır olduğunun bir sonucu olarak bu dosya metin editörü kullanılarak düzenlenebilir (Bölüm ~\ref{chap:bolum3}'de anlatıldığı gibi). Öyleki
 komut satırına yanlışlıkla şifrenizi girdiniz, el ile tarihi kaldırabilirsiniz - özellikle, sistem başıboşsa ev dizinlerinden herhangi birini herkes görebilir.
-\paragraph{Otamatik Tamamlama}{Otomatik olarak komut ve dosya adlarını tamamlamak Bash kabuğunun muazzam bir yeteneğidir. Eğer tab tuşuna bastığınızda kabuk benzersiz bir tespit ile eksik bir girdi var ise devamını tamamlar. Bir komutun ilk sözcüğü için, bash geçerli veya belirtilen dizindeki tüm dosyaların komut satırı geri kalanı içinde tüm çalıştırılabilir programları düşünmektedir. Çeşitli komutlar veya dosyaların adları aynı başlıyorsa, kabuk adını mümkün olduğu kadar tamamlar sonrasında komut veya dosya adı hala eksik olabilir. İkinci bir tab tuşuna basıldığında kalan olasılıkları listeler.}
+\paragraph{Otomatik Tamamlama}{Otomatik olarak komut ve dosya adlarını tamamlamak Bash kabuğunun muazzam bir yeteneğidir. Eğer \Tab tuşuna bastığınızda kabuk benzersiz bir tespit ile eksik bir girdi var ise devamını tamamlar. Bir komutun ilk sözcüğü için, bash geçerli veya belirtilen dizindeki tüm dosyaların komut satırı geri kalanı içinde tüm çalıştırılabilir programları düşünmektedir. Çeşitli komutlar veya dosyaların adları aynı başlıyorsa, kabuk adını mümkün olduğu kadar tamamlar sonrasında komut veya dosya adı hala eksik olabilir. İkinci bir \Tab tuşuna basıldığında kalan olasılıkları listeler.}
 
 Belirli programlara kabuğun tamamlama mekanizmasını uygulamak mümkündür. Örneğin; bir FTP istemcisi, komut satırında dosya adları yerine yakın zamanda ziyaret ettiği FTP sunucularının adlarını sunabilir. Ayrıntılar için bash belgelerine bakın.
 
@@ -272,16 +272,16 @@ Bu örnekte birinci komut çalıştırılmış olduğunda, ikinci komut yürüt�
 \hline
 Tuşlar & İşlevleri\\
 \hline
-\^ veya v	&	En son komutlar arasında gezinir\\
-Ctrl+r		&	Komut geçmişini arar\\
-$<$- -$>$		&	Geçerli komut satırı içindeki İmleci hareket ettirir\\
-home Ctrl+a	&	Komut satırının başına gider\\
-end Ctrl+e	&	Komut satırı sonuna atlar\\
-$<$- Del		&	Sırasıyla, imlecin altındaki/önündeki karakteri siler\\
-Ctrl+t		&	İmlecin Önündeki ve altındaki iki karakterin yerlerini değiştirir\\
-Ctrl+l		&	Ekranı temizler\\
-Ctrl+c		&	Komuta ara verir\\
-Ctrl+d		&	Son giriş (giriş kabukları için:kapalı oturum)\\
+\UArrow veya \DArrow	&	En son komutlar arasında gezinir\\
+\Ctrl+\keystroke{r}		&	Komut geçmişini arar\\
+\LArrow - \RArrow		&	Geçerli komut satırı içindeki İmleci hareket ettirir\\
+\Home \Ctrl+\keystroke{a}	&	Komut satırının başına gider\\
+\End \Ctrl+\keystroke{e}	&	Komut satırı sonuna atlar\\
+\Return \Del		&	Sırasıyla, imlecin altındaki/önündeki karakteri siler\\
+\Ctrl+\keystroke{t}		&	İmlecin Önündeki ve altındaki iki karakterin yerlerini değiştirir\\
+\Ctrl+\keystroke{l}		&	Ekranı temizler\\
+\Ctrl+\keystroke{c}		&	Komuta ara verir\\
+\Ctrl+\keystroke{d}		&	Son giriş (giriş kabukları için:kapalı oturum)\\
 \hline
 \end{tabular}
 \end {table}}
