@@ -138,7 +138,7 @@ Bu isim küçük harflerle ve sayılardan oluşturulmalıdır; ilk olarak bir ha
 
 Sadece sayılardan ve büyük harflerden oluşan kullanıcı isimlerini kullanmaktan kaçınınız. İlk olarak sahiplerine giriş yaparken sorun yaratır ve eğer rakamsal kullanıcı ismi hesabın rakamsal UID (Kullanıcı kimliği) siyle eşit değilse karışıklığa sebep olabilir. 'ls -l' gibi komutlar '/etc/passwd' dosyasında UID'ye karşılık eşdeğer bir girdi olup olmadığını gösterir, ve 'ls' çıktısında UIDS'in tamamen rakamsal kullanıcı isimlerinden ibaret olduğunu söylemek doğru olmaz.
 
-Genellikle, bu alan kullanıcının şifrelenmiş parolasını barındırır. Bugün, çoğu Linux dağıtıcıları, şifreleri bazı özel yetkili programlar ya da yönetici tarafından erişilebilip, herkes tarafından okunan /etc/shadow dosyasında toplanan,/etc/passwd dosyasında saklamak yerine 'gölge parolalar' kullanırlar'. "/etc/passwd" dosyasında bir 'x' biraz dikkat gerektirebilir? Her kullanıcı 'passwd' programınından faydalanarak şifresini değiştirebilir.
+Genellikle, bu alan kullanıcının şifrelenmiş parolasını barındırır. Bugün, çoğu Linux dağıtıcıları, şifreleri bazı özel yetkili programlar ya da yönetici tarafından erişilebilip, herkes tarafından okunan /etc/shadow dosyasında toplanan, /etc/passwd dosyasında saklamak yerine 'gölge parolalar' kullanırlar. "/etc/passwd" dosyasında bir 'x' biraz dikkat gerektirebilir? Her kullanıcı 'passwd' programınından faydalanarak şifresini değiştirebilir.
 
 Rakamsal kullanıcı tanımlayıcısı -0 ile 232 arasında bir sayı- 1. Genelde, 0 ila 99 (99 dahil) arasındaki UID numaralar sistem için ayrılmıştır, 100 ile 499 arasındaki sayılar ise yazılım paketlerinin sahte/yan kullanıcılar oluşturması için kullanılır. Yaygın dağıtıcılarda gerçek kullanıcıların UID numaraları 500 ya da 1000'den itibaren başlar. Çünkü, sistem kullanıcıları isimleriyle değil UID (Kullanıcı kimlikleriyle) birbirinden ayırt eder.Çekirdek, farklı isimlere sahip fakat UID leri aynı olan iki hesap varsa (Konu özel yetkilerle alakalı olduğu sürece) iki hesabıda tamamen aynı şekilde değerlendirir. Kullanıcı isimlerini gösteren komutlar ("'ls -l'" ya da 'id') giriş yaparken kullanıcının hangi ismi yada UID yi kullandığını gösterir.
 
@@ -281,7 +281,7 @@ Kullanıcı veritabanına gelince, grup veritabanı için gölge parola uzantıs
 \paragraph{{\Huge{\PencilLeftDown}}Alıştırmalar}{
 \begin{enumerate}
 \item /etc/passwd dosyasının 2. sütununda hangi değerle karşılaşırsınız? Neden bu değer buradadır ya da neden bu değeri bulursunuz?
-\item Metin konsoluna geçin (Alt + F1'i kullanarak) ve oturum açmayı deneyin, yalnız kullanıcı isminizi küçük harflerle girin. Uyguladıktan sonra ne olduğunu söyleyin.
+\item Metin konsoluna geçin (\Alt+\keystroke{F1}'i kullanarak) ve oturum açmayı deneyin, yalnız kullanıcı isminizi küçük harflerle girin. Uyguladıktan sonra ne olduğunu söyleyin.
 \end{enumerate}
 }
 \end{section}
