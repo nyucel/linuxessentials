@@ -561,7 +561,7 @@ $ ls -ai /
 4833 bin 244322 lib 313777 sbin
 228033 boot 460935 mnt 244321 tmp
 330625 dev 460940 opt 390938 usr 
- \end{verbatim} Açıkça / ve /home dizinleri aynı dosya numarasına sahip olduğu görülüyor. Hani iki dizin açıkça aynı dizinde bulunamazdı?—bu olguyu açıklayabilir misiniz?
+ \end{verbatim} Açıkça / ve /home dizinleri aynı dosya numarasına sahip olduğu görülüyor. Hani iki dizin açıkça aynı dizinde bulunamazdı? Bu olguyu açıklayabilir misiniz?
  \item Dizinlere sıkı bağlantı yapılmasının geçerli olmadığına önceden değinmiştik. Bunun nedeni nedir?
  \item “ls -l ~”'nin çıktısında, ~'nin altdizininin alt dizinler içermediğini nasıl söyleyebilirsiniz?
  \item (Zeka oyunu/araştırma alıştırması:) Diskte sembolik bağlantı veya sıkı bağlantı için ne gereklidir? Neden?
@@ -583,7 +583,32 @@ Bölüm ~\ref{chap:bolum5}'te bahsettiğimiz gibi, less genellikle man aracılı
 
 find komutu dizin ağacında özyinelemeli bir şekilde verilen kriterlere göre eşleşen dosyaları arar. "Özyinelemeli" alt dizinlerin, alt dizinleri şeklinde göz önünde bulundurarak devam eden anlamı içerir. find'ın çıktısı eşleşen dosyaların sonrasında diğer programlara aktarılabilecek olan yol isimlerini içerir. Sonraki örnek komut yapısını tanımlar:
 
-\paragraph{tablo eklenecek}{}
+\paragraph{}{
+\begin {table}[H]
+\caption {less için klavye komutları} \label{tab:title} 
+\begin{tabular}{c l}
+\hline
+Tuş & Sonuç\\
+\hline
+\DArrow veya \keystroke{e} veya \keystroke{j} veya \Return & Scrolls up one line\\
+\keystroke{f} veya \keystroke{} & Scrolls up one screenful\\
+\UArrow veya \keystroke{y} veya \keystroke{k} & Scrolls back one line\\
+\keystroke{b}  & Scrolls back one screenful\\
+\Home veya \keystroke{g} & Jumps to the beginning of the text\\
+\Enter veya \Shift + \keystroke{g} & Jumps to the end of the text\\
+\keystroke{p}  $<$percent$>$ \Return & Jumps to position $<$percent$>$ (in \%) of the text\\
+\keystroke{h} & Displays help\\
+\keystroke{q} & Quits less\\
+\keystroke{/} $<$word$>$ \Return & Searches for $<$word$>$ towards the end\\
+\keystroke{n} & Continues search towards the end\\
+\keystroke{?} $<$word$>$ \Return & Searches for $<$word$>$ towards the beginning\\
+\Shift + \keystroke{n}  & Continues search towards the beginning\\
+\keystroke{!} $<$command$>$ \Return & Executes $<$command$>$ in subshell\\
+\keystroke{v} & Invokes editor (vi)\\
+\keystroke{r} veya \Ctrl + \keystroke{l} & Redraws screen\\
+\hline
+\end{tabular}
+\end {table}}
 
 \begin{verbatim}
 $ find . -user joe -print
