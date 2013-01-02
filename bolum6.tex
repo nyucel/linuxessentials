@@ -20,23 +20,23 @@ Linux gibi işletim sisteminin en önemli hizmetlerinden birisi de, veriyi sabit
 
 Eğer bu bile sizin için önemsiz gözüküyorsa, bu anlatılanların size hiçbir getirisi yoktur. Eskiden bazı işletim sistemleri, bir verinin bilgisini almak için disk üzerindeki iz sayıları gibi ayrıntıları belirtmeyi zorunlu kılıyordu. 
 
-	Bu yüzden, size dosyalarla nasıl uğraşılacağını anlatmaktan önce, Linux'un dosyaları nasıl isimlendirdiğini açıklamalıyız.
+Bu yüzden, size dosyalarla nasıl uğraşılacağını anlatmaktan önce, Linux'un dosyaları nasıl isimlendirdiğini açıklamalıyız.
 
-	Linux dosya isimlerinde, aslında bilgisayarınızın gösterebileceği her karakteri (hatta daha fazlasını) kullanmanıza olanak tanır. Ancak, karakterlerden bazılarının özel anlam içerdiğinden beri, dosya isimlerinde bu karakterleri kullanmanızı tavsiye ederiz. Yalnızca iki karakterin kullanılamaz: bölü ("/") işareti ve 0 byte (ASCII değeri 0 olan karakter). Boşluk, inceltme işareti ya da dolar işaretleri gibi karakterler serbestçe kullanılabilir, fakat kabuk tarafından yanlış yorumlanmakyan kaçınmak için komut satırında "$\backslash$" veya tırnak işaretleri kullanılarak bu karakterlerden kaçılır.
+Linux dosya isimlerinde, aslında bilgisayarınızın gösterebileceği her karakteri (hatta daha fazlasını) kullanmanıza olanak tanır. Ancak, karakterlerden bazılarının özel anlam içerdiğinden beri, dosya isimlerinde bu karakterleri kullanmanızı tavsiye ederiz. Yalnızca iki karakterin kullanılamaz: bölü ("/") işareti ve 0 byte (ASCII değeri 0 olan karakter). Boşluk, inceltme işareti ya da dolar işaretleri gibi karakterler serbestçe kullanılabilir, fakat kabuk tarafından yanlış yorumlanmakyan kaçınmak için komut satırında "$\backslash$" veya tırnak işaretleri kullanılarak bu karakterlerden kaçılır.
 
-	Acemilerin kolayca tuzağa düşeceği olay ise, Linux'un dosya isimlerinde büyük/küçük harfleri ayırt edebilmesidir. Büyük ve küçük harfli dosyaların ayrı gösterildiği fakat aynı davranıldığı Windows işletim sisteminin tersine Linux \emph{x-files} ve \emph{X-Files} dosya isimlerini iki farklı dosya olarak ele alır.
+Acemilerin kolayca tuzağa düşeceği olay ise, Linux'un dosya isimlerinde büyük/küçük harfleri ayırt edebilmesidir. Büyük ve küçük harfli dosyaların ayrı gösterildiği fakat aynı davranıldığı Windows işletim sisteminin tersine Linux \emph{x-files} ve \emph{X-Files} dosya isimlerini iki farklı dosya olarak ele alır.
 
-	Limitlerin "dosya sistemine" bağlı olduğundan beri, Linux altında byte'lar halinde düzenlenen dosya adları "çok uzun", belli bir üst limit yoktur, olabilir( Linux'ta  bu düzenlemeyle ilgili birçok yöntem vardır). Normal sınır 255 karakterdir, fakat 3 satırdan daha fazla uzunlukta dosya isimleri standart metin terminalinde size bir karmaşıklık oluşturmamalıdır.
+Limitlerin "dosya sistemine" bağlı olduğundan beri, Linux altında byte'lar halinde düzenlenen dosya adları "çok uzun", belli bir üst limit yoktur, olabilir( Linux'ta  bu düzenlemeyle ilgili birçok yöntem vardır). Normal sınır 255 karakterdir, fakat 3 satırdan daha fazla uzunlukta dosya isimleri standart metin terminalinde size bir karmaşıklık oluşturmamalıdır.
 	
-	DOS ve Windows bilgisayarlardan başka bir fark da Linux, dosyanın tipini belirlemek için sonekleri kullanmaz. Bu yüzden, dosya ismindeki nokta tamamen sıradan bir karakterdir. Bir metin dosyasını \emph{mumble.txt} olarak kaydetmede serbestsiniz, fakat prensip olarak sadece \emph{mumble} kelimesi de  kabul edilebilir. Bu kullanım tabi ki sizin tamamen uzantı ile adlandırmanızı engellememelidir, sonuçta bu kullanım dosya içeriğini tanımlamanızda kolaylık sağlar.
+DOS ve Windows bilgisayarlardan başka bir fark da Linux, dosyanın tipini belirlemek için sonekleri kullanmaz. Bu yüzden, dosya ismindeki nokta tamamen sıradan bir karakterdir. Bir metin dosyasını \emph{mumble.txt} olarak kaydetmede serbestsiniz, fakat prensip olarak sadece \emph{mumble} kelimesi de  kabul edilebilir. Bu kullanım tabi ki sizin tamamen uzantı ile adlandırmanızı engellememelidir, sonuçta bu kullanım dosya içeriğini tanımlamanızda kolaylık sağlar.
 	
-	Bazı programlar girdi dosyalarında özel uzantı kullanmayı zorunlu kılar. Örneğin C derleyicisi olan \emph{gcc}, "\emph{.c}" ile biten C kaynak kodu, "\emph{.s}" ile biten makine dili kaynak kodu ve "\emph{.o}" ile biten ön derlenmiş nesne dosyaları isimlerini dikkate alır.
+Bazı programlar girdi dosyalarında özel uzantı kullanmayı zorunlu kılar. Örneğin C derleyicisi olan \emph{gcc}, "\emph{.c}" ile biten C kaynak kodu, "\emph{.s}" ile biten makine dili kaynak kodu ve "\emph{.o}" ile biten ön derlenmiş nesne dosyaları isimlerini dikkate alır.
 	
-	Dosya isimlendirmede özgürce inceltme işareti ve diğer özel karakterleri kullanabilirsiniz. Yine de, eğer dosyalar diğer sistemlerde kullanılacaksa özel karakterleri kullanımından kaçmak en iyisidir, çünkü diğerlerinde dosyaların aynı isimle gösterileceğinin bir garantisi yoktur.
+Dosya isimlendirmede özgürce inceltme işareti ve diğer özel karakterleri kullanabilirsiniz. Yine de, eğer dosyalar diğer sistemlerde kullanılacaksa özel karakterleri kullanımından kaçmak en iyisidir, çünkü diğerlerinde dosyaların aynı isimle gösterileceğinin bir garantisi yoktur.
 	
-	Özel karakterlerin ne olduğu sizin yerel ayarlarınıza bağlıdır, çünkü ASCII karakter setini (Çoğunlukla içinde İngilizce dili, rakamlar ve yaygın özel karakterlerin bulunduğu 128 karakter) aşan karakterlerin temsili için genel bir standart yoktur. Çokça kullanılan kodlamalara örnek olarak ISO 8859-1 ve ISO 8859-15 (sırasıyla ISO-Latin-1 ve ISO-Latin-9 olarak bilinir) bununla birlikte gelişigüzel ve çok doğru olmayarak adına "Unicode" denilen genellikle "UTF-8" karakter seti ile kodlanan ISO 10646. Y kodlaması sistemde yürürlükte iken dizine baktığınız zaman X kodlamasıyla oluşturduğunuz dosyalar tamamen farklı gözükebilir. Bu konuların üzerinde çok durursanız, size tüm konu hiçbir şey gibi gelir.
+Özel karakterlerin ne olduğu sizin yerel ayarlarınıza bağlıdır, çünkü ASCII karakter setini (Çoğunlukla içinde İngilizce dili, rakamlar ve yaygın özel karakterlerin bulunduğu 128 karakter) aşan karakterlerin temsili için genel bir standart yoktur. Çokça kullanılan kodlamalara örnek olarak ISO 8859-1 ve ISO 8859-15 (sırasıyla ISO-Latin-1 ve ISO-Latin-9 olarak bilinir) bununla birlikte gelişigüzel ve çok doğru olmayarak adına "Unicode" denilen genellikle "UTF-8" karakter seti ile kodlanan ISO 10646. Y kodlaması sistemde yürürlükte iken dizine baktığınız zaman X kodlamasıyla oluşturduğunuz dosyalar tamamen farklı gözükebilir. Bu konuların üzerinde çok durursanız, size tüm konu hiçbir şey gibi gelir.
 	
-	Bazen kendinizi yanlış karakter setiyle kodlanmış bir yığın dosya ile uğraşıyor olarak bulabilirsiniz. Çeşitli karakter setleri arasında dönüşüm yapabilen \emph{convmv} programı bu konuda size yardım edebilir. (Çoğu dağıtımın standart kurulumunun bir parçası olmadığından, muhtemelen kendiniz yüklemeniz gerekecektir.) Ancak, bunu tüm bölümü bitirdiğimiz zaman yapmanız daha uygun olur, çünkü daha normal \emph{mv}'den bahsetmedik bile ...
+Bazen kendinizi yanlış karakter setiyle kodlanmış bir yığın dosya ile uğraşıyor olarak bulabilirsiniz. Çeşitli karakter setleri arasında dönüşüm yapabilen \emph{convmv} programı bu konuda size yardım edebilir. (Çoğu dağıtımın standart kurulumunun bir parçası olmadığından, muhtemelen kendiniz yüklemeniz gerekecektir.) Ancak, bunu tüm bölümü bitirdiğimiz zaman yapmanız daha uygun olur, çünkü daha normal \emph{mv}'den bahsetmedik bile ...
 	
 Aşağıdaki tüm karakterleri dosya isimlendirmelerinde özgürce kullanabilirsiniz:
 \begin{verbatim}
@@ -528,6 +528,26 @@ $ rm short
 $ ls
 liste2
 \end{verbatim}
+
+\paragraph{}{
+\begin {table}[H]
+\caption {more için klavye komutları} \label{tab:title} 
+\begin{tabular}{c l}
+\hline
+Tuş & Sonuç\\
+\hline
+\Return & Scrolls up a line\\
+\keystroke & Scrolls up a screenful\\
+\keystroke{b} & Scrolls back a screenful \\
+\keystroke{h} & Displays help \\
+\keystroke{q} & Quits more \\
+\keystroke{/} $<$kelime$>$ \Return & Searches for $<$kelime$>$\\
+\keystroke{!} $<$komut$>$ \Return & Executes $<$komut$>$ in a subshell\\
+\keystroke{v} & Invokes editor (vi)\\
+\Ctrl + \keystroke{l} & Redraws the screen\\
+\hline
+\end{tabular}
+\end {table}}
 
 \paragraph{{\Huge{\PencilLeftDown}}Alıştırmalar}{
 \begin{enumerate}
