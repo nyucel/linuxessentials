@@ -72,21 +72,19 @@ Bu bölümde önceden verdiğimiz grep komutuna denktir. Bu konuyla ilgili daha 
 \end{subsection}
 \begin{subsection}{Standart Kanalları Yönlendirmek}
 
-Standart çıktı yolu “$>$” (büyüktür işareti) operatörü kullanılarak yönlendirilebilir.
-
-Verilen örnekte, “ls -laF” komutunun çıktısı filelist adı verilen bir  dosyaya yönlendirilmektedir.
+Standart çıktı kanalı “$>$” (büyüktür işareti) operatörü kullanılarak yönlendirilebilir. Aşağıdaki örnekte, “ls -laF” komutunun çıktısı filelist adı verilen bir  dosyaya yönlendirilmektedir; ekran çıktısı şöyle gözükür:
 \begin{verbatim}
 $ ls -laF >filelist 
-$ __
+$ _
 \end{verbatim}
 
-Eğer filelist dosyası mevcut değilse oluşturulur. Eğer bu isimde bir dosya varsa dosyanın üzerine yazılır. Kabuk bunu bahsedilen program uyandırılmadan önce ayarlar – çıktı dosyası gerçek komutta yazım hataları varsa ya da program çıktı oluşturmasa bile oluşturulur. (bu durumda filelist dosyası boş kalacaktır)
+Eğer filelist dosyası mevcut değilse oluşturulur. Ancak eğer bu isimde bir dosya varsa dosyanın üzerine yazılır. Kabuk bunu bahsedilen program çalıştırılmadan önce ayarlar – komut çağrısında yazım hataları varsa ya da program hiç çıktı oluşturmasa bile yine de çıktı dosyası oluşturulur. (bu durumda filelist dosyası boş olacaktır)
 
 Eğer kabuk çıktı yönlendirmelerinde varolan dosyaların üzerine yazılmasını engellemek istiyorsanız, “set -o noclobber” komutu verilerek varolan dosyalar korunabilir. Bu durumda, eğer çıktı varolan bir dosyaya yönlendirilirse bir hata oluşacaktır.
 
 Filelist dosyasına her zamanki yollarla bakabilirsiniz, mesela less kullanarak:
 \begin{verbatim}
-$ less inhalt 
+$ less filelist
 total 7 
 drwxr-xr-x 12 joe users 1024 Aug 26 18:55 ./
 drwxr-xr-x 5 root root 1024 Aug 13 12:52 ../
@@ -97,11 +95,11 @@ drwxr-xr-x 3 joe users 1024 Aug 20 12:30 photos/
 -rw-r--r-- 2 joe users 3316 Aug 20 15:14 chemistry.txt
 \end{verbatim}
 
-Eğer filelist in içeriğine dikkatlice bakarsanız, filelist için boyutu 0 olan bir dizin girdisi görebilirsiniz. Bu kabuğun işleme şekliyle alakalıdır: Komut satırını alırken önce çıktı yönlendirmesini fark eder ve yeni bir filelist dosyası oluşturur (ya da varolan dosyanın içeriğini siler). Bunun arkasından kabuk komutu çalıştırır, bu koşulda ls, ls'nin standart çıktısını terminal yerine filelist dosyasına bağlar. 
+Eğer filelist dosyasının içeriğine dikkatlice bakarsanız, filelist adında boyutu 0 olan bir dizin girdisi görebilirsiniz. Bu kabuğun çalışma şeklinden kaynaklanır: Kabuk, komut satırını işlerken önce çıktı yönlendirmesini fark eder ve yeni bir filelist dosyası oluşturur (ya da varolan dosyanın içeriğini siler). Komutun (bu örnekte ls) standart çıktısını terminal yerine filelist dosyasına bağlayarak komutu çalıştırır.
 
-ls çıktısındaki dosyanın uzunluğu 0 görünür çünkü ls filelist için olan bilgiye dosyaya hiçbir şey yazılmadan önce bakar, filelistten önce üç girdi olmasına rağmen. Bu ls'nin önce bütün girdileri okuyup sonra onları dosya adına göre sıralamasından dolayı olur. Bu işlemden sonra dosyaya yazma işlemi başlar. Bu sebeple ls sadece yeni oluşturulmuş (ya da içi boşaltılmış) filelist dosyasını görür.
+ls çıktısındaki dosyanın uzunluğu 0 görünür çünkü ls, filelist dosyası ile ilgili bilgiye dosyaya hiçbir şey yazılmadan önce bakar, filelist satırından önce üç dosya olmasına rağmen. Bunun nedeni ls'nin önce bütün dizin girdilerini okuyup, bunları dosya adına göre sıralamasından ve ancak bunları tamamladıktan sonra dosyaya yazmaya başlamasıdır. Bu sebeple ls sadece yeni oluşturulmuş (ya da içi boşaltılmış) filelist dosyasını görür.
 
-Eğer bir komutun çıktısını varolan bir dosyaya yeniden yazmak değil eklemek istiyorsanız $>>$ operatörünü kullanabilirsiniz. Eğer dosya yoksa, bu durumda oluşturulacaktır.
+Eğer bir komutun çıktısını varolan bir dosyaya dosyanın önceki içeriğini değiştirmeden eklemek istiyorsanız $>>$ operatörünü kullanabilirsiniz. Eğer dosya yoksa, bu durumda da oluşturulacaktır.
 \begin{verbatim}
 $ date >> filelist
 $ less filelist
@@ -116,29 +114,31 @@ drwxr-xr-x 3 joe users 1024 Aug 20 12:30 photos/
 Wed Oct 22 12:31:29 CEST 2003
 \end{verbatim}
 
-Bu örnekte, bulunulan tarih ve zaman filelist dosyasına ekleniyor. Bir komutun standart çıktısını yönlendirmenin bir başka yolu geri imlerdir (`...`) Bu ayrıca komut değiştirme olarak adlandırılır. Geri imlerin içindeki bir komutun standart çıktısı komut yerine komut satırına eklenir, değiştirilen sonuç çalıştırılır.
+Bu örnekte, on anki tarih ve saat filelist dosyasına ekleniyor.
+
+Bir komutun standart çıktısını yönlendirmenin bir başka yolu geri imlerdir (`...`) Bu işlem \textbf{komut değiştirme} olarak da adlandırılır. Geri imlerin içindeki bir komutun standart çıktısı geri imler arasındaki komut (ve geri im işaretleri) ile değiştirilerek komut satırına eklenir ve değişiklikten sonraki komut çalıştırılır.
 
 Örneğin:
 \begin{verbatim}
-$ cat dates 		
+$ cat dates
 22/12 Get presents
 23/12 Get Christmas tree
 24/12 Christmas Eve
-$ date +%d/%m 			
+$ date +%d/%m
 23/12
-$ grep 			
+$ grep `date +%d/%m` dates
 23/12 Get Christmas tree
 \end{verbatim}
 
-*” `date` “ için daha iyi bir yazım \$date şeklinde yazmaktır. Bu çağrılar için daha kolaydır. Bununla birlikte bu söz dizimi sadece bash gibi modern kabuklar tarafından desteklenir.
+” `date` “ yerine daha uygun bir yazım \$(date) kullanmaktır. Bu yöntem, iç içe geçmiş bu tip değiştirme çağrılarını daha kolay yazmayı sağlar. Bununla birlikte bu söz dizimi sadece bash gibi modern kabuklar tarafından desteklenir.
 
-Standart girdi yolu için yönlendirme yapmak için $<$ işaretini (küçüktür) kullanabilirsiniz. Bu klavye girdisinde belirtilen dosyanın içeriğini okuyacaktır. 
+Standart girdi kanalını yönlendirmek için $<$ işaretini (küçüktür işareti) kullanabilirsiniz. Bu, klavye girdisi yerine belirtilen dosyanın içeriğini okuyacaktır.
 \begin{verbatim}
-$ wc -w <frog.txt 
-1397 
+$ wc -w <frog.txt
+1397
 \end{verbatim}
 
-Bu örnekte, wc filtresi frog.txt dosyasındaki kelimeleri sayar.
+Bu örnekte, wc filtre komutu frog.txt dosyasındaki kelimeleri sayar.
 
 Birden fazla girdi dosyasını birleştirmek için $<<$ gibi bir yönlendirme bulunmaz, bunu yapmak için cat komutunu kullanmanız gerekir.
 
@@ -146,23 +146,23 @@ Birden fazla girdi dosyasını birleştirmek için $<<$ gibi bir yönlendirme bu
 $ cat file1 file2 file3 | wc -w
 \end{verbatim}
 
-(“\textbar” operatörü ile ilgili daha geniş bilgiyi gelecek bölümde anlatacağız.) Çoğu program bir ya da birden fazla komut satırı girdisini kabul eder.
+(“\textbar” operatörü ile ilgili daha geniş bilgiyi gelecek bölümde anlatacağız.) Ancak çoğu program bir ya da birden fazla dosya ismini komut satırı girdisi olarak kabul eder.
 
-Elbette, standart girdi ve standart çıktı aynı yönlendirme zamanından eş zamanlı olarak yönlendirilebilir.  Aşağıdaki örnekte kelime sayacının çıktısı wordcount olarak adlandırılan bir dosyaya yazılır.
+Elbette, standart girdi ve standart çıktı aynı anda eş zamanlı olarak yönlendirilebilir.  Aşağıdaki örnekte kelime sayacının çıktısı wordcount olarak adlandırılan bir dosyaya yazılır.
 \begin{verbatim}
-$ wc -w <frog.txt >wordcount 
-$ cat wordcount 
+$ wc -w <frog.txt >wordcount
+$ cat wordcount
 1397
 \end{verbatim}
 
-Standart girdi ve standart çıktı yolları dışında ayrıca standart hata çıktısı yolu bulunur. Eğer bir programın çalışmasında hatalar meydana gelirse, buna karşılık gelen mesaj bu yol için yazılır. Bu nedenle sadece standart çıktının dosyaya yazıldığını görürsünüz. Eğer standart hata çıktısını da bir dosyaya yazılmasını istiyorsanız yol numarasını yönlendirme operatörü ile birlikte kullanmalısınız. stdin (0$<$ ) ve stdout (1$>$) için bu isteğe bağlı bir seçenektir fakat stderr için (2$>$) yazımını kullanmak zorunludur. $>$\& operatörünü her iki çıktıyı da yazdırmak için kullanabilirsiniz.
+Standart girdi ve standart çıktı kanalları dışında ayrıca standart hata çıktısı kanalı bulunur. Eğer bir programın çalışmasında hatalar meydana gelirse, buna karşılık gelen mesajlar bu kanala yazılır. Böylece standart çıktıyı dosyaya yönlendirdiğiniz zaman bile hata mesajlarını görebilirsiniz. Eğer standart hata çıktısının da bir dosyaya yazılmasını istiyorsanız yönlendirme operatörünü kullanırken kanal numarasını belirtmelisiniz - stdin (0$<$ ) ve stdout (1$>$) için bu isteğe bağlı bir seçenektir fakat stderr için (2$>$) yazımını kullanmak zorunludur. $>$\& operatörünü her iki çıktıyı da yazdırmak için kullanabilirsiniz.
 \begin{verbatim}
 make >make.log 2>&1
 \end{verbatim}
 
 Bu komut make komutunun standart çıktısını ve standart hata çıktısını make.log dosyasına yönlendirir.
 
-\paragraph{Dikkat}{ Burada sıralama çok önemlidir. Aşağıdaki iki komut tümüyle farklı sonuçlar oluşturur. İkinci durumda standart hata çıktısı standart çıktı nereye giderse oraya yönlendirilecektir (/dev/tty, standart çıktının gittiği yer), sonra standart çıktı make.log'a gönderilir ama bu standart hata çıktısının gideceği yönü değiştirmez.}
+\paragraph{Dikkat}{Burada sıralama çok önemlidir. Aşağıdaki iki komut tümüyle farklı sonuçlar oluşturur. İkinci durumda standart hata çıktısı standart çıktı nereye giderse oraya yönlendirilecektir (/dev/tty, standart çıktının gittiği yer), sonra standart çıktı make.log'a gönderilir ama bu standart hata çıktısının gideceği yönü değiştirmez.}
 \begin{verbatim}
 make >make.log 2>&1 
 make 2>&1 >make.log 
@@ -170,10 +170,10 @@ make 2>&1 >make.log
 
 \paragraph{{\Huge{\PencilLeftDown}}Alıştırmalar}{
 \begin{enumerate}
- \item -U seçeneğini ls komutunun çıktısını sıralamadan vermesi için kullanabilirsiniz. “ls -laU $>$filelist ” yazmanızdan sonra bile filelist için dosyanın boyutu 0 olur. Bunun nedeni ne olabilir?
- \item “ls /tmp ” and “ls /tmp $>$ls- tmp.txt ” komutlarının çıktılarını karşılaştırınız. Bir şeyi fark ettiniz mi? Eğer fark ettiyseniz bunu nasıl açıklarsınız? 
+ \item -U seçeneğini ls komutunun çıktısını sıralamadan vermesi için kullanabilirsiniz. “ls -laU $>$filelist ” yazmanızdan sonra bile dosya içerisindeki çıktıda filelist dosyasının boyutu 0 olarak gözükür. Bunun nedeni ne olabilir?
+ \item “ls /tmp” ve “ls /tmp $>$ls-tmp.txt” komutlarının çıktılarını karşılaştırınız. Bir fark görüyor musunuz? Eğer fark varsa bunu nasıl açıklarsınız?
  \item Neden bir dosyayı bir adımda yeni haliyle değiştirmek mümkün değildir? Mesela “grep xyz file $>$ file” neden mümkün değildir?
-\item Ve “cat foo $>>$foo ” komutunda foo'nun boş bir dosya olmadığını varsayarsak bu komuttaki sorun nedir?
+\item “cat foo $>>$foo ” komutunda foo'nun boş bir dosya olmadığını varsayarsak bu komuttaki sorun nedir?
 \item Kabukta, bir hata mesajını nasıl standart hata çıktısı olarak alırsınız?
 \end{enumerate}}
 \end{subsection}
