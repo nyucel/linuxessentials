@@ -146,7 +146,7 @@ gibi bir satırla karşılaşabilirsiniz. $\sim$/letters /home/joe/letters'a kı
 
 \paragraph{}{
 \begin {table}[H]
-\caption {ls'deki bazı dosya gösterimleri} \label{tab:title} 
+\caption {ls'deki bazı dosya gösterimleri} \label{tab:tablo61} 
 \begin{tabular}{l c c c}
 \hline
 Dosya Tipi & Renk & Sonek (ls -F) & Harf türü (ls -l) \\
@@ -162,7 +162,7 @@ link 	&	cyan & @ & l \\
 
 \paragraph{}{
 \begin {table}[H]
-\caption {Bazı ls parametreleri} \label{tab:title} 
+\caption {Bazı ls parametreleri} \label{tab:tablo62} 
 \begin{tabular}{l l}
 \hline
 Parametre & Sonuç \\
@@ -188,9 +188,9 @@ Dizin ağacı etrafında yolunuzu bulmak için hangi dosya ve dizinlerin mevcut 
 
 Parametresiz kullanımda çıktı olarak dosyaların isme göre sıralandığı bir çeşit tablo görünümlü bir yapı elde edilir. Renkli ekranların günümüzde standart haline gelmesiyle, dosya isimleri ve türlerinin farklı renklerde görüntülenmesi genelek haline geldi (Daha dosya tipleri hakkında konuşmadık; bu konuya Bölüm ~\ref{chap:bolum10}'da değineceğiz).
 	
-Neyse ki, günümüzde birçok dağıtım renkli kullanımı bünyesinde barındırıyor. Tablo 6.1'de en yaygın gösterimler vardır.
+Neyse ki, günümüzde birçok dağıtım renkli kullanımı bünyesinde barındırıyor. Tablo ~\ref{tab:tablo61}'de en yaygın gösterimler vardır.
 
-Siyah-Beyaz ekranlarda—ki hala günümüzde var—, -F veya -p parametreleri önerilir. Bunlar dosya türleri ile ilişkili dosya isimlerine özel karakter eklerler. Bu karakterlerin bazılarına Tablo 6.1'de değinmiştik.
+Siyah-Beyaz ekranlarda, ki hala günümüzde var, -F veya -p parametreleri önerilir. Bunlar dosya türleri ile ilişkili dosya isimlerine özel karakter eklerler. Bu karakterlerin bazılarına Tablo ~\ref{tab:tablo61}'de değinmiştik.
 	
 Gizli dosyaları (nokta ile başlayan isimlileri) -a ("all") parametresiyle görüntüleyebilirsiniz. Bir başka kullanışlı seçenek ise -l'dir(büyük harf olarak "L", "long"(uzun) anlamı taşır, "1" rakamı değildir). Bu sadece dosya isimlerini sıralamakla kalmaz ayrıca her dosya için ek bilgi de içerir.
 	
@@ -208,7 +208,7 @@ $ ls -l
 
 İlk durumda, bütün gizli olmayan dosyalar listelendi; ikinci durumda ise ekstra bilgi eklendi.
 
-	Uzun formatın farklı parçalarının anlamları vardır: İlk karakter dosya türünü verir (Bölüm ~\ref{chap:bolum10}'a bakınız); sade dosyalar "-", dizinler "d" şeklinde vb.(Tablo 6.1'deki "karakter türleri").
+	Uzun formatın farklı parçalarının anlamları vardır: İlk karakter dosya türünü verir (Bölüm ~\ref{chap:bolum10}'a bakınız); sade dosyalar "-", dizinler "d" şeklinde vb.(Tablo ~\ref{tab:tablo61}'deki "karakter türleri").
 	
 	Sonraki 9 karakter erişim izinlerini gösterir. Sonraki dosyanın adedini, dosyanın sahibini(joe), ve dosyanın grubunu(users) gösterir. Byte olarak dosyanın boyutundan sonra, dosyanın içerdiği son değiştirilme bilgisini tarih ve saat olarak görebilirsiniz. Ve tabi ki dosyanın adı da görüntülenir.
 	
@@ -216,9 +216,9 @@ $ ls -l
 	
 	Eğer dizin için ekstra bilgi görmek isterseniz(/tmp dizini gibi), "ls -l /tmp"'nin size gerçekten bir yardımı dokunmaz, çünkü ls /tmp içerisindeki tüm dosyaların verisini listeleyecektir. -d parametresi kullanarak /tmp'nin kendisinin bilgisini elde edebilirsiniz.
 	
-ls burada bahsedilenlerden çok daha fazlasına destek verir; önemli olanlarından bir kaçı Tablo 6.2'de gösterilmişti.
+ls burada bahsedilenlerden çok daha fazlasına destek verir; önemli olanlarından bir kaçı Tablo ~\ref{tab:tablo62}'de gösterilmişti.
 
-Linux Essentials ve LPI-101 gibi LPI sınavlarında, kimse sizden ls'nin tüm 57 tane parametresini bilmenizi beklemez. Ancak en önemli yarım düzine kadarını—yaklaşık Tablo 6.2. içeriğindeki kadarını— ezberlemek isteyebilirsiniz.
+Linux Essentials ve LPI-101 gibi LPI sınavlarında, kimse sizden ls'nin tüm 57 tane parametresini bilmenizi beklemez. Ancak en önemli yarım düzine kadarını—yaklaşık Tablo ~\ref{tab:tablo62} içeriğindeki kadarını— ezberlemek isteyebilirsiniz.
 \paragraph{{\Huge{\PencilLeftDown}}Alıştırmalar}{
 \begin{enumerate}
  \item /boot dizinini hangi dosyaları içerir? Alt dizinleri var mıdır? Varsa hangileridir?
@@ -383,7 +383,7 @@ $ ls *
 \end{enumerate}}
 \paragraph{}{
 \begin {table}[H]
-\caption {cp parametreleri} \label{tab:title} 
+\caption {cp parametreleri} \label{tab:tablo63} 
 \begin{tabular}{c c l}
 \hline
 {} & Seçenek & Sonuç \\
@@ -407,7 +407,7 @@ $ ls *
 
 İstediğiniz dosyaları cp("copy")("kopyala") komutu kullanarak kopyalayabilirsiniz. iki temel yaklaşım vardır:
 
-Eğer cp'ye kaynak ve hedef dosya isimlerini(iki argüman) söylerseniz  kaynak dosyanın içeriğinin 1:1 kopyasını hedef dosyada oluşturabilirsiniz. Eğer hedef dosya zaten varsa genelde cp üzerine yazılması gerekip gerekmediğini sormaz, fakat sadece yapar—Uyarı(veya -i parametresi) bunun için vardır.
+Eğer cp'ye kaynak ve hedef dosya isimlerini (iki argüman) söylerseniz  kaynak dosyanın içeriğinin 1:1 kopyasını hedef dosyada oluşturabilirsiniz. Eğer hedef dosya zaten varsa genelde cp üzerine yazılması gerekip gerekmediğini sormaz, fakat sadece yapar—Uyarı (veya -i parametresi) bunun için vardır.
 
 Ayrıca hedef dosya ismi yerine hedef dizin ismi verebilirsiniz. Kaynak dosya eski ismini koruyarak o dizine kopyalanmış olacaktır.
 
@@ -420,7 +420,7 @@ $ ls -l
 -rw-r--r-- 1 joe users 8765 Oct 4 11:26 passwd
 \end{verbatim}
 
-Bu örnekte, ilk list dosyasının tam kopyasını list2 isminin altına oluşturduk. Sonra /etc/passwd dosyasını bulunduğumuz dizine(hedef dizin ismi olan nokta ile temsil edildi) kopyaladık. En önemli cp parametreleri Tablo 6.3'te listelenmiştir. Tek kaynak dosyası yerine, kaynak dosyalarının daha uzun listesine(veya kabuk genel arama şablonuna) izin veriliyor. Ancak, bu yöntemde farklı isimli dosyaları kopyalamak olanaksızdır, fakat sadece farklı dizine kopyalanabilir. DOS'ta her TXT dosyasının aynı isimde ve BAK uzantısıyla  “COPY *.TXT *.BAK” kullanarak yedek kopyalarını almak mümkün iken, Linux "cp *.txt *.bak" komutu genellikle bir hata mesajıyla sonuçlanacaktır.
+Bu örnekte, ilk list dosyasının tam kopyasını list2 isminin altına oluşturduk. Sonra /etc/passwd dosyasını bulunduğumuz dizine (hedef dizin ismi olan nokta ile temsil edildi) kopyaladık. En önemli cp parametreleri Tablo ~\ref{tab:tablo63}'te listelenmiştir. Tek kaynak dosyası yerine, kaynak dosyalarının daha uzun listesine(veya kabuk genel arama şablonuna) izin veriliyor. Ancak, bu yöntemde farklı isimli dosyaları kopyalamak olanaksızdır, fakat sadece farklı dizine kopyalanabilir. DOS'ta her TXT dosyasının aynı isimde ve BAK uzantısıyla  “COPY *.TXT *.BAK” kullanarak yedek kopyalarını almak mümkün iken, Linux "cp *.txt *.bak" komutu genellikle bir hata mesajıyla sonuçlanacaktır.
 
 Bunu anlamak için, kabuğun bu komutu nasıl çalıştırdığını kafanızda canlandırmak zorundasınız. Önce tüm genel arama şablonları için uygun dosya isimleriyle birlikte değiştirmeye çalışır, örneğin *.txt ile letter.txt ve letter.txt'yi. *.bak'ın *.txt uzantısında bağımlılığı ve mevcut dizinde*.bak için eşleşmeyen dosya isimleri sonucunda ne olur?—ama sonuç neredeyse hiç DOS kullanıcısının beklentisi olmayacak! Genellikle kabuk cp komutunda varolan bu dizin isminden(olası muhtemel) beri cp'nin görüş açısından başarısız olduğu genişletilmemiş *.bak genel arama şablonunu son argüman olarak alıp geçecektir.
 
@@ -531,7 +531,7 @@ liste2
 
 \paragraph{}{
 \begin {table}[H]
-\caption {more için klavye komutları} \label{tab:title} 
+\caption {more için klavye komutları} \label{tab:tablo64} 
 \begin{tabular}{c l}
 \hline
 Tuş & Sonuç\\
@@ -569,11 +569,11 @@ $ ls -ai /
 \end{subsection}
 \begin{subsection}{Dosya İçeriğinin Görüntülenmesi—more ve less}
 
-Metin dosyalarının ekranda kullanışlı ve olanaklı olarak görüntülenmesinde, uzun dökümanları sayfa sayfa görmenizi sağlayan more komutu çok yardımcı bir araçtır. Çıktı, bir ekrandan sonra ve "--More--"'un son satırda(zaten görünen dosyanın yüzdesi tarafından tespit edilir) görüntülenmesinden sonra durur. Çıktı bir tuşa bastıktan sonra devam eder. Çeşitli tuşların anlamları Tablo 6.4'te gösterilmiştir.
+Metin dosyalarının ekranda kullanışlı ve olanaklı olarak görüntülenmesinde, uzun dökümanları sayfa sayfa görmenizi sağlayan more komutu çok yardımcı bir araçtır. Çıktı, bir ekrandan sonra ve "--More--"'un son satırda(zaten görünen dosyanın yüzdesi tarafından tespit edilir) görüntülenmesinden sonra durur. Çıktı bir tuşa bastıktan sonra devam eder. Çeşitli tuşların anlamları Tablo ~\ref{tab:tablo64}'te gösterilmiştir.
 
 more ayrıca bazı parametreleri alır. -s("squeeze")("sıkıştırma") ile, boş satırların bulunduğu alanlar sadece bir tanesi kalacak şekilde sıkıştırılır, -l parametresi sayfa çıktısını yoksayar (genellikle "\^L" olarak tanımlanır) aksi halde çıktıyı durdurur. -n$<$number$>$ $<$sayı$>$ parametresi ekrandaki gösterilen satır sayılarını ayarlar, aksi halde more terminal tanımlamasına referans oluşturan TERM'den sayıyı alır.
 
-more'un çıktısında hala çıktının başlangıcına doğru geri gitmenin genel olarak imkansız olması gibi can sıkan sınırlamalar vardır. Bu sebeple, gelişmiş sürümü olan less (hafif bir kelime oyunu var— "less is more" ("less daha fazla") olarak düşünün) daha fazla [böyle!] günümüzde çoklukla görülür. less her zamanki gibi yön tuşlarıyla metin çevresinde dolaşmanıza imkan tanır, arama alışkanlıkları geliştirilmiştir ve metininin başına/sonuna gitmeye izin verir. En yaygın kullanılan klavye komutları Tablo 6.5'te özetlenmiştir.
+more'un çıktısında hala çıktının başlangıcına doğru geri gitmenin genel olarak imkansız olması gibi can sıkan sınırlamalar vardır. Bu sebeple, gelişmiş sürümü olan less (hafif bir kelime oyunu var— "less is more" ("less daha fazla") olarak düşünün) daha fazla [böyle!] günümüzde çoklukla görülür. less her zamanki gibi yön tuşlarıyla metin çevresinde dolaşmanıza imkan tanır, arama alışkanlıkları geliştirilmiştir ve metininin başına/sonuna gitmeye izin verir. En yaygın kullanılan klavye komutları Tablo ~\ref{tab:tablo65}'te özetlenmiştir.
 
 Bölüm ~\ref{chap:bolum5}'te bahsettiğimiz gibi, less genellikle man aracılığıyla kılavuz sayfalarını görüntüleyen bir program gibi hizmet eder. Böylece kılavuz sayfalarını incelerken tüm komutlar mevcuttur.
 \end{subsection}
@@ -585,7 +585,7 @@ find komutu dizin ağacında özyinelemeli bir şekilde verilen kriterlere göre
 
 \paragraph{}{
 \begin {table}[H]
-\caption {less için klavye komutları} \label{tab:title} 
+\caption {less için klavye komutları} \label{tab:tablo65} 
 \begin{tabular}{c l}
 \hline
 Tuş & Sonuç\\
@@ -620,11 +620,11 @@ find kendi işini yaparken birkaç argümana ihtiyacı olduğunu göz önünde b
 
 Başlangıç dizini özenle seçilmelidir. Eğer kök dizinini seçerseniz, gerekli dosya(lar)—eğer varsa—kesinlikle bulunacaktır, fakat arama uzun zaman alır. Tabi ki sadece bu dosyaları uygun ayrıcalıklı yerlerde ararsınız. Başlangıç dizini için tam yol adı vermek çıktıdaki dosya isimlerinin mutlak olmasına neden olur, başlangıç dizini için göreceli yol adları doğrultusunda göreli yol adları üretir. Tek başlangıç dizini yerine, dönüşte aranacak dizinlerin listesini belirleyebilirsiniz.
 
-Bu parametreler dosyalar üzerinde detaylı bir şekilde gereksinimleri tanımlar. Tablo 6.6'da en önemli denemeler gösterilmiştir. find belgeleri çok daha fazlasını açıklar.
+Bu parametreler dosyalar üzerinde detaylı bir şekilde gereksinimleri tanımlar. Tablo ~\ref{tab:tablo66}'da en önemli denemeler gösterilmiştir. find belgeleri çok daha fazlasını açıklar.
 
 \paragraph{}{
 \begin {table}[H]
-\caption {find için deneme durumları} \label{tab:title} 
+\caption {find için deneme durumları} \label{tab:tablo66} 
 \begin{tabular}{c l}
 \hline
 Deneme & Açıklama \\
@@ -654,7 +654,7 @@ Deneme & Açıklama \\
 }
 \paragraph{}{
 \begin {table}[H]
-\caption {find için mantıksal operatörler} \label{tab:title} 
+\caption {find için mantıksal operatörler} \label{tab:tablo67} 
 \begin{tabular}{l c l}
 \hline
 Parametre & Operatör & Anlam\\
@@ -667,7 +667,7 @@ Parametre & Operatör & Anlam\\
 \end {table}
 }
 
-Eğer çoklu denemeler aynı zamanda verilirse, eşleşecek dosyaların hepsi dolaylı olarak birlikte mantıksal VE işlemine uğrarlar. find ek mantıksal operatörlere destek verir(Tablo 6.7'ye bakınız).
+Eğer çoklu denemeler aynı zamanda verilirse, eşleşecek dosyaların hepsi dolaylı olarak birlikte mantıksal VE işlemine uğrarlar. find ek mantıksal operatörlere destek verir (Tablo ~\ref{tab:tablo67}'ye bakınız).
 
 Mantıksal operatörleri denerken hatalardan kaçmanın yolu, denemelerin parantezlerle kapatılmasıdır. Parantezler tabi ki kabuktan kaçırılmış olmalıdır:
 
