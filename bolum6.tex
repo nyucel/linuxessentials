@@ -36,7 +36,7 @@ Dosya isimlendirmede özgürce inceltme işareti ve diğer özel karakterleri ku
 	
 Özel karakterlerin ne olduğu sizin yerel ayarlarınıza bağlıdır, çünkü ASCII karakter setini (Çoğunlukla içinde İngilizce dili, rakamlar ve yaygın özel karakterlerin bulunduğu 128 karakter) aşan karakterlerin temsili için genel bir standart yoktur. Çokça kullanılan kodlamalara örnek olarak ISO 8859-1 ve ISO 8859-15 (sırasıyla ISO-Latin-1 ve ISO-Latin-9 olarak bilinir) bununla birlikte gelişigüzel ve çok doğru olmayarak adına "Unicode" denilen genellikle "UTF-8" karakter seti ile kodlanan ISO 10646. Y kodlaması sistemde yürürlükte iken dizine baktığınız zaman X kodlamasıyla oluşturduğunuz dosyalar tamamen farklı gözükebilir. Bu konuların üzerinde çok durursanız, size tüm konu hiçbir şey gibi gelir.
 	
-Bazen kendinizi yanlış karakter setiyle kodlanmış bir yığın dosya ile uğraşıyor olarak bulabilirsiniz. Çeşitli karakter setleri arasında dönüşüm yapabilen \emph{convmv} programı bu konuda size yardım edebilir. (Çoğu dağıtımın standart kurulumunun bir parçası olmadığından, muhtemelen kendiniz yüklemeniz gerekecektir.) Ancak, bunu tüm bölümü bitirdiğimiz zaman yapmanız daha uygun olur, çünkü daha normal \emph{mv}'den bahsetmedik bile ...
+Bazen kendinizi yanlış karakter setiyle kodlanmış bir yığın dosya ile uğraşıyor olarak bulabilirsiniz. Çeşitli karakter setleri arasında dönüşüm yapabilen \emph{convmv} programı bu konuda size yardım edebilir. (Çoğu dağıtımın standart kurulumunun bir parçası olmadığından, muhtemelen kendiniz yüklemeniz gerekecektir.) Ancak, bunu tüm bölümü bitirdiğimiz zaman yapmanız daha uygun olur, çünkü daha normal \emph{mv}'den bahsetmedik bile\ldots
 	
 Aşağıdaki tüm karakterleri dosya isimlendirmelerinde özgürce kullanabilirsiniz:
 \begin{verbatim}
@@ -497,7 +497,7 @@ $ rm list
 $ ls -li
 876543 -rw-r--r-- 1 joe users 2500 Oct 4 11:11 list2
 \end{verbatim}
-Dosya numaralarının sadece aynı fiziksel dosya sistemi (disk bölümü, USB sürücü, ...) içerisinde eşsiz olduğundan beri, bu tür bağlantılar sadece dosyanın bulunduğu aynı dosya sistemi üzerinde geçerlidirler.
+Dosya numaralarının sadece aynı fiziksel dosya sistemi (disk bölümü, USB sürücü, \ldots) içerisinde eşsiz olduğundan beri, bu tür bağlantılar sadece dosyanın bulunduğu aynı dosya sistemi üzerinde geçerlidirler.
 
 Dosyanın içeriğinin silinmesi hakkındaki açıklama tam olarak doğru değildir: Eğer son dosya adı silinmişse, dosya artık açılamayabilir, fakat eğer bir süreç hala dosyayı kullanıyorsa, dosyanın açık bir şekilde kapanana veya sonlanmasına kadar devam edebilir. Unix sisteminde program sonlandırıldığında dosyanın yok olması geçici dosyaların işlemesi için yaygın bir deyimdir: Yazma, okuma için oluşturduğunuz dosyayı sonra hemen silebilirsiniz. Daha sonra dosyaya veriyi yazabilir ve devamında geri atlayıp başa dönerek tekrar okuyabilirsiniz.
 
@@ -579,7 +579,7 @@ Bölüm ~\ref{chap:bolum5}'te bahsettiğimiz gibi, less genellikle man aracılı
 \end{subsection}
 \begin{subsection}{Dosya arama - find}
 
-"Burada foobar dosyası olmalı ... fakat nereye koymuştum?" şeklinde kim böyle bir hisse kapılmadı ki? Tabi ki sıkıcı bir şekilde tüm dizinlerinizi elinizle gezebilirsiniz. Fakat eğer bir şeyi kullanışlı kılmak için yardım etmezse Linux, Linux olmaz.
+"Burada foobar dosyası olmalı \ldots fakat nereye koymuştum?" şeklinde kim böyle bir hisse kapılmadı ki? Tabi ki sıkıcı bir şekilde tüm dizinlerinizi elinizle gezebilirsiniz. Fakat eğer bir şeyi kullanışlı kılmak için yardım etmezse Linux, Linux olmaz.
 
 find komutu dizin ağacında özyinelemeli bir şekilde verilen kriterlere göre eşleşen dosyaları arar. "Özyinelemeli" alt dizinlerin, alt dizinleri şeklinde göz önünde bulundurarak devam eden anlamı içerir. find'ın çıktısı eşleşen dosyaların sonrasında diğer programlara aktarılabilecek olan yol isimlerini içerir. Sonraki örnek komut yapısını tanımlar:
 
@@ -737,7 +737,7 @@ $ locate letter.txt
 
 Bununla birlikte oldukça önemli bir faydası olan locate (LPIC1 müfredatının parçasında bu olgu vurgulanmıştır), tüm Linux dağıtımlarında varsayılan yüklemenin bir parçası değildir. Örneğin, eğer bir SUSE dağıtımı kullanıyorsanız, locate kullanabilmek için önce açıkça findutils-locate paketini kurmanız gerekir.
 
-"*", "?", ve "[...]" karakterleri kabukta yaptıkları gibi locate'te de aynı görevi üstlenirler. Fakat genel arama karakterleri olmayan sorgu herhangi bir yerdeki şablonun içerdiği tüm dosya isimleri ile yerleşirken, genel arama karakterleriyle yapılan sorgu sadece tamamen—baştan sona— şablonun tasvir ettiği isimleri geri döndürür. Bu nedenle locate için olan şablon sorguları genellikle "*" ile başlar:
+"*", "?", ve "[\ldots]" karakterleri kabukta yaptıkları gibi locate'te de aynı görevi üstlenirler. Fakat genel arama karakterleri olmayan sorgu herhangi bir yerdeki şablonun içerdiği tüm dosya isimleri ile yerleşirken, genel arama karakterleriyle yapılan sorgu sadece tamamen—baştan sona— şablonun tasvir ettiği isimleri geri döndürür. Bu nedenle locate için olan şablon sorguları genellikle "*" ile başlar:
 \begin{verbatim}
 $ locate "*/letter.t*"
 /home/joe/Letters/letter.txt
