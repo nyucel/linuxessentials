@@ -44,7 +44,7 @@ Nerdeyse her komut satırı programı ayar dosyaları ve sistem çağrıları vs
 
 \paragraph{}{
 \begin {table}[H]
-\caption {Kılavuz sayfasının bölümleri} \label{tab:title} 
+\caption {Kılavuz sayfasının bölümleri} \label{tab:tablo51} 
 \begin{tabular}{c l}
 \hline
 Bölüm & İçerik \\
@@ -73,16 +73,16 @@ Birçok Linux dağıtımlari komut satırından çağrılabilen her komut için 
 \end{subsection}
 \begin{subsection}{Yapı}
 
-Yardım sayfalarının yapısı kabaca Tablo 5.1 taslağını takip eder. Yine de her kılavuz sayfası orada belirtilen her bölümü içermeyebilir. Özellikle de, EXAMPLES kısmı sık sık kısa kısa verilmiştir.
+Yardım sayfalarının yapısı kabaca Tablo ~\ref{tab:tablo51} taslağını takip eder. Yine de her kılavuz sayfası orada belirtilen her bölümü içermeyebilir. Özellikle de, EXAMPLES kısmı sık sık kısa kısa verilmiştir.
 
 BUGS başlığı genellikle yanlış anlaşılır: Düzeltilen uygulamanın içindeki \emph{hataları} okuyun; elbette burada belgelendirilen genellikle komutun aldığı yaklaşımdaki kısıtlamalardır ve siz bu kısıtlamaların makul bir çabayla kaldırılamadığını bir kullanıcı olarak bilmelisiniz. Örneğin, \emph{grep} komutunun belgeleri düzenli ifadelerin çeşitli yapılarının bulunması grep sürecinin çok bellek kullanmasına yol açabildiğini belirtir. Bu \emph{grep} komutunun uyguladığı arama yönteminin sonucudur ve önemsiz, kolayca giderilebilen hata değildir.    
 
-Yardım sayfaları \emph{groff} adında bir program tarafından metni görüntülemek veya yazdırmak için özel bir girdi biçimi olarak yazılır. Kılavuz sayfaları /usr/share/man dizininin \emph{man}n alt dizini içinde saklanır. n Tablo 5.2'de verilen bölüm numaraları içindir.
+Yardım sayfaları \emph{groff} adında bir program tarafından metni görüntülemek veya yazdırmak için özel bir girdi biçimi olarak yazılır. Kılavuz sayfaları /usr/share/man dizininin \emph{man}n alt dizini içinde saklanır. n Tablo ~\ref{tab:tablo52}'de verilen bölüm numaraları içindir.
 
 Diğer dizinlerdeki yardım sayfalarını, \emph{man} komutu tarafından sırasıyla taranacak dizinleri içeren, MANPATH çevresel değişkenini ayarlayarak birleştirebilirsiniz. \emph{manpath} komutu MANPATH değişkeninin nasıl ayarlanabileceği hakkında ipuçları barındırır.
 \paragraph{}{
 \begin {table}[H]
-\caption {Kılavuz sayfası konuları} \label{tab:title} 
+\caption {Kılavuz sayfası konuları} \label{tab:tablo52} 
 \begin{tabular}{c l}
 \hline
 Bölüm & {İçerik}\\
@@ -104,7 +104,7 @@ n & "Yeni" komutlar \\
 \end{subsection}
 \begin{subsection}{Bölümler}
 
-Her kılavuz sayfası "kılavuzu" kapsayan "bölüme" aittir (Tablo 5.2). 1., 5. ve 8. bölümler en önemlileridir. Aramayı daraltmak için \emph{man} komutu satırına bölüm numarası verebilirsiniz. Örneğin, "\emph{man 1 crontab}" \emph{crontab} komutu için kılavuz sayfasını görüntülerken, "\emph{man 5 crontab}"-\emph{crontab} dosyalarının biçimlerini açıklar. Kılavuz sayfalarını işaret ederken, bölüm numarasını parantez içinde belirtmek gelenekseldir; biz, \emph{crontab}(1) \emph{crontab} komut kılavuzu, ve \emph{crontab}(5) dosya biçimi açıklaması aradaki farkı ayırt ederiz.
+Her kılavuz sayfası "kılavuzu" kapsayan "bölüme" aittir (Tablo ~\ref{tab:tablo52}). 1., 5. ve 8. bölümler en önemlileridir. Aramayı daraltmak için \emph{man} komutu satırına bölüm numarası verebilirsiniz. Örneğin, "\emph{man 1 crontab}" \emph{crontab} komutu için kılavuz sayfasını görüntülerken, "\emph{man 5 crontab}"-\emph{crontab} dosyalarının biçimlerini açıklar. Kılavuz sayfalarını işaret ederken, bölüm numarasını parantez içinde belirtmek gelenekseldir; biz, \emph{crontab}(1) \emph{crontab} komut kılavuzu, ve \emph{crontab}(5) dosya biçimi açıklaması aradaki farkı ayırt ederiz.
 
 -a seçeneğiyle \emph{man} verilen isme göre bulunan kılavuzu gösterir; seçenek vermezsek ilk bulunan sayfayı (genellikle bölüm 1) gösterir.
 \end{subsection}
