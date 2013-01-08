@@ -46,7 +46,7 @@ Bu bölümde bu konuyu derinlemesine incelemeyeceğiz. Çok karmaşık kabuk bet
 
 \paragraph{}{
 \begin {table}[H]
-\caption {Linux'ta Standart Kanallar} \label{tab:title} 
+\caption {Linux'ta Standart Kanallar} \label{tab:tablo81} 
 \begin{tabular}{c l l l l}
 \hline
 Kanal & İsim & Kısaltma & Aygıt & Kullanım Alanı\\
@@ -59,7 +59,7 @@ Kanal & İsim & Kısaltma & Aygıt & Kullanım Alanı\\
 \end {table}
 }
 
-Bu standart yollar Tablo 8.1 de gösterilmiştir. Tabloda belirtilen stdin, stdout ve stderr standart girdi, standart çıktı ve standart hata çıktısı için olan teknik terimlerdir. Bu yollar daha sonra kullanacağımız gibi sırasıyla 0, 1 ve 2 numaralarına atanmışlardır.
+Bu standart yollar Tablo ~\ref{tab:tablo81}'de gösterilmiştir. Tabloda belirtilen stdin, stdout ve stderr standart girdi, standart çıktı ve standart hata çıktısı için olan teknik terimlerdir. Bu yollar daha sonra kullanacağımız gibi sırasıyla 0, 1 ve 2 numaralarına atanmışlardır.
 
 Kabuk bahsedilen program hiçbir şeyi fark etmeden ayrı komutlar için bu standart yolları yönlendirebilir. Çıktı ekranda ya da terminal penceresi dışında belirtilen bir dosyada yazıyor olabilir, buna rağmen her zaman standart yollar kullanılır. Bu dosya başka bir cihazda olabilir, yazıcı gibi, çıktıyı alacak metin dosyasını belirlemek mümkündür. Dosyanın o anda varolması bile gerekmez, isteğe göre oluşturulabilir. Standart girdi yolu da aynı şekilde yönlendirilebilir. Bir program girdisini klavyeden değil belirtilen bir dosyadan (bu başka bir aygıt ya da dosya olabilir) alır.
 
@@ -243,7 +243,7 @@ Bu bölümün sonunda komutlar gibi en önemli konulara aşina hale geleceksiniz
 
 \paragraph{}{
 \begin {table}[H]
-\caption {cat seçenekleri} \label{tab:title} 
+\caption {cat seçenekleri} \label{tab:tablo82} 
 \begin{tabular}{c l}
 \hline
 Seçenek & Sonuç\\
@@ -264,7 +264,7 @@ empty line.\\
 \begin{section}{Dosyaları Okuma ve Yazma}
 \begin{subsection}{Metin Dosyalarının Çıktıları ve Birleştirme—cat}
 
-cat komutu gerçekte verilen birden fazla dosya isminin komut satırında birleştirmek için kullanılır. Eğer sadece bir dosya ismini gönderirseniz, bu dosyanın içeriği standart çıktıya yazılacaktır. Eğer hiç dosya ismi belirtmezseniz cat standart girdiyi okumaya başlar – bu kullanışsız görünebilir ama cat satırları numaralandırma, satırları sonlandırma ve özel karakterleri görünür yapma ya da boş satırları sıkıştırmak gibi seçenekler sunar. (Tablo 8.2)
+cat komutu gerçekte verilen birden fazla dosya isminin komut satırında birleştirmek için kullanılır. Eğer sadece bir dosya ismini gönderirseniz, bu dosyanın içeriği standart çıktıya yazılacaktır. Eğer hiç dosya ismi belirtmezseniz cat standart girdiyi okumaya başlar – bu kullanışsız görünebilir ama cat satırları numaralandırma, satırları sonlandırma ve özel karakterleri görünür yapma ya da boş satırları sıkıştırmak gibi seçenekler sunar (Tablo ~\ref{tab:tablo82}).
 
 Söylemeye gerek olmasa bile belirtmekte yarar var, cat sadece metin dosyalarında anlaşılır sonuçlar ortaya çıkarır. Eğer bu komutu diğer çeşit dosyalar için kullanırsanız (/bin/cat gibi bir binary dosyası için mesela) en azından bir metin terminalinde kabuk okunamayan karakterlerden oluşacaktır çok büyük ihtimalle. Bu durumda normal karakter grubunu sıfırlayarak geri getirebilirsiniz. Eğer cat çıktısını bir dosyaya yönlendirirseniz bir sorun kalmayacaktır.
 
@@ -497,7 +497,7 @@ Jumpabout:Mike:Fairing Track Society:154:Men
 Fleetman:Fred:Rundale Sportsters:217:Men
 \end{verbatim}
 
-sort için olan bu ve bazı önemli seçenekler Tablo 8.3'te gösterilmiştir, buna çalışmak iyi olur. Sort çok yönlü ve size çok zaman kazandırabilecek güçlü bir komuttur.
+sort için olan bu ve bazı önemli seçenekler Tablo ~\ref{tab:tablo83}'te gösterilmiştir, buna çalışmak iyi olur. Sort çok yönlü ve size çok zaman kazandırabilecek güçlü bir komuttur.
 \paragraph{uniq komutu}{uniq komutu girdide verilen aynı satırların vurgulanmasında önemli bir görev yapar.  “Aynı” olarak kabul edilen ,her zamanki gibi, özel seçenekler kullanılarak değiştirilebilir. Uniq gördüğümüz komutların çoğundan farklıdır, bir tane dışında isteğe bağlı girdi dosyası kabul etmez; eğer ikinci bir dosya ismi verilirse bunu çıktının konulması istenen dosya olarak düşünür. (eğer ikinci dosya ismi verilmezse çıktı standart çıktıya yazılır) uniq çağrısında hiç dosya ismi verilmemişse, beklendiği gibi standart girdiden okumaya başlar. Uniq en iyi girdi dosyasındaki satırlar sıralanmış ise çalışır, sıralanmaktan kasıt aynı satırların birbiri arkasına gelmesidir. Eğer durum bu değilse çıktıda bütün tekrarlanan satırların görüneceği garantisi verilmez.}
 \begin{verbatim}
 $ cat uniq-test
