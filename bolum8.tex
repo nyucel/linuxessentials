@@ -410,7 +410,26 @@ Sweat Susan Rundale Sportsters 93 Ladies
 Runnington Vivian Lameborough TFC 117 Ladies
 \end{verbatim}
 
-TABLO
+\paragraph{}{
+\begin {table}[H]
+\caption {sort seçenekleri} \label{tab:tablo83} 
+\begin{tabular}{l l}
+\hline
+Seçenek & Sonuç\\
+\hline
+-b (blank) & Scrolls up a line\\
+-d (dictionary) & Sorts in “dictionary order”, i. e., only letters, digits and spaces are taken into account\\
+-f (fold) & Makes uppercase and lowercase letters equivalent\\
+-i (ignore) & Displays help \\
+-k $<$field$>$[, $<$field’$>$] (key) & Sort according to <field> (up to and including $<$field’$>$) \\
+-n (numeric) & Considers field value as a number and sorts according to its numeric value; leading blanks will be ignored\\
+-o datei (output) & Writes results to a file, whose name may match the original input file\\
+-r (reverse) & Sorts in descending order, i. e., Z to A\\
+-t $<$char$>$ (terminate) & The $<$char$>$ character is used as the field separator\\
+-u (unique) & Writes only the first of a sequence of equal output lines\\
+\hline
+\end{tabular}
+\end {table}}
 
 Bu sıralı liste hala biraz hatalı; bunun için 8.14 numaralı alıştırmaya bakın. 
 Aşağıdaki örnekte de görüldüğü gibi sıralama alanı daha detaylı bir şekilde belirlenebilir:
@@ -478,7 +497,7 @@ Jumpabout:Mike:Fairing Track Society:154:Men
 Fleetman:Fred:Rundale Sportsters:217:Men
 \end{verbatim}
 
-sort için olan bu ve bazı önemli seçenekler Tablo 8.3' te gösterilmiştir, buna çalışmak iyi olur. Sort çok yönlü ve size çok zaman kazandırabilecek güçlü bir komuttur.
+sort için olan bu ve bazı önemli seçenekler Tablo 8.3'te gösterilmiştir, buna çalışmak iyi olur. Sort çok yönlü ve size çok zaman kazandırabilecek güçlü bir komuttur.
 \paragraph{uniq komutu}{uniq komutu girdide verilen aynı satırların vurgulanmasında önemli bir görev yapar.  “Aynı” olarak kabul edilen ,her zamanki gibi, özel seçenekler kullanılarak değiştirilebilir. Uniq gördüğümüz komutların çoğundan farklıdır, bir tane dışında isteğe bağlı girdi dosyası kabul etmez; eğer ikinci bir dosya ismi verilirse bunu çıktının konulması istenen dosya olarak düşünür. (eğer ikinci dosya ismi verilmezse çıktı standart çıktıya yazılır) uniq çağrısında hiç dosya ismi verilmemişse, beklendiği gibi standart girdiden okumaya başlar. Uniq en iyi girdi dosyasındaki satırlar sıralanmış ise çalışır, sıralanmaktan kasıt aynı satırların birbiri arkasına gelmesidir. Eğer durum bu değilse çıktıda bütün tekrarlanan satırların görüneceği garantisi verilmez.}
 \begin{verbatim}
 $ cat uniq-test
