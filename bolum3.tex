@@ -27,32 +27,38 @@ Giriş yaptıktan sonra bilgisayarınız sizin için görsel bir oturum açar. G
 
 \paragraph{Metin konsoluna giriş}{İş istasyonlarının aksine, sunucu sistemleri sıklıkla sadece bir metin konsolunu destekler veya gereken zamandan daha fazla kalmak istemeyeceğiniz gürültülü makine odaları içinde kurulumu destekler. Bu gibi bilgisayarlara ağ yoluyla giriş yapmayı tercih edeceksiniz. Her iki durumdada görsel giriş ekranı göremeyeceksiniz ama bilgisayar size kullanıcı isminizi ve parolanızı doğrudan soracak. Mesela bunun gibi birşey görebilirsiniz.}
 
+\footnotesize
 \begin{verbatim}
 computer login: _
 \end{verbatim}
+\normalsize
 
 Eğer bilgisayarın “computer” ismiyle sormasını istersek bu böyledir. Burada kullanıcı adınızı girmelisiniz ve \Return tuşuna basmalısınız. Daha sonra bilgisayar size parolanızı soracaktır. 
 
+\footnotesize
 \begin{verbatim}
 password:
 \end{verbatim}
+\normalsize
 
-Burada parolanızı girin. Bu kez parolayı yazarken hiçbirşey görmeyeceksiniz. Eğer hem kullanıcı adını hemde parolanızı doğru girdiyseniz sistem girişinizi kabul edecektir. Daha sonra kabuk -yani komut satırı yorumlayıcısı- başlar ve komutları girmek ve programları çağırmak için klavyeyi kullanmanıza izin verir. Giriş yaptıktan sonra “ev dizini” sizin dosyalarınızın bulunduğu yer ekrana gelir.
+Burada parolanızı girin. Bu kez parolayı yazarken hiçbirşey görmeyeceksiniz. Eğer hem kullanıcı adını hemde parolanızı doğru girdiyseniz sistem girişinizi kabul edecektir. Daha sonra kabuk, yani komut satırı yorumlayıcısı, başlar ve komutları girmek ve programları çağırmak için klavyeyi kullanmanıza izin verir. Giriş yaptıktan sonra “ev dizini” sizin dosyalarınızın bulunduğu yer ekrana gelir.
 
 Eğer güvenli kabuk kullanırsanız, mesela başka bir makineye ağ yoluyla giriş yaptığınızda bağlandığız bilgisayardaki kullanıcı adıyla sizin kullandığınız bilgisayarın kullanıcı adını aynı olarak varsayar ve kullanıcı adını sormaz. Detaylar bu kılavuzun kapsamı dışındadır. Güvenli kabuk Linux Administration II kitabında detaylı olarak anlatılmıştır.
 
 \paragraph{Metin konsolundan çıkış}{metin konsolunda “logout” komutunu kullanarak çıkış yapabilirsiniz.}
 
+\footnotesize
 \begin{verbatim}
 $ logout
 \end{verbatim}
+\normalsize
 
 Sistemden çıkış yaptığınızda metin konsolu üzerinde sistem başlama mesajını ve diğer kullanıcı giriş iletisini gösterir. Güvenli kabuk oturumuyla yerel bilgisayarınızdan başka bir komut iletisini elde edebilirsiniz. 
 
 \paragraph{{\Huge{\PencilLeftDown}}Alıştırmalar}{
 \begin{enumerate}
  \item Sisteme giriş yapmayı deneyin. Daha sonrada çıkış yapın. Kullanıcı adı ve parolanızı sistem dökümanları içerisinde bulacaksınız veya öğretmeniniz size söyleyecek?
- \item Eğer varolmayan bir kullanıcı adıyla giriş yapılırsa veya yanlış parola girilirse ne olur? Herhangibir sıradışı birşey farkettiniz mi? Sistemin böyle davranmasına sebep olan şey nedir?
+ \item Eğer varolmayan bir kullanıcı adıyla giriş yapılırsa veya yanlış parola girilirse ne olur? Herhangi bir sıradışı birşey farkettiniz mi? Sistemin böyle davranmasına sebep olan şey nedir?
 \end{enumerate}}
 \end{section}
 
@@ -63,9 +69,9 @@ Görsel ortama giriş yaptığınızda Linux bilgisayarınız modern bilgisayarl
 
 Malesef bizim için burada iki Linux’un aynı olduğunu belirlemek mümkün değil. Resmi görsel ortamlarla gelen Windows veya Macintosh sistemlerinin aksine Linux sistem kurulumunda bir çok görsel ortam arasından birini seçmeni öneren dağıtımlarla gelir. 
 \begin{itemize}
-\item KDE ve GNOME, benzer bir “look and feel” ile birlikte geniş kapsamlı uygun uygulamaları sağlamaya çalışan masaüstü ortamlarıdır. KDE ve GNOME’un hedefi hazır sistemlerin daha iyisini ve karşılaştırılabilir deneyimlerini sunmaktır. KDE ve GNOME yenilikçi özellikler içerir. KDE’ de arka plandaki dosyaların ve dökümanların indekslerini anlamsal arama özellikleri vardır ve geçen ay İspanyada çekildiğim fotoğraflara diskte nerede saklandığına bakmaksızın uygun erişim izni verdiği varsayılır
+\item KDE ve GNOME, benzer bir “look and feel” ile birlikte geniş kapsamlı uygun uygulamaları sağlamaya çalışan masaüstü ortamlarıdır. KDE ve GNOME’un hedefi hazır sistemlerin daha iyisini ve karşılaştırılabilir deneyimlerini sunmaktır. KDE ve GNOME yenilikçi özellikler içerir. KDE’de arka plandaki dosyaların ve dökümanların indekslerini anlamsal arama özellikleri vardır ve geçen ay İspanyada çekildiğim fotoğraflara diskte nerede saklandığına bakmaksızın uygun erişim izni verdiği varsayılır
 \footnote{Microsof bir kaç kez bunu yapacağını vaat etti ama sonraki Windows versiyonu piyasaya çıkmadan önce yenilik listesinden çıkarıldı.}. Kabaca konuşursak, KDE ileri bilgili kullanıcılar için geniş kapsamlı özelleştirmeye odaklanır, GNOME ise basitlik ve kullanılabilirlikle ilgilenir. Mesela mümkün olmayan veya daha az değiştirilebilir şeyleri sağlamaya yönelimlidir. 
-\item LXDE ve XFCE “lightweight” ortamlardır. Temel yaklaşımlarda KDE ve GNOME’a benzer fakat daha çok kaynakların ekonomik kullanımına yönelmiştir, bu yüzden anlamsal arama gibi çeşitli pahalı servisler kullanılabilir. 
+\item LXDE ve XFCE “hafif” ortamlardır. Temel yaklaşımlarda KDE ve GNOME’a benzer fakat daha çok kaynakların ekonomik kullanımına yönelmiştir, bu yüzden anlamsal arama gibi çeşitli pahalı servisler kullanılabilir. 
 \item Tüm masaüstü ortamını kullanmaktansa pencere yöneticilerinin bir grubunu kullanmayı tercih edebilirsiniz. This implies certain tradeoffs regarding the optical consistency and cooperation of programs, which result from the fact that, historically, there used to be few guidelines for the look and feel of graphical programs on Unix and Linux. İlk olarak KDE’den önce bu bakış açısında bir standartlaşma kurulmuştur. Bu böyle şeyleri yapmak için genel bir yol olmuştur. Fakat bugün Linux kullanıcılarının çoğunluğu görsel ortamların  dahada iyileştirilmesine inanır. 
 \end{itemize}
 
@@ -74,13 +80,13 @@ Aynı görsel ortamı kullanan iki farklı dağıtım bile olsa bu onların ayn�
 \paragraph{Kontrol çubuğu}{ herhangi bir olayda kontrol çubuğu (yatay araç çubuk (dock), panel ya da neye sahipseniz) ekranın ya en üstünde ya da en altında senin önemli uygulama programlarına giriş yapmana izin veren veya bilgisayarı kapatmana yada çıkış yapmanı sağlayan menülerdir. KDE windowstaki başlangıç butonuna benzeyen bir panele bağlıdır. Panelde aynı windowstaki başlangıç butonu gibi programların menüsünü açar. GNOME başlangıç butonu kullanmaz fakat ekranın en üstüne menü çubuğunu taşır. En önemli ya da en çok kullandığınız programlar ekranın solundaki sürükle bırak menüye eklenip kolayca erişilebilir.}
 \paragraph{Dosya Yöneticisi}{ Görsel ortamlar genellikle disk üzerinde dizinlere (dosyalara) erişmenize izin veren ve onların içeriklerini alt dizinlere ayırmanıza ve dosyaları işletmenize olanak sağlayan bir dosya yöneticisine sahiptir. Buradaki yöntemlerin diğer görsel sistemlerden çokta fazla farkı yoktur. Bir pencereyi bir dizinden diğerine sürükleyerek kopyalayabilir veya taşıyabilirsiniz ve isterseniz farenin sağ butonuna tıklayarak içerik menüsünü açabilir dosyaya farklı işlemler uygulayabilirsiniz. Deneyin.}
 \paragraph{Kontrol çubuğu}{ sıklıkla kullanılan dosyalar ve programlar genellikle ekranın altında saklanır veya hızlı erişim için ekranda sabit bir yere yerleştirilir. }
-\paragraph{Sanal masaüstü}{ çoğu Linux tabanlı görsel ortamların genel bir özelliği Windows ve OS X’in sunmadığı sanal masaüstleridir. Bu sanal masaüstleri ekranda boş bir alanda çoğaltılabilir. Arka ve ön planda çalıştırılarak program pencerelerinin kendi seçimleriyle masaüstleri bir çok kez simule edilebilir. Bunlar çalıştığın program veya dökümanların masaüstünde istediğin yerde olabilmesine izin verir, web tarayıcın ve eposta okuyucun için masaüstünde yer ayırabilirsiniz ve programlanmış masaüstünde pencerelere yeniden düzenleme zorunluluğun olmadan çabucak eposta mesajlarını  oluşturabilirsin.}
+\paragraph{Sanal masaüstü}{çoğu Linux tabanlı görsel ortamların genel bir özelliği Windows ve OS X’in sunmadığı sanal masaüstleridir. Bu sanal masaüstleri ekranda boş bir alanda çoğaltılabilir. Arka ve ön planda çalıştırılarak program pencerelerinin kendi seçimleriyle masaüstleri bir çok kez simule edilebilir. Bunlar çalıştığın program veya dökümanların masaüstünde istediğin yerde olabilmesine izin verir, web tarayıcın ve eposta okuyucun için masaüstünde yer ayırabilirsiniz ve programlanmış masaüstünde pencerelere yeniden düzenleme zorunluluğun olmadan çabucak eposta mesajlarını  oluşturabilirsin.}
 \end{subsection}
 \begin{subsection}{Tarayıcılar}
 
-Modern bilgisayarlar üstünde en ünlü programlardan biri web tarayıcılarıdır. İyiki en popüler tarayıcılar açık kaynaklı programlardır ve Firefox veya Google Chrome Windows veya OS X ve Linux için uygundur (dağıtımınız muhtemelen Google Chrome sunmaz fakat açık kaynak çeşidi olan Chromium’u sunar, aralarında çokta bir fark yoktur) internet girişi gibi bir giriş için uygulama menüne baktığınızda tarayıcıyı bulabilirsiniz.
+Modern bilgisayarlar üstünde en ünlü programlardan biri web tarayıcılarıdır. İyiki en popüler tarayıcılar açık kaynaklı programlardır ve Firefox veya Google Chrome Windows veya OS X ve Linux için uygundur (dağıtımınız muhtemelen Google Chrome sunmaz fakat açık kaynak çeşidi olan Chromium’u sunar, aralarında çok da bir fark yoktur) internet girişi gibi bir giriş için uygulama menüne baktığınızda tarayıcıyı bulabilirsiniz.
 
-Ticari durumlara rağmen Debian GNU Linux sistemler ve çeşitli türetimleri üzerinde Firefox tarayıcısının  “Iceweasel” olarak adlandırılmıştır. Çünkü Mozilla vakfı, Firefox üreticileri tarayıcının tamamlanmamış versiyonunun dağıtımına yalnızca kod resmi versiyona  uyduğunda izin verir. Debian projesi tamir ve güvenlik problemleri haklarını elinde tuttuğundan beri kopyalama ve ticari dağıtımları çok ciddi bir şekilde ele alır. Bu da ismin değişmesi zorunluluğunu getirir. (Diğer dağıtımlar resmi versiyonda kalır veya isim hakkıyla ilgilenmeden yeni bir isim bulur.) 
+Ticari durumlara rağmen Debian GNU Linux sistemler ve çeşitli türetimleri üzerinde Firefox tarayıcısının  “Iceweasel” olarak adlandırılmıştır. Çünkü Mozilla vakfı, Firefox üreticileri tarayıcının tamamlanmamış versiyonunun dağıtımına yalnızca kod resmi versiyona  uyduğunda izin verir. Debian projesi tamir ve güvenlik problemleri haklarını elinde tuttuğundan beri kopyalama ve ticari dağıtımları çok ciddi bir şekilde ele alır. Bu da ismin değişmesi zorunluluğunu getirir. (Diğer dağıtımlar resmi sürümde kalır veya isim hakkıyla ilgilenmeden yeni bir isim bulur.) 
 \end{subsection}
 \begin{subsection}{Terminaller ve Kabuklar}
 \label{sec:bolum323}
@@ -112,9 +118,9 @@ Elbette popüler görsel arayüzler menülerle araç çubuklarıyla kullanışl�
 
 Her halukarda hayatının geri kalanı boyunca tek bir editör kullanmak zorunda değilsiniz. Hiçkimse Nano gibi bir editörden başka bir seçeneğiniz yokmuş gibi sizi görsel masaüstü bilgisayarınız üstünde görsel bir editör kullanmaktan alıkoyamaz.
  
-Gelenekçi Linux tutkunları Nano gibi birşeyi küçümserler: gerçek Linux profesyoneli için doğru seçim editörü vi (“vee aye” diye okunur), klavye özelliği ok tuşlarına güvenmeyen ve makine odalarını doldurmuş metin terminallerinin yeşil ışığında zamana direnmiş yaşayan bir fosile benzetilir. Eğer sistem yöneticisi üzerinde bir kariyere girişirseniz yakın veya uzak gelecekte vi ile tanışmalısınız. En azından orta seviyede vi bilmek gerekir. Bu yüzden vi özellikle Linux’ta ve her Unix çeşidi üstünde geniş olarak kullanılmaya değer tek editördü. Fakat şu anda bu böyle değil. 
+Gelenekçi Linux tutkunları Nano gibi birşeyi küçümserler: gerçek Linux profesyoneli için doğru seçim editörü vi (“vii ay" diye okunur), klavye özelliği ok tuşlarına güvenmeyen ve makine odalarını doldurmuş metin terminallerinin yeşil ışığında zamana direnmiş yaşayan bir fosile benzetilir. Eğer sistem yöneticisi üzerinde bir kariyere girişirseniz yakın veya uzak gelecekte vi ile tanışmalısınız. En azından orta seviyede vi bilmek gerekir. Bu yüzden vi özellikle Linux’ta ve her Unix çeşidi üstünde geniş olarak kullanılmaya değer tek editördü. Fakat şu anda bu böyle değil. 
 
-GNU Nano pico isimli editörün basit bir klonudur. pico PINE eposta paketinin bir bölümüdür. (PINE kabul edilmiş tanımlara göre ücretsiz bir yazılım değildir bu yüzden GNU projesi yeni bir editör yazdı. Bu arada PINE’ın ileri sürümü alpine adı altında ücretsiz olarak mevcuttur ve pico’nun ücretsiz bir versiyonunuda taşır.) Çoğu dağıtım GNU Nano veya pico’yu önerir buda basitlik içindir. Bölümün geri kalanında GNU Nanodan bahsedeceğiz. Pratik olarak söylediğimiz herşey pico'ya da uygulanabilir.
+GNU Nano pico isimli editörün basit bir klonudur. Pico PINE eposta paketinin bir bölümüdür. (PINE kabul edilmiş tanımlara göre ücretsiz bir yazılım değildir bu yüzden GNU projesi yeni bir editör yazdı. Bu arada PINE’ın ileri sürümü alpine adı altında ücretsiz olarak mevcuttur ve pico’nun ücretsiz bir versiyonunuda taşır.) Çoğu dağıtım GNU Nano veya pico’yu önerir buda basitlik içindir. Bölümün geri kalanında GNU Nanodan bahsedeceğiz. Pratik olarak söylediğimiz herşey pico'ya da uygulanabilir.
 
 Orjinal pico ile karşılaştırırsak GNU Nano özellikleri bazı uzantılara sahiptir (bu uzantılar bir sürpriz göz önüne alarak gelmemiştir. Zaten isme göre çoktan mevcuttur. En önemli 3 editörden biridir) fakat bunların çoğu bizimle doğrudan ilgilenmez. Gerçekten çok açık olan sadece bir uzantı vardır. GNU Nano uluslar arası hale getirilmiştir. Böylece bir sistem üstünde diğer taraftan almanca dilini kullanmak için kurarsınız.  Almanca olarak metinleri mesajla yazabilirsiniz.
 
@@ -146,22 +152,28 @@ Satırın sadece bir bölümünü kesmek istiyorsanız imleçin karşılık geld
 \paragraph{Çevrimiçi yardım}{\Ctrl + \keystroke{g} kullanarak Nanonun ana yardım ekranını görebilirsiniz. Ana yardım ekranın editörün temellerini ve çeşitli klavye komutlarını açıklar. (Burada açıkladığımızdan daha fazla komut var. ) Yardım ekranını \Ctrl + \keystroke{x} kullanarak kapatabilirsiniz.
 Bunlar GNU Nanonun en önemli özellikleridir. Bunları denemek en iyisidir. İstediğiniz gibi deneyebilirsiniz.}
 
-vi başlığına geri dönün (Linux gurularının editörü olduğunu hatırla) Eğer macera istiyorsanız sisteminizde vim editörünün kurulu olduğundan emin olun. Bu editör vi’nin go-to gerçekleştirimidir. (Çok nadir olarak az sayıda kişi Linux üstünde orjinal BSD vi kullanır. ) vimtutor programını başlatın ve yarım saatinizi vi’ye girişiniz için harcayın (Linux dağıtımınıza bağlı olarak vimtutor’u ayrı bir paket olarak indirebilirisiniz. Şüphe içindeyseniz sistem yöneticinize veya bilen herhangibirine sorun).
+vi başlığına geri dönün (Linux gurularının editörü olduğunu hatırla) Eğer macera istiyorsanız sisteminizde vim editörünün kurulu olduğundan emin olun. Bu editör vi’nin go-to gerçekleştirimidir. (Çok nadir olarak az sayıda kişi Linux üstünde orjinal BSD vi kullanır.) vimtutor programını başlatın ve yarım saatinizi vi’ye girişiniz için harcayın (Linux dağıtımınıza bağlı olarak vimtutor’u ayrı bir paket olarak indirebilirisiniz. Şüphe içindeyseniz sistem yöneticinize veya bilen herhangibirine sorun).
 
 \paragraph{{\Huge{\PencilLeftDown}}Alıştırmalar}{
 \begin{enumerate}
  \item GNU Nano’yu başlatın ve aşağıdaki metni girin.
+ \footnotesize
  \begin{verbatim}
 Roses are red,
 Violets are blue,
 Linux are brilliant,
 I know it is true.
- \end{verbatim}Bu metni roses.txt olarak kaydedin.
+ \end{verbatim}
+\normalsize 
+ Bu metni roses.txt olarak kaydedin.
  \item önceki alıştırmadaki metinden alttaki satırı kesin
+ \footnotesize
  \begin{verbatim}
  Linux is brilliant
  \end{verbatim}
+ \normalsize 
  Üç kere yapıştırıp metnin aşağıdaki gibi gözükmesini sağlayın.
+\footnotesize
  \begin{verbatim}
 Roses are red,
 Violets are blue,
@@ -170,7 +182,9 @@ Linux are brilliant,
 Linux are brilliant,
 I know it is true.
  \end{verbatim}
+ \normalsize 
 \end{enumerate}}
+
 Bu satırların ilkinin içindeki “is” in “i” üstündeki imleç pozisyonunu işaretleyin. 3. Satırdaki “is”in “i”sine yönlendirin ve işaretli bölgeyi kaldırın.
 \end{section}
 \paragraph{Bu bölümdeki komutlar}{
