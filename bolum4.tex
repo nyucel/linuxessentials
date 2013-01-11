@@ -3,7 +3,7 @@
 \paragraph{Amaçlar}
 \begin{itemize}
  \item Komut-satırı kullanıcı arayüzünün önemini anlamak
- \item Bourne-Again Shell(Bash) komutları ile çalışmak
+ \item Bourne-Again Shell (Bash) komutları ile çalışmak
  \item Linux komutlarının yapısını anlamak
  \end{itemize}
  
@@ -14,7 +14,7 @@
 
 \begin{section}{Neden?}
 
-Linux (Unix gibi), diğer modern işletim sistemlerinden farklı olarak klavye ile metinsel komutlar girme fikrine dayanır. Windows tarzı, 15 yıldan bu yana izleyicilerini grafik arayüzlerin vazgeçilmez en önemli bileşen olduklarını düşündürterek beyin yıkayan sistemler kullananlar için çok eski bir teknik gibi gelebilir. Linux ortamına Windows ortamından geçen çoğu kişi için komut satırı arayüzü ilk başta karşılaştırmalı olarak bakılınca, bir 21. yy. insanının cep telefonu şebesi olmayan, kötü masa adabı ve ölümcü dişçileri olan Kral Artur sarayına geçişindeki durum gibi bir "kültür şoku"dur.
+Linux (Unix gibi), diğer modern işletim sistemlerinden farklı olarak klavye ile metinsel komutlar girme fikrine dayanır. Windows tarzı, 15 yıldan bu yana izleyicilerini grafik arayüzlerin vazgeçilmez en önemli bileşen olduklarını düşündürterek beyin yıkayan sistemler kullananlar için çok eski bir teknik gibi gelebilir. Linux ortamına Windows ortamından geçen çoğu kişi için komut satırı arayüzü ilk başta karşılaştırmalı olarak bakılınca, bir 21. yy. insanının cep telefonu şebekesi olmayan, kötü masa adabı ve ölümcü dişçileri olan Kral Artur sarayına geçişindeki durum gibi bir "kültür şoku"dur.
 
 Ama herşey o kadar göründügü gibi kötü değildir. Günümüzde Linux için de Windows'ta, Mac OS X'te olduğu gibi onlara eşit veya bazı noktalarda daha iyi kullanım sunan görsel arayüzler var. Öte yandan, görsel arayüzler ve metin odaklı komut satırı birbirini dışlayan değil, aslında tamamlayıcıdırlar ("Her iş için doğru araç" felsefesine göre).
 
@@ -32,7 +32,7 @@ Bugünün KDE gibi görsel "masaüstleri" de "kabuk" olarak kabul edilebilir. Kl
 
 Linux sistemlerinde standart, Bourne-again kabuğudur, kısacası \emph{bash}. Bu kabuk, Brian Fox ve Chet Ramey tarafından Özgür Yazılım Vakfı'nın GNU projesi altında geliştirilmiş olup, Korn ve C kabuklarının birçok işlevini birleştirir.
 
-Bahsettiğimiz kabukların haricinde başka kabuklar da mevcuttur. Unix üzerinde kabuk diğer programlar gibi sıradan bir uygulama programıdır, yeni bir tane yazmak için özel bir ayrıcalığa gerel yoktur - sadece kabuğun diğer programlarla nasıl iletişim kurması gerektiği yönetmeliğinin kurallarına bağlı kalmanız yeterlidir.
+Bahsettiğimiz kabukların haricinde başka kabuklar da mevcuttur. Unix üzerinde kabuk diğer programlar gibi sıradan bir uygulama programıdır, yeni bir tane yazmak için özel bir ayrıcalığa gerel yoktur. Sadece kabuğun diğer programlarla nasıl iletişim kurması gerektiği yönetmeliğinin kurallarına bağlı kalmanız yeterlidir.
 
 Kabuklar kullanıcı komutlarını okumak için etkilesimli olarak çağrılabilirler (genellikle "terminal" üzerinde). Pek çok kabuk bir de dosyadan henüz işlenmemiş komut dizilerini okuyabilir. Bu tür dosyalara "kabuk betikleri" denir.
 
@@ -66,9 +66,10 @@ Her ne kadar yukarıda bahsettiğimiz gibi farklı kabuklar olsa da biz çoğu L
 \end{enumerate}}
 
 Linux sisteminde kabuk bir "\emph{komut istemini}" görüntüler, bu da komutların girilebileceğini gösterir. Bu istem genellikle geçerli bir kullanıcı ve ana bilgisayar adını, mevcut dizini ve son karakteri içerir:
+\footnotesize
 \begin{verbatim}joe@red:/home > _
 \end{verbatim}
-
+ \normalsize 
 Bu örnek,\emph{joe} kullanıcısının \emph{red} adındaki bilgisayarın \emph{/home} dizininde bulunduğunu ifade etmektedir.
 \end{subsection}
 \begin{subsection}{Komut Yapısı}
@@ -77,7 +78,7 @@ Bir komut aslında karakterler dizisinden oluşur ve \Return tuşuna basılması
 
 Kabuk komut satırını yorumlayabilmek için ilk önce satırı sözcüklere ayırır. Gerçek hayatta olduğu gibi sözcükler boşluklarla ayırılır. Satırdaki ilk sözcük genellikle asıl komuttur. Satırdaki geri kalan sözcükler detaylı olarak ne yapılmak istendiğini belirten parametrelerdir.
 
-Kabuğun büyük ve küçük karakterleri birbirinden ayırabiliyor olması DOS ve Windows kullanıcılarını şaşırtabilir. Linux komutları genellikle sadece küçük harflerle (istisnalar kuralı kanıtlar) yazılır ve aksi halde anlaşılmaz. Ayrıca bölüm 4.2.4'e bakın.
+Kabuğun büyük ve küçük karakterleri birbirinden ayırabiliyor olması DOS ve Windows kullanıcılarını şaşırtabilir. Linux komutları genellikle sadece küçük harflerle (istisnalar kuralı kanıtlar) yazılır ve aksi halde anlaşılmaz. Ayrıca Bölüm ~\ref{sec:bolum424}'e bakın.
 
 Komutları sözcüklere ayırırken, kabuk için sözcüklerin arasında bir veya daha fazla boşluk karakterinin olması aynı şeydir. Aslında, kabuk için sözcükler arasında boşluk karakterinin olup olmamasının önemi yoktur; bir satır üzerinde dizme yapan karakterine de izin verilmiştir. Bu karakterin önemi de komutları dosyalardan okurkendir, çünkü kabuk doğrudan doğruya sekme karakterini girmeye izin vermez (en azından çemberlerin içinden atlamadan).
 
@@ -107,30 +108,37 @@ Kabuklar içerisinde aslında iki tip komut vardır:
 \paragraph{Dahili komutlar}{Bu komutlar kabuğun kendisi tarafından sunulmaktadır. Bourne-again hızlı gerçekleştirilebilen 30 kadar dahili komut içerir. Kabuğun durumunu değiştiren bazı komutlar (exit veya cd gibi) dışarıdan temin edilemez.}
 \paragraph{Harici komutlar}{Kabuk bu tür komutları kendi kendine çalıştırmaz ama çalıştırılabilir dosyaları başlatır. Ki bu tür dosyalar genelde /bin veya /usr/bin dizinleri altında bulunurlar. Bir kullanıcı olarak kendi programlarınızı temin edip kabuğun diğer tüm harici komutları çalıştırdığı gibi kendi programlarınızın çalıştırılmasını sağlayabilirsiniz.}
 \paragraph{Komutunuzun türünü öğrenmek için \emph{type} komutunu kullanabilirsiniz. Bu komuta bağımsız değişken olarak olarak komut adı verirseniz çıktı olarak size komutun türünü ya da karşılık gelen dosya ismini verir, örneğin}
+\footnotesize
 \begin{verbatim}
  $ type echo
  echo is a shell builtin
  $ type date
  date is /bin/date
 \end{verbatim}
+ \normalsize 
 
 (\emph{echo} komutu ilginç bir komut olup kendisine verilen parametreleri çıktı olarak verir:
 
+\footnotesize
 \begin{verbatim}
  $ echo Thou hast it now, king, Cawdor, Glamis, all
  Thou hast it now, king, Cawdor, Glamis, all
 \end{verbatim}
+ \normalsize 
 
 \emph{date} komutu da mevcut tarih ve saati ayarlanmış olan saat dilimi ve dile göre gösterir:
 
+\footnotesize
 \begin{verbatim}
  $ date
  Mon May 7 15:32:03 CEST 2012
 \end{verbatim}
+ \normalsize 
 
 \emph{echo} ve \emph{date} komutları hakkında daha fazlası için ~\ref{chap:bolum9} . Bölüme bakınız.)
 
-\emph{help} komutuyla dahili Bash komutları ile ilgili bilgiyi alabilirsiniz: 
+\emph{help} komutuyla dahili Bash komutları ile ilgili bilgiyi alabilirsiniz:
+\footnotesize 
 \begin{verbatim}
  $ help type
  type: type [-afptP] name [name ...]
@@ -140,26 +148,31 @@ Kabuklar içerisinde aslında iki tip komut vardır:
    If the -t option is used, `type' outputs a single word which is one of
    `alias', `keyword', `function', `builtin', `file' or `', if NAME is an
 \end{verbatim}
+ \normalsize
 \paragraph{{\Huge{\PencilLeftDown}}Alıştırmalar}{
 \pointedenum\begin{enumerate}
 \item Aşağıdaki programlardan hangileri harici ve hangileri kabuk içerisinde dahili olarak temin edilir: \begin{em}alias, echo, rm, test\end{em}?
 \end{enumerate}
 }
 \end{subsection}
-\begin{subsection}{Daha da fazla kural}
+\begin{subsection}{Daha da fazla kural}\label{sec:bolum424}
 Yukarıda belirtildigi gibi, kabuk, komut girildiğinde büyük-küçük harflere duyarlıdır. Bu durum sadece komutlar için geçerli olmayıp seçenekleri ve parametreleri (çoğunlukla dosya isimlerini) de kapsar.
 
 Şunu da göz önünde bulundurmalısınız ki kabuk, bazı karakterlerini özel giriş karakterleri olarak algılar. En önemlisi de daha önce belirtilmiş olan boşluk karakteri komut satırındaki sözcükleri ayırmak için kullanılmaktadır. Özel anlamı olan diğer karakterler şunlardır:
 
+\footnotesize 
 \begin{verbatim}
  $&;(){}[]*?!<>"'
 \end{verbatim}
+\normalsize
 
 Tabi bunları kullanmak isteyebiliriz. Bu durumda onlar kabuk tarafından özel karakterler gibi yorumlanmasın diye karakterlerin önüne "$\backslash$" işareti eklenir. "$\backslash$" işareti ile sadece tek bir özel karakteri kabuktan kaçırabilirsiniz. Birden fazla özel karakterin kaçırılması içinse tek tırnak yada çift tırnak ('\ldots',"\ldots") kullanılır. Örneğin:
 
+\footnotesize 
 \begin{verbatim}
  $ touch 'New File'
 \end{verbatim}
+\normalsize
 
 Tırnak işareti olduğu için komut tek bir dosya olan "New File" için geçerlidir. Tırnak işareti olmasaydı "New" ve "File" diye iki ayrı dosya olarak algılanırdı.
 
