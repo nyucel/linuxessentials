@@ -22,6 +22,7 @@ Linux'ta "Yardım" birçok durumda "kendi kendine yardım" anlamına gelir. Özg
 \begin{section}{\emph{help} Komutu ve \emph{--help} Seçeneği}
 
 \begin{em}bash\end{em} içerisinde dahili komutlar hakkındaki daha detaylı bilgi \emph{help} komutuna bağımsız değişken olarak komutun adı verilerek öğrenilebilir:
+\footnotesize
 \begin{verbatim}
 $ help exit
 exit: exit [n]
@@ -30,6 +31,7 @@ exit: exit [n]
     is that of the last command executed.
 $ _
 \end{verbatim}
+\normalsize 
 
 Daha detaylı açıklama için kabuğun rehber sayfasında ve bilgi belgelerinde mevcuttur. Bu bilgi kaynakları daha sonra bu bölümde ele alınacaktır.
 
@@ -40,7 +42,7 @@ Her komut --help seçeneğini desteklemeyebilir; sık sık çağrılan seçenekl
 \begin{section}{Çevrim İçi Kılavuz}
 \begin{subsection}{Genel Bakış}
 
-Nerdeyse her komut satırı programı ayar dosyaları ve sistem çağrıları vs. yanında "kılavuz sayfası" (ya da "man sayfası") ile gelir. Bu metinler genelde yazılımla beraber kurulur ve ,ncelemek için "\emph{man $<$isim$>$}" komutu kullanılır.
+Nerdeyse her komut satırı programı ayar dosyaları ve sistem çağrıları vs. yanında "kılavuz sayfası" (ya da "man sayfası") ile gelir. Bu metinler genelde yazılımla beraber kurulur ve incelemek için "\emph{man $<$isim$>$}" komutu kullanılır.
 
 \paragraph{}{
 \begin {table}[H]
@@ -186,7 +188,7 @@ Linux için ilgi çekici \emph{haber grupları} İngilizce için \emph{comp.os.l
 
 Linux tabanlı posta listelerini örneğin, \emph{majordomo@vger.kernel.org} adresinde bulabilirsiniz. LIST denilen listeye katılmak için önce "subscribe LIST" adresine e-posta atmanız gerekir. Sistemde mevcut yorumlanmış tüm posta listeleri \url{http://vger.kernel.org/vger-lists.html} adresinde bulabilirsiniz.
 
-Görünüşte anlaşılmayan problemleri çözmenin yolu hata mesajının Google'da aratmaktır(ya da güvendiğiniz baska bir arama motoru). Eğer faydalı bir sonuç alamazsanız, arama yaptığınız sorguda sadece size özel duruma bağlı kısımları kaldırın (mesela alan adları gibi). Google'da aramanın avantajı sadece ortak web sayfalarını indekslemek değil bunun yanında posta liste arsivlerini de indeksler. O yüzden sizin gibi sorunu yaşayan bir başka birilerinin bulunması da olası bir durum.
+Görünüşte anlaşılmayan problemleri çözmenin yolu hata mesajının Google'da aratmaktır (ya da güvendiğiniz baska bir arama motoru). Eğer faydalı bir sonuç alamazsanız, arama yaptığınız sorguda sadece size özel duruma bağlı kısımları kaldırın (mesela alan adları gibi). Google'da aramanın avantajı sadece ortak web sayfalarını indekslemek değil bunun yanında posta liste arsivlerini de indeksler. O yüzden sizin gibi sorunu yaşayan bir başka birilerinin bulunması da olası bir durum.
 
 Açık kaynak kodlu yazılımların büyük miktarda belgelendirmelerinin olması tek büyük faydaları değildir ayrıca çoğu belgelendirmenin de en az yazılımının kendisi gibi kısıtlı olmasıdır. Bu, yazılım geliştiricileri ve belge yazarları arasındaki işbirliğini kolaylaştırır ve belgelerin diğer dillere çevrilmesi daha kolaydır. Aslında, programcı olmayanlar için özgür yazılım projelerine destek verebilmeleri için bol fırsat bulunmaktadır, örn. iyi belgelemeler yazmak. Özgür yazılım faaliyet alanında programcılara verilen saygıyı belge yazarlarına da vermeye çalışılmalı. Bu durum kaymasının başlamış olması henüz tamamlandığı anlamına gelmemektedir.
 \end{section}
