@@ -22,7 +22,7 @@ Lpi Linux Temelleri sınavında sistem yönetiminden vurgulanmamaktadır fakat e
 
 Bu bölümde bir Linux bilgisayarın hemen kullanımı ile ilgili daha az olan birkaç konudan söz edeceğiz. Fakat  örneğin bir resim  elde etmek için bilgisayarda ne çalıştıracağını (“neden  bilgisayarım yavaş”)  ve yazılımın bilgisayarda nasıl yönetildiğini içerir. Biz burada ki büyük resimden sonra detaylara bakmıyoruz.  
 
-Linux sisteminde, sistem yöneticisi özel bir kullanıcı hesabı erişimine sahiptir, root. Bu hesap erişim kontrollerinden muaftır, aksi yapıldığında da (bölüm ~\ref{chap:bolum14}). Bu nedenle sistemden  bütün dosyalara erişilebilir. Bu gereklidir, örneğin, yeni yazılım kurmak için - "Normal" kullanıcıların sistem dizinleri program dosyalarını okuma ve yürütme olabilir. Fakat, diğer kullanıcıların zararına manipülasyonlar önlemek amacıyla, bunlar yazılmamalıdır. Yöneticinin ayrıca yedek kopyalarını oluşturmak için herhangi bir kullanıcının dosyalarını okuması gerekir (ve bir yedeği geri yüklemesi gerekiyorsa bunları geri yazması için).
+Linux sisteminde, sistem yöneticisi özel bir kullanıcı hesabı erişimine sahiptir, root. Bu hesap erişim kontrollerinden muaftır, aksi yapıldığında da (Bölüm ~\ref{chap:bolum14}). Bu nedenle sistemden  bütün dosyalara erişilebilir. Bu gereklidir, örneğin, yeni yazılım kurmak için - "Normal" kullanıcıların sistem dizinleri program dosyalarını okuma ve yürütme olabilir. Fakat, diğer kullanıcıların zararına manipülasyonlar önlemek amacıyla, bunlar yazılmamalıdır. Yöneticinin ayrıca yedek kopyalarını oluşturmak için herhangi bir kullanıcının dosyalarını okuması gerekir (ve bir yedeği geri yüklemesi gerekiyorsa bunları geri yazması için).
 
 Sistemdeki tüm dosyalara yazma yetkisinin sisteme ciddi zarar riski içerdiği açıktır. Eğer root olarak oturum açıyorsanız, Linux
 \begin{verbatim}
@@ -39,7 +39,7 @@ Password: secret Password for root
 # _
 \end{verbatim}
 
-root kabuğundan çıkıldıktan (exit veya ctrl+d kullanarak) sonra  başlangıçta su çağrılan kabukta tekrar sonlandırılır. bazı dağıtımlarda başka bir root hesabı olmadan elde edilmeye çalışılır. Ubuntu örneğin de olduğu gibi sistem sırasında oluşturulan ilk kullanıcının önüne sudo koyarak kök ayrıcalıklarıyla tek bir komutta yürütmeyi sağlar.
+root kabuğundan çıkıldıktan (exit veya \Ctrl+\keystroke{d} kullanarak) sonra  başlangıçta su çağrılan kabukta tekrar sonlandırılır. Bazı dağıtımlarda başka bir root hesabı olmadan elde edilmeye çalışılır. Ubuntu örneğin de olduğu gibi sistem sırasında oluşturulan ilk kullanıcının önüne sudo koyarak root ayrıcalıklarıyla tek bir komutta yürütmeyi sağlar.
 \begin{verbatim}
 $ sudo less /var/log/syslog Peruse system log
 \end{verbatim}
@@ -48,11 +48,11 @@ $ sudo less /var/log/syslog Peruse system log
 
 Çoğu linux dağıtımı sinyali root haklarıyla çalışan olduğunda kabuk "\#" istemiyle biterek çıktılanır. Başka bir şey görüntülenirse—genellikle "\$" veya "$>$", kabuk ayrıcalığı olmadığında.
 
-\paragraph{Alıştırmalar}{
-\begin{itemize}
+\paragraph{{\Huge{\PencilLeftDown}}Alıştırmalar}{
+\begin{enumerate}
  \item su komutunu deneyin. Neden örnek programı çağırmak için bir mutlak yol adı kullanıyor?
  \item su için root parolasını bilmeniz gerekir. sudo genelde kendi parolanızı sorar. Hangisi daha iyi?
-\end{itemize}}
+\end{enumerate}}
 \end{section}
 \begin{section}{Sistem Yapılandırması}
 
@@ -66,20 +66,20 @@ Sistem yapılandırmasını farklı metin dosyaları ile yönetme fikri  başlan
 
 \begin{itemize}
 \item Tek bir yazılım paketi veya hizmet yapılandırması hataları ile bütün olarak genellikle sisteme zarar verilmesi mümkün değildir (Sistemin işlevseliği için çok gerekli yapılandırma dosyaları vardır tabi ki onların hataları olabilir, örneğin, sistemi yeniden önyükleme yapamayan hale getirebilir. Ama bunlar en iyi ihtimalle küçük bir azınlıktır).
-\item Çoğu yapılandırma dosyası yorumlara izin verir. Bu sayede bireysel yapılandırma dosyalarının detaylarının nerede meydana geldiğinin doğrudan  belgelemesini sağlar. ve böylece ekip işbirliğini daha kolay yapar ya da kişinin kendi unutkanlık nedeniyle olan kazalar engellenir. Bu kesinlikle hatırlamak zorunda kalmanızdan çok daha iyidir menu y bir x girişi olduğunda sekme z bir iletişim açmanızı sağlar. Kesinlikle kontrol edilmesi gereken bir kutusu vardır. Aksi halde hiçbirşey çalışmaz (kağıt parçalarının bu tür bilgeliği vardır. En çok ihtyaç duyulduğunda kaybolma eğilimi vardır).
+\item Çoğu yapılandırma dosyası yorumlara izin verir. Bu sayede bireysel yapılandırma dosyalarının detaylarının nerede meydana geldiğinin doğrudan  belgelemesini sağlar ve böylece ekip işbirliğini daha kolay yapar ya da kişinin kendi unutkanlık nedeniyle olan kazalar engellenir. Bu kesinlikle hatırlamak zorunda kalmanızdan çok daha iyidir menu y bir x girişi olduğunda sekme z bir iletişim açmanızı sağlar. Kesinlikle kontrol edilmesi gereken bir kutusu vardır. Aksi halde hiçbirşey çalışmaz (kağıt parçalarının bu tür bilgeliği vardır. En çok ihtiyaç duyulduğunda kaybolma eğilimi vardır).
 \item Git veya Mercurial gibi sürüm denetim sistemini için metin dosyalarını "kontrol" edebilir ve böylece sadece çeşitli dosyaları kapsayan büyük değişiklikler belgelenemez. Fakat aynı zamanda gerekirse bunları düzenli bir şekilde geri alır. Bu aynı zamanda merkezi bir sunucu üzerinden bir bilgisayarın tam Yapılandırmasını depolamak için  uygunluğu sağlar. Böylece bilgisayarın herhangi bir nedenle yeniden yüklenmesi gerekirse derhal kullanılabilir - diyelim ki felaket bir donanım hatasında sonra. Veri merkezlerinde bu  çok avantajlar sağlar, özellikle tüm yapılandırma değişikliklerinde ayrıntı bir "denetim" istediğinde.
 \item Metin dosyaları yönetilmesi gereken bilgisayarlara merkezi bir sunucudan yapılandırma dosyaları dağıtarak tüm bilgisayar ağlarının uygun şekilde yapılandırılmasını sağlar. "puppet" veya "salt " gibi sistemlerde yapılandırma dosyaları için "şablonlar" yapmak mümkündür. Onlar tamamen bireysel bilgisayarların elle yapılandırmasını önlemek için dağıtıldığı zaman hedef bilgisayar için uygun bilgilerin kullanıldığı  örneklemedir. (“sneaker net”) Bu da, büyük ağların yönetimini kolaylaştırır  aynı zamanda daha küçük yüklemeye de yardımcıdır.
 \end{itemize}
-\paragraph{Alıştırmalar}{
-\begin{itemize}
+\paragraph{{\Huge{\PencilLeftDown}}Alıştırmalar}{
+\begin{enumerate}
  \item /etc dizinini araştırın. Pek çok dosyayı oradaki kılavuz sayfalarını "man fstab" gibi birşey ile deneyin. /etc nin içindeki dosyalar normal kullanıcı olarak okunamaz mı,  neden ?
-\end{itemize}}
+\end{enumerate}}
 \end{section}
 \begin{section}{Süreçler}
 
 Yürütülmekte olan bir programa "süreç" denir. Program kodunun kendisinin yanında (söz konusu işlemci için makine dilinde) bir süreç şu anda kullanımdaki dosyalar gibi verilerin yanı sıra idari bilgi için çalışan depolama ortamı içerir. (ortam değişkenleri için) Geçerli bir dizin ve bir işlem numarası veya sistemi içinde benzersiz süreci tanımlayan "PID". İşletim sistemi çekirdeği süreçlerin oluşturulmasından, işlemci zamanı ve  depolama atamasından ve çıktıktan sonra temizlemeden sorumludur. Süreçler dosyaları, aygıt ya da ağa erişmek için işletim sistemi çekirdeğinin içine çağırabilir.
 
-Yeni süreçler mevcut süreçler sırasında ortaya çıktı. — bakteri veya yaşamın diğer düşük biçimlerinin aksine - iki neredeyse özdeş kopyalarına ayrıldı. ("neredeyse özdeş", çünkü bir süreç "ana" ve diğerleride "çocuk" olarak kabul edilir.) Buna ek olarak, süreci farklı bir programı çalıştırmak için ayarlayabiliriz: örneğin, kabuktan ls komutu çağıracaksak, kabuk programı çalıştırmadan önce çocuk süreç oluşturulur. Bu kod (diğer şeyler arasında) olası bir giriş/çıkış yönlendirme düzenlemesi yapar ve sonra /bin/ls program dosyası ile yenilenir. ls programın sonunda çocuk süreç sona erer ve kabuk size sonraki komutu sorar.
+Yeni süreçler mevcut süreçler sırasında ortaya çıktı. Bakteri veya yaşamın diğer düşük biçimlerinin aksine iki neredeyse özdeş kopyalarına ayrıldı. ("neredeyse özdeş", çünkü bir süreç "ana" ve diğerleride "çocuk" olarak kabul edilir.) Buna ek olarak, süreci farklı bir programı çalıştırmak için ayarlayabiliriz: örneğin, kabuktan ls komutu çağıracaksak, kabuk programı çalıştırmadan önce çocuk süreç oluşturulur. Bu kod (diğer şeyler arasında) olası bir giriş/çıkış yönlendirme düzenlemesi yapar ve sonra /bin/ls program dosyası ile yenilenir. ls programın sonunda çocuk süreç sona erer ve kabuk size sonraki komutu sorar.
 
 PID ile ilk işlem, önyükleme sırasında işletim sistemi çekirdeği tarafından oluşturulur. Kurala göre bu, /sbin/ init  programıdır ve aynı zamanda "init süreci" olarak da adlandırılır. init süreci sistem önyüklemesinden ve örneğin, arka planda çalışan sistem servisleri için ek işlemleri başlatılmasından sorumludur.
 
@@ -99,7 +99,7 @@ Linux'ta bir süreç, aşağıdaki durumların biridir. Yani:
 \paragraph{Uykuda (S)}{Sürec genellikle bir tuşa basma  ya da diskten veri okuma gibi  giriş/çıkış olaylarını bekler.}
 \paragraph{Derin (bölünemez) uykuda (D)}{Süreç bir olay bekliyor ve rahatsız edilemez. Süreçler çok uzun süre bu durumda kalmamalıdır çünkü sadece sistem önyükleme tarafından silinebilirler. Eğer böyle olursa, bu genellikle bazı hatalardan kaynaklanmaktadır.}
 \paragraph{Geçici olarak durdurulmuş (T)}{Süreç geçici olarak sahibi veya bir yönetici tarafından durdurulabilir, ama daha sonra çalışmaya devam edebilir.}
-\paragraph{Zombi (Z)}{Süreç gerçekte tamamlanmıştır, ancak çıkış kodu henüz ana süreç tarafından yakalanamamıştır. Bu süreç "ölmek" anlamına gelir ama sistem içinde ölümsüz kalır. Gerçegin aksine zombiler sorun değildir çünkü onlarda, süreç tablosunda bir yuva başka kaynakların yerini kaplayamaz. Eğer sisteminiz çok fazla zombiyle kaplıysa, bu ilk etapta süreçleri oluşturan program ile ilgili bir sorun olduğunu gösterir. Bu program sonlandırmada zombileri yok etmek gerekir.
+\paragraph{Zombi (Z)}{Süreç gerçekte tamamlanmıştır, ancak çıkış kodu henüz ana süreç tarafından yakalanamamıştır. Bu süreç "ölmek" anlamına gelir ama sistem içinde ölümsüz kalır. Gerçeğin aksine zombiler sorun değildir çünkü onlarda, süreç tablosunda bir yuva başka kaynakların yerini kaplayamaz. Eğer sisteminiz çok fazla zombiyle kaplıysa, bu ilk etapta süreçleri oluşturan program ile ilgili bir sorun olduğunu gösterir. Bu program sonlandırmada zombileri yok etmek gerekir.
 }
 
 ps bilgilerini sağlayan kontrol parametrelerini kullanın. Örneğin, belirli bir süreç hakkında bilgi edinmek için bir işlem numarası girebilirsiniz:
@@ -135,7 +135,7 @@ Swap:    8388604      0 8388604
 \end{verbatim}
 }
 
-"Mem:" satırı bilgisayarın yaklaşık 4 GB RAM'e sahip olduğunu (altında "toplam"; işletim sistemi çekirdeği burada görünmeyen bazı belleği de doldurur) ve de yaklaşık yarısının dolu olduğunu söyler ("used" ve "free" komutlarına bakın). İşletim sistemi diskte veri depolamak için yaklaşık 700 MiB kullanır ve ikinci satır size bu boş ve kullanılan hafızayı nasıl etkilediğini söyler. Üçüncü satırda takas alanı (“Swap:”) kullanımı anlatılmaktadır (Bu makinede 8 GB, üzerinden).
+"Mem:" satırı bilgisayarın yaklaşık 4 GB RAM'e sahip olduğunu (altında "toplam"; işletim sistemi çekirdeği burada görünmeyen bazı belleği de doldurur) ve de yaklaşık yarısının dolu olduğunu söyler ("used" ve "free" alanlarına bakın). İşletim sistemi diskte veri depolamak için yaklaşık 700 MiB kullanır ve ikinci satır size bu boş ve kullanılan hafızayı nasıl etkilediğini söyler. Üçüncü satırda takas alanı (“Swap:”) kullanımı anlatılmaktadır (Bu makinede 8 GB, üzerinden).
 
 Modern Linux makinelerde "paylaşılan" sütunu her zaman sıfırdır; ve bu nedenle ihmal edilebilir.
 
@@ -154,28 +154,28 @@ Burada free komutu bilgisayar dostu mebibyte ve gibibyte'ı ifade etmek için "M
 \paragraph{şekil 12.1 eklenecek}{}
 
 \begin{itemize}
-\item Çıktının üst kısmında yer alan, birinci sıra şimdiki duvar saati zamanını ve “uptime”ı gösterir.Örneğin, sistemin yeniden başlatılmasından sonra geçen zamanın süresi (burada, dört gün, on dört saat, ve değiştir) ve giriş yapmış olan kullanıcıların sayısı (burada “11” çok ciddiye alınmamalı; son penceredeki her oturum bir kullanıcı gibi sayılır). Sağ tarafta üç numara bulunmakta, sözüm ona sistem yüklemelerini tanımlayan yükleme ortalamaları.
+\item Çıktının üst kısmında yer alan, birinci sıra şimdiki duvar saati zamanını ve “uptime”ı gösterir. Örneğin, sistemin yeniden başlatılmasından sonra geçen zamanın süresi (burada, dört gün, on dört saat, ve değiştir) ve giriş yapmış olan kullanıcıların sayısı (burada “11” çok ciddiye alınmamalı; son penceredeki her oturum bir kullanıcı gibi sayılır). Sağ tarafta üç numara bulunmakta, sözüm ona sistem yüklemelerini tanımlayan yükleme ortalamaları.
 
 Yükleme ortalamaları yürütülebilir işlemleri (state R) belirtir, son dakikanın, son beş dakikanın ve son on beş dakikanın ayrı ayrı ortalamasını alır. Bu değerlerin faydası gözde büyütülmemeli!; size gerçekten o kadarını söyleyemezler. Eğer son dakikanın değeri yüksekse ve son 15 dakikadan biri düşükse, bu durumda sisteminiz aniden daha fazlasını yapmak zorunda kalacak; eğer son dakikanın değeri düşük fakat son 15 dakikanın yüksekse, sisteminiz yapılacak çok şey için kullanır fakat bu şu an aşılmış durumdadır.
 
-Eğer yükleme ortalamaları sürekli olarak sisteminizdeki işlemci çekirdekleri sayısından aşağıdaysa, bunun anlamı siz gereksiz yere pahalı bir işlemci için fazla harcama yapmışsınız demektir. Sekiz çekirdekli sistem üzerinde, örneğin, 8 civarındaki değerler (bu geleneksel olarak bir sistem yöneticisinin omurgasından soğuk parçaları düşürecektir tamamiyle normaldir; uzun bir zamna periyodu boyunca değerler 8’in çok altındaysa bu çok acıklı bir durumdur.
+Eğer yükleme ortalamaları sürekli olarak sisteminizdeki işlemci çekirdekleri sayısından aşağıdaysa, bunun anlamı siz gereksiz yere pahalı bir işlemci için fazla harcama yapmışsınız demektir. Sekiz çekirdekli sistem üzerinde, örneğin, 8 civarındaki değerler (bu geleneksel olarak bir sistem yöneticisinin omurgasından soğuk parçaları düşürecektir tamamiyle normaldir); uzun bir zaman periyodu boyunca değerler 8’in çok altındaysa bu çok acıklı bir durumdur.
 
 \item İkinci satır işlemlerin sayısını ve çeşitli işlem evrelerinde nasıl dağıldıklarını verir.
 \item Üçüncü satır CPU kullanım tipine göre yüzdeler içerir: “us” çalıştırılan kodun çıktısı ve “sy işletim sisteminin çekirdeğindeki koddur.
 \item Takip eden iki satır temelde -free- nin çıktılarına tekabül eder.
 \item Ekranın alt tarafı “ps l” e benzer işlem listesidir. Üst kısım gibi her birkaç saniyede güncellenir ve aksi istenmediği taktirde, CPU zamanı kullanım yüzdelerine göre işlemleri sıralamıştır (sistemin üzerinde en çok vakit harcadığı işlem liste başı olur) 
 
-Eğer “m” tuşuna basarsanız, liste hafıza kullanımına göre sıralanacaktır - en çok yer kaplayan işlem en üstte olur. “P” tuşu ile, CPU zaman listesine geri dönebilirsiniz.
+Eğer \keystroke{m} tuşuna basarsanız, liste hafıza kullanımına göre sıralanacaktır - en çok yer kaplayan işlem en üstte olur. \keystroke{p} tuşu ile, CPU zaman listesine geri dönebilirsiniz.
 
-“H” tuşunu  top içinde yardım sayfasını görüntülemek için kullanabilirsiniz. Top ana sayfası çıktıları ve olağan tuş kombinasyonlarını açıklar ve size işlem listesi içeriklerini gereksinimlerinize göre nasıl adapte edeceğinizi gösterir.
+\keystroke{h} tuşunu top içinde yardım sayfasını görüntülemek için kullanabilirsiniz. Top ana sayfası çıktıları ve olağan tuş kombinasyonlarını açıklar ve size işlem listesi içeriklerini gereksinimlerinize göre nasıl adapte edeceğinizi gösterir.
 \end{itemize}
-\paragraph{Alıştırmalar}{
-\begin{itemize}
+\paragraph{{\Huge{\PencilLeftDown}}Alıştırmalar}{
+\begin{enumerate}
  \item ps komutunun ax seçeneği ile sistemdeki bütün işlemleri görüntüleyebilirsiniz. Listeye göz atın. Hangi işlemleri farkettiniz?
  \item shell oturum içinde uzun yürütülen bir işlem başlatın (“sleep 120” e benzer yapılabilir). Başka bir oturumda  “ps ax” ı çağır ve bu süreci çıktıya 
 yerleştirmeyi dene. (Hint: grep arkadaşınızdır).
 \item top'ı kullanarak hangi sürecin şu an, en çok CPU zamanını kullandığını bul. Hangi işlem en çok hafıza kullanıyor?
-\end{itemize}}
+\end{enumerate}}
 \end{section}
 \begin{section}{Paket Yönetimi}
 
@@ -218,10 +218,10 @@ Bugün, dpkg ve rpm gibi programlar bir paket yönetim sistemi "temelini" oluşt
 
 Bu araçlardan bazıları alttaki paket yönetim sistemi ile bağımsızdır. “PackageKit” de örneğin, Debian veya RPM paket yönetiminin her ikisi de kullanılmayabilir. Bundan başka kontrollü şartlar altında paket güncelleştirmesi veya yüklenmesi için yönetici ayrıcalıkları olmadan izin verebilir.
 
-\paragraph{Alıştırmalar}{
-\begin{itemize}
+\paragraph{{\Huge{\PencilLeftDown}}Alıştırmalar}{
+\begin{enumerate}
 \item Sisteminizde kaç paket yüklü? Yukarıda gösterilen rpm ve dpkg çağrısını kullanın ve çıkış satırlarını sayın. (Dikkat: “dpkg --list” de yüklü olması gereken paketleri görüntüler fakat daha yeni sürümleri silebilir veya yerine geçirebilir. "ii" ile başlayan çıktı satırlarını sayar.)
-\end{itemize}}
+\end{enumerate}}
 
 \paragraph{Bu Bölümdeki Komutlar}{
 \begin{itemize}

@@ -64,8 +64,8 @@ Fri Aug 18 17:15:00 CEST 2006
 
 Date komutu yalnızca Linux sisteminin saatini değiştirir. Bu saat bilgisayarın anakartı üzerinde CMOS saatine aktarılmamış olabilir. Bu nedenle bu işlemi gerçekleştirmek için özel bir komut gerekli olabilir. Birçok dağıtım sistem kapatıldığında bunu otomatik olarak yapar.
 
-\paragraph{Alıştırmalar}{
-\begin{itemize}
+\paragraph{{\Huge{\PencilLeftDown}}Alıştırmalar}{
+\begin{enumerate}
 \item Varsayalım ki şu an 22 Ekim 2003, saat 12:34 ve 56. saniye olsun. Aşağıdaki çıktıyı elde etmek için durum biçimlendirme komutları ve date dökümanlarını
 çalışır:
 \begin{enumerate}
@@ -74,7 +74,7 @@ Date komutu yalnızca Linux sisteminin saatini değiştirir. Bu saat bilgisayar�
 \item 12h34m56s
 \end{enumerate}
 \item Şu anda Los Angeles’da saat kaç?
-\end{itemize}}
+\end{enumerate}}
 \end{section}
 \begin{section}{Kabuk Değişkenleri ve Ortamı}
 \label{sec:bolum92}
@@ -210,8 +210,8 @@ passwd: /usr/bin/passwd /etc/passwd /etc/passwd.org /usr/share/passwd >
 \end{verbatim} 
 
 Bu örnekte whereis(1) komutunu açıklayan (kabaca) doğrudan kodlanmış bir yöntem kullanılmıştır.
-\paragraph{Alıştırmalar}{
-\begin{itemize}
+\paragraph{{\Huge{\PencilLeftDown}}Alıştırmalar}{
+\begin{enumerate}
 \item Çocuk süreçlerin çalışması için Ortam ve kabuk değişkenlerine geçirerek aşağıdaki komutların sırasıyla çalıştığına dair kendinizi ikna edebilirsiniz.
 \begin{verbatim}
 $ foo=bar 		foo kabuk değişkeni
@@ -238,21 +238,21 @@ $ echo $foo 		ne alacağız?
 \item PATH bir ortam değişkeni yerine "sadece" basit bir kabuk değişkeni ise kabuğun komut satırında aramayı çalıştırdığına da emin olun. Eğer PATH tamamen silinise ne olur?
 \item Aşağıdaki komutları ele almak için hangi çalıştırılabilir programlar kullanılır: fgrep, sort, mount, xter
 \item Sistemdeki hangi dosyalar “crontab” komutu için belgeleri içerir?
-\end{itemize}}
+\end{enumerate}}
 \end{section}
 \begin{section}{Uygun Bir Araç Olarak Kabuk}
 
 Kabuk birçok Linux kullanıcıları için en sık kullanılan araç olduğundan beri, geliştiricileri tarafından kullanımını rahat hale getirmek için birçok sorunu çözmek üzere tartışıldı. Daha kullanışlı bazı önemsiz şeyler buradadır:
 
 \paragraph{Komut Editörü} {Basit bir metin editöründeki gibi komut satırlarını düzenleyebilirsiniz. Bu sayede, enter tuşu kullanarak giriş bitmeden önce keyfi karekterler ekleyebilir veya silebilir ve giriş satırının etrafında imleci hareket ettirebilirsiniz. Bu editörün davranışları Linux üzerinde en popüler editörlerin "set-o vi" ve "set-o emacs" komutlarını kullanarak uyarlanabilir.}
-\paragraph{Durdurulan Komutlar}{Linux komutları çevresinde çokça isim karıştırmak veya yanlış bir parametreye geçmek kolaydır. Haliyle çalıştırılma anında iptal komutu olmalıdır. Bu işlem için sadece eş zamanlı olarak Ctrl+c tuşuna basılmalıdır.}
-\paragraph{Tarihçe}{Kabuk "tarih" in bir parçası olarak şimdiye kadarki komutları hatırlar. \^ ve v imleç tuşlarını kullanarak bu komutların listesinde hareket edebilirsiniz. Yukarıda açıklandığı gibi önceki komutu bulursanız $<$-(enter) kullanarak tekrar çalıştırabilir veya düzenleyip kullanabilirsiniz. Ctrl + r komutunu kullanarak "adım adım" listeyi arayabilirsiniz - sadece karakter dizisi yazdığınızda ve kabuk bu diziyi içeren en son çalıştırılan komutu gösterir. Uzun dizilerde arama daha hassastır.}
+\paragraph{Durdurulan Komutlar}{Linux komutları çevresinde çokça isim karıştırmak veya yanlış bir parametreye geçmek kolaydır. Haliyle çalıştırılma anında iptal komutu olmalıdır. Bu işlem için sadece eş zamanlı olarak \Ctrl+\keystroke{c} tuşuna basılmalıdır.}
+\paragraph{Tarihçe}{Kabuk "tarih" in bir parçası olarak şimdiye kadarki komutları hatırlar. \UArrow ve \DArrow tuşlarını kullanarak bu komutların listesinde hareket edebilirsiniz. Yukarıda açıklandığı gibi önceki komutu bulursanız \Return kullanarak tekrar çalıştırabilir veya düzenleyip kullanabilirsiniz. \Ctrl+\keystroke{r} komutunu kullanarak "adım adım" listeyi arayabilirsiniz - sadece karakter dizisi yazdığınızda ve kabuk bu diziyi içeren en son çalıştırılan komutu gösterir. Uzun dizilerde arama daha hassastır.}
 
 Sistem oturumunuzu kapattığınızda, kabuk gizli dosya $\sim$/.bash\_history içinde geçmişini depolar ve daha sonra giriş yaptıktan sonra tekrar kullanılabilir hale getirir. (Söz konusu isim HISTFILE değişkenini ayarlayarak farklı bir dosya adı kullanabilir.)
 
 “plain” dosyasında depolanan geçmişin saklanır olduğunun bir sonucu olarak bu dosya metin editörü kullanılarak düzenlenebilir (Bölüm ~\ref{chap:bolum3}'de anlatıldığı gibi). Öyleki
 komut satırına yanlışlıkla şifrenizi girdiniz, el ile tarihi kaldırabilirsiniz - özellikle, sistem başıboşsa ev dizinlerinden herhangi birini herkes görebilir.
-\paragraph{Otamatik Tamamlama}{Otomatik olarak komut ve dosya adlarını tamamlamak Bash kabuğunun muazzam bir yeteneğidir. Eğer tab tuşuna bastığınızda kabuk benzersiz bir tespit ile eksik bir girdi var ise devamını tamamlar. Bir komutun ilk sözcüğü için, bash geçerli veya belirtilen dizindeki tüm dosyaların komut satırı geri kalanı içinde tüm çalıştırılabilir programları düşünmektedir. Çeşitli komutlar veya dosyaların adları aynı başlıyorsa, kabuk adını mümkün olduğu kadar tamamlar sonrasında komut veya dosya adı hala eksik olabilir. İkinci bir tab tuşuna basıldığında kalan olasılıkları listeler.}
+\paragraph{Otomatik Tamamlama}{Otomatik olarak komut ve dosya adlarını tamamlamak Bash kabuğunun muazzam bir yeteneğidir. Eğer \Tab tuşuna bastığınızda kabuk benzersiz bir tespit ile eksik bir girdi var ise devamını tamamlar. Bir komutun ilk sözcüğü için, bash geçerli veya belirtilen dizindeki tüm dosyaların komut satırı geri kalanı içinde tüm çalıştırılabilir programları düşünmektedir. Çeşitli komutlar veya dosyaların adları aynı başlıyorsa, kabuk adını mümkün olduğu kadar tamamlar sonrasında komut veya dosya adı hala eksik olabilir. İkinci bir \Tab tuşuna basıldığında kalan olasılıkları listeler.}
 
 Belirli programlara kabuğun tamamlama mekanizmasını uygulamak mümkündür. Örneğin; bir FTP istemcisi, komut satırında dosya adları yerine yakın zamanda ziyaret ettiği FTP sunucularının adlarını sunabilir. Ayrıntılar için bash belgelerine bakın.
 
@@ -272,16 +272,16 @@ Bu örnekte birinci komut çalıştırılmış olduğunda, ikinci komut yürüt�
 \hline
 Tuşlar & İşlevleri\\
 \hline
-\^ veya v	&	En son komutlar arasında gezinir\\
-Ctrl+r		&	Komut geçmişini arar\\
-$<$- -$>$		&	Geçerli komut satırı içindeki İmleci hareket ettirir\\
-home Ctrl+a	&	Komut satırının başına gider\\
-end Ctrl+e	&	Komut satırı sonuna atlar\\
-$<$- Del		&	Sırasıyla, imlecin altındaki/önündeki karakteri siler\\
-Ctrl+t		&	İmlecin Önündeki ve altındaki iki karakterin yerlerini değiştirir\\
-Ctrl+l		&	Ekranı temizler\\
-Ctrl+c		&	Komuta ara verir\\
-Ctrl+d		&	Son giriş (giriş kabukları için:kapalı oturum)\\
+\UArrow veya \DArrow	&	En son komutlar arasında gezinir\\
+\Ctrl+\keystroke{r}		&	Komut geçmişini arar\\
+\LArrow - \RArrow		&	Geçerli komut satırı içindeki İmleci hareket ettirir\\
+\Home \Ctrl+\keystroke{a}	&	Komut satırının başına gider\\
+\End \Ctrl+\keystroke{e}	&	Komut satırı sonuna atlar\\
+\Return \Del		&	Sırasıyla, imlecin altındaki/önündeki karakteri siler\\
+\Ctrl+\keystroke{t}		&	İmlecin Önündeki ve altındaki iki karakterin yerlerini değiştirir\\
+\Ctrl+\keystroke{l}		&	Ekranı temizler\\
+\Ctrl+\keystroke{c}		&	Komuta ara verir\\
+\Ctrl+\keystroke{d}		&	Son giriş (giriş kabukları için:kapalı oturum)\\
 \hline
 \end{tabular}
 \end {table}}
@@ -311,10 +311,10 @@ $ bash -c "exit 0" || echo "Unsuccessful"
 $ bash -c "exit 33" || echo "Unsuccessful"
 Unsuccessful
 \end{verbatim} }
-\paragraph{Alıştırmalar}{
-\begin{itemize}
+\paragraph{{\Huge{\PencilLeftDown}}Alıştırmalar}{
+\begin{enumerate}
 \item “echo "Hello!"” komutunda ne yanlış? (İpucu: Form komutları "! -2" Ya da "! ls" ile tecrübe edin.)
-\end{itemize}
+\end{enumerate}
 }
 \end{section}
 \begin{section}{Dosyadan Komutlar}
@@ -431,7 +431,7 @@ And 5!
 And 6!
 \end{verbatim}
 
-Eğer "in ..." yazmazsanız, döngü komut satırı parametreleri üzerinde dolaşır:
+Eğer "in \ldots" yazmazsanız, döngü komut satırı parametreleri üzerinde dolaşır:
 \begin{verbatim}
 $ cat sort-wc
 #!/bin/bash
@@ -475,7 +475,7 @@ Bu betik dizin yerine kullanılan her bir dosya veya sembolik dizin için parame
 
 Test komutu hem bin/test teki gibi serbest çalışan bir program olarak hem de bash ve diğer komutlardaki gibi dahili olarak mevcuttur. Çok daha garip testler söz konusu olduğunda bu değişmeler ince farklılıklar gösterebilir. Şüpheniz varsa, belgeleri okuyun.
 
-Eğer bir koşulla, birden fazla komutu bağımlı kılacak bir komut varsa kullanabilirsiniz (uygun ve okunabilir bir şekilde). "[...]" yerine "test ..." yazılabilir:
+Eğer bir koşulla, birden fazla komutu bağımlı kılacak bir komut varsa kullanabilirsiniz (uygun ve okunabilir bir şekilde). "[\ldots]" yerine "test \ldots" yazılabilir:
 \begin{verbatim}
 #!/bin/bash
 # filetest2 NAME1 NAME2 ...
@@ -525,8 +525,8 @@ read komutu giriş dosyasındaki satırları okur ve her satırı üç kolon ola
 
 Bu betiği zararsız e-posta adresleri ile test edin, ilişkilerinizi karışık hale getirir!
 
-\paragraph{Alıştırmalar}{
-\begin{itemize}
+\paragraph{{\Huge{\PencilLeftDown}}Alıştırmalar}{
+\begin{enumerate}
 \item Arasındaki fark (olduğu kadar döngü çalıştırma söz konusu olduğunda) nedir?
 \begin{verbatim}
 for f; do …; done
@@ -552,7 +552,7 @@ $ ./filetest foo
 foo: file
 foo: symbolic link
 \end{verbatim}
-\end{itemize}
+\end{enumerate}
 }
 \end{section}
 \paragraph{Bu Bölümdeki Komutlar}{

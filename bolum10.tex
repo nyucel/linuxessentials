@@ -51,9 +51,9 @@ dosyalardır.
 
 Uygun bir şekilde işleyebilmesi için bir Linux sistemi binlerce farklı dosyaya ihtiyaç duyar. Bunlar sistemin çeşitli kullanıcıları tarafından oluşturulmuş ve sahip olunan çeşitli dosyalardır.
 
-Bir dosya sistemi depolama alanı üzerinde veri düzenleme ve yönetimini belirler. Bir sabit disk temelde sistemin tekrar bulabilmesi gereken byte ları içerir, hatta çok büyük,esnek ve verimli dosyalar olsalar bile. Dosya işletim sistemi detayları farklılık gösterebilir (Linux bunların birçoğunu bilir. ext2, ext3 , ext4, ReiserFS, XFS, JFS, btrfs vb...) fakat kullanıcıya sunulan şey farklı türdeki ve isimdeki dosya ve dizin adlarıyla oluşturulmuş bir ağaç hiyerarşi yapısıyla aynıdır (ayrıca bkz. Bölüm ~\ref{chap:bolum6}).
+Bir dosya sistemi depolama alanı üzerinde veri düzenleme ve yönetimini belirler. Bir sabit disk temelde sistemin tekrar bulabilmesi gereken byte ları içerir, hatta çok büyük,esnek ve verimli dosyalar olsalar bile. Dosya işletim sistemi detayları farklılık gösterebilir (Linux bunların bir çoğunu bilir. ext2, ext3 , ext4, ReiserFS, XFS, JFS, btrfs vb.) fakat kullanıcıya sunulan şey farklı türdeki ve isimdeki dosya ve dizin adlarıyla oluşturulmuş bir ağaç hiyerarşi yapısıyla aynıdır (ayrıca bkz. Bölüm ~\ref{chap:bolum6}).
 
-Linux topluluğunda, terim "dosya sistemi" birkaç anlamı taşır. Burada sunulan anlama ek olarak—“bir ortam üzerinde bayt düzenleme yöntemi”, bir dosya sistemi her zaman bizim “dizin ağacı” olarak nitelendirdiğimizi göz önünde bulundurur. Buna ek olarak, bu veriler ile birlikte, belirli bir ortamda (bir sabit disk bölümü, USB anahtar, ...) genellikle bir "dosya sistemi" adı verilir. Örneğin bizim söylediğimiz anlamda sabit bağlantılar (Bölüm ~\ref{sec:bolum642}) sabit disk veya sabit disk ve USB anahtarı arasındaki iki farklı bölümler arasında, yani "dosya sistemi sınırlarının ötesinde" işe yaramaz.
+Linux topluluğunda, terim "dosya sistemi" birkaç anlamı taşır. Burada sunulan anlama ek olarak—“bir ortam üzerinde bayt düzenleme yöntemi”, bir dosya sistemi her zaman bizim “dizin ağacı” olarak nitelendirdiğimizi göz önünde bulundurur. Buna ek olarak, bu veriler ile birlikte, belirli bir ortamda (bir sabit disk bölümü, USB anahtar, \ldots) genellikle bir "dosya sistemi" adı verilir. Örneğin bizim söylediğimiz anlamda sabit bağlantılar (Bölüm ~\ref{sec:bolum642}) sabit disk veya sabit disk ve USB anahtarı arasındaki iki farklı bölümler arasında, yani "dosya sistemi sınırlarının ötesinde" işe yaramaz.
 \end{section}
 \begin{section}{Dosya Türleri}
 \label{sec:bolum102}
@@ -65,10 +65,10 @@ Linux sistemlerinde temel öncül “Herşey bir dosyadır”. Bu ilk bakışta 
 \paragraph{FIFOlar}{Genellikle "adlandırılmış yöneltim” olarak bilinirler. Kabuk yöneltmeleri gibi, ara dosyaları kullanmadan süreçler arasındaki doğrudan iletişimi sağlarlar. Bir işlem FIFO'yu yazma, diğeri de okuma için açar. Kabuğun program açısından dosya gibi hareket eden ardışık düzen için kullandığı yönlendirmelerin aksine isimsizdir -- Dosya sistemi içinde bulunmazlar sadece bağlantılı süreçlerin arasında bulunurlar -- FIFO ların dosya isimleri vardır ve gelişigüzel programlar tarafından dosyalar gibi açılabilirler. Bunun yanısıra, FIFO ların erişim hakları olabilir (yönlendirmelerin yoktur). FIFO'lar mkfifo emri kullanarak oluşturulurlar.}
 \paragraph{Unix-alan soketleri}{FIFOlar gibi, Unix-alan soketlerinde de süreçler arası iletişim yöntemi vardır. TCP/IP üzerinden gerçek ağ iletişimleriyle aynı programlama arayüzünü kullanıyorlar.Diğer taraftan, Unix-alan soketleri TCP / IP'ye göre çok daha verimlidir. FIFOların aksine, Unix alan soketleri iki yönlü haberleşmeyi-katılımcı da veri gönderip alabilir- sağlar. Eğer X sunucusu ve istemcileri aynı bilgisayarda ise Unix-alan soketleri X11 grafik sistemleri tarafından kullanılırlar. Unix-alan soketlerini oluşturmak için herhangi bir program yoktur.}
 
-\paragraph{Alıştırmalar}{
-\begin{itemize}
+\paragraph{{\Huge{\PencilLeftDown}}Alıştırmalar}{
+\begin{enumerate}
 \item Sisteminizi çeşitli dosya türü örnekleri çerçevesinde kontrol ediniz (Tablo 10.1 Size sorulardaki dosyaları nasıl tanıyacağınızı gösterecek.)
-\end{itemize}}
+\end{enumerate}}
 \end{section}
 \begin{section}{Linux Dizin Ağacı}
 \label{sec:bolum103}
@@ -244,14 +244,14 @@ Dizin düzenlemesi için başka bir yöntem de şöyledir: FHS dosyaları ve diz
 
 Bu bölünmenin arkasındaki düşünce sistem yönetimini yalınlaştırmaktır: dizinler dosya sunucularına taşınabilirler ve merkezi olarak sürdürülebilirler. Dinamik bilgiler içermeyen dizinler salt okunura yerleştirilirler ve kazalara daha fazla elverişlidir.
 
-\paragraph{Alıştırmalar}{
-\begin{itemize}
+\paragraph{{\Huge{\PencilLeftDown}}Alıştırmalar}{
+\begin{enumerate}
 \item Sisteminiz "olağan" yerlerde kaç tane program içeriyor?
 \item Eğer grep komut satırında birden fazla dosya ismiyle çağrılmışsa, her eşleşen hattın önüne söz konusu dosyanın adını verir. bir kabuk joker kalıbı(.txt gibi) ile grep'i çalıştırmak büyük olasılıkla bir problemdir, grep çıkışının kesi formatı öngörülemediğinden hangi programların ne şekilde çalışacağını bilemez. Arama kalıbı tek dosya ismini genişletse bile nasıl doya adı çıkışını zorlayabilirsiniz. (ipucu: /dev içerisinde çok faydalı bir dosya bulunmaktadır.)
 \item “cp foo.txt /dev/null” komutu temelde hiçbir şey, ama “mv foo.txt /dev/null” uygun erişim izinleri varsayarak /dev/null by foo.txt ile yer değiştirir. Neden?
 \item Sisteminizde,(Varsa) hangi yazılım paketleri /opt altına yüklüdür? Hangileri üretici taraından sağlanmıştır ve hangileri üçüncü parti ürünlerdir? Sizce üretici üçüncü parti ürünün teaser versiyonunu /opt içine veya farklı bir yere  yüklemeli mi? Ne düşünüyorsunuz?
 \item Neden /proc'ta köklü dizin ağacının yedek kopyalarının bulundurulması önerilmez?
-\end{itemize}
+\end{enumerate}
 }
 \end{section}
 \begin{section}{Dizi Ağacı ve Dosya Sistemleri}

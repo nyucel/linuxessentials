@@ -23,37 +23,43 @@ Parolanızı girdiğinizde sadece yıldız görüyorsanız endişelenmeyin. Bunu
 
 Giriş yaptıktan sonra bilgisayarınız sizin için görsel bir oturum açar. Görsel oturumun anlamı uygulama programlarına erişebileceğiniz menü ve simgelerin olmasıdır. Linux’un desteklediği çoğu görsel ortamlar, zamanından önce kapanan oturumu geri yüklemek için “oturum yönetimi”ni destekler. Bu sizin hangi programı çalıştırdığınızı, ekranda hangi pencerede olduğunuzu veya hangi dosyaları kullanıyor olduğunuzu bilmenizi gerektirmez. 
 
-\paragraph{Görsel ortamdan çıkış}{Çalışmanızı bitirdiyseniz veya başka bir kullanıcı için bilgisayarı kullanmaya uygun hale getirmek istiyorsanız çıkış yapmanız gerekir. Bu çok önemlidir. Çünkü oturum yöneticisi gelecekteki kullanımınız için sizin o andaki oturumunuzu kaydeder. Detaylı olarak çıkışın nasıl çalışacağı görsel  ortama bağlıdır. Fakat kural olarak sizin için herşeyi yapan bir yerde menü vardır. Şüphelendiğinde dökümanlara veya sistem yöneticinize başvurun.}
+\paragraph{Görsel ortamdan çıkış}{Çalışmanızı bitirdiyseniz veya başka bir kullanıcı için bilgisayarı kullanmaya uygun hale getirmek istiyorsanız çıkış yapmanız gerekir. Bu çok önemlidir. Çünkü oturum yöneticisi gelecekteki kullanımınız için sizin o andaki oturumunuzu kaydeder. Detaylı olarak çıkışın nasıl çalışacağı görsel ortama bağlıdır. Fakat kural olarak sizin için herşeyi yapan bir yerde menü vardır. Şüphelendiğinde dökümanlara veya sistem yöneticinize başvurun.}
 
-\paragraph{Metin konsoluna giriş}{İşistasyonlarının aksine, sunucu sistemleri sıklıkla sadece bir metin konsolunu destekler veya gereken zamandan daha fazla kalmak istemeyeceğiniz gürültülü makine odaları içinde kurulumu destekler. Bu gibi bilgisayarlara ağ yoluyla giriş yapmayı tercih edeceksiniz. Her iki durumdada görsel giriş ekranı göremeyeceksiniz ama bilgisayar size kullanıcı isminizi ve parolanızı doğrudan soracak. Mesela bunun gibi birşey görebilirsiniz.}
+\paragraph{Metin konsoluna giriş}{İş istasyonlarının aksine, sunucu sistemleri sıklıkla sadece bir metin konsolunu destekler veya gereken zamandan daha fazla kalmak istemeyeceğiniz gürültülü makine odaları içinde kurulumu destekler. Bu gibi bilgisayarlara ağ yoluyla giriş yapmayı tercih edeceksiniz. Her iki durumdada görsel giriş ekranı göremeyeceksiniz ama bilgisayar size kullanıcı isminizi ve parolanızı doğrudan soracak. Mesela bunun gibi birşey görebilirsiniz.}
 
+\footnotesize
 \begin{verbatim}
 computer login: _
 \end{verbatim}
+\normalsize
 
-Eğer bilgisayarın “computer” ismiyle sormasını istersek bu böyledir. Burada kullanıcı adınızı girmelisiniz ve “enter” tuşuna basmalısınız. Daha sonra bilgisayar size parolanızı soracaktır. 
+Eğer bilgisayarın “computer” ismiyle sormasını istersek bu böyledir. Burada kullanıcı adınızı girmelisiniz ve \Return tuşuna basmalısınız. Daha sonra bilgisayar size parolanızı soracaktır. 
 
+\footnotesize
 \begin{verbatim}
 password:
 \end{verbatim}
+\normalsize
 
-Burada parolanızı girin. Bu kez parolayı yazarken hiçbirşey görmeyeceksiniz. Eğer hem kullanıcı adını hemde parolanızı doğru girdiyseniz sistem girişinizi kabul edecektir. Daha sonra kabuk -yani komut satırı yorumlayıcısı- başlar ve komutları girmek ve programları çağırmak için klavyeyi kullanmanıza izin verir. Giriş yaptıktan sonra “ev dizini” sizin dosyalarınızın bulunduğu yer ekrana gelir.
+Burada parolanızı girin. Bu kez parolayı yazarken hiçbirşey görmeyeceksiniz. Eğer hem kullanıcı adını hemde parolanızı doğru girdiyseniz sistem girişinizi kabul edecektir. Daha sonra kabuk, yani komut satırı yorumlayıcısı, başlar ve komutları girmek ve programları çağırmak için klavyeyi kullanmanıza izin verir. Giriş yaptıktan sonra “ev dizini” sizin dosyalarınızın bulunduğu yer ekrana gelir.
 
 Eğer güvenli kabuk kullanırsanız, mesela başka bir makineye ağ yoluyla giriş yaptığınızda bağlandığız bilgisayardaki kullanıcı adıyla sizin kullandığınız bilgisayarın kullanıcı adını aynı olarak varsayar ve kullanıcı adını sormaz. Detaylar bu kılavuzun kapsamı dışındadır. Güvenli kabuk Linux Administration II kitabında detaylı olarak anlatılmıştır.
 
 \paragraph{Metin konsolundan çıkış}{metin konsolunda “logout” komutunu kullanarak çıkış yapabilirsiniz.}
 
+\footnotesize
 \begin{verbatim}
 $ logout
 \end{verbatim}
+\normalsize
 
 Sistemden çıkış yaptığınızda metin konsolu üzerinde sistem başlama mesajını ve diğer kullanıcı giriş iletisini gösterir. Güvenli kabuk oturumuyla yerel bilgisayarınızdan başka bir komut iletisini elde edebilirsiniz. 
 
-\paragraph{Alıştırmalar}{
-\begin{itemize}
+\paragraph{{\Huge{\PencilLeftDown}}Alıştırmalar}{
+\begin{enumerate}
  \item Sisteme giriş yapmayı deneyin. Daha sonrada çıkış yapın. Kullanıcı adı ve parolanızı sistem dökümanları içerisinde bulacaksınız veya öğretmeniniz size söyleyecek?
- \item Eğer varolmayan bir kullanıcı adıyla giriş yapılırsa veya yanlış parola girilirse ne olur? Herhangibir sıradışı birşey farkettiniz mi? Sistemin böyle davranmasına sebep olan şey nedir?
-\end{itemize}}
+ \item Eğer varolmayan bir kullanıcı adıyla giriş yapılırsa veya yanlış parola girilirse ne olur? Herhangi bir sıradışı birşey farkettiniz mi? Sistemin böyle davranmasına sebep olan şey nedir?
+\end{enumerate}}
 \end{section}
 
 \begin{section}{Masaüstü Ortamı ve Tarayıcı}
@@ -63,38 +69,39 @@ Görsel ortama giriş yaptığınızda Linux bilgisayarınız modern bilgisayarl
 
 Malesef bizim için burada iki Linux’un aynı olduğunu belirlemek mümkün değil. Resmi görsel ortamlarla gelen Windows veya Macintosh sistemlerinin aksine Linux sistem kurulumunda bir çok görsel ortam arasından birini seçmeni öneren dağıtımlarla gelir. 
 \begin{itemize}
-\item KDE ve GNOME, benzer bir “look and feel” ile birlikte geniş kapsamlı uygun uygulamaları sağlamaya çalışan masaüstü ortamlarıdır. KDE ve GNOME’un hedefi hazır sistemlerin daha iyisini ve karşılaştırılabilir deneyimlerini sunmaktır. KDE ve GNOME yenilikçi özellikler içerir. KDE’ de arka plandaki dosyaların ve dökümanların indekslerini anlamsal arama özellikleri vardır ve geçen ay ispanyada çekildiğim fotoğraflara diskte nerede saklandığına bakmaksızın uygun erişim izni verdiği varsayılır
+\item KDE ve GNOME, benzer bir “look and feel” ile birlikte geniş kapsamlı uygun uygulamaları sağlamaya çalışan masaüstü ortamlarıdır. KDE ve GNOME’un hedefi hazır sistemlerin daha iyisini ve karşılaştırılabilir deneyimlerini sunmaktır. KDE ve GNOME yenilikçi özellikler içerir. KDE’de arka plandaki dosyaların ve dökümanların indekslerini anlamsal arama özellikleri vardır ve geçen ay İspanyada çekildiğim fotoğraflara diskte nerede saklandığına bakmaksızın uygun erişim izni verdiği varsayılır
 \footnote{Microsof bir kaç kez bunu yapacağını vaat etti ama sonraki Windows versiyonu piyasaya çıkmadan önce yenilik listesinden çıkarıldı.}. Kabaca konuşursak, KDE ileri bilgili kullanıcılar için geniş kapsamlı özelleştirmeye odaklanır, GNOME ise basitlik ve kullanılabilirlikle ilgilenir. Mesela mümkün olmayan veya daha az değiştirilebilir şeyleri sağlamaya yönelimlidir. 
-\item LXDE ve XFCE “lightweight” ortamlardır. Temel yaklaşımlarda KDE ve GNOME’a benzer fakat daha çok kaynakların ekonomik kullanımına yönelmiştir, bu yüzden anlamsal arama gibi çeşitli pahalı servisler kullanılabilir. 
+\item LXDE ve XFCE “hafif” ortamlardır. Temel yaklaşımlarda KDE ve GNOME’a benzer fakat daha çok kaynakların ekonomik kullanımına yönelmiştir, bu yüzden anlamsal arama gibi çeşitli pahalı servisler kullanılabilir. 
 \item Tüm masaüstü ortamını kullanmaktansa pencere yöneticilerinin bir grubunu kullanmayı tercih edebilirsiniz. This implies certain tradeoffs regarding the optical consistency and cooperation of programs, which result from the fact that, historically, there used to be few guidelines for the look and feel of graphical programs on Unix and Linux. İlk olarak KDE’den önce bu bakış açısında bir standartlaşma kurulmuştur. Bu böyle şeyleri yapmak için genel bir yol olmuştur. Fakat bugün Linux kullanıcılarının çoğunluğu görsel ortamların  dahada iyileştirilmesine inanır. 
 \end{itemize}
 
 Aynı görsel ortamı kullanan iki farklı dağıtım bile olsa bu onların aynı görüneceği anlamına gelmez. Genellikle görsel ortamlar onların temalarına dayalı görünüm özelleştirmesine daha fazla yer ayırır ve dağıtımlar bunu kendini diğerlerinden ayırmak için kullanır. Arabaları göz önüne alalım. Tüm arabalar neredeyse 4 tekerleğe bir rüzgarlığa sahip fakat siz hiçbir zaman BMW’yi Citroen veya Ferrari ile karıştırmazsınız. 
 
-\paragraph{Kontrol çubuğu}{ herhangibir olayda kontrol çubuğu(yatay araç çubuk(dock), panel yada neye sahipsen) ekranın ya en üstünde yada en altında senin önemli uygulama programlarına giriş yapmana izin veren veya bilgisayarı kapatmana yada çıkış yapmanı sağlayan menülerdir. KDE windowstaki başlangıç butonuna benzeyen bir panele bağlıdır. Panelde aynı windowstaki başlangıç butonu gibi programların menüsünü açar. GNOME başlangıç butonu kullanmaz fakat ekranın en üstüne menü çubuğunu taşır. En önemli yada en çok kullandığınız programlar ekranın solundaki çek-bırak menüye eklenip kolayca erişilebilir.}
+\paragraph{Kontrol çubuğu}{ herhangi bir olayda kontrol çubuğu (yatay araç çubuk (dock), panel ya da neye sahipseniz) ekranın ya en üstünde ya da en altında senin önemli uygulama programlarına giriş yapmana izin veren veya bilgisayarı kapatmana yada çıkış yapmanı sağlayan menülerdir. KDE windowstaki başlangıç butonuna benzeyen bir panele bağlıdır. Panelde aynı windowstaki başlangıç butonu gibi programların menüsünü açar. GNOME başlangıç butonu kullanmaz fakat ekranın en üstüne menü çubuğunu taşır. En önemli ya da en çok kullandığınız programlar ekranın solundaki sürükle bırak menüye eklenip kolayca erişilebilir.}
 \paragraph{Dosya Yöneticisi}{ Görsel ortamlar genellikle disk üzerinde dizinlere (dosyalara) erişmenize izin veren ve onların içeriklerini alt dizinlere ayırmanıza ve dosyaları işletmenize olanak sağlayan bir dosya yöneticisine sahiptir. Buradaki yöntemlerin diğer görsel sistemlerden çokta fazla farkı yoktur. Bir pencereyi bir dizinden diğerine sürükleyerek kopyalayabilir veya taşıyabilirsiniz ve isterseniz farenin sağ butonuna tıklayarak içerik menüsünü açabilir dosyaya farklı işlemler uygulayabilirsiniz. Deneyin.}
 \paragraph{Kontrol çubuğu}{ sıklıkla kullanılan dosyalar ve programlar genellikle ekranın altında saklanır veya hızlı erişim için ekranda sabit bir yere yerleştirilir. }
-\paragraph{Sanal masaüstü}{ çoğu Linux tabanlı görsel ortamların genel bir özelliği Windows ve OS X’in sunmadığı sanal masaüstleridir. Bu sanal masaüstleri ekranda boş bir alanda çoğaltılabilir. Arka ve ön planda çalıştırılarak program pencerelerinin kendi seçimleriyle masaüstleri bir çok kez simule edilebilir. Bunlar çalıştığın program veya dökümanların masaüstünde istediğin yerde olabilmesine izin verir, web tarayıcın ve eposta okuyucun için masaüstünde yer ayırabilirsiniz ve programlanmış masaüstünde pencerelere yeniden düzenleme zorunluluğun olmadan çabucak eposta mesajlarını  oluşturabilirsin.}
+\paragraph{Sanal masaüstü}{çoğu Linux tabanlı görsel ortamların genel bir özelliği Windows ve OS X’in sunmadığı sanal masaüstleridir. Bu sanal masaüstleri ekranda boş bir alanda çoğaltılabilir. Arka ve ön planda çalıştırılarak program pencerelerinin kendi seçimleriyle masaüstleri bir çok kez simule edilebilir. Bunlar çalıştığın program veya dökümanların masaüstünde istediğin yerde olabilmesine izin verir, web tarayıcın ve eposta okuyucun için masaüstünde yer ayırabilirsiniz ve programlanmış masaüstünde pencerelere yeniden düzenleme zorunluluğun olmadan çabucak eposta mesajlarını  oluşturabilirsin.}
 \end{subsection}
 \begin{subsection}{Tarayıcılar}
 
-Modern bilgisayarlar üstünde en ünlü programlardan biri web tarayıcılarıdır. İyiki en popüler tarayıcılar açık kaynaklı programlardır ve Firefox veya Google Chrome Windows veya OS X ve Linux için uygundur (dağıtımınız muhtemelen Google Chrome sunmaz fakat açık kaynak çeşidi olan Chromium’u sunar, aralarında çokta bir fark yoktur) internet girişi gibi bir giriş için uygulama menüne baktığınızda tarayıcıyı bulabilirsiniz.
+Modern bilgisayarlar üstünde en ünlü programlardan biri web tarayıcılarıdır. İyiki en popüler tarayıcılar açık kaynaklı programlardır ve Firefox veya Google Chrome Windows veya OS X ve Linux için uygundur (dağıtımınız muhtemelen Google Chrome sunmaz fakat açık kaynak çeşidi olan Chromium’u sunar, aralarında çok da bir fark yoktur) internet girişi gibi bir giriş için uygulama menüne baktığınızda tarayıcıyı bulabilirsiniz.
 
-Ticari durumlara rağmen Debian GNU Linux sistemler ve çeşitli türetimleri üzerinde Firefox tarayıcısının  “Iceweasel” olarak adlandırılmıştır. Çünkü Mozilla vakfı, Firefox üreticileri tarayıcının tamamlanmamış versiyonunun dağıtımına yalnızca kod resmi versiyona  uyduğunda izin verir. Debian projesi tamir ve güvenlik problemleri haklarını elinde tuttuğundan beri kopyalama ve ticari dağıtımları çok ciddi bir şekilde ele alır. Buda ismin değişmesi zorunluluğunu getirir. (Diğer dağıtımlar resmi versiyonda kalır veya isim hakkıyla ilgilenmez yeni bir isim bulur.) 
+Ticari durumlara rağmen Debian GNU Linux sistemler ve çeşitli türetimleri üzerinde Firefox tarayıcısının  “Iceweasel” olarak adlandırılmıştır. Çünkü Mozilla vakfı, Firefox üreticileri tarayıcının tamamlanmamış versiyonunun dağıtımına yalnızca kod resmi versiyona  uyduğunda izin verir. Debian projesi tamir ve güvenlik problemleri haklarını elinde tuttuğundan beri kopyalama ve ticari dağıtımları çok ciddi bir şekilde ele alır. Bu da ismin değişmesi zorunluluğunu getirir. (Diğer dağıtımlar resmi sürümde kalır veya isim hakkıyla ilgilenmeden yeni bir isim bulur.) 
 \end{subsection}
 \begin{subsection}{Terminaller ve Kabuklar}
+\label{sec:bolum323}
 
 Görsel Linux ortamı içerisinde bile sıklıkla bir kabuk içerisinde metinsel komutları girebileceğin erişime uygun bir terminal penceresi mevcuttur (bu klavuzun geri kalanı çoğunlukla kabuk komutlarından bahseder, bu nedenle bunlara ihtiyacınız olabilir).
 
 Çoğu Linux masaüstü ortamları üstünde bir terminal penceresi bir fare tıklaması uzaklığındadır. Debian GNU/Linux üstündeki KDE içinde konsol isimli bir giriş sistem altındaki başlangıç menüsünde vardır. Sistem bir kabuğu yürüten uygun programları açar ve metinsel komutları yürütür. Benzeri yöntemler diğer masaüstü ortamları ve dağıtımlar üstündede vardır.
 \end{subsection}
 
-\paragraph{Alıştırmalar}{
-\begin{itemize}
+\paragraph{{\Huge{\PencilLeftDown}}Alıştırmalar}{
+\begin{enumerate}
  \item Bilgisayarınızda hangi görsel ortam kurulu? Bir dosya yöneticisi aç ve dosya veya dizin simgesi üzerinde sağ tıkladığında ne olduğunu anlamaya çalışın. Eğer arka planda simgeler arasında boş bir pencere üstünde sağ tıklarsanız ne olur? Bir dosyayı bir dizinden diğerine nasıl taşırsın? Yeni bir dosya veya dizin nasıl oluşturursun? Bir dosyaya nasıl yeni bir isim verirsin?
  \item Bilgisayarınızda hangi web tarayıcısı kurulu? Birden fazla var mı? Tarayıcıyı başlatmayı deneyin ve onların çalıştığından emin olun.
- \item Bir terminal penceresi açıp kapatın. Terminal pencere programın aynı pencere içinde birden çok oturumu destekler mi? (tab ile alt pencereleri kulanmak mümkün.)
-\end{itemize}}
+ \item Bir terminal penceresi açıp kapatın. Terminal pencere programın aynı pencere içinde birden çok oturumu destekler mi? (tab ile alt pencereleri kulanmak mümkündür.)
+\end{enumerate}}
 \end{section}
 \begin{section}{Metin Dosyalarını Oluşturmak ve Düzenlemek}
 
@@ -102,65 +109,71 @@ Betik veya program yazmanız, sistem yöneticisi olarak yapılandırma dosyalar�
 
 Linux metin editörleri tüm boyutlarda şekillerde ve renklerde gelir. Burada terminal içinde çalışan acemi işi metin editörü (beginner-proof) GNU Nano’nun en önemli özelliklerini anlatarak kolay bir çıkış yolu sunacağız.
 
-Elbette popüler görsel arayüzler menülerle araç çubuklarıyla kullanışlı iyi şeylerin tüm çeşitlerini destekler.  Bu kullanışlı iyi şeyler Windows üzerindeki Notepad veya daha iyisiyle karşılaştırılabilecek programlardır. KDE üstündeki Kate veya Gnome üstündeki gedit gibi. iki sebepten dolayı  burada bu editörlere detaylı olarak bakmayacağız:
+Elbette popüler görsel arayüzler menülerle araç çubuklarıyla kullanışlı iyi şeylerin tüm çeşitlerini destekler.  Bu kullanışlı iyi şeyler Windows üzerindeki Notepad veya daha iyisiyle karşılaştırılabilecek programlardır. KDE üstündeki Kate veya Gnome üstündeki gedit gibi. İki sebepten dolayı  burada bu editörlere detaylı olarak bakmayacağız:
 
 \begin{itemize}
 \item Bu programlar kendilerini daha detaylı olarak açıklamaya eğilimlidirler ve gereğinden fazla ilginizi buraya çekmek istemiyoruz. 
-\item Her zaman görsel arayüz kullanacak bir pozisyonda olmayacaksınız . belkide güvenli kabuk kullanarak uzakta bir bilgisayarda çalışıyor olabilirsiniz veya sunucu odasında sunucu konsolunun önünde duruyor olabilirsiniz ya da şansınıza sadece bir metin ekranına sahipsinizdir. 
+\item Her zaman görsel arayüz kullanacak bir pozisyonda olmayacaksınız. Belki de güvenli kabuk kullanarak uzakta bir bilgisayarda çalışıyor olabilirsiniz veya sunucu odasında sunucu konsolunun önünde duruyor olabilirsiniz ya da şansınıza sadece bir metin ekranına sahipsinizdir. 
 \end{itemize}
 
 Her halukarda hayatının geri kalanı boyunca tek bir editör kullanmak zorunda değilsiniz. Hiçkimse Nano gibi bir editörden başka bir seçeneğiniz yokmuş gibi sizi görsel masaüstü bilgisayarınız üstünde görsel bir editör kullanmaktan alıkoyamaz.
  
-Gelenekçi Linux tutkunları Nano gibi birşeyi küçümserler: gerçek Linux profesyoneli için doğru seçim editörü vi (“vee aye” diye okunur), klavye özelliği ok tuşlarına güvenmeyen ve makine odalarını doldurmuş metin terminallerinin yeşil ışığında zamana direnmiş yaşayan bir fosile benzetilir. Eğer sistem yöneticisi üzerinde bir kariyere girişirseniz yakın veya uzak gelecekte vi ile tanışmalısınız. En azından orta seviyede vi bilmek gerekir. Bu yüzden vi özellikle Linux’ta ve her Unix çeşidi üstünde geniş olarak kullanılmaya değer tek editördü. Fakat şu anda bu böyle değil. 
+Gelenekçi Linux tutkunları Nano gibi birşeyi küçümserler: gerçek Linux profesyoneli için doğru seçim editörü vi (“vii ay" diye okunur), klavye özelliği ok tuşlarına güvenmeyen ve makine odalarını doldurmuş metin terminallerinin yeşil ışığında zamana direnmiş yaşayan bir fosile benzetilir. Eğer sistem yöneticisi üzerinde bir kariyere girişirseniz yakın veya uzak gelecekte vi ile tanışmalısınız. En azından orta seviyede vi bilmek gerekir. Bu yüzden vi özellikle Linux’ta ve her Unix çeşidi üstünde geniş olarak kullanılmaya değer tek editördü. Fakat şu anda bu böyle değil. 
 
-GNU Nano pico isimli editörün basit bir klonudur. pico PINE eposta paketinin bir bölümüdür. (PINE kabul edilmiş tanımlara göre ücretsiz bir yazılım değildir bu yüzden GNU projesi yeni bir editör yazdı. Bu arada PINE’ın ileri sürümü alpine adı altında ücretsiz olarak mevcuttur ve pico’nun ücretsiz bir versiyonunuda taşır.) Çoğu dağıtım GNU Nano veya pico’yu önerir buda basitlik içindir. Bölümün geri kalanında GNU Nanodan bahsedeceğiz. Pratik olarak söylediğimiz herşey picoyada uygulanabilir.
+GNU Nano pico isimli editörün basit bir klonudur. Pico PINE eposta paketinin bir bölümüdür. (PINE kabul edilmiş tanımlara göre ücretsiz bir yazılım değildir bu yüzden GNU projesi yeni bir editör yazdı. Bu arada PINE’ın ileri sürümü alpine adı altında ücretsiz olarak mevcuttur ve pico’nun ücretsiz bir versiyonunuda taşır.) Çoğu dağıtım GNU Nano veya pico’yu önerir buda basitlik içindir. Bölümün geri kalanında GNU Nanodan bahsedeceğiz. Pratik olarak söylediğimiz herşey pico'ya da uygulanabilir.
 
-Orjinal pico ile karşılaştırırsak GNU Nano özellikleri bazı uzantılara sahiptir.(bu uzantılar bir sürpriz göz önüne alarak gelmemiştir. Zaten isme göre çoktan mevcuttur. En önemli 3 editörden biridir.) fakat bunların çoğu bizimle doğrudan ilgilenmez. Gerçekten çok açık olan sadece bir uzantı vardır. GNU Nano uluslar arası hale getirilmiştir(internationalized). Böylece bir sistem üstünde diğer taraftan almanca dilini kullanmak için kurarsınız.  Almanca olarak metinleri mesajla yazabilirsiniz.
+Orjinal pico ile karşılaştırırsak GNU Nano özellikleri bazı uzantılara sahiptir (bu uzantılar bir sürpriz göz önüne alarak gelmemiştir. Zaten isme göre çoktan mevcuttur. En önemli 3 editörden biridir) fakat bunların çoğu bizimle doğrudan ilgilenmez. Gerçekten çok açık olan sadece bir uzantı vardır. GNU Nano uluslar arası hale getirilmiştir. Böylece bir sistem üstünde diğer taraftan almanca dilini kullanmak için kurarsınız.  Almanca olarak metinleri mesajla yazabilirsiniz.
 
-GNU Nano çoğunlukla terminal penceresi içerisinde hazır olarak başlar. (bölüm 3.2.3 aşağıdaki bir komut kullanır.)
+GNU Nano çoğunlukla terminal penceresi içerisinde hazır olarak başlar. (Bölüm ~\ref{sec:bolum323} aşağıdaki bir komut kullanır.)
 
 \begin{verbatim}
 $ nano myfile
 \end{verbatim}
 
-(\$ burada sadece komut satırının[prompt] biçimlendirilmiş kısaltmasıdır. Burada sisteminizi daha süslü gösterebilir ve \$ girmeniz gerekmez. Enter tuşuna basarak komutu tamamlamayı unutmayınız.) Sonuç olarak figure 3.1’e benzeyen birşey görebilirsiniz. O en üstte işaretlenmiş bir satırla çoğu boş bir pencere ve en aşağıda yardım satırlarıyla, komutların özet açıklamaları olan önemli bir liste, olarak gösterilmiştir. Yardım satırının hemen üstündeki satır durum satırıdır. Durum satırı diske veri kaydettiğin zaman dosya isimlerini girebileceğin Nanoda gözükecek mesajlardır. 
+(“\$“ burada sadece komut satırının [prompt] biçimlendirilmiş kısaltmasıdır. Burada sisteminizi daha süslü gösterebilir ve \$ girmeniz gerekmez. \Return tuşuna basarak komutu tamamlamayı unutmayınız.) Sonuç olarak şekil 3.1’e benzeyen birşey görebilirsiniz. O en üstte işaretlenmiş bir satırla çoğu boş bir pencere ve en aşağıda yardım satırlarıyla, komutların özet açıklamaları olan önemli bir liste, olarak gösterilmiştir. Yardım satırının hemen üstündeki satır durum satırıdır. Durum satırı diske veri kaydettiğin zaman dosya isimlerini girebileceğin Nano'da gözükecek mesajlardır. 
 
-Ekranda daha fazla kullanılabilir boşluğa ihtiyacınız varsa yardım satırını gizlemek için “alt + x ” basabilirsiniz.(space tuşunun solundaki “alt” tuşuna basılı tutarken x’e basın) tekrar basarsanız yardım satırını tekrar gösterir. (Eğer dahada boşluk istersen yardım satırının hemen altındaki top satırını “alt + o” kullanarak gizleyebilirsiniz. )
+Ekranda daha fazla kullanılabilir boşluğa ihtiyacınız varsa yardım satırını gizlemek için \Alt + \keystroke{x} tuşlarına basabilirsiniz. (space tuşunun solundaki \Alt tuşunu basılı tutarken \keystroke{x}’e basın) tekrar basarsanız yardım satırını tekrar gösterir. (Eğer dahada boşluk istersen yardım satırının hemen altındaki top satırını \Alt + \keystroke{o} kullanarak gizleyebilirsiniz. )
 
-\paragraph{Metin girişi ve değişmesi}{Yeni bir metin girmek için Nano penceresinin içinde yazmaya başlanır. Eğer hata yaparsan “backspace” tuşu imleçin solundaki karakteri silecektir. Metinin içerisinde dolaşmak için ok tuşlarını kullanabilirsiniz. Mesela başlangıça yakın birşeyi değiştirmek için. Yeni bir şey yazarsan imleçin işaret ettiği yerde gözükecektir. “del” tuşu imleçten sonraki karakteri kaldırır ve satırın geri kalanının bir pozisyon sola hareket etmesine sebep olur. Bazı Nano versiyonları fareyi destekler,böylece görsel ekranda Nanoyu kullanırsanız veya metinsel ortam fareyi yönetirse, metin içerisinde bir yere imleçi yerleştirmek için o noktaya tıklayabilirsiniz. Fare desteğini açmak için “alt + m” basabilirsiniz.}
+\paragraph{Metin girişi ve değişmesi}{Yeni bir metin girmek için Nano penceresinin içinde yazmaya başlanır. Eğer hata yaparsan “\BSpace” tuşu imleçin solundaki karakteri silecektir. Metinin içerisinde dolaşmak için ok tuşlarını kullanabilirsiniz. Mesela başlangıça yakın birşeyi değiştirmek için. Yeni bir şey yazarsan imleçin işaret ettiği yerde gözükecektir. \Del tuşu imleçten sonraki karakteri kaldırır ve satırın geri kalanının bir pozisyon sola hareket etmesine sebep olur. Bazı Nano versiyonları fareyi destekler, böylece görsel ekranda Nanoyu kullanırsanız veya metinsel ortam fareyi yönetirse, metin içerisinde bir yere imleçi yerleştirmek için o noktaya tıklayabilirsiniz. Fare desteğini açmak için \Alt + \keystroke{m} tuşlarına basabilirsiniz.}
 
-\paragraph{Metni kaydetme}{ Metin düzenlediğinde veya giriş yaptığında “ctrl + o” kullanarak kaydedebilirsiniz. Nano size dosya için bir isim sorar. (bölüm 6 sonunda dosya isimleri hakkında daha fazlasını göreceğiz.)Nano daha sonra dosya ismiyle metni kaydeder.}
+\paragraph{Metni kaydetme}{ Metin düzenlediğinde veya giriş yaptığında \Ctrl + \keystroke{o} kullanarak kaydedebilirsiniz. Nano size dosya için bir isim sorar. (Bölüm ~\ref{chap:bolum6} sonunda dosya isimleri hakkında daha fazlasını göreceğiz.) Nano daha sonra dosya ismiyle metni kaydeder.}
 
-\paragraph{Nanodan çıkış}{ Nanodan “ctrl + x” kullanarak çıkış yapabilirsiniz. Kaydedilmemiş veriler taşıyorsa Nano metni kaydedip etmeyeceğini sorar. Cevap “y”  ise Nano ismini sorar veya “n” ise Nano hemen çıkar buda kaydedilmemiş verilerin atılmasına sebep olur.}
-\paragraph{Dosya ekleme}{ Farklı bir dosya (önceden varolan) o anki metin dosyanıza “ctrl + r” kullanılarak eklenebilir.  Eklediğin dosya imleçin pozisyonundan itibaren eklenecektir. Nano doğrudan sorar yada “ctrl + t” kullanarak dosya göz atıcısını açıp dosya seçmenizi sağlar.Bu arada bu dosyayı kaydettiğinizde(“ctrl + o” kullanılarak)de çalışır. }
-\paragraph{ Kesme ve yapıştırma}{ Bir tampon içerisine satırı kaydetmek ve satırın taşıdığı imleci kaldırmak için “ctrl + k” komutunu kullanabiliriz.(dikkat: Nano her zaman imleçin satırdaki pozisyonuna bakmaksızın satırın tümünü kaldırır) “ctrl + u” tamponun içeriğini tekrardan yapıştıracaktır. Dikkatsizlik sonucu “ctrl + k” ‘ya basarsanız veya basitçe satırı taşımak yerine kopyalamayı isterseniz “ctrl + u” kullanabilirsiniz.}
+\paragraph{Nanodan çıkış}{ Nanodan \Ctrl + \keystroke{x} kullanarak çıkış yapabilirsiniz. Kaydedilmemiş veriler taşıyorsa Nano metni kaydedip etmeyeceğini sorar. Cevap “y”  ise Nano ismini sorar veya “n” ise Nano hemen çıkar buda kaydedilmemiş verilerin atılmasına sebep olur.}
+\paragraph{Dosya ekleme}{ Farklı bir dosya (önceden varolan) o anki metin dosyanıza \Ctrl + \keystroke{r} kullanılarak eklenebilir.  Eklediğin dosya imleçin pozisyonundan itibaren eklenecektir. Nano doğrudan sorar yada \Ctrl + \keystroke{t} kullanarak dosya göz atıcısını açıp dosya seçmenizi sağlar.Bu arada bu dosyayı kaydettiğinizde (\Ctrl + \keystroke{o} kullanılarak) de çalışır. }
+\paragraph{ Kesme ve yapıştırma}{ Bir tampon içerisine satırı kaydetmek ve satırın taşıdığı imleci kaldırmak için \Ctrl + \keystroke{k} komutunu kullanabiliriz.(dikkat: Nano her zaman imleçin satırdaki pozisyonuna bakmaksızın satırın tümünü kaldırır) \Ctrl + \keystroke{u} tamponun içeriğini tekrardan yapıştıracaktır. Dikkatsizlik sonucu \Ctrl + \keystroke{k}‘ya basarsanız veya basitçe satırı taşımak yerine kopyalamayı isterseniz \Ctrl + \keystroke{u} kullanabilirsiniz.}
 
-Yapıştırmalar her zaman imlecin olduğu yerden itibaren gerçekleşir. Eğer imleç satırın ortasındaysa “ctrl + u” ya bastığınızda tampondan gelen satır, imlecin sağ tarafına yapıştırılır. İmleçin sağında ne olursa olsun yeni satır orjinal satır haline gelir. 
+Yapıştırmalar her zaman imlecin olduğu yerden itibaren gerçekleşir. Eğer imleç satırın ortasındaysa \Ctrl + \keystroke{u}'ya bastığınızda tampondan gelen satır, imlecin sağ tarafına yapıştırılır. İmleçin sağında ne olursa olsun yeni satır orjinal satır haline gelir. 
 
-Bir satırda bir çok kez “ctrl + k” ya basarak tampona daha fazla satır taşıyabilirsiniz. Bu satırların hepsi birden yapıştırılacaktır.
-Satırın sadece bir bölümünü kesmek istiyorsanız imleçin karşılık geldiği pozisyonda “ctrl + $ ^\wedge $” (bazı klavyelerde “alt+a” ya basılarak elde edilebilir) basın. Ondan sonra imleçi keseceğiniz bölümün sonuna taşıyın. Nano yardımseverlikle kesmek için seçmiş olduğunuz metini işaretleyecektir. Sonrasında o bölgeyi “ctrl + k” kullanarak tampona taşıyın. İmleçin altındaki karakterin kesilmemiş olduğunu unutmayın. Sonra “ctrl + u”ya basarak tamponun içindenki herhangibir yere üsttekileri yapıştırabilirsiniz. 
+Bir satırda bir çok kez \Ctrl + \keystroke{k}'ya basarak tampona daha fazla satır taşıyabilirsiniz. Bu satırların hepsi birden yapıştırılacaktır.
+Satırın sadece bir bölümünü kesmek istiyorsanız imleçin karşılık geldiği pozisyonda \Ctrl + $ ^\wedge $ (bazı klavyelerde \Alt+\keystroke{a}'ya basılarak elde edilebilir) basın. Ondan sonra imleçi keseceğiniz bölümün sonuna taşıyın. Nano yardımseverlikle kesmek için seçmiş olduğunuz metini işaretleyecektir. Sonrasında o bölgeyi \Ctrl + \keystroke{k} kullanarak tampona taşıyın. İmleçin altındaki karakterin kesilmemiş olduğunu unutmayın. Sonra \Ctrl + \keystroke{u}'ya basarak tamponun içindenki herhangibir yere üsttekileri yapıştırabilirsiniz. 
 
-\paragraph{Metin arama}{Eğer “ctrl + w” ya basarsan Nano sana metnin bir parçasını sormak için durum satırını kullanır. İmleç ondan sonra senin dökümanının içindeki metnin bir parçasında olduğu yere gider ve onun o anki pozisyonundan başlayarak devam eder.}
+\paragraph{Metin arama}{Eğer \Ctrl + \keystroke{w}'ya basarsan Nano sana metnin bir parçasını sormak için durum satırını kullanır. İmleç ondan sonra senin dökümanının içindeki metnin bir parçasında olduğu yere gider ve onun o anki pozisyonundan başlayarak devam eder.}
 
-\paragraph{Çevrimiçi yardım}{“ctrl + g” kullanarak Nanonun ana yardım ekranını görebilirsiniz. Ana yardım ekranın editörün temellerini ve çeşitli klavye komutlarını açıklar. (Burada açıkladığımızdan daha fazla komut var. ) Yardım ekranını “ctrl + x” kullanarak kapatabilirsiniz.
+\paragraph{Çevrimiçi yardım}{\Ctrl + \keystroke{g} kullanarak Nanonun ana yardım ekranını görebilirsiniz. Ana yardım ekranın editörün temellerini ve çeşitli klavye komutlarını açıklar. (Burada açıkladığımızdan daha fazla komut var. ) Yardım ekranını \Ctrl + \keystroke{x} kullanarak kapatabilirsiniz.
 Bunlar GNU Nanonun en önemli özellikleridir. Bunları denemek en iyisidir. İstediğiniz gibi deneyebilirsiniz.}
 
-vi başlığına geri dönün (Linux gurularının editörü olduğunu hatırla) Eğer macera istiyorsanız sisteminizde vim editörünün kurulu olduğundan emin olun. Bu editör vi’nin go-to gerçekleştirimidir. (Çok nadir olarak az sayıda kişi Linux üstünde orjinal BSD vi kullanır. ) vimtutor programını başlatın ve yarım saatinizi vi’ye girişiniz için harcayın (Linux dağıtımınıza bağlı olarak vimtutor’u ayrı bi paket olarak indirebilirisiniz. Şüphe içindeyseniz sistem yöneticinize veya bilen herhangibirine sorun).
+vi başlığına geri dönün (Linux gurularının editörü olduğunu hatırla) Eğer macera istiyorsanız sisteminizde vim editörünün kurulu olduğundan emin olun. Bu editör vi’nin go-to gerçekleştirimidir. (Çok nadir olarak az sayıda kişi Linux üstünde orjinal BSD vi kullanır.) vimtutor programını başlatın ve yarım saatinizi vi’ye girişiniz için harcayın (Linux dağıtımınıza bağlı olarak vimtutor’u ayrı bir paket olarak indirebilirisiniz. Şüphe içindeyseniz sistem yöneticinize veya bilen herhangibirine sorun).
 
-\paragraph{Alıştırmalar}{
-\begin{itemize}
+\paragraph{{\Huge{\PencilLeftDown}}Alıştırmalar}{
+\begin{enumerate}
  \item GNU Nano’yu başlatın ve aşağıdaki metni girin.
+ \footnotesize
  \begin{verbatim}
 Roses are red,
 Violets are blue,
 Linux are brilliant,
 I know it is true.
- \end{verbatim}Bu metni roses.txt olarak kaydedin.
+ \end{verbatim}
+\normalsize 
+ Bu metni roses.txt olarak kaydedin.
  \item önceki alıştırmadaki metinden alttaki satırı kesin
+ \footnotesize
  \begin{verbatim}
  Linux is brilliant
  \end{verbatim}
+ \normalsize 
  Üç kere yapıştırıp metnin aşağıdaki gibi gözükmesini sağlayın.
+\footnotesize
  \begin{verbatim}
 Roses are red,
 Violets are blue,
@@ -169,7 +182,9 @@ Linux are brilliant,
 Linux are brilliant,
 I know it is true.
  \end{verbatim}
-\end{itemize}}
+ \normalsize 
+\end{enumerate}}
+
 Bu satırların ilkinin içindeki “is” in “i” üstündeki imleç pozisyonunu işaretleyin. 3. Satırdaki “is”in “i”sine yönlendirin ve işaretli bölgeyi kaldırın.
 \end{section}
 \paragraph{Bu bölümdeki komutlar}{
@@ -181,7 +196,7 @@ Bu satırların ilkinin içindeki “is” in “i” üstündeki imleç pozisyo
 \paragraph{Özet}{
 \begin{itemize}
 \item Linux sistemi kullanmadan önce kullanıcı ismi ve parolanı girmek zorundasınız. Sistemi kullandıktan sonra tekrar çıkış yapmalısınız.
-\item Linux çeşitli görsel ortamlar sunar. bu görsel ortamların çoğu birbirine benzerdir ve açıkça birbirnden üretilmişlerdir.
+\item Linux çeşitli görsel ortamlar sunar. Bu görsel ortamların çoğu birbirine benzerdir ve açıkça birbirinden üretilmişlerdir.
 \item Terminal penceresi görsel ortam içerisindeki metinsel kabuk komutlarını girmene izin verir. 
 \item GNU Nano basit bir metin editörüdür.
 \end{itemize}

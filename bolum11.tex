@@ -42,12 +42,12 @@ Bu yöntemin PKZIP ve bağlantılı yöntemlere göre avantajı bu yöntemin yü
 Doğal olarak Linux’ta bile kimse sizi ilk sıkıştırmanızdan ve onları arşivlemenizden alıkoymaz. Maalesef bu yöntem diğerindeki kadar kullanışlı değildir
 
 Elbette Linux’ta de Windows dünyasındaki rar ve zip gibi kullanışlı sıkıştırma programları vardır.
-\paragraph{Alıştırmalar}{
-\begin{itemize}
+\paragraph{{\Huge{\PencilLeftDown}}Alıştırmalar}{
+\begin{enumerate}
  \item Neden run-length kodlama örneğinde AA yerine *2A i kullanılır?
  \item run-length kodlama metodun kullanarak "A*2B****A" dizinini
 nasıl gösterebilirsiniz?
-\end{itemize}}
+\end{enumerate}}
 \end{section}
 
 \begin{section}{tar Kullanarak Dosya Arşivlemek}
@@ -150,13 +150,13 @@ $ tar -xvf ../data.tar data/data2
 tar: data/data2: Not found in archive
 tar: Error exit delayed from previous errors
 \end{verbatim}
-\paragraph{Alıştırmalar}{
-\begin{itemize}
+\paragraph{{\Huge{\PencilLeftDown}}Alıştırmalar}{
+\begin{enumerate}
  \item Ana dizinizdeki dosyaların liste bilgilerin bir dosya içinde depolayın. O dosyanın tar arşivini oluşturun. Orijinal dosya ve onun arşivini bir biriyle karşılaştır. Ne önerirsiniz?
  \item Üç veya dört boş dosya oluşturup onu yeni oluşturduğunuz arşive ekleyiniz
  \item Asıl dosyanızı silin ve tar'ın içindekileri arşivden çıkartın.
  \item Eğer bir dosya veya muhafaza edilmesi için dizinin adı mutlak bir yol adı olarak verilirse neden GNU tar profilaktif olarak yol adı başlangıcında silmez? ve etc-backup.tar (a) mutlak yol isimleri varsa ne olacağını hayal edin,(b) başka bir bilgisayara aktarılır ve orada çözülür.
-\end{itemize}}
+\end{enumerate}}
 \end{section}
 \begin{section}{gzip ile Dosya Sıkıştırma}
 
@@ -211,12 +211,12 @@ Unutmayın; tar asıl dosyayı silmez! Bu sadece paketten çıkarmak için kulla
 \begin{verbatim}
 $ tar -xvzf tex-all.tar.gz
 \end{verbatim}
-\paragraph{Alıştırmalar}{
-\begin{itemize}
+\paragraph{{\Huge{\PencilLeftDown}}Alıştırmalar}{
+\begin{enumerate}
  \item Alıştırma 11.3 deki en iyi sıkıştırması ile tar arşivin sıkıştırın.
  \item Sıkıştırılmış arşivin içeriklerini denetlemek. tar arşivinden asıl yerine geri getirin.
  \item Nasıl bir şekilde ana dizininizdeki tüm içerikleri paketleyip gzip dosyasını sıkıştırır?
-\end{itemize}}
+\end{enumerate}}
 \end{section}
 \begin{section}{bzip2 ile Dosya Sıkıştırmak}
 
@@ -359,10 +359,10 @@ Archive: test.zip
 
 As is to be expected, unzip also supports various other options. Look at the program’s help information using “unzip -h” or “unzip -hh”, or read unzip(1).
 
-\paragraph{Alıştırmalar}{
-\begin{itemize}
+\paragraph{{\Huge{\PencilLeftDown}}Alıştırmalar}{
+\begin{enumerate}
  \item Ana dizinize birkaç dosya oluşturun ve onları zip ile arşivleyin. "unzip -v" kullanarak arşivin içeriğine bak. /tm dizinine arşivi paketten çıkarın
  \item unzip kulanarak paketten çözüyor olduğunuz dosya eğer dosya sistem içerisinde daha önceden oluşmuşsa ne olurdu?
  \item zip arşivi file.zip iki altdizinleri barındırıyor olsun bunların içinde (örnegin .c, .txt, .dat). Öyle bir unzip komutun verin ki içerikler içinden .txt dosyaların ayrı bir yerde açsın.
-\end{itemize}}
+\end{enumerate}}
 \end{section}

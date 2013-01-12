@@ -120,11 +120,11 @@ Chown ve chgrp aynı zamanda dizin hiyerarşisinin parçası için yinelemeli de
 
 Tabiki bir dosyanın izinlerini, grubunu, sahibini, çok popüler olan dosya tarayıcısını (Konqueror yada Nautilus gibi) kullanarak da değiştirebilirsiniz.
 
-\paragraph{Alıştırmalar}{
-\begin{itemize}
+\paragraph{{\Huge{\PencilLeftDown}}Alıştırmalar}{
+\begin{enumerate}
  \item Bir dosya oluşturun. Bu dosyanın grubu nedir? İkincil gruplarından birine dosya atamak için chgrp kullanın. Gruba üye olmayan bir kullanıcıya dosya atamak isterseniz ne olur?
  \item Çeşitli tarayıcıların dosyanın izinleri, sahibi, grubu gibi ayarları için sunduğu mekanizmaları karşılaştırın. Belli başlı farklılıklar var mı?
- \end{itemize}}
+ \end{enumerate}}
 \end{subsection}
 \end{section}
 \begin{section}{Süreç Sahipliği}
@@ -222,13 +222,13 @@ Genelde, bir dosyayı silerken yada adını değiştirirken, sistem, dosyanın e
 
 “Sticky bit” adı, daha önceden Unix sistemleri için kullanılan ek bir anlamdan türemektedir. O zamanda, programlar başlatıldığında programın tamamı swap alanına kopyalanırdı ve sonlandırıldıktan sonra tamamen silinirdi. Sticky bitli program dosyaları silinmek yerine takas alanında bırakılabilirdi. Bu, bu programların çağrılmasını hızlandırır çünkü hiçbir kopya yapılmamıştır. En çok Unix, Linux gibi sistemler sayfalamaya ihtiyaç duyar. Programın çalıştırılabilir dosyasındaki kodun sadece gerçekten gerekli olan bu parçalarını alır. Bu takas alanına hiç bir şey kopyalamaz, Linux'taki gibi, sticky bit asla orjinal anlamına sahip değildir.
 
-\paragraph{Alıştırmalar}{
-\begin{itemize}
+\paragraph{{\Huge{\PencilLeftDown}}Alıştırmalar}{
+\begin{enumerate}
  \item Özel “s” ayrıcalığı ne demek? Onu nerede bulabilirsiniz? Kendi oluşturduğunuz dosya üzerinde bu ayrıcalığı ayarlayabilir misiniz?
  \item Umask ayarlamak için hangi umask çağrısı kullanılır? Örneğin, proje dizinindeki dosyaları okumak ve yazmak için proje grubunun tüm üyelerine izin vermek.
  \item Özel “t” ayrıcalığı ne demek? Onu nerede bulabilirsiniz?
  \item (Programcılar için) Uygun bir komut çağırarak C programı yazınız. Bu programı SUID root ayarlayınız ve onu çalıştırdığınız zaman ne olacağını gözlemleyiniz.
- \end{itemize}}
+ \end{enumerate}}
 
 \paragraph{Bu Bölümdeki Komutlar}{
 \begin{itemize}

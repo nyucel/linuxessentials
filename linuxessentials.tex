@@ -5,33 +5,63 @@
 \usepackage{amssymb}
 \usepackage{hyperref}
 \usepackage{bookmark}
+\usepackage{marginnote}
 \usepackage[left=1.5cm,right=1.5cm,top=1.5cm,bottom=1.5cm]{geometry}
 \usepackage{paralist}
 \usepackage{graphicx}
 \usepackage{caption}
+\usepackage{bbding}
+\usepackage{keystroke}
 \usepackage{subcaption}
-\begin{document}
-\title{Linux'a Giriş}
-\author{Tobias Elsner, Thomas Erker, Anselm Lingnau}
+\usepackage{hyperref}
+\let\checkmark\relax
+\usepackage{dingbat} 
+\newcommand{\HRule}{\rule{\linewidth}{0.5mm}}
 \renewcommand*\chaptername{Bölüm}
-\maketitle
-Çevirenler:\\
-Z.Tuğçe Şirin\\
-Mithat Göğebakan\\
-Samet İlhan\\
-Serdar Orazmamedov\\
-Özcan Zafer Ayan\\
-Emre Doğru\\
-Sena Özben\\
-Margulan Byekmurat\\
-Sema Özvin\\
-Ahmet Dellal\\
-Emrah Şentürk\\
-Ebru Akagündüz\\
-\today
 \renewcommand*\contentsname{İçindekiler}
+\begin{document}
+
+\begin{titlepage}
+\begin{center}
+\HRule \\[1.5cm]
+{ \huge \bfseries Linux'a Giriş}\\[1.5cm]
+\HRule \\[1.5cm]
+
+\begin{minipage}{0.4\textwidth}
+\begin{flushleft} \large
+\emph{Yazarlar:}\\
+Tobias \textsc{Elsner}\\
+Thomas \textsc{Erker}\\
+Anselm \textsc{Lingnau}
+\end{flushleft}
+\end{minipage}
+\begin{minipage}{0.4\textwidth}
+\begin{flushright} \large
+\emph{Çevirmenler:} \\
+Z.Tuğçe \textsc{Şirin}\\
+Mithat \textsc{Göğebakan}\\
+Samet \textsc{İlhan}\\
+Serdar \textsc{Orazmamedov}\\
+Özcan Zafer \textsc{Ayan}\\
+Emre \textsc{Doğru}\\
+Sena \textsc{Özben}\\
+Margulan \textsc{Byekmurat}\\
+Sema \textsc{Özvin}\\
+Ahmet \textsc{Dellal}\\
+Emrah \textsc{Şentürk}\\
+Ebru \textsc{Akagündüz}
+\end{flushright}
+\end{minipage}
+\vfill
+{\large \today}
+
+\end{center}
+
+\end{titlepage}
+
 \tableofcontents
 \listoftables
+\include{preface}
 \include{bolum1}
 \include{bolum2}
 \include{bolum3}
