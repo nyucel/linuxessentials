@@ -258,7 +258,35 @@ holiday/
 \end{verbatim}
 \normalsize 
 
+Bazen bir dizine artık ihtiyaç duyulmaz. Dağınıklığı azaltmak için \emph{rmdir} ("remove directory") komutu ile o dizini silebilirsiniz.
 
+\emph{mkdir} komutunda olduğu gibi en az bir silinecek dizin adı verilmelidir. Ayrıca silinecek dizinler boş olmalı, içerlerinde dosya veya dizinler barındırmamalıdır. Diğer komutta olduğu gibi bunda da her ismin sonundaki son dizin siliniz.
+\footnotesize
+\begin{verbatim}
+$ rmdir pictures/holiday
+$ ls -F
+pictures/
+\end{verbatim}
+\normalsize
+
+\emph{-p} seçeneği ile en sağdakinden başlayarak boş olan tüm dizinler tek bir hamle ile silinebilir.
+
+\footnotesize
+\begin{verbatim}
+$ mkdir -p pictures/holiday/summer
+$ rmdir pictures/holiday/summer
+$ ls -F pictures
+pictures/holiday/
+$ rmdir -p pictures/holiday
+$ ls -F pictures
+ls: pictures: No such file or directory
+\end{verbatim}
+\normalsize
+
+\paragraph{{\Huge{\PencilLeftDown}}Alıştırmalar}{
+\begin{enumerate}
+ \item Ev dizininiz içerisinde \emph{dir1}, \emph{dir2} ve \emph{dir3} isimli dizinleri içeren \emph{grd1- test} isimli bir dizin oluşturun. \emph{grd1- test/dir1} içerisine geçerek "hello" yazan \emph{hello} isimli bir dosya (örneğin metin düzenleyici ile) oluşturun. \emph{grd1- test/dir2} içerisinde "howdy" yazan \emph{howdy} isimli bir dosya oluşturun. Bu dosyaların olmadığını kontrol edin. \emph{dir3} isimli dizini \emph{rmdir} komutu ile silin. Daha sonra \emph{dir2} isimli dizini \emph{rmdir} kullanarak silmeye çalışın. Ne oldu ve neden?
+\end{enumerate}}
 \end{subsection}
 \end{section}
 
