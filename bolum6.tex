@@ -294,15 +294,15 @@ ls: pictures: No such file or directory
 \label{sec:bolum63}
 \begin{subsection}{Basit Arama Şablonları}
 
-Sık sık aynı süre içerisinde birçok dosya için bir komut uygulamak isteyebilirsiniz. Örneğin, eğer "p" ile başlayıp ".c" ile biten tüm dosyaları prog1 dizininden prog2 dizinine kopyalamak istediğinizde, her dosyanın ismini açık bir şekilde yazmak oldukça sıkıcı olabilir— eğer en azından birçok dosya ile uğraşıyorsanız! Kabuk arama şablonları kullanarak bu iş çok rahat bir şekilde yapılır.
+Sık sık birden çok dosyaya aynı anda bir komutu uygulamak istersiniz. Örneğin, eğer "p" ile başlayıp ".c" ile biten tüm dosyaları \emph{prog1} dizininden \emph{prog2} dizinine kopyalamak istediğinizde, her dosyanın ismini açık bir şekilde yazmak, eğer en azından birçok dosya ile uğraşıyorsanız, oldukça sıkıcı olabilir. Kabuk arama şablonları kullanarak bu iş çok rahat bir şekilde yapılır.
 
-Kabuk komut satırında belirlediğiniz bir kelimeyi yıldız ile kullanarak bunu sağlayabilirsiniz. Örneğin
+Kabuk komut satırında belirlediğiniz bir kelimeyi yıldız ile kullanarak bunu sağlayabilirsiniz. Örneğin:
 \footnotesize 
 \begin{verbatim}
 prog1/p*.c
 \end{verbatim}
 \normalsize 
-Kabuk bu parametreyi, dosya isimlerinin "eşleşme" parametresine göre sıralandığı liste ile mevcut olan asıl programda başlatır. "Eşleşme", asıl dosya adında, yıldızlı keyfi karakterlerin istenen uzunlukta sıralanmasına denir. Örneğin
+Kabuk bu bağımsız değişkeni asıl program içerisinde bağımsız değişken ile eşleşen dosya adlarının sıralı bir listesi ile değiştirir. "Eşleşme", asıl dosya adında, yıldız yerine keyfi karakterlerin istenen uzunlukta sıralanmasına denir. Örneğin:
 \footnotesize 
 \begin{verbatim}
 prog1/p1.c
@@ -313,7 +313,7 @@ prog1/p.c
 \normalsize 
 yukarıdaki isimler uygundur (örnekteki son ismin özelliği için kısa not — "istenen uzunluk", "sıfır uzunluğu" içerebilir!). Yıldız ile eşleştirilemeyecek bir karakter sizce ne olabilir?—taksim işareti; genellikle arama şablonundaki yıldız karakterini bulunduğunuz dizin ile sınırlamak daha iyidir.
 
-echo ile kolay bir şekilde bu arama şablonlarını test edebilirsiniz.
+\emph{echo} komutunu ile kolay bir şekilde bu arama şablonlarını test edebilirsiniz.
 \footnotesize 
 \begin{verbatim}
 $ echo prog1/p*.c
@@ -321,28 +321,31 @@ $ echo prog1/p*.c
 \normalsize
 komutu herhangi bir zorunluluk, kural vb. olmaksızın eşleşen dosya isimlerini çıktı olarak verir.
 
-Eğer gerçekten tüm dosyaları belirli bir dizin ile başlayan dizin ağacında girdi olarak vermek isterseniz, bunun için yapılacak bir çok yöntem vardır. Bu konuya ~\ref{sec:bolum644}'te değineceğiz.
+Eğer gerçekten \emph{dizin ağacında} belirli bir dizin ile başlayan tüm dosyalara bir komut uygulamak isterseniz, bunun için yapılacak bir çok yöntem vardır. Bu konuya ~\ref{sec:bolum644}'te değineceğiz.
 
-"*" arama şablonu "mevcut dizindeki tüm dosyaları" tanımlar—nokta ile başlayan gizli dosyalar hariç. Olası zahmetli sürprizleri engellemek için, şayet açıkça ".*" gibi anlam içeren dosyaları aramıyorsanız, arama şablonlarını dikkatlice, gizli dosyaları göz ardı ederek kullanmalısınız.
+"*" arama şablonu "mevcut dizindeki tüm dosyaları" tanımlar, nokta ile başlayan gizli dosyalar hariç. Olası zahmetli sürprizleri engellemek için, şayet açıkça ".*" gibi anlam içeren dosyaları aramıyorsanız, arama şablonları gizli dosyaları göz ardı ederek çalışır.
 
-DOS veya Windows\footnote{Muhtemelen CP/M için çok gençsinizdir.} gibi işletim sistemlerinin komut satırında yıldız kullanımı ile rastgelmiş ve "*.*" kullanarak dizindeki tüm dosyalara işaret etmiş olabilirsiniz. Linux'ta bu doğru değildir—"*.*" şablonu "nokta içeren tüm dosyalar" ile eşleşir, fakat nokta zorunlu değildir. Linux'taki karşılığı dediğimiz gibi "*"'dır. Soru işareti arama şablonu sadece tek bir keyfi karakter ile eşleştirmek için kullanılır (yine taksim işareti hariç). Şablon
+DOS veya Windows\footnote{Muhtemelen CP/M için çok gençsinizdir.} gibi işletim sistemlerinin komut satırında yıldız kullanımı ile rastgelmiş ve "*.*" kullanarak dizindeki tüm dosyalara işaret etmiş olabilirsiniz. Linux altında bu doğru değildir, "*.*" şablonu "nokta içeren tüm dosyalar" ile eşleşir, fakat nokta zorunlu değildir. Linux'taki karşılığı dediğimiz gibi "*"'dır. 
+
+Soru işareti arama şablonu sadece tek bir keyfi karakter ile eşleştirmek için kullanılır (yine taksim işareti hariç). 
+Örnekteki gibi bir kalıp
 \begin{verbatim}
 p?.c
 \end{verbatim}
-gibidir ve böylece
+alttaki isimleri eşler:
 \begin{verbatim}
 p1.c
 pa.c
 p-.c
 p..c
 \end{verbatim}
-isimli dosyalarla (diğerleri arasından) eşleştirir. Unutmayın mutlaka bir karakter bulunmalıdır — yıldızda olduğu gibi "hiçbir şey" seçeneği burada geçerli değildir.
+Unutmayın mutlaka bir karakter bulunmalıdır, "hiçbir şey" seçeneği burada geçerli değildir.
 
-Özellikle çok önemli bir olaya dikkat etmelisiniz: Arama şablonunun genişlemesi kabuğun sorumluluğu altındadır! Çalıştırdığınız komutlar genellikle arama şablonları hakkında birşey bilmez ve ilgilenmezler de. Onlar yol isimlerini listeleyerek bakmaya başlar, fakat nereden geldikleri ile ilgilenmezler—Örneğin, onlar direkt olarak kaynağın yazılabilir olup olmadığını veya arama şablonlarının genişlemesinin sonuçlarına bakmazlar.
+Özellikle çok önemli bir olaya dikkat etmelisiniz: Arama şablonunun genişlemesi kabuğun sorumluluğu altındadır! Çalıştırdığınız komutlar genellikle arama şablonları hakkında birşey bilmez ve ilgilenmezler de. Onlar yol isimlerini listeleyerek bakmaya başlar, fakat nereden geldikleri ile ilgilenmezler, örneğin, doğrudan mı yazılmış ya da bir arama sonucu mu diye kontrol etmezler.
 
 Bu arada, kimse arama şablonlarının sonuçlarının yol isimleri kadar yorumlanabilir olduğunu söylemez. Örneğin, eğer bir dizin içerisinde "-l" isminde dosya içeriyorsa,  "ls *"'nin o dizinde kullanılması size ilginç ve belki de sürpriz bir sonuç verecektir. (bkz: Alıştırma 6.9)
 
-Eğer kabuk, arama şablonlarıyla eşleşen isimlerde dosyaları bulamazsa ne olur? Bu durumda söz konusu komut, arama şablonunu pas geçer; Kendi konusu ne ise onu yapar. Genellikle bu tarz arama şablonları dosya isimleri kadar yorumlanmışlardır, fakat söz konusu "dosya" ise bulunamaz ve hata mesajı bildirilir. Ancak, arama şablonları ile kullanışlı işler yapabileceğiniz birçok komut vardır—bütün bunlarla, gerçekten meydan okuyabileceksiniz, kabuğun çalıştırdığı komut, kendi genişlemesini kesmeye yeltenmez (İpucu:tırnak işaretleri).
+Eğer kabuk, arama şablonlarıyla eşleşen isimlerde dosyaları bulamazsa ne olur? Bu durumda söz konusu komut, arama şablonunu pas geçer; kendi arma işi ne ise onu yapar. Genellikle bu tarz arama şablonları dosya isimleri gibi yorumlanmışlardır, fakat söz konusu "dosya" ise bulunamaz ve hata mesajı bildirilir. Ancak, arama şablonları ile kullanışlı işler yapabileceğiniz birçok komut vardır, bütün bunlarla, gerçekten meydan okuyabileceksiniz, kabuğun çalıştırdığı komut, kendi genişlemesini engel olmaz. (İpucu:tırnak işaretleri).
 \end{subsection}
 \begin{subsection}{Karakter Sınıfları}
 Kısmen arama şablonlarında eşleştirilen karakterlerin daha hassas tanımlanması için "karakter sınıfları" önerilir: Formun bir arama şablonunda
