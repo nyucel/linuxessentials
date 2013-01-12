@@ -120,7 +120,7 @@ Linux kullanıcısı olarak sisteme girdiğinizden hemen sonra "ev dizinine" ula
 \begin{section}{Dizin Komutları}
 \begin{subsection}{Mevcut Dizin: cd \& Co.}
 
-Mevcut dizini değiştirmek için cd kabuk komutunu kullanabilirsiniz: Basitçe parametre olarak arzu edilen dizin ismi verilir:
+Mevcut dizini değiştirmek için \emph{cd} kabuk komutunu kullanabilirsiniz: Basitçe parametre olarak arzu edilen dizin ismi verilir:
 \footnotesize
 \begin{verbatim}
 $ cd letters 	       letters dizinine değiştirir
@@ -137,7 +137,7 @@ $ pwd
 \end{verbatim}
 \normalsize 
 
-Mevcut dizinin mutlak yolunun çıktısını almak için pwd ("print working directory") komutunu kullanabilirsiniz.
+Mevcut dizinin mutlak yolunun çıktısını almak için \emph{pwd} ("print working directory") komutunu kullanabilirsiniz.
 
 Ayrıca mevcut dizininizi büyük olasılıkla kendi istemcinizin bir kısmı olarak görebilirsiniz. Sistem ayarlarınıza bağlı olarak
 
@@ -147,12 +147,14 @@ joe@red:~/letters> _
 \end{verbatim}
 \normalsize 
 
-gibi bir satırla karşılaşabilirsiniz. $\sim$/letters /home/joe/letters'a kısaltmadır; tilda ("$\sim$") ise mevcut kullanıcı ev dizininizi gösterir. "cd -" komutu cd komutu ile son kullanılmış dizine tekrar geri dönmeyi sağlar. Bu kullanışlı komut iki dizin arasında peş peşe geçiş yapmayı sağlar.
+gibi bir satırla karşılaşabilirsiniz. \emph{$\sim$/letters} \emph{/home/joe/letters} ifadesi için kısaltmadır; tilda ("\emph{$\sim$}") ise mevcut kullanıcı ev dizininizi gösterir. 
+
+"\emph{cd -}" komutu \emph{cd} komutu ile son kullanılmış dizine tekrar geri dönmeyi sağlar. Bu kullanışlı komut iki dizin arasında peş peşe geçiş yapmayı sağlar.
 
 \paragraph{{\Huge{\PencilLeftDown}}Alıştırmalar}{
 \begin{enumerate}
- \item Kabukta cd dahili mi, harici mi komuttur? Neden?
- \item Kabuk kılavuz dosyasında pushd, popd, dirs komutlarını okuyunuz. Bu komutların tasvir edildiği gibi çalıştığına kendinizi ikna ediniz.
+ \item Kabukta \emph{cd} komutu dahili mi, harici mi komuttur? Neden?
+ \item Kabuk kılavuz dosyasında \emph{pushd}, \emph{popd}, \emph{dirs} komutlarını okuyunuz. Bu komutların tasvir edildiği gibi çalıştığına ikna olunuz.
 \end{enumerate}}
 
 \paragraph{}{
@@ -180,11 +182,11 @@ Parametre & Sonuç \\
 \hline
 -a veya --all 	&	Aynı zamanda gizli dosyaları da görüntüler \\
 -i veya --inode 	&	Eşsiz dosya numarasını görüntüler (inode number) \\
--l veya --format=long 	&	Ekstra bilgi görüntüler \\
+-l veya --format=long 	&	Ek bilgi görüntüler \\
 -o veya --no-color 	&	Çıktı renk-kodlamasını atlar \\
 -p veya -F 	&	Eklenen özel karakterle dosya türünü işaretler \\
 -r veya --reverse 	&	Sıralamayı ters yapar \\
--R veya --recursive 	&	Alt dizinlerle birlikte rekürsif olarak listeler (DOS: DIR/S) \\
+-R veya --recursive 	&	Alt dizinlerle birlikte öz yinelemeli olarak listeler (DOS: DIR/S) \\
 -S veya --sort=size 	&	Boyuta göre sıralar (büyükten küçüğe doğru) \\
 -t veya --sort=time 	&	Değiştirilme tarihine göre sıralar (yeniden eskiye doğru) \\
 -X veya --sort=extension 	&	Dosya uzantısına göre sıralar (“dosya türüne” göre) \\
@@ -195,19 +197,19 @@ Parametre & Sonuç \\
 \end{subsection}
 \begin{subsection}{Dosya ve Dizinleri listeleme --ls}
 
-Dizin ağacı etrafında yolunuzu bulmak için hangi dosya ve dizinlerin mevcut dizin içerisinde olduğunu bilmeniz gerekir. ls("list") komutu tam da bu iş için vardır.
+Dizin ağacı etrafında yolunuzu bulmak için hangi dosya ve dizinlerin mevcut dizin içerisinde olduğunu bilmeniz gerekir. \emph{ls}("list") komutu tam da bu iş için vardır.
 
-Parametresiz kullanımda çıktı olarak dosyaların isme göre sıralandığı bir çeşit tablo görünümlü bir yapı elde edilir. Renkli ekranların günümüzde standart haline gelmesiyle, dosya isimleri ve türlerinin farklı renklerde görüntülenmesi genelek haline geldi (Daha dosya tipleri hakkında konuşmadık; bu konuya Bölüm ~\ref{chap:bolum10}'da değineceğiz).
+Parametresiz kullanımda dosyaların isme göre sıralandığı çok sütunlu çıktı gösterilir. Renkli ekranların günümüzde standart haline gelmesiyle, dosya isimleri ve türlerinin farklı renklerde görüntülenmesi gelenek haline geldi (Daha dosya tipleri hakkında henüz konuşmadık; bu konuya Bölüm ~\ref{chap:bolum10}'da değineceğiz).
 	
 Neyse ki, günümüzde birçok dağıtım renkli kullanımı bünyesinde barındırıyor. Tablo ~\ref{tab:tablo61}'de en yaygın gösterimler vardır.
 
 Siyah-Beyaz ekranlarda, ki hala günümüzde var, -F veya -p parametreleri önerilir. Bunlar dosya türleri ile ilişkili dosya isimlerine özel karakter eklerler. Bu karakterlerin bazılarına Tablo ~\ref{tab:tablo61}'de değinmiştik.
 	
-Gizli dosyaları (nokta ile başlayan isimlileri) -a ("all") parametresiyle görüntüleyebilirsiniz. Bir başka kullanışlı seçenek ise -l'dir(büyük harf olarak "L", "long"(uzun) anlamı taşır, "1" rakamı değildir). Bu sadece dosya isimlerini sıralamakla kalmaz ayrıca her dosya için ek bilgi de içerir.
+Gizli dosyaları (nokta ile başlayan isimlileri) \emph{-a} ("all") parametresiyle görüntüleyebilirsiniz. Bir başka kullanışlı seçenek ise \emph{-l}'dir(küçük harf olarak "L", "long"(uzun) anlamı taşır, "1" rakamı değildir). Bu sadece dosya isimlerini sıralamakla kalmaz ayrıca her dosya için ek bilgi de içerir.
 	
-Bazı Linux dağıtımlarında önceden ayarlanmış bazı yardımcı parametrelerin kombinasyonu olan kısaltmalar vardır; SUSE dağıtımlarında, örneğin sadece basit bir l kullanımı "ls -alF"'nin kısaltmasıdır. "ll" ve "la" ls'nin farklılaşmış bazı kısaltmalarıdır.
+Bazı Linux dağıtımlarında önceden ayarlanmış bazı yardımcı parametrelerin kombinasyonu olan kısaltmalar vardır; SUSE dağıtımlarında, örneğin sadece basit bir \emph{l} kullanımı "\emph{ls -alF}"'nin kısaltmasıdır. "\emph{ll}" ve "\emph{la}" \emph{ls}'nin farklılaşmış bazı kısaltmalarıdır.
 	
-Aşağıdaki örnekte ls'nin -l'li ve -l'siz kullanımı vardır:
+Aşağıdaki örnekte \emph{ls}'nin \emph{-l}'li ve \emph{-l}'siz kullanımı vardır:
 \footnotesize 
 \begin{verbatim}
 $ ls
@@ -219,7 +221,7 @@ $ ls -l
 \end{verbatim}
 \normalsize 
 
-İlk durumda, bütün gizli olmayan dosyalar listelendi; ikinci durumda ise ekstra bilgi eklendi.
+İlk durumda, bütün gizli olmayan dosyalar listelendi; ikinci durumda ise ek bilgiler eklendi.
 
 Uzun formatın farklı parçalarının anlamları vardır: İlk karakter dosya türünü verir (Bölüm ~\ref{chap:bolum10}'a bakınız); sade dosyalar "-", dizinler "d" şeklinde vb.(Tablo ~\ref{tab:tablo61}'deki "karakter türleri").
 	
@@ -234,16 +236,16 @@ ls burada bahsedilenlerden çok daha fazlasına destek verir; önemli olanların
 Linux Essentials ve LPI-101 gibi LPI sınavlarında, kimse sizden ls'nin tüm 57 tane parametresini bilmenizi beklemez. Ancak en önemli yarım düzine kadarını—yaklaşık Tablo ~\ref{tab:tablo62} içeriğindeki kadarını— ezberlemek isteyebilirsiniz.
 \paragraph{{\Huge{\PencilLeftDown}}Alıştırmalar}{
 \begin{enumerate}
- \item /boot dizinini hangi dosyaları içerir? Alt dizinleri var mıdır? Varsa hangileridir?
- \item Dosya ismini parametre olarak alan ls ile dizin ismini parametre olarak alan ls arasındaki fark nedir?
- \item Eğer dizin adı programda geçiyorsa, dizindeki dosyaların bilgisini görüntülemektense ls'ye sadece dizinleri göstermesi için hangi parametre ile çalıştırırız? (İpucu:Belgeye bakınız.)
+ \item \emph{/boot} dizinini hangi dosyaları içerir? Alt dizinleri var mıdır? Varsa hangileridir?
+ \item Dosya ismini parametre olarak alan \emph{ls} ile dizin ismini parametre olarak alan \emph{ls} arasındaki fark nedir?
+ \item Eğer dizin adı programda geçiyorsa, dizindeki dosyaların bilgisini görüntülemektense \emph{ls}'yi sadece dizinleri göstermesi için hangi parametre ile çalıştırırız? (İpucu:Belgeye bakınız.)
 \end{enumerate}}
 \end{subsection}
 \begin{subsection}{Dizin Oluşturma ve Silme: mkdir ve rmdir}
 
-Dosyalarınızı düzenli bir şekilde tutmak istediğinizde yeni bir dizinler oluşturmak iyi bir fikirdir. Dosyalarınızı ilişkili konuya göre (Örnek olarak) bu "klasörler" altında toplayabilirsiniz. Tabi ki ileri bir yapılandırma için, ek dizinlerle çalışarak dosyalarınızı bu dizinler altında tutabilirsiniz - hevesinizi, keyfi engeller tarafında sınırlamayınız.
+Dosyalarınızı düzenli bir şekilde tutmak istediğinizde yeni dizinler oluşturmak iyi bir fikirdir. Dosyalarınızı ilişkili konuya göre (örnek olarak) bu "klasörler" altında toplayabilirsiniz. Tabi ki ileri bir yapılandırma için, bu dizinler altında ilave dizinler oluşturabilirsiniz, hevesinizi, keyfi engeller tarafında sınırlamayınız.
 
-mkdir komutu yeni dizinler oluşturmak için yegane komuttur. Argüman olarak bir veya daha çok dizin ismi alır, aksi halde yeni dizin oluşturmak yerine sadece bir hata mesajı alırsınız. İç içe dizinleri tek adımda oluşturabilmek için -p parametresini kullanabilirsiniz, aksi halde komut, oluşturduğunuz yoldaki dizinlerin hepsini varmış gibi farzedecektir. Örneğin:
+Yeni dizinler oluşturmak için |emph{mkdir} komutu kullanılabilir. Bağımsız değişlen olarak bir veya daha çok dizin ismi alır, aksi halde yeni dizin oluşturmak yerine sadece bir hata mesajı alırsınız. İç içe dizinleri tek adımda oluşturabilmek için \emph{-p} parametresini kullanabilirsiniz, aksi halde komut, oluşturduğunuz yoldaki dizinlerin hepsini sonuncusu hariç varmış gibi farzedecektir. Örneğin:
 \footnotesize 
 \begin{verbatim}
 $ mkdir pictures/holiday
@@ -255,6 +257,8 @@ $ ls -F
 holiday/
 \end{verbatim}
 \normalsize 
+
+
 \end{subsection}
 \end{section}
 
