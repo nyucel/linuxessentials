@@ -179,9 +179,9 @@ make 2>&1 >make.log
 \end{subsection}
 \begin{subsection}{Komut Boru Hatları}
 
-Çıktı yönlendirmesi bir programın sonucunu kaydederek başka bir komutta işlemek için sıkça kullanılır. Bununla birlikte bu çeşit ara kayıtlar çok sıkıcı sayılmazlar ama daha fazla kullanılmadıkları zamanlarda silinmelidir. Bu sebeple, Linux komutları borularla bağlama yöntemi sunar: Bir programın çıktısı otomatik olarak başka bir programın girdisi olur.
+Çıktı yönlendirmesi bir programın sonucunu kaydederek başka bir komutta işlemek için sıkça kullanılır. Bununla birlikte bu çeşit ara kayıtlar çok sıkıcı sayılmazlar ama işleri bittiği zaman silmeyi unutmamak gerekir. Bu sebeple, Linux komutları birbirine doğrudan borularla bağlama yöntemi sunar: Bir programın çıktısı otomatik olarak başka bir programın girdisi olur.
 
-Birkaç komutun arasındaki yönlendirmeler \textbar  operatörü kullanılarak yapılır.  “ls -laF” nin çıktısını bir dosyaya yönlendirip sonra bu dosyaya less kullanarak bakmak yerine, aynı işlemi tek adımda ara dosya kullanmadan yapabilirsiniz:
+Birkaç komutun arasındaki yönlendirmeler \textbar operatörü kullanılarak yapılır. “ls -laF” komutunun çıktısını bir dosyaya yönlendirip sonra bu dosyaya less kullanarak bakmak yerine, aynı işlemi tek adımda ara dosya kullanmadan yapabilirsiniz:
 \begin{verbatim}
 $ ls -laF | less
 total 7
@@ -194,16 +194,17 @@ drwxr-xr-x 3 joe users 1024 Aug 20 12:30 photos/
 -rw-r--r-- 2 joe users 3316 Aug 20 15:14 chemistry.txt
 \end{verbatim}
 
-Bu komut yönlendirmeleri neredeyse istenilen herhangi bir uzunlukta olabilir. Buna rağmen en sonda oluşacak olan sonuç bir dosyaya yönlendirilebilir:
+Bu komut yönlendirmeleri neredeyse istenilen herhangi bir uzunlukta olabilir. Ayrıca en sonda oluşacak olan sonuç bir dosyaya yönlendirilebilir:
 \begin{verbatim}
 $ cut -d: -f1 /etc/passwd | sort | pr -2 >userlst
 \end{verbatim}
 
-Bu komut yönlendirmesi bütün kullanıcı isimlerini /etc/passwd dosyasının : ile ayrılan ilk sütunundan alıp bunları alfabetik şekilde sıralayıp sonucu iki sütun halinde userlst dosyasına yazıyor. Burada kullanılan komutlar bölümün hatırlatmasında tanımlanacaktır.
+Bu komut yönlendirmesi bütün kullanıcı isimlerini /etc/passwd dosyasının : ile ayrılan ilk sütunundan alıp bunları alfabetik şekilde sıralayıp sonucu iki sütun halinde userlst dosyasına yazar. Burada kullanılan komutlar bölümün devamında açıklanacaktır.
 
-Bazen veri akışını bir komut yönlendirmesi içindeki kesin bir noktada depolamak yardımcı olabilir, örneğin bu devredeki ara sonuç başka görevler için kullanışlı olabilir. tee komutu veri akışını kıpyalar ve bir kopyayı standart çıktıya gönderirken bir diğerini bir dosyaya kopyalar. (Şekil 8.2' ye bakınız.)
+Bazen veri akışını bir komut yönlendirmesi içindeki ara bir noktada depolamak gerekebilir, örneğin bir devredeki ara sonuç başka görevler için kullanışlı olabilir. tee komutu veri akışını kopyalar ve bir kopyayı standart çıktıya diğerini ise bir dosyaya gönderir. Komut ismi tesisatçılıkta aynı şekilde kullanılan bir tür borudan esinlenmiştir (Tablo ~\ref{tab:8.2}'ye bakın).
 
-Hiç seçenek belirtilmeye tee komutu belirtilen dosyayı oluşturur ya da böyle bir dosya varsa üzerine yazar; -a (ingilizcede birleştirme anlamına gelen “append”) aracılığı ile varolan dosyaya ekleme yapılabilir.
+Hiç seçenek belirtilmediğinde tee komutu belirtilen dosyayı oluşturur ya da böyle bir dosya varsa üzerine yazar; -a (ingilizcede birleştirme anlamına gelen “append”) seçeneği kullanılarak varolan dosyaya ekleme yapılabilir.
+
 \begin{verbatim}
 $ ls -laF | tee list | less
 total 7
@@ -216,7 +217,7 @@ drwxr-xr-x 3 joe users 1024 Aug 20 12:30 photos/
 -rw-r--r-- 2 joe users 3316 Aug 20 15:14 chemistry.txt
 \end{verbatim}
 
-Bu örnekte bulunulan dizinin içeriği hem list dosyasına hem de ekrana yazılır. (list dosyası ls komutunun çıktısında görünmez çünkü tee komutunun arkasından oluşturulmuştur.)
+Bu örnekte içinde çalışılan dizinin içeriği hem list dosyasına hem de ekrana yazılır. (list dosyası ls komutunun çıktısında görünmez çünkü tee komutu dosyayı ls komutunun çalıştırılmasından sonra oluşturur.)
 
 \paragraph{{\Huge{\PencilLeftDown}}Alıştırmalar}{
 \begin{enumerate}
@@ -226,55 +227,55 @@ Bu örnekte bulunulan dizinin içeriği hem list dosyasına hem de ekrana yazıl
 \end{section}
 \begin{section}{Filtre Komutları}
 
-Unix' in temel fikirlerinden biri – ve Linux' un aynı zamanda- araç takımı ilkesidir. Sistem çok sayıda sistem programı ile birlikte gelir, bunların her biri basit (tasarım olarak) bir görevi yapar. Bu programlar başka programları oluşturmak için “inşa blokları” olarak kullanılabilir ve bu programların yazarlarını kendi fonksiyonlarını geliştirme derdinden kurtarır. Örnek olarak, her program kendi sıralama yöntemini içermez ama çoğu program Linux' un onlara sağladığı sort komutunu kullanır. Bu modüler yapı birkaç avantaja sahiptir:
+Unix' in - ve dolayısı ile Linux'un - temel fikirlerinden biri ``araç takımı'' ilkesidir. Sistem, her biri (kavramsal olarak) basit bir görevi yerine getiren çok sayıda sistem programı ile birlikte gelir. Bu programlar başka programları oluşturmak için “inşa blokları” olarak kullanılabilir ve böylece programcıları gerekli fonksiyonları kendi başlarına geliştirme derdinden kurtarır. Örnek olarak, programlar kendi sıralama yöntemini içermek yerine Linux'un onlara sağladığı sort komutunu kullanır. Bu modüler yapı birkaç avantaja sahiptir:
 
 \begin{itemize}
-\item Bütün zamanlarını yeni sıralama fonksiyonları üretmekle harcamaya ihtiyacı olmayan programcıların hayatını kolaylaştırır.
-\item Eğer sort bir hata düzeltme ya da geliştirme alırsa, sort u kullanan bütün programlar bunun yararını görür –  ve çoğu durumda değiştirilmeleri gerekmez.
+\item Bütün zamanlarını yeni sıralama fonksiyonları üretmekle harcaması gerekmeyen programcıların hayatını kolaylaştırır.
+\item Eğer sort bir hata düzeltmesi veya performans iyileştirmesi geçirirse, sort kullanan bütün programlar bundan faydalanır – ve çoğu durumda programlarda herhangi bir değişiklik yapılması bile gerekmez.
 \end{itemize}
 
-Girdilerini standart girdiden alıp çıktılarını standart çıktıya veren araçlara “filtre komutları” ya da kısaca “filtreler” denir. Girdi yönlendirmesi olmadan bir filtre girdisini klavyeden okuyabilir. Klavye girişinin bittiğini belirtmek için terminal tarafından “dosya sonu” olarak algılanılan Ctrl + d tuş kombinasyonunu kullanmalısınız.
+Girdilerini standart girdiden alıp çıktılarını standart çıktıya veren araçlara “filtre komutları” ya da kısaca “filtreler” denir. Girdi yönlendirmesi olmazsa filtre komutu, girdisini klavyeden okuyabilir. Klavye girişinin bittiğini belirtmek için terminal tarafından “dosya sonu” olarak algılanılan Ctrl + d tuş kombinasyonunu kullanmalısınız.
 
-Bunun sadece klavye girdisi için uygulanabildiğini unutmayın. Diskteki dosya doğal olarak Ctrl + d karakterini (ASCII 4) içerebilir ve sistem bunun dosyanın sonu olduğunu düşünmez.
+Bunun sadece klavye girdisi için geçerli olduğunu unutmayın. Diskteki dosya Ctrl + d karakterini (ASCII 4) içerebilir ve sistem bunun dosyanın sonu olduğunu düşünmez. Bu davranış Ctrl-Z (ASCII 26) karakterinin bir metin dosyası içinde bile olsa garip anlam içerdiği oldukça popüler bir işletim sisteminin davranışının tersidir.
 
-“Normal” komutların çoğu, önceden belirtilmiş olan grep gibi, filtreler gibi çalışır eğer üzerinde çalışılacak bir dosya ismi belirtilmezse.
+“Normal” komutların çoğu, önceden belirtilmiş olan grep gibi, eğer üzerinde çalışacakları bir dosya ismi belirtilmezse filtreler gibi çalışır.
 
-Bu bölümün sonunda komutlar gibi en önemli konulara aşina hale geleceksiniz. Bazı komutlar tam olarak filtre komutları sayılmasa da, boru hatları için önemli bloklar oluşturmak için önemlidirler.
+Bu bölümün geri kalanında bu şekilde çalışan çoğu önemli komuta aşina hale geleceksiniz. Bazı komutlar tam olarak filtre komutları sayılmasa da, boru hatları için önemli bloklar oluşturmakta kullanılırlar.
 
-\paragraph{}{
-\begin {table}[H]
-\caption {cat seçenekleri} \label{tab:title} 
-\begin{tabular}{c l}
+\begin {table}[Htb]
+\caption {cat seçenekleri} \label{tab:8.2}
+\begin{tabular}{c p{9cm}}
 \hline
 Seçenek & Sonuç\\
 \hline
--b & (engl. number non-blank lines) Numbers all non-blank lines in the output, starting at 1. \\
--E & (engl. end-of-line) Displays a \$ at the end of each line (useful to detect otherwise invisible space characters).\\
--n & (engl. number) Numbers all lines in the output, starting at 1.\\
--s & (engl. squeeze) Replaces sequences of empty lines by a single
-empty line.\\
--T & (engl. tabs) Displays tab characters as “\textbar”.\\
--v & (engl. visible) Makes control characters c visible as, characters a with character codes greater than 127 as “M-a”.\\
--A & (engl. show all) Same as -vET.\\
+-b & (ing. number non-blank lines) Çıktıdaki boş olmayan tüm satırları 1'den başlayarak numaralandırır. \\
+-E & (ing. end-of-line) Her satırın sonunda \$ işareti gösterir (Satır sonundaki boşluk karakterlerini yakalamak için faydalıdır).\\
+-n & (ing. number) Çıktıdaki tüm satırları 1'den başlayarak numaralandırır.\\
+-s & (ing. squeeze) Çıktıdaki art arda gelen boş satırları tek bir boş satır ile değiştirir.\\
+-T & (ing. tabs) d “\textbar”.\\
+-v & (ing. visible) “M-a”.\\
+-A & (ing. show all) -vET ile aynı.\\
 \hline
 \end{tabular}
 \end {table}
-}
+
 \end{section}
+
 \begin{section}{Dosyaları Okuma ve Yazma}
-\begin{subsection}{Metin Dosyalarının Çıktıları ve Birleştirme—cat}
+\begin{subsection}{Metin Dosyalarının Çıktıları ve Birleştirme - cat}
 
-cat komutu gerçekte verilen birden fazla dosya isminin komut satırında birleştirmek için kullanılır. Eğer sadece bir dosya ismini gönderirseniz, bu dosyanın içeriği standart çıktıya yazılacaktır. Eğer hiç dosya ismi belirtmezseniz cat standart girdiyi okumaya başlar – bu kullanışsız görünebilir ama cat satırları numaralandırma, satırları sonlandırma ve özel karakterleri görünür yapma ya da boş satırları sıkıştırmak gibi seçenekler sunar. (Tablo 8.2)
+cat (ing. "concatenate": bitiştirmek) komutu gerçekte komut satırından ismi verilen birden fazla dosyayı tek bir dosyada birleştirmek için kullanılır. Eğer sadece bir dosya ismi belirtirseniz, bu dosyanın içeriği standart çıktıya yazılacaktır. Eğer hiç dosya ismi belirtmezseniz cat standart girdiyi okur - bu kullanışsız görünebilir ama cat satırları numaralandırma, satırları sonlarını ve özel karakterleri görünür yapma ya da birden fazla boş satırı teke indirme gibi seçenekler sunar. (Tablo ~\ref{tab:8.2})
 
-Söylemeye gerek olmasa bile belirtmekte yarar var, cat sadece metin dosyalarında anlaşılır sonuçlar ortaya çıkarır. Eğer bu komutu diğer çeşit dosyalar için kullanırsanız (/bin/cat gibi bir binary dosyası için mesela) en azından bir metin terminalinde kabuk okunamayan karakterlerden oluşacaktır çok büyük ihtimalle. Bu durumda normal karakter grubunu sıfırlayarak geri getirebilirsiniz. Eğer cat çıktısını bir dosyaya yönlendirirseniz bir sorun kalmayacaktır.
+Söylemeye gerek olmasa bile belirtmekte yarar var, cat sadece metin dos\-ya\-la\-rın\-da anlaşılır sonuçlar ortaya çıkarır. Eğer bu komutu diğer çeşit dosyalar için kullanırsanız (mesela /bin/cat gibi bir ikili dosya için) çıktı tamamlandığında kabuk iletisinin - en azından bir metin terminalinde - okunamayan karakterlerden oluşması kesin gibidir. Bu durumda normal karakter kümesini (çıktıyı görmeden yazmak zorunda kalabilirsiniz) \textbf{reset} komutu ile geri getirebilirsiniz. Eğer cat çıktısını bir dosyaya yönlendirirseniz bu sorunla tabii ki karşılaşmazsınız.
 
-En Kullanışsız cat Kullanımı Ödülü” cat'i fazlalık olarak kullanan insanlara gidiyor. Çoğu durumda komutlar dosya isimlerini kabul eder bu sebeple cat tek bir dosyayı standart girdiye göndermek için gerekmez. “cat data.txt \textbar grep foo ” gibi bir komut gereksizdir bunun yerine basitçe “grep foo data.txt ” yazabilirsiniz. Hatta grep sadece standart girdiden bir şeyler okuyabiliyor olsaydı bile “grep foo $<$data.txt ” daha kısa olurdu ve ek bir sürece ihtiyacı olmazdı.
+"En Kullanışsız cat Kullanımı Ödülü" cat'i gereksiz yere kullanan insanlara verilmelidir. Çoğu durumda komutlar sadece standart girdiyi okumakla kalmaz, dosya isimlerini de kabul eder, bu sebeple cat tek bir dosyayı standart girdiden bu komutlara göndermek için gerekli değildir. “cat data.txt \textbar grep foo” gibi bir komut gereksizdir çünkü bunun yerine basitçe “grep foo data.txt” yazabilirsiniz. Hatta grep sadece standart girdiden okuyabiliyor olsaydı bile “grep foo $<$data.txt ” daha kısa olurdu ve ayrıca cat sürecine ihtiyaç olmazdı.
 
 \paragraph{{\Huge{\PencilLeftDown}}Alıştırmalar}{
 \begin{enumerate}
- \item Bir dizinin “garip” isimlere sahip dosyalara sahip olduğunu nasıl kontrol edebilirsiniz (örneğin bitiminde bir boşluk karakteri bulunduranlar ya da ortasında görünmez kontrol karakteri bulunduranlar gibi)?
+ \item Bir dizinin “garip” isimlere sahip dosyalara sahip olduğunu nasıl kontrol edebilirsiniz (örneğin isminin sonunda bir boşluk karakteri olan ya da ortasında görünmez kontrol karakteri bulunduranlar gibi)?
 \end{enumerate}}
 \end{subsection}
+
 \begin{subsection}{Başlangıç ve Bitiş—head ve tail}
 
 Bazen dosyanın sadece bir parçasıyla ilgilenirsiniz: Doğru dosya olup olmadığını görmek için ilk birkaç satır ya da özellikle kayıt dosyalarında son birkaç girdi. Head ve tail komutları tam olarak bunu yaparlar, varsayılan olarak verilen dosyanın ilk on ve son on satırı gösterirler. -n seçeneği gösterilecek satır sayısını değiştirmenize yardımcı olur: “head -n 20” ilk yirmi satırı değer olarak döndürürken “tail -n 5” data.txt dosyasının son beş satırını döndürür.
