@@ -329,16 +329,22 @@ DOS veya Windows\footnote{Muhtemelen CP/M için çok gençsinizdir.} gibi işlet
 
 Soru işareti arama şablonu sadece tek bir keyfi karakter ile eşleştirmek için kullanılır (yine taksim işareti hariç). 
 Örnekteki gibi bir kalıp
+
+\footnotesize
 \begin{verbatim}
 p?.c
 \end{verbatim}
+\normalsize
+
 alttaki isimleri eşler:
+\footnotesize
 \begin{verbatim}
 p1.c
 pa.c
 p-.c
 p..c
 \end{verbatim}
+\normalsize
 Unutmayın mutlaka bir karakter bulunmalıdır, "hiçbir şey" seçeneği burada geçerli değildir.
 
 Özellikle çok önemli bir olaya dikkat etmelisiniz: Arama şablonunun genişlemesi kabuğun sorumluluğu altındadır! Çalıştırdığınız komutlar genellikle arama şablonları hakkında birşey bilmez ve ilgilenmezler de. Onlar yol isimlerini listeleyerek bakmaya başlar, fakat nereden geldikleri ile ilgilenmezler, örneğin, doğrudan mı yazılmış ya da bir arama sonucu mu diye kontrol etmezler.
@@ -348,87 +354,135 @@ Bu arada, kimse arama şablonlarının sonuçlarının yol isimleri kadar yoruml
 Eğer kabuk, arama şablonlarıyla eşleşen isimlerde dosyaları bulamazsa ne olur? Bu durumda söz konusu komut, arama şablonunu pas geçer; kendi arma işi ne ise onu yapar. Genellikle bu tarz arama şablonları dosya isimleri gibi yorumlanmışlardır, fakat söz konusu "dosya" ise bulunamaz ve hata mesajı bildirilir. Ancak, arama şablonları ile kullanışlı işler yapabileceğiniz birçok komut vardır, bütün bunlarla, gerçekten meydan okuyabileceksiniz, kabuğun çalıştırdığı komut, kendi genişlemesini engel olmaz. (İpucu:tırnak işaretleri).
 \end{subsection}
 \begin{subsection}{Karakter Sınıfları}
-Kısmen arama şablonlarında eşleştirilen karakterlerin daha hassas tanımlanması için "karakter sınıfları" önerilir: Formun bir arama şablonunda
+
+Arama şablonlarında eşleştirilen karakterlerin daha hassas tanımlanması için "karakter sınıfları" önerilir: Aşağıdaki biçimdeki bir arama şablonunda
+
+\footnotesize
 \begin{verbatim}
 prog[123].c
 \end{verbatim}
+\normalsize
+
 köşeli parantez içindeki karakterler, içerisinde tam olarak o karakter geçen isimlerle eşleşir. Bu sebeple örnekteki şablon
+\footnotesize
 \begin{verbatim}
 prog1.c
 prog2.c
 prog3.c
 \end{verbatim}
+\normalsize
 ile eşleşir, fakat bunlar ile değil
 
+\footnotesize
 \begin{verbatim}
 prog.c 		Tam olarak bir karakter gerekli
 prog4.c 		4 sıralandırmada yok
 proga.c 		a harfi de olmaz
 prog12.c		 Tam olarak bir karakter, lütfen
 \end{verbatim}
-Daha kullanışlı bir gösterim de, özel aralıkları belirleyebilirsiniz.
+\normalsize
+
+Daha kullanışlı bir gösterimle özel aralıkları belirleyebilirsiniz.
+
+\footnotesize
 \begin{verbatim}
 prog[1-9].c
 [A-Z]bracadabra.txt
 \end{verbatim}
+\normalsize
+
 İlk satırdaki köşeli parantezdekiler tüm rakamlarla, 2. satırdaki de büyük harfle başlayanlarla eşleşir.
 
-Yaygın karakter kodlamalı kelimelerin birleşmeyeceğini dikkate alın
+Yaygın karakter kodlamalarında harflerin bitişik olmadığını unutmayın:
+
+\footnotesize
 \begin{verbatim}
 prog[A-z].c
 \end{verbatim}
-gibi şablon sadece progQ.c ve progx.c, fakat ayrıca prog\_.c ile de eşleşmez.(ASCII tablosunu kontrol ediniz, örnek "man ascii" kullanarak.) Eğer "sadece büyük ve küçük harf" eşleştirmek istiyorsanız, bunu
+\normalsize
 
+gibi şablon sadece \emph{progQ.c} ve \emph{progx.c} değil aynı zamanda \emph{prog\_.c} ile de eşleşir.(ASCII tablosunu kontrol ediniz, örn. "\emph{man ascii}" kullanarak.) Eğer "sadece büyük ve küçük harf" eşleştirmek istiyorsanız, bunu
+
+\footnotesize
 \begin{verbatim}
 prog[A-Za-z].c
 \end{verbatim}
-kullanabilirsiniz.
+\normalsize
+
+kullanarak gerçekleştirebilirsiniz.
+
+\footnotesize
 \begin{verbatim}
 prog[A-Za-z].c
 \end{verbatim}
-şeklindeki bir yapı çift noktalı karakterleri yakalamaz, harfler gibi kuşkulu gözükse bile.
+\normalsize
 
-Daha fazla kolaylık sağlamak için, "bunların dışındaki tüm karakterler" gibi yorumlanan olumsuz karakter sınıfları belirleyebilirsiniz: 
+şeklindeki bir yapı, harfler gibi şüpheli gözükse de, çift noktalı karakterleri yakalamaz.
+
+Daha fazla kolaylık sağlamak için, "bunların dışındaki tüm karakterler" gibi yorumlanan olumsuz karakter sınıfları belirleyebilirsiniz:
+\footnotesize
 \begin{verbatim}
 prog[!A-Za-z].c
 \end{verbatim}
-gibi bir şey "g" ve "." arasında harf olmayan karakterli isimlerle eşleşir. Her zamanki gibi, bölü işareti hariç.
+\normalsize
+gibi bir ifade "g" ve "." arasında harf olmayan karakterli eşler. Her zamanki gibi, bölü işareti hariç.
 
 \end{subsection}
 \begin{subsection}{Küme Parantezleri}
-İfadelerdelerdeki küme parantezlerinin genişlemesi
+
+Aşağıdaki ifadelerdelerdeki küme parantezlerinin genişlemesi
+\footnotesize
 \begin{verbatim}
 {red,yellow,blue}.txt
 \end{verbatim}
-gibi sıklıkla kabuk arama şablonlarıyla birleşmesinde bahsedilir, öyle olsa bile bu gerçekten uzak bir ilişkidir. Kabuk bunu
+\normalsize
+
+uzak bir ilişli olmasına rağmen kabuk arama şablonları ile ifade edilir. Kabuk bunu
+\footnotesize
 \begin{verbatim}
 red.txt yellow.txt blue.txt
 \end{verbatim}
-tarafından değiştirir.
+\normalsize
 
-Genellikle, komut satırındaki kelime, birçok virgülle ayrılmış küme parantezi içinde yazının parçaları, bu kelimelerin her biri, tüm küme parantezi ifadesi parçalardan biri tarafından değiştirilen yerde, küme parantezi arasındaki yazının parçaları kadar kelime ile yer değiştirir. Bu değiştirilme tamamen komut satırındaki yazı tabanlıdır ve herhangi dosyaların veya dizinlerin tamamen varoluşundan veya varolmayışından bağımsızdır— aksine arama şablonları daima yalnızca gerçekte sistemde yol isimlerinde varolan isimleri üretir.
+olarak değiştirir.
+
+Genellikle, küme parantezleri içerisinde virgüllerle ayrılmış metin içeren bir kelime, herbir kelimenin küme parantezi içerisindeki bir parça ile teker teker değiştirilmesi ile oluşan kelimeler ile değiştirilir. \emph{Bu değiştirilme tamamen komut satırında metin tabanlıdır ve herhangi dosya veya dizinin tamamen olup veya olmamasından bağımsızdır}, sistemde gerçekte yol ismi olarak bulunan isimleri üreten arama şablonlarından farklıdırlar.
+
 Bir kelime için kartezyen çarpım olarak sonuçlanacak birden fazla küme parantezi ifadeniz olabilir, diğer kelimeler bütün olası kombinasyonlardır:
+\footnotesize
 \begin{verbatim}
 {a,b,c}{1,2,3}.dat
 \end{verbatim}
+\normalsize
+
 ifadesi
+
+\footnotesize
 \begin{verbatim}
 a1.dat a2.dat a3.dat b1.dat b2.dat b3.dat c1.dat c2.dat c3.dat
 \end{verbatim}
+\normalsize
+
 sonucunu üretir.
 
-Bu kullanışlıdır, örneğin, sistematik olarak yeni dizinler oluşturmak için; işe yarar arama şablonları burada yardımcı olamaz, onlar sadece zaten varolan şeyleri bulabilir:
+Bu kullanışlıdır, örneğin, sistematik olarak yeni dizinler oluşturmak için işe yarar, arama şablonları burada yardımcı olamaz, onlar sadece zaten varolan şeyleri bulabilir:
+
+\footnotesize
 \begin{verbatim}
 $ mkdir -p revenue/200{8,9}/q{1,2,3,4}
 \end{verbatim}
+\normalsize
+
 \paragraph{{\Huge{\PencilLeftDown}}Alıştırmalar}{
 \begin{enumerate}
  \item Aşağıda mevcut dizindeki dosyalar listelenmiştir\begin{verbatim}
  prog.c prog1.c prog2.c progabc.c prog
 p.txt p1.txt p21.txt p22.txt p22.dat
- \end{verbatim}Bu isimler hangi arama şablonuyla eşleşir? (a) prog*.c, (b) prog?.c, (c) p?*.txt, (d) p[12]*, (e) p*, (f) *.*
- \item "ls" ile "ls *" arasındaki fark nedir? (İpucu: İkisini de alt dizinler içeren bir dizinde deneyin)
- \item Aşağıdaki komut neden gösterilen çıktıyı üretir:\begin{verbatim}
+ \end{verbatim}Bu isimler hangi arama şablonuyla eşleşir? (a) \emph{prog*.c}, (b) \emph{prog?.c}, (c) \emph{p?*.txt}, (d) \emph{p[12]*}, (e) \emph{p*}, (f) \emph{*.*}
+ \item "\emph{ls}" ile "\emph{ls *}" arasındaki fark nedir? (İpucu: İkisini de alt dizinler içeren bir dizinde deneyin)
+ \item Aşağıdaki komut neden gösterilen çıktıyı üretir:
+ \footnotesize
+ \begin{verbatim}
 $ ls
 -l file1 file2 file3
 $ ls *
@@ -436,10 +490,12 @@ $ ls *
 -rw-r--r-- 1 joe users 0 Dec 19 11:24 file2
 -rw-r--r-- 1 joe users 0 Dec 19 11:24 file3
  \end{verbatim}
+ \normalsize
+ \item "*" kullanımında neden nokta ile başlayan dosya isimleri eşlenmez?
 \end{enumerate}}
 \paragraph{}{
 \begin {table}[H]
-\caption {cp parametreleri} \label{tab:tablo63} 
+\caption {\emph{cp} seçenekleri} \label{tab:tablo63} 
 \begin{tabular}{c c l}
 \hline
 {} & Seçenek & Sonuç \\
