@@ -276,61 +276,59 @@ Söylemeye gerek olmasa bile belirtmekte yarar var, cat sadece metin dos\-ya\-la
 \end{enumerate}}
 \end{subsection}
 
-\begin{subsection}{Başlangıç ve Bitiş—head ve tail}
+\begin{subsection}{Başlangıç ve Bitiş - head ve tail}
 
-Bazen dosyanın sadece bir parçasıyla ilgilenirsiniz: Doğru dosya olup olmadığını görmek için ilk birkaç satır ya da özellikle kayıt dosyalarında son birkaç girdi. Head ve tail komutları tam olarak bunu yaparlar, varsayılan olarak verilen dosyanın ilk on ve son on satırı gösterirler. -n seçeneği gösterilecek satır sayısını değiştirmenize yardımcı olur: “head -n 20” ilk yirmi satırı değer olarak döndürürken “tail -n 5” data.txt dosyasının son beş satırını döndürür.
+Bazen dosyanın sadece bir parçasıyla ilgilenirsiniz: Doğru dosya olup olmadığını görmek için ilk birkaç satır ya da özellikle kayıt dosyalarında son birkaç satır. Head ve tail komutları tam olarak bunu verirler - varsayılan olarak argümanlar arasında verilen dosyaların her birinin ilk on ve son on satırını (veya alışıldığı gibi standart girdilerinin ilk veya son 10 satırını) gös\-te\-rir\-ler. -n seçeneği gösterilecek satır sayısını değiştirmenizi sağlar: “head -n 20” ilk yirmi satırı değer olarak döndürürken “tail -n 5 data.txt” data.txt dosyasının son beş satırını döndürür.
 
-”-n” belirtilerek istenilen satırları belirtebiliyorduk önceden. Resmi olarak bu artık mümkün değil ama head ve tail' in Linux versiyonları hala bu özelliği destekliyorlar.
+Geleneksel olarak istediğimiz n sayıdaki satırı direk olarak ”-n” şeklinde belirtebiliz. Resmi olarak bu yönteme artık izin verilmiyor ancak head ve tail' in Linux versiyonları hala bu özelliği destekliyorlar.
 
--c seçeneğini sayma işleminin satır olarak değil byte olarak yapılması için kullanabilirsiniz: 
-“head -c 20 ” standart girdinin ne kadar satıra sahip olursa olsun ilk 20 bytelık kısmını gösterir. Eğer “b”, “k”, ya da “m” harflerini eklerseniz sayım 512, 1024 ya da 1048576 ile çarpılarak yapılır. (sırasıyla bloklar, kibibytelar ve mebibytelar)
+-c seçeneğini sayma işleminin satır olarak değil byte olarak yapılması için kullanabilirsiniz: “head -c 20” standart girdinin ne kadar satıra sahip olursa olsun ilk 20 bytelık kısmını gösterir. Eğer “b”, “k”, ya da “m” harflerini eklerseniz (sırasıyla bloklar, kibibytelar ve mebibytelar) sayım 512, 1024 ya da 1048576 ile çarpılarak yapılır.
 
-head ayrıca eksi işaretini kullanmanıza izin verir: “head -c -20 ” standart girdinin son 20 bytelık kısmını gösterir.
+head ayrıca eksi işaretini kullanmanıza izin verir: “head -c -20 ” standart girdinin son 20 bytelık kısmı hariç tümünü gösterir.
 
-head' in bu münasebetsizliğine karşılık, tail de head' in desteklemediği bir şey yapar: eğer satır numaraları “+” ile başlıyorsa, verilen satırdan itibaren bütün verileri görüntüler.
+head' in bu münasebetsizliğine karşılık, tail de head'in desteklemediği bir şey yapar: eğer satır numaraları “+” ile başlıyorsa, verilen satırdan itibaren bütün verileri görüntüler.
 \begin{verbatim}
 $ tail -n +3 file           satır 3 ve sonrasındakiler
 \end{verbatim}
 
-tail komutu ayrıca önemli olan -f seçeneğini destekler. Bu tail komutunu başka bir şeyler eklenmesi ihtimaline karşı bekletir. Bu bazı kayıt dosyalarını gözetlemek istediğiniz zaman çok işe yarar olacaktır. Eğer tail -f komutuna birden fazla dosyayı gönderirseniz, her çıktı satırı bloğu için hangi dosyaya yeni veri eklendiğini gösteren bir başlık satırı koyar.
+tail komutu ayrıca önemli olan -f seçeneğini destekler. Bu seçenek tail komutunun dosyanın o anki sonunu yazdırmasının ardından dosyaya daha sonra eklenecek olan satırları da yazdırması için beklemesini sağlar. Bu yöntem bazı kayıt dosyalarını gözetlemek istediğiniz zaman çok işe yarar. Eğer tail -f komutuna birden fazla dosya ismi verirseniz, her çıktı satırı bloğu için hangi dosyaya yeni veri eklendiğini gösteren bir başlık satırı koyar.
 
 \paragraph{{\Huge{\PencilLeftDown}}Alıştırmalar}{
 \begin{enumerate}
- \item Standart girdinin 13. satırını nasıl çıktı olarak alabilirsiniz?
- \item “tail -f ” komutunu kontol edin: Bir dosya oluşturun ve bu dosya üzerinde “tail -f ” komutunu deneyin. Sonra başka bir pencereden ya da sanal bir konsoldan dosyaya bir şeyler ekleyin (örneğin echo ya da $>>$ kullanarak) ve tail komutunun sonucunu gözlemleyin. Tail aynı dosyayı eşzamanlı olarak nasıl izliyor? 
-\item Gözlenen dosya küçülürse “tail -f ” komutunun sonucu ne olur? 
-\item Aşağıdaki komutun çıktısını açıklayın:
+ \item Standart girdinin sadece 13. satırını nasıl çıktı olarak alabilirsiniz?
+ \item “tail -f” komutunu deneyin: Bir dosya oluşturun ve bu dosya üzerinde “tail -f” komutunu çalıştırın. Sonra başka bir pencereden ya da sanal bir konsoldan dosyaya bir şeyler ekleyin (örneğin echo $>>$ ... kullanarak) ve tail komutunun çıktısını gözlemleyin. Tail birden fazla dosyayı aynı anda eşzamanlı olarak izlediğinde nasıl bir çıktı veriyor?
+\item İzlenen dosya küçülürse “tail -f” komutuna ne olur?
+\item Aşağıdaki komutların çıktısını açıklayın:
 \begin{verbatim}
 $ echo Hello >/tmp/hello 
 $ echo "Hiya World" >/tmp/hello
 \end{verbatim}
-bu komutu çalıştırdığınızda
+İlk echo komutundan sonra aşağıdaki komutu başka bir pencerede ça\-lış\-tır\-dı\-ğı\-nız\-da ne olur?
 \begin{verbatim}
 $ tail -f /tmp/hello
 \end{verbatim}
-ilk echo nun ardından başka bir pencerede çalıştırdığınızde ne olduğuna bakın.
 \end{enumerate}}
+
 \end{subsection}
 \end{section}
+
 \begin{section}{Veri Yönetimi}
-\begin{subsection}{Sıralı Dosyalar—sort ve uniq}
+\begin{subsection}{Sıralı Dosyalar - sort ve uniq}
 
-sort komutu satırları önceden belirtilmiş bir kritere göre sıralamaya izin verir. Varsayılan ayar her satırın ilk birkaç karakterinin ASCII setine
-\footnote{ Of course ASCII only goes up to 127. What is really meant here is ASCII together with whatever extension for the characters with codes from 128 up is currently used, for example ISO-8859-1, also known as ISO-Latin-1.} göre olan artan (A-Z) sıralamasıdır. Bu yüzden özel Alman karakterleri gibi karakterler genelde yanlış sıralanır. Örneğin, “A” nın karakter kodu 143'tür, bu yüzden bu karakter karakter kodu 91 olan “Z” karakterinden çok daha sonra biter. Küçük “a” karakteri bile büyük “Z” karakterinden daha büyük olarak düşünülür.
+sort komutu metin dosyaları içindeki satırları önceden belirtilmiş bir kritere göre sıralamaya yarar. Varsayılan ayar her satırın ilk birkaç karakterinin ASCII karakter seti değerlerine\footnote{Elbette ASCII sadece 128 karakter içerir. Burada aslında ASCII ile beraber 128'den sonraki karakter kodları için kullanılmakta olan uzantı (örn: ISO-8859-1 veya diğer adıyla ISO-Latin-1) kastedilmektedir.} göre artan şekilde (A-Z) sıralanmasıdır. Almancadaki üzeri çift noktalı karakterlerin sıklıkla hatalı sıralanmasının sebebi budur. Örneğin, “Ä” nın karakter kodu 143'tür, bu yüzden sıralamada karakter kodu 91 olan “Z” karakterinden sonra gelir. Küçük “a” karakteri bile büyük “Z” karakterinden "daha büyük" sayılır.
 
-Elbette sort kendisini değişik dillere ve kültürlere uyarlayabilir. Alman kurallarına göre sıralamak için LANG, LC\_ALL ya da LC\_COLLATE  çevre değişkenlerinden birini “de”, “de\_DE” ya da “de\_DE@UTF-8” olarak değiştirebilirsiniz. (gerçek değer kullandığınız dağıtıma göre değişir) Eğer bunu sadece tek bir sıralama işlemi için değiştirmek istiyorsanız şunu yapın
+Elbette sort değişik dillere ve kültürlere göre davranabilir. Alman kurallarına göre sıralama yapmak için LANG, LC\_ALL ya da LC\_COLLATE  çevre değişkenlerinden birini “de”, “de\_DE” ya da “de\_DE@UTF-8” (seçiminiz kullandığınız dağıtıma göre değişir) olarak değiştirebilirsiniz. Eğer kullandığınız sıralama kurallarını sadece bu defaya mahsus değiştirmek istiyorsanız aşağıdaki şekilde kullanabilirsiniz:
 \begin{verbatim}
 $ ... | LC_COLLATE=de_DE.UTF-8 sort
 \end{verbatim}
 
-LC\_ALL değeri LC\_COLLATE üzerinde üstündür aynı şekilde LANG değerinden de üstündür. Bir yan etki olarak Alman sıralama düzeni sıralama yaparken harflerin boyutunu göz önüne almaz.
+LC\_ALL değeri LC\_COLLATE üzerinde üstündür. Aynı şekilde LC\_COLLATE de LANG değerinden üstündür. Ayrıca Alman sıralama düzeni kullanmanın bir yan etkisi de sıralama yaparken harflerin boyutunun göz önüne alınmamasıdır.
 
+Aksini belirtmezseniz, sıralama bütün girdi satırı göz önüne alınarak alfabetik göre yapılır. Yani iki satırın ilk karakterleri eşitse satırdaki ilk değişiklik gösteren karakter sıralamayı belirler. Elbette sort sadece bütün satıra göre değil, özelleştirilmiş bir şekilde belirli sütunlara ya da (hayali) bir tablonun alanlarına göre sıralama yapabilir. Alanlar 1'den başlayarak numaralandırılır, "-k 2" ile sıralama için ilk alan görmezden gelinerek her satırın ikinci alanı dikkate alınır. Eğer iki satırın ikinci alanları eşitse ve “-k 2,3” şeklinde daha özelleştirilmiş bir seçenek belirlenmediyse satırın kalanına bakılır. Ayrıca aynı sort komutunda birden fazla -k seçeneği belirtilebilir.
 
-Diğer türlü olarak belirtmezseniz, sıralama bütün girdi satırı göz önüne alınarak “sözlük” düzenine göre yapılır. Bu sebeple iki satırın ilk karakterleri eşit olursa satırdaki ilk değişiklik gösteren karakter sıralamayı etkiler. Elbette sort sadece bütün satıra göre değil, özelleştirilmiş bir şekilde belirli sütunlara ya da bir tablonun alanına göre sıralama yapabilir. Alanlar “-k 2” seçeneği ile 1' den başlayarak numaralandırılır, ilk alan görmezden gelinerek her satırın ikinci alanı sıralama için dikkate alınır. Eğer iki satırın ikinci alanları eşitse satırın kalanına bakılır, “-k 2,3” şeklinde daha özelleştirilmiş bir seçenek belirlenmediyse. Ayrıca aynı sort komutunda birden fazla -k seçeneği belirtilebilir. 
+Bunlara ek olarak, sort artık kullanılmayan eski bir sıralama belirtecini de destekler: Alanlar sıfırdan başlayarak numaralandırıldığında ilk alan “+m” ve son alan “-n” olarak belirtilir. Ayrıca son alan açıkça belirtilmelidir. Üstteki örnek “+1 ”, “+1 -3 ” ve “+1 -2 ” şeklinde yazılabilir.
 
-Bunlara ek olarak, sort eski bir yerleştirme düzenini destekler: Burada alanlar sıfırdan başlayarak numaralandırılır, ilk alan “+m” ve bitiş alanı “-n” olarak belirtilir. Modern haline getirmek için farklılıkları tamamlamak için, son alan özel olarak belirtilmelidir – sıralama için ilk alan dikkate alınmamalıdır. Üsttekine örnek “+1 ”, “+1 -3 ” ve “+1 -2 ” olabilir. 
-
-Boşluk karakteri alanlar arasında ayırıcı olarak görev görür. Eğer birkaç boşluk bulunursa, ilki ayırıcı olarak görülür; diğerleri takip eden alana ait değerler olarak kabul edilir. Örnek olarak Lameborough Track and Field Club  koşusunun katılımcılarının isimlerinden oluşan bir listeyi ele alalım. Başlangıç için  sistemin standart dil ortamının (“POSIX”) karşılık gelen çevre değişkenlerinin sıfırlandığına emin oluruz. (Ek olarak dördüncü sütun koşucunun koşu numarasını verir.)  
+Boşluk karakteri alanlar arasında ayırıcı işlevi görür. Eğer art arda birden fazla boşluk varsa sadece ilki ayırıcı olarak değerlendirilir; geri kalanlar takip eden alana ait değerler olarak kabul edilir. Örnek olarak Lameborough Track and Field Club'ın düzenlediği yıllık maratonun katılımcılarının isimlerinden oluşan bir listeyi ele alalım. Başlangıç olarak ilgili çevre değişkenlerini sıfırlayarak sistemin standart dil ortamının (“POSIX”) kullanıldığından emin oluruz. (4. sütun koşucunun forma numarasıdır.)
 \begin{verbatim}
 $ unset LANG LC_ALL LC_COLLATE
 $ cat participants.dat
@@ -347,7 +345,8 @@ O'Finnan Jack Fairing Track Society 45 Men
 Oblomovsky Katie Rundale Sportsters 57 Ladies
 \end{verbatim}
 
-Önce soyadına göre sıralamayı deneyelim. Bu temelde kolay bir durum çünkü soyadı kısmı her satırın en önünde:
+Önce soyadına göre sıralamayı deneyelim. Bu aslında kolay bir örnek çünkü soyadı kısmı zaten her satırın başında:
+
 \begin{verbatim}
 $ sort participants.dat
 Fleetman Fred Rundale Sportsters 217 Men
@@ -363,7 +362,8 @@ Sweat Susan Rundale Sportsters 93 Ladies
 de Leaping Gwen Fairing Track Society 26 Ladies
 \end{verbatim}
 
-Listedeki iki küçük sorunu fark ettiniz değil mi? : “Oblomovsky” “O’Finnan” dan önde olmalıydı ve “de Leaping” listenin sonundan bir önde olmalıydı en sonunda değil.  Eğer sıralama kuralları olarak “İngilizce”yi belirtirsek bu sorunlar kaybolur:
+Listedeki iki küçük sorunu fark etmiş olmalısınız: “Oblomovsky” “O’Finnan” ın önünde olmalıydı ve “de Leaping” listenin sonunda değil başında yer almalıydı.  Eğer sıralama kuralları olarak “İngilizce”yi belirtirsek bu sorunlar kaybolur:
+
 \begin{verbatim}
 $ LC_COLLATE=en_GB sort participants.dat
 de Leaping Gwen Fairing Track Society 26 Ladies
@@ -379,7 +379,8 @@ Smith Herbert Pantington AC 123 Men
 Sweat Susan Rundale Sportsters 93 Ladies
 \end{verbatim}
 
-(en\_GB “İngiliz İngilizcesi” için bir kısaltmadır; en\_US “Amerikan İngilizcesi” için kullanılır ve burada aynı işi görür) Şimdi ilk isme göre sıralama yapalım: 
+(en\_GB “İngiliz İngilizcesi” için, en\_US ise “Amerikan İngilizcesi” için kullanılan kısaltmadır ve her ikisi de burada aynı işi görür) Şimdi ilk isme göre sıralama yapalım:
+
 \begin{verbatim}
 $ sort -k 2,2 participants.dat
 Smith Herbert Pantington AC 123 Men
@@ -395,7 +396,8 @@ Longshanks Loretta Pantington AC 55 Ladies
 Runnington Vivian Lameborough TFC 117 Ladies
 \end{verbatim}
 
-Bu yukarıda anlatılan sıralamanın bir tanımlanmasıdır: İlk tanımlanan boşluk ayırıcı olarak kabul edilir, diğerleri takip eden alanın değerlerini oluşturur. Gördüğünüz gibi ilk isimler alfabetik olarak listelendi ama sadece soyisimleri aynı uzunlukta olanlar listelenenler. Bu -b seçeneği kullanılarak düzeltilebilir, bu seçenek boşluk karakterini tek bir boşluk olarak algılar.
+Bu örnek sort'un yukarıda anlatılan özelliğini gösterir: İlk tanımlanan boşluk ayırıcı olarak kabul edilir, diğerleri takip eden alanın değerlerini oluşturur. Gördüğünüz gibi ilk isimlerden sadece soyisimleri aynı uzunlukta olanlar alfabetik olarak listelendi. Bu durum -b seçeneği kullanılarak düzeltilebilir, bu seçenek art arda gelen boşluk karakterlerini tek bir boşluk olarak değerlendirir.
+
 \begin{verbatim}
 $ sort -b -k 2,2 participants.dat
 Prowler Desmond Lameborough TFC 13 Men
@@ -411,10 +413,10 @@ Sweat Susan Rundale Sportsters 93 Ladies
 Runnington Vivian Lameborough TFC 117 Ladies
 \end{verbatim}
 
-TABLO
+Bu sıralı liste hala biraz hatalı; bunun için 8.14 numaralı alıştırmaya bakın.
 
-Bu sıralı liste hala biraz hatalı; bunun için 8.14 numaralı alıştırmaya bakın. 
-Aşağıdaki örnekte de görüldüğü gibi sıralama alanı daha detaylı bir şekilde belirlenebilir:
+Aşağıdaki örnekte de görüldüğü gibi sıralama alanı daha detaylı bir şekilde belirtilebilir:
+
 \begin{verbatim}
 $ sort -br -k 2.2 participants.dat
 Sweat Susan Rundale Sportsters 93 Ladies
@@ -430,9 +432,10 @@ Runnington Kathleen Lameborough TFC 119 Ladies
 O'Finnan Jack Fairing Track Society 45 Men
 \end{verbatim}
 
-Burada katılanlar.dat dosyası ikinci alan tablosunun ikinci karakterine göre ters sıralamaya göre (-r) sıralanmıştır. Örnek olarak ilk ismin ikinci karakteri (çok anlaşılır oldu gerçekten). Bu durumda ilk karakter boşluğu -b seçeneği ile atlanmalıdır. (Örnek 8.14 te bulunan hata burada da kendini tekrar ediyor.) 
+Burada participants.dat dosyası ikinci alanın ikinci karakterine göre, yani ilk adlarının ikinci karakterine göre (çok anlamlı!) azalan şekilde (-r) sıralanmıştır. Bu örnekte de başta gelen boşluklar -b seçeneği kullanılarak göz ardı edilmelidir. (Örnek 8.14 teki hata burada da kendini tekrar ediyor.)
 
--t seçeneği ile (terminate, Türkçesi “durdur”) alan ayırıcısının olduğu yerdeki istenen bir karakteri seçebilirsiniz. Bu alanlar boşluklar içerebileceği için iyi bir fikirdir. Burada örneğimiz için daha kullanılabilir bir hali bulunuyor:
+-t seçeneği ile ("terminate", Türkçesi “durdur”) alan ayırıcısının olarak istenen bir karakteri seçebilirsiniz. Bu seçenek alanlar zaten veri olarak boşluklar içerebileceği için iyi bir fikir olabilir. Aşağıda örnek dosyamızın için daha kullanışlı (ancak daha zor okunan) bir hali bulunuyor:
+
 \begin{verbatim}
 Smith:Herbert:Pantington AC:123:Men
 Prowler:Desmond:Lameborough TFC:13:Men
@@ -447,7 +450,8 @@ O'Finnan:Jack:Fairing Track Society:45:Men
 Oblomovsky:Katie:Rundale Sportsters:57:Ladies
 \end{verbatim}
 
-“LC\_COLLATE=en\_GB sort -t: -k2,2 ” kullanılarak ilk isme göre sıralamak artık doğru sonucu veriyor. Ayrıca katılımcının numarasına göre sıralamak (4 numaralı alan, kulüp isminde kaç tane boşluk olursa olsun) daha kolaydır:
+“LC\_COLLATE=en\_GB sort -t: -k2,2” kullanılarak ilk isme göre sıralamak artık doğru sonucu veriyor. Ayrıca katılımcının numarasına göre sıralamak (4 numaralı alan) kulüp isminde kaç tane boşluk olursa olsun daha kolaydır:
+
 \begin{verbatim}
 $ sort -t: -k4 participants0.dat
 Runnington:Vivian:Lameborough TFC:117:Ladies
@@ -463,7 +467,8 @@ Oblomovsky:Katie:Rundale Sportsters:57:Ladies
 Sweat:Susan:Rundale Sportsters:93:Ladies
 \end{verbatim}
 
-Elbette “sayı” sıralaması aksi belirtilmedikçe alfabetik olarak yapılır – “117” ve “123” “13” ten önce gelir. Bu sayısal sıralama yapmak için -n seçeneği ile düzeltilebilir.
+Elbette “sayı” sıralaması aksi belirtilmedikçe alfabetik olarak yapılır – “117” ve “123” “13” ten önce, o da "154"den önce gelir. Bu durum sayısal karşılaştırma yapmaya zorlayan -n seçeneği ile düzeltilebilir.
+
 \begin{verbatim}
 $ sort -t: -k4 -n participants0.dat
 Prowler:Desmond:Lameborough TFC:13:Men
@@ -479,8 +484,34 @@ Jumpabout:Mike:Fairing Track Society:154:Men
 Fleetman:Fred:Rundale Sportsters:217:Men
 \end{verbatim}
 
-sort için olan bu ve bazı önemli seçenekler Tablo 8.3' te gösterilmiştir, buna çalışmak iyi olur. Sort çok yönlü ve size çok zaman kazandırabilecek güçlü bir komuttur.
-\paragraph{uniq komutu}{uniq komutu girdide verilen aynı satırların vurgulanmasında önemli bir görev yapar.  “Aynı” olarak kabul edilen ,her zamanki gibi, özel seçenekler kullanılarak değiştirilebilir. Uniq gördüğümüz komutların çoğundan farklıdır, bir tane dışında isteğe bağlı girdi dosyası kabul etmez; eğer ikinci bir dosya ismi verilirse bunu çıktının konulması istenen dosya olarak düşünür. (eğer ikinci dosya ismi verilmezse çıktı standart çıktıya yazılır) uniq çağrısında hiç dosya ismi verilmemişse, beklendiği gibi standart girdiden okumaya başlar. Uniq en iyi girdi dosyasındaki satırlar sıralanmış ise çalışır, sıralanmaktan kasıt aynı satırların birbiri arkasına gelmesidir. Eğer durum bu değilse çıktıda bütün tekrarlanan satırların görüneceği garantisi verilmez.}
+sort'un bazı önemli seçenekleri Tablo ~\ref{tab:8.3}'te gösterilmiştir, ayrıca programın belgelerini incelemek de faydalı olabilir. Sort size çok zaman kazandırabilecek çok yönlü ve güçlü bir komuttur.
+
+\footnotesize
+\begin {table}[Htb]
+\caption {sort seçenekleri} \label{tab:8.3}
+\begin{tabular}{p{2cm} p{3cm} p{6cm}}
+\hline
+Seçenek & & Sonuç\\
+\hline
+-b & (boşluk, ing. blank) & Alanların içindeki başta gelen boşluk karakterlerini dikkate almaz.\\
+-d & (sözlük, ing. dictionary) & Sözlük sırasına göre sıralar, örn. sadece harf, rakam ve boşluk karakterleri dikkate alınır.\\
+-f & (katla, ing. fold) & Büyük ve küçük harfleri eşit olarak değerlendirir.\\
+-i & (yoksay, ing. ignore) & Yazdırılamayan karakterleri dikkate almaz.\\
+-k alan1 [, alan2] & (anahtar, ing. key) & alan1'den başlayıp alan2'ye kadar (dahil) sıralar.\\
+-n & (sayısal, ing. numeric) & Alanın içeriğini sayı olarak kabul eder ve sayısal değerine göre sıralar, başta gelen boşluklar dikkate alınmaz.\\
+-o & (çıktı, ing. output) & Sonuçları dosyaya yazdır, dosya ismi orjinal girdi dosyası ile aynı olabilir.\\
+-r & (ters, ing. reverse) & Azalan şekilde sırala, örn: Z'den A'ya doğru\\
+-t \textless karakter \textgreater & (durdur, ing. terminate) & Alan ayıracı olarak karakteri kullan.\\
+-u & (Tekil, ing. unique) & Art arda gelen aynı çıktı satırlarından sadece ilkini yaz.\\
+\hline
+\end{tabular}
+\end {table}
+\normalsize
+
+uniq komutu girdide verilen art arda gelen aynı satırların sadece ilkini (veya tercihinize göre sonuncusunu) yazdırmak gibi önemli bir işlev sağlar. Neyin “aynı” olarak kabul edileceği her zamanki gibi özel seçenekler kullanılarak değiştirilebilir. Uniq gördüğümüz komutların çoğundan farklıdır, bir tane dışında isteğe bağlı girdi dosyası kabul etmez; eğer ikinci bir dosya ismi verilirse bunu çıktının yazdırılacağı dosya olarak farz eder (eğer ikinci dosya ismi verilmezse çıktı standart çıktıya yazılır). uniq çağrısında hiç dosya ismi verilmemişse, beklendiği gibi standart girdiden okumaya başlar.
+
+Uniq girdi dosyasındaki tüm eşit satırlar art arda sıralanmış olduğunda en iyi şekilde çalışır. Eğer durum bu değilse her bir satırın çıktıda sadece bir kez görüneceği kesin olmaz.
+
 \begin{verbatim}
 $ cat uniq-test
 Hipp
@@ -496,7 +527,8 @@ Hipp
 Hopp
 \end{verbatim}
 
-Bunu “sort -u ” komutunun çıktısıyla karşılaştırın:
+Bunu “sort -u” komutunun çıktısıyla karşılaştırın:
+
 \begin{verbatim}
 $ sort -u uniq-test
 Hipp
@@ -505,17 +537,17 @@ Hopp
 
 \paragraph{{\Huge{\PencilLeftDown}}Alıştırmalar}{
 \begin{enumerate}
- \item Katılımcılar0.dat dosyasındaki katılımcı listesini koşucuların isimlerinin sıralı olduğu liste ele alınarak kulüp isimlerine göre sıralayın.
- \item Katılımcı listesini artan bir şekilde (a-z) “numaraların ters yönde sıralanmış halini” ele alarak kulüplerin ismine göre sıralayabilirsiniz? (İpucu: Belgeyi okuyun!)
- \item Bu örnekteki hata nedir ve neden meydana gelir?
- \item Takip eden dosya isimlerine sahip bir dizin: 
+ \item participants0.dat dosyasındaki (alanların ":" ile ayrıldıkları dosya) katılımcı listesini klüp isimlerine ve her klüpteki oyuncuları da soyad ve ilk adlarına göre (bu sıra ile) sıralayın.
+ \item Katılımcı listesini klüp isimlerine göre artan bir şekilde (a-z) klüplerin oyuncularını da numaralarına göre azalan şekilde nasıl sıralarız? (İpucu: Sort programının belgelerini inceleyin!)
+ \item Örneklerde sürekli iddia ettiğimiz hata nedir ve hangi sebepten dolayı oluşur?
+ \item Aşağıdaki dosya isimlerine sahip bir dizin:
  \begin{verbatim}
 01-2002.txt 01-2003.txt 02-2002.txt 02-2003.txt
 03-2002.txt 03-2003.txt 04-2002.txt 04-2003.txt
 <<<
 11-2002.txt 11-2003.txt 12-2002.txt 12-2003.txt
  \end{verbatim}
- sort komutunu ls komutunun sonucunu tarihsel sıraya göre doğru dizmek için kullanınız:
+ ls komutunun çıktısını tarihsel sıraya göre doğru dizen sort komutunu yazın:
  \begin{verbatim}
 01-2002.txt
 02-2002.txt
@@ -526,8 +558,10 @@ Hopp
 12-2003.txt
  \end{verbatim}
 \end{enumerate}}
+
 \end{subsection}
-\begin{subsection}{Sütunlar ve Alanlar—cut , paste vb.}
+
+\begin{subsection}{Sütunlar ve Alanlar - cut, paste vb.}
 
 Grep ile satırları bulup kesebilirken cut komutu bir metin dosyasında sütun yönelikli çalışır. Bu iki yöntemden biri ile çalışır:
 
