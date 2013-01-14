@@ -563,11 +563,11 @@ Hopp
 
 \begin{subsection}{Sütunlar ve Alanlar - cut, paste vb.}
 
-Grep ile satırları bulup kesebilirken cut komutu bir metin dosyasında sütun yönelikli çalışır. Bu iki yöntemden biri ile çalışır:
+Grep ile bir metin dosyası içindeki satırları bulup kesebilirken cut komutu bir metin dosyasında sütun yönelikli çalışır. İki farklı çalışma yöntemi vardır:
 
-Bir ihtimal sütunların kesin bir şekilde ayrılmış olmasıdır. Bu sütunlar bir satırda tek bir karaktere karşılık gelirler. Bu gibi sütunları kesmek için -c seçeneği ile sütun numarası verilmelidir. Birden fazla sütunu tek seferde kesmek için sütun numaraları virgül ile ayrılır. Sütun aralıkları bile belirlenebilir.
+Birinci ihtimal sütunların kesin bir şekilde ayrılmış olmasıdır. Bu sütunlar bir satırda tek bir karaktere karşılık gelirler. Bu gibi sütunları kesmek için -c (ing. column) seçeneği ile sütun numarası verilmelidir. Birden fazla sütunu tek seferde kesmek için sütun numaraları virgül ile ayrılır. Sütun aralıkları bile belirtilebilir.
 \begin{verbatim}
-$ cut -c 12,1-5 katılımcılar.dat 
+$ cut -c 12,1-5 participants.dat
 SmithH 
 ProwlD 
 FleetF 
@@ -575,9 +575,10 @@ JumpaM
 de LeG 
 \end{verbatim}
 
-Bu örnekte ilk ismin ilk karakteri ve son ismin beş karakteri alınır. Ayrıca çıktının her zaman için girdide ki düzene göre gerçekleştiği görünmekte. Eğer seçilmiş satırlar birbirleri üstüne gelirse bile, her girdi karakteri çoğu zaman çıktıda bulunur:: 
+Bu örnekte ilk ismin ilk karakteri ve son ismin beş karakteri ayrılır. Ayrıca çıktının her zaman için girdideki sütunlar ile aynı sıraya göre gerçekleştiğini görebiliriz. Eğer seçilmiş sütun sıraları birbirleri üstüne gelse bile, her girdi karakteri sadece bir defa yazdırılır:
+
 \begin{verbatim}
-$ cut -c 1-5,2-6,3-7 katılımcılar.dat 
+$ cut -c 1-5,2-6,3-7 participants.dat
 Smith 
 Prowler 
 Fleetma 
@@ -585,10 +586,12 @@ Jumpabo
 de Leap
 \end{verbatim}
 
-İkinci yöntem bağlantılı alan ayırıcısı ile ayrılmış bağlantılı alanları kesmek için kullanılır. Eğer bu belirlenen alanları kesmek istiyorsanız cut -f seçeneğine ve istenen alan numarasına ihtiyaç duyar. Sütunlar için geçerli olanların hepsi alanlar içinde geçerlidir. -c ve -f  seçenekleri birbirlerinin aynısıdır.
-Varsayılan ayırıcı tab karakteridir, diğer ayırıcılar -d (delimiter) seçeneği ile belirlenebilir:
+İkinci yöntem bir ayraç karakteri ile ayrılmış göreceli alanları kesmektir. Eğer bu göreceli alanları kesmek istiyorsanız cut, -f (ing. field) seçeneğine ve istenen alan numarasına ihtiyaç duyar. Sütunlar için geçerli olan kuralların hepsi alanlar içinde geçerlidir. -c ve -f seçenekleri birbirine karşılıklıdır, aynı anda her ikisini birden kullanamazsınız.
+
+Varsayılan ayırıcı tab karakteridir, diğer ayırıcılar -d (ing. delimiter) seçeneği ile belirtilebilir:
+
 \begin{verbatim}
-$ cut -d: -f 1,4 katılımcılar0.dat 
+$ cut -d: -f 1,4 participants0.dat
 Smith:123 
 Prowler:13 
 Fleetman:217 
@@ -596,9 +599,10 @@ Jumpabout:154
 de Leaping:26
 \end{verbatim}
 
-Bu yolla katılımcıların soyadları (birinci sütun) ve numaraları (dördüncü sütun) listeden alınır. Okunabilirlik için sadece ilk birkaç satır gösterilmektedir.
+Bu yolla katılımcıların soyadları (birinci sütun) ve numaraları (dördüncü sütun) listeden alınır. Yukarıdaki örnekte okunabilirlik için çıktının sadece ilk birkaç satırı gösterilmektedir.
 
-Sözü açılmışken, --output-delimeter seçeneğini kullanarak farklı bir ayırıcı belirleyebilirsiniz:
+Sözü açılmışken, --output-delimeter seçeneğini kullanarak çıktı alanları için girdi ayıracından farklı bir ayırıcı belirleyebilirsiniz:
+
 \begin{verbatim}
 $ cut -d: --output-delimiter=': ' -f 1,4 participants0.dat
 Smith: 123
@@ -608,33 +612,38 @@ Jumpabout: 154
 de Leaping: 26
 \end{verbatim}
 
-Eğer gerçektende sütun ya da alanların düzenini değiştirmek istiyorsanız, awk ve perl gibi büyük silahları ortaya koymak zorundasınız. Bunu şimdi anlatacağımız paste komutu ile yapabilirsiniz ama that is rather tedious. 
+Eğer gerçekten sütun ya da alanların sırasını değiştirmek istiyorsanız, awk ve perl gibi büyük silahları ortaya çıkarmak zorundasınız. Bunu şimdi anlatacağımız paste komutu ile yapabilirsiniz ama bu biraz can sıkıcı olabilir.
 
-Dosyalar alanlar olarak kabul edilirse (sütun olarak kabul edilmek yerine) -s (seperator, ayırıcı) seçeneği kullanışlı olur.  Eğer “cut -f” ayırıcı içermeyen karakterlerin olduğu satırları buluyorsa, çıktıya bunları bütün halinde verir; -s bu satırları baskılar. Paste komutu belirtilen dosyalardaki satırları birleştirir. Bu sık sık cut komutu ile birlikte kullanılır. Hemen fark edeceğiniz gibi paste bir filtre komutu değildir. Yinede paste komutunun standart girdiden okuması için “-” işaretini kullanabilirsiniz. Çıktı her zaman standart çıktıya gönderilir. 
+Dosyalar sütunlar yerine alanlara göre işlenecekse -s (ing. seperator, ayırıcı) seçeneği kullanışlı olur. “cut -f” ayırıcı karakterini içermeyen satırları bulduğunda çıktıya bunları bütün halinde verir; -s bu satırları gizler.
 
-Söylediğimiz gibi, paste satırlarla işe yarar. Eğer iki dosya adı belirtildiyse ilk dosyanın ilk satırı ve ikincinin ilk satırı birleştirilir (bir tab karakterini ayırıcı olarak kullanarak) ve bu şekilde çıktının ilk satırı oluşturulur. Aynısı dosyadaki bütün satırlar için geçerlidir. Başka bir ayırıcı kullanmak için -d seçeneğini kullanabilirsiniz.
+Paste komutu belirtilen dosyalardaki satırları birleştirir, bu nedenle sıklıkla cut komutu ile birlikte kullanılır. Hemen fark edeceğiniz gibi paste bir filtre komutu değildir. Yine de dosya adı gelmesi gereken yere “-” işaretini koyarak paste komutunun dosya yerine standart girdiden okumasını sağlayabilirsiniz. Komutun çıktısı daima standart çıktıya gönderilir.
 
-Örnek olarak; maraton koşucularını katılım numaralarıyla birleştirip yeni bir dosya oluşturabiliriz:
+Söylediğimiz gibi, paste satır satır çalışır. Eğer iki dosya adı belirtildiyse ilk dosyanın ilk satırı ve ikincinin ilk satırı (bir tab karakterini ayırıcı olarak kullanarak) çıktının ilk satırı olacak şekilde birleştirilir. Aynı işlem dosyadaki bütün satırlar için tekrarlanır. Başka bir ayırıcı kullanmak için -d seçeneğini kullanabilirsiniz.
+
+Örnek olarak; maraton koşucuları listesini katılım numaraları öne gelecek birleştirip yeni bir dosya oluşturabiliriz:
+
 \begin{verbatim}
-$ cut -d: -f4 participants0.dat >number.dat 
-$ cut -d: -f1-3,5 participants0.dat \ 
+$ cut -d: -f4 participants0.dat >number.dat
+$ cut -d: -f1-3,5 participants0.dat \
 > 
-| paste -d: number.dat - >p-number.dat 
-$ cat p-number.dat 
-123:Smith:Herbert:Pantington AC:Men 
-13:Prowler:Desmond:Lameborough TFC:Men 
-217:Fleetman:Fred:Rundale Sportsters:Men 
-154:Jumpabout:Mike:Fairing Track Society:Men 
-26:de Leaping:Gwen:Fairing Track Society:Ladies 
-117:Runnington:Vivian:Lameborough TFC:Ladies 
-93:Sweat:Susan:Rundale Sportsters:Ladies 
-119:Runnington:Kathleen:Lameborough TFC:Ladies 
-55:Longshanks:Loretta: Pantington AC:Ladies 
-45:O'Finnan:Jack:Fairing Track Society:Men 
+| paste -d: number.dat - >p-number.dat
+$ cat p-number.dat
+123:Smith:Herbert:Pantington AC:Men
+13:Prowler:Desmond:Lameborough TFC:Men
+217:Fleetman:Fred:Rundale Sportsters:Men
+154:Jumpabout:Mike:Fairing Track Society:Men
+26:de Leaping:Gwen:Fairing Track Society:Ladies
+117:Runnington:Vivian:Lameborough TFC:Ladies
+93:Sweat:Susan:Rundale Sportsters:Ladies
+119:Runnington:Kathleen:Lameborough TFC:Ladies
+55:Longshanks:Loretta: Pantington AC:Ladies
+45:O'Finnan:Jack:Fairing Track Society:Men
 57:Oblomovsky:Katie:Rundale Sportsters:Ladies
 \end{verbatim}
 
-Bu dosya “sort -n p-number.dat” kullanılarak sayılara göre düzgn bir şekilde sıralanabilir. -s ile (seri) verilen dosyalar belirli bir sequence ile işlenir. İlk olarak, ilk dosyanın bütün satırları tek bir satır haline getirilir (aralarında bir ayırıcı karakter bulunacak şekilde) sonra ikinci dosyadaki bütün satırlar çıktının ikinci satırını oluştururlar.
+Bu dosya “sort -n p-number.dat” kullanılarak numaralara göre düzgn bir şekilde sıralanabilir.
+
+-s (seri, ing. serial) ile verilen dosyalar sırayla işlenir. İlk olarak, ilk dosyanın bütün satırları (aralarında bir ayırıcı karakter bulunacak şekilde) tek bir satır haline getirilir ve sonra ikinci dosyadaki bütün satırlar çıktının ikinci satırını oluştururlar.
 \begin{verbatim}
 $ cat list1
 Wood
@@ -649,37 +658,37 @@ Wood Bell Potter
 Keeper Chaser Seeker
 \end{verbatim}
 
-list* arama karakteriyle eşleşen bütün dosyalar (bu durumda list1 ve list2) paste kullanılarak birleştirildi. -s seçeneği bu dosyalarının bütün satılarının çıktının bir sütununu oluşturmasını sağlar. 
+list* arama karakteriyle eşleşen bütün dosyalar - bu durumda list1 ve list2 - paste kullanılarak birleştirildi. -s seçeneği bu dosyaların tüm satılarlarının çıktının bir sütununu oluşturmasını sağlar.
 
 \paragraph{{\Huge{\PencilLeftDown}}Alıştırmalar}{
 \begin{enumerate}
- \item Katılımcılar.dat dosyasının (eşit aralıklı sütunlar halinde olanının) katılımcı numarası ve kulüp bağlantısının olmadığı bir halini oluşturunuz.
- \item Katılımcılar0.dat dosyasının (: işaretinin ayırıcı olarak kullanıldığı halinin) katılımcı numarası ve kulüp bağlantısının olmadığı bir halini oluşturunuz.
- \item Katılımcılar0.dat dosyasının alanlarının “:” ile değil “,? ” ile ayrıldığı (virgül ve boşluk işareti)bir halini oluşturunuz.
- \item Sisteminizde kaç tane grup kullanıcılar tarafından birincil grup olarak kullanılıyor? (birinci grup kullanıcıları /etc/passwd nin altındaki dördüncü alandadır.)
+ \item participants.dat dosyasının (eşit uzunlukta sütunlar halinde olanının) katılımcı numarası ve kulüplerinin olmadığı bir halini oluşturunuz.
+ \item participants0.dat dosyasının (: işaretinin ayırıcı olarak kullanıldığı halinin) katılımcı numarası ve kulüplerinin olmadığı bir halini oluşturunuz.
+ \item Katılımcılar0.dat dosyasının alanlarının “:” ile değil “,\textvisiblespace ” (virgül ve boşluk işareti) ile ayrıldığı bir halini oluşturunuz.
+ \item Sisteminizde kaç tane grup kullanıcılar tarafından birincil grup olarak kullanılıyor? (Kullanıcıların birincil grupları /etc/passwd dosyasındaki dördüncü alandadır.)
 \end{enumerate}}
 
 \paragraph{Bu Bölümdeki Komutlar}{
 \begin{itemize}
-\item[cat]Dosyaları birleştirir (diğer şeylerin yanında)
+\item[cat]Dosyaları birleştirir (diğer işlevlerin yanında)
 \item[cut]Girdisindeki sütun ya da alanları ayırır
 \item[head]Bir dosyanın başlangıcını gösterir
 \item[paste]Farklı girdi dosyalarındaki satırları birleştirir
-\item[reset]Bir terminal karakterini mantıklı bir değere sıfırlar
-\item[sort]Girdisini satırlara göre sıralar
+\item[reset]Bir terminalin karakter kümesini mantıklı bir değere sıfırlar
+\item[sort]Girdisini satır satır sıralar
 \item[tail]Bir dosyanın sonunu gösterir
-\item[uniq]Bir dosyadaki tekrarlayan satırları vurgular
+\item[uniq]Bir dosyadaki art arda gelen eş satırları teke indirir
 \end{itemize}}
 
 \paragraph{Özet}{
 \begin{itemize}
 \item Her Linux programı standart G/Ç yollarını, stdin, stdout ve stderr'i destekler. 
 \item Standart çıktı ve standart hata çıktısı $>$ ve $>>$ operatörleri ile, standart girdi $<$ operatörü ile yönlendirilebilir.
-\item Boru hatları komutların standart çıktı ve girdilerini direkt olarak bağlamak için kullanılabilir. (ara dosyalar olmadan)
+\item Boru hatları komutların standart çıktı ve girdilerini (ara dosyalar olmadan) direkt olarak bağlamak için kullanılabilir.
 \item tee komutunu kullanarak yönlendirmelerdeki ara sonuçları dosyalarda saklayabiliriz. 
-\item Filtre komutları (ya da filtreler) kendi standart girdilerini okuyup değiştirip bunu standart çıktıya yazarlar. 
-\item sort sıralama için kullanılan çok yönlü bir programdır. 
-\item cut komutu her satırdan belirtilen aralıktaki sütun ya da alanları ayırır.
+\item Filtre komutları (ya da filtreler) kendi standart girdilerini okuyup değiştirip sonucu standart çıktıya yazarlar.
+\item sort sıralama için kullanılan çok yönlü bir programdır.
+\item cut komutu girdideki her satırdan belirtilen aralıktaki sütun ya da alanları ayırır.
 \item paste ile dosyaların satırları birleştirilebilir. 
 \end{itemize}}
 \end{subsection}
